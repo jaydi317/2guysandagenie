@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//2 Guys and a Genie//Free AI Business Night//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:20261027-business-night@2guysandagenie.com
+DTSTAMP:20261006T224000Z
+DTSTART:20261027T223000Z
+DTEND:20261028T010000Z
+SUMMARY:Free AI for Business Night
+LOCATION:Launch Fishers\, 12175 Visionary Way\, Fishers\, IN 46038
+DESCRIPTION:Doors open 6:30pm. Starts at 7:00pm. Ends at 9:00pm. Bring your
+  phone.
+URL:https://2guysandagenie.com/meetup/
+END:VEVENT
+END:VCALENDAR
