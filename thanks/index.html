@@ -10,7 +10,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&display=swap">
 <link rel="stylesheet" href="/assets/kit-c.css">
 <style>.stub + .details{margin-top:0;padding:16px 18px 10px;border:3px solid var(--ink);border-top:3px dashed var(--ink);border-radius:0 0 20px 20px;background:#fff}</style>
-<!-- Meta Pixel Code (same as the previous /thanks/ page: PageView plus CompleteRegistration on load) -->
+<!-- Meta Pixel Code. CompleteRegistration fires only for a real form submit
+     (?reg=1 from the form redirect, or arriving from the registration page),
+     and only once per browser, so refreshes and direct visits don't count as seats. -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -22,7 +24,21 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1965691120685809');
 fbq('track', 'PageView');
-fbq('track', 'CompleteRegistration');
+(function(){
+  var u = new URL(location.href);
+  var fromForm = u.searchParams.get('reg') === '1' ||
+    /2guysandagenie\.com\/meetup|leadconnectorhq\.com|msgsndr\.com/i.test(document.referrer || '');
+  var seen = false;
+  try { seen = localStorage.getItem('nov9_reg_fired') === '1'; } catch (e) {}
+  if (fromForm && !seen) {
+    fbq('track', 'CompleteRegistration');
+    try { localStorage.setItem('nov9_reg_fired', '1'); } catch (e) {}
+  }
+  if (u.searchParams.has('reg')) {
+    u.searchParams.delete('reg');
+    try { history.replaceState(null, '', u.pathname + (u.search || '') + u.hash); } catch (e) {}
+  }
+})();
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1965691120685809&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel Code -->
