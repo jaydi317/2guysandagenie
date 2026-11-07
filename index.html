@@ -165,7 +165,7 @@ footer p{margin:0 0 6px}footer a{color:var(--soft)}
 
 <section>
 <p class="kicker">Fishers, Indiana · A free AI night for local business owners</p>
-<h1>Walk In With A Problem. Walk Out Without It. By 9 O'Clock.</h1>
+<h1 id="hl">Walk In With A Problem. Walk Out Without It. By 9 O'Clock.</h1>
 <p>Once a month, we put AI to work on real local businesses, live on the big screen. Maybe yours. Then you do it yourself, on your own phone, before you leave.</p>
 <p style="margin-bottom:26px">Answering the phone. Following up. Getting the reviews. While you sleep. We call it the genie.</p>
 <a class="btn" href="/meetup/">Save My Seat At The Next Free Night</a>
@@ -322,6 +322,15 @@ show();setInterval(function(){i=(i+1)%Q.length;show()},7000);
 })();
 </script>
 <script>
-(function(){var q=location.search;if(!q)return;document.querySelectorAll('a[href^="/meetup/"]').forEach(function(a){var h=a.getAttribute("href"),i=h.indexOf("#");a.setAttribute("href",(i<0?h:h.slice(0,i))+q+(i<0?"":h.slice(i)))})})();
+(function(){
+var H=["Walk In With A Problem. Walk Out Without It. By 9 O'Clock.","What Would You Pay Never To Do Again? Bring It Monday Night. It's Free.","Bring The One Job You Hate Most. Leave Monday Night Never Having To Do It Again."];
+var h=document.getElementById('hl');if(!h)return;
+var i=0;try{i=(parseInt(localStorage.getItem('2g-hl')||'-1',10)+1)%H.length;localStorage.setItem('2g-hl',i)}catch(e){i=Math.floor(Math.random()*H.length)}
+h.textContent=H[i];
+document.querySelectorAll('a[href^="/meetup/"]').forEach(function(a){var x=a.getAttribute('href'),k=x.indexOf('#'),b=k<0?x:x.slice(0,k),t=k<0?'':x.slice(k);a.setAttribute('href',b+(b.indexOf('?')<0?'?':'&')+'hl='+(i+1)+t)});
+})();
+</script>
+<script>
+(function(){var q=location.search;if(!q)return;document.querySelectorAll('a[href^="/meetup/"]').forEach(function(a){var h=a.getAttribute("href"),i=h.indexOf("#");var b=i<0?h:h.slice(0,i);a.setAttribute("href",b+(b.indexOf("?")<0?q:"&"+q.slice(1))+(i<0?"":h.slice(i)))})})();
 </script>
 </body></html>
