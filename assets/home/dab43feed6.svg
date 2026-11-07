@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 350"><rect width="560" height="350" fill="#fff"/>
+<g fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="70" y="70" width="110" height="190" rx="16"/><line x1="105" y1="88" x2="145" y2="88"/>
+<path d="M200 120 q20 45 0 90 M220 100 q34 65 0 130"/>
+<rect x="380" y="70" width="110" height="190" rx="16"/><line x1="415" y1="88" x2="455" y2="88"/>
+<path d="M408 165 l20 20 l36 -44" stroke-width="8"/>
+<path d="M265 165 h70 m-18 -18 l18 18 l-18 18"/>
+</g>
+<g font-family="Tahoma,Verdana,sans-serif" font-weight="bold" fill="#111" text-anchor="middle">
+<text x="125" y="160" font-size="34">4/10</text><text x="125" y="190" font-size="15">to voicemail</text>
+<text x="125" y="310" font-size="22">BEFORE</text><text x="435" y="310" font-size="22">NOW</text>
+<text x="435" y="225" font-size="15">every call</text><text x="435" y="243" font-size="15">answered</text>
+</g></svg>

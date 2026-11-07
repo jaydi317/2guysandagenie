@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 350"><rect width="560" height="350" fill="#fff"/>
+<g fill="none" stroke="#111" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M60 150 h160 v110 h-160 z M60 150 l30 -30 h160 l-30 30 M220 150 l30 -30 v110 l-30 30"/>
+<path d="M95 150 q15 -40 50 -40 q35 0 50 40"/>
+<path d="M265 175 h70 m-18 -18 l18 18 l-18 18"/>
+<circle cx="440" cy="175" r="70"/>
+</g>
+<g font-family="Tahoma,Verdana,sans-serif" font-weight="bold" fill="#111" text-anchor="middle">
+<text x="140" y="215" font-size="30">− $</text>
+<text x="150" y="300" font-size="18">LOSING MONEY</text><text x="150" y="322" font-size="18">ON EVERY BOX</text>
+<text x="440" y="190" font-size="56">$</text>
+<text x="430" y="300" font-size="18">WHAT HE WAS</text><text x="430" y="322" font-size="18">REALLY SELLING</text>
+</g></svg>
