@@ -154,6 +154,12 @@ footer p{margin:0 0 6px}footer a{color:var(--soft)}
 .cream{background:#fff3c4;border-left:4px solid #111;padding:16px 18px 4px;margin:0 0 22px}.cream .big{font-size:22px;font-weight:900;line-height:1.25;margin:0 0 10px}
 .facts p{margin:0 0 6px;font-size:17px}
 .rq .alt{display:none}.rq .alt.on{display:block}
+.venue{margin:0 0 22px}.venue .ph{position:relative;border:2px solid #111;overflow:hidden;aspect-ratio:16/10;background:#eee}
+.venue .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s}.venue .ph img.on{opacity:1}
+.venue .vc{font-size:15px;color:var(--soft,#555);margin:8px 0 0}
+.dir{font-weight:bold;white-space:nowrap}
+.door{display:flex;gap:14px;align-items:center;margin:4px 0 14px}.door img{width:120px;height:120px;object-fit:cover;border:2px solid #111;flex:0 0 120px}
+.door p{margin:0;font-size:15px}
 </style>
 </head><body>
 <header class="site"><div class="hwrap">
@@ -291,7 +297,9 @@ footer p{margin:0 0 6px}footer a{color:var(--soft)}
 <section class="s" id="night">
 <p class="kicker">The free night · Mon Nov 9 · 7 to 9pm · Launch Fishers</p>
 <h2>What Happens Monday Night.</h2>
-<p class="cap"><b>Launch Fishers, 12175 Visionary Way, Fishers.</b></p>
+<div class="venue"><div class="ph" id="venue-ph"><img class="on" src="/assets/room-jimmy-paul.jpg" alt="Jimmy and Paul in front of the big screen at Launch Fishers"><img src="/assets/launch/front-door.jpg" alt="The front door of Launch Fishers" loading="lazy"></div>
+<p class="vc"><b>Launch Fishers, 12175 Visionary Way, Fishers.</b> <a class="dir" href="https://www.google.com/maps/dir/?api=1&amp;destination=Launch+Fishers,+12175+Visionary+Way,+Fishers,+IN" target="_blank" rel="noopener">Get directions →</a></p></div>
+<script>(function(){var im=document.querySelectorAll('#venue-ph img'),i=0;if(im.length<2)return;setInterval(function(){im[i].classList.remove('on');i=(i+1)%im.length;im[i].classList.add('on')},4000)})();</script>
 <div class="bring"><p class="kicker" style="color:#fff;opacity:.8;margin:0 0 6px">Just bring...</p><p class="big">Your Phone And Your Curiosity.</p><p>That's it. No tech skills needed. If you can send a text, you'll leave Monday with AI working for your business.</p><p>Never touched AI? You'll keep up. Already using ChatGPT? You'll leave with it working inside your business.</p></div>
 <div class="quote"><p>"90% of them all are about AI. And they always get me excited, but they never give me any tools."</p><p class="who">Kim, a local owner, on every other AI event</p></div>
 <p>So we built the opposite. You bring one thing that's eating your week. We put AI to work on real local businesses, live on the big screen, maybe yours. Then you do it yourself, on your own phone, before you leave.</p>
@@ -332,8 +340,9 @@ footer p{margin:0 0 6px}footer a{color:var(--soft)}
 <p style="margin-top:18px">Free. Watch for an email with the subject line "You're in." It has the time, the address, and where to park.</p>
 <div class="facts">
 <p><b>When:</b> Monday, November 9 · Doors 6:30, starts 7:00, done by 9:00</p>
-<p><b>Where:</b> Launch Fishers, 12175 Visionary Way, Fishers</p>
+<p><b>Where:</b> Launch Fishers, 12175 Visionary Way, Fishers. <a class="dir" href="https://www.google.com/maps/dir/?api=1&amp;destination=Launch+Fishers,+12175+Visionary+Way,+Fishers,+IN" target="_blank" rel="noopener">Get directions →</a></p>
 <p><b>Parking:</b> The lot just south of Launch Fishers. Main entrance: the glass doors on the southeast corner.</p>
+<div class="door"><img src="/assets/launch/front-door.jpg" alt="The front door of Launch Fishers" loading="lazy"><p><b>Look for this door.</b> Glass doors under the Launch Fishers sign.</p></div>
 <p><b>Cost:</b> Free</p>
 <p><b>Bring:</b> Your phone and your curiosity</p>
 </div>
