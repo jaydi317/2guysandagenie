@@ -27,7 +27,7 @@ fbq('track', 'PageView');
 (function(){
   var u = new URL(location.href);
   var fromForm = u.searchParams.get('reg') === '1' ||
-    /2guysandagenie\.com\/meetup|leadconnectorhq\.com|msgsndr\.com/i.test(document.referrer || '');
+    /2guysandagenie\.com\/(meetup|\?|#|$)|leadconnectorhq\.com|msgsndr\.com/i.test(document.referrer || '');
   var seen = false;
   try { seen = localStorage.getItem('nov9_reg_fired') === '1'; } catch (e) {}
   if (fromForm && !seen) {
