@@ -3,7 +3,7 @@
    Views go to the counter once per page load; a signup is credited on /thanks.
    Nothing here touches the GoHighLevel form or the Meta pixel. */
 (function () {
-  var W = 'https://2g-stats.WORKERS_SUBDOMAIN.workers.dev/h';
+  var W = 'https://2g-stats.daegansmith.workers.dev/h';
   function g(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function s(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   var q = new URLSearchParams(location.search);
