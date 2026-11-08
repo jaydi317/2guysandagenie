@@ -166,6 +166,16 @@ footer p{margin:0 0 6px}footer a{color:var(--soft)}
 </style>
 <style>.hl{background:#fff3c4;padding:0 3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}</style>
 <style>.pfig{margin:18px 0}.pfig img{width:100%;height:auto;display:block}.pfig figcaption{font-size:14px;color:#555;margin-top:6px}.card.av{grid-template-columns:72px 1fr;column-gap:14px;align-items:center}.card.av img{grid-row:1/3;width:72px;height:72px;object-fit:cover;border-radius:50%}</style>
+<style>[hidden]{display:none!important}.hv{margin:4px 0 22px}.hv .cap{font-size:14px;color:#555;margin-top:6px}
+.thread{background:#f4f4f6;border-radius:14px;padding:12px}.th{font-size:12px;color:#777;text-align:center;margin-bottom:8px}
+.bb{max-width:80%;padding:9px 13px;border-radius:16px;font-size:16px;line-height:1.35;margin:6px 0}.me{background:#111;color:#fff;margin-left:auto;border-bottom-right-radius:4px}.ai{background:#fff;border:1px solid #ddd;border-bottom-left-radius:4px}
+.lock{background:linear-gradient(160deg,#1b2a3a,#0d1117);color:#fff;border-radius:18px;padding:16px 12px 12px}.ld{text-align:center;font-size:14px;opacity:.85}.lt{text-align:center;font-size:58px;font-weight:300;line-height:1;margin:2px 0 12px}
+.nn{background:rgba(255,255,255,.14);border-radius:12px;padding:8px 12px;margin:6px 0;font-size:15px;line-height:1.35}.nn b{display:block}.nn span{opacity:.8}
+.dr{position:relative}.dr img{width:100%;height:280px;object-fit:cover}.tag{position:absolute;left:10px;bottom:10px;background:#FFF3C4;font-weight:900;padding:6px 10px;font-size:17px;line-height:1.2}.tag small{font-weight:normal;font-size:13px;display:block}
+.wo{position:relative;border:2px solid #111;background:#fffdf5;padding:10px 12px;font-family:"Courier New",monospace}.wh{font-size:12px;font-weight:bold;border-bottom:2px dashed #111;padding-bottom:6px;margin-bottom:4px}
+.wr{display:grid;grid-template-columns:100px 1fr;border-bottom:1px dashed #999;padding:7px 0;font-size:14px;line-height:1.35}.wr span{color:#555}.hand{font-family:"Comic Sans MS","Bradley Hand",cursive;font-size:19px;color:#1a3fa0}
+.stamp{position:absolute;right:14px;bottom:10px;transform:rotate(-10deg);border:3px solid #c0262d;color:#c0262d;font:900 28px Tahoma;padding:2px 10px;letter-spacing:2px;opacity:.85}</style>
+<script src="/assets/rot.js"></script>
 </head><body>
 <header class="site"><div class="hwrap">
 <a class="brand" href="/"><img src="/assets/home/1e70c87f04.svg" alt="">2 Guys and a Genie</a>
@@ -181,7 +191,14 @@ footer p{margin:0 0 6px}footer a{color:var(--soft)}
 <section>
 <p class="kicker">Fishers, Indiana · A free AI night for local business owners</p>
 <h1 id="hl">Walk In With A Problem. Walk Out Without It. By 9 O'Clock.</h1>
-<figure class="pfig"><img src="/assets/doodles/job-7-9.jpg" alt="Walk in at 7 with the job. Walk out at 9 with AI carrying it."></figure>
+<div id="hero">
+<figure class="pfig" data-v="doodle"><img src="/assets/doodles/job-7-9.jpg" alt="Walk in at 7 with the job. Walk out at 9 with AI carrying it."></figure>
+<div class="hv" data-v="thread" hidden><div class="thread"><div class="th">Your business line · 7:14 PM</div><div class="bb me">Phone's ringing. I'm on a ladder.</div><div class="bb ai">Got it. I picked up. New customer, leaky kitchen faucet. Want me to book her Tuesday 8 AM and text her a confirmation?</div><div class="bb me">Yes.</div><div class="bb ai">Booked. Confirmation sent. Get back to work.</div></div><div class="cap">You set this up yourself, Monday night. AI drafts. You say yes.</div></div>
+<div class="hv" data-v="lock" hidden><div class="lock"><div class="ld">Monday, November 9</div><div class="lt">9:00</div><div class="nn"><b>Missed call answered</b><span>Booked for Tue 8:00 AM</span></div><div class="nn"><b>Quote drafted</b><span>Waiting for your OK</span></div><div class="nn"><b>Review requests sent</b><span>To this week's 3 customers</span></div><div class="nn"><b>Follow-up sent</b><span>Saturday's leads, all of them</span></div></div><div class="cap">Your phone at 9:00 Monday night.</div></div>
+<div class="hv" data-v="door" hidden><div class="dr"><img src="/assets/launch/front-door.jpg" alt="Launch Fishers" loading="lazy"><div class="tag">MON NOV 9 · 7 PM<small>Glass doors, southeast corner</small></div></div><div class="cap">Launch Fishers, 12175 Visionary Way. Walk in with it. Walk out without it.</div></div>
+<div class="hv" data-v="ticket" hidden><div class="wo"><div class="wh">WORK ORDER · LAUNCH FISHERS · MON NOV 9</div><div class="wr"><span>IN 7:00 PM</span><b>The one job you dread</b></div><div class="wr"><span>JOB</span><b class="hand">answering the phone</b></div><div class="wr"><span>OUT 9:00 PM</span><b>AI doing it. On your phone.</b></div><div class="wr"><span>COST</span><b>$0</b></div><div class="stamp">HANDLED</div></div><div class="cap">Bring yours. We'll write it on the ticket.</div></div>
+</div>
+<script>window.R&&R.show(document.getElementById('hero'),'hero')</script>
 <p>Bring the one job you hate doing most. The one you dread every time you think about it.</p>
 <p>Monday night, Jimmy and Paul, two neighbors from Fishers, put AI to work on that exact kind of problem for real businesses like yours, live on the big screen.</p>
 <p><b>Then you do it yourself, on your own phone, for your own business, before you leave.</b></p>
@@ -403,8 +420,8 @@ show();setInterval(function(){i=(i+1)%Q.length;show()},7000);
 (function(){
 var H=["Walk In With A Problem. Walk Out Without It. By 9 O'Clock.","What Would You Pay Never To Do Again? Bring It Monday Night. It's Free.","Bring The One Job You Hate Most. Leave Monday Night Never Having To Do It Again."];
 var h=document.getElementById('hl');if(!h)return;
-var i=0;try{i=(parseInt(localStorage.getItem('2g-hl')||'-1',10)+1)%H.length;localStorage.setItem('2g-hl',i)}catch(e){i=Math.floor(Math.random()*H.length)}
-h.textContent=H[i];window.__hl=i+1;
+var i=window.R?parseInt(R.pick('hl',['1','2','3']),10)-1:0;
+h.textContent=H[i];window.__hl=i+1;window.R&&R.mark('hl','hl'+(i+1));
 })();
 </script>
 <script>
@@ -421,8 +438,9 @@ h.textContent=H[i];window.__hl=i+1;
 </script>
 <script src="https://link.msgsndr.com/js/form_embed.js"></script>
 <script>
-(function(){var v=0;try{v=parseInt(localStorage.getItem('2g-qv')||'-1',10)+1;localStorage.setItem('2g-qv',v)}catch(e){v=Math.floor(Math.random()*6)}
+(function(){var v=window.R?parseInt(R.pick('qv',['0','1','2','3','4','5']),10):0;
 window.__rq=function(n){document.querySelectorAll('.rq').forEach(function(q){var a=q.querySelectorAll('.alt');a.forEach(function(x,i){x.className='alt'+(i===n%a.length?' on':'')})})};
-window.__rq(v);window.__rqv=v;})();
+window.__rq(v);window.__rqv=v;if(window.R)[].forEach.call(document.querySelectorAll('.rq'),function(q,k){var n=q.querySelectorAll('.alt').length;if(n)R.mark('jq'+(k+1),'q'+(v%n+1))});})();
 </script>
+<script>window.R&&R.send('home')</script>
 </body></html>
