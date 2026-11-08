@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>You're In · Free AI for Business Night · 2 Guys and a Genie</title>
+<meta name="description" content="You're in. Free AI for Business Night, Monday, November 9 at Launch Fishers.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&display=swap">
+<link rel="stylesheet" href="/assets/kit-c.css">
+<style>.stub + .details{margin-top:0;padding:16px 18px 10px;border:3px solid var(--ink);border-top:3px dashed var(--ink);border-radius:0 0 20px 20px;background:#fff}</style>
+<script src="/assets/rot.js"></script>
+<!-- Meta Pixel Code. CompleteRegistration fires only for a real form submit
+     (?reg=1 from the form redirect, or arriving from the registration page),
+     and only once per browser, so refreshes and direct visits don't count as seats. -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1965691120685809');
+fbq('track', 'PageView');
+(function(){
+  var u = new URL(location.href);
+  var fromForm = u.searchParams.get('reg') === '1' ||
+    /2guysandagenie\.com\/(meetup|\?|#|$)|leadconnectorhq\.com|msgsndr\.com/i.test(document.referrer || '');
+  if (fromForm && window.R) R.signup();
+  var seen = false;
+  try { seen = localStorage.getItem('nov9_reg_fired') === '1'; } catch (e) {}
+  if (fromForm && !seen) {
+    fbq('track', 'CompleteRegistration');
+    try { localStorage.setItem('nov9_reg_fired', '1'); } catch (e) {}
+  }
+  if (u.searchParams.has('reg')) {
+    u.searchParams.delete('reg');
+    try { history.replaceState(null, '', u.pathname + (u.search || '') + u.hash); } catch (e) {}
+  }
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1965691120685809&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+</head><body>
+<div class="ribbon">Free · Mon Nov 9 · Launch Fishers</div>
+<header class="hd"><img src="/assets/2g-mark.svg" alt="">2 Guys and a Genie</header>
+<div class="wrap">
+<p class="kicker">AI for Business Night · Mon Nov 9 · 7 to 9pm · Launch Fishers</p>
+
+<h1>You're In.</h1>
+<div class="beats">
+<p>Thanks for grabbing a seat.</p>
+<p>Your "You're in" email is on its way with everything below. Don't see it in a couple of minutes? Check spam or promotions, and drag it into your main inbox.</p>
+</div>
+
+<div class="stub"><span class="d">9</span><span class="m">NOV · MONDAY<br>DOORS 6:30 · LAUNCH FISHERS</span></div>
+<div class="details">
+<p><b>When:</b> Monday, November 9 · Doors open at 6:30, we start at 7:00</p>
+<p><b>Where:</b> Launch Fishers, 12175 Visionary Way, Fishers, Indiana</p>
+<p><b>Parking:</b> The lot just south of Launch Fishers. Come in the glass entrance on the southeast corner.</p>
+<p><b>Cost:</b> Free</p>
+<p><b>Bring:</b> Your phone</p>
+</div>
+
+<div class="beats lead-in">
+<p>Put it in your calendar now, while you're thinking about it.</p>
+</div>
+<a class="cta" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Free+AI+For+Business+Night+With+Jimmy+And+Paul&amp;dates=20261109T233000Z/20261110T020000Z&amp;ctz=America/Indiana/Indianapolis&amp;location=Launch+Fishers,+12175+Visionary+Way,+Fishers,+IN&amp;details=Doors+open+at+6:30,+we+start+at+7:00.+Bring+your+phone." target="_blank" rel="noopener">Add It To My Calendar</a>
+
+<div class="beats">
+<p class="gap">See you in the room.</p>
+</div>
+
+<p>Jimmy</p>
+<p><b>P.S.</b> Know another business owner who'd love what happened to Jamon? Send them this link so they can grab their own seat.</p>
+<a class="cta" href="/meetup/?src=friend&amp;utm_source=referral&amp;utm_medium=share&amp;utm_campaign=fishers-oct27&amp;utm_content=youre-in-page">Save A Seat For A Friend</a>
+
+<div class="foot">
+<p class="fine"><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · Contact: hello@2guysandagenie.com · This site is not part of Facebook or Meta.</p>
+<p class="fine">2 Guys and a Genie is a business name of Reverse Selling Limited Liability Company · 14846 Victory Ct, Carmel, IN 46032</p>
+</div>
+</div>
+</body></html>

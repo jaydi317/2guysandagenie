@@ -94,4 +94,5 @@ document.querySelectorAll('a[href^="/book/"]').forEach(function(a){a.href='/book
 <script>
 document.getElementById('copybtn').addEventListener('click',function(){var t=document.getElementById('blurbtext').innerText,b=this;function ok(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy the invite'},1800)}if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,function(){})}else{var r=document.createRange();r.selectNode(document.getElementById('blurbtext'));getSelection().removeAllRanges();getSelection().addRange(r);document.execCommand('copy');ok()}});
 </script>
+<p style="text-align:center;font-size:12px;margin:28px 0 18px"><a href="/admin/" style="color:#999">Admin</a></p>
 </body></html>
