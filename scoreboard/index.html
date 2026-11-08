@@ -43,7 +43,7 @@ input{width:100%;font:16px Tahoma,Geneva,Verdana,sans-serif;padding:10px;border:
       put(key);
       var b=document.getElementById('b');b.src=W+'/board?key='+encodeURIComponent(key)+(all?'&all=1':'');b.hidden=false;
       document.getElementById('f').hidden=true;document.getElementById('out').hidden=false;
-    }).catch(function(){ask(false)});
+    }).catch(function(){ask(true)});
   }
   document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();show(document.getElementById('k').value.trim());});
   document.getElementById('out').addEventListener('click',function(e){e.preventDefault();put(null);ask(false);});
