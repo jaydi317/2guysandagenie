@@ -17,7 +17,8 @@ const NAMES = {
   meetup: {
     _title: 'Meetup page',
     hl: { _title: 'Headline', hl1: "Walk In With A Problem. Walk Out Without It. By 9 O'Clock.", hl2: "What Would You Pay Never To Do Again? Bring It Monday Night. It's Free.", hl3: 'Bring The One Job You Hate Most. Leave Monday Night Never Having To Do It Again.', jamon: 'Jamon ad visitors: "Jamon Brought One Problem..."' },
-    open: { _title: 'Opening block', tuesday: 'Picture Tuesday morning (7 AM doodle)', monday: "Here's Monday night (7 PM / 9 PM doodle)" },
+    open: { _title: 'Opening block', tuesday: 'Picture Tuesday morning', monday: "Here's Monday night" },
+    mpic: { _title: 'Picture in the opening', doodle: "The opening's own doodle (7 AM or 7 PM / 9 PM)", thread: 'Text thread (on a ladder)', lock: 'Lock screen (Tue 7 AM or Mon 9 PM)', door: 'Launch Fishers door', ticket: 'Work order, HANDLED' },
   },
 };
 
