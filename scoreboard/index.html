@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>2 Guys Scoreboard</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{display:flex;flex-direction:column;font-family:Tahoma,Geneva,Verdana,sans-serif;background:#fff;color:#111}
+header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 16px;border-bottom:2px solid #111}
+header b{font-size:17px;margin-right:auto}
+header a,button{font:bold 14px Tahoma,Geneva,Verdana,sans-serif;color:#111;background:#fff;text-decoration:none;border:2px solid #111;padding:6px 12px;cursor:pointer;border-radius:0}
+header a:hover,button:hover{background:#111;color:#fff}
+iframe{flex:1;width:100%;border:0;display:block}
+form{max-width:420px;margin:60px auto;padding:0 20px}
+form h1{font-size:26px;margin:0 0 10px}
+form p{color:#555;font-size:15px;line-height:1.5}
+input{width:100%;font:16px Tahoma,Geneva,Verdana,sans-serif;padding:10px;border:2px solid #111;margin:0 0 12px;border-radius:0}
+#bad{color:#b00;font-size:14px}
+@media (prefers-color-scheme:dark){body{background:#121212;color:#f2f2f2}header{border-color:#f2f2f2}header a,button{color:#f2f2f2;background:#121212;border-color:#f2f2f2}header a:hover,button:hover{background:#f2f2f2;color:#121212}input{background:#1b1b1b;color:#f2f2f2;border-color:#f2f2f2}form p{color:#aaa}}
+</style></head>
+<body>
+<header><b>2 Guys Scoreboard</b><a href="https://daegansmith.me/2guys-site/scoreboard.html">What's being tested</a><a id="all" href="?all=1">Show test visits</a><a id="out" href="#" hidden>Forget password</a></header>
+<form id="f" hidden>
+<h1>What's Winning</h1>
+<p>Enter the scoreboard password once. This browser remembers it after that.</p>
+<input id="k" type="password" autocomplete="current-password" placeholder="Scoreboard password">
+<button type="submit">Show the scoreboard</button>
+<p id="bad" hidden>That password didn't work. Try again.</p>
+</form>
+<iframe id="b" title="Scoreboard" hidden></iframe>
+<script>
+(function(){
+  var W='https://2g-stats.daegansmith.workers.dev', S='2g-board-key';
+  var all=new URLSearchParams(location.search).get('all')==='1';
+  var a=document.getElementById('all'); if(all){a.textContent='Hide test visits';a.href='./';}
+  function get(){try{return localStorage.getItem(S)}catch(e){return null}}
+  function put(v){try{v?localStorage.setItem(S,v):localStorage.removeItem(S)}catch(e){}}
+  function ask(bad){document.getElementById('f').hidden=false;document.getElementById('b').hidden=true;document.getElementById('bad').hidden=!bad;document.getElementById('out').hidden=true;}
+  function show(key){
+    fetch(W+'/data?key='+encodeURIComponent(key),{cache:'no-store'}).then(function(r){
+      if(!r.ok){put(null);return ask(true);}
+      put(key);
+      var b=document.getElementById('b');b.src=W+'/board?key='+encodeURIComponent(key)+(all?'&all=1':'');b.hidden=false;
+      document.getElementById('f').hidden=true;document.getElementById('out').hidden=false;
+    }).catch(function(){ask(false)});
+  }
+  document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();show(document.getElementById('k').value.trim());});
+  document.getElementById('out').addEventListener('click',function(e){e.preventDefault();put(null);ask(false);});
+  var k=get(); if(k) show(k); else ask(false);
+})();
+</script>
+</body></html>
