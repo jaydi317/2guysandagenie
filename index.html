@@ -174,7 +174,14 @@ footer p{margin:0 0 6px}footer a{color:var(--soft)}
 .dr{position:relative}.dr img{width:100%;height:280px;object-fit:cover}.tag{position:absolute;left:10px;bottom:10px;background:#FFF3C4;font-weight:900;padding:6px 10px;font-size:17px;line-height:1.2}.tag small{font-weight:normal;font-size:13px;display:block}
 .wo{position:relative;border:2px solid #111;background:#fffdf5;padding:10px 12px;font-family:"Courier New",monospace}.wh{font-size:12px;font-weight:bold;border-bottom:2px dashed #111;padding-bottom:6px;margin-bottom:4px}
 .wr{display:grid;grid-template-columns:100px 1fr;border-bottom:1px dashed #999;padding:7px 0;font-size:14px;line-height:1.35}.wr span{color:#555}.hand{font-family:"Comic Sans MS","Bradley Hand",cursive;font-size:19px;color:#1a3fa0}
-.stamp{position:absolute;right:14px;bottom:10px;transform:rotate(-10deg);border:3px solid #c0262d;color:#c0262d;font:900 28px Tahoma;padding:2px 10px;letter-spacing:2px;opacity:.85}</style>
+.stamp{position:absolute;right:14px;bottom:10px;transform:rotate(-10deg);border:3px solid #c0262d;color:#c0262d;font:900 28px Tahoma;padding:2px 10px;letter-spacing:2px;opacity:.85}.log,.thread,.clock,.todo,.desks,.tag2{margin:0 0 14px}
+.log{border:1px solid #ddd;border-radius:14px;overflow:hidden}.lh{font-weight:bold;padding:10px 12px;border-bottom:1px solid #eee}.lr{display:grid;grid-template-columns:1fr auto;padding:9px 12px;border-bottom:1px solid #eee;font-size:15px}.lr em{grid-column:1/3;font-style:normal;font-size:13px}.ok{color:#1a7f37}.bad{color:#c0262d}.lr.dim{opacity:.6}.lr span{color:#777;font-size:13px}
+.ai2{background:#e5e5ea;border-bottom-left-radius:4px}.me2{background:#0a84ff;color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+.clock{border-left:4px solid #111;padding-left:12px}.cr{font-size:16px;padding:7px 0;border-bottom:1px dashed #ccc}.cr span{display:block;font:bold 22px "Courier New",monospace}.cr.last{border:0;background:#FFF3C4;padding:8px}
+.todo{border:2px solid #111;padding:10px 12px;background:#fffdf5}.tt{font-weight:900;font-size:18px;margin-bottom:6px}.ti{display:flex;justify-content:space-between;gap:8px;font-size:16px;padding:6px 0;border-bottom:1px dashed #bbb}.ti em{font-style:normal;font-size:12px;font-weight:bold;background:#111;color:#fff;padding:1px 6px;align-self:center}.ti s{color:#888}.ti em.you{background:#FFF3C4;color:#111;border:1px solid #111}.box{display:inline-block;width:13px;height:13px;border:2px solid #111;margin-right:8px;vertical-align:-1px}.ti:last-child{border:0;font-weight:bold}
+.desks{display:grid;grid-template-columns:1fr 1fr;gap:8px}.dk{border:2px solid #111;min-height:180px;padding:8px}.dl{font-size:12px;font-weight:bold;text-transform:uppercase;margin-bottom:6px}.notes i{display:block;font-style:normal;background:#FFF3C4;border:1px solid #d9c87a;font-family:"Comic Sans MS","Bradley Hand","Marker Felt",cursive;font-size:14px;padding:6px;margin:4px 0}.clean{font-size:16px;margin-top:40px;text-align:center}
+.tag2{border:3px solid #c0262d;border-radius:14px;overflow:hidden;text-align:center;background:#fff}.hello{background:#c0262d;color:#fff;font:900 30px Tahoma,Verdana,sans-serif;letter-spacing:2px;padding:6px 0 0}.my{background:#c0262d;color:#fff;font-size:14px;padding:0 0 8px}.nm{font-family:"Bradley Hand","Marker Felt","Comic Sans MS",cursive;font-size:38px;padding:14px 0 6px}.ft{font-size:14px;color:#444;padding:0 10px 12px;line-height:1.5}
+</style>
 <script src="/assets/rot.js"></script>
 </head><body>
 <header class="site"><div class="hwrap">
@@ -259,11 +266,22 @@ footer p{margin:0 0 6px}footer a{color:var(--soft)}
 <p class="kicker">What AI actually takes off your plate</p>
 <h2>You Still Get To Do The Work You Love. AI Takes Over The Time And Soul Sucking Tasks You Loathe. For Good.</h2>
 <p>It's 7:15 at night and you're up on a ladder. The phone buzzes in your pocket. What happens to that call?</p>
-<img class="doodle" src="/assets/doodles/on-the-ladder.webp" alt="A man on a ladder while a little robot books the job for Tuesday 8AM">
+<div class="spot" id="sp-ladder">
+<div data-v="doodle"><img class="doodle" src="/assets/doodles/on-the-ladder.webp" alt="A man on a ladder while a little robot books the job for Tuesday 8AM"></div>
+<div class="hv" data-v="log" hidden><div class="log"><div class="lh">Recents</div><div class="lr"><b>(317) 555-0148</b><span>7:15 PM</span><em class="ok">Answered by your AI · Booked Tue 8:00 AM</em></div><div class="lr"><b>(317) 555-0192</b><span>6:52 PM</span><em class="ok">Answered by your AI · Quote sent</em></div><div class="lr dim"><b>(317) 555-0177</b><span>Last week</span><em class="bad">Missed call · No voicemail</em></div></div><div class="cap">Last week, that third call was a lost job. This week, nobody hears voicemail.</div></div>
+<div class="hv" data-v="customer" hidden><div class="thread"><div class="th">Their phone · 7:15 PM</div><div class="bb ai2">Hi, this is Carter Handyman. Sorry we missed you, we're on a job. What can we help with?</div><div class="bb me2">Kitchen faucet's leaking.</div><div class="bb ai2">We can fix that. Does Tuesday at 8 AM work?</div><div class="bb me2">Perfect.</div><div class="bb ai2">You're booked. See you Tuesday at 8.</div></div><div class="cap">Your customer gets an answer in seconds. You never came down the ladder.</div></div>
+<div class="hv" data-v="clock" hidden><div class="clock"><div class="cr"><span>7:15:00</span>Phone rings. You're on the ladder.</div><div class="cr"><span>7:15:04</span>AI picks up.</div><div class="cr"><span>7:16:30</span>Job booked for Tuesday, 8 AM.</div><div class="cr last"><span>7:40:00</span>You climb down. It's already on your calendar.</div></div></div>
+</div>
+<script>window.R&&R.show(document.getElementById('sp-ladder'),'ladder')</script>
 <p>AI picks up, answers the question and books the job. If it can't pick up, it texts them back in seconds. <b>You stay on the ladder and finish the job.</b></p>
 <p>(Not a handyman? We know. Picture your own version of that ladder.)</p>
 <p>The quotes. The schedule. The invoices. "Did anybody call Mrs. Jones back?" That's the stuff eating your nights, and it's exactly what AI is best at.</p>
-<img class="doodle" src="/assets/home/38a786de9d.webp" alt="A plumber under a sink beside a little robot carrying a stack of invoices at night">
+<div class="spot" id="sp-work">
+<div data-v="doodle"><img class="doodle" src="/assets/home/38a786de9d.webp" alt="A plumber under a sink beside a little robot carrying a stack of invoices at night"></div>
+<div class="hv" data-v="list" hidden><div class="todo"><div class="tt">Tonight's list</div><div class="ti"><s>Send the Henderson quote</s><em>AI</em></div><div class="ti"><s>Invoice #1042</s><em>AI</em></div><div class="ti"><s>Call Mrs. Jones back</s><em>AI</em></div><div class="ti"><s>Ask Saturday's customers for a review</s><em>AI</em></div><div class="ti"><span><span class="box"></span>Fix the Carters' sink</span><em class="you">You</em></div></div><div class="cap">Everything crossed off except the work.</div></div>
+<div class="hv" data-v="desk" hidden><div class="desks"><div class="dk"><div class="dl">10 PM, now</div><div class="notes"><i style="transform:rotate(-4deg)">Quote for Hendersons</i><i style="transform:rotate(3deg)">Call Mrs. Jones back!!</i><i style="transform:rotate(-2deg)">Invoice #1042</i><i style="transform:rotate(5deg)">Reviews??</i></div></div><div class="dk"><div class="dl">10 PM, after Monday</div><div class="clean">Desk's clear.<br><b>You're on the couch.</b></div></div></div></div>
+</div>
+<script>window.R&&R.show(document.getElementById('sp-work'),'work')</script>
 <p class="cap">The work you're proud of stays yours.</p>
 <div class="close"><p>Picture finishing the job in front of you with full focus, knowing the next one books itself without you. Monday night, you make that real for your business. That's why you've got to be there.</p><a href="#seat">Save my free seat →</a></div>
 </section>
@@ -302,7 +320,11 @@ footer p{margin:0 0 6px}footer a{color:var(--soft)}
 <h2>Tried ChatGPT And It Didn't Wow You? Here's Why.</h2>
 <p>You probably asked it something and got an answer so generic it could have been for anybody. I get it. Most owners who tried AI walked away thinking it was overrated.</p>
 <p><b>It's not your fault.</b> ChatGPT has read more than anyone alive, but it has never once been to your shop. Ask about your business without telling it anything first, and you get the average answer for a business like yours.</p>
-<img class="doodle" src="/assets/home/4c019e373c.webp" alt="It has read more than anybody alive, and never walked into your shop">
+<div class="spot" id="sp-shop">
+<div data-v="doodle"><img class="doodle" src="/assets/home/4c019e373c.webp" alt="It has read more than anybody alive, and never walked into your shop"></div>
+<div class="hv" data-v="nametag" hidden><div class="tag2"><div class="hello">HELLO</div><div class="my">my name is</div><div class="nm">ChatGPT</div><div class="ft">Read: everything ever written<br>Visited your shop: <b>never</b></div></div></div>
+</div>
+<script>window.R&&R.show(document.getElementById('sp-shop'),'shop')</script>
 <p class="cap">That's why it sounds like everybody else.</p>
 <p>Here's the fix. Tell ChatGPT or Claude about your business the way you'd tell a new hire. Then type two words: <b>"Interview me."</b></p>
 <p>Give it the tour of your business first, and it immediately stops sounding like everybody else.</p>
