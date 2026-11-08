@@ -59,7 +59,7 @@ ul.see li{margin-bottom:12px}
 .wo{position:relative;border:2px solid #111;background:#fffdf5;padding:10px 12px;font-family:"Courier New",monospace}.wh{font-size:12px;font-weight:bold;border-bottom:2px dashed #111;padding-bottom:6px;margin-bottom:4px}
 .wr{display:grid;grid-template-columns:100px 1fr;border-bottom:1px dashed #999;padding:7px 0;font-size:14px;line-height:1.35}.wr span{color:#555}.hand{font-family:"Comic Sans MS","Bradley Hand",cursive;font-size:19px;color:#1a3fa0}
 .stamp{position:absolute;right:14px;bottom:10px;transform:rotate(-10deg);border:3px solid #c0262d;color:#c0262d;font:900 28px Tahoma;padding:2px 10px;letter-spacing:2px;opacity:.85}</style>
-<style>.jvid{margin:0 0 22px}.jvid video{width:100%;aspect-ratio:16/9;display:block;background:#111;border:2px solid #111}.jvid figcaption{font-size:15px;margin-top:8px}</style>
+<style>.jvid{margin:0 0 22px}.jvid video{width:100%;aspect-ratio:16/9;display:block;background:#111;border:2px solid #111}.jvid figcaption{font-size:15px;margin-top:8px}.hl2{background:#fff;padding:0 3px}</style>
 <script src="/assets/rot.js"></script>
 </head><body>
 <header class="site"><div class="hwrap">
@@ -114,8 +114,10 @@ ul.see li{margin-bottom:12px}
 </div>
 <a class="btn" href="#seat">Save My Free Seat For Monday</a>
 <p class="small" style="margin-top:12px">Free. Doors 6:30. Done by 9. Launch Fishers, 12175 Visionary Way. <a class="dir" href="https://www.google.com/maps/dir/?api=1&amp;destination=Launch+Fishers,+12175+Visionary+Way,+Fishers,+IN" target="_blank" rel="noopener">Get directions →</a></p>
-<div class="cream" style="margin-top:28px"><p class="big" id="lead">Just ask Jamon.</p>
-<p>"We were roughly bringing in maybe $15,000 to $20,000 a month, and now our revenue is over $50,000 a month."</p>
+<p class="big" id="lead" style="font-size:24px;font-weight:900;line-height:1.25;margin:28px 0 12px">Just ask Jamon.</p>
+<div id="jvid-top"><figure class="jvid"><video controls playsinline preload="none" poster="/assets/jamon/jamon-jack-poster.jpg"><source src="/assets/jamon/jamon-jack-16x9.mp4" type="video/mp4"></video>
+<figcaption>Jamon Jack, Gotta Call Jack. 1 minute 27 seconds, in his own words.</figcaption></figure></div>
+<div class="cream"><p class="big">"We were roughly bringing in maybe <span class="hl2">$15,000 to $20,000 a month</span>, and now our revenue is <span class="hl2">over $50,000 a month</span>."</p>
 <p>"Our revenue is increasing, but... we're keeping our sanity."</p>
 <p>"Because of this, Chase was able to buy a new house."</p>
 <p><b>It took two meetings with Jimmy. Four hours.</b> "All it really took is for me just to trust you and let you do your magic."</p>
@@ -190,12 +192,6 @@ ul.see li{margin-bottom:12px}
 <div class="cream" style="margin-top:22px"><p class="big">Can't Make Monday?</p><p>We do this once a month. <a href="mailto:hello@2guysandagenie.com?subject=Put%20me%20on%20the%20list%20for%20the%20next%20free%20night">Get on the list for the next night →</a></p></div>
 </section>
 
-<section class="s">
-<p class="kicker">Jamon, in his own words. His full story is in your inbox: look for "You're Invited."</p>
-<figure class="jvid"><video controls playsinline preload="none" poster="/assets/jamon/jamon-jack-poster.jpg"><source src="/assets/jamon/jamon-jack-16x9.mp4" type="video/mp4"></video>
-<figcaption><b>Jamon's Story.</b> 1 minute 27 seconds, in his own words. "I'd have paid $10,000 for it."</figcaption></figure>
-</section>
-
 <section style="padding-top:36px">
 <p><b>P.S.</b> Bring your phone. When that pizza shop's line picks up on speaker Monday night, you'll be picturing your own phone ringing just like that. <a href="#seat" style="font-weight:bold">Save your seat.</a></p>
 </section>
@@ -221,7 +217,7 @@ var H=["Walk In With A Problem. Walk Out Without It. By 9 O'Clock.","What Would 
 var J="Jamon Brought One Problem. Bring Yours Monday Night. Walk Out Without It.";
 var h=document.getElementById('hl'),lead=document.getElementById('lead');if(!h)return;
 var q=new URLSearchParams(location.search),c=(q.get('utm_content')||'')+' '+(q.get('src')||''),tag;
-if(/jamon/i.test(c)){h.textContent=J;if(lead)lead.textContent='You just heard Jamon.';tag='jamon'}
+if(/jamon/i.test(c)){h.textContent=J;if(lead)lead.textContent='You just heard Jamon.';tag='jamon';var jv=document.getElementById('jvid-top');if(jv)jv.style.display='none'}
 else{var n=parseInt(q.get('hl')||'0',10),i;
  if(n>=1&&n<=H.length){i=n-1}else{i=window.R?parseInt(R.pick('mhl',['1','2','3']),10)-1:0;}
  h.textContent=H[i];tag='hl'+(i+1)}
