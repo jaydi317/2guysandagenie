@@ -32,6 +32,21 @@ h1{font-size:36px;margin-bottom:16px}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#111;color:#fff;padding:12px 18px;font-weight:bold;font-size:16px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}
 .toast.on{opacity:1}
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1965691120685809');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1965691120685809&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 </head><body>
 <header class="site"><div class="hwrap">
 <span class="brand"><img src="/assets/2g-mark.svg" alt="">2 Guys and a Genie</span>
@@ -148,4 +163,5 @@ h1{font-size:36px;margin-bottom:16px}
   });
 })();
 </script>
+<p style="text-align:center;font-size:12px;margin:24px 0 16px"><a href="/privacy/" style="color:inherit">Privacy Policy</a></p>
 </body></html>
