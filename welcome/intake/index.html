@@ -33,7 +33,7 @@ textarea{min-height:110px;resize:vertical}
 .mic{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:bold;font-size:17px;background:var(--ink);color:#fff;border:2px solid var(--ink);padding:10px 16px;margin:0 0 10px;cursor:pointer}
 .mic.on{background:#c62828;border-color:#c62828}
 .dot{width:12px;height:12px;border-radius:50%;background:currentColor}.mic.on .dot{animation:blink 1s infinite}@keyframes blink{50%{opacity:.2}}
-.tip{background:var(--tint);padding:12px;font-size:15px;margin:0 0 18px;display:none}
+.tip-box{background:var(--tint);padding:12px 16px;font-size:16px;margin:0 0 18px}.tip-box summary{font-weight:bold;cursor:pointer}.tip-box ul{padding-left:20px;margin:6px 0 12px}
 .err{color:#c62828;font-size:15px;display:none;margin-top:8px}
 #go{width:100%;font-size:20px;padding:16px;cursor:pointer}
 #book{display:none}
@@ -47,7 +47,20 @@ textarea{min-height:110px;resize:vertical}
   <p class="kicker">Step 1 of 4 · Your Maximum Leverage Business Breakthrough</p>
   <h1>Tell Us About Your Business</h1>
   <p class="sub">Tap the mic and just talk, like you're telling a friend. Your words show up in the box. Fix anything you like, then keep going.</p>
-  <div class="tip" id="tip">Your browser can't use the record button here. Tap the box, then tap the <b>microphone on your keyboard</b> and talk. It works the same way.</div>
+  <details class="tip-box" id="tipbox">
+  <summary>Mic not working? Here's the easy way around it.</summary>
+  <p><b>Use the microphone built into your phone or computer.</b> Tap into any answer box, then:</p>
+  <ul>
+    <li><b>iPhone:</b> tap the microphone on the keyboard (bottom right) and talk.</li>
+    <li><b>Android:</b> tap the microphone on the keyboard (top right) and talk.</li>
+    <li><b>Mac:</b> press the Fn key twice (or the microphone key) and talk.</li>
+    <li><b>Windows:</b> press the Windows key and H together, and talk.</li>
+  </ul>
+  <p><b>Still stuck?</b> Answer the questions anywhere you like (a note on your phone, an email, a voice memo) and send them to us:</p>
+  <p><button class="btn ghost" type="button" id="copyq">Copy All The Questions</button></p>
+  <p>Paste them into an email or note, answer each one by talking, then send it to <b>hello@2guysandagenie.com</b>. Then come back and pick your meeting time: <a href="#" id="skipbook">take me to the calendar</a>.</p>
+  <p class="small" id="copied" style="display:none">Copied. Paste them anywhere.</p>
+</details>
   <div class="bar"><i id="fill"></i></div>
   <p class="count" id="count"></p>
 
@@ -105,7 +118,14 @@ QUESTIONS.forEach(([q, h], i) => {
 
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 let rec = null, live = null, base = "";
-if (!SR) document.getElementById("tip").style.display = "block";
+if (!SR) document.getElementById("tipbox").open = true;
+document.getElementById("copyq").addEventListener("click", () => {
+  const t = QUESTIONS.map(([q, h], i) => (i+1) + ". " + q + "\n").join("\n");
+  const done = () => { document.getElementById("copied").style.display = "block"; };
+  try { navigator.clipboard.writeText("My name and business:\n\n" + t).then(done, done); } catch(e) { done(); }
+});
+document.getElementById("skipbook").addEventListener("click", e => { e.preventDefault(); stop();
+  document.getElementById("ask").style.display = "none"; document.getElementById("book").style.display = "block"; window.scrollTo(0,0); });
 
 function stop() {
   if (rec) { try { rec.stop(); } catch(e){} }
@@ -113,7 +133,7 @@ function stop() {
   live = null; save(); progress();
 }
 document.querySelectorAll(".mic").forEach(btn => btn.addEventListener("click", () => {
-  if (!SR) { document.getElementById("tip").style.display = "block"; document.getElementById("a"+btn.dataset.i).focus(); return; }
+  if (!SR) { document.getElementById("tipbox").open = true; document.getElementById("a"+btn.dataset.i).focus(); return; }
   if (live === btn) return stop();
   stop();
   const ta = document.getElementById("a"+btn.dataset.i);
@@ -126,9 +146,9 @@ document.querySelectorAll(".mic").forEach(btn => btn.addEventListener("click", (
     }
     ta.value = base + finalT + interim;
   };
-  rec.onerror = () => { document.getElementById("tip").style.display = "block"; stop(); };
+  rec.onerror = () => { document.getElementById("tipbox").open = true; stop(); };
   rec.onend = () => { if (live === btn) stop(); };
-  try { rec.start(); } catch(e) { document.getElementById("tip").style.display = "block"; return; }
+  try { rec.start(); } catch(e) { document.getElementById("tipbox").open = true; return; }
   live = btn; btn.classList.add("on"); btn.querySelector("span:last-child").textContent = "Recording... Tap To Stop";
 }));
 
