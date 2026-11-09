@@ -25,6 +25,17 @@
 .or{text-align:center;font-size:15px;color:var(--soft);margin:10px 0 0}
 .agree{font-style:italic;text-align:center;color:var(--soft);margin:6px 0 22px}
 .back{background:#FFF3C4;border-left:4px solid var(--ink);padding:14px 16px;font-size:17px}
+.opt{display:flex;gap:14px;align-items:flex-start;border:2px solid var(--ink);padding:16px;margin:0 0 12px;cursor:pointer}
+.opt.main{border-width:4px}
+.opt input{width:26px;height:26px;margin:4px 0 0;flex:none;accent-color:#111}
+.opt .body{flex:1;display:block}
+.opt .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;font-size:20px}
+.opt .price{font-size:22px;font-weight:900}
+.opt ul{margin:8px 0 0;padding-left:20px}
+.opt li{margin:0 0 5px}
+.opt .sub{display:block;margin-top:6px}
+.opt:has(input:checked){background:#FFF3C4}
+.btn.go{display:block;width:100%;text-align:center;margin:14px 0 0;font-size:19px;cursor:pointer}
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -66,25 +77,24 @@ fbq('track', 'PageView');
 <section class="s">
 <h2 style="text-align:center">Here's The Door I'm Choosing:</h2>
 
-<div class="door main">
- <div class="top"><h2>Build It With Me</h2><span class="price">$4,997</span></div>
+<form id="pick" onsubmit="return go()">
+<label class="opt main"><input type="radio" name="door" value="build" checked>
+ <span class="body"><span class="top"><b>Build It With Me</b><span class="price">$4,997</span></span>
  <ul>
   <li>You find it and build it with me: my story, website, follow-up, phones and numbers.</li>
   <li>The found money, and new customers from more than one place, so the phone keeps ringing.</li>
   <li>Every tool it runs on is covered: hosting, CRM, texting, my AI phone agent. I won't pay out of pocket for any of it.</li>
   <li>Only 11 Build spots, because it's just the two of you. I want one.</li>
- </ul>
- <a class="btn pay" data-key="build" href="#">Yes, Build It With Me: $4,997</a>
- <p class="or">or</p>
- <a class="btn ghost pay" data-key="build2" href="#">Two Payments: $2,500 Tonight, $2,500 In 30 Days</a>
- <p class="or" style="margin-top:6px">We'll email you the second $2,500 invoice in 30 days.</p>
-</div>
-
-<div class="door">
- <div class="top"><h2>I'll Run With It</h2><span class="price">$997</span></div>
- <p style="margin:10px 0 14px">Find it and hand me the plan. I'll build it myself, with 90 days of the mastermind behind me.</p>
- <a class="btn ghost pay" data-key="meeting" href="#">Yes, Start With The Meeting: $997</a>
-</div>
+ </ul></span></label>
+<label class="opt"><input type="radio" name="door" value="build2">
+ <span class="body"><span class="top"><b>Build It With Me, In Two Payments</b><span class="price">2 × $2,500</span></span>
+ <span class="sub">$2,500 tonight, $2,500 in 30 days. Same Build, same spot.</span></span></label>
+<label class="opt"><input type="radio" name="door" value="meeting">
+ <span class="body"><span class="top"><b>I'll Run With It: The Meeting</b><span class="price">$997</span></span>
+ <span class="sub">Find it and hand me the plan. I'll build it myself, with 90 days of the mastermind behind me.</span></span></label>
+<button class="btn go" type="submit" id="gobtn">Yes, I'm In: Continue To Secure Checkout</button>
+<p class="or">You'll enter your card on the next screen, secured by Stripe.</p>
+</form>
 
 <p class="agree">What we agree on is what we build: in writing, with a timeline, signed by both of us.</p>
 
@@ -104,10 +114,10 @@ var LINKS = {
   build2:  "https://buy.stripe.com/dRm4gr2Zt0HFg165lVeZ20s",  // The Build, two payments of $2,500
   meeting: "https://buy.stripe.com/bJe14fgQjcqncOUg0zeZ20t"   // The Meeting, $997
 };
-document.querySelectorAll('a.pay').forEach(function(a){
-  var url = LINKS[a.dataset.key];
-  if (url) { a.href = url; }
-  else { a.classList.add('off'); a.textContent += ' (link coming)'; }
-});
+function go(){
+  var v=document.querySelector('input[name=door]:checked').value;
+  if(LINKS[v]) window.location.href=LINKS[v];
+  return false;
+}
 </script>
 </body></html>
