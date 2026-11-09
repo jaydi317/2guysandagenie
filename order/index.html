@@ -77,6 +77,7 @@ fbq('track', 'PageView');
  <a class="btn pay" data-key="build" href="#">Yes, Build It With Me: $4,997</a>
  <p class="or">or</p>
  <a class="btn ghost pay" data-key="build2" href="#">Two Payments: $2,500 Tonight, $2,500 In 30 Days</a>
+ <p class="or" style="margin-top:6px">We'll email you the second $2,500 invoice in 30 days.</p>
 </div>
 
 <div class="door">
@@ -99,9 +100,9 @@ fbq('track', 'PageView');
 <script>
 // Stripe payment links. Paste each link between the quotes when it arrives.
 var LINKS = {
-  build:   "",  // The Build, $4,997, paid in full
-  build2:  "",  // The Build, two payments of $2,500
-  meeting: ""   // The Meeting, $997
+  build:   "https://buy.stripe.com/3cI9ALbvZ4XVdSY9CbeZ20r",  // The Build, $4,997, paid in full
+  build2:  "https://buy.stripe.com/dRm4gr2Zt0HFg165lVeZ20s",  // The Build, two payments of $2,500
+  meeting: "https://buy.stripe.com/bJe14fgQjcqncOUg0zeZ20t"   // The Meeting, $997
 };
 document.querySelectorAll('a.pay').forEach(function(a){
   var url = LINKS[a.dataset.key];
