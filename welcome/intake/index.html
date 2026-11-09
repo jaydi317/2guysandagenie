@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex,nofollow">
+<title>Tell Us About Your Business · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<link rel="stylesheet" href="/assets/simple.css">
+<style>
+:root{--copper:#111111;--gold:#111111;--link:#111111;--tint:#FFF3C4}
+.step{border:2px solid var(--ink);padding:18px 20px 6px;margin:0 0 16px;display:flex;gap:14px}
+.step.now{border-width:4px}
+.step .n{flex:0 0 36px;height:36px;border:2px solid var(--ink);font-weight:900;display:flex;align-items:center;justify-content:center}
+.step.now .n{background:var(--ink);color:#fff}
+.step h3{margin:4px 0 8px}
+.step p{margin:0 0 12px}
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 14px}
+.door{background:var(--tint);padding:12px 14px;font-size:16px}
+.door b{display:block;margin-bottom:4px}
+.cal{border:3px solid var(--ink);margin:0 0 14px;background:#fff}
+.cal iframe{display:block;width:100%;height:900px;border:0}
+@media (max-width:560px){.btn{display:block;text-align:center}.doors{grid-template-columns:1fr}}
+</style>
+<style>
+.bar{height:8px;border:2px solid var(--ink);margin:0 0 6px}.bar i{display:block;height:100%;background:var(--ink);width:0;transition:width .3s}
+.count{font-size:14px;color:var(--soft);margin:0 0 20px}
+.card{border:2px solid var(--ink);padding:18px;margin:0 0 16px}
+.q{font-weight:bold;font-size:19px;margin:0 0 4px}.hint{font-size:15px;color:var(--soft);margin:0 0 12px}
+textarea,input{width:100%;box-sizing:border-box;font:inherit;font-size:17px;border:1px solid var(--ink);padding:10px;background:#fff}
+textarea{min-height:110px;resize:vertical}
+.fields label{display:block;font-size:15px;margin:10px 0 4px}
+.mic{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:bold;font-size:17px;background:var(--ink);color:#fff;border:2px solid var(--ink);padding:10px 16px;margin:0 0 10px;cursor:pointer}
+.mic.on{background:#c62828;border-color:#c62828}
+.dot{width:12px;height:12px;border-radius:50%;background:currentColor}.mic.on .dot{animation:blink 1s infinite}@keyframes blink{50%{opacity:.2}}
+.tip{background:var(--tint);padding:12px;font-size:15px;margin:0 0 18px;display:none}
+.err{color:#c62828;font-size:15px;display:none;margin-top:8px}
+#go{width:100%;font-size:20px;padding:16px;cursor:pointer}
+#book{display:none}
+</style>
+</head><body>
+<header class="site"><div class="hwrap">
+<a class="brand" href="/"><img src="/assets/2g-mark.svg" alt="">2 Guys and a Genie</a>
+</div></header>
+<main id="main">
+<section id="ask">
+  <p class="kicker">Step 1 of 4 · Your Maximum Leverage Business Breakthrough</p>
+  <h1>Tell Us About Your Business</h1>
+  <p class="sub">Tap the mic and just talk, like you're telling a friend. Your words show up in the box. Fix anything you like, then keep going.</p>
+  <div class="tip" id="tip">Your browser can't use the record button here. Tap the box, then tap the <b>microphone on your keyboard</b> and talk. It works the same way.</div>
+  <div class="bar"><i id="fill"></i></div>
+  <p class="count" id="count"></p>
+
+  <div class="card fields">
+    <p class="q">First, Who Are You?</p>
+    <label>Your name</label><input id="f_name" autocomplete="name">
+    <label>Business name</label><input id="f_biz" autocomplete="organization">
+    <label>Email</label><input id="f_email" type="email" autocomplete="email">
+    <label>Cell phone</label><input id="f_phone" type="tel" autocomplete="tel">
+    <label>Website (if you have one)</label><input id="f_site" type="url" placeholder="yourbusiness.com">
+  </div>
+
+  <div id="qs"></div>
+
+  <button class="btn" id="go">Continue: Pick My Meeting Time</button>
+  <p class="err" id="err">Please fill in your name, business and email so we know who you are.</p>
+</section>
+
+<section id="book">
+  <p class="kicker">Step 2 of 4</p>
+  <h1>Thank You. Now Pick Your Meeting Time.</h1>
+  <p class="sub">Pick the time that works for you. The first openings are two days out, so we have time to do our homework.</p>
+  <div class="cal"><iframe src="https://api.leadconnectorhq.com/widget/booking/sKq1aoX2Ve1jBxJWyLez" scrolling="no" id="sKq1aoX2Ve1jBxJWyLez_book" title="Book The Meeting with Jimmy"></iframe></div>
+  <p class="sub" style="margin-top:20px">After you book, you'll get a confirmation by email and text.</p>
+</section>
+  <footer>
+    <p><a href="/">About 2 Guys and a Genie</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · Contact: hello@2guysandagenie.com · This site is not part of Facebook or Meta.</p>
+    <p>2 Guys and a Genie is a business name of Reverse Selling Limited Liability Company · 14846 Victory Ct, Carmel, IN 46032</p>
+    <p style="font-size:12px;margin:10px 0 0"><a href="/admin/" style="color:#888">Admin</a></p>
+  </footer>
+</main>
+
+<script>
+const QUESTIONS = [
+  ["What does your business do, and who do you do it for?", "How long you've been at it, where you are, and what a typical job or sale looks like."],
+  ["How did it start?", "Why you? What got you into this in the first place?"],
+  ["Who's your best customer, and how do they find you?", "The one you wish you had ten more of."],
+  ["Where does most of your money come from right now?", "Your best service or product, and what's working."],
+  ["What's frustrating you most in the business right now?", "Where you feel money or time slipping away."],
+  ["What happens when the phone rings and nobody can pick up? And when someone asks for a quote?", "Walk us through what really happens, start to finish."],
+  ["What are you proudest of that your customers might not know about?", "The thing you stopped mentioning because it felt like bragging."],
+  ["A year from now, what would make you say this was the best decision you made?", "Money, time, the team, your evenings. Whatever matters to you."],
+  ["Anything else we should know?", "Competitors you watch, social pages, ideas you've been sitting on."]
+];
+// When live: set this to the GoHighLevel inbound webhook (or our own database endpoint).
+const SUBMIT_URL = "";
+
+const box = document.getElementById("qs");
+QUESTIONS.forEach(([q, h], i) => {
+  box.insertAdjacentHTML("beforeend",
+    `<div class="card"><p class="q">${i+1}. ${q}</p><p class="hint">${h}</p>
+     <button class="mic" data-i="${i}" type="button"><span class="dot"></span><span>Tap To Talk</span></button>
+     <textarea id="a${i}" placeholder="Tap the mic and talk, or type here."></textarea></div>`);
+});
+
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+let rec = null, live = null, base = "";
+if (!SR) document.getElementById("tip").style.display = "block";
+
+function stop() {
+  if (rec) { try { rec.stop(); } catch(e){} }
+  if (live) { live.classList.remove("on"); live.querySelector("span:last-child").textContent = "Tap To Talk"; }
+  live = null; save(); progress();
+}
+document.querySelectorAll(".mic").forEach(btn => btn.addEventListener("click", () => {
+  if (!SR) { document.getElementById("tip").style.display = "block"; document.getElementById("a"+btn.dataset.i).focus(); return; }
+  if (live === btn) return stop();
+  stop();
+  const ta = document.getElementById("a"+btn.dataset.i);
+  base = ta.value ? ta.value.trim() + " " : "";
+  rec = new SR(); rec.continuous = true; rec.interimResults = true; rec.lang = "en-US";
+  rec.onresult = e => {
+    let finalT = "", interim = "";
+    for (let r = 0; r < e.results.length; r++) {
+      (e.results[r].isFinal ? (finalT += e.results[r][0].transcript) : (interim += e.results[r][0].transcript));
+    }
+    ta.value = base + finalT + interim;
+  };
+  rec.onerror = () => { document.getElementById("tip").style.display = "block"; stop(); };
+  rec.onend = () => { if (live === btn) stop(); };
+  try { rec.start(); } catch(e) { document.getElementById("tip").style.display = "block"; return; }
+  live = btn; btn.classList.add("on"); btn.querySelector("span:last-child").textContent = "Recording... Tap To Stop";
+}));
+
+function progress() {
+  const done = QUESTIONS.filter((_, i) => document.getElementById("a"+i).value.trim()).length;
+  document.getElementById("fill").style.width = (done / QUESTIONS.length * 100) + "%";
+  document.getElementById("count").textContent = done + " of " + QUESTIONS.length + " answered";
+}
+function data() {
+  const d = { name:f_name.value, business:f_biz.value, email:f_email.value, phone:f_phone.value, website:f_site.value, answers:{} };
+  QUESTIONS.forEach(([q], i) => d.answers[q] = document.getElementById("a"+i).value);
+  return d;
+}
+function save() { try { localStorage.setItem("intake_draft", JSON.stringify(data())); } catch(e){} }
+try {
+  const d = JSON.parse(localStorage.getItem("intake_draft") || "null");
+  if (d) { f_name.value=d.name||""; f_biz.value=d.business||""; f_email.value=d.email||""; f_phone.value=d.phone||""; f_site.value=d.website||"";
+    QUESTIONS.forEach(([q], i) => document.getElementById("a"+i).value = (d.answers||{})[q] || ""); }
+} catch(e){}
+document.addEventListener("input", () => { save(); progress(); });
+progress();
+
+document.getElementById("go").addEventListener("click", async () => {
+  stop();
+  if (!f_name.value.trim() || !f_biz.value.trim() || !f_email.value.trim()) { document.getElementById("err").style.display = "block"; return; }
+  if (SUBMIT_URL) { try { await fetch(SUBMIT_URL, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data()) }); } catch(e){} }
+  document.getElementById("ask").style.display = "none";
+  document.getElementById("book").style.display = "block";
+  window.scrollTo(0, 0);
+});
+</script>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+</body></html>
