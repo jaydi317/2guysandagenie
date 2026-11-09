@@ -454,10 +454,10 @@ show();setInterval(function(){i=(i+1)%Q.length;show()},7000);
 </script>
 <script>
 (function(){
-var H=["Walk In With A Problem. Walk Out Without It. By 9 O'Clock.","What Would You Pay Never To Do Again? Bring It Monday Night. It's Free.","Bring The One Job You Hate Most. Leave Monday Night Never Having To Do It Again."];
+var H=["Walk In With A Problem. Walk Out Without It. By 9 O'Clock.","What Would You Pay Never To Do Again? Bring It Monday Night. And The Pizza's Free...","Bring The One Job You Hate Most. Leave Monday Night Never Having To Do It Again."];
 var h=document.getElementById('hl');if(!h)return;
 var i=window.R?parseInt(R.pick('hl',['1','2','3']),10)-1:0;
-h.textContent=H[i];window.__hl=i+1;window.R&&R.mark('hl','hl'+(i+1));
+var T=['hl1','hl2b','hl3'];h.textContent=H[i];window.__hl=T[i].slice(2);window.R&&R.mark('hl',T[i]);
 })();
 </script>
 <script>

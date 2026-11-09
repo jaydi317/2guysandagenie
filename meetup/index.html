@@ -216,14 +216,14 @@ ul.see li{margin-bottom:12px}
 </div></div></div>
 <script>
 (function(){
-var H=["Walk In With A Problem. Walk Out Without It. By 9 O'Clock.","What Would You Pay Never To Do Again? Bring It Monday Night. It's Free.","Bring The One Job You Hate Most. Leave Monday Night Never Having To Do It Again."];
+var H=["Walk In With A Problem. Walk Out Without It. By 9 O'Clock.","What Would You Pay Never To Do Again? Bring It Monday Night. And The Pizza's Free...","Bring The One Job You Hate Most. Leave Monday Night Never Having To Do It Again."];
 var J="Jamon Brought One Problem. Bring Yours Monday Night. Walk Out Without It.";
 var h=document.getElementById('hl'),lead=document.getElementById('lead');if(!h)return;
 var q=new URLSearchParams(location.search),c=(q.get('utm_content')||'')+' '+(q.get('src')||''),tag;
 if(/jamon/i.test(c)){h.textContent=J;if(lead)lead.textContent='You just heard Jamon.';tag='jamon';var jv=document.getElementById('jvid-top');if(jv)jv.style.display='none'}
 else{var n=parseInt(q.get('hl')||'0',10),i;
  if(n>=1&&n<=H.length){i=n-1}else{i=window.R?parseInt(R.pick('mhl',['1','2','3']),10)-1:0;}
- h.textContent=H[i];tag='hl'+(i+1)}
+ h.textContent=H[i];tag=['hl1','hl2b','hl3'][i]}
 window.R&&R.mark('hl',tag);
 if(!q.get('utm_term')){q.set('utm_term',tag);try{history.replaceState(null,'',location.pathname+'?'+q.toString()+location.hash)}catch(e){}}
 })();
