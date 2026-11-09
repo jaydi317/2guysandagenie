@@ -80,9 +80,18 @@ textarea{min-height:110px;resize:vertical}
 </section>
 
 <section id="book">
-  <p class="kicker">Step 2 of 4</p>
-  <h1>Thank You. Now Pick Your Meeting Time.</h1>
-  <p class="sub">Pick the time that works for you. The first openings are two days out, so we have time to do our homework.</p>
+  <p class="kicker">One Last Tap</p>
+  <h1>Send Your Answers, Then Pick Your Time.</h1>
+  <div class="card">
+    <p class="q">1. Hit Send On The Email That Just Opened</p>
+    <p class="hint">Your answers are already filled in, addressed to Jimmy. Just tap send.</p>
+    <p><a class="btn" id="mailbtn" href="mailto:hello@2guysandagenie.com">Email My Answers</a></p>
+    <p class="hint">No email opened? Tap the button above. Or tap Copy My Answers and paste them into an email or text to <b>hello@2guysandagenie.com</b> or <b>(317) 751-2693</b>.</p>
+    <p><button class="btn ghost" type="button" id="copybtn">Copy My Answers</button></p>
+    <p class="small" id="copied2" style="display:none">Copied. Paste them anywhere.</p>
+  </div>
+  <p class="q" style="margin-top:22px">2. Pick Your Meeting Time</p>
+  <p class="sub">The first openings are two days out, so we have time to do our homework.</p>
   <div class="cal"><iframe src="https://api.leadconnectorhq.com/widget/booking/sKq1aoX2Ve1jBxJWyLez" scrolling="no" id="sKq1aoX2Ve1jBxJWyLez_book" title="Book The Meeting with Jimmy"></iframe></div>
   <p class="sub" style="margin-top:20px">After you book, you'll get a confirmation by email and text.</p>
 </section>
@@ -171,14 +180,30 @@ try {
 document.addEventListener("input", () => { save(); progress(); });
 progress();
 
-document.getElementById("go").addEventListener("click", async () => {
+function answersText(){
+  const d=data(); let t="Name: "+d.name+"\nBusiness: "+d.business+"\nEmail: "+d.email+"\nPhone: "+d.phone+"\nWebsite: "+d.website+"\n";
+  QUESTIONS.forEach(([q],i)=>{ t+="\n"+(i+1)+". "+q+"\n"+(d.answers[q]||"(no answer)")+"\n"; });
+  return t;
+}
+function mailLink(){
+  const d=data();
+  return "mailto:hello@2guysandagenie.com?subject="+encodeURIComponent("My answers: "+(d.business||d.name))+"&body="+encodeURIComponent(answersText());
+}
+function copyAnswers(){
+  const ok=()=>{ const c=document.getElementById("copied2"); if(c) c.style.display="block"; };
+  try{ navigator.clipboard.writeText(answersText()).then(ok,ok); }catch(e){ ok(); }
+}
+document.getElementById("go").addEventListener("click", () => {
   stop();
   if (!f_name.value.trim() || !f_biz.value.trim() || !f_email.value.trim()) { document.getElementById("err").style.display = "block"; return; }
-  if (SUBMIT_URL) { try { await fetch(SUBMIT_URL, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data()) }); } catch(e){} }
+  try{ navigator.clipboard.writeText(answersText()).catch(()=>{}); }catch(e){}
+  document.getElementById("mailbtn").href = mailLink();
   document.getElementById("ask").style.display = "none";
   document.getElementById("book").style.display = "block";
   window.scrollTo(0, 0);
+  window.location.href = mailLink();
 });
+document.getElementById("copybtn").addEventListener("click", copyAnswers);
 </script>
 <script src="https://link.msgsndr.com/js/form_embed.js"></script>
 </body></html>
