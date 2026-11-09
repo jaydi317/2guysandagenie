@@ -88,7 +88,7 @@ fbq('track', 'PageView');
  </ul></span></label>
 <label class="opt"><input type="radio" name="door" value="build2">
  <span class="body"><span class="top"><b>Build It With Me, In Two Payments</b><span class="price">2 × $2,500</span></span>
- <span class="sub">$2,500 tonight, $2,500 in 30 days. Same Build, same spot.</span></span></label>
+ <span class="sub">$2,500 tonight, $2,500 in 30 days on the same card, then it stops. Same Build, same spot.</span></span></label>
 <label class="opt"><input type="radio" name="door" value="meeting">
  <span class="body"><span class="top"><b>I'll Run With It: The Meeting</b><span class="price">$997</span></span>
  <span class="sub">Find it and hand me the plan. I'll build it myself, with 90 days of the mastermind behind me.</span></span></label>
@@ -110,9 +110,9 @@ fbq('track', 'PageView');
 <script>
 // Stripe payment links. Paste each link between the quotes when it arrives.
 var LINKS = {
-  build:   "https://buy.stripe.com/3cI9ALbvZ4XVdSY9CbeZ20r",  // The Build, $4,997, paid in full
-  build2:  "https://buy.stripe.com/dRm4gr2Zt0HFg165lVeZ20s",  // The Build, two payments of $2,500
-  meeting: "https://buy.stripe.com/bJe14fgQjcqncOUg0zeZ20t"   // The Meeting, $997
+  build:   "https://buy.stripe.com/7sY00b43xduraGM8y7eZ20u",  // The Build, $4,997, paid in full
+  build2:  "https://buy.stripe.com/fZueV50Rl0HFcOUdSreZ20v",  // The Build, two payments of $2,500
+  meeting: "https://buy.stripe.com/4gM14f7fJ1LJ02815FeZ20w"   // The Meeting, $997
 };
 function go(){
   var v=document.querySelector('input[name=door]:checked').value;
