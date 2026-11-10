@@ -60,7 +60,7 @@ textarea{min-height:80px}
 </div></header>
 <main id="main">
 <section>
-  <p class="mock">MOCK-UP v2 for Daegan, Nov 10. Days 1 to 3 built; the rest show locked. Nothing here is live.</p>
+  <p class="mock">MOCK-UP v3 for Daegan, Nov 10. Days 1 to 3 built; the rest show locked. Nothing here is live.</p>
   <p class="kicker">Your Seat Is Saved · The Next Free Night · Launch Fishers</p>
   <h1>Your Seat. Your Skills.</h1>
   <p class="sub">Between now and the night, you'll pick up one new AI skill a day.</p>
@@ -97,8 +97,10 @@ textarea{min-height:80px}
       <div class="fact" id="prompt1">"I run a [your kind of business] in [your town]. The job I dread most is <span id="jobfill">[your job]</span>. Ask me three questions about it, one at a time. Then show me three ways you could take it off my plate."</div>
       <p><button class="btn ghost" type="button" id="copyp1" style="width:100%">Copy It</button></p>
       <p><b>Step 3.</b> Answer its questions out loud, like you're talking to a new hire.</p>
-      <p>About three minutes later, you're holding a plan for the job you hate, built around your business.</p>
-      <p class="loop">Bring that plan with you. In the room, we take the best of the three and set it up for real, on your phone, before you leave.</p>
+      <p>About three minutes later, you've got three ideas for the job you dread.</p>
+      <p>Hang onto them.</p>
+      <p>Today was just about getting ready.</p>
+      <p class="loop">I love the moment one of these comes to life in front of a group.</p>
       <button class="btn doneBtn" type="button">Done. Unlock Skill 2</button>
     </div>
     <div class="after">
@@ -146,8 +148,10 @@ textarea{min-height:80px}
       <p><b>Step 2.</b> Send it to ChatGPT or Claude and say this:</p>
       <div class="fact">"You're a stranger seeing this for the first time. What does this business do? And what would you never guess about it?"</div>
       <p>Read what comes back.</p>
-      <p>Whatever it missed, your next customer is missing too.</p>
-      <p class="loop">Bring the photo. In the room, we find the one thing that belongs on it, the way GottaCallJack.com belonged on that van.</p>
+      <p>Now you've seen your business the way a stranger does.</p>
+      <div class="quote" style="border-left:4px solid var(--ink);padding:2px 0 2px 14px;margin:0 0 14px">"I think with AI by itself... without you, I think it would have failed."<br><b style="font-size:15px">Jamon Jack, Gotta Call Jack</b></div>
+      <p>Bring that photo with you.</p>
+      <p class="loop">I'm curious what we'll come up with once we start playing around with it.</p>
       <button class="btn doneBtn" type="button">Done. Unlock Skill 3</button>
     </div>
     <div class="after">
@@ -192,7 +196,9 @@ textarea{min-height:80px}
       <input type="number" id="missed" inputmode="numeric" placeholder="Missed calls last week">
       <div class="fact"><b>Only 42% leave a voicemail.</b>And 1 in 5 calls another business right then.<small>CallRail survey of 1,000 US consumers, 2025.</small></div>
       <p>Every one of those calls was someone who already picked you.</p>
-      <p class="loop">In the room, you'll hear a phone line that answers every call. Then you set one up for your business, before you leave.</p>
+      <p>Now you know your number.</p>
+      <p>Bring it with you.</p>
+      <p class="loop">What that number turns into is one of my favorite moments, every time we do this with a group.</p>
       <button class="btn doneBtn" type="button">Counted. Unlock Skill 4</button>
     </div>
     <div class="after">
@@ -247,7 +253,7 @@ textarea{min-height:80px}
   </footer>
 </main>
 <script>
-const SKILLS=["I can hand AI a job and get a plan back","I've seen my business through a stranger's eyes","I know how many customers my phone lost last week","I know what a stranger misses about my business","I know whether my business name does its job","I can have AI write a thank-you that brings customers back","My AI chats stay out of training","I've run the number nobody ran for me","I know whether AI recommends me","I've watched AIs build my website","I can get a read on anyone","I can learn anything with an AI-made video","AI tells me which emails need me"];
+const SKILLS=["I have three ideas for the job I dread","I've seen my business through a stranger's eyes","I know how many customers my phone lost last week","I know what a stranger misses about my business","I know whether my business name does its job","I can have AI write a thank-you that brings customers back","My AI chats stay out of training","I've run the number nobody ran for me","I know whether AI recommends me","I've watched AIs build my website","I can get a read on anyone","I can learn anything with an AI-made video","AI tells me which emails need me"];
 const K="ready_done";
 let done=[];try{done=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){}
 function render(){
