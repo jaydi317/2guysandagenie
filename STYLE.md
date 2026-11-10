@@ -2,6 +2,16 @@
 
 The live look on 2guysandagenie.com since Nov 7, 2026. Built on the simple daegansmith.me style: Tahoma, black and white, one narrow column, bordered cards. Every new page uses this. Do not use the older style sheets (see "Retired" at the bottom).
 
+## 0. Every Change Gets Saved In Admin (standing rule, Nov 9, 2026)
+
+Daegan's rule, for anyone (any Claude) working on this site: every time a page, email, form, calendar or video is made, moved, edited or replaced, it gets saved in /admin/ the same day, without waiting to be asked.
+
+- **Put it in its section.** Sections follow the owner's path: After The Night, Bring Them In, The Night, The Sale, After They Buy, Proof And Stories, Plans And Numbers, Emails, Client Work, Booking And Contact.
+- **One line on what it is**, in plain words, so a glance tells you what it does and when you'd use it.
+- **Where it lives and its status:** Live on the site, Live but not linked, Test version, Mock-up, Reference, Shortcut, or Print file. Add the date and anything to know (for example "says Nov 9: needs the next-event update").
+- **Save the old version first.** Copy the page into /archive/YYYY-MM-DD-short-name/ and list it under Saved Earlier Versions. Nothing gets deleted.
+- **Emails are saved word for word** on a reference page (like /report/email/), not just sent.
+
 ## 1. The One Rule
 
 Link the shared style sheet, and nothing else for the base look:
