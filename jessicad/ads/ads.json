@@ -1,0 +1,50 @@
+[
+  {
+    "file": "ad-1.png",
+    "audience": "buyer",
+    "format": "1080x1080",
+    "headline": "Stop spending your vacation planning your vacation.",
+    "primary_text": "Hours of tabs, reviews and second-guessing. Sound familiar?\nTell me where you want to go and I'll plan and book it for you, at no extra cost to you.\nCruises, resorts, all-inclusives, family trips.\nComment or message me for a free trip quote.",
+    "cta": "Get your free trip quote"
+  },
+  {
+    "file": "ad-2.png",
+    "audience": "buyer",
+    "format": "1080x1920",
+    "headline": "Tell me your dream trip. I'll send back three options this week.",
+    "primary_text": "Got a trip in your head you keep putting off?\nTell me where, when and who's coming.\nI'll send you three options: the easy one, the upgrade and the bucket list.\nMessage me \"TRAVEL\" to start.",
+    "cta": "Message me \"TRAVEL\""
+  },
+  {
+    "file": "ad-3.png",
+    "audience": "buyer",
+    "format": "1080x1080",
+    "headline": "\"Wait, is this legit?\"",
+    "primary_text": "If a friend offering travel deals makes you nervous, good. It should.\nHere's the honest version: real cruise lines, resorts and airlines, booked through InteleTravel, with me as your person if anything goes sideways.\nAsk me anything before you spend a dime.",
+    "cta": "Ask me anything first"
+  },
+  {
+    "file": "ad-4.png",
+    "audience": "joiner",
+    "format": "1080x1920",
+    "headline": "Love to travel? Learn how travel advisors book trips from home.",
+    "primary_text": "Always the one planning the group trip?\nI'll walk you through how home-based travel advisors actually work: what it costs, what you do, and whether it fits your life.\n15 minutes, over coffee or Zoom. No pressure either way.",
+    "cta": "Book a 15-minute coffee chat"
+  },
+  {
+    "file": "ad-5.png",
+    "audience": "joiner",
+    "format": "1080x1080",
+    "headline": "Already the friend who plans every trip?",
+    "primary_text": "You already research the hotels, find the deals and build the itinerary for everyone.\nThere's a way to learn that as a side business, with training and a team behind you.\nI'll tell you exactly what it costs before anything else.\nMessage me \"CURIOUS\" and I'll send you the details.",
+    "cta": "Message me \"CURIOUS\""
+  },
+  {
+    "file": "ad-6.png",
+    "audience": "joiner",
+    "format": "1080x1920",
+    "headline": "You don't have to figure it out alone.",
+    "primary_text": "Thinking about a travel side business but nervous about doing it wrong?\nYou'd learn with a team that trains you and answers your questions, not one that pressures you.\nCome meet us first. Ask anything, including what it costs.\nMessage me and I'll save you a seat.",
+    "cta": "Come meet the team"
+  }
+]
