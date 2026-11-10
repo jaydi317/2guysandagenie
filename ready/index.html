@@ -35,6 +35,7 @@ textarea{min-height:80px}
 .day.done .doneBtn{background:#fff;color:var(--ink)}
 .day.locked{border-style:dashed;color:var(--soft)}
 .day.locked .head{border-bottom:0}
+.day .tease{display:none}
 .day.locked .n{border-style:dashed}
 .day.locked .tease{font-weight:normal;font-size:16px;color:var(--soft);margin-top:2px}
 .vid{border:4px solid var(--ink);margin:0 0 6px}.vid video{display:block;width:100%}
@@ -60,7 +61,7 @@ textarea{min-height:80px}
 </div></header>
 <main id="main">
 <section>
-  <p class="mock">MOCK-UP v3 for Daegan, Nov 10. Days 1 to 3 built; the rest show locked. Nothing here is live.</p>
+  <p class="mock">MOCK-UP v4 for Daegan, Nov 10. All 13 days built. To read every day without unlocking, add ?all=1 to the address. Nothing here is live.</p>
   <p class="kicker">Your Seat Is Saved · The Next Free Night · Launch Fishers</p>
   <h1>Your Seat. Your Skills.</h1>
   <p class="sub">Between now and the night, you'll pick up one new AI skill a day.</p>
@@ -75,14 +76,14 @@ textarea{min-height:80px}
   </div>
 
   <div class="meter">
-    <p class="big"><span id="count">0</span> of 13 Skills Unlocked</p>
+    <p class="kicker" style="margin:0 0 6px">What You're Walking In With</p><p class="big"><span id="count">0</span> of 13 On Your Card</p>
     <div class="bar"><i id="fill"></i></div>
     <ul class="stack" id="stack"></ul>
   </div>
 
   <!-- DAY 1 -->
   <div class="day" data-day="1">
-    <div class="head"><div class="n">1</div><div class="t">Hand AI The Job You Dread</div></div>
+    <div class="head"><div class="n">1</div><div><div class="t">Hand AI The Job You Dread</div><div class="tease">Your first skill.</div></div></div>
     <div class="body">
       <img class="doodle" src="/assets/doodles/job-7-9.jpg" alt="Walk in at 7 with the job. Walk out at 9 with AI carrying it.">
       <p class="note">Walk in with it. Walk out without it.</p>
@@ -133,7 +134,7 @@ textarea{min-height:80px}
 
   <!-- DAY 2 -->
   <div class="day" data-day="2">
-    <div class="head"><div class="n">2</div><div class="t">See What Two Meetings Did For Jamon</div></div>
+    <div class="head"><div class="n">2</div><div><div class="t">See What Two Meetings Did For Jamon</div><div class="tease">What two meetings did for a retired cop, and the look that started it.</div></div></div>
     <div class="body">
       <div class="vid"><video controls playsinline preload="none" poster="/assets/jamon/jamon-jack-poster.jpg"><source src="/assets/jamon/jamon-jack-16x9.mp4" type="video/mp4"></video></div>
       <p class="note">Jamon Jack, Gotta Call Jack. 1 minute 27 seconds.</p>
@@ -184,7 +185,7 @@ textarea{min-height:80px}
 
   <!-- DAY 3 -->
   <div class="day" data-day="3">
-    <div class="head"><div class="n">3</div><div class="t">Find The Customers Who Already Picked You</div></div>
+    <div class="head"><div class="n">3</div><div><div class="t">Find The Customers Who Already Picked You</div><div class="tease">How many customers your phone lost last week.</div></div></div>
     <div class="body">
       <img class="doodle" src="/assets/home/dab43feed6.svg" alt="4 of 10 calls went to voicemail. Now every call is answered.">
       <p>Open the call log on your business phone.</p>
@@ -229,17 +230,419 @@ textarea{min-height:80px}
     </div>
   </div>
 
-  <!-- LOCKED -->
-  <div class="day locked" data-day="4"><div class="head"><div class="n">4</div><div><div class="t">Locked: Arrives In Your Next Email</div><div class="tease">What a stranger misses about your business in five seconds. You'll ask AI.</div></div></div></div>
-  <div class="day locked" data-day="5"><div class="head"><div class="n">5</div><div><div class="t">Locked</div><div class="tease">The one job your business name has. A test you can run this week.</div></div></div></div>
-  <div class="day locked" data-day="6"><div class="head"><div class="n">6</div><div><div class="t">Locked</div><div class="tease">A thank-you note that brings customers back, written by AI in under a minute.</div></div></div></div>
-  <div class="day locked" data-day="7"><div class="head"><div class="n">7</div><div><div class="t">Locked</div><div class="tease">Lock down your AI: the settings that keep your chats out of training.</div></div></div></div>
-  <div class="day locked" data-day="8"><div class="head"><div class="n">8</div><div><div class="t">Locked</div><div class="tease">The number nobody's run for you yet.</div></div></div></div>
-  <div class="day locked" data-day="9"><div class="head"><div class="n">9</div><div><div class="t">Locked</div><div class="tease">Ask AI who's the best at what you do near you. Does it say your name?</div></div></div></div>
-  <div class="day locked" data-day="10"><div class="head"><div class="n">10</div><div><div class="t">Locked</div><div class="tease">Watch several AIs build your website at the same time.</div></div></div></div>
-  <div class="day locked" data-day="11"><div class="head"><div class="n">11</div><div><div class="t">Locked</div><div class="tease">Get a read on anyone. Start with your favorite star.</div></div></div></div>
-  <div class="day locked" data-day="12"><div class="head"><div class="n">12</div><div><div class="t">Locked</div><div class="tease">Learn anything with a narrated video, made for you.</div></div></div></div>
-  <div class="day locked" data-day="13"><div class="head"><div class="n">13</div><div><div class="t">Locked</div><div class="tease">Have AI tell you which emails still need your reply.</div></div></div></div>
+  <div class="day" data-day="4">
+    <div class="head"><div class="n">4</div><div><div class="t">See Your Website The Way A Stranger Does</div><div class="tease">What a stranger misses about your business in five seconds. You'll ask AI.</div></div></div>
+    <div class="body">
+      <p>A stranger gives your website about five seconds.</p>
+      <p>Today, you find out what they see in that time.</p>
+      <p><b>Step 1.</b> Open ChatGPT or Claude.</p>
+      <p><b>Step 2.</b> Say this, with your own website address:</p>
+      <div class="fact">"Here's my website: [your address]. You're a stranger who needs what I sell. You've got five seconds. What do you see? And what's the best thing about this business that you'd miss?"</div>
+      <p>No website? Paste in your Facebook page or your Google listing.</p>
+      <p>Read the last part twice.</p>
+      <p>Whatever it says you'd miss is usually the thing you're proudest of.</p>
+      <p>Don't change your site yet.</p>
+      <p class="loop">Bring what it told you. Finding the one line that belongs at the top is the part we do together.</p>
+      <button class="btn doneBtn" type="button">Done. Unlock Skill 5</button>
+    </div>
+    <div class="after">
+      <div class="said">
+        <p class="q">What Others Learned From This Skill</p>
+        <div class="quotes"></div>
+      </div>
+      <div class="ask">
+        <p class="q">So, What Did You Learn?</p>
+        <p>One line is plenty. What surprised you, or what will you do with it?</p>
+        <textarea class="learned" placeholder="The thing that got me was..."></textarea>
+        <label class="ok"><input type="checkbox" class="okshare"> You can share what I wrote, with my first name, so the next person knows what's waiting for them.</label>
+        <button class="btn sendLearn" type="button" style="width:100%;margin:0 0 14px">Send It</button>
+      </div>
+      <div class="share">
+        <p class="q">Who Do You Know That Would Love This?</p>
+        <p>Think of one person.</p>
+        <p>If they knew how to do what you just did, how much cooler would their week be?</p>
+        <p>You get to be the one who shows them.</p>
+        <div class="row">
+          <a class="btn ghost" data-share="text" href="#">Text It</a>
+          <a class="btn ghost" data-share="email" href="#">Email It</a>
+          <a class="btn ghost" data-share="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button class="btn ghost" data-share="copy" type="button">Copy The Link</button>
+        </div>
+        <p class="note">They get their own seat, and their own skills, starting the day they sign up.</p>
+      </div>
+    </div>
+  </div>
+  <div class="day" data-day="5">
+    <div class="head"><div class="n">5</div><div><div class="t">Test Your Business Name</div><div class="tease">The one job your business name has. A test you can run in a minute.</div></div></div>
+    <div class="body">
+      <p>Your business name has one job.</p>
+      <p>Somebody hears it once, at a barbecue or over the fence.</p>
+      <p>Can they find you a week later?</p>
+      <p><b>Step 1.</b> Open ChatGPT or Claude and tap the microphone.</p>
+      <p><b>Step 2.</b> Say this out loud:</p>
+      <div class="fact">"I'm going to say a business name one time: [your business name]. What do you think this business does? How would you spell it? And what would you type to find it online?"</div>
+      <p>See what comes back.</p>
+      <p>If it spells it right and knows what you do, good.</p>
+      <p>If it doesn't, you just learned something most owners never find out.</p>
+      <p class="loop">On the night, a few names go up on the big screen. Yours might be one of them.</p>
+      <button class="btn doneBtn" type="button">Done. Unlock Skill 6</button>
+    </div>
+    <div class="after">
+      <div class="said">
+        <p class="q">What Others Learned From This Skill</p>
+        <div class="quotes"></div>
+      </div>
+      <div class="ask">
+        <p class="q">So, What Did You Learn?</p>
+        <p>One line is plenty. What surprised you, or what will you do with it?</p>
+        <textarea class="learned" placeholder="The thing that got me was..."></textarea>
+        <label class="ok"><input type="checkbox" class="okshare"> You can share what I wrote, with my first name, so the next person knows what's waiting for them.</label>
+        <button class="btn sendLearn" type="button" style="width:100%;margin:0 0 14px">Send It</button>
+      </div>
+      <div class="share">
+        <p class="q">Who Do You Know That Would Love This?</p>
+        <p>Think of one person.</p>
+        <p>If they knew how to do what you just did, how much cooler would their week be?</p>
+        <p>You get to be the one who shows them.</p>
+        <div class="row">
+          <a class="btn ghost" data-share="text" href="#">Text It</a>
+          <a class="btn ghost" data-share="email" href="#">Email It</a>
+          <a class="btn ghost" data-share="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button class="btn ghost" data-share="copy" type="button">Copy The Link</button>
+        </div>
+        <p class="note">They get their own seat, and their own skills, starting the day they sign up.</p>
+      </div>
+    </div>
+  </div>
+  <div class="day" data-day="6">
+    <div class="head"><div class="n">6</div><div><div class="t">Write The Thank-You That Brings Them Back</div><div class="tease">A thank-you note that brings customers back, written by AI in under a minute.</div></div></div>
+    <div class="body">
+      <p>Think of the last customer you finished a job for.</p>
+      <p><b>Step 1.</b> Open ChatGPT or Claude.</p>
+      <p><b>Step 2.</b> Say this:</p>
+      <div class="fact">"Write a short thank-you text to [first name]. We just [the job you did for them]. Mention [one real detail about it]. Ask for nothing. Make it sound like me, not a company."</div>
+      <div class="fact"><b>97% read reviews before choosing a local business.</b>And 41% always do, up from 29% a year earlier.<small>BrightLocal Local Consumer Review Survey, 2026.</small></div>
+      <p>Send it if you like. It takes ten seconds, and they'll remember it.</p>
+      <p>Notice what you just did.</p>
+      <p>One customer, thanked like they're the only one.</p>
+      <p class="loop">Now picture every customer getting one, without you lifting a finger. I love showing a group what that looks like.</p>
+      <button class="btn doneBtn" type="button">Done. Unlock Skill 7</button>
+    </div>
+    <div class="after">
+      <div class="said">
+        <p class="q">What Others Learned From This Skill</p>
+        <div class="quotes"></div>
+      </div>
+      <div class="ask">
+        <p class="q">So, What Did You Learn?</p>
+        <p>One line is plenty. What surprised you, or what will you do with it?</p>
+        <textarea class="learned" placeholder="The thing that got me was..."></textarea>
+        <label class="ok"><input type="checkbox" class="okshare"> You can share what I wrote, with my first name, so the next person knows what's waiting for them.</label>
+        <button class="btn sendLearn" type="button" style="width:100%;margin:0 0 14px">Send It</button>
+      </div>
+      <div class="share">
+        <p class="q">Who Do You Know That Would Love This?</p>
+        <p>Think of one person.</p>
+        <p>If they knew how to do what you just did, how much cooler would their week be?</p>
+        <p>You get to be the one who shows them.</p>
+        <div class="row">
+          <a class="btn ghost" data-share="text" href="#">Text It</a>
+          <a class="btn ghost" data-share="email" href="#">Email It</a>
+          <a class="btn ghost" data-share="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button class="btn ghost" data-share="copy" type="button">Copy The Link</button>
+        </div>
+        <p class="note">They get their own seat, and their own skills, starting the day they sign up.</p>
+      </div>
+    </div>
+  </div>
+  <div class="day" data-day="7">
+    <div class="head"><div class="n">7</div><div><div class="t">Lock Down Your AI</div><div class="tease">The settings that keep your chats out of AI training.</div></div></div>
+    <div class="body">
+      <p>Before you go any further, make your AI yours.</p>
+      <p>By default, some AI tools can use your chats to train future versions.</p>
+      <p>You can turn that off in under a minute.</p>
+      <ol class="how"><li><b>ChatGPT:</b> Settings, then Data Controls, then turn off "Improve the model for everyone."</li><li><b>Claude:</b> Settings, then Privacy, then turn off "Help improve Claude."</li></ol>
+      <p>That keeps your chats out of training.</p>
+      <p>It doesn't make anything confidential.</p>
+      <p>So keep client names, account numbers and anything private out of your chats, same as you would in an email to a stranger.</p>
+      <p>That's it for today. You're set up the right way.</p>
+      <p class="mocknote">TO CHECK before live: the exact menu names in both apps.</p>
+      <button class="btn doneBtn" type="button">Done. Unlock Skill 8</button>
+    </div>
+    <div class="after">
+      <div class="said">
+        <p class="q">What Others Learned From This Skill</p>
+        <div class="quotes"></div>
+      </div>
+      <div class="ask">
+        <p class="q">So, What Did You Learn?</p>
+        <p>One line is plenty. What surprised you, or what will you do with it?</p>
+        <textarea class="learned" placeholder="The thing that got me was..."></textarea>
+        <label class="ok"><input type="checkbox" class="okshare"> You can share what I wrote, with my first name, so the next person knows what's waiting for them.</label>
+        <button class="btn sendLearn" type="button" style="width:100%;margin:0 0 14px">Send It</button>
+      </div>
+      <div class="share">
+        <p class="q">Who Do You Know That Would Love This?</p>
+        <p>Think of one person.</p>
+        <p>If they knew how to do what you just did, how much cooler would their week be?</p>
+        <p>You get to be the one who shows them.</p>
+        <div class="row">
+          <a class="btn ghost" data-share="text" href="#">Text It</a>
+          <a class="btn ghost" data-share="email" href="#">Email It</a>
+          <a class="btn ghost" data-share="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button class="btn ghost" data-share="copy" type="button">Copy The Link</button>
+        </div>
+        <p class="note">They get their own seat, and their own skills, starting the day they sign up.</p>
+      </div>
+    </div>
+  </div>
+  <div class="day" data-day="8">
+    <div class="head"><div class="n">8</div><div><div class="t">Run The Number Nobody Ran For You</div><div class="tease">The number nobody's run for you yet.</div></div></div>
+    <div class="body">
+      <p>Most owners know what a job is worth.</p>
+      <p>Almost nobody knows what a customer is worth.</p>
+      <p><b>Step 1.</b> Open ChatGPT or Claude.</p>
+      <p><b>Step 2.</b> Say this:</p>
+      <div class="fact">"Help me work out what one regular customer is worth to my business over a year. Ask me what you need to know, one question at a time."</div>
+      <p>Answer out loud. Guesses are fine.</p>
+      <p>Write down the number it gives you.</p>
+      <input type="number" inputmode="numeric" placeholder="One customer is worth $ a year">
+      <p>Now put it next to your missed-call number from Skill 3.</p>
+      <p class="loop">Bring both. I've got a hunch that math is bigger than you think.</p>
+      <button class="btn doneBtn" type="button">Done. Unlock Skill 9</button>
+    </div>
+    <div class="after">
+      <div class="said">
+        <p class="q">What Others Learned From This Skill</p>
+        <div class="quotes"></div>
+      </div>
+      <div class="ask">
+        <p class="q">So, What Did You Learn?</p>
+        <p>One line is plenty. What surprised you, or what will you do with it?</p>
+        <textarea class="learned" placeholder="The thing that got me was..."></textarea>
+        <label class="ok"><input type="checkbox" class="okshare"> You can share what I wrote, with my first name, so the next person knows what's waiting for them.</label>
+        <button class="btn sendLearn" type="button" style="width:100%;margin:0 0 14px">Send It</button>
+      </div>
+      <div class="share">
+        <p class="q">Who Do You Know That Would Love This?</p>
+        <p>Think of one person.</p>
+        <p>If they knew how to do what you just did, how much cooler would their week be?</p>
+        <p>You get to be the one who shows them.</p>
+        <div class="row">
+          <a class="btn ghost" data-share="text" href="#">Text It</a>
+          <a class="btn ghost" data-share="email" href="#">Email It</a>
+          <a class="btn ghost" data-share="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button class="btn ghost" data-share="copy" type="button">Copy The Link</button>
+        </div>
+        <p class="note">They get their own seat, and their own skills, starting the day they sign up.</p>
+      </div>
+    </div>
+  </div>
+  <div class="day" data-day="9">
+    <div class="head"><div class="n">9</div><div><div class="t">Ask AI Who's The Best Near You</div><div class="tease">Ask AI who's the best at what you do near you. Does it say your name?</div></div></div>
+    <div class="body">
+      <div class="fact"><b>45% of people now ask AI to find a local business.</b>A year earlier, it was 6%.<small>BrightLocal Local Consumer Review Survey, 2026.</small></div>
+      <p>So ask it what your next customer is asking.</p>
+      <p><b>Step 1.</b> Open ChatGPT.</p>
+      <p><b>Step 2.</b> Say this:</p>
+      <div class="fact">"Who's the best [what you do] near [your town]?"</div>
+      <p>Write down the names it gives.</p>
+      <p>Is yours one of them?</p>
+      <p>Either answer is good news.</p>
+      <p>Almost nobody in your line of work has done anything about this yet. You're early.</p>
+      <p class="loop">Bring the list. On the night, you'll see how a business gets its name on it.</p>
+      <button class="btn doneBtn" type="button">Done. Unlock Skill 10</button>
+    </div>
+    <div class="after">
+      <div class="said">
+        <p class="q">What Others Learned From This Skill</p>
+        <div class="quotes"></div>
+      </div>
+      <div class="ask">
+        <p class="q">So, What Did You Learn?</p>
+        <p>One line is plenty. What surprised you, or what will you do with it?</p>
+        <textarea class="learned" placeholder="The thing that got me was..."></textarea>
+        <label class="ok"><input type="checkbox" class="okshare"> You can share what I wrote, with my first name, so the next person knows what's waiting for them.</label>
+        <button class="btn sendLearn" type="button" style="width:100%;margin:0 0 14px">Send It</button>
+      </div>
+      <div class="share">
+        <p class="q">Who Do You Know That Would Love This?</p>
+        <p>Think of one person.</p>
+        <p>If they knew how to do what you just did, how much cooler would their week be?</p>
+        <p>You get to be the one who shows them.</p>
+        <div class="row">
+          <a class="btn ghost" data-share="text" href="#">Text It</a>
+          <a class="btn ghost" data-share="email" href="#">Email It</a>
+          <a class="btn ghost" data-share="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button class="btn ghost" data-share="copy" type="button">Copy The Link</button>
+        </div>
+        <p class="note">They get their own seat, and their own skills, starting the day they sign up.</p>
+      </div>
+    </div>
+  </div>
+  <div class="day" data-day="10">
+    <div class="head"><div class="n">10</div><div><div class="t">Watch AIs Build Your Website, Side By Side</div><div class="tease">Watch several AIs build your website at the same time.</div></div></div>
+    <div class="body">
+      <p>This one's just fun.</p>
+      <p><b>Step 1.</b> Go to <a href="https://designarena.ai" target="_blank" rel="noopener">designarena.ai</a>. It's free.</p>
+      <p><b>Step 2.</b> Pick Website, and type one sentence about your business:</p>
+      <div class="fact">"A website for [your business], a [what you do] in [your town]. Known for [the thing you're proudest of]."</div>
+      <p>Several AIs build it at the same time, side by side.</p>
+      <p>Pick your favorite.</p>
+      <p>Keep it as a sketch. Don't type in anything private.</p>
+      <div style="border-left:4px solid var(--ink);padding:2px 0 2px 14px;margin:0 0 14px">"HOLY COW!!! I'm blown away Jimmy!"<br><b style="font-size:15px">Bruce Barker, piano teacher, on seeing his</b></div>
+      <p class="loop">Bruce's didn't come from a sketch. It came from an afternoon with Jimmy. Bring your favorite anyway.</p>
+      <p class="mocknote">TO CHECK before live: Design Arena's current steps and terms.</p>
+      <button class="btn doneBtn" type="button">Done. Unlock Skill 11</button>
+    </div>
+    <div class="after">
+      <div class="said">
+        <p class="q">What Others Learned From This Skill</p>
+        <div class="quotes"></div>
+      </div>
+      <div class="ask">
+        <p class="q">So, What Did You Learn?</p>
+        <p>One line is plenty. What surprised you, or what will you do with it?</p>
+        <textarea class="learned" placeholder="The thing that got me was..."></textarea>
+        <label class="ok"><input type="checkbox" class="okshare"> You can share what I wrote, with my first name, so the next person knows what's waiting for them.</label>
+        <button class="btn sendLearn" type="button" style="width:100%;margin:0 0 14px">Send It</button>
+      </div>
+      <div class="share">
+        <p class="q">Who Do You Know That Would Love This?</p>
+        <p>Think of one person.</p>
+        <p>If they knew how to do what you just did, how much cooler would their week be?</p>
+        <p>You get to be the one who shows them.</p>
+        <div class="row">
+          <a class="btn ghost" data-share="text" href="#">Text It</a>
+          <a class="btn ghost" data-share="email" href="#">Email It</a>
+          <a class="btn ghost" data-share="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button class="btn ghost" data-share="copy" type="button">Copy The Link</button>
+        </div>
+        <p class="note">They get their own seat, and their own skills, starting the day they sign up.</p>
+      </div>
+    </div>
+  </div>
+  <div class="day" data-day="11">
+    <div class="head"><div class="n">11</div><div><div class="t">Get A Read On Anyone</div><div class="tease">Get a read on anyone. Start with your favorite star.</div></div></div>
+    <div class="body">
+      <p>Pick someone famous. An athlete, a singer, anyone you're curious about.</p>
+      <p><b>Step 1.</b> Open ChatGPT or Claude.</p>
+      <p><b>Step 2.</b> Say this:</p>
+      <div class="fact">"From what's public, give me a read on [famous person]. What drives them? What do they want most? How do they make decisions? If I had five minutes with them, how would I win them over?"</div>
+      <p>Read it.</p>
+      <p>Pretty wild, right?</p>
+      <p class="loop">Now imagine that pointed at the customer you most want. Hold that thought.</p>
+      <button class="btn doneBtn" type="button">Done. Unlock Skill 12</button>
+    </div>
+    <div class="after">
+      <div class="said">
+        <p class="q">What Others Learned From This Skill</p>
+        <div class="quotes"></div>
+      </div>
+      <div class="ask">
+        <p class="q">So, What Did You Learn?</p>
+        <p>One line is plenty. What surprised you, or what will you do with it?</p>
+        <textarea class="learned" placeholder="The thing that got me was..."></textarea>
+        <label class="ok"><input type="checkbox" class="okshare"> You can share what I wrote, with my first name, so the next person knows what's waiting for them.</label>
+        <button class="btn sendLearn" type="button" style="width:100%;margin:0 0 14px">Send It</button>
+      </div>
+      <div class="share">
+        <p class="q">Who Do You Know That Would Love This?</p>
+        <p>Think of one person.</p>
+        <p>If they knew how to do what you just did, how much cooler would their week be?</p>
+        <p>You get to be the one who shows them.</p>
+        <div class="row">
+          <a class="btn ghost" data-share="text" href="#">Text It</a>
+          <a class="btn ghost" data-share="email" href="#">Email It</a>
+          <a class="btn ghost" data-share="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button class="btn ghost" data-share="copy" type="button">Copy The Link</button>
+        </div>
+        <p class="note">They get their own seat, and their own skills, starting the day they sign up.</p>
+      </div>
+    </div>
+  </div>
+  <div class="day" data-day="12">
+    <div class="head"><div class="n">12</div><div><div class="t">Learn Anything With A Video Made For You</div><div class="tease">Learn anything with a narrated video, made just for you.</div></div></div>
+    <div class="body">
+      <p>What's one thing you've always wanted to understand?</p>
+      <p>How your taxes really work. How Google decides who shows up first. Anything.</p>
+      <p><b>Step 1.</b> Go to <a href="https://notebooklm.google.com" target="_blank" rel="noopener">NotebookLM</a>, Google's free learning tool.</p>
+      <p><b>Step 2.</b> Start a notebook on your topic, then tap Video Overview.</p>
+      <p>A few minutes later, you've got a narrated video that teaches it to you.</p>
+      <p>From now on, you can learn anything this way.</p>
+      <p class="loop">One of my favorite things is watching an owner figure out what else this is good for.</p>
+      <p class="mocknote">TO TEST before live: which tool reliably makes a narrated video, and the exact taps.</p>
+      <button class="btn doneBtn" type="button">Done. Unlock Skill 13</button>
+    </div>
+    <div class="after">
+      <div class="said">
+        <p class="q">What Others Learned From This Skill</p>
+        <div class="quotes"></div>
+      </div>
+      <div class="ask">
+        <p class="q">So, What Did You Learn?</p>
+        <p>One line is plenty. What surprised you, or what will you do with it?</p>
+        <textarea class="learned" placeholder="The thing that got me was..."></textarea>
+        <label class="ok"><input type="checkbox" class="okshare"> You can share what I wrote, with my first name, so the next person knows what's waiting for them.</label>
+        <button class="btn sendLearn" type="button" style="width:100%;margin:0 0 14px">Send It</button>
+      </div>
+      <div class="share">
+        <p class="q">Who Do You Know That Would Love This?</p>
+        <p>Think of one person.</p>
+        <p>If they knew how to do what you just did, how much cooler would their week be?</p>
+        <p>You get to be the one who shows them.</p>
+        <div class="row">
+          <a class="btn ghost" data-share="text" href="#">Text It</a>
+          <a class="btn ghost" data-share="email" href="#">Email It</a>
+          <a class="btn ghost" data-share="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button class="btn ghost" data-share="copy" type="button">Copy The Link</button>
+        </div>
+        <p class="note">They get their own seat, and their own skills, starting the day they sign up.</p>
+      </div>
+    </div>
+  </div>
+  <div class="day" data-day="13">
+    <div class="head"><div class="n">13</div><div><div class="t">Have AI Read Your Inbox</div><div class="tease">Have AI tell you which emails still need your reply.</div></div></div>
+    <div class="body">
+      <p>Last one before the night.</p>
+      <p><b>Step 1.</b> In ChatGPT or Claude, open Settings and look for Connectors (or Apps).</p>
+      <p><b>Step 2.</b> Connect your email. It can read and draft. It doesn't send anything unless you do.</p>
+      <p><b>Step 3.</b> Say this:</p>
+      <div class="fact">"Which emails from this week still need a reply from me? List them, most important first."</div>
+      <p>Ten seconds, for a job that used to eat your morning.</p>
+      <p>That's thirteen.</p>
+      <p>Look at your card.</p>
+      <p class="loop">Bring it with you. I can't wait to see what you walk in with.</p>
+      <p class="mocknote">TO TEST before live: which plan each app needs for the email connection.</p>
+      <button class="btn doneBtn" type="button">Done. My Card Is Full</button>
+    </div>
+    <div class="after">
+      <div class="said">
+        <p class="q">What Others Learned From This Skill</p>
+        <div class="quotes"></div>
+      </div>
+      <div class="ask">
+        <p class="q">So, What Did You Learn?</p>
+        <p>One line is plenty. What surprised you, or what will you do with it?</p>
+        <textarea class="learned" placeholder="The thing that got me was..."></textarea>
+        <label class="ok"><input type="checkbox" class="okshare"> You can share what I wrote, with my first name, so the next person knows what's waiting for them.</label>
+        <button class="btn sendLearn" type="button" style="width:100%;margin:0 0 14px">Send It</button>
+      </div>
+      <div class="share">
+        <p class="q">Who Do You Know That Would Love This?</p>
+        <p>Think of one person.</p>
+        <p>If they knew how to do what you just did, how much cooler would their week be?</p>
+        <p>You get to be the one who shows them.</p>
+        <div class="row">
+          <a class="btn ghost" data-share="text" href="#">Text It</a>
+          <a class="btn ghost" data-share="email" href="#">Email It</a>
+          <a class="btn ghost" data-share="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button class="btn ghost" data-share="copy" type="button">Copy The Link</button>
+        </div>
+        <p class="note">They get their own seat, and their own skills, starting the day they sign up.</p>
+      </div>
+    </div>
+  </div>
 
   <p style="margin-top:28px">Every skill here is yours to keep.</p>
   <p>What to do with all of them, to make real money in your business, is what the night is for.</p>
@@ -253,16 +656,19 @@ textarea{min-height:80px}
   </footer>
 </main>
 <script>
-const SKILLS=["I have three ideas for the job I dread","I've seen my business through a stranger's eyes","I know how many customers my phone lost last week","I know what a stranger misses about my business","I know whether my business name does its job","I can have AI write a thank-you that brings customers back","My AI chats stay out of training","I've run the number nobody ran for me","I know whether AI recommends me","I've watched AIs build my website","I can get a read on anyone","I can learn anything with an AI-made video","AI tells me which emails need me"];
+const SKILLS=["Three ideas for the job I dread","My business through a stranger's eyes","My missed-call number","What a stranger misses on my website","How my business name holds up","A thank-you that brings customers back","My AI, locked down","What one customer is worth to me","The names AI gives for my trade","A sketch of my website","A read on anyone I choose","A way to learn anything","My inbox, read for me"];
 const K="ready_done";
 let done=[];try{done=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){}
+const ALL=/[?&]all=1/.test(location.search);
 function render(){
-  document.querySelectorAll(".day:not(.locked)").forEach(d=>{
-    const n=+d.dataset.day, prevOk=n===1||done.includes(n-1);
-    d.classList.toggle("done",done.includes(n));
-    d.style.opacity=prevOk?1:.45;
-    const b=d.querySelector(".doneBtn"); b.disabled=!prevOk;
-    if(done.includes(n)) b.textContent="✓ Skill "+n+" Unlocked";
+  document.querySelectorAll(".day").forEach(d=>{
+    const n=+d.dataset.day, open=ALL||n===1||done.includes(n-1);
+    d.classList.toggle("done",done.includes(n)); d.classList.toggle("locked",!open);
+    d.querySelector(".body").style.display=open?"":"none";
+    const af=d.querySelector(".after"); if(af&&!open) af.style.display="none"; else if(af) af.style.display="";
+    const ts=d.querySelector(".tease"); if(ts) ts.style.display=open?"none":"block";
+    const b=d.querySelector(".doneBtn");
+    if(done.includes(n)) b.textContent="\u2713 Skill "+n+" Unlocked";
   });
   document.getElementById("count").textContent=done.length;
   document.getElementById("fill").style.width=(done.length/13*100)+"%";
@@ -284,7 +690,7 @@ const SHARE_URL="https://2guysandagenie.com/meetup/";
 const SHARE_MSG="I'm going to a free AI night for local business owners in Fishers. They hand you one AI skill a day before you even get there. Grab a seat: "+SHARE_URL;
 // Mock-up quotes, shown only to Daegan: real ones arrive once readers share theirs.
 const MOCK_QUOTES={};
-document.querySelectorAll(".day:not(.locked)").forEach(d=>{
+document.querySelectorAll(".day").forEach(d=>{
   const n=+d.dataset.day, said=d.querySelector(".said");
   if(said){said.classList.add("on");said.querySelector(".quotes").innerHTML='<p class="mocknote">MOCK-UP: real readers\' words appear here, first name only, once they say yes. Empty until then, and the box stays hidden.</p>';}
   const send=d.querySelector(".sendLearn"), share=d.querySelector(".share");
