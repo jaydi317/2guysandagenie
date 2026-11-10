@@ -1,5 +1,5 @@
 # Report 1: The Vacation Buyer
-For: Jessica Dworzak, independent rep with **PlanNet Marketing** (correct spelling: capital P, capital N; "Planet Marketing" was a transcription error).
+For: Jessica Dworak, independent rep with **PlanNet Marketing** (correct spelling: capital P, capital N; "Planet Marketing" was a transcription error).
 Researched 2026-11-09, fast pass (about 10 minutes). Items marked GUESS are not verified.
 
 ## 1. First, what is she actually selling to a vacation buyer?

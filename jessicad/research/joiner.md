@@ -1,5 +1,5 @@
 # Report 2: The Business Joiner
-For: Jessica Dworzak, independent rep with **PlanNet Marketing** (sells the InteleTravel home-based travel agency). Fast pass, 2026-11-09. GUESS = not verified.
+For: Jessica Dworak, independent rep with **PlanNet Marketing** (sells the InteleTravel home-based travel agency). Fast pass, 2026-11-09. GUESS = not verified.
 
 ## 1. What a joiner actually joins
 Two layers, and joiners often confuse them:
