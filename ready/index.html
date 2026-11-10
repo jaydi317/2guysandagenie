@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex,nofollow">
+<title>Your Seat. Your Skills. · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<link rel="stylesheet" href="/assets/simple.css">
+<style>
+:root{--tint:#FFF3C4}
+.meter{border:3px solid var(--ink);padding:16px 18px;margin:0 0 26px}
+.meter .big{font-size:26px;font-weight:900;margin:0 0 8px}
+.bar{height:14px;border:2px solid var(--ink);margin:0 0 10px}.bar i{display:block;height:100%;background:var(--ink);width:0;transition:width .4s}
+.stack{list-style:none;padding:0;margin:0;font-size:16px}
+.stack li{padding:4px 0}.stack li.got::before{content:"\2713  ";font-weight:900}
+.stack li.not{color:var(--soft)}.stack li.not::before{content:"\25A1  "}
+.toplinks{display:flex;gap:10px;margin:0 0 30px}.toplinks .btn{flex:1;text-align:center;font-size:16px;padding:12px 8px}
+.day{border:2px solid var(--ink);margin:0 0 18px}
+.day .head{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:2px solid var(--ink)}
+.day .n{flex:0 0 40px;height:40px;border:2px solid var(--ink);font-weight:900;display:flex;align-items:center;justify-content:center}
+.day.done .n{background:var(--ink);color:#fff}
+.day .t{font-weight:bold;font-size:19px;line-height:1.3}
+.day .body{padding:16px 16px 6px}
+.day .body p{margin:0 0 14px}
+.day img.doodle{width:100%;border:2px solid var(--ink);display:block;margin:0 0 6px}
+.fact{background:var(--tint);padding:12px 14px;margin:0 0 14px;font-size:16px}
+.fact b{display:block;font-size:22px}
+.fact small{display:block;color:var(--soft);margin-top:4px}
+.loop{border-left:4px solid var(--ink);padding:4px 0 4px 14px;margin:0 0 16px;font-weight:bold}
+.how{margin:0 0 14px;padding-left:22px}.how li{margin:0 0 6px}
+textarea,input[type=number]{width:100%;box-sizing:border-box;font:inherit;font-size:17px;border:1px solid var(--ink);padding:10px;background:#fff;margin:0 0 12px}
+textarea{min-height:80px}
+.doneBtn{width:100%;font-size:18px;padding:14px;cursor:pointer;margin:0 0 14px}
+.day.done .doneBtn{background:#fff;color:var(--ink)}
+.day.locked{border-style:dashed;color:var(--soft)}
+.day.locked .head{border-bottom:0}
+.day.locked .n{border-style:dashed}
+.day.locked .tease{font-weight:normal;font-size:16px;color:var(--soft);margin-top:2px}
+.vid{border:4px solid var(--ink);margin:0 0 6px}.vid video{display:block;width:100%}
+.note{font-size:13px;color:var(--soft)}
+.mock{background:#111;color:#fff;padding:8px 12px;font-size:13px;margin:0 0 20px}
+@media (max-width:560px){.toplinks{flex-direction:column}}
+</style>
+</head><body>
+<header class="site"><div class="hwrap">
+<a class="brand" href="/"><img src="/assets/2g-mark.svg" alt="">2 Guys and a Genie</a>
+</div></header>
+<main id="main">
+<section>
+  <p class="mock">MOCK-UP for Daegan, Nov 10. Days 1 to 3 built; the rest show locked. Nothing here is live.</p>
+  <p class="kicker">Your Seat Is Saved · The Next Free Night · Launch Fishers</p>
+  <h1>Your Seat. Your Skills.</h1>
+  <p class="sub">Between now and the night, you'll pick up one new AI skill a day.</p>
+  <p>Five minutes each.</p>
+  <p>On your phone.</p>
+  <p>By the time you walk in, you'll know more about AI than you ever thought you could.</p>
+  <p>Then, in the room, we show you what to do with all of it.</p>
+
+  <div class="toplinks">
+    <a class="btn" href="/free-ai-business-night.ics">Add The Night To My Calendar</a>
+    <a class="btn ghost" href="/meetup/">Save A Seat For A Friend</a>
+  </div>
+
+  <div class="meter">
+    <p class="big"><span id="count">0</span> of 13 Skills Unlocked</p>
+    <div class="bar"><i id="fill"></i></div>
+    <ul class="stack" id="stack"></ul>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="day" data-day="1">
+    <div class="head"><div class="n">1</div><div class="t">Name The Job You Dread</div></div>
+    <div class="body">
+      <img class="doodle" src="/assets/doodles/job-7-9.jpg" alt="Walk in at 7 with the job. Walk out at 9 with AI carrying it.">
+      <p class="note">Walk in with it. Walk out without it.</p>
+      <p>Every business has one.</p>
+      <p>The job you put off every week.</p>
+      <p>Answering the phone. Chasing reviews. Sending quotes. Following up.</p>
+      <p>Write yours down right here.</p>
+      <textarea id="dread" placeholder="The one job I'd pay to never do again is..."></textarea>
+      <p class="loop">Bring it with you. That's the one we take off your plate, in the room.</p>
+      <button class="btn doneBtn" type="button">Done. Unlock Skill 2</button>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day" data-day="2">
+    <div class="head"><div class="n">2</div><div class="t">See What Two Meetings Did For Jamon</div></div>
+    <div class="body">
+      <div class="vid"><video controls playsinline preload="none" poster="/assets/jamon/jamon-jack-poster.jpg"><source src="/assets/jamon/jamon-jack-16x9.mp4" type="video/mp4"></video></div>
+      <p class="note">Jamon Jack, Gotta Call Jack. 1 minute 27 seconds.</p>
+      <div class="fact"><b>About $15,000 a month to over $50,000.</b>Two meetings with Jimmy. About four hours.<small>In Jamon's own words.</small></div>
+      <p>He didn't learn a thing.</p>
+      <p>No course. No figuring out the internet.</p>
+      <p>In his words: "Jimmy, just let me drive."</p>
+      <p>Your skill today: watch it, and spot the one thing Jimmy saw that Jamon couldn't see from inside his own business.</p>
+      <p class="loop">There's something like it in your business right now. In the room, we find yours.</p>
+      <button class="btn doneBtn" type="button">Watched It. Unlock Skill 3</button>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day" data-day="3">
+    <div class="head"><div class="n">3</div><div class="t">Find The Customers Who Already Picked You</div></div>
+    <div class="body">
+      <img class="doodle" src="/assets/home/dab43feed6.svg" alt="4 of 10 calls went to voicemail. Now every call is answered.">
+      <p>Open the call log on your business phone.</p>
+      <p>Count last week's missed calls.</p>
+      <ol class="how">
+        <li><b>iPhone:</b> Phone app, then Recents, then Missed.</li>
+        <li><b>Android:</b> Phone app, then Recents, then the Missed filter.</li>
+      </ol>
+      <input type="number" id="missed" inputmode="numeric" placeholder="Missed calls last week">
+      <div class="fact"><b>Only 42% leave a voicemail.</b>And 1 in 5 calls another business right then.<small>CallRail survey of 1,000 US consumers, 2025.</small></div>
+      <p>Every one of those calls was someone who already picked you.</p>
+      <p class="loop">In the room, you'll hear a phone line that answers every call. Then you set one up for your business, before you leave.</p>
+      <button class="btn doneBtn" type="button">Counted. Unlock Skill 4</button>
+    </div>
+  </div>
+
+  <!-- LOCKED -->
+  <div class="day locked" data-day="4"><div class="head"><div class="n">4</div><div><div class="t">Locked: Arrives In Your Next Email</div><div class="tease">What a stranger misses about your business in five seconds. You'll ask AI.</div></div></div></div>
+  <div class="day locked" data-day="5"><div class="head"><div class="n">5</div><div><div class="t">Locked</div><div class="tease">The one job your business name has. A test you can run this week.</div></div></div></div>
+  <div class="day locked" data-day="6"><div class="head"><div class="n">6</div><div><div class="t">Locked</div><div class="tease">A thank-you note that brings customers back, written by AI in under a minute.</div></div></div></div>
+  <div class="day locked" data-day="7"><div class="head"><div class="n">7</div><div><div class="t">Locked</div><div class="tease">Lock down your AI: the settings that keep your chats out of training.</div></div></div></div>
+  <div class="day locked" data-day="8"><div class="head"><div class="n">8</div><div><div class="t">Locked</div><div class="tease">The number nobody's run for you yet.</div></div></div></div>
+  <div class="day locked" data-day="9"><div class="head"><div class="n">9</div><div><div class="t">Locked</div><div class="tease">Ask AI who's the best at what you do near you. Does it say your name?</div></div></div></div>
+  <div class="day locked" data-day="10"><div class="head"><div class="n">10</div><div><div class="t">Locked</div><div class="tease">Watch several AIs build your website at the same time.</div></div></div></div>
+  <div class="day locked" data-day="11"><div class="head"><div class="n">11</div><div><div class="t">Locked</div><div class="tease">Get a read on anyone. Start with your favorite star.</div></div></div></div>
+  <div class="day locked" data-day="12"><div class="head"><div class="n">12</div><div><div class="t">Locked</div><div class="tease">Learn anything with a narrated video, made for you.</div></div></div></div>
+  <div class="day locked" data-day="13"><div class="head"><div class="n">13</div><div><div class="t">Locked</div><div class="tease">Have AI tell you which emails still need your reply.</div></div></div></div>
+
+  <p style="margin-top:28px">Every skill here is yours to keep.</p>
+  <p>What to do with all of them, to make real money in your business, is what the night is for.</p>
+  <p>See you in the room.</p>
+  <p>Jimmy</p>
+</section>
+  <footer>
+    <p><a href="/">About 2 Guys and a Genie</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · Call or text: (317) 751-2693 · Contact: hello@2guysandagenie.com · This site is not part of Facebook or Meta.</p>
+    <p>2 Guys and a Genie is a business name of Reverse Selling Limited Liability Company · 14846 Victory Ct, Carmel, IN 46032</p>
+    <p style="font-size:12px;margin:10px 0 0"><a href="/admin/" style="color:#888">Admin</a></p>
+  </footer>
+</main>
+<script>
+const SKILLS=["I know the one job I'm getting rid of","I know what Jimmy saw that Jamon couldn't","I know how many customers my phone lost last week","I know what a stranger misses about my business","I know whether my business name does its job","I can have AI write a thank-you that brings customers back","My AI chats stay out of training","I've run the number nobody ran for me","I know whether AI recommends me","I've watched AIs build my website","I can get a read on anyone","I can learn anything with an AI-made video","AI tells me which emails need me"];
+const K="ready_done";
+let done=[];try{done=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){}
+function render(){
+  document.querySelectorAll(".day:not(.locked)").forEach(d=>{
+    const n=+d.dataset.day, prevOk=n===1||done.includes(n-1);
+    d.classList.toggle("done",done.includes(n));
+    d.style.opacity=prevOk?1:.45;
+    const b=d.querySelector(".doneBtn"); b.disabled=!prevOk;
+    if(done.includes(n)) b.textContent="✓ Skill "+n+" Unlocked";
+  });
+  document.getElementById("count").textContent=done.length;
+  document.getElementById("fill").style.width=(done.length/13*100)+"%";
+  const got=SKILLS.filter((s,i)=>done.includes(i+1)).map(s=>'<li class="got">'+s+'</li>').join("");
+  const left=13-done.length;
+  document.getElementById("stack").innerHTML=(got||'<li class="not">Your first skill is right below.</li>')+(left&&done.length?'<li class="not">'+left+' more on the way</li>':'');
+}
+document.querySelectorAll(".doneBtn").forEach(b=>b.addEventListener("click",()=>{
+  const n=+b.closest(".day").dataset.day; if(!done.includes(n)) done.push(n);
+  try{localStorage.setItem(K,JSON.stringify(done))}catch(e){} render();
+}));
+["dread","missed"].forEach(id=>{const el=document.getElementById(id);try{el.value=localStorage.getItem("ready_"+id)||""}catch(e){}el.addEventListener("input",()=>{try{localStorage.setItem("ready_"+id,el.value)}catch(e){}})});
+render();
+</script>
+</body></html>
