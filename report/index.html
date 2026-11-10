@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex,nofollow">
+<title>Tell Me The One Thing · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<link rel="stylesheet" href="/assets/simple.css">
+<style>
+:root{--tint:#FFF3C4}
+.card{border:2px solid var(--ink);padding:18px;margin:0 0 16px}
+.q{font-weight:bold;font-size:19px;margin:0 0 4px}.hint{font-size:15px;color:var(--soft);margin:0 0 12px}
+textarea,input{width:100%;box-sizing:border-box;font:inherit;font-size:17px;border:1px solid var(--ink);padding:10px;background:#fff}
+textarea{min-height:220px;resize:vertical}
+label{display:block;font-size:15px;margin:12px 0 4px}
+.mic{display:flex;width:100%;justify-content:center;align-items:center;gap:10px;font:inherit;font-weight:bold;font-size:19px;background:var(--ink);color:#fff;border:2px solid var(--ink);padding:14px 16px;margin:0 0 12px;cursor:pointer}
+.mic.on{background:#c62828;border-color:#c62828}
+.dot{width:12px;height:12px;border-radius:50%;background:currentColor}.mic.on .dot{animation:blink 1s infinite}@keyframes blink{50%{opacity:.2}}
+.tip-box{background:var(--tint);padding:12px 16px;font-size:16px;margin:0 0 18px}.tip-box summary{font-weight:bold;cursor:pointer}.tip-box ul{padding-left:20px;margin:6px 0 12px}
+.err{color:#c62828;font-size:15px;display:none;margin-top:8px}
+#go{width:100%;font-size:20px;padding:16px;cursor:pointer}
+#book{display:none}
+.cal{border:3px solid var(--ink);margin:0 0 14px;background:#fff}
+.cal iframe{display:block;width:100%;height:900px;border:0}
+@media (max-width:560px){.btn{display:block;text-align:center}}
+</style>
+</head><body>
+<header class="site"><div class="hwrap">
+<a class="brand" href="/"><img src="/assets/2g-mark.svg" alt="">2 Guys and a Genie</a>
+</div></header>
+<main id="main">
+<section id="ask">
+  <p class="kicker">After Monday Night At Launch Fishers</p>
+  <h1>What's The One Thing You Want Off Your Plate?</h1>
+  <p class="sub">The job you'd love AI to take over. The part of your business, or your life, you want better. Like we promised.</p>
+  <p>Tap the mic and talk. Go as long as you want. Organized, scattered, half-finished, it all works. I'll take it from there.</p>
+
+  <div class="card">
+    <button class="mic" id="mic" type="button"><span class="dot"></span><span id="miclabel">Tap To Talk</span></button>
+    <textarea id="answer" placeholder="Tap the mic and talk, or type here."></textarea>
+    <label for="f_name">Your name</label><input id="f_name" autocomplete="name">
+    <label for="f_biz">Your business (if you have one)</label><input id="f_biz" autocomplete="organization">
+  </div>
+
+  <details class="tip-box" id="tipbox">
+    <summary>Mic not working? Here's the easy way around it.</summary>
+    <p>Tap into the box, then use the microphone built into your phone or computer:</p>
+    <ul>
+      <li><b>iPhone:</b> the microphone on the keyboard (bottom right).</li>
+      <li><b>Android:</b> the microphone on the keyboard (top right).</li>
+      <li><b>Mac:</b> press the Fn key twice (or the microphone key).</li>
+      <li><b>Windows:</b> press the Windows key and H together.</li>
+    </ul>
+    <p>Or just text it to <b>(317) 751-2693</b> or email <b>hello@2guysandagenie.com</b>, then <a href="#" id="skipbook">pick your time here</a>.</p>
+  </details>
+
+  <button class="btn" id="go">Send It To Jimmy, Then Pick My Time</button>
+  <p class="err" id="err">Tell me the one thing and your name, so I know who it's from.</p>
+</section>
+
+<section id="book">
+  <p class="kicker">Two Quick Taps</p>
+  <h1>Send It, Then Pick Your Time.</h1>
+  <div class="card">
+    <p class="q">1. Hit Send On The Email That Just Opened</p>
+    <p class="hint">It's already filled in and addressed to Jimmy. Just tap send.</p>
+    <p><a class="btn" id="mailbtn" href="mailto:hello@2guysandagenie.com">Email It To Jimmy</a></p>
+    <p class="hint">No email opened? Tap the button above. Or tap Copy and text it to <b>(317) 751-2693</b>.</p>
+    <p><button class="btn ghost" type="button" id="copybtn">Copy What I Said</button></p>
+    <p class="small" id="copied" style="display:none">Copied. Paste it anywhere.</p>
+  </div>
+  <p class="q" style="margin-top:22px">2. Pick Your Time With Jimmy</p>
+  <p class="sub">The first openings are a day out, so Jimmy has time to dig into your business and build your report.</p>
+  <!-- CALENDAR: "Your Report Call with Jimmy" (GHL RDyCoNVhmPgFQvNRbLdQ), 30 min, 24 hours' notice, redirects to /report/booked/. Created Nov 9, 2026. -->
+  <div class="cal"><iframe src="https://api.leadconnectorhq.com/widget/booking/RDyCoNVhmPgFQvNRbLdQ" scrolling="no" id="RDyCoNVhmPgFQvNRbLdQ_book" title="Pick Your Time With Jimmy"></iframe></div>
+  <p class="sub" style="margin-top:20px">After you book, you'll get a confirmation by email and text.</p>
+</section>
+  <footer>
+    <p><a href="/">About 2 Guys and a Genie</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · Call or text: (317) 751-2693 · Contact: hello@2guysandagenie.com · This site is not part of Facebook or Meta.</p>
+    <p>2 Guys and a Genie is a business name of Reverse Selling Limited Liability Company · 14846 Victory Ct, Carmel, IN 46032</p>
+    <p style="font-size:12px;margin:10px 0 0"><a href="/admin/" style="color:#888">Admin</a></p>
+  </footer>
+</main>
+
+<script>
+const ta = document.getElementById("answer"), mic = document.getElementById("mic"), lbl = document.getElementById("miclabel");
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+let rec = null, on = false, base = "";
+if (!SR) document.getElementById("tipbox").open = true;
+
+function stop(){ if (rec) { try { rec.stop(); } catch(e){} } on = false; mic.classList.remove("on"); lbl.textContent = ta.value.trim() ? "Tap To Keep Talking" : "Tap To Talk"; save(); }
+mic.addEventListener("click", () => {
+  if (!SR) { document.getElementById("tipbox").open = true; ta.focus(); return; }
+  if (on) return stop();
+  base = ta.value ? ta.value.trim() + " " : "";
+  rec = new SR(); rec.continuous = true; rec.interimResults = true; rec.lang = "en-US";
+  rec.onresult = e => { let t = ""; for (let r = 0; r < e.results.length; r++) t += e.results[r][0].transcript; ta.value = base + t; };
+  rec.onerror = () => { document.getElementById("tipbox").open = true; stop(); };
+  rec.onend = () => { if (on) stop(); };
+  try { rec.start(); } catch(e) { document.getElementById("tipbox").open = true; return; }
+  on = true; mic.classList.add("on"); lbl.textContent = "Listening... Tap To Stop";
+});
+
+function save(){ try { localStorage.setItem("onething_draft", JSON.stringify({a:ta.value,n:f_name.value,b:f_biz.value})); } catch(e){} }
+try { const d = JSON.parse(localStorage.getItem("onething_draft") || "null"); if (d) { ta.value=d.a||""; f_name.value=d.n||""; f_biz.value=d.b||""; } } catch(e){}
+document.addEventListener("input", save);
+
+function text(){ return "Name: " + f_name.value + "\nBusiness: " + (f_biz.value || "-") + "\n\nThe one thing:\n" + ta.value + "\n"; }
+function mailLink(){ return "mailto:hello@2guysandagenie.com?subject=" + encodeURIComponent("The one thing: " + (f_biz.value || f_name.value)) + "&body=" + encodeURIComponent(text()); }
+function showBook(){ document.getElementById("ask").style.display = "none"; document.getElementById("book").style.display = "block"; window.scrollTo(0,0); }
+
+document.getElementById("go").addEventListener("click", () => {
+  stop();
+  if (!ta.value.trim() || !f_name.value.trim()) { document.getElementById("err").style.display = "block"; return; }
+  try { navigator.clipboard.writeText(text()).catch(()=>{}); } catch(e){}
+  document.getElementById("mailbtn").href = mailLink();
+  showBook();
+  window.location.href = mailLink();
+});
+document.getElementById("skipbook").addEventListener("click", e => { e.preventDefault(); stop(); showBook(); });
+document.getElementById("copybtn").addEventListener("click", () => {
+  const ok = () => { document.getElementById("copied").style.display = "block"; };
+  try { navigator.clipboard.writeText(text()).then(ok, ok); } catch(e){ ok(); }
+});
+</script>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+</body></html>
