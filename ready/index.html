@@ -40,6 +40,18 @@ textarea{min-height:80px}
 .vid{border:4px solid var(--ink);margin:0 0 6px}.vid video{display:block;width:100%}
 .note{font-size:13px;color:var(--soft)}
 .mock{background:#111;color:#fff;padding:8px 12px;font-size:13px;margin:0 0 20px}
+.after{display:none;border-top:2px solid var(--ink);padding:16px 16px 6px;background:#fafafa}
+.day.done .after{display:block}
+.after .q{font-weight:bold;font-size:18px;margin:0 0 6px}
+.after label.ok{display:flex;gap:8px;font-size:15px;margin:0 0 12px;align-items:flex-start}
+.after label.ok input{margin-top:4px}
+.share{display:none}.share.on{display:block}
+.share .row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 12px}
+.share .row a,.share .row button{text-align:center;font-size:15px;padding:11px 6px}
+.said{display:none;margin:0 0 14px}.said.on{display:block}
+.said .quote{border-left:4px solid var(--ink);padding:2px 0 2px 12px;margin:0 0 10px;font-size:16px}
+.said .who{font-weight:bold;font-size:14px}
+.mocknote{font-size:13px;background:#111;color:#fff;padding:6px 10px;margin:0 0 12px}
 @media (max-width:560px){.toplinks{flex-direction:column}}
 </style>
 </head><body>
@@ -82,6 +94,32 @@ textarea{min-height:80px}
       <p class="loop">Bring it with you. That's the one we take off your plate, in the room.</p>
       <button class="btn doneBtn" type="button">Done. Unlock Skill 2</button>
     </div>
+    <div class="after">
+      <div class="said">
+        <p class="q">What Others Learned From This Skill</p>
+        <div class="quotes"></div>
+      </div>
+      <div class="ask">
+        <p class="q">So, What Did You Learn?</p>
+        <p>One line is plenty. What surprised you, or what will you do with it?</p>
+        <textarea class="learned" placeholder="The thing that got me was..."></textarea>
+        <label class="ok"><input type="checkbox" class="okshare"> You can share what I wrote, with my first name, so the next person knows what's waiting for them.</label>
+        <button class="btn sendLearn" type="button" style="width:100%;margin:0 0 14px">Send It</button>
+      </div>
+      <div class="share">
+        <p class="q">Who Do You Know That Would Love This?</p>
+        <p>Think of one person.</p>
+        <p>If they knew how to do what you just did, how much cooler would their week be?</p>
+        <p>You get to be the one who shows them.</p>
+        <div class="row">
+          <a class="btn ghost" data-share="text" href="#">Text It</a>
+          <a class="btn ghost" data-share="email" href="#">Email It</a>
+          <a class="btn ghost" data-share="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button class="btn ghost" data-share="copy" type="button">Copy The Link</button>
+        </div>
+        <p class="note">They get their own seat, and their own skills, starting the day they sign up.</p>
+      </div>
+    </div>
   </div>
 
   <!-- DAY 2 -->
@@ -97,6 +135,32 @@ textarea{min-height:80px}
       <p>Your skill today: watch it, and spot the one thing Jimmy saw that Jamon couldn't see from inside his own business.</p>
       <p class="loop">There's something like it in your business right now. In the room, we find yours.</p>
       <button class="btn doneBtn" type="button">Watched It. Unlock Skill 3</button>
+    </div>
+    <div class="after">
+      <div class="said">
+        <p class="q">What Others Learned From This Skill</p>
+        <div class="quotes"></div>
+      </div>
+      <div class="ask">
+        <p class="q">So, What Did You Learn?</p>
+        <p>One line is plenty. What surprised you, or what will you do with it?</p>
+        <textarea class="learned" placeholder="The thing that got me was..."></textarea>
+        <label class="ok"><input type="checkbox" class="okshare"> You can share what I wrote, with my first name, so the next person knows what's waiting for them.</label>
+        <button class="btn sendLearn" type="button" style="width:100%;margin:0 0 14px">Send It</button>
+      </div>
+      <div class="share">
+        <p class="q">Who Do You Know That Would Love This?</p>
+        <p>Think of one person.</p>
+        <p>If they knew how to do what you just did, how much cooler would their week be?</p>
+        <p>You get to be the one who shows them.</p>
+        <div class="row">
+          <a class="btn ghost" data-share="text" href="#">Text It</a>
+          <a class="btn ghost" data-share="email" href="#">Email It</a>
+          <a class="btn ghost" data-share="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button class="btn ghost" data-share="copy" type="button">Copy The Link</button>
+        </div>
+        <p class="note">They get their own seat, and their own skills, starting the day they sign up.</p>
+      </div>
     </div>
   </div>
 
@@ -116,6 +180,32 @@ textarea{min-height:80px}
       <p>Every one of those calls was someone who already picked you.</p>
       <p class="loop">In the room, you'll hear a phone line that answers every call. Then you set one up for your business, before you leave.</p>
       <button class="btn doneBtn" type="button">Counted. Unlock Skill 4</button>
+    </div>
+    <div class="after">
+      <div class="said">
+        <p class="q">What Others Learned From This Skill</p>
+        <div class="quotes"></div>
+      </div>
+      <div class="ask">
+        <p class="q">So, What Did You Learn?</p>
+        <p>One line is plenty. What surprised you, or what will you do with it?</p>
+        <textarea class="learned" placeholder="The thing that got me was..."></textarea>
+        <label class="ok"><input type="checkbox" class="okshare"> You can share what I wrote, with my first name, so the next person knows what's waiting for them.</label>
+        <button class="btn sendLearn" type="button" style="width:100%;margin:0 0 14px">Send It</button>
+      </div>
+      <div class="share">
+        <p class="q">Who Do You Know That Would Love This?</p>
+        <p>Think of one person.</p>
+        <p>If they knew how to do what you just did, how much cooler would their week be?</p>
+        <p>You get to be the one who shows them.</p>
+        <div class="row">
+          <a class="btn ghost" data-share="text" href="#">Text It</a>
+          <a class="btn ghost" data-share="email" href="#">Email It</a>
+          <a class="btn ghost" data-share="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+          <button class="btn ghost" data-share="copy" type="button">Copy The Link</button>
+        </div>
+        <p class="note">They get their own seat, and their own skills, starting the day they sign up.</p>
+      </div>
     </div>
   </div>
 
@@ -165,6 +255,24 @@ document.querySelectorAll(".doneBtn").forEach(b=>b.addEventListener("click",()=>
   try{localStorage.setItem(K,JSON.stringify(done))}catch(e){} render();
 }));
 ["dread","missed"].forEach(id=>{const el=document.getElementById(id);try{el.value=localStorage.getItem("ready_"+id)||""}catch(e){}el.addEventListener("input",()=>{try{localStorage.setItem("ready_"+id,el.value)}catch(e){}})});
+
+const SHARE_URL="https://2guysandagenie.com/meetup/";
+const SHARE_MSG="I'm going to a free AI night for local business owners in Fishers. They hand you one AI skill a day before you even get there. Grab a seat: "+SHARE_URL;
+// Mock-up quotes, shown only to Daegan: real ones arrive once readers share theirs.
+const MOCK_QUOTES={};
+document.querySelectorAll(".day:not(.locked)").forEach(d=>{
+  const n=+d.dataset.day, said=d.querySelector(".said");
+  if(said){said.classList.add("on");said.querySelector(".quotes").innerHTML='<p class="mocknote">MOCK-UP: real readers\' words appear here, first name only, once they say yes. Empty until then, and the box stays hidden.</p>';}
+  const send=d.querySelector(".sendLearn"), share=d.querySelector(".share");
+  if(send) send.addEventListener("click",()=>{d.querySelector(".ask").style.display="none";share.classList.add("on");});
+  d.querySelectorAll("[data-share]").forEach(a=>{
+    const k=a.dataset.share;
+    if(k==="text") a.href="sms:?&body="+encodeURIComponent(SHARE_MSG);
+    if(k==="email") a.href="mailto:?subject="+encodeURIComponent("Thought of you")+"&body="+encodeURIComponent(SHARE_MSG);
+    if(k==="facebook") a.href="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(SHARE_URL);
+    if(k==="copy") a.addEventListener("click",()=>{try{navigator.clipboard.writeText(SHARE_URL)}catch(e){} a.textContent="Copied";});
+  });
+});
 render();
 </script>
 </body></html>
