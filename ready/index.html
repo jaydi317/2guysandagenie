@@ -60,7 +60,7 @@ textarea{min-height:80px}
 </div></header>
 <main id="main">
 <section>
-  <p class="mock">MOCK-UP for Daegan, Nov 10. Days 1 to 3 built; the rest show locked. Nothing here is live.</p>
+  <p class="mock">MOCK-UP v2 for Daegan, Nov 10. Days 1 to 3 built; the rest show locked. Nothing here is live.</p>
   <p class="kicker">Your Seat Is Saved · The Next Free Night · Launch Fishers</p>
   <h1>Your Seat. Your Skills.</h1>
   <p class="sub">Between now and the night, you'll pick up one new AI skill a day.</p>
@@ -82,16 +82,23 @@ textarea{min-height:80px}
 
   <!-- DAY 1 -->
   <div class="day" data-day="1">
-    <div class="head"><div class="n">1</div><div class="t">Name The Job You Dread</div></div>
+    <div class="head"><div class="n">1</div><div class="t">Hand AI The Job You Dread</div></div>
     <div class="body">
       <img class="doodle" src="/assets/doodles/job-7-9.jpg" alt="Walk in at 7 with the job. Walk out at 9 with AI carrying it.">
       <p class="note">Walk in with it. Walk out without it.</p>
       <p>Every business has one.</p>
       <p>The job you put off every week.</p>
       <p>Answering the phone. Chasing reviews. Sending quotes. Following up.</p>
-      <p>Write yours down right here.</p>
+      <p>Today, you hand it to AI and watch what comes back.</p>
+      <p>First, write yours down.</p>
       <textarea id="dread" placeholder="The one job I'd pay to never do again is..."></textarea>
-      <p class="loop">Bring it with you. That's the one we take off your plate, in the room.</p>
+      <p><b>Step 1.</b> Open ChatGPT or Claude on your phone. Don't have one yet? It takes two minutes: <a href="/tonight/">show me how</a>.</p>
+      <p><b>Step 2.</b> Tap the microphone and say this:</p>
+      <div class="fact" id="prompt1">"I run a [your kind of business] in [your town]. The job I dread most is <span id="jobfill">[your job]</span>. Ask me three questions about it, one at a time. Then show me three ways you could take it off my plate."</div>
+      <p><button class="btn ghost" type="button" id="copyp1" style="width:100%">Copy It</button></p>
+      <p><b>Step 3.</b> Answer its questions out loud, like you're talking to a new hire.</p>
+      <p>About three minutes later, you're holding a plan for the job you hate, built around your business.</p>
+      <p class="loop">Bring that plan with you. In the room, we take the best of the three and set it up for real, on your phone, before you leave.</p>
       <button class="btn doneBtn" type="button">Done. Unlock Skill 2</button>
     </div>
     <div class="after">
@@ -132,9 +139,16 @@ textarea{min-height:80px}
       <p>He didn't learn a thing.</p>
       <p>No course. No figuring out the internet.</p>
       <p>In his words: "Jimmy, just let me drive."</p>
-      <p>Your skill today: watch it, and spot the one thing Jimmy saw that Jamon couldn't see from inside his own business.</p>
-      <p class="loop">There's something like it in your business right now. In the room, we find yours.</p>
-      <button class="btn doneBtn" type="button">Watched It. Unlock Skill 3</button>
+      <p>It started with one look at the side of his van.</p>
+      <p>Jimmy saw what a stranger sees. Jamon couldn't, from inside his own business.</p>
+      <p>Today, you get that same look at yours.</p>
+      <p><b>Step 1.</b> Take a photo of your truck, your sign or your business card.</p>
+      <p><b>Step 2.</b> Send it to ChatGPT or Claude and say this:</p>
+      <div class="fact">"You're a stranger seeing this for the first time. What does this business do? And what would you never guess about it?"</div>
+      <p>Read what comes back.</p>
+      <p>Whatever it missed, your next customer is missing too.</p>
+      <p class="loop">Bring the photo. In the room, we find the one thing that belongs on it, the way GottaCallJack.com belonged on that van.</p>
+      <button class="btn doneBtn" type="button">Done. Unlock Skill 3</button>
     </div>
     <div class="after">
       <div class="said">
@@ -233,7 +247,7 @@ textarea{min-height:80px}
   </footer>
 </main>
 <script>
-const SKILLS=["I know the one job I'm getting rid of","I know what Jimmy saw that Jamon couldn't","I know how many customers my phone lost last week","I know what a stranger misses about my business","I know whether my business name does its job","I can have AI write a thank-you that brings customers back","My AI chats stay out of training","I've run the number nobody ran for me","I know whether AI recommends me","I've watched AIs build my website","I can get a read on anyone","I can learn anything with an AI-made video","AI tells me which emails need me"];
+const SKILLS=["I can hand AI a job and get a plan back","I've seen my business through a stranger's eyes","I know how many customers my phone lost last week","I know what a stranger misses about my business","I know whether my business name does its job","I can have AI write a thank-you that brings customers back","My AI chats stay out of training","I've run the number nobody ran for me","I know whether AI recommends me","I've watched AIs build my website","I can get a read on anyone","I can learn anything with an AI-made video","AI tells me which emails need me"];
 const K="ready_done";
 let done=[];try{done=JSON.parse(localStorage.getItem(K)||"[]")}catch(e){}
 function render(){
@@ -254,6 +268,10 @@ document.querySelectorAll(".doneBtn").forEach(b=>b.addEventListener("click",()=>
   const n=+b.closest(".day").dataset.day; if(!done.includes(n)) done.push(n);
   try{localStorage.setItem(K,JSON.stringify(done))}catch(e){} render();
 }));
+const jf=document.getElementById("jobfill"),dr=document.getElementById("dread");
+function fillJob(){jf.textContent=dr.value.trim()?dr.value.trim().replace(/\.$/,""):"[your job]"}
+dr.addEventListener("input",fillJob);
+document.getElementById("copyp1").addEventListener("click",e=>{try{navigator.clipboard.writeText(document.getElementById("prompt1").textContent.replace(/^"|"$/g,""))}catch(x){} e.target.textContent="Copied. Now Open Your AI And Paste, Or Say It"});
 ["dread","missed"].forEach(id=>{const el=document.getElementById(id);try{el.value=localStorage.getItem("ready_"+id)||""}catch(e){}el.addEventListener("input",()=>{try{localStorage.setItem("ready_"+id,el.value)}catch(e){}})});
 
 const SHARE_URL="https://2guysandagenie.com/meetup/";
@@ -273,6 +291,6 @@ document.querySelectorAll(".day:not(.locked)").forEach(d=>{
     if(k==="copy") a.addEventListener("click",()=>{try{navigator.clipboard.writeText(SHARE_URL)}catch(e){} a.textContent="Copied";});
   });
 });
-render();
+fillJob();render();
 </script>
 </body></html>
