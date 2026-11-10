@@ -1,0 +1,45 @@
+Jessica Dworzak (Plannet Marketing), filmed by Jimmy Davis at the AI meetup, Nov 9 2026.
+Local Whisper large-v3-turbo (mlx) used instead of Qwen because captions needed timestamps. 'Planet' corrected to 'Plannet'.
+
+[0:00] So, alright, what's your name?
+[0:01] My name's Jessica.
+[0:02] And what's your network marketing company?
+[0:06] Plannet Marketing.
+[0:07] Alright, I want you just to freestyle why you like the company, why you're excited about it, why you think people should join.
+[0:14] Just freestyle and look at the camera.
+[0:16] Okay.
+[0:16] I love Plannet Marketing because they help ordinary people live extraordinary lives.
+[0:24] I got into the business because I have a five-year-old daughter that I adopted and I want to be able to
+[0:30] Be there for her and create a lifestyle that I could not with my current job
+[0:36] Now when you think about like building this business
+[0:40] What excites you when you think about like building this business and you get it to where you like you actually can see it
+[0:46] Let's say a year or two having it. What does that business look like? What kind of life are you living?
+[0:50] you know what excites you about why are you pushing so hard to build this
+[0:54] business in a year or two I'd love to have a team that I've helped create this
+[0:59] business for themselves as well I want to be able to take my daughter to school
+[1:03] pick her up without having to worry about PTO go on her field trips have a
+[1:08] week off at spring break a fall break so that I can spend that time with her
+[1:11] perfect and what's your favorite thing about like the products I want to know
+[1:16] what the product is we sell travel and everybody loves to travel I love to
+[1:20] I want to take her.
+[1:21] My goal is to get her to every state before she graduates high school.
+[1:25] I'm getting to take her on her first Disney cruise this summer, or this Christmas.
+[1:31] Okay.
+[1:32] Now, if I was spending time with her doing video, I know the questions, I would pull it out.
+[1:36] I'm literally going to have Claude make some video clips and have her do a website in 15 minutes on this.
+[1:41] That's what I'm doing.
+[1:42] All right.
+[1:43] So if you had, what's the best question to ask?
+[1:48] Why are you excited about having the business where you're selling travel?
+[1:53] What does that mean to you?
+[1:55] I think a lot of memories are created with travel.
+[1:58] And personally, me, I have four nieces.
+[2:03] And as soon as they were born, my biggest thing was giving them experiences and not things.
+[2:08] They get a million toys, but no one can take away the experiences I've given them with travel.
+[2:13] Perfect. Now, do you have a website for your network?
+[2:17] what's your biggest wish for your website?
+[2:19] Anything that you definitely want to have on it?
+[2:21] Have you had any ideas about it?
+[2:22] I really have no ideas.
+[2:23] Perfect.
+[2:24] Okay, cool.
