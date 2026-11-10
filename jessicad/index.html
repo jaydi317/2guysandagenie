@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex, nofollow">
+<title>Jessica's AI Starter Kit · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<link rel="stylesheet" href="/assets/simple.css">
+<style>
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin:16px 0}
+  .card{border:1px solid var(--ink,#111);padding:12px;background:#fff}
+  .card img,.card video{width:100%;display:block;border:1px solid #ddd;background:#000}
+  .card h3{font-size:16px;margin:10px 0 4px}
+  .card p{font-size:14px;margin:4px 0;color:#555}
+  .tag{display:inline-block;font-size:12px;background:#FFF3C4;padding:2px 8px;border:1px solid #111;margin-bottom:6px}
+  .big{display:block;border:1px solid #111;margin:14px 0}
+  .big img{width:100%;display:block}
+  .row{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+  .report{border:1px solid #111;padding:0 14px;margin:12px 0}
+  .report summary{cursor:pointer;font-weight:700;padding:12px 0}
+  .report .md{font-size:15px;line-height:1.55;padding-bottom:14px;overflow-wrap:anywhere}
+  .report .md table{border-collapse:collapse;display:block;overflow-x:auto}
+  .report .md td,.report .md th{border:1px solid #ddd;padding:4px 6px}
+  .wait{color:#888;font-style:italic}
+  .hero-img{width:100%;border:1px solid #111;display:block;margin:14px 0}
+</style>
+</head><body>
+<header class="site"><div class="hwrap">
+<a class="brand" href="/"><img src="/assets/2g-mark.svg" alt="">2 Guys and a Genie</a>
+</div></header>
+<main id="main">
+  <section>
+    <p class="kicker">Built live at Free AI for Business Night · Launch Fishers · Nov 9</p>
+    <h1>Jessica, Here's What AI Made For Travel With Jess In 15 Minutes.</h1>
+    <p>We filmed a quick video with you on stage, then a team of AI helpers went to work at the same time: research on your buyers and your business builders, social clips from your video, picture ads, two website mockups and a content kit. For a real client we'd spend a couple of hours on research first. This is the speed version.</p>
+    <img class="hero-img" id="hero" src="img/still-01.jpg" alt="Jessica" onerror="this.remove()">
+    <div class="row">
+      <a class="btn" href="#clips">Video Clips</a>
+      <a class="btn" href="#ads">Ads</a>
+      <a class="btn" href="#sites">Websites</a>
+      <a class="btn" href="#research">Research</a>
+      <a class="btn" href="content/">Content Kit</a>
+    </div>
+  </section>
+
+  <section class="s" id="clips">
+    <h2>Social Media Clips From Your Video</h2>
+    <p>Vertical, captioned, ready for Reels, TikTok and Stories.</p>
+    <div class="grid" id="clipGrid"><p class="wait">Clips are rendering...</p></div>
+  </section>
+
+  <section class="s" id="ads">
+    <h2>Picture Ads</h2>
+    <p>Half for people who want the trips, half for people curious about the business side.</p>
+    <div class="grid" id="adGrid"><p class="wait">Ads are being designed...</p></div>
+  </section>
+
+  <section class="s" id="sites">
+    <h2>Two Website Mockups</h2>
+    <h3>1. Your Main Site</h3>
+    <a class="big" href="site/"><img src="site/shot-desktop.png" alt="Website mockup" onerror="this.outerHTML='<p class=wait style=padding:12px>Open the mockup</p>'"></a>
+    <a class="btn" href="site/">Open Website Mockup</a>
+    <h3 style="margin-top:28px">2. A "What Kind Of Traveler Are You?" Quiz</h3>
+    <p>A fun quiz that turns visitors into leads and spots who's curious about the business.</p>
+    <a class="big" href="quiz/" style="max-width:320px"><img src="quiz/shot-phone.png" alt="Quiz mockup" onerror="this.outerHTML='<p class=wait style=padding:12px>Open the quiz</p>'"></a>
+    <a class="btn" href="quiz/">Take The Quiz</a>
+  </section>
+
+  <section class="s" id="research">
+    <h2>The Research</h2>
+    <p>What's going on in your customers' heads, and what the top people in travel are doing.</p>
+    <details class="report"><summary>Report 1: The Vacation Buyer</summary><div class="md" data-src="research/buyer.md"><p class="wait">Loading...</p></div></details>
+    <details class="report"><summary>Report 2: The Business Builder</summary><div class="md" data-src="research/joiner.md"><p class="wait">Loading...</p></div></details>
+    <details class="report"><summary>What The Top Players Do: Headlines And Features</summary><div class="md" data-src="research/competitors.md"><p class="wait">Loading...</p></div></details>
+  </section>
+
+  <section class="s">
+    <h2>Your Content Kit</h2>
+    <p>A 14-day posting plan, captions, Reel ideas, text scripts and a welcome email series, each with a copy button.</p>
+    <a class="btn" href="content/">Open Content Kit</a>
+  </section>
+
+  <section class="s">
+    <h2>Want This For Real?</h2>
+    <p>This was 15 minutes on stage. Imagine what a couple of hours of real work on your business looks like. Text Jimmy at (317) 751-2693.</p>
+  </section>
+
+  <footer>
+    <p><a href="/">About 2 Guys and a Genie</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · Contact: hello@2guysandagenie.com</p>
+    <p>Mockups are examples made for Jessica Dworzak and are not official Plannet Marketing materials. 2 Guys and a Genie is a business name of Reverse Selling Limited Liability Company · 14846 Victory Ct, Carmel, IN 46032</p>
+  </footer>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script>
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+fetch('clips/clips.json').then(r => r.ok ? r.json() : Promise.reject()).then(list => {
+  document.getElementById('clipGrid').innerHTML = list.map(c => `
+    <div class="card"><video controls playsinline preload="none" poster="clips/${esc(c.poster)}" src="clips/${esc(c.file)}"></video>
+    <h3>${esc(c.title)}</h3><p>${esc(c.caption)}</p></div>`).join('');
+}).catch(() => {});
+fetch('ads/ads.json').then(r => r.ok ? r.json() : Promise.reject()).then(list => {
+  document.getElementById('adGrid').innerHTML = list.map(a => `
+    <div class="card"><span class="tag">${a.audience === 'joiner' ? 'Business side' : 'Vacation buyers'}</span>
+    <a href="ads/${esc(a.file)}"><img src="ads/${esc(a.file)}" alt="${esc(a.headline)}" loading="lazy"></a>
+    <h3>${esc(a.headline)}</h3><p>${esc(a.primary_text).replace(/\n/g,'<br>')}</p></div>`).join('');
+}).catch(() => {});
+document.querySelectorAll('.md[data-src]').forEach(el => {
+  fetch(el.dataset.src).then(r => r.ok ? r.text() : Promise.reject())
+    .then(t => { el.innerHTML = window.marked ? marked.parse(t) : '<pre>' + esc(t) + '</pre>'; })
+    .catch(() => { el.innerHTML = '<p class="wait">Still being written.</p>'; });
+});
+</script>
+</body></html>
