@@ -688,4 +688,5 @@ document.querySelectorAll(".day").forEach(d=>{
 });
 fillJob();render();
 </script>
+<script>window.addEventListener("load",function(){var m=/^#d(\d+)$/.exec(location.hash);if(m){var d=document.querySelector('.day[data-day="'+m[1]+'"]');if(d)setTimeout(function(){d.scrollIntoView();},50);}});</script>
 </body></html>
