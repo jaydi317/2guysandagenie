@@ -59,11 +59,11 @@
   <section class="s" id="sites">
     <h2>Two Website Mockups</h2>
     <h3>1. Your Main Site</h3>
-    <a class="big" href="site/"><img src="site/shot-desktop.png" alt="Website mockup" onerror="this.outerHTML='<p class=wait style=padding:12px>Open the mockup</p>'"></a>
-    <a class="btn" href="site/">Open Website Mockup</a>
+    <a class="big" href="site/?v=3"><img src="site/shot-desktop.png?v=3" alt="Website mockup" onerror="this.outerHTML='<p class=wait style=padding:12px>Open the mockup</p>'"></a>
+    <a class="btn" href="site/?v=3">Open Website Mockup</a>
     <h3 style="margin-top:28px">2. A "What Kind Of Traveler Are You?" Quiz</h3>
     <p>A fun quiz that turns visitors into leads and spots who's curious about the business.</p>
-    <a class="big" href="quiz/" style="max-width:320px"><img src="quiz/shot-phone.png" alt="Quiz mockup" onerror="this.outerHTML='<p class=wait style=padding:12px>Open the quiz</p>'"></a>
+    <a class="big" href="quiz/" style="max-width:320px"><img src="quiz/shot-phone.png?v=3" alt="Quiz mockup" onerror="this.outerHTML='<p class=wait style=padding:12px>Open the quiz</p>'"></a>
     <a class="btn" href="quiz/">Take The Quiz</a>
   </section>
 
@@ -93,20 +93,21 @@
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
 <script>
+const V='?v=3';
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-fetch('clips/clips.json').then(r => r.ok ? r.json() : Promise.reject()).then(list => {
+fetch('clips/clips.json'+V).then(r => r.ok ? r.json() : Promise.reject()).then(list => {
   document.getElementById('clipGrid').innerHTML = list.map(c => `
-    <div class="card"><video controls playsinline preload="none" poster="clips/${esc(c.poster)}" src="clips/${esc(c.file)}"></video>
+    <div class="card"><video controls playsinline preload="none" poster="clips/${esc(c.poster)}${V}" src="clips/${esc(c.file)}${V}"></video>
     <h3>${esc(c.title)}</h3><p>${esc(c.caption)}</p></div>`).join('');
 }).catch(() => {});
-fetch('ads/ads.json').then(r => r.ok ? r.json() : Promise.reject()).then(list => {
+fetch('ads/ads.json'+V).then(r => r.ok ? r.json() : Promise.reject()).then(list => {
   document.getElementById('adGrid').innerHTML = list.map(a => `
     <div class="card"><span class="tag">${a.audience === 'joiner' ? 'Business side' : 'Vacation buyers'}</span>
-    <a href="ads/${esc(a.file)}"><img src="ads/${esc(a.file)}" alt="${esc(a.headline)}" loading="lazy"></a>
+    <a href="ads/${esc(a.file)}${V}"><img src="ads/${esc(a.file)}${V}" alt="${esc(a.headline)}" loading="lazy"></a>
     <h3>${esc(a.headline)}</h3><p>${esc(a.primary_text).replace(/\n/g,'<br>')}</p></div>`).join('');
 }).catch(() => {});
 document.querySelectorAll('.md[data-src]').forEach(el => {
-  fetch(el.dataset.src).then(r => r.ok ? r.text() : Promise.reject())
+  fetch(el.dataset.src+V).then(r => r.ok ? r.text() : Promise.reject())
     .then(t => { el.innerHTML = window.marked ? marked.parse(t) : '<pre>' + esc(t) + '</pre>'; })
     .catch(() => { el.innerHTML = '<p class="wait">Still being written.</p>'; });
 });
