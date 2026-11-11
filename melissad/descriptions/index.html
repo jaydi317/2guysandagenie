@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex, nofollow">
+<title>Your 35 Listings, Rewritten · Bijoux by Lissa</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<link rel="stylesheet" href="/assets/simple.css">
+<style>
+  .how{background:var(--tint);padding:18px 20px;margin:0 0 8px}
+  .how ol{margin:8px 0 0;padding-left:22px}.how li{margin:0 0 6px}
+  .jump{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+  .jump button{font:inherit;font-size:15px;font-weight:bold;padding:10px 14px;border:2px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;min-height:44px}
+  .jump button[aria-pressed="true"]{background:var(--ink);color:#fff}
+  .piece{border:2px solid var(--ink);margin:0 0 26px;background:#fff}
+  .piece .top{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:14px;border-bottom:1px solid var(--rule);align-items:center}
+  .piece .top img{width:120px;height:120px;object-fit:cover;border:1px solid var(--rule)}
+  .piece h2{font-size:21px;margin:0 0 4px}
+  .piece .meta{font-size:14px;color:var(--soft);margin:0}
+  .piece .meta a{color:var(--link)}
+  .blk{padding:14px;border-bottom:1px solid var(--rule)}
+  .lab{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 8px}
+  .lab b{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--soft)}
+  .copy{font:inherit;font-size:14px;font-weight:bold;padding:9px 14px;border:2px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;min-height:44px;white-space:nowrap}
+  .copy.ok{background:#fff;color:var(--ink)}
+  .txt{font-size:17px;line-height:1.55;white-space:pre-wrap;margin:0;overflow-wrap:anywhere}
+  .ttl{font-size:18px;font-weight:bold;line-height:1.4;margin:0}
+  .count{font-size:13px;color:var(--soft);font-weight:normal;text-transform:none;letter-spacing:0}
+  .tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tags span{font-size:14px;border:1px solid var(--ink);padding:3px 9px;background:#fff}
+  .note{background:#FFF3C4;border-bottom:1px solid var(--rule);padding:10px 14px;font-size:15px}
+  details.old{border:0;padding:0}
+  details.old summary{font-size:14px;color:var(--soft);font-weight:normal;padding:12px 14px}
+  details.old .txt{font-size:15px;color:var(--soft);padding:0 14px 14px}
+  @media (max-width:480px){.piece .top{grid-template-columns:88px 1fr}.piece .top img{width:88px;height:88px}}
+</style>
+</head><body>
+<header class="site"><div class="hwrap">
+<a class="brand" href="/melissad/"><img src="/assets/2g-mark.svg" alt="">Back To Your Page</a>
+</div></header>
+<main id="main">
+  <section>
+    <p class="kicker">Made for Melissa · Bijoux by Lissa</p>
+    <h1>All 35 Of Your Listings, Rewritten.</h1>
+    <p>You said the descriptions are the part that gets you stuck. So here is every piece in your shop, written to the woman who is deciding whether to buy it. Your facts, your voice, nothing made up.</p>
+    <div class="how">
+      <b>How to use this</b>
+      <ol>
+        <li>Open the listing in Etsy (the link is under each piece name).</li>
+        <li>Tap <b>Copy</b> on the title, the description and the tags, and paste each one in.</li>
+        <li>Read it once first. You know your pieces. Change anything that isn't you.</li>
+      </ol>
+    </div>
+    <div class="jump" id="filters" role="group" aria-label="Show"></div>
+  </section>
+  <section class="s" id="list" style="border-top:0;padding-top:0;margin-top:28px"><p class="small">Loading your pieces...</p></section>
+  <footer>
+    <p>Made for Melissa Davis by Jimmy and Paul at <a href="/">2 Guys and a Genie</a>. Every fact in these descriptions came from your own Etsy listings on Nov 11, 2026. Please check each one before you post it.</p>
+  </footer>
+</main>
+<script src="/melissad/products.js?v=2"></script>
+<script>
+const P = window.LISSA_PRODUCTS || [];
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const types = ['All', ...new Set(P.map(p => p.type))];
+let cur = 'All';
+const fl = document.getElementById('filters');
+function drawFilters(){
+  fl.innerHTML = types.map(t => `<button type="button" aria-pressed="${t===cur}" data-t="${esc(t)}">${esc(t === 'All' ? 'All ' + P.length : t + ' ' + P.filter(p => p.type === t).length)}</button>`).join('');
+}
+fl.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; cur = b.dataset.t; drawFilters(); draw(); });
+function draw(){
+  const list = P.filter(p => cur === 'All' || p.type === cur);
+  document.getElementById('list').innerHTML = list.map(p => `
+  <article class="piece" id="p${esc(p.id)}">
+    <div class="top">
+      <img src="${esc(p.photos[0])}" alt="${esc(p.name)}" loading="lazy" width="120" height="120">
+      <div><h2>${esc(p.name)}</h2>
+      <p class="meta">$${Number(p.price).toFixed(0)} · ${esc(p.type)} · <a href="${esc(p.etsy)}" target="_blank" rel="noopener">Open this listing on Etsy</a></p></div>
+    </div>
+    ${p.note ? `<div class="note"><b>One thing to check:</b> ${esc(p.note)}</div>` : ''}
+    <div class="blk"><div class="lab"><b>New title <span class="count">(${p.title.length} of 140 characters)</span></b><button class="copy" type="button" data-k="title" data-id="${esc(p.id)}">Copy</button></div><p class="ttl">${esc(p.title)}</p></div>
+    <div class="blk"><div class="lab"><b>New description</b><button class="copy" type="button" data-k="desc" data-id="${esc(p.id)}">Copy</button></div><p class="txt">${esc(p.desc)}</p></div>
+    ${p.tags && p.tags.length ? `<div class="blk"><div class="lab"><b>13 tags</b><button class="copy" type="button" data-k="tags" data-id="${esc(p.id)}">Copy</button></div><div class="tags">${p.tags.map(t => `<span>${esc(t)}</span>`).join('')}</div></div>` : ''}
+    <details class="old"><summary>See what it says now</summary><p class="txt"><b>${esc(p.origTitle)}</b>
+
+${esc(p.origDesc)}</p></details>
+  </article>`).join('');
+}
+function fallbackCopy(text){
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+}
+document.getElementById('list').addEventListener('click', async e => {
+  const b = e.target.closest('.copy'); if (!b) return;
+  const p = P.find(x => x.id === b.dataset.id); if (!p) return;
+  const text = b.dataset.k === 'title' ? p.title : b.dataset.k === 'tags' ? p.tags.join(', ') : p.desc;
+  try { await navigator.clipboard.writeText(text); } catch (err) { fallbackCopy(text); }
+  b.textContent = 'Copied'; b.classList.add('ok'); setTimeout(() => { b.textContent = 'Copy'; b.classList.remove('ok'); }, 1600);
+});
+drawFilters(); draw();
+</script>
+</body></html>
