@@ -16,7 +16,14 @@
   .piece{border:2px solid var(--ink);margin:0 0 26px;background:#fff}
   .piece .top{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:14px;border-bottom:1px solid var(--rule);align-items:center}
   .piece .top img{width:120px;height:120px;object-fit:cover;border:1px solid var(--rule)}
-  .piece h2{font-size:21px;margin:0 0 4px}
+  .gal{border-bottom:1px solid var(--rule)}
+  .gal .main{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block}
+  .thumbs{display:flex;gap:6px;overflow-x:auto;padding:8px}
+  .th{flex:0 0 64px;padding:0;border:2px solid var(--rule);background:#fff;cursor:pointer}
+  .th img{width:60px;height:60px;object-fit:cover;display:block}
+  .th:hover,.th:focus{border-color:var(--ink)}
+  .piece .top{display:block;padding:14px;border-bottom:1px solid var(--rule)}
+  .piece h2{font-size:24px;margin:0 0 4px}
   .piece .meta{font-size:14px;color:var(--soft);margin:0}
   .piece .meta a{color:var(--link)}
   .blk{padding:14px;border-bottom:1px solid var(--rule)}
@@ -37,12 +44,12 @@
 </style>
 </head><body>
 <header class="site"><div class="hwrap">
-<a class="brand" href="/melissad/"><img src="/assets/2g-mark.svg" alt="">Back To Your Page</a>
+<a class="brand" href="/melissad/descriptions/"><img src="/assets/2g-mark.svg" alt="">Made For Bijoux By Lissa</a>
 </div></header>
 <main id="main">
   <section>
     <p class="kicker">Made for Melissa · Bijoux by Lissa</p>
-    <h1>All 35 Of Your Listings, Rewritten.</h1>
+    <h1>Melissa, Here Are All 35 Of Your Pieces, Rewritten.</h1>
     <p>You said the descriptions are the part that gets you stuck. So here is every piece in your shop, written to the woman who is deciding whether to buy it. Your facts, your voice, nothing made up.</p>
     <div class="how">
       <b>How to use this</b>
@@ -69,13 +76,18 @@ const fl = document.getElementById('filters');
 function drawFilters(){
   fl.innerHTML = types.map(t => `<button type="button" aria-pressed="${t===cur}" data-t="${esc(t)}">${esc(t === 'All' ? 'All ' + P.length : t + ' ' + P.filter(p => p.type === t).length)}</button>`).join('');
 }
-fl.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; cur = b.dataset.t; drawFilters(); draw(); });
+fl.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; cur = b.dataset.t; document.getElementById('list').addEventListener('click', e => {
+  const t = e.target.closest('.th'); if (!t) return;
+  t.closest('.gal').querySelector('.main').src = t.dataset.src;
+});
+drawFilters(); draw(); });
 function draw(){
   const list = P.filter(p => cur === 'All' || p.type === cur);
   document.getElementById('list').innerHTML = list.map(p => `
   <article class="piece" id="p${esc(p.id)}">
+    <div class="gal"><img class="main" src="${esc(p.photos[0])}" alt="${esc(p.name)}" loading="lazy" width="1000" height="1000">
+      <div class="thumbs">${p.photos.map((ph, n) => `<button type="button" class="th" data-src="${esc(ph)}" aria-label="Photo ${n + 1} of ${esc(p.name)}"><img src="${esc(ph)}" alt="" loading="lazy" width="120" height="120"></button>`).join('')}</div></div>
     <div class="top">
-      <img src="${esc(p.photos[0])}" alt="${esc(p.name)}" loading="lazy" width="120" height="120">
       <div><h2>${esc(p.name)}</h2>
       <p class="meta">$${Number(p.price).toFixed(0)} · ${esc(p.type)} · <a href="${esc(p.etsy)}" target="_blank" rel="noopener">Open this listing on Etsy</a></p></div>
     </div>
@@ -99,6 +111,10 @@ document.getElementById('list').addEventListener('click', async e => {
   const text = b.dataset.k === 'title' ? p.title : b.dataset.k === 'tags' ? p.tags.join(', ') : p.desc;
   try { await navigator.clipboard.writeText(text); } catch (err) { fallbackCopy(text); }
   b.textContent = 'Copied'; b.classList.add('ok'); setTimeout(() => { b.textContent = 'Copy'; b.classList.remove('ok'); }, 1600);
+});
+document.getElementById('list').addEventListener('click', e => {
+  const t = e.target.closest('.th'); if (!t) return;
+  t.closest('.gal').querySelector('.main').src = t.dataset.src;
 });
 drawFilters(); draw();
 </script>
