@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="dark">
-<title>Bijoux by Lissa | Sit Down With Me. Let's Make Yours.</title>
+<title>Bijoux by Lissa | Sit Down With Me. Let’s Make Yours.</title>
 <meta name="description" content="Bijoux by Lissa. Your personal designer for fashion and bridal jewelry. Concept mockup.">
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,12 +61,22 @@ button{font:inherit; color:inherit; cursor:pointer}
 /* hero */
 .hero{position:relative; padding-bottom:34px}
 .hero-grid{display:grid; gap:0}
-.hero-photo{position:relative; width:min(310px, 80vw); margin:0 auto 22px; aspect-ratio:1}
-.disc{width:100%; height:100%; object-fit:cover; clip-path:circle(40.4% at 50.2% 50.6%); transform:scale(1.23); filter:saturate(1.08) contrast(1.03)}
+.hero-photo{position:relative; width:min(300px, 77vw); margin:0 0 22px; aspect-ratio:1}
+.discs{position:absolute; inset:0}
+.discs img{position:absolute; max-width:none; height:auto; opacity:0; transition:opacity .5s ease; filter:saturate(1.08) contrast(1.03)}
+.discs img.show{opacity:1}
+.hero-photo::after{content:""; position:absolute; inset:0; border-radius:50%; box-shadow:inset 0 0 0 1px rgba(241,238,232,.2); pointer-events:none}
+.orbit button, .tz-sw button{width:46px; height:46px; border-radius:50%; border:0; padding:0; background-color:#2a282e; background-repeat:no-repeat; box-shadow:0 0 0 1.5px rgba(241,238,232,.45)}
+.orbit button{position:absolute; transform:translate(-50%, -50%); z-index:2; animation:pop .5s cubic-bezier(.2,.9,.3,1.25) both; animation-delay:calc(.45s + var(--i, 0) * .13s)}
+@keyframes pop{from{opacity:0; transform:translate(-50%, -50%) scale(.4)} to{opacity:1; transform:translate(-50%, -50%) scale(1)}}
+.orbit button[aria-pressed="true"]{box-shadow:0 0 0 2.5px var(--ground), 0 0 0 5px var(--pearl)}
+.hero-bridal{margin-top:2px}
+.hero-bridal a{font-weight:700}
 .hero-photo::before{content:""; position:absolute; inset:-6%; border-radius:50%; background:radial-gradient(closest-side, rgba(241,238,232,.16), rgba(241,238,232,0) 72%)}
 .tag{position:absolute; left:-8px; bottom:-10px; z-index:2; background:var(--paper); color:var(--ink); padding:9px 14px 9px 30px; border-radius:3px 6px 6px 3px;
   font-weight:700; font-size:17px; line-height:1.2; transform:rotate(-5deg); box-shadow:0 10px 24px rgba(0,0,0,.5)}
 .tag::before{content:""; position:absolute; left:10px; top:50%; width:9px; height:9px; margin-top:-4.5px; border-radius:50%; background:var(--ground)}
+.tag b{display:block}
 .tag span{display:block; font-weight:500; font-size:14px; color:var(--ink-soft)}
 .hero-copy{position:relative; z-index:1}
 .hero h1{font-size:clamp(40px, 10.9vw, 50px)}
@@ -75,7 +85,7 @@ button{font:inherit; color:inherit; cursor:pointer}
 .hide-phone{display:none}
 .hero-cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:20px}
 .hero-cta .btn{flex:1 1 auto}
-.proof{list-style:none; margin:24px 0 0; padding:0; display:grid; gap:0; border-top:1px solid var(--hair)}
+.proof{list-style:none; margin:12px 0 0; padding:0; display:grid; gap:0; border-top:1px solid var(--hair)}
 .proof li{padding:11px 0; border-bottom:1px solid var(--hair); font-weight:500; display:flex; align-items:center; gap:12px}
 .proof li::before{content:""; flex:none; width:8px; height:8px; transform:rotate(45deg); background:var(--c,#3E9DB8)}
 .teaser{display:none}
@@ -105,7 +115,7 @@ button{font:inherit; color:inherit; cursor:pointer}
 .tray{display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; margin:20px calc(var(--gutter) * -1) 0; padding:6px var(--gutter) 14px; scrollbar-width:thin; scrollbar-color:var(--hair) transparent}
 .tile{flex:none; width:212px; scroll-snap-align:start; background:var(--surface); border:1.5px solid var(--hair); border-radius:14px; padding:14px 14px 16px; text-align:left; display:grid; gap:10px; align-content:start}
 .tile img{width:184px; height:184px; border-radius:50%; object-fit:cover; background:#ddd}
-.tile b{display:block; font-size:18px; line-height:1.2}
+.tile b{display:block; font-size:18px; line-height:1.2; color:var(--pearl)}
 .tile span{display:block; color:var(--muted); font-size:15px; line-height:1.3}
 .tile[aria-pressed="true"]{border-color:var(--pearl); background:#24222A}
 .tile[aria-pressed="true"] img{box-shadow:0 0 0 3px var(--surface), 0 0 0 5px var(--pearl)}
@@ -113,9 +123,16 @@ button{font:inherit; color:inherit; cursor:pointer}
 .tile[aria-pressed="true"] .on{display:block}
 .tray-more{margin-top:4px; color:var(--muted)}
 .bench{display:block; margin-top:20px}
-.stage{position:sticky; top:0; z-index:5; margin-inline:calc(var(--gutter) * -1); background:#0c0b0e; height:min(40vh, 340px); overflow:hidden}
-.stage img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 42%; opacity:0; transition:opacity .35s ease}
-.stage img.show{opacity:1}
+.pin{display:block}
+.stage{position:sticky; top:0; z-index:5; margin-inline:calc(var(--gutter) * -1); background:#0c0b0e; height:min(40vh, 340px); overflow:hidden; clip-path:inset(0 0 0 0); transition:clip-path .3s ease}
+.stage > img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 42%; opacity:0; transition:opacity .35s ease}
+.stage > img.show{opacity:1}
+.mini{position:absolute; left:0; right:0; top:0; height:84px; z-index:3; display:flex; align-items:center; gap:12px; padding:0 var(--gutter); background:#0c0b0e; border-bottom:1px solid var(--hair); opacity:0; pointer-events:none; transition:opacity .25s ease}
+.mini img{flex:none; width:60px; height:60px; border-radius:50%; object-fit:cover}
+.mini b{display:block; font-size:16px; line-height:1.2; color:var(--pearl)}
+.mini span{display:block; font-size:14px; line-height:1.25; color:var(--muted)}
+.stage.small{clip-path:inset(0 0 calc(100% - 84px) 0)}
+.stage.small .mini{opacity:1}
 .stage-cap{position:absolute; left:10px; right:10px; bottom:10px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; z-index:2}
 .chip{display:inline-flex; align-items:center; gap:7px; background:rgba(19,18,21,.88); color:var(--pearl); font-size:14px; font-weight:700; line-height:1.2; padding:7px 11px; border-radius:99px}
 .chip.make{background:var(--paper); color:var(--ink)}
@@ -146,6 +163,9 @@ button{font:inherit; color:inherit; cursor:pointer}
 .opt[aria-pressed="true"]{background:var(--ink); color:var(--paper); border-color:var(--ink)}
 .opt small{display:block; font-weight:500; font-size:13px; opacity:.8}
 .sw{flex:none; width:34px; height:34px; border-radius:50%; background-color:#ccc; background-repeat:no-repeat; box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
+.opt.sm{min-height:44px; padding:4px 11px 4px 6px; font-size:15px; gap:7px}
+.opt.sm.text{padding-left:12px}
+.opt.sm .sw{width:24px; height:24px}
 .months{display:grid; grid-template-columns:repeat(3, 1fr); gap:8px}
 .months .opt{justify-content:center; padding:6px 8px}
 .months .opt.wide{grid-column:1 / -1; justify-self:start; padding-inline:16px}
@@ -173,14 +193,17 @@ button{font:inherit; color:inherit; cursor:pointer}
 .piece .desc{padding:0 0 18px; color:#D9D4DD; white-space:pre-line; font-size:17px; max-width:38em}
 
 /* reviews */
-.reviews{padding-block:56px; border-top:1px solid var(--hair)}
+.reviews{padding-block:62px 56px; background:var(--paper); color:var(--ink);
+  -webkit-mask:radial-gradient(7px at 50% 0, #0000 97%, #000) 50% 0/22px 100% repeat-x; mask:radial-gradient(7px at 50% 0, #0000 97%, #000) 50% 0/22px 100% repeat-x}
 .reviews h2{font-size:clamp(34px, 9vw, 54px)}
 .stars{display:flex; gap:5px; margin-bottom:14px}
 .stars i{width:16px; height:16px; background:var(--pearl); clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
-.rev-grid{display:grid; gap:14px; margin-top:26px}
-.rev{background:var(--surface); border-radius:6px; padding:22px 20px; border-top:3px solid var(--c)}
-.rev p{font-size:20px; line-height:1.4; font-weight:500}
-.rev footer{margin-top:12px; color:var(--muted); font-size:16px}
+.reviews .stars i{background:var(--ink)}
+.rev-grid{display:grid; gap:26px; margin-top:28px}
+.rev{padding:18px 0 0; border-top:2px solid var(--ink)}
+.rev p{font-size:21px; line-height:1.4; font-weight:500}
+.rev footer{margin-top:12px; color:var(--ink-soft); font-size:16px; font-weight:700; display:flex; align-items:center; gap:10px}
+.rev footer::before{content:""; width:9px; height:9px; transform:rotate(45deg); background:var(--c)}
 
 /* collection */
 .coll{padding-block:56px; border-top:1px solid var(--hair); background:var(--well)}
@@ -197,16 +220,36 @@ button{font:inherit; color:inherit; cursor:pointer}
 .card .nm{display:flex; justify-content:space-between; gap:8px; align-items:baseline; margin-top:10px}
 .card .nm b{font-size:17px; line-height:1.2}
 .card .nm span{font-weight:700; font-size:17px}
-.card .hk{margin-top:6px; color:var(--muted); font-size:15px; line-height:1.38; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden}
+.card .hk{display:none; margin-top:6px; color:#CFCAD4; font-size:17px; line-height:1.42}
 .card .act{margin-top:auto; padding-top:10px; display:grid; gap:2px}
 .card .mine{min-height:46px; border-radius:5px; border:1.5px solid var(--pearl); background:transparent; font-weight:700; font-size:16px; padding:6px 8px}
 .card .mine:hover{background:rgba(241,238,232,.09)}
-.card .etsy{justify-content:center; font-size:16px; font-weight:500}
+.card .etsy{justify-content:center; font-size:15px; font-weight:500}
 .empty{margin-top:20px; color:var(--muted)}
+.more{display:flex; margin:34px auto 0; min-width:min(100%, 320px)}
 
 /* bridal + diffusing */
+.bridal{padding-block:56px; background:var(--ground)}
+.bridal-grid{display:grid; gap:26px}
+.bridal h2{font-size:clamp(32px, 8.4vw, 50px)}
+.bridal .body{margin-top:14px; color:#D9D4DD; max-width:32em}
+.bridal .confirms{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; color:var(--muted)}
+.bticket{margin-top:0}
+.brow{display:grid; grid-template-columns:104px 1fr; gap:8px; align-items:center; min-height:58px; border-bottom:1px dotted rgba(29,27,32,.45)}
+.brow label{font-size:15px; font-weight:700; color:var(--ink-soft); line-height:1.2}
+.brow input, .w-name{font:inherit; font-style:italic; font-weight:700; font-size:20px; color:var(--pen); background:transparent; border:0; border-bottom:1.5px solid transparent; min-height:46px; padding:4px 2px; width:100%; min-width:0; border-radius:0}
+.brow input::placeholder, .w-name::placeholder{color:#7A7584; font-weight:500; opacity:1}
+.brow input:focus, .w-name:focus{outline:none; border-bottom-color:var(--pen); background:rgba(255,255,255,.45)}
+.woman{padding:10px 0 14px; border-bottom:1px dotted rgba(29,27,32,.45)}
+.w-top{display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; margin-bottom:6px}
+.w-n{font-family:var(--display); font-size:19px; line-height:1; width:32px; height:32px; display:grid; place-items:center; border:1.5px solid var(--ink); border-radius:50%}
+.w-x{min-height:44px; background:none; border:0; padding:0 2px; font-size:14px; font-weight:700; color:var(--ink-soft); text-decoration:underline; text-underline-offset:3px}
+.w-note{margin-top:8px; font-size:15px; line-height:1.4; color:var(--ink-soft)}
+.add{display:flex; align-items:center; gap:10px; min-height:52px; margin:10px 0 4px; padding:0 16px 0 12px; border:1.5px dashed var(--ink); border-radius:99px; background:transparent; color:var(--ink); font-weight:700; font-size:17px}
+.add::before{content:"+"; font-size:24px; font-weight:400; line-height:1}
+.add:hover{background:rgba(255,255,255,.5)}
 .duo{padding-block:56px; border-top:1px solid var(--hair)}
-.duo-grid{display:grid; gap:56px}
+.duo-grid{display:grid; gap:26px}
 .duo h2{font-size:clamp(32px, 8.4vw, 46px)}
 .duo .body{margin-top:14px; color:#D9D4DD; max-width:34em}
 .duo .btn{margin-top:20px}
@@ -233,7 +276,8 @@ button{font:inherit; color:inherit; cursor:pointer}
 .foot .tiny{margin-top:18px; font-size:14px; border-top:1px solid var(--hair); padding-top:14px}
 
 /* phone bar */
-.bar{position:fixed; left:0; right:0; bottom:0; z-index:20; background:#0c0b0e; border-top:1px solid var(--hair); padding:10px var(--gutter) calc(10px + env(safe-area-inset-bottom,0px)); display:grid; grid-template-columns:auto 1fr; gap:10px; align-items:center}
+.bar{position:fixed; left:0; right:0; bottom:0; z-index:20; background:#0c0b0e; border-top:1px solid var(--hair); padding:10px var(--gutter) calc(10px + env(safe-area-inset-bottom,0px)); display:grid; grid-template-columns:auto 1fr; gap:10px; align-items:center; transition:transform .28s ease}
+.bar.away{transform:translateY(110%)}
 .bar .btn{min-height:54px; padding:8px 18px; font-size:17px; white-space:nowrap}
 .bar.sum{grid-template-columns:auto minmax(0,1fr) auto}
 .bar .mini{display:none}
@@ -241,18 +285,20 @@ button{font:inherit; color:inherit; cursor:pointer}
 .bar.sum .dflt{display:none}
 .bar .thumb{width:54px; height:54px; border-radius:50%; object-fit:cover; background:#ddd}
 .bar .what{min-width:0; background:none; border:0; text-align:left; padding:0; min-height:54px}
-.bar .what b{display:block; font-size:16px; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.bar .what span{display:block; font-size:14px; color:var(--muted); line-height:1.25; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.bar .what b{display:block; font-size:15px; line-height:1.2}
+.bar .what span{display:block; font-size:14px; color:var(--muted); line-height:1.25}
 
 @media (min-width:700px){
   :root{--gutter:28px}
-  .hero-photo{width:380px}
+  .hero-photo{width:380px; margin-inline:auto}
   .grid{grid-template-columns:repeat(3, minmax(0,1fr)); gap:36px 20px}
-  .rev-grid{grid-template-columns:repeat(3,1fr)}
+  .card .hk{display:block}
+  .rev-grid{grid-template-columns:repeat(3,1fr); gap:28px}
+  .brow{grid-template-columns:150px 1fr}
   .card .act{grid-template-columns:1fr 1fr; align-items:center; gap:8px}
   .hello-grid{grid-template-columns:300px 1fr; align-items:center; gap:48px}
   .polaroid{width:280px}
-  .duo-grid{grid-template-columns:1fr 1fr; gap:48px}
+  .duo-grid{grid-template-columns:1fr 1fr; gap:48px; align-items:center}
 }
 @media (min-width:1000px){
   :root{--gutter:40px}
@@ -262,7 +308,7 @@ button{font:inherit; color:inherit; cursor:pointer}
   .top-jump{display:none}
   .top{padding-block:16px}
   .mark{font-size:42px}
-  .hero{padding-bottom:176px}
+  .hero{padding-bottom:228px}
   .hero-grid{grid-template-columns:minmax(0, 1fr) auto; align-items:start; gap:24px}
   .hero-copy{order:-1; padding-top:clamp(16px, 4vh, 48px)}
   .hero h1{font-size:clamp(58px, 5.15vw, 78px)}
@@ -274,7 +320,8 @@ button{font:inherit; color:inherit; cursor:pointer}
   .tag{left:auto; right:-6px; top:54px; bottom:auto; transform:rotate(6deg); font-size:19px; padding:12px 18px 12px 36px}
   .tag span{font-size:15px}
   .proof{max-width:430px; margin-top:34px}
-  .teaser{display:block; position:absolute; left:-160px; top:75%; width:296px; z-index:3; background:var(--paper); color:var(--ink); border:0; text-align:left; padding:26px 20px 16px; transform:rotate(-4deg);
+  .orbit{display:none}
+  .teaser{display:block; position:absolute; left:-160px; top:75%; width:296px; z-index:3; background:var(--paper); color:var(--ink); border:0; text-align:left; padding:26px 20px 12px; transform:rotate(-4deg);
     box-shadow:0 26px 50px rgba(0,0,0,.6); -webkit-mask:radial-gradient(7px at 50% 0, #0000 97%, #000) 50% 0/22px 100% repeat-x; mask:radial-gradient(7px at 50% 0, #0000 97%, #000) 50% 0/22px 100% repeat-x}
   .teaser .mark{font-size:28px; padding:0; color:var(--ink); display:block; border-bottom:2px solid var(--ink); padding-bottom:6px}
   .teaser .dear{font-size:19px; margin:10px 0 0}
@@ -283,7 +330,10 @@ button{font:inherit; color:inherit; cursor:pointer}
   .teaser dt{font-size:14px; font-weight:700; color:var(--ink-soft)}
   .teaser dd{margin:0; font-style:italic; font-weight:700; font-size:18px; line-height:1.2; color:var(--pen)}
   .teaser dd .ink{animation-duration:.7s}
-  .teaser .go{display:block; margin-top:12px; font-weight:700; font-size:16px; text-decoration:underline; text-underline-offset:4px}
+  .teaser .tz-sw{display:flex; gap:11px; padding:12px 2px 6px}
+  .tz-sw button{box-shadow:0 0 0 1.5px rgba(29,27,32,.4)}
+  .tz-sw button[aria-pressed="true"]{box-shadow:0 0 0 2.5px var(--paper), 0 0 0 5px var(--ink)}
+  .teaser .go{display:inline-flex; align-items:center; min-height:44px; padding:0; background:none; border:0; color:var(--ink); font-weight:700; font-size:16px; text-decoration:underline; text-underline-offset:4px}
   .hello{padding-block:84px 76px}
   .hello-grid{grid-template-columns:340px minmax(0, 1fr) minmax(0, .8fr); gap:64px}
   .polaroid{width:310px}
@@ -295,10 +345,12 @@ button{font:inherit; color:inherit; cursor:pointer}
   .tile img{width:104px; height:104px}
   .tile:hover{border-color:#5A5564}
   .bench{display:grid; grid-template-columns:minmax(0, 1fr) 500px; grid-template-areas:"stage ticket" "piece ticket"; grid-template-rows:auto 1fr; gap:0 44px; align-items:start; margin-top:28px}
+  .pin{display:contents}
+  .mini{display:none}
   .stage{grid-area:stage; position:relative; top:auto; margin:0; height:auto; aspect-ratio:1; border-radius:8px}
   .ticket{grid-area:ticket}
   .piece{grid-area:piece}
-  .stage img{object-position:50% 50%}
+  .stage > img{object-position:50% 50%}
   .stage-cap{left:16px; bottom:16px}
   .chip{font-size:15px; padding:8px 13px}
   .ticket{margin-top:0; padding:36px 30px 28px}
@@ -307,13 +359,15 @@ button{font:inherit; color:inherit; cursor:pointer}
   .row-h .v{font-size:22px}
   .send{grid-template-columns:1fr 1fr}
   .piece{margin-top:30px}
-  .reviews, .coll, .duo{padding-block:88px}
-  .rev{padding:30px 28px}
+  .reviews, .coll, .duo, .bridal{padding-block:88px}
+  .reviews{padding-top:96px}
   .rev p{font-size:23px}
+  .bridal-grid{grid-template-columns:minmax(0, 1fr) 500px; gap:64px; align-items:start}
+  .bridal .pair{max-width:520px}
+  .bridal-copy{position:sticky; top:40px}
   .filters{flex-wrap:wrap; overflow:visible; margin:26px 0 0; padding:0}
   .grid{grid-template-columns:repeat(4, minmax(0,1fr)); gap:48px 24px; margin-top:30px}
   .card .nm b, .card .nm span{font-size:19px}
-  .card .hk{font-size:16px}
   .duo-grid{gap:72px}
   .close{padding-block:96px}
   .close-grid{grid-template-columns:minmax(0, 1fr) auto; align-items:center; gap:56px}
@@ -323,8 +377,8 @@ button{font:inherit; color:inherit; cursor:pointer}
 }
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
-  .ink{animation:none}
-  .stage img{transition:none}
+  .ink, .orbit button{animation:none}
+  .stage, .stage > img, .discs img, .bar, .mini{transition:none}
 }
 </style>
 </head>
@@ -345,18 +399,20 @@ button{font:inherit; color:inherit; cursor:pointer}
 <main>
 <section class="hero wrap">
   <div class="hero-grid">
-    <div class="hero-photo">
-      <img class="disc" id="heroImg" alt="" width="1000" height="1000">
+    <div class="hero-photo" id="heroPhoto">
+      <div class="discs" id="discs"></div>
+      <div class="orbit" id="orbit" role="group" aria-label="See it in another crystal color"></div>
       <p class="tag" id="priceTag" hidden></p>
-      <button class="teaser" id="teaser" type="button" hidden></button>
+      <div class="teaser" id="teaser" hidden></div>
     </div>
     <div class="hero-copy">
-      <h1><span>Sit Down With Me.</span> <span>Let's Make Yours.</span></h1>
-      <p class="sub">I'm Lissa. <span class="hide-phone">For 16 years I've been making earrings, necklaces and bracelets by hand with crystal from Austria and glass from the Czech Republic. </span>Find a piece you love, and I'll make it in your color, your length and your metal.</p>
-      <div class="hero-cta">
+      <h1><span>Sit Down With Me.</span> <span>Let’s Make Yours.</span></h1>
+      <p class="sub">I’m Lissa. <span class="hide-phone">For 16 years I’ve been making earrings, necklaces and bracelets by hand with crystal from Austria and glass from the Czech Republic. </span>Find a piece you love, and I’ll make it in your color, your length and your metal.</p>
+      <div class="hero-cta" id="heroCta">
         <a class="btn" href="#design">Start A Custom Piece</a>
         <a class="btn btn-line" href="#collection">Shop The Collection</a>
       </div>
+      <p class="hero-bridal"><a class="link" href="#bridal">Plan My Bridal Party</a></p>
       <ul class="proof">
         <li style="--c:#3E9DB8">5.0 stars on Etsy (10 reviews)</li>
         <li style="--c:#C9A24B">Designing since 2010</li>
@@ -373,12 +429,12 @@ button{font:inherit; color:inherit; cursor:pointer}
       <figcaption class="sig">Lissa</figcaption>
     </figure>
     <div>
-      <h2>Hello There. I'm Lissa.</h2>
-      <p class="body">I've been designing jewelry since 2010. It started with pieces for family, friends and anyone who wanted something special, and in 2020 it became Bijoux by Lissa. I make what I love to wear myself: Czech glass, crystal from Austria, crystal-core pearls, cat's eye beads, and chains in gold, silver, rose gold and gunmetal. Every piece is made by my hands, one at a time, here in Indianapolis. If you need a different color or size, just ask. I'll do my best to make it happen.</p>
+      <h2>Hello There. I’m Lissa.</h2>
+      <p class="body">I’ve been designing jewelry since 2010. It started with pieces for family, friends and anyone who wanted something special, and in 2020 it became Bijoux by Lissa. I make what I love to wear myself: Czech glass, crystal from Austria, crystal-core pearls, cat’s eye beads, and chains in gold, silver, rose gold and gunmetal. Every piece is made by my hands, one at a time, here in Indianapolis. If you need a different color or size, just ask. I’ll do my best to make it happen.</p>
     </div>
     <blockquote class="quote" style="--c:#C9A24B">
       <div class="stars" role="img" aria-label="5 out of 5 on Etsy"><i></i><i></i><i></i><i></i><i></i></div>
-      <p>"So beautiful! These sparkly earrings are perfect for the wedding this weekend!"</p>
+      <p>“So beautiful! These sparkly earrings are perfect for the wedding this weekend!”</p>
       <footer>Brenda, 5 out of 5 on Etsy</footer>
     </blockquote>
   </div>
@@ -400,13 +456,15 @@ button{font:inherit; color:inherit; cursor:pointer}
     <div class="step" id="step2">
       <div class="step-h"><span class="num">2</span><h3>Tell me your color, your length and your metal: gold, silver, rose gold or gunmetal.</h3></div>
       <div class="bench">
+        <div class="pin" id="pin">
           <div class="stage" id="stage">
             <img id="stageA" alt="" class="show"><img id="stageB" alt="">
             <div class="stage-cap" id="stageCap" aria-live="polite"></div>
+            <div class="mini" aria-hidden="true"><img id="miniImg" alt=""><span><b id="miniName"></b><span id="miniCap"></span></span></div>
           </div>
           <div class="ticket" id="ticket" aria-label="Your order ticket">
             <div class="ticket-top"><span class="mark">Bijoux by Lissa</span><span>Order ticket</span></div>
-            <p class="dear">Lissa, I'd like...</p>
+            <p class="dear">Lissa, I’d like…</p>
             <div id="rows"></div>
             <div class="ticket-foot">
               <p class="price" id="tPrice"></p>
@@ -419,6 +477,7 @@ button{font:inherit; color:inherit; cursor:pointer}
               <p class="step3-note">Your phone opens a text to me with this ticket already written. You press send. Nothing is paid here.</p>
             </div>
           </div>
+        </div>
           <div class="piece" id="pieceDesk"></div>
       </div>
     </div>
@@ -430,9 +489,40 @@ button{font:inherit; color:inherit; cursor:pointer}
     <div class="stars" role="img" aria-label="5 out of 5 stars"><i></i><i></i><i></i><i></i><i></i></div>
     <h2>5 out of 5 on Etsy</h2>
     <div class="rev-grid">
-      <blockquote class="rev" style="margin:0; --c:#8B8F98"><p>"I love this bracelet. I don't have very much gray jewelry and this will go with so many things! I recommend this shop!"</p><footer>Myrletta</footer></blockquote>
-      <blockquote class="rev" style="margin:0; --c:#C9A24B"><p>"Highest quality and beauty, fast shipping"</p><footer>Angela</footer></blockquote>
-      <blockquote class="rev" style="margin:0; --c:#B5466B"><p>"Beautiful earrings; I'm so pleased!"</p><footer>Carolyn</footer></blockquote>
+      <blockquote class="rev" style="margin:0; --c:#8B8F98"><p>“I love this bracelet. I don’t have very much gray jewelry and this will go with so many things! I recommend this shop!”</p><footer>Myrletta</footer></blockquote>
+      <blockquote class="rev" style="margin:0; --c:#C9A24B"><p>“Highest quality and beauty, fast shipping”</p><footer>Angela</footer></blockquote>
+      <blockquote class="rev" style="margin:0; --c:#B5466B"><p>“Beautiful earrings; I’m so pleased!”</p><footer>Carolyn</footer></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="bridal" id="bridal">
+  <div class="wrap bridal-grid">
+    <div class="bridal-copy">
+      <div class="pair" id="bridalPics"></div>
+      <h2>Dressing The Whole Bridal Party?</h2>
+      <p class="body">Send me your wedding colors and your date. Every woman can choose her own metal, and everything still matches.</p>
+    </div>
+    <div>
+      <div class="ticket bticket" id="bticket" aria-label="Your bridal party ticket">
+        <div class="ticket-top"><span class="mark">Bijoux by Lissa</span><span>Bridal party</span></div>
+        <p class="dear">Lissa, I’d like help with my bridal party…</p>
+        <div class="brow"><label for="bDate">Wedding date</label><input id="bDate" type="text" autocomplete="off" maxlength="40" placeholder="June 14"></div>
+        <div class="brow"><label for="bColors">Colors</label><input id="bColors" type="text" autocomplete="off" maxlength="60" placeholder="dusty blue and silver"></div>
+        <div class="row" id="bDesignRow"></div>
+        <div id="bWomen"></div>
+        <button class="add" id="bAdd" type="button">Add a woman</button>
+        <p class="opt-note">Sensitive ears? Ask for stainless steel ear hooks. Just add a note.</p>
+        <div class="brow" style="margin-top:10px; border-top:1px dotted rgba(29,27,32,.45)"><label for="bMe">Your name and phone</label><input id="bMe" type="text" autocomplete="off" maxlength="60" placeholder="Your name and phone"></div>
+        <div class="ticket-foot">
+          <p class="price" id="bSum"></p>
+          <div class="send">
+            <a class="btn btn-ink" id="bSms" href="sms:+18474526382">Text This To Lissa</a>
+            <a class="btn btn-paperline" id="bMail" href="mailto:bijouxbylissa20@protonmail.com">Email Lissa</a>
+          </div>
+        </div>
+      </div>
+      <p class="confirms"><span class="confirm">Lissa to confirm: how much notice she needs</span><span class="confirm">Lissa to confirm: bridal party pricing</span><span class="confirm">Lissa to confirm: gift packaging</span></p>
     </div>
   </div>
 </section>
@@ -440,24 +530,18 @@ button{font:inherit; color:inherit; cursor:pointer}
 <section class="coll" id="collection">
   <div class="wrap">
     <h2>Shop The Collection</h2>
-    <p class="lead">Start with where you're wearing it.</p>
+    <p class="lead">Start with where you’re wearing it.</p>
     <div class="filters" id="filters" role="group" aria-label="Shop by occasion"></div>
     <div class="grid" id="grid"></div>
+    <button class="btn btn-line more" id="showAll" type="button" hidden>Show All Pieces</button>
     <p class="empty" id="empty" hidden>Nothing listed here yet. Message me. I probably have it.</p>
   </div>
 </section>
 
-<section class="duo">
+<section class="duo" id="diffusing">
   <div class="wrap duo-grid">
-    <div id="bridal">
-      <div class="pair" id="bridalPics"></div>
-      <h2>Dressing The Whole Bridal Party?</h2>
-      <p class="body">Send me your wedding colors and your date. Every woman can choose her own metal, and everything still matches.</p>
-      <a class="btn" id="bridalBtn" href="sms:+18474526382">Plan My Bridal Party</a>
-      <p class="confirms"><span class="confirm">Lissa to confirm: how much notice she needs</span><span class="confirm">Lissa to confirm: bridal party pricing</span><span class="confirm">Lissa to confirm: gift packaging</span></p>
-    </div>
-    <div id="diffusing">
-      <div class="pair" id="diffPics"></div>
+    <div class="pair" id="diffPics" style="margin-bottom:0"></div>
+    <div>
       <h2>Jewelry That Carries Your Favorite Scent</h2>
       <p class="body">Put a drop of your favorite essential oil on the lava stone beads. Let it soak in for about ten minutes. Then wear it as usual. The scent stays with you for hours.</p>
       <p class="line">Choose from 14 lava stone colors.</p>
@@ -473,7 +557,7 @@ button{font:inherit; color:inherit; cursor:pointer}
       <figcaption id="closeCap"></figcaption>
     </figure>
     <div>
-      <h2>Don't see your shade? Message me. I probably have it.</h2>
+      <h2>Don’t see your shade? Message me. I probably have it.</h2>
       <div class="hero-cta">
         <a class="btn" href="sms:+18474526382">Text Lissa</a>
         <a class="btn btn-line" href="mailto:bijouxbylissa20@protonmail.com">Email Lissa</a>
@@ -524,6 +608,12 @@ function text(p){ return [p.title, p.origTitle, p.desc, p.origDesc].filter(Boole
 function says(p, words){ var t = text(p).toLowerCase(); return words.some(function(w){ return t.indexOf(String(w).toLowerCase()) > -1; }); }
 function list(s){ return s.split(/\s*,\s*|\s+or\s+/).map(function(x){ return x.trim().replace(/[.!]$/, ""); }).filter(Boolean); }
 function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+/* Typographer's quotes for everything that is shown (her data file is never edited). */
+function q(s){ return String(s).replace(/(^|[\s(\[{])"/g, "$1\u201C").replace(/"/g, "\u201D").replace(/(^|[\s(\[{\u201C])'/g, "$1\u2018").replace(/'/g, "\u2019").replace(/\.\.\./g, "\u2026"); }
+function curl(root){
+  var w = document.createTreeWalker(root || document.body, NodeFilter.SHOW_TEXT, null), n, t;
+  while((n = w.nextNode())){ if(/^(SCRIPT|STYLE)$/.test(n.parentNode.nodeName)) continue; t = n.nodeValue; if(t.indexOf("'") > -1 || t.indexOf('"') > -1 || t.indexOf("...") > -1) n.nodeValue = q(t); }
+}
 
 /* What each of her photos really shows. Checked by eye against the photos, one by one. */
 var SHOTS = [
@@ -568,8 +658,22 @@ var CHARTS = {
  lava:{id:"788008058", n:2, r:104, pts:{"1":[80,258],"2":[292,252],"3":[512,258],"4":[724,268],"5":[912,292],"6":[185,420],"7":[404,426],"8":[631,444],"9":[816,456],"10":[272,608],"11":[486,608],"12":[715,614],"13":[380,797],"14":[621,791]}},
  cats:{id:"1012840912", n:2, r:124, pts:{"Dark Pink":[284,595],"Black":[515,542],"Pink":[738,526]}}
 };
-var DOTS = {"Indigo":"#2B3F8C","Siam":"#C01826","Amethyst":"#7B4A9E","Rose":"#E7A3BF","Jet":"#16151A","Clear Crystal":"#F4F6F8","March":"#7EC3E6"};
-var METAL = {"Gold":["#F3DFA2","#C9A24B","#8C6B22"],"Silver":["#FFFFFF","#C9CCD1","#878A91"],"Rose Gold":["#F6D3C4","#D29A85","#9A5F4C"],"Gunmetal":["#9A9BA3","#55565C","#2A2A2F"],"Copper":["#F0B38F","#B4683F","#7A3F21"],"Rhodium":["#E6E8EB","#AEB3B8","#6E7378"]};
+/* Round crops of her real crystals, cut from her own variant photos. x, y = centre, d = width of the crop, in the 1000px photo. */
+var CROPS = {
+ "Bermuda Blue":{id:"1157755443", n:2, x:620, y:639, d:136}, "Vitrail Medium":{id:"4442463967", n:2, x:365, y:638, d:116},
+ "Vitrail Light":{id:"1276504788", n:2, x:661, y:638, d:128}, "Crystal Shimmer":{id:"4459446629", n:2, x:380, y:647, d:144},
+ "Indigo":{id:"4459238483", n:1, x:357, y:829, d:116}, "Siam":{id:"1251878503", n:1, x:354, y:813, d:124},
+ "Amethyst":{id:"1153943408", n:1, x:370, y:789, d:116}, "Rose":{id:"1167084483", n:1, x:360, y:787, d:110},
+ "Jet":{id:"1411838692", n:2, x:401, y:558, d:80}, "Clear Crystal":{id:"1003039820", n:5, x:407, y:514, d:80},
+ "March":{id:"1429981484", n:1, x:395, y:562, d:116}
+};
+/* Her display disc in each hammered-hoop flat-lay photo: centre and radius in the 1000px photo. */
+var HERO = [
+ {id:"1157755443", n:2, cx:500, cy:506, r:378}, {id:"4442463967", n:2, cx:495, cy:541, r:338},
+ {id:"1276504788", n:2, cx:506, cy:530, r:374}, {id:"4459446629", n:2, cx:501, cy:515, r:408}
+];
+var DOTS = {"Indigo":"#2B3F8C","Siam":"#C01826","Amethyst":"#7B4A9E","Rose":"#E7A3BF","Jet":"#16151A","Clear Crystal":"#F4F6F8","March":"#7EC3E6","Bermuda Blue":"#2C8FB0","Vitrail Medium":"#6FA04A","Vitrail Light":"#9B86C9","Crystal Shimmer":"#BFD3DC"};
+var METAL = {"Gold":"#C9A24B","Silver":"#C9CCD1","Rose Gold":"#D29A85","Gunmetal":"#55565C","Copper":"#B4683F","Rhodium":"#AEB3B8"};
 var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 var FAMILIES = [
  {key:"hammered", name:"Hammered Circle Earrings", ids:["1157755443","4442463967","1276504788","4459446629"], colorWord:"Crystal"},
@@ -590,12 +694,14 @@ function swatchStyle(chart, key, size){
   var k = size / c.r, x = c.pts[key][0] - c.r / 2, y = c.pts[key][1] - c.r / 2;
   return "background-image:url('" + src + "');background-size:" + (1000 * k).toFixed(1) + "px;background-position:" + (-x * k).toFixed(1) + "px " + (-y * k).toFixed(1) + "px";
 }
-function metalStyle(m){ var g = METAL[m]; return g ? "background:radial-gradient(circle at 32% 28%," + g[0] + "," + g[1] + " 55%," + g[2] + ")" : "background:#8d8a93"; }
-function colorSw(label){
-  if(CHARTS.hearts.pts[label]) return swatchStyle("hearts", label, 34);
-  if(DOTS[label]) return "background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.75)," + DOTS[label] + " 42%)";
-  return "";
+function metalStyle(m){ return "background:" + (METAL[m] || "#8d8a93"); }
+function cropStyle(label, size){
+  var c = CROPS[label]; if(!c) return "";
+  var src = img(c.id, c.n); if(!src || !byId[c.id]) return "";
+  var k = size / c.d;
+  return "background-image:url('" + src + "');background-size:" + (1000 * k).toFixed(1) + "px;background-position:" + (-(c.x - c.d / 2) * k).toFixed(1) + "px " + (-(c.y - c.d / 2) * k).toFixed(1) + "px";
 }
+function colorSw(label){ return cropStyle(label, 34) || swatchStyle("hearts", label, 34) || (DOTS[label] ? "background:" + DOTS[label] : ""); }
 
 /* ---------- read the options out of each listing's own text ---------- */
 function quoteMetals(p){
@@ -647,7 +753,7 @@ function colorsOf(d){
     var t = p.desc || "", m;
     if(/birth month/i.test(t)){ MONTHS.forEach(function(mo){ add({label:mo, ids:[p.id], kind:"month"}); }); return; }
     if(says(p, ["Birthstone"]) && (m = MONTHS.filter(function(mo){ return says(p, [mo + " Birthstone"]); })[0])){ add({label:m, ids:[p.id], kind:"month"}); return; }
-    if((m = t.match(/Choose your [a-z' ]*color:\s*([^\n]+)/i))){ list(m[1]).forEach(function(c){ add({label:c, ids:[p.id], sw:colorSw(c)}); }); return; }
+    if((m = t.match(/Choose your [a-z' ]*color:\s*([^\n]+)/i))){ list(m[1]).forEach(function(c){ add({label:c, ids:[p.id], sw:swatchStyle("hearts", c, 34) || colorSw(c)}); }); return; }
     if((m = t.match(/Choose ([A-Z][^\n]*?) beads/))){ list(m[1]).forEach(function(c){ add({label:c, show:c + " cat's eye", ids:[p.id], sw:swatchStyle("cats", c, 34)}); }); return; }
     if(p.diffusing){
       var sure = /any color lava stone/i.test(t);
@@ -767,13 +873,25 @@ function mailHref(subject, body){ return "mailto:" + EMAIL + "?subject=" + encod
 
 /* ---------- render ---------- */
 var stageA = $("#stageA"), stageB = $("#stageB"), front = stageA, lastSrc = "";
+var peekT = 0;
 function setStage(src, alt){
   if(!src || src === lastSrc) return; lastSrc = src;
+  $("#miniImg").src = src;
+  if($("#stage").classList.contains("small")){ $("#stage").classList.remove("small"); clearTimeout(peekT); peekT = setTimeout(pinCheck, 1700); peeking = true; }
   var back = front === stageA ? stageB : stageA, old = front;
   back.onload = function(){ back.classList.add("show"); old.classList.remove("show"); };
   back.alt = alt; back.src = src; front = back;
   if(back.complete && back.naturalWidth) back.onload();
 }
+var peeking = false;
+function pinCheck(){
+  peeking = false; clearTimeout(peekT);
+  var st = $("#stage"), pin = $("#pin");
+  if(!st || !pin || getComputedStyle(pin).display === "contents"){ if(st) st.classList.remove("small"); return; }
+  var r = pin.getBoundingClientRect(), h = st.offsetHeight;
+  st.classList.toggle("small", r.top < -110 && r.bottom > h + 60);
+}
+(function(){ var tick = false; addEventListener("scroll", function(){ if(tick || peeking) return; tick = true; requestAnimationFrame(function(){ tick = false; if(!peeking) pinCheck(); }); }, {passive:true}); addEventListener("resize", pinCheck); })();
 function describe(s){ return [s.metal ? s.metal.toLowerCase() : "", s.color ? (s.color === "March" ? "aquamarine" : s.color) : ""].filter(Boolean).join(" with "); }
 function render(fresh, wroteKey){
   fixHook();
@@ -792,6 +910,8 @@ function render(fresh, wroteKey){
     else if(m.exact) capEl.innerHTML = '<span class="chip">' + (m.k.plain ? "My photo of this piece." : "My photo of this one.") + '</span>';
     else capEl.innerHTML = '<span class="chip make" style="--c:' + accent + '">I\'ll make this one for you</span>' + (m.k.s.group ? '<span class="chip">Photo shows a few together</span>' : describe(m.k.s) ? '<span class="chip">Photo shows ' + esc(describe(m.k.s)) + '</span>' : '<span class="chip">Photo shows the design</span>');
   }
+  $("#miniName").textContent = d.name;
+  $("#miniCap").textContent = (capEl.firstChild ? capEl.firstChild.textContent : "");
   /* ticket rows */
   var box = $("#rows"); box.innerHTML = "";
   var first = el("div", "row fixed");
@@ -832,7 +952,7 @@ function render(fresh, wroteKey){
     row.appendChild(o); box.appendChild(row);
   });
   var inp = $("#shade");
-  if(inp) inp.oninput = function(){ S.shade = inp.value.trim(); S.touched = true; links(); var v = box.querySelector(".row.open .v span"); if(v){ v.textContent = valText("color") || "Tap to choose"; v.parentNode.classList.toggle("blank", !valText("color")); } };
+  if(inp) inp.oninput = function(){ S.shade = inp.value.trim(); S.touched = true; links(); var v = box.querySelector(".row.open .v span"); if(v){ v.textContent = q(valText("color") || "Tap to choose"); v.parentNode.classList.toggle("blank", !valText("color")); } };
   /* price lines */
   var etsy = ' <a class="link" href="' + esc(m.p.etsy) + '" target="_blank" rel="noopener">Buy on Etsy</a>';
   var loose = !m.listed || anyAsk();
@@ -848,33 +968,87 @@ function render(fresh, wroteKey){
     piece.innerHTML = (pp.hook ? '<p class="hook">' + esc(pp.hook) + '</p>' : "") + (body ? '<details><summary>My notes on the ' + esc(pp.name) + '</summary><div class="desc">' + esc(body) + '</div></details>' : "");
   }
   links();
+  curl($("#step2"));
 }
 function links(){
   var d = S.d, m = match(), n = note();
   $("#sendSms").href = smsHref(n);
   $("#sendMail").href = mailHref("Custom piece: " + d.name, n);
-  $("#barSend").href = smsHref(n);
-  $("#barThumb").src = img(m.k.s.id, m.k.s.n);
-  $("#barName").textContent = d.name;
-  $("#barLine").textContent = [S.metal && !S.metal.ask ? S.metal.label : "", valText("color") && !(S.color && S.color.asShown) ? valText("color") : "", m.listed ? money(m.p.price) : ""].filter(Boolean).join(", ");
-  $("#bar").classList.toggle("sum", S.touched);
+  paintBar();
+}
+var heroIn = true, bridalIn = false;
+function paintBar(){
+  var bar = $("#bar"); if(!bar || !S.d) return;
+  bar.classList.toggle("away", heroIn); bar.inert = heroIn;
+  if(bridalIn){
+    var bd = B.design && B.design.d;
+    $("#barThumb").src = bd ? img(bd.ids[0], 1) : img("4525729639", 1) || img(S.d.ids[0], 1);
+    $("#barName").textContent = "Bridal party";
+    $("#barLine").textContent = bCount() || "Add each woman and her metal";
+    $("#barSend").href = smsHref(bNote());
+    bar.classList.add("sum");
+  } else {
+    var m = match();
+    $("#barThumb").src = img(m.k.s.id, m.k.s.n);
+    $("#barName").textContent = q(S.d.name);
+    $("#barLine").textContent = [S.metal && !S.metal.ask ? S.metal.label : "", m.listed ? money(m.p.price) : ""].filter(Boolean).join(", ");
+    $("#barSend").href = smsHref(note());
+    bar.classList.toggle("sum", S.touched);
+  }
 }
 function toStep2(){ var t = $("#step2"); if(t) t.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"}); }
 
 /* ---------- hero ---------- */
 (function(){
-  var hp = byId["1157755443"] || P[0]; if(!hp) return;
-  var himg = $("#heroImg"); himg.src = hp.photos[1] || hp.photos[0]; himg.alt = hp.name + ", " + money(hp.price);
-  if(!byId["1157755443"]) himg.style.clipPath = "circle(49% at 50% 50%)";
+  if(!P.length) return;
   var prices = P.map(function(p){ return p.price; });
   var tag = $("#priceTag"); tag.hidden = false;
-  tag.innerHTML = "Every piece " + money(Math.min.apply(null, prices)) + " to " + money(Math.max.apply(null, prices)) + "<span>" + esc(hp.name) + ", " + money(hp.price) + "</span>";
-  var d = designFor(hp.id), s = SHOTS.filter(function(x){ return x.id === hp.id; })[0];
-  var t = $("#teaser"); t.hidden = false;
-  var lines = [["Piece", hp.name], ["Metal", (hp.metals || [])[0] || ""], [d.colorWord, s && s.color || ""], [d.hookBy[hp.id] ? d.hookBy[hp.id].label : "", d.hookBy[hp.id] ? "Regular" : ""]].filter(function(l){ return l[0] && l[1]; });
-  t.innerHTML = '<span class="mark">Bijoux by Lissa</span><span class="dear" style="display:block">Lissa, I\'d like...</span><dl>' + lines.map(function(l, i){ return '<div><dt>' + esc(l[0]) + '</dt><dd><span class="ink" style="animation-delay:' + (0.5 + i * 0.55) + 's">' + esc(l[1]) + '</span></dd></div>'; }).join("") + '</dl><span class="go">Change anything. It\'s yours.</span>';
-  t.setAttribute("aria-label", "Start a custom piece from the " + hp.name);
-  t.onclick = function(){ load(d, hp.id); toStep2(); };
+  tag.innerHTML = "<b>Every piece " + money(Math.min.apply(null, prices)) + " to " + money(Math.max.apply(null, prices)) + '</b><span id="tagLine"></span>';
+  var H = HERO.filter(function(h){ return byId[h.id] && img(h.id, h.n); }).map(function(h){
+    var s = SHOTS.filter(function(x){ return x.id === h.id; })[0], p = byId[h.id];
+    return {h:h, p:p, color:s && s.color && says(p, [s.color].concat(s.also || [])) ? s.color : "", metal:(p.metals || [])[0] || ""};
+  });
+  var discs = $("#discs"), layers = [el("img"), el("img")], front = 0, cur = -1;
+  layers.forEach(function(im){ im.width = 1000; im.height = 1000; discs.appendChild(im); });
+  if(!H.length){ /* no flat-lay photos in the data: show the first piece as a plain circle */
+    var p0 = P[0]; layers[0].src = p0.photos[0]; layers[0].alt = p0.name; layers[0].style.cssText = "width:100%;left:0;top:0;clip-path:circle(50%)"; layers[0].classList.add("show");
+    $("#tagLine").textContent = p0.name + ", " + money(p0.price); return;
+  }
+  function place(im, h){
+    im.style.width = (100000 / (2 * h.r)) + "%"; im.style.left = (50 - 100 * h.cx / (2 * h.r)) + "%"; im.style.top = (50 - 100 * h.cy / (2 * h.r)) + "%";
+    im.style.clipPath = "circle(" + (h.r / 10) + "% at " + (h.cx / 10) + "% " + (h.cy / 10) + "%)";
+  }
+  var d = designFor(H[0].p.id), t = $("#teaser"), orbit = $("#orbit");
+  t.hidden = false;
+  t.innerHTML = '<span class="mark">Bijoux by Lissa</span><span class="dear" style="display:block">Lissa, I\'d like...</span><dl>' +
+    '<div><dt>Piece</dt><dd id="tzPiece"></dd></div><div><dt>Metal</dt><dd id="tzMetal"></dd></div><div><dt>' + esc(d.colorWord) + '</dt><dd id="tzColor"></dd></div></dl>' +
+    '<div class="tz-sw" id="tzSw" role="group" aria-label="Pick a crystal color"></div><button class="go" id="tzGo" type="button">Change anything. It\'s yours.</button>';
+  var angles = H.length === 4 ? [-50, -26, -2, 22] : H.map(function(_, i){ return (i - (H.length - 1) / 2) * 25; });
+  H.forEach(function(x, i){
+    [orbit, $("#tzSw")].forEach(function(box, k){
+      var b = el("button"); b.type = "button"; b.dataset.i = i; b.setAttribute("aria-label", "Show it in " + (x.color || x.p.name)); b.setAttribute("aria-pressed", "false");
+      b.style.cssText = cropStyle(x.color, 46) || "background:" + (DOTS[x.color] || "#888");
+      if(k === 0){ b.style.setProperty("--i", i); var a = angles[i] * Math.PI / 180; b.style.left = (50 + 61 * Math.cos(a)) + "%"; b.style.top = (50 + 61 * Math.sin(a)) + "%"; }
+      b.onclick = function(){ setHero(i, true); };
+      box.appendChild(b);
+    });
+  });
+  function write(id, text, first, n){ $(id).innerHTML = '<span class="ink"' + (first ? ' style="animation-delay:' + (0.5 + n * 0.55) + 's"' : "") + '>' + esc(q(text)) + '</span>'; }
+  function setHero(i, user){
+    if(i === cur) return;
+    var first = cur < 0, x = H[i], back = layers[1 - front], old = layers[front];
+    cur = i; place(back, x.h); back.alt = x.p.name + ", " + money(x.p.price);
+    back.onload = function(){ back.classList.add("show"); old.classList.remove("show"); };
+    back.src = img(x.h.id, x.h.n); front = 1 - front;
+    if(back.complete && back.naturalWidth) back.onload();
+    $("#tagLine").innerHTML = '<span class="' + (first ? "" : "ink") + '">' + esc(q(x.p.name + ", " + money(x.p.price))) + '</span>';
+    write("#tzPiece", x.p.name, first, 0); write("#tzMetal", x.metal, first, 1); write("#tzColor", x.color, first, 2);
+    [].forEach.call(document.querySelectorAll("#orbit button, #tzSw button"), function(b){ b.setAttribute("aria-pressed", +b.dataset.i === i ? "true" : "false"); });
+    if(user && S.d) load(designFor(x.p.id), x.p.id, true);
+  }
+  $("#tzGo").onclick = function(){ var x = H[cur]; load(designFor(x.p.id), x.p.id); toStep2(); };
+  setHero(0, false);
+  curl($("#heroPhoto"));
 })();
 
 /* ---------- tray ---------- */
@@ -890,18 +1064,19 @@ function toStep2(){ var t = $("#step2"); if(t) t.scrollIntoView({behavior:matchM
     b.onclick = function(){ load(d); toStep2(); };
     tray.appendChild(b);
   });
+  curl(tray);
 })();
 
 /* ---------- collection ---------- */
 var OCC = [["All", null], ["Wedding Guest", ["Wedding Guest"]], ["Bride", ["Bride"]], ["Bridesmaid Gifts", ["Bridesmaid Gift"]], ["Mother Of The Bride", ["Mother Of The Bride"]], ["Date Night", ["Date Night"]], ["Everyday", ["Everyday", "Work"]], ["Birthday And Birthstone Gifts", ["Birthday Gift", "Birthstone"]], ["Diffusing", ["Diffusing"]]];
-var curOcc = 0;
+var curOcc = 0, showAll = false, FIRST = 8;
 function inOcc(p, o){ if(!o[1]) return true; var oc = p.occasions || []; return o[1].some(function(x){ return oc.indexOf(x) > -1; }) || (o[0] === "Diffusing" && p.diffusing); }
 function drawFilters(){
   var f = $("#filters"); f.innerHTML = "";
   OCC.forEach(function(o, i){
     var n = P.filter(function(p){ return inOcc(p, o); }).length; if(!n && i) return;
     var b = el("button", "f"); b.type = "button"; b.textContent = (i ? o[0] : "All " + n); b.setAttribute("aria-pressed", i === curOcc ? "true" : "false");
-    b.onclick = function(){ curOcc = i; drawFilters(); drawGrid(); };
+    b.onclick = function(){ curOcc = i; showAll = false; drawFilters(); drawGrid(); };
     f.appendChild(b);
   });
 }
@@ -909,7 +1084,8 @@ function drawGrid(){
   var g = $("#grid"); g.innerHTML = "";
   var shown = P.filter(function(p){ return inOcc(p, OCC[curOcc]); });
   $("#empty").hidden = shown.length > 0;
-  shown.forEach(function(p){
+  var more = $("#showAll"); more.hidden = showAll || shown.length <= FIRST; more.textContent = "Show All " + shown.length + " Pieces";
+  (showAll ? shown : shown.slice(0, FIRST)).forEach(function(p){
     var c = el("article", "card");
     c.innerHTML = '<button class="ph" type="button" aria-label="Bring the ' + esc(p.name) + ' to the table"><img loading="lazy" src="' + esc(p.photos && p.photos[0] || "") + '" alt="' + esc(p.name) + '" width="400" height="400"></button>' +
       '<div class="nm"><b>' + esc(p.name) + '</b><span>' + money(p.price) + '</span></div>' +
@@ -919,22 +1095,107 @@ function drawGrid(){
     $(".ph", c).onclick = go; $(".mine", c).onclick = go;
     g.appendChild(c);
   });
+  curl(g);
 }
+$("#showAll").onclick = function(){ showAll = true; drawGrid(); };
 
 /* ---------- small blocks ---------- */
 function pics(sel, arr){ var b = $(sel); arr.forEach(function(a){ var s = img(a[0], a[1]); if(s) b.appendChild(el("span", "", '<img loading="lazy" src="' + s + '" alt="' + esc(byId[a[0]].name) + '" width="400" height="400">')).style.display = "contents"; }); if(!b.children.length) b.hidden = true; }
 pics("#bridalPics", [["4525729639", 1], ["1003039820", 1]]);
 pics("#diffPics", [["1094764736", 1], ["788008058", 2]]);
 (function(){ var cp = byId["1153943408"]; if(!cp || !cp.photos[1]) return; $("#closeImg").src = cp.photos[1]; $("#closeImg").alt = cp.name; $("#closeCap").textContent = cp.name + ", " + money(cp.price); $("#closeFig").hidden = false; })();
-$("#bridalBtn").href = smsHref("Lissa, I'd like help with jewelry for my bridal party.\nWedding date: \nColors: \nHow many pieces: \nGold, silver, rose gold or a mix: \nMy name and phone: ");
+/* ---------- bridal party ticket ---------- */
+var B = {design:null, open:false, women:[{name:"", metal:null, steel:false}]};
+var STD = ["Gold", "Silver", "Rose Gold", "Gunmetal"];
+function bListed(){ var d = B.design && B.design.d; return d ? d.metals.filter(function(m){ return !m.ask && !m.quote; }).map(function(m){ return m.label; }) : null; }
+function bHooks(){ var d = B.design && B.design.d; return !d || Object.keys(d.hookBy).some(function(k){ return d.hookBy[k]; }); }
+function bCount(){
+  var c = {}, order = [], n = B.women.length;
+  B.women.forEach(function(w){ if(w.metal){ if(!c[w.metal]){ c[w.metal] = 0; order.push(w.metal); } c[w.metal]++; } });
+  var parts = order.map(function(m){ return c[m] + " " + m.toLowerCase(); });
+  return n + (n === 1 ? " piece" : " pieces") + (parts.length ? ": " + parts.join(", ") : "");
+}
+function bNote(){
+  var listed = bListed(), L = ["Lissa, I'd like help with my bridal party."];
+  L.push("Wedding date: " + $("#bDate").value.trim());
+  L.push("Colors: " + $("#bColors").value.trim());
+  L.push("Design: " + (B.design ? (B.design.d ? B.design.d.name : "help me choose") : ""));
+  L.push("How many pieces: " + bCount().replace(/ pieces?:? ?/, function(m){ return /:/.test(m) ? " (" : ""; }) + (/:/.test(bCount()) ? ")" : ""));
+  B.women.forEach(function(w, i){
+    var bits = [w.name.trim() || "(name)", w.metal ? w.metal.toLowerCase() + (listed && listed.indexOf(w.metal) < 0 ? " (Lissa to confirm)" : "") : "metal: help me choose"];
+    if(w.steel && bHooks()) bits.push("stainless steel hooks");
+    L.push((i + 1) + ". " + bits.join(", "));
+  });
+  L.push("My name and phone: " + $("#bMe").value.trim());
+  return L.join("\n");
+}
+function bLinks(){
+  var n = bNote();
+  $("#bSms").href = smsHref(n); $("#bMail").href = mailHref("Bridal party jewelry", n);
+  $("#bSum").textContent = bCount() + ".";
+  paintBar();
+}
+function drawB(){
+  var row = $("#bDesignRow"), listed = bListed(), hooks = bHooks();
+  row.className = "row" + (B.open ? " open" : ""); row.innerHTML = "";
+  var h = el("button", "row-h"); h.type = "button"; h.setAttribute("aria-expanded", B.open ? "true" : "false");
+  var v = B.design ? (B.design.d ? B.design.d.name : "Help me choose") : "";
+  h.innerHTML = '<span class="k">The design</span><span class="v' + (v ? "" : " blank") + '"><span class="' + (v ? "ink" : "") + '">' + esc(v || "Tap to choose") + '</span></span><span class="e">Change</span>';
+  h.onclick = function(){ B.open = !B.open; drawB(); };
+  row.appendChild(h);
+  var o = el("div", "opts"), g = el("div", "opt-grid");
+  FAMILIES.map(function(f){ return designs[f.key]; }).concat([null]).forEach(function(d){
+    var b = el("button", "opt" + (d ? "" : " text")); b.type = "button";
+    b.setAttribute("aria-pressed", B.design && (d ? B.design.d === d : !B.design.d) ? "true" : "false");
+    b.innerHTML = (d ? '<span class="sw" style="background-image:url(\'' + img(d.ids[0], 1) + '\');background-size:cover;background-position:center"></span>' : "") + '<span>' + esc(d ? d.name : "Help me choose") + '</span>';
+    b.onclick = function(){ B.design = d ? {d:d} : {help:true}; B.open = false; drawB(); };
+    g.appendChild(b);
+  });
+  o.appendChild(g); row.appendChild(o);
+  var box = $("#bWomen"); box.innerHTML = "";
+  var metals = (listed || []).concat(STD.filter(function(m){ return !listed || listed.indexOf(m) < 0; }));
+  B.women.forEach(function(w, i){
+    var W = el("div", "woman"), top = el("div", "w-top");
+    top.innerHTML = '<span class="w-n">' + (i + 1) + '</span><input class="w-name" type="text" autocomplete="off" maxlength="40" placeholder="Her name" aria-label="Name of woman ' + (i + 1) + '">' + (B.women.length > 1 ? '<button class="w-x" type="button" aria-label="Remove woman ' + (i + 1) + '">Remove</button>' : "");
+    var inp = $("input", top); inp.value = w.name; inp.oninput = function(){ w.name = inp.value; bLinks(); };
+    var x = $(".w-x", top); if(x) x.onclick = function(){ B.women.splice(i, 1); drawB(); };
+    W.appendChild(top);
+    var chips = el("div", "opt-grid");
+    metals.forEach(function(m){
+      var b = el("button", "opt sm"); b.type = "button"; b.setAttribute("aria-pressed", w.metal === m ? "true" : "false");
+      b.innerHTML = '<span class="sw" style="' + metalStyle(m) + '"></span><span>' + esc(m) + '</span>';
+      b.onclick = function(){ w.metal = m; drawB(); };
+      chips.appendChild(b);
+    });
+    if(hooks){
+      var st = el("button", "opt sm text"); st.type = "button"; st.setAttribute("aria-pressed", w.steel ? "true" : "false");
+      st.innerHTML = "<span>Stainless steel hooks</span>"; st.onclick = function(){ w.steel = !w.steel; drawB(); };
+      chips.appendChild(st);
+    }
+    W.appendChild(chips);
+    if(w.metal && listed && listed.indexOf(w.metal) < 0)
+      W.appendChild(el("p", "w-note", '<span class="confirm">Lissa to confirm</span> ' + esc(B.design.d.name) + " is listed in " + esc(listed.map(function(m){ return m.toLowerCase(); }).join(listed.length === 2 ? " and " : ", ")) + "."));
+    box.appendChild(W);
+  });
+  bLinks();
+  curl($("#bticket"));
+}
+$("#bAdd").onclick = function(){ B.women.push({name:"", metal:null, steel:false}); drawB(); var ins = document.querySelectorAll(".w-name"); if(ins.length) ins[ins.length - 1].focus({preventScroll:false}); };
+["#bDate", "#bColors", "#bMe"].forEach(function(id){ $(id).oninput = bLinks; });
 $("#diffBtn").onclick = function(){ var d = designs.diffhearts || designs.wrap; if(d){ load(d); toStep2(); } else location.hash = "#design"; };
-$("#barWhat").onclick = function(){ $("#ticket").scrollIntoView({behavior:"smooth", block:"center"}); };
+$("#barWhat").onclick = function(){ (bridalIn ? $("#bticket") : $("#ticket")).scrollIntoView({behavior:"smooth", block:"center"}); };
 
 if(P.length){
   drawFilters(); drawGrid();
   load(designs.hammered || designs[FAMILIES[0].key] || designFor(String(P[0].id)), null, true);
+  drawB();
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(es){ heroIn = es[0].isIntersecting; paintBar(); }, {threshold:0}).observe($("#heroCta"));
+    new IntersectionObserver(function(es){ bridalIn = es[0].isIntersecting; paintBar(); }, {rootMargin:"-30% 0px -30% 0px"}).observe($("#bticket"));
+  } else { heroIn = false; paintBar(); }
 }
-window.__lissa = {S:S, note:note, designs:designs, designFor:designFor, load:load};
+curl(document.body);
+window.__lissa = {S:S, B:B, note:note, bNote:function(){ return bNote(); }, designs:designs, designFor:designFor, load:load};
 })();
 </script>
 </body>
