@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="dark">
+<title>Bijoux by Lissa | Sit Down With Me. Let's Make Yours.</title>
+<meta name="description" content="Bijoux by Lissa. Your personal designer for fashion and bridal jewelry. Concept mockup.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,500;1,700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#131215; --surface:#1D1B20; --well:#17161A; --pearl:#F1EEE8; --muted:#A9A4B0; --hair:#322F38;
+  --paper:#F1EEE8; --paper-edge:#DDD8CE; --ink:#1D1B20; --ink-soft:#57525E; --pen:#27305E;
+  --accent:#3E9DB8;
+  --display:"Gloock", "Iowan Old Style", Georgia, serif;
+  --sans:"Karla", "Helvetica Neue", Arial, sans-serif;
+  --script:"Pinyon Script", "Snell Roundhand", cursive;
+  --gutter:16px; --max:1240px; --bar:76px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%; overflow-x:clip}
+body{margin:0; background:var(--ground); color:var(--pearl); font-family:var(--sans); font-size:18px; line-height:1.55;
+  padding-bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px)); overflow-x:clip;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");}
+img{max-width:100%; height:auto; display:block}
+h1,h2,h3{font-family:var(--display); font-weight:400; margin:0; line-height:1.06; letter-spacing:-.005em; text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+button{font:inherit; color:inherit; cursor:pointer}
+:focus-visible{outline:3px solid var(--accent); outline-offset:3px; border-radius:4px}
+.wrap{max-width:var(--max); margin:0 auto; padding-inline:var(--gutter)}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+/* buttons */
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:54px; padding:12px 24px; border-radius:5px;
+  border:1.5px solid var(--pearl); background:var(--pearl); color:var(--ink); font-weight:700; font-size:18px; text-decoration:none; line-height:1.15; text-align:center}
+.btn:hover{background:#FBF9F4}
+.btn-line{background:transparent; color:var(--pearl)}
+.btn-line:hover{background:rgba(241,238,232,.09)}
+.btn-ink{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+.btn-ink:hover{background:#0c0b0e}
+.btn-paperline{background:transparent; color:var(--ink); border-color:var(--ink)}
+.btn-paperline:hover{background:rgba(29,27,32,.07)}
+.link{display:inline-flex; align-items:center; min-height:44px; text-underline-offset:4px; text-decoration-thickness:1px}
+.confirm{display:inline-block; font-size:13px; font-weight:700; line-height:1.2; padding:4px 9px; border-radius:99px; border:1px dashed currentColor; opacity:.9; vertical-align:middle}
+
+/* top bar */
+.top{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:10px}
+.mark{font-family:var(--script); font-size:34px; line-height:1; text-decoration:none; white-space:nowrap; padding-block:8px; display:inline-block}
+.mark small{display:none}
+.nav{display:none; gap:6px; align-items:center}
+.nav a{display:inline-flex; align-items:center; min-height:44px; padding:0 14px; text-decoration:none; font-weight:500; border-radius:5px}
+.nav a:hover{background:rgba(241,238,232,.08)}
+.nav a.nav-cta{border:1.5px solid var(--pearl); font-weight:700; margin-left:8px}
+.top-jump{display:inline-flex; align-items:center; min-height:44px; font-weight:700; font-size:16px; text-underline-offset:4px}
+
+/* hero */
+.hero{position:relative; padding-bottom:34px}
+.hero-grid{display:grid; gap:0}
+.hero-photo{position:relative; width:min(310px, 80vw); margin:0 auto 22px; aspect-ratio:1}
+.disc{width:100%; height:100%; object-fit:cover; clip-path:circle(40.4% at 50.2% 50.6%); transform:scale(1.23); filter:saturate(1.08) contrast(1.03)}
+.hero-photo::before{content:""; position:absolute; inset:-6%; border-radius:50%; background:radial-gradient(closest-side, rgba(241,238,232,.16), rgba(241,238,232,0) 72%)}
+.tag{position:absolute; left:-8px; bottom:-10px; z-index:2; background:var(--paper); color:var(--ink); padding:9px 14px 9px 30px; border-radius:3px 6px 6px 3px;
+  font-weight:700; font-size:17px; line-height:1.2; transform:rotate(-5deg); box-shadow:0 10px 24px rgba(0,0,0,.5)}
+.tag::before{content:""; position:absolute; left:10px; top:50%; width:9px; height:9px; margin-top:-4.5px; border-radius:50%; background:var(--ground)}
+.tag span{display:block; font-weight:500; font-size:14px; color:var(--ink-soft)}
+.hero-copy{position:relative; z-index:1}
+.hero h1{font-size:clamp(40px, 10.9vw, 50px)}
+.hero h1 span{display:block; white-space:nowrap}
+.hero .sub{margin-top:14px; color:#D9D4DD; font-size:18px; max-width:34em}
+.hide-phone{display:none}
+.hero-cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:20px}
+.hero-cta .btn{flex:1 1 auto}
+.proof{list-style:none; margin:24px 0 0; padding:0; display:grid; gap:0; border-top:1px solid var(--hair)}
+.proof li{padding:11px 0; border-bottom:1px solid var(--hair); font-weight:500; display:flex; align-items:center; gap:12px}
+.proof li::before{content:""; flex:none; width:8px; height:8px; transform:rotate(45deg); background:var(--c,#3E9DB8)}
+.teaser{display:none}
+
+/* hello */
+.hello{padding-block:52px 44px; border-top:1px solid var(--hair)}
+.hello-grid{display:grid; gap:34px}
+.polaroid{width:min(270px, 74vw); margin:0 auto; background:var(--paper); padding:14px 14px 0; transform:rotate(-3deg); box-shadow:0 18px 40px rgba(0,0,0,.55); border-radius:2px}
+.polaroid .slot{aspect-ratio:1/1.02; background:#26242B; display:grid; place-items:center; padding:22px; text-align:center; color:#CFCAD4; font-size:17px; line-height:1.4;
+  outline:1.5px dashed #6A6573; outline-offset:-10px}
+.polaroid .sig{font-family:var(--script); color:var(--pen); font-size:40px; line-height:1; text-align:center; padding:10px 0 12px}
+.hello h2{font-size:clamp(34px, 9vw, 54px)}
+.hello .body{margin-top:16px; color:#D9D4DD; max-width:36em}
+.quote{margin:28px 0 0; padding:0 0 0 18px; border-left:2px solid var(--c,#3E9DB8)}
+.quote p{font-size:20px; line-height:1.4; font-weight:500}
+.quote footer{margin-top:8px; color:var(--muted); font-size:16px}
+
+/* designer */
+.design{padding-block:48px 56px; border-top:1px solid var(--hair); background:var(--well)}
+.design-head h2{font-size:clamp(34px, 9vw, 56px)}
+.ears{margin-top:14px; color:#D9D4DD; max-width:40em}
+.ears b{color:var(--pearl)}
+.step{margin-top:38px}
+.step-h{display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start}
+.num{font-family:var(--display); font-size:30px; line-height:1; width:46px; height:46px; display:grid; place-items:center; border:1.5px solid var(--pearl); border-radius:50%}
+.step-h h3{font-family:var(--sans); font-weight:700; font-size:21px; line-height:1.25; padding-top:9px; letter-spacing:0}
+.tray{display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; margin:20px calc(var(--gutter) * -1) 0; padding:6px var(--gutter) 14px; scrollbar-width:thin; scrollbar-color:var(--hair) transparent}
+.tile{flex:none; width:212px; scroll-snap-align:start; background:var(--surface); border:1.5px solid var(--hair); border-radius:14px; padding:14px 14px 16px; text-align:left; display:grid; gap:10px; align-content:start}
+.tile img{width:184px; height:184px; border-radius:50%; object-fit:cover; background:#ddd}
+.tile b{display:block; font-size:18px; line-height:1.2}
+.tile span{display:block; color:var(--muted); font-size:15px; line-height:1.3}
+.tile[aria-pressed="true"]{border-color:var(--pearl); background:#24222A}
+.tile[aria-pressed="true"] img{box-shadow:0 0 0 3px var(--surface), 0 0 0 5px var(--pearl)}
+.tile .on{display:none; font-size:14px; font-weight:700; color:var(--pearl)}
+.tile[aria-pressed="true"] .on{display:block}
+.tray-more{margin-top:4px; color:var(--muted)}
+.bench{display:block; margin-top:20px}
+.stage{position:sticky; top:0; z-index:5; margin-inline:calc(var(--gutter) * -1); background:#0c0b0e; height:min(40vh, 340px); overflow:hidden}
+.stage img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 42%; opacity:0; transition:opacity .35s ease}
+.stage img.show{opacity:1}
+.stage-cap{position:absolute; left:10px; right:10px; bottom:10px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; z-index:2}
+.chip{display:inline-flex; align-items:center; gap:7px; background:rgba(19,18,21,.88); color:var(--pearl); font-size:14px; font-weight:700; line-height:1.2; padding:7px 11px; border-radius:99px}
+.chip.make{background:var(--paper); color:var(--ink)}
+.chip.make::before{content:""; width:8px; height:8px; transform:rotate(45deg); background:var(--c,#3E9DB8)}
+.ticket{position:relative; background:var(--paper); color:var(--ink); padding:30px 18px 22px; margin-top:16px; border-radius:0 0 6px 6px;
+  -webkit-mask:radial-gradient(7px at 50% 0, #0000 97%, #000) 50% 0/22px 100% repeat-x; mask:radial-gradient(7px at 50% 0, #0000 97%, #000) 50% 0/22px 100% repeat-x}
+.ticket-top{display:flex; align-items:baseline; justify-content:space-between; gap:10px; border-bottom:2px solid var(--ink); padding-bottom:8px}
+.ticket-top .mark{font-size:30px; padding:0; color:var(--ink)}
+.ticket-top span{font-size:14px; font-weight:700; color:var(--ink-soft); text-align:right}
+.dear{font-style:italic; font-weight:500; font-size:21px; color:var(--pen); margin:14px 0 2px}
+.row{border-bottom:1px dotted rgba(29,27,32,.45)}
+.row-h{display:grid; grid-template-columns:104px 1fr auto; gap:8px; align-items:center; width:100%; min-height:56px; padding:8px 0; background:none; border:0; text-align:left}
+.row-h .k{font-size:15px; font-weight:700; color:var(--ink-soft)}
+.row-h .v{font-style:italic; font-weight:700; font-size:20px; line-height:1.2; color:var(--pen); min-width:0}
+.row-h .v.blank{font-weight:500; color:#6C6775}
+.row-h .e{font-size:14px; font-weight:700; text-decoration:underline; text-underline-offset:3px; color:var(--ink-soft)}
+.row.fixed .row-h{cursor:default}
+.row.fixed .e{visibility:hidden}
+.ink{display:inline-block; animation:write .55s cubic-bezier(.3,.7,.2,1) both}
+@keyframes write{from{clip-path:inset(-10% 100% -10% 0)} to{clip-path:inset(-10% -4% -10% 0)}}
+.opts{display:none; padding:4px 0 16px}
+.row.open .opts{display:block}
+.row.open .row-h .e{visibility:hidden}
+.opt-grid{display:flex; flex-wrap:wrap; gap:8px}
+.opt{display:inline-flex; align-items:center; gap:9px; min-height:48px; padding:6px 14px 6px 8px; border-radius:99px; border:1.5px solid rgba(29,27,32,.4); background:rgba(255,255,255,.5); font-weight:700; font-size:16px; line-height:1.15; color:var(--ink); text-align:left}
+.opt.text{padding-left:14px}
+.opt:hover{border-color:var(--ink)}
+.opt[aria-pressed="true"]{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+.opt small{display:block; font-weight:500; font-size:13px; opacity:.8}
+.sw{flex:none; width:34px; height:34px; border-radius:50%; background-color:#ccc; background-repeat:no-repeat; box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
+.months{display:grid; grid-template-columns:repeat(3, 1fr); gap:8px}
+.months .opt{justify-content:center; padding:6px 8px}
+.months .opt.wide{grid-column:1 / -1; justify-self:start; padding-inline:16px}
+.lava{display:grid; grid-template-columns:repeat(3, 1fr); gap:8px}
+.lava .opt{padding-right:8px; white-space:nowrap}
+.lava .opt.wide{grid-column:1 / -1; justify-self:start; padding-right:16px}
+.opt-note{margin-top:12px; font-size:16px; line-height:1.4; color:var(--ink-soft)}
+.shade{margin-top:14px; display:grid; gap:6px}
+.shade label{font-size:15px; font-weight:700; color:var(--ink-soft)}
+.shade input{font:inherit; font-size:18px; min-height:50px; padding:8px 12px; border:1.5px solid rgba(29,27,32,.45); border-radius:5px; background:#FBF9F4; color:var(--ink); width:100%}
+.ticket-foot{padding-top:14px}
+.ticket-foot .price{font-weight:700; font-size:18px; line-height:1.35}
+.ticket-foot .price a{font-weight:500; white-space:nowrap; display:flex; width:max-content}
+.ticket-foot .fine{margin-top:6px; font-size:15px; color:var(--ink-soft); line-height:1.4}
+.send{display:grid; gap:10px; margin-top:16px}
+.send .btn{width:100%}
+.step3-note{margin-top:12px; font-size:15px; color:var(--ink-soft); line-height:1.4}
+.piece{margin-top:26px}
+.piece .hook{font-style:italic; font-weight:500; font-size:21px; line-height:1.35}
+.piece details{margin-top:12px; border-top:1px solid var(--hair); border-bottom:1px solid var(--hair)}
+.piece summary{min-height:52px; display:flex; align-items:center; justify-content:space-between; font-weight:700; cursor:pointer; list-style:none}
+.piece summary::-webkit-details-marker{display:none}
+.piece summary::after{content:"+"; font-size:26px; font-weight:400; line-height:1}
+.piece details[open] summary::after{content:"\2212"}
+.piece .desc{padding:0 0 18px; color:#D9D4DD; white-space:pre-line; font-size:17px; max-width:38em}
+
+/* reviews */
+.reviews{padding-block:56px; border-top:1px solid var(--hair)}
+.reviews h2{font-size:clamp(34px, 9vw, 54px)}
+.stars{display:flex; gap:5px; margin-bottom:14px}
+.stars i{width:16px; height:16px; background:var(--pearl); clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.rev-grid{display:grid; gap:14px; margin-top:26px}
+.rev{background:var(--surface); border-radius:6px; padding:22px 20px; border-top:3px solid var(--c)}
+.rev p{font-size:20px; line-height:1.4; font-weight:500}
+.rev footer{margin-top:12px; color:var(--muted); font-size:16px}
+
+/* collection */
+.coll{padding-block:56px; border-top:1px solid var(--hair); background:var(--well)}
+.coll h2{font-size:clamp(34px, 9vw, 56px)}
+.coll .lead{margin-top:10px; color:#D9D4DD}
+.filters{display:flex; gap:8px; overflow-x:auto; margin:20px calc(var(--gutter) * -1) 0; padding:4px var(--gutter) 12px; scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.f{flex:none; min-height:46px; padding:8px 16px; border-radius:99px; border:1.5px solid var(--hair); background:transparent; font-weight:700; font-size:16px; white-space:nowrap}
+.f[aria-pressed="true"]{background:var(--pearl); color:var(--ink); border-color:var(--pearl)}
+.grid{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:26px 12px; margin-top:12px}
+.card{display:flex; flex-direction:column; min-width:0}
+.card .ph{display:block; padding:0; border:0; background:#ddd; border-radius:5px; overflow:hidden; aspect-ratio:1; width:100%}
+.card .ph img{width:100%; height:100%; object-fit:cover}
+.card .nm{display:flex; justify-content:space-between; gap:8px; align-items:baseline; margin-top:10px}
+.card .nm b{font-size:17px; line-height:1.2}
+.card .nm span{font-weight:700; font-size:17px}
+.card .hk{margin-top:6px; color:var(--muted); font-size:15px; line-height:1.38; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden}
+.card .act{margin-top:auto; padding-top:10px; display:grid; gap:2px}
+.card .mine{min-height:46px; border-radius:5px; border:1.5px solid var(--pearl); background:transparent; font-weight:700; font-size:16px; padding:6px 8px}
+.card .mine:hover{background:rgba(241,238,232,.09)}
+.card .etsy{justify-content:center; font-size:16px; font-weight:500}
+.empty{margin-top:20px; color:var(--muted)}
+
+/* bridal + diffusing */
+.duo{padding-block:56px; border-top:1px solid var(--hair)}
+.duo-grid{display:grid; gap:56px}
+.duo h2{font-size:clamp(32px, 8.4vw, 46px)}
+.duo .body{margin-top:14px; color:#D9D4DD; max-width:34em}
+.duo .btn{margin-top:20px}
+.duo .confirms{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; color:var(--muted)}
+.pair{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:22px}
+.pair img{aspect-ratio:1; object-fit:cover; border-radius:5px; width:100%}
+.steps{margin:14px 0 0; padding:0 0 0 1.3em; color:#D9D4DD; max-width:34em}
+.steps li{padding:3px 0}
+.duo .line{margin-top:12px; font-weight:700}
+
+/* closing + footer */
+.close{padding-block:64px; border-top:1px solid var(--hair); background:var(--well)}
+.close h2{font-size:clamp(34px, 9vw, 60px); max-width:14em}
+.close .hero-cta{max-width:520px}
+.close-grid{display:grid; gap:26px}
+.close-photo{margin:0; width:min(250px, 66vw); position:relative}
+.close-photo img{width:100%; aspect-ratio:1; object-fit:cover; clip-path:ellipse(43% 41% at 50% 51%); transform:scale(1.14)}
+.close-photo figcaption{margin-top:6px; color:var(--muted); font-size:16px}
+.foot{padding-block:34px 24px; border-top:1px solid var(--hair); color:var(--muted); font-size:16px}
+.foot .mark{color:var(--pearl)}
+.foot ul{list-style:none; margin:10px 0 0; padding:0; display:grid; gap:2px}
+.foot a{display:inline-flex; align-items:center; min-height:44px; text-underline-offset:4px}
+.foot li{min-height:44px; display:flex; align-items:center; flex-wrap:wrap}
+.foot .tiny{margin-top:18px; font-size:14px; border-top:1px solid var(--hair); padding-top:14px}
+
+/* phone bar */
+.bar{position:fixed; left:0; right:0; bottom:0; z-index:20; background:#0c0b0e; border-top:1px solid var(--hair); padding:10px var(--gutter) calc(10px + env(safe-area-inset-bottom,0px)); display:grid; grid-template-columns:auto 1fr; gap:10px; align-items:center}
+.bar .btn{min-height:54px; padding:8px 18px; font-size:17px; white-space:nowrap}
+.bar.sum{grid-template-columns:auto minmax(0,1fr) auto}
+.bar .mini{display:none}
+.bar.sum .mini{display:contents}
+.bar.sum .dflt{display:none}
+.bar .thumb{width:54px; height:54px; border-radius:50%; object-fit:cover; background:#ddd}
+.bar .what{min-width:0; background:none; border:0; text-align:left; padding:0; min-height:54px}
+.bar .what b{display:block; font-size:16px; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.bar .what span{display:block; font-size:14px; color:var(--muted); line-height:1.25; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+
+@media (min-width:700px){
+  :root{--gutter:28px}
+  .hero-photo{width:380px}
+  .grid{grid-template-columns:repeat(3, minmax(0,1fr)); gap:36px 20px}
+  .rev-grid{grid-template-columns:repeat(3,1fr)}
+  .card .act{grid-template-columns:1fr 1fr; align-items:center; gap:8px}
+  .hello-grid{grid-template-columns:300px 1fr; align-items:center; gap:48px}
+  .polaroid{width:280px}
+  .duo-grid{grid-template-columns:1fr 1fr; gap:48px}
+}
+@media (min-width:1000px){
+  :root{--gutter:40px}
+  body{font-size:19px; padding-bottom:0}
+  .bar{display:none}
+  .nav{display:flex}
+  .top-jump{display:none}
+  .top{padding-block:16px}
+  .mark{font-size:42px}
+  .hero{padding-bottom:176px}
+  .hero-grid{grid-template-columns:minmax(0, 1fr) auto; align-items:start; gap:24px}
+  .hero-copy{order:-1; padding-top:clamp(16px, 4vh, 48px)}
+  .hero h1{font-size:clamp(58px, 5.15vw, 78px)}
+  .hero .sub{font-size:21px; margin-top:22px; max-width:28em}
+  .hide-phone{display:inline}
+  .hero-cta{margin-top:28px}
+  .hero-cta .btn{flex:0 0 auto; min-height:58px; padding-inline:28px}
+  .hero-photo{width:min(40vw, 580px); margin:4px max(-4vw, -60px) 0 0}
+  .tag{left:auto; right:-6px; top:54px; bottom:auto; transform:rotate(6deg); font-size:19px; padding:12px 18px 12px 36px}
+  .tag span{font-size:15px}
+  .proof{max-width:430px; margin-top:34px}
+  .teaser{display:block; position:absolute; left:-160px; top:75%; width:296px; z-index:3; background:var(--paper); color:var(--ink); border:0; text-align:left; padding:26px 20px 16px; transform:rotate(-4deg);
+    box-shadow:0 26px 50px rgba(0,0,0,.6); -webkit-mask:radial-gradient(7px at 50% 0, #0000 97%, #000) 50% 0/22px 100% repeat-x; mask:radial-gradient(7px at 50% 0, #0000 97%, #000) 50% 0/22px 100% repeat-x}
+  .teaser .mark{font-size:28px; padding:0; color:var(--ink); display:block; border-bottom:2px solid var(--ink); padding-bottom:6px}
+  .teaser .dear{font-size:19px; margin:10px 0 0}
+  .teaser dl{margin:2px 0 0}
+  .teaser dl div{display:grid; grid-template-columns:78px 1fr; align-items:baseline; gap:6px; border-bottom:1px dotted rgba(29,27,32,.45); padding:7px 0}
+  .teaser dt{font-size:14px; font-weight:700; color:var(--ink-soft)}
+  .teaser dd{margin:0; font-style:italic; font-weight:700; font-size:18px; line-height:1.2; color:var(--pen)}
+  .teaser dd .ink{animation-duration:.7s}
+  .teaser .go{display:block; margin-top:12px; font-weight:700; font-size:16px; text-decoration:underline; text-underline-offset:4px}
+  .hello{padding-block:84px 76px}
+  .hello-grid{grid-template-columns:340px minmax(0, 1fr) minmax(0, .8fr); gap:64px}
+  .polaroid{width:310px}
+  .quote{margin:0; align-self:center}
+  .quote p{font-size:24px}
+  .design{padding-block:84px 96px}
+  .tray{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); overflow:visible; margin:24px 0 0; padding:0; gap:14px}
+  .tile{width:auto; grid-template-columns:104px 1fr; align-items:center; gap:16px; padding:14px 16px 14px 14px}
+  .tile img{width:104px; height:104px}
+  .tile:hover{border-color:#5A5564}
+  .bench{display:grid; grid-template-columns:minmax(0, 1fr) 500px; grid-template-areas:"stage ticket" "piece ticket"; grid-template-rows:auto 1fr; gap:0 44px; align-items:start; margin-top:28px}
+  .stage{grid-area:stage; position:relative; top:auto; margin:0; height:auto; aspect-ratio:1; border-radius:8px}
+  .ticket{grid-area:ticket}
+  .piece{grid-area:piece}
+  .stage img{object-position:50% 50%}
+  .stage-cap{left:16px; bottom:16px}
+  .chip{font-size:15px; padding:8px 13px}
+  .ticket{margin-top:0; padding:36px 30px 28px}
+  .ticket-top .mark{font-size:36px}
+  .row-h{grid-template-columns:124px 1fr auto; min-height:60px}
+  .row-h .v{font-size:22px}
+  .send{grid-template-columns:1fr 1fr}
+  .piece{margin-top:30px}
+  .reviews, .coll, .duo{padding-block:88px}
+  .rev{padding:30px 28px}
+  .rev p{font-size:23px}
+  .filters{flex-wrap:wrap; overflow:visible; margin:26px 0 0; padding:0}
+  .grid{grid-template-columns:repeat(4, minmax(0,1fr)); gap:48px 24px; margin-top:30px}
+  .card .nm b, .card .nm span{font-size:19px}
+  .card .hk{font-size:16px}
+  .duo-grid{gap:72px}
+  .close{padding-block:96px}
+  .close-grid{grid-template-columns:minmax(0, 1fr) auto; align-items:center; gap:56px}
+  .close-photo{order:2; width:400px}
+  .close-photo figcaption{text-align:center}
+  .foot ul{grid-template-columns:repeat(3, auto); justify-content:start; gap:0 34px}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .ink{animation:none}
+  .stage img{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="sr" href="#design">Skip to the custom designer</a>
+
+<header class="wrap top" id="top">
+  <a class="mark" href="#top" aria-label="Bijoux by Lissa, home">Bijoux by Lissa</a>
+  <nav class="nav" aria-label="Main">
+    <a href="#design">Custom</a>
+    <a href="#collection">Collection</a>
+    <a href="#bridal">Bridal</a>
+    <a href="mailto:bijouxbylissa20@protonmail.com">Email Lissa</a>
+    <a class="nav-cta" href="sms:+18474526382">Text Lissa</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero wrap">
+  <div class="hero-grid">
+    <div class="hero-photo">
+      <img class="disc" id="heroImg" alt="" width="1000" height="1000">
+      <p class="tag" id="priceTag" hidden></p>
+      <button class="teaser" id="teaser" type="button" hidden></button>
+    </div>
+    <div class="hero-copy">
+      <h1><span>Sit Down With Me.</span> <span>Let's Make Yours.</span></h1>
+      <p class="sub">I'm Lissa. <span class="hide-phone">For 16 years I've been making earrings, necklaces and bracelets by hand with crystal from Austria and glass from the Czech Republic. </span>Find a piece you love, and I'll make it in your color, your length and your metal.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#design">Start A Custom Piece</a>
+        <a class="btn btn-line" href="#collection">Shop The Collection</a>
+      </div>
+      <ul class="proof">
+        <li style="--c:#3E9DB8">5.0 stars on Etsy (10 reviews)</li>
+        <li style="--c:#C9A24B">Designing since 2010</li>
+        <li style="--c:#B5466B">Made by hand in Indianapolis</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="hello" id="hello">
+  <div class="wrap hello-grid">
+    <figure class="polaroid" style="margin-block:0">
+      <div class="slot">A photo of Lissa at her bench goes here.</div>
+      <figcaption class="sig">Lissa</figcaption>
+    </figure>
+    <div>
+      <h2>Hello There. I'm Lissa.</h2>
+      <p class="body">I've been designing jewelry since 2010. It started with pieces for family, friends and anyone who wanted something special, and in 2020 it became Bijoux by Lissa. I make what I love to wear myself: Czech glass, crystal from Austria, crystal-core pearls, cat's eye beads, and chains in gold, silver, rose gold and gunmetal. Every piece is made by my hands, one at a time, here in Indianapolis. If you need a different color or size, just ask. I'll do my best to make it happen.</p>
+    </div>
+    <blockquote class="quote" style="--c:#C9A24B">
+      <div class="stars" role="img" aria-label="5 out of 5 on Etsy"><i></i><i></i><i></i><i></i><i></i></div>
+      <p>"So beautiful! These sparkly earrings are perfect for the wedding this weekend!"</p>
+      <footer>Brenda, 5 out of 5 on Etsy</footer>
+    </blockquote>
+  </div>
+</section>
+
+<section class="design" id="design">
+  <div class="wrap">
+    <div class="design-head">
+      <h2>Make It Yours In Three Steps</h2>
+      <p class="ears"><b>Sensitive ears? Ask for stainless steel ear hooks. Just add a note.</b> Most of my chains and findings are nickel-free and lead-free.</p>
+    </div>
+
+    <div class="step" id="step1">
+      <div class="step-h"><span class="num">1</span><h3>Pick a piece you love.</h3></div>
+      <div class="tray" id="tray" role="group" aria-label="Pick a design"></div>
+      <p class="tray-more">Or bring any piece from <a class="link" href="#collection">the collection</a> to the table.</p>
+    </div>
+
+    <div class="step" id="step2">
+      <div class="step-h"><span class="num">2</span><h3>Tell me your color, your length and your metal: gold, silver, rose gold or gunmetal.</h3></div>
+      <div class="bench">
+          <div class="stage" id="stage">
+            <img id="stageA" alt="" class="show"><img id="stageB" alt="">
+            <div class="stage-cap" id="stageCap" aria-live="polite"></div>
+          </div>
+          <div class="ticket" id="ticket" aria-label="Your order ticket">
+            <div class="ticket-top"><span class="mark">Bijoux by Lissa</span><span>Order ticket</span></div>
+            <p class="dear">Lissa, I'd like...</p>
+            <div id="rows"></div>
+            <div class="ticket-foot">
+              <p class="price" id="tPrice"></p>
+              <p class="fine" id="tFine"></p>
+              <div class="step-h" style="margin-top:20px"><span class="num" style="border-color:var(--ink)">3</span><h3>I make it by hand and send it to you.</h3></div>
+              <div class="send">
+                <a class="btn btn-ink" id="sendSms" href="sms:+18474526382">Text This To Lissa</a>
+                <a class="btn btn-paperline" id="sendMail" href="mailto:bijouxbylissa20@protonmail.com">Email Lissa</a>
+              </div>
+              <p class="step3-note">Your phone opens a text to me with this ticket already written. You press send. Nothing is paid here.</p>
+            </div>
+          </div>
+          <div class="piece" id="pieceDesk"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="stars" role="img" aria-label="5 out of 5 stars"><i></i><i></i><i></i><i></i><i></i></div>
+    <h2>5 out of 5 on Etsy</h2>
+    <div class="rev-grid">
+      <blockquote class="rev" style="margin:0; --c:#8B8F98"><p>"I love this bracelet. I don't have very much gray jewelry and this will go with so many things! I recommend this shop!"</p><footer>Myrletta</footer></blockquote>
+      <blockquote class="rev" style="margin:0; --c:#C9A24B"><p>"Highest quality and beauty, fast shipping"</p><footer>Angela</footer></blockquote>
+      <blockquote class="rev" style="margin:0; --c:#B5466B"><p>"Beautiful earrings; I'm so pleased!"</p><footer>Carolyn</footer></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="coll" id="collection">
+  <div class="wrap">
+    <h2>Shop The Collection</h2>
+    <p class="lead">Start with where you're wearing it.</p>
+    <div class="filters" id="filters" role="group" aria-label="Shop by occasion"></div>
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden>Nothing listed here yet. Message me. I probably have it.</p>
+  </div>
+</section>
+
+<section class="duo">
+  <div class="wrap duo-grid">
+    <div id="bridal">
+      <div class="pair" id="bridalPics"></div>
+      <h2>Dressing The Whole Bridal Party?</h2>
+      <p class="body">Send me your wedding colors and your date. Every woman can choose her own metal, and everything still matches.</p>
+      <a class="btn" id="bridalBtn" href="sms:+18474526382">Plan My Bridal Party</a>
+      <p class="confirms"><span class="confirm">Lissa to confirm: how much notice she needs</span><span class="confirm">Lissa to confirm: bridal party pricing</span><span class="confirm">Lissa to confirm: gift packaging</span></p>
+    </div>
+    <div id="diffusing">
+      <div class="pair" id="diffPics"></div>
+      <h2>Jewelry That Carries Your Favorite Scent</h2>
+      <p class="body">Put a drop of your favorite essential oil on the lava stone beads. Let it soak in for about ten minutes. Then wear it as usual. The scent stays with you for hours.</p>
+      <p class="line">Choose from 14 lava stone colors.</p>
+      <button class="btn btn-line" id="diffBtn" type="button">Start A Custom Piece</button>
+    </div>
+  </div>
+</section>
+
+<section class="close" id="contact">
+  <div class="wrap close-grid">
+    <figure class="close-photo" id="closeFig" hidden>
+      <img id="closeImg" alt="" width="1000" height="1000" loading="lazy">
+      <figcaption id="closeCap"></figcaption>
+    </figure>
+    <div>
+      <h2>Don't see your shade? Message me. I probably have it.</h2>
+      <div class="hero-cta">
+        <a class="btn" href="sms:+18474526382">Text Lissa</a>
+        <a class="btn btn-line" href="mailto:bijouxbylissa20@protonmail.com">Email Lissa</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="mark">Bijoux by Lissa</span>
+    <p>Your personal designer for fashion &amp; bridal jewelry.</p>
+    <ul>
+      <li>Bijoux by Lissa, LLC, Indianapolis, Indiana</li>
+      <li><a href="tel:+18474526382">847-452-6382</a></li>
+      <li><a href="mailto:bijouxbylissa20@protonmail.com">bijouxbylissa20@protonmail.com</a></li>
+      <li>Instagram and Facebook @bijouxbylissa</li>
+      <li>Also on Etsy: <a href="https://bijouxbylissa.etsy.com" target="_blank" rel="noopener" style="margin-left:6px">bijouxbylissa.etsy.com</a></li>
+    </ul>
+    <p class="tiny">Concept mockup made for Melissa by 2 Guys and a Genie. Photos and prices are from her Etsy shop. The script name stands in for her logo and is not final.</p>
+  </div>
+</footer>
+
+<div class="bar" id="bar">
+  <a class="btn btn-line dflt" href="sms:+18474526382">Text Lissa</a>
+  <a class="btn dflt" href="#design">Start A Custom Piece</a>
+  <span class="mini">
+    <img class="thumb" id="barThumb" alt="">
+    <button class="what" id="barWhat" type="button" aria-label="See your order ticket"><b id="barName"></b><span id="barLine"></span></button>
+    <a class="btn" id="barSend" href="sms:+18474526382">Text Lissa</a>
+  </span>
+</div>
+
+<script src="/melissad/products.js"></script>
+<script>
+(function(){
+"use strict";
+var P = (window.LISSA_PRODUCTS || []).slice();
+var byId = {}; P.forEach(function(p){ byId[String(p.id)] = p; });
+var PHONE = "+18474526382", EMAIL = "bijouxbylissa20@protonmail.com";
+var $ = function(s, r){ return (r || document).querySelector(s); };
+function el(tag, cls, html){ var e = document.createElement(tag); if(cls) e.className = cls; if(html != null) e.innerHTML = html; return e; }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function money(n){ return "$" + (Math.round(n) === n ? n : Number(n).toFixed(2)); }
+function img(id, n){ var p = byId[id]; if(!p || !p.photos || !p.photos.length) return ""; return p.photos[n - 1] || p.photos[0]; }
+function text(p){ return [p.title, p.origTitle, p.desc, p.origDesc].filter(Boolean).join("\n"); }
+function says(p, words){ var t = text(p).toLowerCase(); return words.some(function(w){ return t.indexOf(String(w).toLowerCase()) > -1; }); }
+function list(s){ return s.split(/\s*,\s*|\s+or\s+/).map(function(x){ return x.trim().replace(/[.!]$/, ""); }).filter(Boolean); }
+function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+/* What each of her photos really shows. Checked by eye against the photos, one by one. */
+var SHOTS = [
+ {id:"4459446629", n:1, metal:"Copper", color:"Crystal Shimmer"},
+ {id:"4442463967", n:1, metal:"Gold", color:"Vitrail Medium"},
+ {id:"1276504788", n:1, metal:"Silver", color:"Vitrail Light", also:["Light Vitrail"]},
+ {id:"1157755443", n:1, metal:"Gunmetal", color:"Bermuda Blue"},
+ {id:"4459238483", n:1, metal:"Rose Gold", color:"Indigo"},
+ {id:"1251878503", n:1, metal:"Gold", color:"Siam"},
+ {id:"1153943408", n:1, metal:"Gunmetal", color:"Amethyst"},
+ {id:"1167084483", n:1, metal:"Silver", color:"Rose"},
+ {id:"1411838692", n:2, metal:"Silver", color:"Jet", show:"Jet black ball"},
+ {id:"1411838692", n:5, metal:"Gold", color:"Jet", show:"Jet black ball"},
+ {id:"1003039820", n:5, metal:"Silver", color:"Clear Crystal", also:["crystal rhinestone ball"], show:"Clear crystal ball"},
+ {id:"1003039820", n:2, metal:"Gold", color:"Clear Crystal", also:["crystal rhinestone ball"], show:"Clear crystal ball"},
+ {id:"1012840912", n:5, metal:"Silver", color:"Black", show:"Black cat's eye"},
+ {id:"1012840912", n:4, metal:"Silver", color:"Dark Pink", show:"Dark Pink cat's eye"},
+ {id:"1012840912", n:6, metal:"Silver", color:"Pink", show:"Pink cat's eye"},
+ {id:"4453807081", n:1, metal:"Silver", color:null, group:true},
+ {id:"1429981484", n:1, metal:"Rose Gold", color:"March"},
+ {id:"1429981484", n:3, metal:"Gold", color:"March"},
+ {id:"4463221457", n:1, metal:"Gold", color:null},
+ {id:"792557119", n:1, metal:"Rose Gold", color:null},
+ {id:"4462352006", n:1, metal:"Silver", color:"Heliotrope"},
+ {id:"4462352006", n:2, metal:"Gold", color:"Paradise Shine"},
+ {id:"1094764736", n:3, metal:"Silver", color:null},
+ {id:"1094764736", n:4, metal:"Gold", color:null},
+ {id:"1094764736", n:5, metal:"Rose Gold", color:null},
+ {id:"788008058", n:4, metal:"Gold", color:null},
+ {id:"788008058", n:1, metal:"Silver", color:null, group:true},
+ {id:"788008058", n:1, metal:"Gunmetal", color:null, group:true},
+ {id:"1357649537", n:1, metal:"Gold", color:null},
+ {id:"1357649537", n:3, metal:"Silver", color:null},
+ {id:"1110608024", n:2, metal:"Rose Gold", color:null},
+ {id:"1110608024", n:1, metal:"Gold", color:null, group:true},
+ {id:"1110608024", n:1, metal:"Silver", color:null, group:true},
+ {id:"1378343744", n:1, metal:"Silver", color:"January"}
+];
+/* Her own color charts, cropped into swatches. [x, y] is the centre of each sample in the 1000px photo. */
+var CHARTS = {
+ hearts:{id:"4462352006", n:3, r:132, pts:{"Silver Night":[120,412],"Vitrail Light":[362,412],"Heliotrope":[618,420],"Paradise Shine":[866,414],"Bermuda Blue":[206,660],"Crystal Shimmer":[500,650],"Vitrail Medium":[786,668]}},
+ lava:{id:"788008058", n:2, r:104, pts:{"1":[80,258],"2":[292,252],"3":[512,258],"4":[724,268],"5":[912,292],"6":[185,420],"7":[404,426],"8":[631,444],"9":[816,456],"10":[272,608],"11":[486,608],"12":[715,614],"13":[380,797],"14":[621,791]}},
+ cats:{id:"1012840912", n:2, r:124, pts:{"Dark Pink":[284,595],"Black":[515,542],"Pink":[738,526]}}
+};
+var DOTS = {"Indigo":"#2B3F8C","Siam":"#C01826","Amethyst":"#7B4A9E","Rose":"#E7A3BF","Jet":"#16151A","Clear Crystal":"#F4F6F8","March":"#7EC3E6"};
+var METAL = {"Gold":["#F3DFA2","#C9A24B","#8C6B22"],"Silver":["#FFFFFF","#C9CCD1","#878A91"],"Rose Gold":["#F6D3C4","#D29A85","#9A5F4C"],"Gunmetal":["#9A9BA3","#55565C","#2A2A2F"],"Copper":["#F0B38F","#B4683F","#7A3F21"],"Rhodium":["#E6E8EB","#AEB3B8","#6E7378"]};
+var MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+var FAMILIES = [
+ {key:"hammered", name:"Hammered Circle Earrings", ids:["1157755443","4442463967","1276504788","4459446629"], colorWord:"Crystal"},
+ {key:"ombre", name:"Ombré Heart Earrings", ids:["4459238483","1251878503","1153943408","1167084483"], colorWord:"Hearts"},
+ {key:"twist", name:"Twist Earrings", ids:["1003039820","1411838692","1012840912"], colorWord:"Stone"},
+ {key:"hearts", ids:["4462352006"], colorWord:"Heart color"},
+ {key:"birthstone", name:"Birthstone Hoops", ids:["4453807081","1429981484"], colorWord:"Birth month"},
+ {key:"pearlbar", name:"Pearl Bar Necklace", ids:["4463221457","792557119"], colorWord:"Pearls"},
+ {key:"wrap", ids:["1094764736"], colorWord:"Lava stone"},
+ {key:"diffhearts", ids:["788008058"], colorWord:"Lava stone"}
+];
+FAMILIES.forEach(function(f){ f.ids = f.ids.filter(function(id){ return byId[id]; }); });
+FAMILIES = FAMILIES.filter(function(f){ return f.ids.length; });
+
+function swatchStyle(chart, key, size){
+  var c = CHARTS[chart]; if(!c || !c.pts[key]) return "";
+  var src = img(c.id, c.n); if(!src) return "";
+  var k = size / c.r, x = c.pts[key][0] - c.r / 2, y = c.pts[key][1] - c.r / 2;
+  return "background-image:url('" + src + "');background-size:" + (1000 * k).toFixed(1) + "px;background-position:" + (-x * k).toFixed(1) + "px " + (-y * k).toFixed(1) + "px";
+}
+function metalStyle(m){ var g = METAL[m]; return g ? "background:radial-gradient(circle at 32% 28%," + g[0] + "," + g[1] + " 55%," + g[2] + ")" : "background:#8d8a93"; }
+function colorSw(label){
+  if(CHARTS.hearts.pts[label]) return swatchStyle("hearts", label, 34);
+  if(DOTS[label]) return "background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.75)," + DOTS[label] + " 42%)";
+  return "";
+}
+
+/* ---------- read the options out of each listing's own text ---------- */
+function quoteMetals(p){
+  var out = [];
+  (p.desc || "").split(/\n|(?<=[.?!])\s/).forEach(function(s, i, arr){
+    if(/price quote/i.test(s) || (/^\W*(Prefer|Would you like)/i.test(s) && /price quote/i.test(arr[i + 1] || ""))){
+      (s.match(/rose gold|gunmetal|silver|gold|copper/gi) || []).forEach(function(m){
+        m = m.toLowerCase().replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+        if(out.indexOf(m) < 0) out.push(m);
+      });
+    }
+  });
+  return out;
+}
+function sizeOf(p){
+  var t = p.desc || "", m, o;
+  if((m = t.match(/length[^\n]*?(\d{2}) to (\d{2}) inches/i))){
+    var shown = (t.match(/in the photos is around (\d{2}) inches/i) || [])[1];
+    o = []; for(var i = +m[1]; i <= +m[2]; i++) o.push({label:i + " inches", small:String(i) === shown ? "in my photos" : ""});
+    return {label:"Length", opts:o.concat([{label:"Another length", ask:true}])};
+  }
+  if((m = t.match(/(\d{2})mm or (\d{2})mm/))){
+    var sh = (t.match(/the (\d{2})mm are shown/i) || [])[1];
+    return {label:"Hoop size", opts:[m[1], m[2]].map(function(x){ return {label:x + "mm", small:x === sh ? "in my photos" : ""}; }).concat([{label:"Not sure", ask:true}])};
+  }
+  if((m = t.match(/(\d{2})mm in diameter/))){
+    o = [{label:m[1] + "mm", small:"as listed"}];
+    var sm = t.match(/smaller, such as (\d{2})mm/i);
+    o.push(sm ? {label:sm[1] + "mm", small:"on request"} : {label:"Another size", ask:true});
+    return {label:"Hoop size", opts:o};
+  }
+  if(/2\.25 inches in diameter/.test(t) && /2 inches in diameter/.test(t))
+    return {label:"Fit", opts:[{label:"Regular", small:"2 inches across"}, {label:"Looser bangle fit", small:"2.25 inches across"}, {label:"Not sure", ask:true}]};
+  if((m = t.match(/fits wrists from (\d) to (\d) inches/i)))
+    return {label:"Fit", opts:[{label:"Fits a " + m[1] + " to " + m[2] + " inch wrist", small:"as listed"}, {label:"Bigger", ask:true}]};
+  return {label:p.type === "Necklace" || p.type === "Set" ? "Length" : "Size", opts:[{label:"As shown"}, {label:"Something else", ask:true}]};
+}
+function hookOf(p){
+  if(!(p.type === "Earrings" || p.type === "Set")) return null;
+  var t = p.desc || "", m = t.match(/stainless steel (ear hooks|lever backs|hoop wires)/i);
+  var part = m ? m[1].toLowerCase() : /lever back/i.test(t) ? "lever backs" : /hoop wires|ear wire hoops/i.test(t) ? "hoop wires" : "ear hooks";
+  var onHand = m && !/do not have any on hand/i.test(t);
+  return {label:cap(part), opts:[{label:"Regular", small:"as shown"}, onHand ? {label:"Stainless steel", small:"on request"} : {label:"Stainless steel", small:"I'll ask Lissa", ask:true}]};
+}
+function colorsOf(d){
+  var opts = [], seen = {};
+  function add(o){ if(!seen[o.label]){ seen[o.label] = o; opts.push(o); } else { o.ids.forEach(function(i){ if(seen[o.label].ids.indexOf(i) < 0) seen[o.label].ids.push(i); }); } }
+  d.ps.forEach(function(p){
+    var t = p.desc || "", m;
+    if(/birth month/i.test(t)){ MONTHS.forEach(function(mo){ add({label:mo, ids:[p.id], kind:"month"}); }); return; }
+    if(says(p, ["Birthstone"]) && (m = MONTHS.filter(function(mo){ return says(p, [mo + " Birthstone"]); })[0])){ add({label:m, ids:[p.id], kind:"month"}); return; }
+    if((m = t.match(/Choose your [a-z' ]*color:\s*([^\n]+)/i))){ list(m[1]).forEach(function(c){ add({label:c, ids:[p.id], sw:colorSw(c)}); }); return; }
+    if((m = t.match(/Choose ([A-Z][^\n]*?) beads/))){ list(m[1]).forEach(function(c){ add({label:c, show:c + " cat's eye", ids:[p.id], sw:swatchStyle("cats", c, 34)}); }); return; }
+    if(p.diffusing){
+      var sure = /any color lava stone/i.test(t);
+      for(var i = 1; i <= 14; i++) add({label:"Lava color No. " + i, short:"No. " + i, ids:[p.id], sw:swatchStyle("lava", String(i), 34), confirm:!sure, kind:"lava"});
+      return;
+    }
+    var mine = SHOTS.filter(function(s){ return s.id === p.id && s.color; });
+    if(mine.length){ mine.forEach(function(s){ if(says(p, [s.color].concat(s.also || []))) add({label:s.color, show:s.show, ids:[p.id], sw:colorSw(s.color)}); }); if(opts.length) return; }
+  });
+  if(!opts.length || opts.some(function(o){ return o.kind === "lava"; }))
+    opts.unshift({label:"As shown", asShown:true, ids:d.ps.map(function(p){ return p.id; })});
+  opts.push({label:"Another color", ask:true, ids:[]});
+  return opts;
+}
+function buildDesign(fam){
+  var ps = fam.ids.map(function(id){ return byId[id]; });
+  var d = {key:fam.key, ids:fam.ids, ps:ps, name:fam.name || ps[0].name, colorWord:fam.colorWord || "Color"};
+  var metals = [], seen = {};
+  ps.forEach(function(p){ (p.metals || []).forEach(function(m){ if(!seen[m]){ seen[m] = {label:m, ids:[]}; metals.push(seen[m]); } seen[m].ids.push(p.id); }); });
+  ps.forEach(function(p){ quoteMetals(p).forEach(function(m){ if(!seen[m]){ seen[m] = {label:m, ids:[], quote:true, small:"price quote"}; metals.push(seen[m]); } }); });
+  if(!metals.some(function(m){ return m.quote; })) metals.push({label:"Another metal", ask:true, ids:[]});
+  d.metals = metals;
+  d.colors = colorsOf(d);
+  if(!fam.colorWord && d.colors.some(function(c){ return c.kind === "month"; })) d.colorWord = "Birth month";
+  d.size = null; ps.some(function(p){ var s = sizeOf(p); if(s.opts.length > 2 || !d.size) d.size = s; return s.opts.length > 2; });
+  d.hookBy = {}; ps.forEach(function(p){ d.hookBy[p.id] = hookOf(p); });
+  var prices = ps.map(function(p){ return p.price; });
+  d.lo = Math.min.apply(null, prices); d.hi = Math.max.apply(null, prices);
+  d.chart = d.colors.some(function(c){ return c.kind === "lava"; }) ? "lava" : d.key === "hearts" ? "hearts" : null;
+  return d;
+}
+var designs = {};
+FAMILIES.forEach(function(f){ designs[f.key] = buildDesign(f); });
+function designFor(id){
+  var f = FAMILIES.filter(function(f){ return f.ids.indexOf(id) > -1; })[0];
+  if(f) return designs[f.key];
+  if(!designs["p" + id]) designs["p" + id] = buildDesign({key:"p" + id, ids:[id]});
+  return designs["p" + id];
+}
+
+/* ---------- state ---------- */
+var S = {d:null, metal:null, color:null, size:null, hook:null, shade:"", open:null, touched:false};
+function pickShot(d, metal, color){
+  var ids = d.ids, cl = color && !color.asShown && !color.ask ? color.label : null, s;
+  s = SHOTS.filter(function(s){ return ids.indexOf(s.id) > -1 && s.metal === (metal && metal.label) && (s.color || null) === cl; })[0];
+  if(s) return {s:s, exact:!(color && color.ask), group:!!s.group};
+  if(cl){ s = SHOTS.filter(function(s){ return ids.indexOf(s.id) > -1 && s.color === cl; })[0]; if(s) return {s:s, exact:false}; }
+  s = SHOTS.filter(function(s){ return ids.indexOf(s.id) > -1 && s.metal === (metal && metal.label); })[0];
+  if(s) return {s:s, exact:false};
+  s = SHOTS.filter(function(s){ return ids.indexOf(s.id) > -1; })[0];
+  if(s) return {s:s, exact:false};
+  return {s:{id:ids[0], n:1, metal:(byId[ids[0]].metals || [])[0] || null, color:null}, exact:d.ps[0].metals.length < 2 && !!metal && !metal.ask && !metal.quote && !cl && !(color && color.ask), plain:true};
+}
+function load(d, fromId, quiet){
+  S.d = d; S.shade = "";
+  var want = fromId || d.ids[0];
+  var s0 = SHOTS.filter(function(s){ return s.id === want && !s.group; })[0] || SHOTS.filter(function(s){ return s.id === want; })[0];
+  var p0 = byId[fromId || (s0 && s0.id) || d.ids[0]];
+  var m0 = s0 ? s0.metal : (p0.metals || [])[0];
+  S.metal = d.metals.filter(function(m){ return m.label === m0; })[0] || d.metals[0];
+  S.color = s0 && s0.color ? d.colors.filter(function(c){ return c.label === s0.color; })[0] || null : d.colors.filter(function(c){ return c.asShown; })[0] || null;
+  var real = d.colors.filter(function(c){ return !c.ask; });
+  if(!S.color && real.length === 1) S.color = real[0];
+  S.size = d.size.opts.filter(function(o){ return o.small === "in my photos" || o.small === "as listed" || o.label === "As shown" || o.label === "Regular"; })[0] || null;
+  S.hook = null; fixHook();
+  S.open = firstOpen(0);
+  if(!quiet) S.touched = true;
+  render(true);
+}
+function hookNow(){ return S.d.hookBy[match().p.id] || null; }
+function fixHook(){
+  var h = hookNow();
+  if(!h){ S.hook = null; return; }
+  if(h.opts.indexOf(S.hook) < 0) S.hook = h.opts.filter(function(o){ return S.hook && o.label === S.hook.label; })[0] || h.opts[0];
+}
+function rowDefs(){
+  var d = S.d, r = [], hk = hookNow();
+  r.push({key:"metal", label:"Metal", opts:d.metals});
+  r.push({key:"color", label:d.colorWord, opts:d.colors});
+  r.push({key:"size", label:d.size.label, opts:d.size.opts});
+  if(hk) r.push({key:"hook", label:hk.label, opts:hk.opts});
+  return r;
+}
+function firstOpen(from){
+  var r = rowDefs();
+  for(var i = from; i < r.length; i++) if(r[i].opts.filter(function(o){ return !o.ask || r[i].key === "hook"; }).length > 1 || (r[i].key !== "metal" && !S[r[i].key])) return r[i].key;
+  return null;
+}
+function valText(key){
+  var v = S[key]; if(!v) return "";
+  var t = v.show || v.label;
+  if(v.ask) t = key === "hook" ? "Stainless steel, if you can" : key === "color" ? (S.shade ? S.shade : "Another color") : v.label + ", ask me";
+  else if(key === "metal" && v.quote) t = v.label + ", send me a quote";
+  else if(key === "hook" && v.label === "Stainless steel") t = "Stainless steel, on request";
+  else if(v.small && key === "size" && /across/.test(v.small)) t = v.label + ", " + v.small;
+  if(key === "color" && S.shade && !v.ask) t += ", " + S.shade;
+  return t;
+}
+function match(){
+  var d = S.d, k = pickShot(d, S.metal, S.color), kp = byId[k.s.id], c = S.color, lp = null;
+  var mOk = !!S.metal && !S.metal.ask && !S.metal.quote, cOk = !c || !c.ask;
+  function fits(p){ return (p.metals || []).indexOf(S.metal.label) > -1 && (!c || c.asShown || (c.ids.indexOf(p.id) > -1 && !c.confirm)); }
+  if(mOk && cOk) lp = (d.ps.indexOf(kp) > -1 && fits(kp)) ? kp : d.ps.filter(fits)[0] || null;
+  return {k:k, p:lp || kp, listed:!!lp, exact:k.exact && !!lp, group:!!k.group};
+}
+function anyAsk(){ return ["metal", "color", "size", "hook"].some(function(key){ return S[key] && (S[key].ask || S[key].quote || S[key].confirm); }); }
+function note(){
+  var d = S.d, m = match(), L = [];
+  L.push("Lissa, I'd like the " + d.name + (m.listed ? "." : ", made for me."));
+  rowDefs().forEach(function(r){ L.push(r.label + ": " + (valText(r.key) || "help me choose")); });
+  L.push((m.listed ? "Your listing: " : "Closest listing: ") + m.p.name + ", " + money(m.p.price) + " https://www.etsy.com/listing/" + m.p.id);
+  L.push("My name: ");
+  return L.join("\n");
+}
+function smsHref(body){ return "sms:" + PHONE + "?&body=" + encodeURIComponent(body); }
+function mailHref(subject, body){ return "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body); }
+
+/* ---------- render ---------- */
+var stageA = $("#stageA"), stageB = $("#stageB"), front = stageA, lastSrc = "";
+function setStage(src, alt){
+  if(!src || src === lastSrc) return; lastSrc = src;
+  var back = front === stageA ? stageB : stageA, old = front;
+  back.onload = function(){ back.classList.add("show"); old.classList.remove("show"); };
+  back.alt = alt; back.src = src; front = back;
+  if(back.complete && back.naturalWidth) back.onload();
+}
+function describe(s){ return [s.metal ? s.metal.toLowerCase() : "", s.color ? (s.color === "March" ? "aquamarine" : s.color) : ""].filter(Boolean).join(" with "); }
+function render(fresh, wroteKey){
+  fixHook();
+  var d = S.d, m = match(), rows = rowDefs();
+  /* tray */
+  [].forEach.call(document.querySelectorAll(".tile"), function(t){ t.setAttribute("aria-pressed", t.dataset.key === d.key ? "true" : "false"); });
+  /* stage */
+  var chartUp = S.open === "color" && d.chart, capEl = $("#stageCap"), c;
+  if(chartUp){
+    c = CHARTS[d.chart]; setStage(img(c.id, c.n), "Lissa's own color chart");
+    capEl.innerHTML = '<span class="chip">My color chart. Pick one on the ticket.</span>';
+  } else {
+    setStage(img(m.k.s.id, m.k.s.n), m.p.name);
+    var accent = S.color && DOTS[S.color.label] ? DOTS[S.color.label] : "#3E9DB8";
+    if(m.exact && m.group) capEl.innerHTML = '<span class="chip">My photo shows a few together.</span>';
+    else if(m.exact) capEl.innerHTML = '<span class="chip">' + (m.k.plain ? "My photo of this piece." : "My photo of this one.") + '</span>';
+    else capEl.innerHTML = '<span class="chip make" style="--c:' + accent + '">I\'ll make this one for you</span>' + (m.k.s.group ? '<span class="chip">Photo shows a few together</span>' : describe(m.k.s) ? '<span class="chip">Photo shows ' + esc(describe(m.k.s)) + '</span>' : '<span class="chip">Photo shows the design</span>');
+  }
+  /* ticket rows */
+  var box = $("#rows"); box.innerHTML = "";
+  var first = el("div", "row fixed");
+  first.innerHTML = '<div class="row-h"><span class="k">Piece</span><span class="v"><span class="' + (fresh ? "ink" : "") + '">' + esc(d.name) + '</span></span><span class="e"></span></div>';
+  box.appendChild(first);
+  rows.forEach(function(r){
+    var row = el("div", "row" + (S.open === r.key ? " open" : "")), v = valText(r.key);
+    var h = el("button", "row-h"); h.type = "button"; h.setAttribute("aria-expanded", S.open === r.key ? "true" : "false");
+    h.innerHTML = '<span class="k">' + esc(r.label) + '</span><span class="v' + (v ? "" : " blank") + '"><span class="' + ((fresh || wroteKey === r.key) && v ? "ink" : "") + '">' + esc(v || "Tap to choose") + '</span></span><span class="e">Change</span>';
+    h.onclick = function(){ S.open = S.open === r.key ? null : r.key; render(); };
+    row.appendChild(h);
+    var o = el("div", "opts"), g = el("div", r.opts.some(function(x){ return x.kind === "month"; }) ? "months" : r.opts.some(function(x){ return x.kind === "lava"; }) ? "lava" : "opt-grid");
+    r.opts.forEach(function(opt){
+      var b = el("button", "opt"); b.type = "button"; b.setAttribute("aria-pressed", S[r.key] === opt ? "true" : "false");
+      var sw = r.key === "metal" && !opt.ask ? metalStyle(opt.label) : opt.sw || "";
+      if(opt.asShown){ sw = "background-image:url('" + img(m.k.s.id, m.k.s.n) + "');background-size:cover;background-position:center"; }
+      if(!sw) b.classList.add("text");
+      if(opt.ask || opt.asShown) b.classList.add("wide");
+      b.innerHTML = (sw ? '<span class="sw" style="' + sw + '"></span>' : "") + '<span>' + esc(opt.short || opt.show || opt.label) + (opt.small ? '<small>' + esc(opt.small) + '</small>' : "") + '</span>';
+      b.onclick = function(){
+        S[r.key] = opt; S.touched = true;
+        var i = rows.map(function(x){ return x.key; }).indexOf(r.key);
+        S.open = opt.ask && r.key === "color" ? "color" : firstOpen(i + 1);
+        render(false, r.key);
+        if(opt.ask && r.key === "color"){ var inp = $("#shade"); if(inp) inp.focus(); }
+      };
+      g.appendChild(b);
+    });
+    o.appendChild(g);
+    if(r.key === "color"){
+      var sh = el("div", "shade");
+      sh.innerHTML = '<label for="shade">Or tell me your shade</label><input id="shade" type="text" maxlength="60" autocomplete="off" placeholder="dusty blue, to match my dress" value="' + esc(S.shade) + '">';
+      o.appendChild(sh);
+      o.appendChild(el("p", "opt-note", "Don't see your shade? Message me. I probably have it." + (d.colors.some(function(c){ return c.confirm; }) ? ' <span class="confirm">Lissa to confirm lava colors for this piece</span>' : "")));
+    }
+    if(r.key === "hook") o.appendChild(el("p", "opt-note", "Sensitive ears? Ask for stainless steel " + esc(r.label.toLowerCase()) + ". Just add a note."));
+    if(r.key === "metal" && r.opts.some(function(x){ return x.quote; })) o.appendChild(el("p", "opt-note", "This one is listed in " + esc(r.opts.filter(function(x){ return !x.quote && !x.ask; }).map(function(x){ return x.label.toLowerCase(); }).join(" and ")) + ". For another metal, I'll send you a price quote."));
+    row.appendChild(o); box.appendChild(row);
+  });
+  var inp = $("#shade");
+  if(inp) inp.oninput = function(){ S.shade = inp.value.trim(); S.touched = true; links(); var v = box.querySelector(".row.open .v span"); if(v){ v.textContent = valText("color") || "Tap to choose"; v.parentNode.classList.toggle("blank", !valText("color")); } };
+  /* price lines */
+  var etsy = ' <a class="link" href="' + esc(m.p.etsy) + '" target="_blank" rel="noopener">Buy on Etsy</a>';
+  var loose = !m.listed || anyAsk();
+  $("#tPrice").innerHTML = (m.listed ? esc(m.p.name) + ", " + money(m.p.price) + " as listed." : "I'll make this one for you. Closest one I have listed: " + esc(m.p.name) + ", " + money(m.p.price) + ".") + etsy;
+  $("#tFine").innerHTML = (S.metal && S.metal.quote ? "A different metal is a price quote. " : "") + '<span class="confirm">Lissa to confirm</span>';
+  $("#tFine").hidden = !loose;
+  /* piece notes */
+  var piece = $("#pieceDesk"), pp = m.p;
+  var body = (pp.desc || "").split("\n").filter(function(l){ return !/^IG \+ FB/.test(l); }).join("\n").replace(/https?:\/\/\S+/g, "(the link is on my Etsy listing)").replace(/\n{3,}/g, "\n\n").trim();
+  if(pp.hook && body.indexOf(pp.hook) === 0) body = body.slice(pp.hook.length).trim();
+  if(piece.dataset.id !== pp.id){
+    piece.dataset.id = pp.id;
+    piece.innerHTML = (pp.hook ? '<p class="hook">' + esc(pp.hook) + '</p>' : "") + (body ? '<details><summary>My notes on the ' + esc(pp.name) + '</summary><div class="desc">' + esc(body) + '</div></details>' : "");
+  }
+  links();
+}
+function links(){
+  var d = S.d, m = match(), n = note();
+  $("#sendSms").href = smsHref(n);
+  $("#sendMail").href = mailHref("Custom piece: " + d.name, n);
+  $("#barSend").href = smsHref(n);
+  $("#barThumb").src = img(m.k.s.id, m.k.s.n);
+  $("#barName").textContent = d.name;
+  $("#barLine").textContent = [S.metal && !S.metal.ask ? S.metal.label : "", valText("color") && !(S.color && S.color.asShown) ? valText("color") : "", m.listed ? money(m.p.price) : ""].filter(Boolean).join(", ");
+  $("#bar").classList.toggle("sum", S.touched);
+}
+function toStep2(){ var t = $("#step2"); if(t) t.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"}); }
+
+/* ---------- hero ---------- */
+(function(){
+  var hp = byId["1157755443"] || P[0]; if(!hp) return;
+  var himg = $("#heroImg"); himg.src = hp.photos[1] || hp.photos[0]; himg.alt = hp.name + ", " + money(hp.price);
+  if(!byId["1157755443"]) himg.style.clipPath = "circle(49% at 50% 50%)";
+  var prices = P.map(function(p){ return p.price; });
+  var tag = $("#priceTag"); tag.hidden = false;
+  tag.innerHTML = "Every piece " + money(Math.min.apply(null, prices)) + " to " + money(Math.max.apply(null, prices)) + "<span>" + esc(hp.name) + ", " + money(hp.price) + "</span>";
+  var d = designFor(hp.id), s = SHOTS.filter(function(x){ return x.id === hp.id; })[0];
+  var t = $("#teaser"); t.hidden = false;
+  var lines = [["Piece", hp.name], ["Metal", (hp.metals || [])[0] || ""], [d.colorWord, s && s.color || ""], [d.hookBy[hp.id] ? d.hookBy[hp.id].label : "", d.hookBy[hp.id] ? "Regular" : ""]].filter(function(l){ return l[0] && l[1]; });
+  t.innerHTML = '<span class="mark">Bijoux by Lissa</span><span class="dear" style="display:block">Lissa, I\'d like...</span><dl>' + lines.map(function(l, i){ return '<div><dt>' + esc(l[0]) + '</dt><dd><span class="ink" style="animation-delay:' + (0.5 + i * 0.55) + 's">' + esc(l[1]) + '</span></dd></div>'; }).join("") + '</dl><span class="go">Change anything. It\'s yours.</span>';
+  t.setAttribute("aria-label", "Start a custom piece from the " + hp.name);
+  t.onclick = function(){ load(d, hp.id); toStep2(); };
+})();
+
+/* ---------- tray ---------- */
+(function(){
+  var tray = $("#tray");
+  FAMILIES.forEach(function(f){
+    var d = designs[f.key], s = SHOTS.filter(function(x){ return d.ids.indexOf(x.id) > -1; })[0];
+    var b = el("button", "tile"); b.type = "button"; b.dataset.key = d.key; b.setAttribute("aria-pressed", "false");
+    var nm = d.metals.filter(function(m){ return !m.ask && !m.quote; }).length, nc = d.colors.filter(function(c){ return !c.ask && !c.asShown; }).length;
+    var bits = [d.lo === d.hi ? money(d.lo) : money(d.lo) + " to " + money(d.hi)];
+    var line2 = [nm > 1 ? nm + " metals" : (d.metals[0] && !d.metals[0].ask ? d.metals[0].label.toLowerCase() : ""), nc > 1 ? (d.colors.some(function(c){ return c.kind === "month"; }) ? "any birth month" : nc + " colors") : ""].filter(Boolean).join(", ");
+    b.innerHTML = '<img loading="lazy" src="' + img(d.ids[0], 1) + '" alt="" width="184" height="184"><span><b>' + esc(d.name) + '</b><span>' + bits[0] + '</span>' + (line2 ? '<span>' + esc(line2) + '</span>' : "") + '<span class="on">On the table</span></span>';
+    b.onclick = function(){ load(d); toStep2(); };
+    tray.appendChild(b);
+  });
+})();
+
+/* ---------- collection ---------- */
+var OCC = [["All", null], ["Wedding Guest", ["Wedding Guest"]], ["Bride", ["Bride"]], ["Bridesmaid Gifts", ["Bridesmaid Gift"]], ["Mother Of The Bride", ["Mother Of The Bride"]], ["Date Night", ["Date Night"]], ["Everyday", ["Everyday", "Work"]], ["Birthday And Birthstone Gifts", ["Birthday Gift", "Birthstone"]], ["Diffusing", ["Diffusing"]]];
+var curOcc = 0;
+function inOcc(p, o){ if(!o[1]) return true; var oc = p.occasions || []; return o[1].some(function(x){ return oc.indexOf(x) > -1; }) || (o[0] === "Diffusing" && p.diffusing); }
+function drawFilters(){
+  var f = $("#filters"); f.innerHTML = "";
+  OCC.forEach(function(o, i){
+    var n = P.filter(function(p){ return inOcc(p, o); }).length; if(!n && i) return;
+    var b = el("button", "f"); b.type = "button"; b.textContent = (i ? o[0] : "All " + n); b.setAttribute("aria-pressed", i === curOcc ? "true" : "false");
+    b.onclick = function(){ curOcc = i; drawFilters(); drawGrid(); };
+    f.appendChild(b);
+  });
+}
+function drawGrid(){
+  var g = $("#grid"); g.innerHTML = "";
+  var shown = P.filter(function(p){ return inOcc(p, OCC[curOcc]); });
+  $("#empty").hidden = shown.length > 0;
+  shown.forEach(function(p){
+    var c = el("article", "card");
+    c.innerHTML = '<button class="ph" type="button" aria-label="Bring the ' + esc(p.name) + ' to the table"><img loading="lazy" src="' + esc(p.photos && p.photos[0] || "") + '" alt="' + esc(p.name) + '" width="400" height="400"></button>' +
+      '<div class="nm"><b>' + esc(p.name) + '</b><span>' + money(p.price) + '</span></div>' +
+      (p.hook ? '<p class="hk">' + esc(p.hook) + '</p>' : "") +
+      '<div class="act"><button class="mine" type="button">Make It Mine</button><a class="link etsy" href="' + esc(p.etsy) + '" target="_blank" rel="noopener">Buy on Etsy</a></div>';
+    var go = function(){ load(designFor(String(p.id)), String(p.id)); toStep2(); };
+    $(".ph", c).onclick = go; $(".mine", c).onclick = go;
+    g.appendChild(c);
+  });
+}
+
+/* ---------- small blocks ---------- */
+function pics(sel, arr){ var b = $(sel); arr.forEach(function(a){ var s = img(a[0], a[1]); if(s) b.appendChild(el("span", "", '<img loading="lazy" src="' + s + '" alt="' + esc(byId[a[0]].name) + '" width="400" height="400">')).style.display = "contents"; }); if(!b.children.length) b.hidden = true; }
+pics("#bridalPics", [["4525729639", 1], ["1003039820", 1]]);
+pics("#diffPics", [["1094764736", 1], ["788008058", 2]]);
+(function(){ var cp = byId["1153943408"]; if(!cp || !cp.photos[1]) return; $("#closeImg").src = cp.photos[1]; $("#closeImg").alt = cp.name; $("#closeCap").textContent = cp.name + ", " + money(cp.price); $("#closeFig").hidden = false; })();
+$("#bridalBtn").href = smsHref("Lissa, I'd like help with jewelry for my bridal party.\nWedding date: \nColors: \nHow many pieces: \nGold, silver, rose gold or a mix: \nMy name and phone: ");
+$("#diffBtn").onclick = function(){ var d = designs.diffhearts || designs.wrap; if(d){ load(d); toStep2(); } else location.hash = "#design"; };
+$("#barWhat").onclick = function(){ $("#ticket").scrollIntoView({behavior:"smooth", block:"center"}); };
+
+if(P.length){
+  drawFilters(); drawGrid();
+  load(designs.hammered || designs[FAMILIES[0].key] || designFor(String(P[0].id)), null, true);
+}
+window.__lissa = {S:S, note:note, designs:designs, designFor:designFor, load:load};
+})();
+</script>
+</body>
+</html>
