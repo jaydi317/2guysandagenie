@@ -64,10 +64,20 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 }(window, document, 'ttq');
 </script>
 <!-- TikTok Pixel Code End -->
+<style id="hdr-one-line">
+/* Header look B (Nov 10): logo, name and links on one line, links small and right-justified. On phones the name hides and the logo stays. */
+header.site.one .hwrap{flex-wrap:nowrap;gap:10px}
+header.site.one .brand{font-size:15px;gap:7px;white-space:nowrap}
+header.site.one .brand img{width:34px;height:auto}
+header.site.one nav.top{flex-wrap:nowrap;gap:0 11px;font-size:12px;justify-content:flex-end;white-space:nowrap}
+@media (max-width:760px){header.site.one .brand span{display:none}header.site.one nav.top{gap:0 10px}}
+@media (max-width:440px){header.site.one nav.top{font-size:11px;gap:0 7px}header.site.one .hwrap{padding-left:14px;padding-right:14px}header.site.one .brand img{width:30px}}
+@media (max-width:350px){header.site.one nav.top{font-size:10px;gap:0 5px}header.site.one .hwrap{padding-left:10px;padding-right:10px;gap:6px}header.site.one .brand img{width:26px}}
+</style>
 </head><body>
 <a class="skip" href="#main">Skip to the page</a>
-<header class="site"><div class="hwrap">
-<a class="brand" href="/"><img src="/assets/2g-mark.svg" alt="">2 Guys and a Genie</a>
+<header class="site one"><div class="hwrap">
+<a class="brand" href="/" aria-label="2 Guys and a Genie, home"><img src="/assets/2g-mark.svg" alt=""><span>2 Guys and a Genie</span></a>
 <nav class="top" aria-label="Site">
 <a href="/#stories">Stories</a>
 <a href="/try-tonight/">Try This Tonight</a>
