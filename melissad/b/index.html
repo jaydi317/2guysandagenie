@@ -12,14 +12,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
-@property --accent { syntax: '<color>'; inherits: true; initial-value: #231F3A; }
-@property --tintc { syntax: '<color>'; inherits: true; initial-value: #A99F8E; }
+@property --accent { syntax: '<color>'; inherits: true; initial-value: #0E6984; }
+@property --tintc { syntax: '<color>'; inherits: true; initial-value: #0E6984; }
 
 :root, .retint {
   --wash:  color-mix(in oklab, var(--tintc) 5%,  var(--ground));
   --wash2: color-mix(in oklab, var(--tintc) 13%, var(--ground));
   --soft:  color-mix(in oklab, var(--tintc) 24%, var(--ground));
   --on-ink: color-mix(in oklab, var(--accent) 34%, #ffffff);
+  --deep: color-mix(in oklab, var(--accent) 68%, #0D0C11);
 }
 :root {
   --ground: #F7F6F3;
@@ -27,12 +28,13 @@
   --ink: #231F3A;
   --muted: #5F5B6E;
   --hair: #DCD9D2;
-  --accent: #231F3A;
+  --accent: #0E6984;
+  --stand: #1B1A1D;
   --serif: 'Marcellus', 'Palatino Linotype', Palatino, Georgia, serif;
   --sans: 'Nunito Sans', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
   --script: 'Pinyon Script', 'Snell Roundhand', cursive;
   --gut: 20px;
-  --tintc: #A99F8E;
+  --tintc: #0E6984;
   transition: --accent .8s cubic-bezier(.22,.7,.2,1), --tintc .8s cubic-bezier(.22,.7,.2,1);
 }
 
@@ -60,7 +62,7 @@ button { cursor: pointer; }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .wrap { max-width: 1240px; margin: 0 auto; }
-.proof .wrap, .party__grid, .steps__grid, .diff__grid, .about__grid, .fields, .reviews__list, .foot__grid, .sheet__send, .piece__in { grid-template-columns: minmax(0,1fr); }
+.proof .wrap, .party__grid, .steps__grid, .diff__grid, .about__grid, .reviews__list, .foot__grid, .sheet__send, .piece__in { grid-template-columns: minmax(0,1fr); }
 .piece__send { grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); }
 .party__grid > *, .steps__grid > *, .diff__grid > *, .about__grid > * { min-width: 0; }
 .sec { padding: 60px var(--gut); }
@@ -90,61 +92,75 @@ button { cursor: pointer; }
 .hero__ripple { position: absolute; inset: 0; background: var(--wash2); pointer-events: none; z-index: 0; }
 .hero__in { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0,1fr); padding: 0 var(--gut) 34px; }
 
-.top { display: flex; align-items: center; justify-content: space-between; min-height: 54px; padding-top: 8px; }
-.brand { text-decoration: none; display: flex; flex-direction: column; justify-content: center; min-height: 46px; }
-.brand__name { font: 400 34px/1 var(--script); display: block; padding-top: 4px; white-space: nowrap; }
-.brand__line { display: none; font-size: 14px; color: var(--muted); margin-top: 2px; white-space: nowrap; }
+.top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; padding-top: 8px; }
+.brand { text-decoration: none; display: flex; flex-direction: column; justify-content: center; min-height: 48px; min-width: 0; }
+.brand__name { font: 400 33px/1 var(--script); display: block; padding-top: 4px; white-space: nowrap; }
+.brand__line { display: block; font-size: 13px; line-height: 1.25; color: var(--muted); margin-top: 5px; white-space: nowrap; }
 .top__nav { display: none; }
-.top__range { font-weight: 700; font-size: 15px; white-space: nowrap; }
+.top__range { font-weight: 800; font-size: 15px; white-space: nowrap; margin-top: 13px; }
 
-h1 { font-size: 40px; line-height: 1.04; letter-spacing: -.01em; margin: 6px 0 14px; }
+h1 { font-size: 40px; line-height: 1.04; letter-spacing: -.01em; margin: 16px 0 14px; }
 
-.lead { margin: 0; position: relative; }
-.lead__ph { position: relative; height: 214px; border-radius: 6px 6px 0 0; overflow: hidden; background: #dcdad6; }
+/* the photo runs edge to edge; her black stand does the framing */
+.lead { margin: 0 calc(var(--gut) * -1); position: relative; }
+.lead__ph { position: relative; height: 284px; overflow: hidden; background: #dcdad6; }
 .lead__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; opacity: 0; transform: scale(1.05); transition: opacity .7s ease, transform 1.1s cubic-bezier(.22,.7,.2,1); }
 .lead__img.is-on { opacity: 1; transform: none; }
-.lead__tag { position: absolute; left: 10px; top: 10px; background: var(--accent); color: #fff; font: 700 14px/1.2 var(--sans); padding: 7px 12px; border-radius: 999px; max-width: calc(100% - 20px); }
-.lead__bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--ink); color: var(--ground); padding: 8px 8px 8px 14px; border-radius: 0 0 6px 6px; min-height: 62px; }
-.lead__cap { font: 700 15px/1.25 var(--sans); min-width: 0; }
-.lead__cap b { font-weight: 800; display: block; color: var(--on-ink); }
-.lead__btn { flex: none; display: inline-flex; min-height: 46px; align-items: center; justify-content: center; background: var(--ground); color: var(--ink); border: 0; border-radius: 999px; padding: 0 16px; font: 800 15px/1 var(--sans); white-space: nowrap; }
+.lead__tag { position: absolute; left: 12px; top: 12px; background: var(--accent); color: #fff; font: 700 14px/1.2 var(--sans); padding: 7px 11px; border-radius: 3px; max-width: calc(100% - 24px); }
+.lead__foot { position: relative; z-index: 2; display: flex; align-items: flex-end; justify-content: space-between; gap: 8px; padding: 0 12px; margin-top: -28px; }
+.lead__cap { background: var(--paper); color: var(--ink); font: 700 14px/1.3 var(--sans); padding: 7px 11px; border-radius: 3px; max-width: 178px; min-height: 48px; display: flex; align-items: center; box-shadow: 0 0 0 1px rgba(27,26,29,.14); }
+.lead__cap > span { display: block; }
+.lead__cap b { font-weight: 800; margin-left: 6px; white-space: nowrap; }
+.lead__btn { flex: none; display: inline-flex; min-height: 48px; align-items: center; justify-content: center; background: var(--stand); color: #fff; border: 0; border-radius: 999px; padding: 0 15px; font: 800 15px/1 var(--sans); white-space: nowrap; }
 
-.color { margin-top: 14px; min-width: 0; }
-.color h2 { font-size: 27px; }
-.color__line { margin-top: 6px; }
-.rail { scroll-padding-left: var(--gut); display: flex; gap: 6px; margin: 12px calc(var(--gut) * -1) 0; padding: 6px var(--gut) 4px; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; }
-.rail::-webkit-scrollbar { display: none; }
-.sw { flex: 0 0 76px; scroll-snap-align: start; background: none; border: 0; padding: 0; display: flex; flex-direction: column; align-items: center; gap: 7px; }
-.sw__gem { width: 66px; height: 66px; border-radius: 50%; background-color: #e8e4dc; background-repeat: no-repeat; box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px var(--hair); transition: transform .3s ease, box-shadow .3s ease; }
-.sw__name { font: 600 13px/1.2 var(--sans); text-align: center; min-height: 32px; }
+.color { margin-top: 12px; min-width: 0; }
+.color h2 { font-size: 26px; }
+.color__line { margin-top: 4px; line-height: 1.45; }
+/* all thirteen crystals on one screen: two rows of seven */
+.rail { display: grid; grid-template-columns: repeat(7, 44px); justify-content: space-between; row-gap: 9px; margin-top: 12px; }
+.sw { width: 44px; height: 44px; padding: 0; border: 0; background: none; border-radius: 50%; display: block; }
+.sw__gem { display: block; width: 44px; height: 44px; border-radius: 50%; background-color: #e8e4dc; background-repeat: no-repeat; box-shadow: 0 0 0 1px rgba(27,26,29,.2); transition: box-shadow .25s ease; }
+.sw__name { display: none; font: 600 15px/1.2 var(--sans); text-align: center; min-height: 36px; }
 .sw__name small { font-size: 13px; font-weight: 400; color: var(--muted); }
-.sw[aria-pressed="true"] .sw__gem { transform: scale(1.04); box-shadow: 0 0 0 3px var(--paper), 0 0 0 6px var(--accent); }
+.sw[aria-pressed="true"] .sw__gem { box-shadow: 0 0 0 2.5px var(--wash2), 0 0 0 6px var(--stand); }
 .sw[aria-pressed="true"] .sw__name { font-weight: 800; }
+.sw--ask { display: flex; align-items: center; justify-content: center; text-decoration: none; font: 400 23px/1 var(--serif); color: var(--ink); border: 1.5px dashed var(--ink); }
+.picked { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; margin-top: 3px; }
+.picked__name { font: 400 23px/1.1 var(--serif); }
+.picked__name small { font: 400 15px/1 var(--sans); color: var(--muted); }
 
-.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; margin-top: 6px; }
-.cta__range { display: none; }
-.shade { margin-top: 10px; }
+.intro { margin-top: 30px; display: grid; grid-template-columns: 124px minmax(0,1fr); gap: 16px 14px; align-items: center; }
+.cameo {
+  width: 110px; height: 144px; margin: 7px; border-radius: 50%; background: var(--paper);
+  box-shadow: 0 0 0 1.5px var(--stand), 0 0 0 5px var(--wash2), 0 0 0 6.5px var(--stand);
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  font: 400 14px/1.3 var(--serif); padding: 0 12px; color: var(--ink);
+}
+.intro__text { font-size: 17px; line-height: 1.5; }
+.ears { margin-top: 18px; padding: 12px 14px; background: var(--paper); border-left: 4px solid var(--accent); border-radius: 0 6px 6px 0; font-weight: 600; }
+.intro .ears { grid-column: 1 / -1; margin-top: 0; }
 
+/* the review band takes on a deep version of the picked color */
+.proof { background: var(--deep); color: var(--ground); margin: 28px calc(var(--gut) * -1) 0; padding: 30px var(--gut) 32px; }
+.proof .wrap { display: grid; gap: 20px; }
+.proof__top { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px; }
+.proof__stars { color: var(--on-ink); font-size: 20px; letter-spacing: 3px; }
+.proof__label { font-weight: 700; }
+.proof blockquote { margin: 12px 0 0; font: 400 27px/1.2 var(--serif); text-wrap: balance; }
+.proof cite { display: block; font: 700 17px/1 var(--sans); font-style: normal; margin-top: 14px; }
+.facts { list-style: none; margin: 0; padding: 0; font-size: 16px; line-height: 1.6; font-weight: 600; opacity: .9; }
 
-.matches { margin-top: 30px; min-width: 0; }
-.matches__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; }
-.matches h2 { font-size: 30px; }
-.matches__line { margin-top: 8px; max-width: 34em; }
-.matches__row { scroll-padding-left: var(--gut); display: flex; gap: 12px; margin: 18px calc(var(--gut) * -1) 0; padding: 0 var(--gut) 6px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; }
+.matches { margin-top: 32px; min-width: 0; }
+.matches h2 { font-size: 28px; }
+.matches__row { scroll-padding-left: var(--gut); display: flex; gap: 12px; margin: 16px calc(var(--gut) * -1) 0; padding: 0 var(--gut) 6px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; }
 .matches__row::-webkit-scrollbar { display: none; }
 .matches__row .card { flex: 0 0 236px; scroll-snap-align: start; }
-
-.intro { margin-top: 34px; }
-.intro::after { content: ""; display: block; clear: both; }
-.cameo {
-  float: left; width: 138px; height: 176px; margin: 4px 18px 8px 0; border-radius: 50%;
-  shape-outside: ellipse(50% 50%); background: var(--paper);
-  box-shadow: 0 0 0 1.5px var(--ink), 0 0 0 6px var(--wash2), 0 0 0 7px var(--ink);
-  display: flex; align-items: center; justify-content: center; text-align: center;
-  font: 400 15px/1.3 var(--serif); padding: 0 16px; color: var(--ink);
-}
-.intro__text { font-size: 18px; line-height: 1.55; }
-.ears { clear: both; margin-top: 18px; padding: 14px 16px; background: var(--paper); border-left: 4px solid var(--accent); border-radius: 0 6px 6px 0; font-weight: 600; }
+.after { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 16px; margin-top: 8px; }
+.after .shade { flex-basis: 100%; margin-top: 2px; }
+.after .hero__cta { margin-top: 0; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; margin-top: 6px; }
+.cta__range { display: none; }
+.hero__cta .btn { display: none; }
 
 /* ───────── cards ───────── */
 .card { position: relative; min-width: 0; }
@@ -152,7 +168,9 @@ h1 { font-size: 40px; line-height: 1.04; letter-spacing: -.01em; margin: 6px 0 1
 .card__ph { display: block; aspect-ratio: 1; border-radius: 6px; overflow: hidden; background: #dcdad6; position: relative; }
 .card__ph img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 @media (hover: hover) { .card__open:hover .card__ph img { transform: scale(1.04); } }
-.card__flag { position: absolute; left: 8px; top: 8px; background: var(--accent); color: #fff; font: 700 13px/1.2 var(--sans); padding: 6px 10px; border-radius: 999px; max-width: calc(100% - 16px); }
+.card__flag { position: absolute; left: 8px; top: 8px; background: var(--accent); color: #fff; font: 700 13px/1.2 var(--sans); padding: 6px 9px; border-radius: 3px; max-width: calc(100% - 16px); }
+.card__gem { position: absolute; left: 8px; top: 8px; width: 30px; height: 30px; border-radius: 50%; background-repeat: no-repeat; box-shadow: 0 0 0 2px var(--paper), 0 0 0 3.5px var(--stand); }
+.coll__count .card__gem { position: static; display: inline-block; width: 20px; height: 20px; vertical-align: -4px; margin: 0 5px 0 2px; box-shadow: 0 0 0 1.5px var(--paper), 0 0 0 2.5px var(--stand); }
 .card__name { display: block; font: 700 17px/1.25 var(--sans); margin-top: 10px; }
 .card__meta { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; margin-top: 4px; font-size: 15px; }
 .card__price { font-weight: 800; font-size: 17px; }
@@ -161,17 +179,6 @@ h1 { font-size: 40px; line-height: 1.04; letter-spacing: -.01em; margin: 6px 0 1
 .card__metals { color: var(--muted); font-size: 14px; }
 .card__etsy { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 600; color: var(--muted); text-underline-offset: 3px; }
 .grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 22px 10px; }
-
-/* ───────── proof band ───────── */
-.proof { background: var(--ink); color: var(--ground); }
-.proof .wrap { display: grid; gap: 34px; }
-.proof__stars { color: var(--on-ink); font-size: 22px; letter-spacing: 3px; }
-.proof__label { font-weight: 700; margin-top: 4px; }
-.proof blockquote { margin: 14px 0 0; font: 400 29px/1.2 var(--serif); text-wrap: balance; }
-.proof cite { display: block; font: 700 17px/1 var(--sans); font-style: normal; margin-top: 16px; }
-.facts { list-style: none; margin: 0; padding: 0; }
-.facts li { padding: 14px 0; border-top: 1px solid rgba(247,246,243,.22); font-weight: 600; font-size: 18px; }
-.facts li:last-child { border-bottom: 1px solid rgba(247,246,243,.22); }
 
 /* ───────── doors ───────── */
 .doors__grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 22px 10px; }
@@ -184,7 +191,8 @@ h1 { font-size: 40px; line-height: 1.04; letter-spacing: -.01em; margin: 6px 0 1
 
 /* ───────── party sheet ───────── */
 .party { background: var(--wash2); }
-.party__confirm { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 8px; font-size: 16px; font-weight: 600; }
+.party__confirm { list-style: none; padding: 0; margin: 18px 4px 0; display: grid; gap: 8px; font-size: 16px; font-weight: 600; }
+.party__side { min-width: 0; }
 .party__grid { display: grid; gap: 30px; margin-top: 34px; }
 .step { margin-bottom: 34px; min-width: 0; }
 .step__h { display: flex; gap: 12px; align-items: baseline; margin-bottom: 14px; }
@@ -203,7 +211,7 @@ h1 { font-size: 40px; line-height: 1.04; letter-spacing: -.01em; margin: 6px 0 1
 .design input:checked ~ .design__on { display: block; }
 .designs__more { margin-top: 6px; font-size: 16px; }
 
-.fields { display: grid; gap: 14px; }
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px 10px; }
 .field { display: grid; gap: 6px; min-width: 0; }
 .field > span, .seg__label { font-weight: 700; font-size: 15px; }
 .field input, .field select {
@@ -212,28 +220,45 @@ h1 { font-size: 40px; line-height: 1.04; letter-spacing: -.01em; margin: 6px 0 1
 .field select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%); background-position: calc(100% - 20px) 22px, calc(100% - 14px) 22px; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 36px; }
 .field input:focus, .field select:focus { outline: 3px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
 
-.woman { background: var(--paper); border-radius: 8px; padding: 14px 14px 16px; margin-bottom: 10px; display: grid; gap: 12px; }
-.woman__top { display: grid; grid-template-columns: 30px minmax(0,1fr) 44px; gap: 10px 8px; align-items: end; }
-.woman__top .field--name { grid-column: 2 / 4; }
-.woman__n { font: 400 24px/50px var(--serif); color: var(--accent); }
-.woman__x { width: 44px; height: 50px; border: 0; background: none; font-size: 26px; line-height: 1; color: var(--muted); border-radius: 6px; }
+.listed { font-size: 15px; margin: -4px 0 12px; }
+.woman { background: var(--paper); border-radius: 8px; padding: 12px; margin-bottom: 8px; display: grid; gap: 8px; }
+.woman__row1 { display: grid; grid-template-columns: minmax(0,1fr) 172px; gap: 8px; }
+.woman .field { gap: 5px; }
+.woman .field > span { font-size: 13px; }
+.woman .field input, .woman .field select { min-height: 46px; padding: 8px 10px; font-size: 16px; }
+.woman .field select { font-size: 15px; padding-right: 26px; background-position: calc(100% - 15px) 20px, calc(100% - 9px) 20px; }
+.woman__row2 { display: flex; align-items: center; justify-content: space-between; gap: 6px; flex-wrap: wrap; }
+.metals { display: flex; gap: 2px; border: 0; padding: 0; margin: 0 0 0 -7px; min-width: 0; }
+.mdot { position: relative; width: 44px; height: 48px; display: flex; align-items: center; justify-content: center; }
+.mdot input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.mdot i { width: 30px; height: 30px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(27,26,29,.3); }
+.mdot--ask i { outline: 1.5px dashed var(--muted); outline-offset: 3px; }
+.mdot input:checked + i { outline: 2.5px solid var(--stand); outline-offset: 3px; }
+.mdot input:focus-visible + i { outline: 3px solid var(--accent); outline-offset: 4px; }
+.hookchip { position: relative; flex: none; }
+.hookchip input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.hookchip span { display: flex; align-items: center; min-height: 46px; max-width: 112px; padding: 4px 12px; border-radius: 12px; border: 1.5px solid #B9B5AE; background: var(--paper); font: 700 13px/1.2 var(--sans); }
+.hookchip input:checked + span { background: var(--stand); border-color: var(--stand); color: #fff; }
+.hookchip input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+.woman__row3 { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; margin: -6px 0 -8px; font-size: 15px; }
+.woman__metal b { font-weight: 800; }
+.woman__x { min-height: 44px; padding: 0 2px; border: 0; background: none; font: 600 14px/1 var(--sans); color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
 .seg { border: 0; padding: 0; margin: 0; min-width: 0; }
 .seg__label { padding: 0; margin-bottom: 6px; display: block; }
 .seg__opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg__sub { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 12px 0 6px; font-size: 14px; font-weight: 700; }
 .opt { position: relative; }
 .opt input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
 .opt span { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 13px; border-radius: 999px; border: 1.5px solid #B9B5AE; background: var(--paper); font-weight: 600; font-size: 15px; white-space: nowrap; }
-.opt input:checked + span { background: var(--ink); border-color: var(--ink); color: var(--ground); }
+.opt--ask span { border-style: dashed; border-color: var(--muted); }
+.opt input:checked + span { background: var(--ink); border-color: var(--ink); border-style: solid; color: var(--ground); }
 .opt input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
 .opt .sw-mini { width: 24px; height: 24px; border-radius: 50%; background-repeat: no-repeat; box-shadow: 0 0 0 1.5px var(--paper); margin-left: -5px; }
-.seg__opts--four { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 6px; }
-.seg__opts--four .opt span { display: flex; flex-direction: column; justify-content: center; gap: 5px; min-height: 60px; padding: 6px 2px; border-radius: 10px; font-size: 14px; white-space: normal; text-align: center; line-height: 1.1; }
 a.inl { padding: 11px 0; font-weight: 700; text-underline-offset: 4px; }
 .add { width: 100%; margin-top: 4px; }
 
 .sheet { background: var(--paper); border-radius: 8px; padding: 22px 18px 20px; align-self: start; box-shadow: 0 1px 0 var(--hair), 0 18px 40px -28px rgba(35,31,58,.45); position: relative; }
-.sheet::before { content: ""; position: absolute; left: 18px; right: 18px; top: 0; height: 5px; background: var(--accent); border-radius: 0 0 4px 4px; }
-.sheet h3 { font-size: 27px; margin-top: 6px; }
+.sheet h3 { font-size: 27px; }
 .sheet__design { display: grid; grid-template-columns: 84px minmax(0,1fr); gap: 14px; align-items: center; margin-top: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--hair); }
 .sheet__design img { width: 84px; height: 84px; object-fit: cover; border-radius: 6px; }
 .sheet__design b { display: block; line-height: 1.25; }
@@ -243,6 +268,8 @@ a.inl { padding: 11px 0; font-weight: 700; text-underline-offset: 4px; }
 .sheet dd { margin: 0; }
 .sheet ol { margin: 0; padding: 14px 0 14px 1.4em; border-bottom: 1px solid var(--hair); font-size: 16px; }
 .sheet ol li { padding: 3px 0; }
+.sheet ol .chip-confirm { margin: 0 1px 0 2px; }
+.nb { white-space: nowrap; }
 .sheet__price { padding: 14px 0 4px; font-size: 16px; display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
 .sheet__send { display: grid; gap: 8px; margin-top: 14px; }
 .sheet__fine { font-size: 14px; color: var(--muted); margin-top: 10px; }
@@ -300,11 +327,15 @@ a.inl { padding: 11px 0; font-weight: 700; text-underline-offset: 4px; }
 
 /* ───────── sticky phone bar ───────── */
 .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); gap: 8px; padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px)); background: var(--ground); border-top: 1px solid var(--hair); }
+.bar { grid-template-columns: minmax(0,1fr) minmax(0,1.45fr); }
 .bar .btn { min-height: 46px; padding: 4px 10px; font-size: 16px; }
+.bar.is-party { grid-template-columns: minmax(0,1fr); }
+.bar.is-party #barAlt { display: none; }
 
 /* ───────── piece dialog ───────── */
 dialog.piece { border: 0; padding: 0; width: 100%; max-width: 100%; height: 100%; max-height: 100%; margin: 0; background: var(--ground); color: var(--ink); }
 dialog.piece::backdrop { background: rgba(35,31,58,.55); }
+dialog.piece:focus { outline: none; }
 .piece__in { display: grid; min-height: 100%; }
 .piece__close { position: fixed; right: 12px; top: 12px; z-index: 3; width: 48px; height: 48px; border-radius: 50%; border: 0; background: var(--ink); color: var(--ground); font-size: 26px; line-height: 1; }
 .piece__gallery { background: #dcdad6; }
@@ -317,13 +348,13 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
 .piece__body h2 { font-size: 30px; }
 .piece__price { font-weight: 800; font-size: 20px; margin-top: 6px; }
 .piece__hook { font-size: 19px; line-height: 1.45; margin-top: 12px; }
-.piece__opts { display: grid; gap: 18px; margin-top: 22px; padding: 18px 16px; background: var(--paper); border-radius: 8px; }
+.piece__opts { display: grid; gap: 18px; margin: 22px calc(var(--gut) * -1) 0; padding: 20px var(--gut) 18px; background: var(--paper); }
 .piece__opts h3 { font-size: 24px; }
 .piece__note { font-size: 15px; color: var(--muted); }
 .msg { white-space: pre-wrap; font-size: 16px; line-height: 1.5; background: var(--wash2); border-radius: 6px; padding: 12px 14px; }
-.piece__send { display: grid; gap: 8px; position: sticky; bottom: 0; z-index: 2; background: var(--paper); padding: 10px 0 calc(10px + env(safe-area-inset-bottom, 0px)); box-shadow: 0 -10px 12px -10px rgba(35,31,58,.18); }
+.piece__send { display: grid; gap: 8px; position: sticky; bottom: 0; z-index: 2; background: var(--paper); margin: 0 calc(var(--gut) * -1); padding: 10px var(--gut) calc(10px + env(safe-area-inset-bottom, 0px)); box-shadow: 0 -10px 12px -10px rgba(35,31,58,.22); }
 .piece__send .btn { padding-left: 12px; padding-right: 12px; }
-#optColor { flex-wrap: nowrap; overflow-x: auto; margin: 0 -16px; padding: 3px 16px 6px; scrollbar-width: none; }
+#optColor { flex-wrap: nowrap; overflow-x: auto; margin: 0 calc(var(--gut) * -1); padding: 3px var(--gut) 6px; scrollbar-width: none; }
 #optColor::-webkit-scrollbar { display: none; }
 .piece__alt { display: flex; flex-wrap: wrap; gap: 4px 22px; margin-top: 4px; }
 .piece__desc { margin-top: 26px; }
@@ -342,11 +373,17 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
   h3 { font-size: 26px; }
   .sec { padding: 104px var(--gut); }
   .sec__head { margin-bottom: 44px; }
-  .lead__ph { height: 420px; }
+  .lead__ph { height: 440px; }
+  .rail { grid-template-columns: repeat(7, 64px); }
+  .sw, .sw__gem { width: 64px; height: 64px; }
+  .proof { padding: 56px var(--gut); }
+  .proof blockquote { font-size: 40px; }
+  .intro { grid-template-columns: 136px minmax(0,1fr); column-gap: 24px; align-items: center; max-width: 640px; }
+  .cameo { width: 116px; height: 152px; }
+  .intro__text { font-size: 19px; }
   .grid { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 40px 22px; }
   .doors__grid { grid-template-columns: repeat(4, minmax(0,1fr)); gap: 22px; }
   .door__name { font-size: 27px; }
-  .proof blockquote { font-size: 44px; }
   .review blockquote { font-size: 30px; }
   .matches__row { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 22px; margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; overflow: visible; }
   .matches__row .card:nth-child(n+5) { display: none; }
@@ -354,15 +391,14 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
   .designs { margin: 0; padding: 8px; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 22px 18px; overflow: visible; }
   .design__name { font-size: 17px; }
   .diff__cards { gap: 22px; }
-  .fields { grid-template-columns: repeat(2, minmax(0,1fr)); }
-  .woman__top { grid-template-columns: 30px minmax(0,1fr) minmax(0,1fr) 44px; }
-  .woman__top .field--name { grid-column: 3; grid-row: 1; }
-  .woman__top .woman__x { grid-column: 4; grid-row: 1; }
+  .woman { padding: 14px 16px; }
+  .woman__row1 { grid-template-columns: minmax(0,1fr) 210px; }
   .steps ol li { font-size: 22px; grid-template-columns: 64px minmax(0,1fr); padding: 22px 0; }
   .steps ol li::before { font-size: 52px; }
   .foot { padding: 80px var(--gut) 46px; }
   .foot__grid { grid-template-columns: 1.2fr 1fr 1fr; gap: 40px; }
   .matches h2 { font-size: 40px; }
+  .piece__opts { --gut: 34px; }
   dialog.piece { width: min(1080px, calc(100vw - 48px)); height: min(820px, calc(100vh - 48px)); margin: auto; border-radius: 10px; overflow: hidden; }
   .piece__in { grid-template-columns: minmax(0,1fr) minmax(0,1.05fr); height: 100%; min-height: 0; }
   .piece__gallery { display: flex; flex-direction: column; min-height: 0; background: var(--ground); }
@@ -372,54 +408,62 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
   .piece__body h2 { font-size: 38px; padding-right: 50px; }
   .piece__close { position: absolute; }
   #optColor { flex-wrap: wrap; overflow: visible; margin: 0; padding: 0; }
+  .piece__send { padding-top: 12px; padding-bottom: 12px; }
 }
 
 @media (min-width: 1000px) {
+  .hero { --padL: max(40px, calc((100vw - 1240px) / 2)); }
   .hero__in {
     grid-template-columns: minmax(0,1fr) min(45vw, 660px);
-    column-gap: 60px; padding: 0 0 46px max(40px, calc((100vw - 1240px) / 2));
+    column-gap: 60px; padding: 0 0 0 var(--padL);
     grid-template-rows: auto auto auto auto 1fr;
   }
-  .top { grid-column: 1; grid-row: 1; min-height: 84px; padding-top: 10px; }
+  .top { grid-column: 1; grid-row: 1; min-height: 84px; padding-top: 10px; align-items: center; }
   .brand__name { font-size: 44px; }
-  .brand__line { display: block; }
+  .brand__line { font-size: 14px; }
   .top__range { display: none; }
   .top__nav { display: flex; align-items: center; gap: 26px; font-weight: 700; font-size: 16px; }
   .top__nav a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; white-space: nowrap; }
   .top__nav a:not(.btn):hover { text-decoration: underline; text-underline-offset: 5px; }
   .top__nav .btn { min-height: 44px; padding: 4px 20px; font-size: 16px; }
   h1 { grid-column: 1; grid-row: 2; font-size: clamp(58px, 5.3vw, 78px); line-height: 1; margin: 12px 0 22px; }
-  .intro { grid-column: 1; grid-row: 3; margin-top: 0; max-width: 640px; }
-  .cameo { width: 126px; height: 160px; margin: 2px 26px 0 8px; }
-  .intro__text { font-size: 19px; }
-  .hero .ears { margin-top: 12px; padding: 9px 14px; font-size: 16px; }
-  .hero .cta { grid-column: 1; grid-row: 4; margin-top: 20px; gap: 6px 24px; }
+  .intro { grid-column: 1; grid-row: 3; margin-top: 0; }
+  .hero .ears { padding: 9px 14px; font-size: 16px; }
+  .after { display: contents; }
+  .after .hero__cta { grid-column: 1; grid-row: 4; margin-top: 18px; gap: 6px 24px; }
+  #clearColor { grid-column: 1 / -1; grid-row: 9; justify-self: start; margin-top: 6px; }
+  .hero__cta .btn { display: inline-flex; }
   .cta__range { display: block; flex-basis: 100%; font-weight: 700; font-size: 16px; margin-top: 2px; }
-  .lead { grid-column: 2; grid-row: 1 / 6; align-self: start; }
-  .lead__ph { height: 540px; border-radius: 0; }
-  .lead__bar { border-radius: 0; padding: 12px 18px 12px 24px; min-height: 76px; }
-  .lead__btn { min-height: 52px; font-size: 17px; padding: 0 26px; }
-  .lead__cap { font-size: 19px; }
-  .lead__cap b { display: inline; margin-left: 10px; }
-  .lead__tag { left: 18px; top: 18px; font-size: 16px; padding: 9px 16px; }
-  .color { grid-column: 1 / -1; grid-row: 6; margin-top: 22px; padding-right: max(40px, calc((100vw - 1240px) / 2)); }
+  .lead { grid-column: 2; grid-row: 1 / 6; align-self: start; margin: 0; }
+  .lead__ph { height: 604px; }
+  .lead__tag { left: 20px; top: 20px; font-size: 16px; padding: 9px 14px; }
+  .lead__foot { position: absolute; left: 20px; right: 20px; bottom: 20px; margin: 0; padding: 0; }
+  .lead__cap { max-width: none; font-size: 17px; padding: 12px 16px; min-height: 54px; }
+  .lead__cap b { margin-left: 10px; }
+  .lead__btn { min-height: 54px; font-size: 17px; padding: 0 26px; }
+  .color { grid-column: 1 / -1; grid-row: 6; margin-top: 22px; padding-right: var(--padL); }
   .color__text { display: flex; align-items: baseline; gap: 26px; flex-wrap: wrap; }
   .color h2 { font-size: 38px; }
   .color__line { font-size: 18px; margin: 0; }
-  .rail { margin: 16px 0 0; padding: 6px 0 0; overflow: visible; display: grid; grid-template-columns: repeat(13, minmax(0,1fr)); gap: 4px; }
-  .sw { flex: none; width: auto; }
+  .rail { margin: 16px 0 0; padding: 6px 0 0; grid-template-columns: repeat(13, minmax(0,1fr)); justify-content: stretch; gap: 4px; }
+  .sw { width: auto; height: auto; border-radius: 0; display: flex; flex-direction: column; align-items: center; gap: 9px; }
   .sw__gem { width: 78px; height: 78px; }
-  .sw__name { font-size: 15px; }
-  @media (hover: hover) { .sw:hover .sw__gem { transform: scale(1.08); } }
-  .shade { grid-column: 1 / -1; grid-row: 7; margin-top: 6px; padding-right: max(40px, calc((100vw - 1240px) / 2)); text-align: right; font-size: 16px; }
-  .matches { grid-column: 1 / -1; grid-row: 8; padding-right: max(40px, calc((100vw - 1240px) / 2)); margin-top: 26px; }
+  .sw__name { display: block; }
+  .sw[aria-pressed="true"] .sw__gem { box-shadow: 0 0 0 3px var(--wash2), 0 0 0 8px var(--stand); }
+  .sw--ask, .picked { display: none; }
+  @media (hover: hover) { .sw:hover .sw__gem { box-shadow: 0 0 0 3px var(--wash2), 0 0 0 5px var(--stand); } }
+  .after .shade { grid-column: 1 / -1; grid-row: 7; margin-top: 6px; padding-right: var(--padL); text-align: right; font-size: 16px; }
+  .matches { grid-column: 1 / -1; grid-row: 8; padding-right: var(--padL); margin-top: 26px; }
+  .proof { grid-column: 1 / -1; grid-row: 10; margin: 64px 0 0 calc(var(--padL) * -1); padding: 84px var(--padL); }
+  .proof .wrap { grid-template-columns: 1.5fr 1fr; gap: 80px; align-items: center; }
+  .proof blockquote { font-size: 44px; }
+  .facts { font-size: 19px; line-height: 1.8; }
   .grid { gap: 52px 26px; }
   .grid .card__name { font-size: 20px; }
   .grid .card__price { font-size: 19px; }
-  .proof .wrap { grid-template-columns: 1.5fr 1fr; gap: 80px; align-items: center; }
   .party__grid { grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); gap: 56px; }
-  .sheet { position: sticky; top: 24px; padding: 30px 28px 26px; }
-  .sheet::before { left: 28px; right: 28px; }
+  .party__side { position: sticky; top: 24px; align-self: start; }
+  .sheet { padding: 30px 28px 26px; }
   .steps__grid { grid-template-columns: 1.15fr 1fr; gap: 80px; align-items: center; }
   .diff__grid { grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
   .about__grid { grid-template-columns: 1fr 1.1fr; gap: 72px; align-items: center; }
@@ -427,7 +471,7 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
   .review { border-top: 3px solid var(--accent); }
 }
 @media (min-width: 1000px) and (max-height: 820px) {
-  .lead__ph { height: 470px; }
+  .lead__ph { height: 520px; }
   h1 { font-size: 60px; }
 }
 
@@ -462,10 +506,10 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
       <div class="lead__ph">
         <img class="lead__img is-on" id="leadA" alt="" width="1000" height="1000" fetchpriority="high">
         <img class="lead__img" id="leadB" alt="" width="1000" height="1000">
+        <p class="lead__tag" id="leadTag" hidden></p>
       </div>
-      <p class="lead__tag" id="leadTag" hidden></p>
-      <div class="lead__bar">
-        <figcaption class="lead__cap"><span id="leadName"></span><b id="leadPrice"></b></figcaption>
+      <div class="lead__foot">
+        <figcaption class="lead__cap"><span><span id="leadName"></span><b id="leadPrice"></b></span></figcaption>
         <button class="lead__btn" id="leadBtn" type="button">Start A Custom Piece</button>
       </div>
     </figure>
@@ -476,46 +520,44 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
         <p class="color__line">Tap your color. I’ll show you what I’d make to go with it.</p>
       </div>
       <div class="rail" id="rail" role="group" aria-label="Crystal colors"></div>
+      <p class="picked" aria-live="polite"><span class="picked__name" id="pickedName"></span><a class="link" id="pickedSee" href="#matches"></a></p>
     </div>
-
-    <div class="cta">
-      <a class="btn btn--fill" href="#party">Plan My Bridal Party</a>
-      <a class="link" href="#collection">Shop The Collection</a>
-      <p class="cta__range">Handmade pieces, <span data-range></span>.</p>
-    </div>
-
-    <p class="shade">Don’t see your shade? <a class="inl" data-shade href="sms:+18474526382">Message me.</a> I probably have it.</p>
-
-    <section class="matches" id="matches" aria-live="polite" hidden>
-      <div class="matches__head">
-        <h2 id="matchesTitle"></h2>
-        <button class="link" id="clearColor" type="button">Clear My Color</button>
-      </div>
-      <p class="matches__line">Find a piece you love, and I’ll make it in your color, your length and your metal.</p>
-      <div class="matches__row" id="matchesRow"></div>
-    </section>
 
     <div class="intro">
       <div class="cameo" role="img" aria-label="Photo slot. A photo of Lissa at her bench goes here.">A photo of Lissa at her bench goes here.</div>
       <p class="intro__text">I’m Lissa. For 16 years I’ve been making earrings, necklaces and bracelets by hand with crystal from Austria and glass from the Czech Republic. Find a piece you love, and I’ll make it in your color, your length and your metal.</p>
       <p class="ears">Sensitive ears? Ask for stainless steel ear hooks. Just add a note.</p>
     </div>
-  </div>
-</section>
 
-<section class="sec proof" aria-label="What customers say">
-  <div class="wrap">
-    <figure style="margin:0">
-      <div class="proof__stars" aria-hidden="true">★★★★★</div>
-      <p class="proof__label">5 out of 5 on Etsy</p>
-      <blockquote>“So beautiful! These sparkly earrings are perfect for the wedding this weekend!”</blockquote>
-      <cite>Brenda</cite>
-    </figure>
-    <ul class="facts">
-      <li>5.0 stars on Etsy (10 reviews)</li>
-      <li>Designing since 2010</li>
-      <li>Made by hand in Indianapolis</li>
-    </ul>
+    <section class="proof" aria-label="What customers say">
+      <div class="wrap">
+        <figure style="margin:0">
+          <p class="proof__top"><span class="proof__stars" aria-hidden="true">★★★★★</span><span class="proof__label">5 out of 5 on Etsy</span></p>
+          <blockquote>“So beautiful! These sparkly earrings are perfect for the wedding this weekend!”</blockquote>
+          <cite>Brenda</cite>
+        </figure>
+        <ul class="facts">
+          <li>5.0 stars on Etsy (10 reviews)</li>
+          <li>Designing since 2010</li>
+          <li>Made by hand in Indianapolis</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="matches" id="matches" aria-live="polite" hidden>
+      <h2 id="matchesTitle"></h2>
+      <div class="matches__row" id="matchesRow"></div>
+    </section>
+
+    <div class="after">
+      <button class="link" id="clearColor" type="button">Clear My Color</button>
+      <div class="cta hero__cta">
+        <a class="btn btn--fill" href="#party">Plan My Bridal Party</a>
+        <a class="link" href="#collection">Shop The Collection</a>
+        <p class="cta__range">Handmade pieces, <span data-range></span>.</p>
+      </div>
+      <p class="shade">Don’t see your shade? <a class="inl" data-shade href="sms:+18474526382">Message me.</a> I probably have it.</p>
+    </div>
   </div>
 </section>
 
@@ -530,12 +572,6 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
   <div class="wrap">
     <h2>Dressing The Whole Bridal Party?</h2>
     <p class="sec__lede">Send me your wedding colors and your date. Every woman can choose her own metal, and everything still matches.</p>
-    <ul class="party__confirm" aria-label="Details Lissa still needs to confirm">
-      <li>How much notice I need <span class="chip-confirm">Lissa to confirm</span></li>
-      <li>Bridal party pricing <span class="chip-confirm">Lissa to confirm</span></li>
-      <li>Gift packaging <span class="chip-confirm">Lissa to confirm</span></li>
-    </ul>
-
     <div class="party__grid">
       <div>
         <div class="step">
@@ -548,7 +584,7 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
           <div class="step__h"><span class="step__n" aria-hidden="true">2</span><h3>Your Wedding</h3></div>
           <div class="fields">
             <label class="field"><span>Wedding date</span><input type="date" id="pDate"></label>
-            <label class="field"><span>Colors</span><input type="text" id="pColors" autocomplete="off" placeholder="Your wedding colors"></label>
+            <label class="field"><span>Colors</span><input type="text" id="pColors" autocomplete="off" placeholder="Your colors"></label>
             <label class="field"><span>Your name</span><input type="text" id="pName" autocomplete="name"></label>
             <label class="field"><span>Your phone</span><input type="tel" id="pPhone" autocomplete="tel" inputmode="tel"></label>
           </div>
@@ -556,11 +592,13 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
 
         <div class="step">
           <div class="step__h"><span class="step__n" aria-hidden="true">3</span><h3>Who’s Wearing It</h3></div>
+          <p class="listed" id="listedNote" hidden></p>
           <div id="women"></div>
           <button class="btn btn--line add" id="addWoman" type="button">Add Another Woman</button>
         </div>
       </div>
 
+      <div class="party__side">
       <aside class="sheet" aria-label="Your party list" aria-live="polite">
         <h3>Your Party List</h3>
         <div class="sheet__design" id="sheetDesign"></div>
@@ -573,6 +611,12 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
         </div>
         <p class="sheet__fine">This opens a text on your phone with the whole list filled in. Nothing is sent until you press send.</p>
       </aside>
+      <ul class="party__confirm" aria-label="Details Lissa still needs to confirm">
+        <li>How much notice I need <span class="chip-confirm">Lissa to confirm</span></li>
+        <li>Bridal party pricing <span class="chip-confirm">Lissa to confirm</span></li>
+        <li>Gift packaging <span class="chip-confirm">Lissa to confirm</span></li>
+      </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -676,12 +720,12 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
   </div>
 </footer>
 
-<div class="bar" role="region" aria-label="Contact Lissa">
-  <a class="btn btn--fill" data-text-lissa href="sms:+18474526382">Text Lissa</a>
-  <a class="btn btn--line" href="mailto:bijouxbylissa20@protonmail.com">Email Lissa</a>
+<div class="bar" id="bar" role="region" aria-label="Contact Lissa">
+  <a class="btn btn--fill" id="barMain" href="sms:+18474526382">Text Lissa</a>
+  <a class="btn btn--line" id="barAlt" href="#party">Plan My Bridal Party</a>
 </div>
 
-<dialog class="piece" id="piece" aria-labelledby="pieceName">
+<dialog class="piece" id="piece" aria-labelledby="pieceName" tabindex="-1">
   <div class="piece__in">
     <button class="piece__close" id="pieceClose" type="button" aria-label="Close">×</button>
     <div class="piece__gallery">
@@ -696,7 +740,8 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
       <form class="piece__opts" id="pieceForm" onsubmit="return false">
         <h3>Make It Yours</h3>
         <fieldset class="seg"><legend class="seg__label">Color</legend><div class="seg__opts" id="optColor"></div></fieldset>
-        <fieldset class="seg"><legend class="seg__label">Metal</legend><div class="seg__opts" id="optMetal"></div></fieldset>
+        <fieldset class="seg"><legend class="seg__label">Metal</legend><div class="seg__opts" id="optMetal"></div>
+          <div id="optMetalOtherWrap"><p class="seg__sub">Other metals <span class="chip-confirm">Lissa to confirm</span></p><div class="seg__opts" id="optMetalOther"></div></div></fieldset>
         <label class="field"><span id="optLenLabel">Length or hoop size</span><input type="text" id="optLen" autocomplete="off" placeholder="Leave blank for as shown"></label>
         <fieldset class="seg" id="optHookWrap"><legend class="seg__label">Ear hook</legend><div class="seg__opts" id="optHook"></div>
           <p class="piece__note" style="margin-top:8px">Sensitive ears? Ask for stainless steel ear hooks.</p></fieldset>
@@ -739,22 +784,22 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
      fam = catalog color families that go with it. sw = [photo, x, y, radius] crop of a real crystal.
      lead = a real photo that shows this crystal (shownAs = honest label when it shows another color). */
   var COLORS = [
-    { name: 'Bermuda Blue',    tone: '#0E6984', fam: ['Blue'],                         sw: [CHART, 205, 658, 68], lead: { id: '1157755443', ph: 0, pos: '50% 62%' } },
-    { name: 'Vitrail Light',   tone: '#6A58A6', fam: ['Purple', 'Multi'],              sw: [CHART, 365, 418, 68], lead: { id: '1276504788', ph: 0, pos: '50% 62%' } },
-    { name: 'Vitrail Medium',  tone: '#7A5C12', fam: ['Multi'],                        sw: [CHART, 785, 668, 68], lead: { id: '4442463967', ph: 0, pos: '50% 62%' } },
-    { name: 'Crystal Shimmer', tone: '#73665A', fam: ['Clear Crystal', 'Pearl White'], sw: [CHART, 497, 650, 68], lead: { id: '4459446629', ph: 0, pos: '50% 50%' } },
+    { name: 'Bermuda Blue',    tone: '#0E6984', fam: ['Blue'],                         sw: [CHART, 205, 658, 68], lead: { id: '1157755443', ph: 0, pos: '50% 88%' } },
+    { name: 'Vitrail Light',   tone: '#6A58A6', fam: ['Purple', 'Multi'],              sw: [CHART, 365, 418, 68], lead: { id: '1276504788', ph: 0, pos: '50% 88%' } },
+    { name: 'Vitrail Medium',  tone: '#7A5C12', fam: ['Multi'],                        sw: [CHART, 785, 668, 68], lead: { id: '4442463967', ph: 0, pos: '50% 92%' } },
+    { name: 'Crystal Shimmer', tone: '#73665A', fam: ['Clear Crystal', 'Pearl White'], sw: [CHART, 497, 650, 68], lead: { id: '4459446629', ph: 0, pos: '50% 85%' } },
     { name: 'Heliotrope',      tone: '#4A2FA8', fam: ['Purple', 'Blue'],               sw: [CHART, 620, 425, 68], lead: { id: '4462352006', ph: 0, pos: '50% 78%' } },
     { name: 'Paradise Shine',  tone: '#3A7062', fam: ['Multi', 'Clear Crystal'],       sw: [CHART, 868, 422, 68], lead: { id: '4462352006', ph: 1, pos: '50% 78%' } },
     { name: 'Silver Night',    tone: '#494B55', fam: ['Gray', 'Black', 'Silver'],      sw: [CHART, 120, 420, 68], lead: { id: '4462352006', ph: 0, pos: '50% 78%', shownAs: 'Heliotrope' } },
-    { name: 'Siam', note: 'red', tone: '#AE1A2C', fam: ['Red'],                        sw: ['1251878503-1', 370, 550, 82], lead: { id: '1251878503', ph: 0, pos: '50% 70%' } },
-    { name: 'Amethyst',        tone: '#78409A', fam: ['Purple'],                       sw: ['1153943408-1', 358, 781, 74], lead: { id: '1153943408', ph: 0, pos: '50% 70%' } },
-    { name: 'Rose',            tone: '#B03F6C', fam: ['Pink', 'Rose Gold'],            sw: ['1167084483-1', 355, 780, 74], lead: { id: '1167084483', ph: 0, pos: '50% 70%' } },
-    { name: 'Indigo',          tone: '#2D4A8C', fam: ['Blue'],                         sw: ['4459238483-1', 358, 817, 74], lead: { id: '4459238483', ph: 0, pos: '50% 78%' } },
+    { name: 'Siam', note: 'red', tone: '#AE1A2C', fam: ['Red'],                        sw: ['1251878503-1', 370, 550, 82], lead: { id: '1251878503', ph: 0, pos: '50% 100%' } },
+    { name: 'Amethyst',        tone: '#78409A', fam: ['Purple'],                       sw: ['1153943408-1', 358, 781, 74], lead: { id: '1153943408', ph: 0, pos: '50% 100%' } },
+    { name: 'Rose',            tone: '#B03F6C', fam: ['Pink', 'Rose Gold'],            sw: ['1167084483-1', 355, 780, 74], lead: { id: '1167084483', ph: 0, pos: '50% 100%' } },
+    { name: 'Indigo',          tone: '#2D4A8C', fam: ['Blue'],                         sw: ['4459238483-1', 358, 817, 74], lead: { id: '4459238483', ph: 0, pos: '50% 100%' } },
     { name: 'Aquamarine',      tone: '#1C7790', fam: ['Blue'],                         sw: ['1429981484-1', 400, 578, 62], lead: { id: '1429981484', ph: 0, pos: '50% 42%' } },
     { name: 'Garnet',          tone: '#7B1830', fam: ['Red'],                          sw: ['1378343744-1', 414, 630, 62], lead: { id: '1378343744', ph: 0, pos: '50% 62%' } }
   ];
   var DEFAULT_LEAD = { id: '4463221457', ph: 0, pos: '50% 100%' };
-  var INK = '#231F3A';
+  var INK = '#231F3A', NEUTRAL = '#A99F8E';
   var METALS = ['Gold', 'Silver', 'Rose Gold', 'Gunmetal'];
   var METAL_DOT = { 'Gold': '#CDA349', 'Silver': '#C9CBD1', 'Rose Gold': '#DCA48F', 'Gunmetal': '#55565C', 'Copper': '#B87345', 'Rhodium': '#D9DBDF' };
   var ROLES = ['Bride', 'Bridesmaid', 'Maid Of Honor', 'Mother Of The Bride', 'Mother Of The Groom'];
@@ -770,7 +815,9 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
     { label: 'Diffusing', keys: ['Diffusing'], diff: true }
   ];
 
-  var state = { color: null, filter: 'All', showAll: false, design: null, women: [], uid: 0 };
+  /* The page opens on the first color. picked = she tapped a color herself; only then does it travel into her texts. */
+  var state = { color: COLORS[0], picked: false, filter: 'All', showAll: false, design: null, women: [], uid: 0, inParty: false };
+  var carried = function () { return state.picked ? state.color : null; };
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
@@ -794,11 +841,12 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
     return '<span class="dots" aria-hidden="true">' + p.metals.map(function (m) { return '<i class="dot" style="background:' + (METAL_DOT[m] || '#ccc') + '"></i>'; }).join('') +
       '</span><span class="card__metals">' + esc(joinOr(p.metals)) + '</span>';
   }
-  function card(p, flag) {
+  function card(p, flag, gem) {
     return '<article class="card">' +
       '<button class="card__open" type="button" data-open="' + esc(p.id) + '">' +
       '<span class="card__ph"><img src="' + esc(p.photos[0]) + '" alt="' + esc(p.name) + '" loading="lazy" width="1000" height="1000">' +
-      (flag ? '<span class="card__flag">' + esc(flag) + '</span>' : '') + '</span>' +
+      (flag ? '<span class="card__flag">' + esc(flag) + '</span>' : '') +
+      (gem ? '<span class="card__gem" role="img" aria-label="Goes with ' + esc(gem.name) + '" style="' + swStyle(gem) + '"></span>' : '') + '</span>' +
       '<span class="card__name">' + esc(p.name) + '</span>' +
       '<span class="card__meta"><span class="card__price">' + money(p.price) + '</span>' + dots(p) + '</span>' +
       '</button>' +
@@ -812,24 +860,41 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
   $$('[data-range]').forEach(function (el) { el.textContent = rangeText; });
 
   function updateGenericLinks() {
-    var body = 'Hi Lissa! I found you through your website.' + (state.color ? ' My color is ' + state.color.name + '.' : '');
-    $$('[data-text-lissa]').forEach(function (a) { a.href = sms(body); });
-    $('[data-shade]').href = sms("Hi Lissa! I don't see my shade on your website. The color I'm looking for is: ");
+    var c = carried();
+    var body = 'Hi Lissa! I found you through your website.' + (c ? ' My color is ' + c.name + '.' : '');
+    state.genericSms = sms(body);
+    $$('[data-text-lissa]').forEach(function (a) { a.href = state.genericSms; });
+    $$('[data-shade]').forEach(function (a) { a.href = sms("Hi Lissa! I don't see my shade on your website. The color I'm looking for is: "); });
+    updateBar();
+  }
+  /* The phone bar sends the party list while the party builder is on screen. */
+  function updateBar() {
+    var bar = $('#bar'), main = $('#barMain');
+    bar.classList.toggle('is-party', state.inParty);
+    main.textContent = state.inParty ? 'Text My Party List To Lissa' : 'Text Lissa';
+    main.href = state.inParty ? $('#partySms').href : (state.genericSms || 'sms:' + PHONE);
   }
 
   /* ───── swatches ───── */
   var rail = $('#rail');
   rail.innerHTML = COLORS.map(function (c) {
-    return '<button class="sw" type="button" aria-pressed="false" data-color="' + esc(c.name) + '">' +
+    return '<button class="sw" type="button" aria-pressed="false" data-color="' + esc(c.name) + '" aria-label="' + esc(c.name + (c.note ? ' (' + c.note + ')' : '')) + '">' +
       '<span class="sw__gem" style="' + swStyle(c) + '"></span>' +
-      '<span class="sw__name">' + esc(c.name) + (c.note ? ' <small>(' + esc(c.note) + ')</small>' : '') + '</span></button>';
-  }).join('');
+      '<span class="sw__name" aria-hidden="true">' + esc(c.name) + (c.note ? ' <small>(' + esc(c.note) + ')</small>' : '') + '</span></button>';
+  }).join('') + '<a class="sw sw--ask" data-shade href="sms:' + PHONE + '" aria-label="Don’t see your shade? Message me.">?</a>';
   rail.addEventListener('click', function (e) {
-    var b = e.target.closest('.sw'); if (!b) return;
+    var b = e.target.closest('button.sw'); if (!b) return;
     var c = colorByName(b.dataset.color);
-    setColor(state.color === c ? null : c, b);
+    setColor(state.color === c && state.picked ? null : c, b);
   });
   $('#clearColor').addEventListener('click', function () { setColor(null); $('#colors').scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' }); });
+  function paintPicked() {
+    var c = state.color;
+    $$('button.sw', rail).forEach(function (b) { b.setAttribute('aria-pressed', String(!!c && b.dataset.color === c.name)); });
+    $('#pickedName').innerHTML = c ? esc(c.name) + (c.note ? ' <small>(' + esc(c.note) + ')</small>' : '') : '';
+    var n = c ? Math.min(matchList(c).length, 8) : 0, see = $('#pickedSee');
+    see.hidden = !n; see.textContent = n ? 'See ' + n + (n === 1 ? ' piece' : ' pieces') : '';
+  }
 
   var leadImgs = [$('#leadA'), $('#leadB')], leadOn = 0;
   function showLead(first) {
@@ -863,6 +928,7 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
   }
   function renderMatches() {
     var c = state.color, sec = $('#matches');
+    $('#clearColor').hidden = !c;
     if (!c) { sec.hidden = true; return; }
     sec.hidden = false;
     $('#matchesTitle').textContent = 'To Go With ' + c.name;
@@ -888,13 +954,13 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
   }
 
   function setColor(c, fromEl) {
-    var prev = state.color;
-    state.color = c;
+    var prev = carried();
+    state.color = c; state.picked = !!c;
     var tone = c ? c.tone : INK;
-    ripple(fromEl, c ? tone : '#A99F8E');
-    if (c) { document.documentElement.style.setProperty('--accent', tone); document.documentElement.style.setProperty('--tintc', tone); }
-    else { document.documentElement.style.removeProperty('--accent'); document.documentElement.style.removeProperty('--tintc'); }
-    $$('.sw', rail).forEach(function (b) { b.setAttribute('aria-pressed', String(!!c && b.dataset.color === c.name)); });
+    ripple(fromEl, c ? tone : NEUTRAL);
+    document.documentElement.style.setProperty('--accent', tone);
+    document.documentElement.style.setProperty('--tintc', c ? tone : NEUTRAL);
+    paintPicked();
     showLead(false);
     renderMatches();
     renderCollection();
@@ -940,9 +1006,9 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
     var list = o ? P.filter(function (p) { return inOcc(p, o); }) : P.slice();
     if (c) list = list.filter(function (p) { return goesWith(p, c); }).concat(list.filter(function (p) { return !goesWith(p, c); }));
     var FIRST = 12, shown = state.showAll ? list : list.slice(0, FIRST);
-    $('#collGrid').innerHTML = shown.map(function (p) { return card(p, goesWith(p, c) ? 'Goes with ' + c.name : ''); }).join('');
-    $('#collCount').textContent = (o ? o.label + ': ' + list.length + (list.length === 1 ? ' piece' : ' pieces') : 'All ' + list.length + ' pieces') +
-      (c ? '. The ones that go with ' + c.name + ' come first.' : '.');
+    $('#collGrid').innerHTML = shown.map(function (p) { return card(p, '', goesWith(p, c) ? c : null); }).join('');
+    $('#collCount').innerHTML = esc(o ? o.label + ': ' + list.length + (list.length === 1 ? ' piece' : ' pieces') : 'All ' + list.length + ' pieces') +
+      (c ? '. The ones marked <span class="card__gem" aria-hidden="true" style="' + swStyle(c) + '"></span>go with ' + esc(c.name) + ' and come first.' : '.');
     var more = $('#collMore');
     more.parentNode.hidden = state.showAll || list.length <= FIRST;
     more.textContent = 'Show All ' + list.length + ' Pieces';
@@ -962,10 +1028,13 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
 
   /* ───── piece dialog ───── */
   var dlg = $('#piece'), cur = null;
-  function radios(el, name, opts, checked) {
+  /* Metals: what the listing shows first, then the rest of Lissa's four. Anything not on the listing is "Lissa to confirm". */
+  function metalChoices(p) { return p.metals.concat(METALS.filter(function (m) { return p.metals.indexOf(m) < 0; })); }
+  function isListed(p, m) { return !p.metals.length || p.metals.indexOf(m) > -1; }
+  function radios(el, name, opts, checked, cls) {
     el.innerHTML = opts.map(function (o) {
       var v = typeof o === 'string' ? o : o.v, extra = typeof o === 'string' ? '' : (o.html || '');
-      return '<label class="opt"><input type="radio" name="' + name + '" value="' + esc(v) + '"' + (v === checked ? ' checked' : '') + '><span>' + extra + esc(v) + '</span></label>';
+      return '<label class="opt' + (cls ? ' ' + cls : '') + '"><input type="radio" name="' + name + '" value="' + esc(v) + '"' + (v === checked ? ' checked' : '') + '><span>' + extra + esc(v) + '</span></label>';
     }).join('');
   }
   function val(name, root) { var i = $('input[name="' + name + '"]:checked', root || document); return i ? i.value : ''; }
@@ -979,8 +1048,12 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
     $('#pieceThumbs').innerHTML = p.photos.length > 1 ? p.photos.map(function (src, i) {
       return '<button type="button" data-i="' + i + '" aria-label="Photo ' + (i + 1) + ' of ' + p.photos.length + '"' + (i === 0 ? ' aria-current="true"' : '') + '><img src="' + esc(src) + '" alt="" loading="lazy" width="54" height="54"></button>';
     }).join('') : '';
-    radios($('#optColor'), 'oColor', ['Like the photo'].concat(COLORS.map(function (c) { return { v: c.name, html: '<i class="sw-mini" style="' + swStyle(c) + '"></i>' }; })).concat(['Another color']), state.color ? state.color.name : 'Like the photo');
-    radios($('#optMetal'), 'oMetal', ['Like the photo'].concat(METALS.map(function (m) { return { v: m, html: '<i class="dot" style="background:' + METAL_DOT[m] + '"></i>' }; })), 'Like the photo');
+    radios($('#optColor'), 'oColor', ['Like the photo'].concat(COLORS.map(function (c) { return { v: c.name, html: '<i class="sw-mini" style="' + swStyle(c) + '"></i>' }; })).concat(['Another color']), carried() ? carried().name : 'Like the photo');
+    var mopt = function (m) { return { v: m, html: '<i class="dot" style="background:' + (METAL_DOT[m] || '#ccc') + '"></i>' }; };
+    var others = metalChoices(p).filter(function (m) { return !isListed(p, m); });
+    radios($('#optMetal'), 'oMetal', ['Like the photo'].concat(metalChoices(p).filter(function (m) { return isListed(p, m); }).map(mopt)), 'Like the photo');
+    radios($('#optMetalOther'), 'oMetal', others.map(mopt), '', 'opt--ask');
+    $('#optMetalOtherWrap').hidden = !others.length;
     radios($('#optHook'), 'oHook', ['Regular', 'Stainless steel'], 'Regular');
     $('#optHookWrap').hidden = !hasHooks(p);
     $('#optLen').value = '';
@@ -988,7 +1061,7 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
     $('#pieceEtsy').href = p.etsy || 'https://bijouxbylissa.etsy.com';
     $('#pieceDesc').innerHTML = descHTML(p);
     updatePieceMsg();
-    if (!dlg.open) dlg.showModal();
+    if (!dlg.open) { dlg.showModal(); dlg.focus(); }
     var on = $('#optColor input:checked'); if (on && on.parentNode.scrollIntoView) on.parentNode.scrollIntoView({ block: 'nearest', inline: 'center' });
     $('.piece__body').scrollTop = 0; dlg.scrollTop = 0;
   }
@@ -1014,7 +1087,7 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
     var p = cur, color = val('oColor', dlg), metal = val('oMetal', dlg), len = $('#optLen').value.trim();
     var lines = ['Hi Lissa! I would love the ' + p.name + ' (' + money(p.price) + ').',
       'Color: ' + (color === 'Another color' ? "another color, I'll tell you" : color.replace('Like', 'like')),
-      'Metal: ' + metal.replace('Like', 'like'),
+      'Metal: ' + metal.replace('Like', 'like') + (metal !== 'Like the photo' && !isListed(p, metal) ? ' (Lissa to confirm)' : ''),
       $('#optLenLabel').textContent + ': ' + (len || 'as shown')];
     if (hasHooks(p)) lines.push('Ear hooks: ' + val('oHook', dlg).toLowerCase());
     if (p.etsy) lines.push('The piece: ' + p.etsy);
@@ -1060,46 +1133,65 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
   }
   function setDesign(id) {
     state.design = byId[id] || state.design;
-    renderDesigns(); renderWomenHooks(); renderSheet();
+    renderDesigns(); paintWomen(); renderSheet();
   }
-  $('#designs').addEventListener('change', function (e) { state.design = byId[e.target.value]; renderWomenHooks(); renderSheet(); });
+  $('#designs').addEventListener('change', function (e) { state.design = byId[e.target.value]; paintWomen(); renderSheet(); });
 
-  function defaultMetal() { var m = state.design ? state.design.metals.filter(function (x) { return METALS.indexOf(x) > -1; })[0] : null; return m || 'Gold'; }
+  function defaultMetal() { return (state.design && state.design.metals[0]) || 'Gold'; }
+  function womanById(id) { return state.women.filter(function (x) { return x.id === +id; })[0]; }
+  function paintWoman(el, w) {
+    var d = state.design, list = metalChoices(d);
+    if (list.indexOf(w.metal) < 0) w.metal = defaultMetal();
+    $('.metals', el).innerHTML = '<legend class="vh">Her metal</legend>' + list.map(function (m) {
+      return '<label class="mdot' + (isListed(d, m) ? '' : ' mdot--ask') + '" title="' + esc(m) + '"><input type="radio" name="metal' + w.id + '" data-k="metal" value="' + esc(m) + '"' + (m === w.metal ? ' checked' : '') +
+        ' aria-label="' + esc(m + (isListed(d, m) ? '' : ', Lissa to confirm')) + '"><i style="background:' + (METAL_DOT[m] || '#ccc') + '"></i></label>';
+    }).join('');
+    $('.woman__metal', el).innerHTML = 'Her metal: <b>' + esc(w.metal) + '</b>' + (isListed(d, w.metal) ? '' : ' <span class="chip-confirm">Lissa to confirm</span>');
+    $('.hookchip', el).hidden = !hasHooks(d);
+  }
+  function paintWomen() {
+    var d = state.design, note = $('#listedNote');
+    $$('.woman').forEach(function (el, i) {
+      $('.woman__n', el).textContent = (i + 1) + '. ';
+      $('.woman__x', el).hidden = state.women.length < 2;
+      paintWoman(el, womanById(el.dataset.id));
+    });
+    var others = metalChoices(d).filter(function (m) { return !isListed(d, m); });
+    note.hidden = !d.metals.length || !others.length;
+    note.innerHTML = 'This design is listed in ' + esc(joinOr(d.metals)) + '. Other metals <span class="chip-confirm">Lissa to confirm</span>';
+  }
   function addWoman(role, focus) {
     var w = { id: ++state.uid, role: role || 'Bridesmaid', name: '', metal: defaultMetal(), hook: 'Regular' };
     state.women.push(w);
     var el = document.createElement('div');
     el.className = 'woman'; el.dataset.id = w.id;
     el.innerHTML =
-      '<div class="woman__top">' +
-        '<span class="woman__n" aria-hidden="true"></span>' +
+      '<div class="woman__row1">' +
+        '<label class="field"><span><span class="woman__n"></span>Her name</span><input type="text" data-k="name" autocomplete="off"></label>' +
         '<label class="field"><span>Role</span><select data-k="role">' + ROLES.map(function (r) { return '<option' + (r === w.role ? ' selected' : '') + '>' + r + '</option>'; }).join('') + '</select></label>' +
-        '<button class="woman__x" type="button" aria-label="Remove this woman">×</button>' +
-        '<label class="field field--name"><span>Her name</span><input type="text" data-k="name" autocomplete="off"></label>' +
       '</div>' +
-      '<fieldset class="seg"><legend class="seg__label">Her metal</legend><div class="seg__opts seg__opts--four">' +
-        METALS.map(function (m) { return '<label class="opt"><input type="radio" name="metal' + w.id + '" data-k="metal" value="' + m + '"' + (m === w.metal ? ' checked' : '') + '><span><i class="dot" style="background:' + METAL_DOT[m] + '"></i>' + m + '</span></label>'; }).join('') +
-      '</div></fieldset>' +
-      '<fieldset class="seg" data-hooks><legend class="seg__label">Her ear hook</legend><div class="seg__opts">' +
-        ['Regular', 'Stainless steel'].map(function (h) { return '<label class="opt"><input type="radio" name="hook' + w.id + '" data-k="hook" value="' + h + '"' + (h === w.hook ? ' checked' : '') + '><span>' + h + '</span></label>'; }).join('') +
-      '</div></fieldset>';
+      '<div class="woman__row2">' +
+        '<fieldset class="metals"></fieldset>' +
+        '<label class="hookchip"><input type="checkbox" data-k="hook"><span>Stainless steel hooks</span></label>' +
+      '</div>' +
+      '<div class="woman__row3"><span class="woman__metal"></span><button class="woman__x" type="button">Remove</button></div>';
     $('#women').appendChild(el);
-    renumber(); renderWomenHooks(); renderSheet();
+    paintWomen(); renderSheet();
     if (focus) $('input[data-k="name"]', el).focus();
   }
-  function renumber() { $$('.woman').forEach(function (el, i) { $('.woman__n', el).textContent = i + 1; $('.woman__x', el).hidden = state.women.length < 2; }); }
-  function renderWomenHooks() { var show = !state.design || hasHooks(state.design); $$('[data-hooks]').forEach(function (f) { f.hidden = !show; }); }
   $('#women').addEventListener('input', function (e) {
     var el = e.target.closest('.woman'), k = e.target.dataset.k; if (!el || !k) return;
-    var w = state.women.filter(function (x) { return x.id === +el.dataset.id; })[0]; if (!w) return;
-    w[k] = e.target.value; renderSheet();
+    var w = womanById(el.dataset.id); if (!w) return;
+    w[k] = k === 'hook' ? (e.target.checked ? 'Stainless steel' : 'Regular') : e.target.value;
+    if (k === 'metal') paintWoman(el, w);
+    renderSheet();
   });
   $('#women').addEventListener('change', function (e) { if (e.target.tagName === 'SELECT') e.target.dispatchEvent(new Event('input', { bubbles: true })); });
   $('#women').addEventListener('click', function (e) {
     var x = e.target.closest('.woman__x'); if (!x) return;
     var el = x.closest('.woman');
     state.women = state.women.filter(function (w) { return w.id !== +el.dataset.id; });
-    el.remove(); renumber(); renderSheet();
+    el.remove(); paintWomen(); renderSheet();
   });
   $('#addWoman').addEventListener('click', function () { addWoman('Bridesmaid', true); });
   ['pDate', 'pColors', 'pName', 'pPhone'].forEach(function (id) { $('#' + id).addEventListener('input', renderSheet); });
@@ -1114,15 +1206,21 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
     var hooks = hasHooks(d), date = prettyDate($('#pDate').value), colors = $('#pColors').value.trim(), name = $('#pName').value.trim(), phone = $('#pPhone').value.trim();
     var n = state.women.length;
     var tally = {}; state.women.forEach(function (w) { tally[w.metal] = (tally[w.metal] || 0) + 1; });
-    var mix = METALS.filter(function (m) { return tally[m]; }).map(function (m) { return tally[m] + ' ' + m.toLowerCase(); }).join(', ');
+    var mix = metalChoices(d).filter(function (m) { return tally[m]; }).map(function (m) { return tally[m] + ' ' + m.toLowerCase(); }).join(', ');
     $('#sheetDesign').innerHTML = '<img src="' + esc(d.photos[0]) + '" alt=""><div><b>' + esc(d.name) + '</b><span>One design for everyone</span></div>';
     $('#sheetFacts').innerHTML =
       '<dt>Wedding date</dt><dd>' + esc(date || 'Not added yet') + '</dd>' +
       '<dt>Colors</dt><dd>' + esc(colors || 'Not added yet') + '</dd>' +
       '<dt>How many pieces</dt><dd>' + n + '</dd>' +
       '<dt>Metals</dt><dd>' + esc(mix) + '</dd>';
-    var line = function (w) { return w.role + (w.name.trim() ? ', ' + w.name.trim() : '') + ': ' + w.metal.toLowerCase() + (hooks ? ', ' + w.hook.toLowerCase() + ' ear hooks' : ''); };
-    $('#sheetWomen').innerHTML = state.women.map(function (w) { return '<li>' + esc(line(w)) + '</li>'; }).join('');
+    var who = function (w) { return w.role + (w.name.trim() ? ', ' + w.name.trim() : '') + ': ' + w.metal.toLowerCase(); };
+    var hook = function (w) { return hooks ? ', ' + w.hook.toLowerCase() + ' ear hooks' : ''; };
+    var line = function (w) { return who(w) + (isListed(d, w.metal) ? '' : ' (Lissa to confirm)') + hook(w); };
+    $('#sheetWomen').innerHTML = state.women.map(function (w) {
+      if (isListed(d, w.metal)) return '<li>' + esc(line(w)) + '</li>';
+      var head = w.role + (w.name.trim() ? ', ' + w.name.trim() : '') + ': ';
+      return '<li>' + esc(head) + '<span class="nb">' + esc(w.metal.toLowerCase()) + ' <span class="chip-confirm">Lissa to confirm</span>' + (hooks ? ',' : '') + '</span>' + esc(hook(w).replace(/^,/, '')) + '</li>';
+    }).join('');
     $('#sheetPrice').innerHTML = '<span>Listed at <b>' + money(d.price) + '</b> each on Etsy.</span> <span>Bridal party pricing <span class="chip-confirm">Lissa to confirm</span></span>';
     var t = ['Hi Lissa! I would like to plan jewelry for my bridal party.',
       'Design: ' + d.name + ' (listed at ' + money(d.price) + ')',
@@ -1136,14 +1234,20 @@ dialog.piece::backdrop { background: rgba(35,31,58,.55); }
     var body = t.join('\n');
     $('#partySms').href = sms(body);
     $('#partyMail').href = mail('Bridal party list' + (date ? ' for ' + date : ''), body);
+    updateBar();
   }
 
-  /* ───── start ───── */
+  /* ───── start: the page opens on Bermuda Blue ───── */
   state.design = designList[0] || P[0];
   showLead(true);
+  paintPicked();
+  renderMatches();
   renderFilters(); renderCollection(); renderDesigns();
   ['Bride', 'Bridesmaid', 'Mother Of The Bride'].forEach(function (r) { addWoman(r); });
-  updateGenericLinks(); renderSheet();
+  renderSheet(); updateGenericLinks();
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { state.inParty = es[0].isIntersecting; updateBar(); }, { rootMargin: '-40% 0px -40% 0px' }).observe($('#party'));
+  }
 })();
 </script>
 </body>
