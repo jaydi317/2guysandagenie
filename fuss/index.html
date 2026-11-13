@@ -1,0 +1,231 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex, nofollow">
+<title>What All the Fuss Is About</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: one narrow column like the live site; a "who sent you" strip on top rewrites the headline; a hand-drawn two-bubble doodle carries the "why it's hard to explain" idea. Single light theme on purpose (site paper look). */
+:root{
+  --paper:#FFFFFF; --ink:#111111; --soft:#555555; --rule:#DDDDDD;
+  --hi:#FFF3C4; --hi-edge:#d9c87a; --red:#c0262d; --pen:#1a3fa0;
+  --body:Tahoma,Geneva,Verdana,sans-serif;
+  --hand:"Bradley Hand","Marker Felt","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{background:var(--paper);color:var(--ink)}
+body{margin:0;font-family:var(--body);font-size:19px;line-height:1.6;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--ink)}
+.mockbar{max-width:640px;margin:0 auto;padding-block:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--soft);border-bottom:1px solid var(--rule)}
+.stamp{border:3px solid var(--red);color:var(--red);font:900 12px var(--body);letter-spacing:2px;padding:2px 8px;transform:rotate(-3deg)}
+header{max-width:640px;margin:0 auto;padding-block:14px;display:flex;align-items:center;gap:8px;font-weight:bold;font-size:16px}
+header .lg{width:28px;height:28px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:11px}
+main{max-width:640px;margin:0 auto;padding-block:20px 80px}
+.who{border:2px solid var(--ink);padding:14px 14px 12px;margin:0 0 28px}
+.who p{margin:0 0 10px;font-size:15px;font-weight:bold}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font:15px var(--body);border:2px solid var(--rule);background:var(--paper);color:var(--ink);padding:7px 12px;cursor:pointer}
+.chips button[aria-pressed="true"]{border-color:var(--ink);background:var(--hi);font-weight:bold}
+.chips button:focus-visible,.btn:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+.who .opt{font-size:12.5px;color:var(--soft);margin:10px 0 0;font-weight:normal}
+.kick{font:bold 12px var(--body);letter-spacing:1.2px;text-transform:uppercase;color:var(--soft);margin:0 0 10px}
+h1{font-size:clamp(32px,7.5vw,44px);font-weight:900;letter-spacing:-.5px;line-height:1.08;margin:0 0 18px;text-wrap:balance}
+h2{font-size:27px;line-height:1.2;margin:0 0 14px;text-wrap:balance}
+p{margin:0 0 16px}
+.lead{font-size:21px;line-height:1.45}
+.hl{background:var(--hi);padding:0 4px}
+.hand{font-family:var(--hand);color:var(--pen);font-size:22px;line-height:1.35}
+section{padding-top:36px;margin-top:40px;border-top:1px solid var(--rule)}
+.doodles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:6px 0 10px}
+@media (max-width:540px){.doodles{grid-template-columns:1fr}}
+figure{margin:0;border:2px solid var(--ink);background:var(--paper)}
+figure svg{display:block;width:100%;height:auto}
+figcaption{border-top:2px solid var(--ink);padding:8px 12px;font-size:15px;line-height:1.4}
+figcaption b{display:block;font-size:13px;letter-spacing:1px;text-transform:uppercase}
+.eras{list-style:none;padding:0;margin:18px 0;display:grid;gap:0;border-left:4px solid var(--ink)}
+.eras li{padding:8px 0 8px 18px;position:relative;margin:0}
+.eras li::before{content:"";position:absolute;left:-10px;top:17px;width:16px;height:16px;background:var(--paper);border:3px solid var(--ink);border-radius:50%}
+.eras li:last-child::before{background:var(--ink)}
+.eras b{display:block;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--soft)}
+.quote{border-left:4px solid var(--ink);padding:2px 0 2px 18px;margin:0 0 20px}
+.quote p{margin:0 0 6px}
+.quote .w{font-size:14px;font-weight:bold}
+.clock{display:grid;gap:0;margin:8px 0 18px;border:2px solid var(--ink)}
+.clock div{display:grid;grid-template-columns:96px 1fr;border-bottom:1px solid var(--rule)}
+.clock div:last-child{border-bottom:0}
+.clock span{font:bold 15px var(--body);padding:12px;border-right:2px solid var(--ink);background:var(--hi);font-variant-numeric:tabular-nums}
+.clock p{margin:0;padding:12px 14px;font-size:17px;line-height:1.45}
+.case{display:grid;gap:4px;border:2px solid var(--ink);padding:16px 18px;margin:0 0 14px}
+.case .k{font:bold 12px var(--body);letter-spacing:1px;text-transform:uppercase;color:var(--soft)}
+.case h3{margin:0 0 4px;font-size:21px;line-height:1.3}
+.case p{margin:0;font-size:17px}
+.genie{background:var(--ink);color:#fff;padding:28px 22px;margin-top:40px}
+.genie h2{color:#fff}
+.genie p{color:#e6e6e6}
+.num{font:900 clamp(30px,8vw,40px) var(--body);letter-spacing:.5px;margin:4px 0 6px;color:#fff}
+.word{background:var(--hi);color:var(--ink);padding:0 8px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.btn{display:inline-block;padding:14px 20px;background:#fff;color:var(--ink);text-decoration:none;font-weight:bold;font-size:17px;border:2px solid #fff;text-align:center;flex:1 1 220px}
+.btn.ghost{background:transparent;color:#fff}
+.genie .hand{color:#cfe0ff;margin:16px 0 0}
+.team{margin-top:46px;border:2px dashed var(--ink);padding:14px 16px;font-size:15px}
+.team h3{margin:0 0 8px;font-size:16px}
+.team ul{margin:0;padding-left:20px}
+.team li{margin:0 0 6px}
+.foot{font-size:13px;color:var(--soft);margin-top:24px}
+</style>
+
+<div class="mockbar"><span>Mockup for Thu Nov 12 · not live on 2guysandagenie.com</span><span class="stamp">MOCKUP</span></div>
+<header><span class="lg">2G</span>2 Guys and a Genie</header>
+
+<main>
+  <div class="who" role="group" aria-labelledby="who-q">
+    <p id="who-q">Who sent you our way?</p>
+    <div class="chips" id="chips">
+      <button type="button" data-k="friend" aria-pressed="false">A friend</button>
+      <button type="button" data-k="ttr" aria-pressed="false">TTR</button>
+      <button type="button" data-k="mccray" aria-pressed="false" hidden>Dr. McCray</button>
+      <button type="button" data-k="jamon" aria-pressed="false" hidden>Jamon</button>
+      <button type="button" data-k="group" aria-pressed="false">A group I'm in</button>
+      <button type="button" data-k="night" aria-pressed="false">Our AI night</button>
+    </div>
+    <p class="opt">Optional. It just helps us say thank you to the right person.</p>
+  </div>
+
+  <p class="kick">Here's what all the fuss is about</p>
+  <h1 id="headline">Somebody told you it's hard to explain. They're right.</h1>
+  <p class="lead" id="sublead">You probably heard something like "I can't really describe what these guys do. You just have to see it." That's fair. Here's why it's so hard to explain, and the one way that works.</p>
+
+  <section aria-labelledby="h-why">
+    <h2 id="h-why">Why it's hard to explain</h2>
+    <p>Before AI, if you wanted to grow your business, you had a short list of ways to do it. You guessed. You learned by trial and error. You hired someone. Your options were set by who you knew and what you knew.</p>
+    <div class="doodles">
+      <figure>
+        <svg viewBox="0 0 320 230" role="img" aria-label="Doodle: a bubble that says grow my business, with four short branches: guess, trial and error, hire someone, who you know.">
+          <g fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M160 92 C 118 92 104 112 106 126 C 108 144 132 152 162 151 C 196 150 216 140 214 122 C 212 104 194 91 160 92 Z"/>
+            <path d="M118 104 L 64 62"/><path d="M204 104 L 258 62"/><path d="M116 142 L 66 186"/><path d="M206 142 L 256 186"/>
+          </g>
+          <g fill="#FFF3C4" stroke="#111" stroke-width="2.5"><circle cx="56" cy="56" r="9"/><circle cx="264" cy="56" r="9"/><circle cx="60" cy="192" r="9"/><circle cx="262" cy="192" r="9"/></g>
+          <g font-family="Bradley Hand, Marker Felt, Comic Sans MS, cursive" font-size="15" fill="#1a3fa0" font-weight="bold" text-anchor="middle">
+            <text x="160" y="118">grow my</text><text x="160" y="136">business</text>
+            <text x="64" y="30">guess</text><text x="256" y="30">trial and error</text>
+            <text x="68" y="222">hire someone</text><text x="254" y="222">who you know</text>
+          </g>
+        </svg>
+        <figcaption><b>Before</b>A few roads, and you can see the end of each one.</figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 320 230" role="img" aria-label="Doodle: the same bubble with AI, now with dozens of branches running off the edge of the page.">
+          <g fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" id="rays"></g>
+          <g fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M160 92 C 118 92 104 112 106 126 C 108 144 132 152 162 151 C 196 150 216 140 214 122 C 212 104 194 91 160 92 Z" fill="#fff"/>
+          </g>
+          <g font-family="Bradley Hand, Marker Felt, Comic Sans MS, cursive" font-size="15" fill="#1a3fa0" font-weight="bold" text-anchor="middle">
+            <text x="160" y="118">grow my</text><text x="160" y="136">business</text>
+          </g>
+          <g font-family="Bradley Hand, Marker Felt, Comic Sans MS, cursive" font-size="14" fill="#c0262d" font-weight="bold">
+            <text x="8" y="20">...and ones nobody</text><text x="8" y="37">has thought of yet</text>
+          </g>
+        </svg>
+        <figcaption><b>With AI</b>So many roads they run off the page. Some haven't been invented yet.</figcaption>
+      </figure>
+    </div>
+    <p>With AI, there are endless ways to help a business. So when someone asks "what do you guys do?", the honest answer is "it depends on you." And that sounds like a dodge.</p>
+    <ul class="eras" aria-label="How getting help has changed">
+      <li><b>Before the internet</b>You had to know someone.</li>
+      <li><b>After the internet</b>Advice everywhere, so you hired a consultant to sort it out.</li>
+      <li><b>Now</b>A crew of AI helpers can research, write and build for one business, in an afternoon.</li>
+    </ul>
+    <blockquote class="quote"><p>"I've tried different ways to explain it. The only thing is just to show."</p><div class="w">Jimmy Davis</div></blockquote>
+  </section>
+
+  <section aria-labelledby="h-show">
+    <h2 id="h-show">What it looks like when we show you</h2>
+    <p>Recently Jimmy and Paul visited a small networking group in Fishers. Instead of explaining, Jimmy asked one owner in the room, a jewelry maker, if she wanted to play.</p>
+    <div class="clock" aria-label="What happened, by the clock">
+      <div><span>6 min</span><p>Jimmy asked her what she makes, where her business really comes from, and where she gets stuck.</p></div>
+      <div><span>Then</span><p>He pulled out his phone and talked to his AI. Out loud. Nobody touched a keyboard.</p></div>
+      <div><span>13 min</span><p>A page was up for the whole room, listing what AI had already done for her.</p></div>
+      <div><span>Same day</span><p>By that afternoon she had a whole stack of ideas for her business, made with her real work, handed to her privately. Hers to share if she wants.</p></div>
+    </div>
+    <p class="hand">That's the fuss. People see it happen to someone they know, and it stops being hard to explain.</p>
+  </section>
+
+  <section aria-labelledby="h-jamon">
+    <h2 id="h-jamon">The owner who started all this</h2>
+    <p>Jamon is a retired Indianapolis cop with a handyman business. When Jimmy walked out barefoot and pointed at the name on his van, Jamon wanted to punch him. Two sit-downs later his business had a new name, GottaCallJack.com, a text back for every missed call, and a review request after every happy job. Jamon never had to learn a thing.</p>
+    <blockquote class="quote"><p>"We were roughly bringing in maybe $15,000 to $20,000 a month, and now our revenue is over $50,000 a month."</p><div class="w">Jamon, GottaCallJack.com</div></blockquote>
+    <div class="case">
+      <span class="k">Chiropractor</span>
+      <h3>Dr. Marcus McCray, Excell Sports Chiropractic</h3>
+      <p>He's the team chiropractor for the Indianapolis Colts, and a new patient could visit his website and never know it. Now it's the first thing a new patient sees. His word when he saw it: "Unbelievable... this is definitely gonna make my life a whole lot easier."</p>
+    </div>
+  </section>
+
+  <div class="genie" aria-labelledby="h-genie">
+    <h2 id="h-genie">Want to see it for your business?</h2>
+    <p>Grab your phone and text one word. A real person gets right back to you, and you can grab 15 minutes with Jimmy. No pitch, no homework.</p>
+    <p style="margin:0">Text the word <span class="word">GENIE</span> to</p>
+    <p class="num">(317) 751-2693</p>
+    <div class="btns">
+      <a class="btn" href="sms:+13177512693?&amp;body=GENIE">Text GENIE now</a>
+      <a class="btn ghost" href="https://2guysandagenie.com/book/" target="_blank" rel="noopener">Or grab 15 minutes with Jimmy</a>
+    </div>
+    <p class="hand" id="thanks">And thank whoever sent you. They did you a favor. ~ Jimmy &amp; Paul</p>
+  </div>
+
+  <aside class="team" aria-labelledby="h-team">
+    <h3 id="h-team">Notes for Thursday (not part of the page)</h3>
+    <ul>
+      <li><b>"Who sent you?" is our scoreboard.</b> Each pick adds the room to the text ("GENIE TTR"), so we finally know which rooms turn into calls. Check the GoHighLevel trigger fires on "contains GENIE" before going live.</li>
+      <li><b>Dr. McCray and Jamon only show up on their own links</b> (add #from=mccray or #from=jamon), because they're cleared as stories, not as people who send us folks. TTR stays generic until Jennifer says we can use her name.</li>
+      <li><b>The demo story is told generally on purpose.</b> No name, no shop, no numbers, until the jewelry maker says it's OK.</li>
+      <li><b>Only cleared stories:</b> Jamon and Dr. McCray, using the same words already on 2guysandagenie.com.</li>
+      <li><b>Missing:</b> a 20-second reaction video from a real room. Film the next one (with a spoken OK) and it goes right under the headline.</li>
+    </ul>
+  </aside>
+  <p class="foot">Mockup made Wed Nov 11, 2026 for the 2 Guys team. Nothing here is live. The text button works on a phone.</p>
+</main>
+
+<script>
+const WHO = {
+  friend:{h:"A friend told you it's hard to explain. They're right.", s:"Your friend probably said something like \"I can't really describe what these guys do. You just have to see it.\" That's fair. Here's why, and the one way that works.", t:"And thank your friend for us. They did you a favor. ~ Jimmy & Paul"},
+  ttr:{h:"Someone from TTR thought you'd want to see this.", s:"If you were at Social Circle, you saw it happen. If you weren't, you probably heard \"you just have to see it.\" Here's why it's so hard to explain, and the one way that works.", t:"And thank whoever at TTR sent you. ~ Jimmy & Paul"},
+  mccray:{h:"Dr. McCray sent you. Here's what he was talking about.", s:"He's been working with us on his practice. He probably told you it's easier to see than to explain. He's right. Here's why.", t:"And thank Doc for us. ~ Jimmy & Paul"},
+  jamon:{h:"Jamon sent you. Here's what he was talking about.", s:"He'll tell you he wanted to punch Jimmy the first time they met. Here's why what happened next is so hard to explain, and the one way that works.", t:"And thank Jamon for us. ~ Jimmy & Paul"},
+  group:{h:"Someone in your group told you it's hard to explain. They're right.", s:"You probably heard \"I can't really describe what these guys do. You just have to see it.\" That's fair. Here's why, and the one way that works.", t:"And thank whoever in your group sent you. ~ Jimmy & Paul"},
+  night:{h:"You heard about our AI night. Here's what all the fuss is about.", s:"Owners walk in with one problem and see AI work on it, live. It's hard to describe until you see it. Here's why.", t:"See you at the next one. ~ Jimmy & Paul"}
+};
+const DEF = {h:document.getElementById("headline").textContent, s:document.getElementById("sublead").textContent, t:document.getElementById("thanks").textContent};
+function pick(k){
+  const d = WHO[k] || DEF;
+  document.getElementById("headline").textContent = d.h;
+  document.getElementById("sublead").textContent = d.s;
+  document.getElementById("thanks").textContent = d.t;
+  document.querySelectorAll("#chips button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.k===k));
+  document.querySelector('a[href^="sms:"]').href = "sms:+13177512693?&body=" + encodeURIComponent(k ? "GENIE " + k.toUpperCase() : "GENIE");
+}
+document.getElementById("chips").addEventListener("click", e=>{
+  const b = e.target.closest("button"); if(!b) return;
+  pick(b.getAttribute("aria-pressed")==="true" ? null : b.dataset.k);
+});
+const m = location.hash.match(/from=(\w+)/); if (m && WHO[m[1]]) { const b = document.querySelector(`#chips [data-k="${m[1]}"]`); if (b) b.hidden = false; pick(m[1]); }
+// draw the many-branches doodle (deterministic, so it looks the same every time)
+(function(){
+  const g = document.getElementById("rays"); let seed = 7;
+  const rnd = () => (seed = (seed*9301+49297)%233280)/233280;
+  for (let i=0;i<46;i++){
+    const a = (i/46)*Math.PI*2 + rnd()*0.12, cx=160, cy=121;
+    const r0 = 52, r1 = 120 + rnd()*120;
+    const x0 = cx+Math.cos(a)*r0*1.05, y0 = cy+Math.sin(a)*r0*0.62;
+    const x1 = cx+Math.cos(a)*r1, y1 = cy+Math.sin(a)*r1*0.8;
+    const mx = (x0+x1)/2 + (rnd()-.5)*30, my = (y0+y1)/2 + (rnd()-.5)*30;
+    const p = document.createElementNS("http://www.w3.org/2000/svg","path");
+    p.setAttribute("d",`M${x0.toFixed(1)} ${y0.toFixed(1)} Q ${mx.toFixed(1)} ${my.toFixed(1)} ${x1.toFixed(1)} ${y1.toFixed(1)}`);
+    p.setAttribute("opacity",(0.45+rnd()*0.55).toFixed(2));
+    g.appendChild(p);
+    if (i%3===0){ const c=document.createElementNS("http://www.w3.org/2000/svg","circle"); const t=.55; c.setAttribute("cx",(x0+(x1-x0)*t).toFixed(1)); c.setAttribute("cy",(y0+(y1-y0)*t).toFixed(1)); c.setAttribute("r","4"); c.setAttribute("fill","#FFF3C4"); c.setAttribute("stroke","#111"); c.setAttribute("stroke-width","1.5"); g.appendChild(c); }
+  }
+})();
+</script>
+
+</html>
