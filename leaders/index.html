@@ -237,7 +237,7 @@ header.site.one nav.top{flex-wrap:nowrap;gap:0 11px;font-size:12px;justify-conte
 <h2 id="blurb">Copy And Paste For Your Group</h2>
 <div class="blurb" id="blurbtext">Free for local business owners: AI for Business Night, Tuesday, December 8, 7 to 9pm at Launch Fishers. Plain English, no hype, no coding. Watch AI work on real local businesses, then try it on yours. Done by 9. Save a seat: 2guysandagenie.com/meetup/?src=group#seat</div>
 <button class="copy" id="copybtn" type="button">Copy the invite</button>
-<p class="small" style="margin-top:12px">The link in this invite is your group's own, so every person you send traces back to you.</p>
+<p class="small" id="ownlink" style="margin-top:12px">The link in this invite is your group's own, so every person you send traces back to you.</p>
 
 <div class="details" style="margin-top:26px">
 <p><b>When:</b> <span data-ev="long">Next date coming soon</span> · Doors 6:30, starts 7:00, done by 9:00</p>
@@ -269,6 +269,7 @@ header.site.one nav.top{flex-wrap:nowrap;gap:0 11px;font-size:12px;justify-conte
 </main>
 <script>
 (function(){var m=location.search.match(/[?&]src=([a-z0-9_-]{1,40})/i),src=m?m[1].toLowerCase():'group';
+if(src==='group'){var ol=document.getElementById('ownlink');if(ol)ol.style.display='none';}
 var bt=document.getElementById('blurbtext');bt.textContent=bt.textContent.replace('?src=group','?src='+src);
 var os=document.getElementById('ownseat');if(os)os.href=os.href.replace(/src=[^#]*/,'src='+src);
 var ns=document.getElementById('navseat');if(ns)ns.href=ns.href.replace(/src=[^#]*/,'src='+src);
