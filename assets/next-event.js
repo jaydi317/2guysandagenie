@@ -8,7 +8,12 @@
      gcal:  "20261215T000000Z/20261215T020000Z" // Google Calendar UTC start/end
    };
 */
-window.NEXT_EVENT = null;
+window.NEXT_EVENT = {
+  long:  "Tuesday, December 8",
+  short: "Tue Dec 8",
+  num:   "8", mon: "DEC", day: "TUESDAY",
+  gcal:  "20261208T233000Z/20261209T020000Z"
+};
 (function(){
   var st=document.createElement('style'); st.textContent='[data-ev-show][hidden]{display:none!important}'; (document.head||document.documentElement).appendChild(st);
   function run(){
