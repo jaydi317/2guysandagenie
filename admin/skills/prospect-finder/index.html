@@ -1,0 +1,179 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="color-scheme" content="light"><title>The Prospect Finder Skill · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<style>body{margin:0;background:#fff;color:#111;font:17px/1.5 Tahoma,Geneva,Verdana,sans-serif}main{max-width:680px;margin:0 auto;padding:24px 16px 70px}h1{font-size:30px;margin:0 0 4px}.sub{color:#555;margin:0 0 10px}a{color:#111}
+.big{display:block;width:100%;box-sizing:border-box;font:inherit;font-size:19px;font-weight:bold;padding:12px 14px;border:3px solid #111;background:#111;color:#fff;text-align:center;cursor:pointer;margin:12px 0}
+ol{padding-left:22px}li{margin:0 0 8px}textarea{width:100%;box-sizing:border-box;height:420px;font:13px/1.45 Menlo,Consolas,monospace;padding:10px;border:2px solid #111;background:#fafafa;color:#111}
+.how{background:#FFF3C4;padding:12px 16px;margin:14px 0}#ok{font-size:14px;color:#555;min-height:20px}</style></head><body><main>
+<p><a href="/admin/">&larr; Admin</a> &middot; <a href="/admin/market-domination/">Market Domination</a> &middot; <a href="/admin/leads/">Leads Portal</a></p>
+<h1>The Prospect Finder Skill</h1>
+<p class="sub">The method we used to build the list of local businesses, written so any of our Claudes can run it.</p>
+<div class="how"><b>How to add it to your Claude</b>
+<ol>
+<li>Tap <b>Copy The Skill</b> below.</li>
+<li>Open Claude and start a new chat.</li>
+<li>Say: <b>"Make this a skill called prospect-finder"</b> and paste what you copied.</li>
+<li>Save the skill when Claude shows it to you.</li>
+<li>Then say <b>"run a batch"</b>. Before it starts, it checks the "Areas Covered" tab of our <a href="https://claude.ai/artifact/L7VNFamPeupMwuVhpDVszY">Local Business Database sheet</a>, so it never repeats an area or a shop.</li>
+</ol></div>
+<button class="big" id="copy">Copy The Skill</button>
+<p id="ok"></p>
+<textarea id="sk" readonly>---
+name: &quot;prospect-finder&quot;
+model: opus
+description: &quot;Find and grade local businesses worth reaching out to: sweep an area, grade A or B, deep-read the best. He says \&quot;find clients\&quot;, \&quot;run a batch\&quot;, \&quot;who should we reach out to\&quot;, \&quot;build the database\&quot;. Also runs when a prospect list is being built by trade or by gut.&quot;
+---
+
+# Prospect Finder
+
+Research through one lens: who should we reach out to. It sweeps a place, grades every business it finds, and reads the best ones the way a customer would, so we walk in knowing something true about the shop.
+
+It is a picking tool. Its job is to choose who gets a demonstration, not to pile up names.
+
+Why it exists (his, November 15, 2026): &quot;I don&#x27;t think I need to be looking over as you&#x27;re looking up each and every place, right? That&#x27;s not like artwork. That&#x27;s like going to do the research and get things done type work.&quot; And who it looks for (November 16, 2026): &quot;the type of businesses that are willing to spend money. They&#x27;re active, they&#x27;re excited, they&#x27;re looking forward to get better and grow. Not just the ones that need the most help.&quot;
+
+Three kinds of research share one desk, and this skill is only the first:
+
+| The question | The tool |
+|---|---|
+| Who should we reach out to? | This skill |
+| What is going on inside this one business? (the deep report) | `local-dossier`, and the Research Prompt for a full site read |
+| Who is this one person and how do we talk to them? | `prospect-read` |
+
+## The Round
+
+One round is a batch. Each round ends by making the next one better.
+
+1. **Open the brief.** Read the build&#x27;s brief, working rules and decisions log. Say in one line what this batch is for and what changed since the last one.
+2. **Sweep by place, not by trade.** Pick town centres inside the radius. Around each, run broad searches that name no trade: &quot;family owned business&quot;, &quot;locally owned shop&quot;, &quot;local services&quot;, &quot;studio&quot;, &quot;clinic or practice&quot;, &quot;contractor&quot;, &quot;independent restaurant or cafe&quot;, &quot;boutique or store&quot;, &quot;repair shop&quot;, &quot;small office professional&quot;. Ask for the most results each search allows. Take what is there. A handful of trade words is a narrow filter on what actually exists.
+3. **Fit check.** Out: schools, churches, parks, government, hospitals, banks, national chains, anything outside the radius, anything already in an earlier batch. In: everything else. Few or no reviews never puts a business out. Say why each one is out, in its row.
+4. **Grade every listing from what the listing already gives.** No site visit yet. Rating, number of reviews, and the review text. Read the review text for two things: the owner showing up (&quot;the owner came out himself&quot;), and a leak said in a customer&#x27;s own words (&quot;the phone rings and goes to voicemail&quot;, &quot;never got a call back&quot;, &quot;the website says something different&quot;).
+5. **Pick the shortlist for a deep read.** Every business with a leak in a review, plus the best-loved owner-run ones across different trades. Not only the biggest.
+6. **Find each site and check it is theirs.** Match the name, the town and the phone before reading. A lookup can return a different shop with a similar name. Look the sites up through a search page in the browser, many in one step. If one search engine stops answering, switch to another instead of pushing it.
+7. **Deep-read the shortlist as a customer trying to buy.** Many sites in one step. For each: the owner&#x27;s name, every way to reach or book, prices shown or not, the promise in their words, the proof shown, paid tools or an agency credit, anything stale or broken, and the social links. Then lay the site beside the Google listing: do the hours match, and does the phone match? If the page reader is blocked because he is away, read the sites in the browser, six or seven in one step.
+8. **Go one layer deeper on the A&#x27;s.** Search what people say about them elsewhere. Open their Facebook, Instagram and Yelp by hand in the browser, since the reader is blocked there. Compare their promise, prices and proof to the leader in the same trade and town: where do they say less, charge differently, or show less than the one winning?
+9. **Grade A, B or leave.** The rule is below.
+10. **Run Jimmy&#x27;s clients through the same lens.** They are the businesses already helped. If the lens would have missed them, the lens is wrong. Say what that changes.
+11. **A fresh reader checks the result** before he sees it: once as a passerby, once as an examiner.
+12. **Deliver, then save the lessons.** The ranked sheet, the A&#x27;s written up, and a short note on what the grading got wrong. Then the lesson step below.
+
+## The Grade
+
+Two questions. An A is a yes on both.
+
+**Is this owner worth it?** Either of two ways earns it.
+
+- **He spends to grow.** Running ads, paying for tools (booking, chat, text-back, shop software), paying a marketing agency, hiring, a team page, awards or memberships.
+- **He is loved and he is the business.** Strong reviews, the owner named in them, a small shop where he answers the phone. Jimmy&#x27;s clients look like this far more often than they look like spenders.
+
+Signs the owner himself shows up count more than signs a vendor could produce. An agency can run ads for a man who never looks at them. Nobody can answer his reviews for him.
+
+**Is there a leak costing him money today?** Seen in a review or on his site. Examples found so far: a phone that rings out to voicemail, a customer who never got a call back, a placeholder phone number on the site, an hours link that goes nowhere, two different closing times, a season notice years old, hours on the site that differ from the hours on Google, a tap-to-call link that dials a different number than the one shown.
+
+- **A:** worth it, and a today&#x27;s-money leak we can show him.
+- **B:** worth it, with a smaller leak (no online booking, loved but no reviews on the site, an old footer, a stuck countdown) or none seen yet.
+- **Worth a visit:** a yes on the first question from the listing alone (well rated, the owner named in the reviews), with no close look yet. His words, November 16, 2026: &quot;at least worth going to, maybe not AB.&quot; It is a door worth walking through, not a graded prospect. A close look moves it to A or B.
+- **Leave:** neither.
+
+A call is one more way to find a leak. It is not the only way and it is not required for an A.
+
+## Rules
+
+- **Found is a fact. Not found is a maybe.** A site the reader could not load is a hold, never a finding. Anything &quot;missing&quot; is checked a second way.
+- **Every fact carries where it came from and the date seen.** A guess is labeled a guess.
+- **The public face of the business only.** Site, listing, reviews, the business&#x27;s own social pages, public records about the business. His family and private life stay out. Nobody but him is contacted about him.
+- **Research only.** Nothing is sent, called or loaded anywhere unless he says so for that thing.
+- **Check who owns it before grading high.** Multi-state companies and shops owned by a marketing company score well and are not the target. Franchises go on the lowest rung, below Worth a visit, whatever they score. His words, November 16, 2026: &quot;Most of the time, they have to abide by... their advertising and all the things they do. So they may not be real legitimate leads worth visiting. At least I&#x27;d probably put them to the lowest rung.&quot;
+- **The records live in the sheet, never in the repo.** The method and the lessons live here, with no business named.
+- **He gets finished things and exceptions, never progress.** Outcome first, then the one thing he has to do.
+- **His words about the target are the spec.** When he corrects who we are looking for, the correction goes into The Grade the same session.
+
+## When More Than One Claude Works The List
+
+His words, November 16, 2026: &quot;so that Jimmy or Paul can use it and they can use their Claudes to continue and build the database, but not repeat what we&#x27;ve already done... and they can just add to the wealth.&quot;
+
+The shared record is the Local Business Database sheet. Anyone running this skill outside Daegan&#x27;s own library will not have the build&#x27;s brief or working rules. For them the sheet and the write-up, &quot;How We Built Our Universe of Clients&quot;, are the brief.
+
+1. **Open the &quot;Areas Covered&quot; tab first.** It lists every area already swept, who swept it and when. Pick an area that is not on it, inside 30 miles of Launch Fishers.
+2. **Claim it before sweeping.** Add a row with the area, your person&#x27;s name, the date and &quot;in progress&quot;, so two Claudes do not sweep the same place.
+3. **Drop what is already found.** Before grading, remove any business whose name and town are already on &quot;Worth Going To&quot; or any Batch tab.
+4. **Add, never overwrite.** Results go in a new tab named for the round and the person. New A&#x27;s and B&#x27;s are added as new rows on &quot;Worth Going To&quot;, with the person&#x27;s name in &quot;Came from&quot;. Nobody edits or deletes another person&#x27;s rows.
+5. **Close the claim.** Change the row to &quot;done&quot; with how many were found and how many A&#x27;s and B&#x27;s.
+6. **Send the lessons to Daegan,** one plain line each. The skill is updated in one place so every copy stays the same.
+
+The Research only rule holds for everyone: nothing is sent, called or loaded anywhere by a research round.
+
+## The Lesson Step
+
+His, November 16, 2026: &quot;Every lesson has value. So we don&#x27;t want to just move right past it without saying, hey, is this important? This is important. It needs to be saved.&quot;
+
+At the end of every round, and any time something surprising turns up mid-round:
+
+1. Say the lesson in one plain sentence.
+2. Ask: is this important? Would it change what we do next round, or save us from a mistake we already made once?
+3. If yes, save it now, where it will be used: a change to the steps or the grade above, plus one dated line in Lessons below with what happened and what changed. If it belongs to one build only, it goes in that build&#x27;s working rules.
+4. If it would help all his work and not only research, show it to the Universal instructions.
+
+A lesson that is only noticed comes back as the same mistake.
+
+## What He Sees
+
+Short enough for a phone.
+
+1. The outcome: how many A&#x27;s and B&#x27;s, in one line.
+2. The A&#x27;s, each with the leak in the customer&#x27;s or the site&#x27;s own words.
+3. The B&#x27;s by name, with the clearest one explained.
+4. What this round taught the process.
+5. What is not done yet.
+6. The one thing he has to do.
+
+## When It Runs
+
+**He says:** &quot;find clients&quot;, &quot;find businesses&quot;, &quot;run a batch&quot;, &quot;run another batch&quot;, &quot;who should we reach out to&quot;, &quot;build the database&quot;, &quot;the business database&quot;, &quot;market domination&quot;, &quot;slight edgers&quot;, &quot;who&#x27;s first&quot;.
+
+**Claude notices** (one sign is enough):
+- A list of businesses to contact is being built from trade search words alone.
+- Businesses are being dropped for one thing, such as few reviews.
+- A grade is about to be given from a homepage glance, with no review text read and no customer-eye read.
+
+**Not this:** one business we are about to meet (`local-dossier`). One person (`prospect-read`). A whole market, its buyers and competitors (`market-intelligence`). A teardown of the top sites in a trade (`funnel-hack`). The demonstration itself (the Dramatic Demonstration Playbook).
+
+## Lessons
+
+Each line: the date, what happened, what changed. No business is named.
+
+- 2026-11-08: Pilot of 50 home-service businesses in one town; 41 had something wrong to fix. It ranked by what was broken. Lesson: flaws are not hunger. Changed: grade on whether the owner is worth it, not only on the leak.
+- 2026-11-16: The first filter came from national surveys (firms with staff buy AI more), not from the businesses already helped. It pointed at bigger, ad-heavy firms. Changed: Jimmy&#x27;s clients are run through the lens every round (step 10).
+- 2026-11-16: 52 businesses were skipped for having few reviews. His correction: one thing alone never disqualifies; a client of Jimmy&#x27;s had no reviews at all. Changed: no review cutoff (step 3).
+- 2026-11-16: Ten trade search words returned ten trades, five results each. His correction: search the place, not the trade. Changed: the sweep (step 2). One sweep of seven areas returned 477 new businesses across dozens of trades.
+- 2026-11-16: Three top scorers were a franchise, a three-state company and a shop owned by a marketing agency&#x27;s owner. Changed: the ownership rule.
+- 2026-11-16: A script that checked homepages for tags found almost no leaks, and the first conclusion was &quot;only a call finds them.&quot; His correction: think deeper before reaching for a call. Reading review text and reading the site as a customer found leaks in 6 of 13 graded businesses. Changed: steps 4 and 7, and the A rule no longer needs a call.
+- 2026-11-16: Opening sites one at a time in a browser was slow. Reading many sites in one step with a customer&#x27;s questions was faster and found far more. Changed: step 7.
+- 2026-11-16: Two of eighteen site lookups returned a different shop with a similar name. Changed: step 6.
+- 2026-11-16: One site would not load for the reader. Changed: the hold rule. This is the same lesson as a purchase page once read as empty when it was not.
+- 2026-11-16: Two businesses on one marketing vendor&#x27;s template had the same dead hours link. Lesson: a vendor&#x27;s template can lead to more owners with the same leak. Not yet a step; try it next round.
+- 2026-11-16: Jimmy&#x27;s ten clients through the first lens: most would have been missed. What they share is a small shop where the owner is the business, often well loved, with a gap between how good they are and how they show up. Changed: the second way to be worth it. Caution kept: they came through Jimmy in person, so they show who says yes face to face.
+- 2026-11-16: The count. The area holds roughly 8,000 to 15,000 findable owner-run businesses inside 30 miles (an estimate). His call: 30 miles is enough; no need to go to 50.
+- 2026-11-16: Facebook and Yelp block the reader. Changed: step 8 opens them by hand, for the A&#x27;s only.
+- 2026-11-16: Round three, seven more areas. Laying each site&#x27;s hours beside the Google listing&#x27;s hours found the leak in three of the four A&#x27;s. Changed: step 7 compares the two, and the grade lists it.
+- 2026-11-16: The site lookup stopped answering after ten searches, and a general web search returned pages of unrelated text. A second search engine in the browser took nineteen lookups in one step. Changed: step 6.
+- 2026-11-16: He was away, so the fast page reader was refused. Reading in the browser with one short extractor did six or seven sites a step. Changed: step 7.
+- 2026-11-16: The review-word filter flagged 25 listings; about 8 were real. &quot;Never heard of this place&quot; reads like &quot;never heard back&quot; to a filter. Kept: every flagged review is read by eye before it counts.
+- 2026-11-16: The vendor-template lead was tried on two shops built by one shop-software vendor. No shared leak. Not a step; one more try before dropping it.
+- 2026-11-16: One of nineteen lookups returned a company of the same name in another state. Step 6 caught it.
+- 2026-11-16: Round four. He asked for 200 that are A, B, &quot;or at least worth going to.&quot; The listing alone answers the first question for many shops. Changed: a third tier, Worth a visit, and one master tab on the sheet that holds all three.
+- 2026-11-16: An automatic compare of site hours against listing hours was tried. A loose pattern caught words like &quot;testimonials&quot; as if they were &quot;Mon&quot;. Kept: hours are compared by eye, on a snippet the extractor pulls.
+- 2026-11-16: Shop sites built on one common online-store builder came back empty to the extractor. Kept: those are holds, not &quot;no site&quot;.
+- 2026-11-16: His correction: A&#x27;s and B&#x27;s are the target, and Worth a visit is gravy. Franchises drop to the lowest rung, since the brand sets their advertising. Changed: the ownership rule.
+- 2026-11-16: To turn Worth a visit into B&#x27;s fast, one short extractor read about 85 sites, twelve a step: is it their site, is the listing phone on it, what do the hours say, how old is the footer. It finds small leaks (old footer year, no phone, a page title still reading &quot;My Site&quot;) and one big one (an online store locked behind a password). It does not find A&#x27;s well; those still come from review text and the hours compare.
+- 2026-11-16: When the grading rule changes, earlier batches are regraded under it. Five first-batch shops read under the old points rule became B&#x27;s.
+- 2026-11-16: The first long run used most of one person&#x27;s usage for the day, and a background round stopped when the limit hit. His call: Jimmy and Paul run the same skill from their own Claudes and add to one shared sheet. Changed: the section on more than one Claude, and an &quot;Areas Covered&quot; tab so nothing is swept twice.
+- 2026-11-16: Round five. Nine shop sites had read as empty and were held. Read again with a three-second wait before the extractor, eight of them loaded. Changed: the extractor waits before it reads, and a hold gets one second try before it stays a hold.
+</textarea>
+<p class="sub" style="font-size:14px;margin-top:10px">Copied from Daegan's library on Nov 16, 2026. He keeps the master copy; send him what a round teaches you so every copy stays the same.</p>
+<script>
+try{if(localStorage.getItem('2g-admin')!=='1'){location.replace('/admin/')}}catch(e){}
+document.getElementById('copy').onclick=function(){var t=document.getElementById('sk');var ok=document.getElementById('ok');
+function done(){ok.textContent='Copied. Now paste it into Claude.'}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.value).then(done,function(){t.select();document.execCommand('copy');done()})}else{t.select();document.execCommand('copy');done()}};
+</script>
+</main></body></html>
