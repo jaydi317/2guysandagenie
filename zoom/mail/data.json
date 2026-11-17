@@ -1,8 +1,14 @@
 {
- "checked": "Tue Nov 17, 3:12pm",
+ "checked": "Tue Nov 17, 4:13pm",
  "people": {
   "Daegan": {
    "needs": [
+    {
+     "t": "Add Jimmy's items to Wednesday's agenda page",
+     "w": "From Jimmy's Claude, Tue 4:12pm",
+     "x": "Jimmy's Claude answered your agenda ask for the Wed Nov 18 noon meeting. His items: agree a send date for the Jamon and Dr. McCray agreements (he's leaning Fri Nov 20); OK to send Mark Holder's short reply (waiting since Nov 10); Jim's Amazing Bread Audit Kit is finished, Jimmy calls Jim, then the page goes live; the Dec 10 event still has no start time (Jimmy plans to confirm by Fri Nov 20); Bruce the Piano Man update on Tuesday's visit and the testimonial video.",
+     "n": "Add these to the Wed Nov 18 agenda page. Also note the meeting should end by about 1pm, since Paul and Jimmy go to the TTR Social Circle 2 to 3pm."
+    },
     {
      "t": "Leader tags: say yes to one way of counting",
      "w": "From Jimmy's Claude, Tue 1:12pm",
@@ -36,10 +42,10 @@
    ],
    "waits": [
     {
-     "t": "Jimmy's Claude: an answer to our plain-words ask",
-     "w": "Sent Tue 1:47pm, about 1 hour",
-     "x": "We asked it to write every message so it says plainly what it needs from you, and to start updates with \"Just so you know.\"",
-     "n": "Nothing to do until it answers."
+     "t": "Vera: X search for local business database tools",
+     "w": "Jimmy's Claude passed it to Vera Tue 4:12pm, just now",
+     "x": "Jimmy's Claude sent your request word for word. It says Vera usually answers within an hour or two and it will send her findings in that thread.",
+     "n": "Nothing to do until her findings arrive."
     },
     {
      "t": "Paul's Claude: no answer to the Hello",
@@ -58,10 +64,10 @@
   "Jimmy": {
    "needs": [
     {
-     "t": "Answer to our plain-words ask",
-     "w": "Sent Tue 1:47pm",
-     "x": "We asked his Claude to write plainly and mark updates \"Just so you know.\"",
-     "n": "His Claude answers in its next inbox run."
+     "t": "Say whether he joins Wednesday's meeting late",
+     "w": "Flagged by his Claude Tue 4:12pm",
+     "x": "His sales call with Jessica is also listed at 12pm Wed, the same time as the team meeting.",
+     "n": "Jimmy says whether he joins late or the call moves."
     }
    ],
    "waits": [
@@ -93,25 +99,42 @@
  },
  "fyi": [
   {
-   "t": "Pre-call notes with Paul, Mon night",
-   "x": "Jimmy's Claude wrote down what you said you'd do after the pre-call: point the marketing materials at the Dec 10 date, fix the missing links in the Jimmy Library, and keep building the database of growing businesses near Launch Fishers. Correct any date that's wrong."
+   "t": "Jimmy's Claude will write in plain words",
+   "x": "It agreed: every message to Daegan will say what's needed and the next step, updates will start with \"Just so you know:\", and it drops the shorthand and counts. It says Jimmy's side can show up on this board too."
   },
   {
    "t": "Jimmy's Daily Brief, Tue 11:30am",
    "x": "Jimmy's own questions for himself today (the Jamon and Dr. McCray agreements, a reply to one person waiting a week, a call about the Jim's Amazing Bread page). Not for you. The one for you is the Friday ledger."
-  },
-  {
-   "t": "Cloudflare is done",
-   "x": "Both records are in, the name servers are switched and the zone is active."
   }
  ],
  "traffic": [
+  [
+   "Tue Nov 17, 4:12pm",
+   "In",
+   "Jimmy",
+   "Re: Your agenda items for Wed, Nov 18's team meeting",
+   "—"
+  ],
+  [
+   "Tue Nov 17, 4:12pm",
+   "In",
+   "Jimmy",
+   "Re: Please write to Daegan in plain words",
+   "about 2 hr 25 min after our 1:47pm send"
+  ],
+  [
+   "Tue Nov 17, 4:12pm",
+   "In",
+   "Jimmy",
+   "Re: Please pass to Vera: X search for local business database tools",
+   "—"
+  ],
   [
    "Tue Nov 17, 1:47pm",
    "Out",
    "Jimmy",
    "Please write to Daegan in plain words",
-   "waiting"
+   "answered 4:12pm"
   ],
   [
    "Tue Nov 17, 1:12pm",
