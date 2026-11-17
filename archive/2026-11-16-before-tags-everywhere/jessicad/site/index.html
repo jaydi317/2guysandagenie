@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Travel with Jess</title>
+<meta name="description" content="Plan less, travel more. Jessica Dworak, independent travel advisor with InteleTravel through PlanNet Marketing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0A2540; --deep:#0D3352; --lagoon:#0F7C8C; --sea:#7FD1C7; --foam:#EEF6F4;
+  --marigold:#F4B33F; --hibiscus:#E8506E; --ink:#132532; --muted:#4D6474; --line:#D5E4E2; --white:#fff;
+  --disp:"Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wrap:min(1180px, 100% - 40px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;font-family:var(--body);color:var(--ink);background:var(--foam);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--marigold);outline-offset:3px;border-radius:6px}
+.wrap{width:var(--wrap);margin-inline:auto}
+h1,h2,h3{font-family:var(--disp);line-height:.95;margin:0;letter-spacing:.005em}
+h2{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:800}
+h3{font-size:1.65rem;font-weight:800}
+p{margin:0 0 1em}
+.lede{font-size:1.15rem;color:var(--muted);max-width:58ch}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;gap:.5em;font:700 1rem/1 var(--body);padding:1em 1.4em;border-radius:999px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s ease, background .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-sun{background:var(--marigold);color:var(--night)}
+.btn-sun:hover{background:#ffc45a}
+.btn-ghost{border-color:currentColor;background:transparent}
+.btn-rose{background:var(--hibiscus);color:#fff}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(10,37,64,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand b{font:900 1.5rem/1 var(--disp);letter-spacing:.02em}
+.brand small{display:block;font-size:.72rem;color:var(--sea);font-weight:600;letter-spacing:.02em;margin-top:2px}
+.nav{display:flex;gap:26px;font-weight:600;font-size:.95rem}
+.nav a{text-decoration:none;opacity:.85}
+.nav a:hover{opacity:1;color:var(--marigold)}
+.top .btn{padding:.75em 1.1em;font-size:.92rem}
+@media (max-width:900px){.nav{display:none}}
+@media (max-width:520px){.brand small{display:none}.brand b{font-size:1.3rem}.brand svg{width:28px;height:28px}.top .btn{padding:.7em .95em;font-size:.84rem}.top .wrap{height:60px}}
+
+/* hero */
+.hero{position:relative;background:var(--night);color:#fff;overflow:hidden}
+.hero-scene{position:absolute;inset:0;z-index:0}
+.hero-scene svg{width:100%;height:100%;display:block}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:72px 110px}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-weight:600;color:var(--sea);font-size:.95rem;margin-bottom:22px}
+.kicker i{width:34px;height:2px;background:var(--marigold);display:block}
+.hero h1{font-size:clamp(3.6rem,9.5vw,7.6rem);font-weight:900;line-height:.86;text-transform:uppercase;margin-bottom:26px}
+.hero h1 span{display:block}
+.hero h1 .sun{color:var(--marigold)}
+.hero p.sub{font-size:1.2rem;max-width:44ch;color:#D7E6EE;margin-bottom:34px}
+.passes{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:620px}
+.pass{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:150px;padding:18px 20px 18px 22px;border-radius:14px;text-decoration:none;color:var(--night);background:#fff;transition:transform .2s ease, box-shadow .2s ease;box-shadow:0 18px 40px -18px rgba(0,0,0,.6)}
+.pass:hover{transform:translateY(-4px) rotate(-.6deg)}
+.pass::before,.pass::after{content:"";position:absolute;right:62px;width:18px;height:18px;border-radius:50%;background:var(--night)}
+.pass::before{top:-9px}.pass::after{bottom:-9px}
+.pass .stub{position:absolute;top:14px;bottom:14px;right:70px;border-right:2px dashed #C9D6DA}
+.pass .gate{position:absolute;right:16px;top:50%;transform:translateY(-50%);text-align:center;font:900 2.4rem/1 var(--disp)}
+.pass .gate small{display:block;font:600 .7rem/1 var(--body);color:var(--muted);margin-bottom:4px}
+.pass .who{font-size:.8rem;font-weight:600;color:var(--muted)}
+.pass strong{font:800 1.6rem/1 var(--disp);display:block;margin:6px 92px 10px 0}
+.pass .go{font-weight:700;font-size:.9rem;color:var(--lagoon);margin-right:80px}
+.pass.b .go{color:var(--hibiscus)}
+.pass.a{border-left:8px solid var(--marigold)}
+.pass.b{border-left:8px solid var(--hibiscus)}
+.portrait{position:relative;justify-self:end;width:min(420px,100%)}
+.arch{aspect-ratio:4/5;border-radius:999px 999px 24px 24px;overflow:hidden;border:6px solid var(--marigold);background:linear-gradient(180deg,#F7C66B,#E8506E);box-shadow:0 30px 70px -20px rgba(0,0,0,.7)}
+.arch img{width:100%;height:100%;object-fit:cover;object-position:51% 22%}
+.tag{position:absolute;left:-28px;bottom:42px;background:#fff;color:var(--night);padding:12px 16px 12px 14px;border-radius:12px;font-size:.88rem;line-height:1.3;box-shadow:0 14px 30px -10px rgba(0,0,0,.5);transform:rotate(-4deg)}
+.tag b{display:block;font:800 1.2rem/1.1 var(--disp)}
+.tag::before{content:"";position:absolute;top:50%;left:-7px;width:14px;height:14px;border-radius:50%;background:var(--night);border:3px solid #fff;transform:translateY(-50%)}
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px;padding-block:44px 90px}
+  .portrait{justify-self:center;width:min(300px,64%);order:-1}
+  .tag{left:-18px;bottom:24px}
+}
+@media (max-width:520px){
+  .passes{grid-template-columns:1fr}
+  .hero h1{font-size:clamp(3.2rem,16vw,4.6rem)}
+  .kicker i{display:none}.kicker{font-size:.88rem;margin-bottom:16px}.hero p.sub{font-size:1.08rem}
+  .straight .btn,.save .btn{white-space:normal;text-align:center;justify-content:center}
+}
+
+/* load sequence */
+@media (prefers-reduced-motion:no-preference){
+  .sunball{animation:rise 1.6s cubic-bezier(.2,.8,.2,1) both}
+  .wave1{animation:drift 14s ease-in-out infinite alternate}
+  .wave2{animation:drift 18s ease-in-out infinite alternate-reverse}
+  .hero h1 span{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+  .hero h1 span:nth-child(2){animation-delay:.12s}
+  .hero h1 span:nth-child(3){animation-delay:.24s}
+  .hero .sub,.hero .passes,.portrait{animation:up .9s .4s cubic-bezier(.2,.8,.2,1) both}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+}
+@keyframes rise{from{transform:translateY(160px);opacity:.3}to{transform:none;opacity:1}}
+@keyframes drift{from{transform:translateX(-30px)}to{transform:translateX(30px)}}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* ticker */
+.ticker{background:var(--marigold);color:var(--night);font:800 1.25rem/1 var(--disp);overflow:hidden;white-space:nowrap}
+.ticker div{display:inline-flex;gap:38px;padding:16px 0}
+.ticker span::after{content:"\2726";margin-left:38px;color:var(--hibiscus)}
+@media (prefers-reduced-motion:no-preference){.ticker div{animation:tick 40s linear infinite}}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* sections */
+section{padding-block:100px}
+@media (max-width:700px){section{padding-block:68px}}
+.door-head{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;margin-bottom:56px}
+.door-badge{font:900 clamp(9rem,15vw,13rem)/0.78 var(--disp);color:var(--marigold);-webkit-text-stroke:2px var(--night);paint-order:stroke}
+.door-head .lede{margin-top:18px}
+@media (max-width:700px){.door-head{grid-template-columns:1fr;gap:6px}.door-badge{font-size:5.2rem}}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s;margin-bottom:84px}
+.step{position:relative;padding-top:64px}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:0;left:0;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--night);color:var(--marigold);font:900 1.6rem/1 var(--disp)}
+.step::after{content:"";position:absolute;top:24px;left:60px;right:-14px;border-top:2px dotted var(--lagoon)}
+.step:last-child::after{display:none}
+.step h3{margin-bottom:10px}
+.step p{color:var(--muted)}
+@media (max-width:760px){.steps{grid-template-columns:1fr;gap:34px}.step::after{display:none}}
+
+/* features: postcards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.card .art{height:140px;position:relative}
+.card .art svg{position:absolute;inset:0;width:100%;height:100%}
+.card .txt{padding:20px 22px 24px}
+.card h3{font-size:1.5rem;margin-bottom:8px}
+.card p{color:var(--muted);font-size:.98rem;margin:0}
+.card.wide{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr}
+.card.wide .art{height:auto;min-height:200px}
+.card.full{grid-column:1/-1;grid-template-columns:2fr 1fr}.card.full .txt{display:flex;flex-direction:column;justify-content:center}
+@media (max-width:900px){.cards{grid-template-columns:1fr 1fr}.card.wide{grid-column:span 2}}
+@media (max-width:600px){.cards{grid-template-columns:1fr}.card.wide,.card.full{grid-column:auto;grid-template-columns:1fr}.card.wide .art{min-height:150px}}
+
+/* savings */
+.save{margin-top:90px;background:var(--night);color:#fff;border-radius:28px;padding:clamp(28px,5vw,60px);display:grid;grid-template-columns:1fr 1fr;gap:48px;position:relative;overflow:hidden}
+.save::after{content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,var(--marigold),transparent 70%);opacity:.35}
+.save h2{font-size:clamp(2.4rem,5vw,3.6rem);margin-bottom:16px}
+.save p{color:#C9DCE6}
+.example-flag{display:inline-block;background:var(--hibiscus);color:#fff;font-weight:700;font-size:.82rem;padding:6px 12px;border-radius:999px;margin-bottom:18px}
+.calc{position:relative;z-index:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:26px}
+.calc label{display:flex;justify-content:space-between;font-weight:600;font-size:.95rem;margin-bottom:8px}
+.calc label output{color:var(--marigold);font-weight:700}
+.calc input[type=range]{width:100%;accent-color:var(--marigold);margin-bottom:22px}
+.vs{list-style:none;margin:0;padding:0}.vs li{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:13px 0;border-top:1px dashed rgba(255,255,255,.22);font-size:.98rem}.vs span{color:#9FB6C4;text-decoration:line-through;text-decoration-color:rgba(232,80,110,.7)}.vs b{color:#fff}.vs b::before{content:"\2713";color:var(--marigold);margin-right:8px}
+.result{border-top:1px dashed rgba(255,255,255,.3);padding-top:20px}
+.result .big{font:900 clamp(3rem,8vw,4.4rem)/1 var(--disp);color:var(--marigold)}
+.result small{display:block;color:#AFC6D3;font-size:.85rem;margin-top:10px;line-height:1.45}
+@media (max-width:800px){.save{grid-template-columns:1fr;gap:28px}}
+
+/* door B */
+.biz{background:linear-gradient(180deg,var(--deep),var(--night));color:#fff;position:relative;overflow:hidden}
+.biz .door-badge{color:var(--hibiscus);-webkit-text-stroke:2px #fff}
+.biz .lede{color:#C9DCE6}
+.biz-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:56px}
+.forlist{list-style:none;padding:0;margin:0}
+.forlist li{padding:16px 0 16px 40px;border-bottom:1px solid rgba(255,255,255,.12);position:relative}
+.forlist li::before{content:"";position:absolute;left:0;top:21px;width:22px;height:14px;border:2px solid var(--sea);border-radius:3px}
+.forlist li::after{content:"";position:absolute;left:7px;top:16px;width:8px;height:5px;border:2px solid var(--sea);border-bottom:0;border-radius:3px 3px 0 0}
+.get{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.get div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:22px}
+.get h3{color:var(--sea);font-size:1.45rem;margin-bottom:8px}
+.get p{color:#C9DCE6;font-size:.96rem;margin:0}
+.straight{margin-top:56px;display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;background:#fff;color:var(--ink);border-radius:22px;padding:28px 32px}
+.straight .seal{width:86px;height:86px;border-radius:50%;border:3px dashed var(--hibiscus);display:grid;place-items:center;text-align:center;font:900 1.05rem/1 var(--disp);color:var(--hibiscus);transform:rotate(-8deg)}
+.straight h3{font-size:1.8rem;margin-bottom:6px}
+.straight p{margin:0;color:var(--muted)}
+@media (max-width:900px){.biz-grid{grid-template-columns:1fr;gap:40px}.straight{grid-template-columns:1fr;text-align:left}}
+@media (max-width:520px){.get{grid-template-columns:1fr}}
+
+/* about */
+.about .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.polaroid{background:#fff;padding:14px 14px 56px;border-radius:6px;box-shadow:0 30px 60px -28px rgba(10,37,64,.55);transform:rotate(-2.5deg);position:relative;max-width:460px}
+.polaroid img{height:auto;aspect-ratio:1/1;object-fit:cover;object-position:52% 20%;width:100%}
+.polaroid figcaption{position:absolute;bottom:16px;left:0;right:0;text-align:center;font:600 1.3rem/1 var(--disp);color:var(--muted)}
+.stamp{position:absolute;right:-22px;top:-22px;width:96px;height:96px;border-radius:50%;background:var(--marigold);display:grid;place-items:center;text-align:center;font:900 1rem/1 var(--disp);color:var(--night);transform:rotate(12deg)}
+.about blockquote{margin:0}
+.about p{font-size:1.1rem}
+.fill{background:#FFF3D6;border-bottom:2px solid var(--marigold);padding:0 3px;border-radius:3px}
+.sig{font:800 2rem/1 var(--disp);color:var(--lagoon);margin-top:10px}
+@media (max-width:860px){.about .wrap{grid-template-columns:1fr;gap:44px}.polaroid{margin-inline:auto;width:88%}}
+
+/* faq */
+.faq{background:#fff}
+.faq .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:22px 44px 22px 0;font-weight:700;font-size:1.12rem;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);font:800 1.8rem/1 var(--disp);color:var(--lagoon);transition:transform .2s ease}
+details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+details p{color:var(--muted);padding-right:30px}
+@media (max-width:860px){.faq .wrap{grid-template-columns:1fr;gap:24px}}
+
+/* final */
+.final{background:var(--lagoon);color:#fff;position:relative;overflow:hidden}
+.final .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;position:relative;z-index:1}
+.final h2{font-size:clamp(3rem,7vw,5.4rem);text-transform:uppercase}
+.final p{color:#DFF3F1;font-size:1.15rem}
+form{background:#fff;color:var(--ink);border-radius:22px;padding:28px;display:grid;gap:14px;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
+form label{font-weight:600;font-size:.9rem;display:grid;gap:6px}
+input,select,textarea{font:inherit;font-size:1rem;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--foam);color:var(--ink);width:100%}
+textarea{min-height:90px;resize:vertical}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg input{position:absolute;opacity:0}
+.seg label{display:block;border:1.5px solid var(--line);border-radius:12px;padding:12px;text-align:center;cursor:pointer;font-weight:700}
+.seg input:checked + label{background:var(--night);color:#fff;border-color:var(--night)}
+.seg input:focus-visible + label{outline:3px solid var(--marigold);outline-offset:2px}
+.sent{background:#E6F6EF;color:#155C46;border-radius:12px;padding:14px;font-weight:600}
+@media (max-width:860px){.final .wrap{grid-template-columns:1fr;gap:36px}}
+
+footer{background:var(--night);color:#9FB6C4;padding:44px 0 calc(44px + env(safe-area-inset-bottom,0px));font-size:.92rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+footer b{color:#fff;font:900 1.3rem/1 var(--disp)}
+.made{color:var(--marigold)}
+.mock-note{font-size:.82rem;opacity:.8;max-width:70ch}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Travel with Jess, home">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="#F4B33F"/><path d="M2 21c5-3 9 3 15 0s10 3 15 0v6a16 16 0 0 1-30 0z" fill="#0F7C8C"/></svg>
+      <span><b>Travel with Jess</b><small>Jessica Dworak, travel advisor</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#vacations">Vacations</a>
+      <a href="#business">The business</a>
+      <a href="#about">About me</a>
+      <a href="#faq">Questions</a>
+    </nav>
+    <a class="btn btn-sun" href="#contact">Book a 10-min call</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" style="padding:0">
+  <div class="hero-scene" aria-hidden="true">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0A2540"/><stop offset=".55" stop-color="#16406A"/><stop offset=".8" stop-color="#B2496A"/><stop offset="1" stop-color="#F4B33F"/>
+        </linearGradient>
+        <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFD58A" stop-opacity=".9"/><stop offset="1" stop-color="#FFD58A" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect width="1440" height="900" fill="url(#sky)"/>
+      <g fill="#fff" opacity=".6"><circle cx="120" cy="90" r="1.6"/><circle cx="340" cy="160" r="1.2"/><circle cx="560" cy="60" r="1.4"/><circle cx="820" cy="120" r="1.1"/><circle cx="1010" cy="70" r="1.5"/><circle cx="1260" cy="140" r="1.2"/><circle cx="1380" cy="50" r="1.4"/><circle cx="700" cy="210" r="1"/></g>
+      <g class="sunball"><circle cx="1080" cy="700" r="260" fill="url(#glow)"/><circle cx="1080" cy="700" r="150" fill="#F4B33F"/></g>
+      <g class="wave1"><path d="M-60 740 C120 700 260 760 420 730 S720 690 900 735 S1240 760 1500 720 V900 H-60Z" fill="#0F7C8C"/></g>
+      <g class="wave2"><path d="M-60 790 C140 760 300 810 480 785 S800 750 980 790 S1300 805 1500 775 V900 H-60Z" fill="#0D3352"/></g>
+      <path d="M-20 845 C200 825 420 860 700 840 S1200 830 1460 850 V900 H-20Z" fill="#0A2540"/>
+      <g fill="#071B30" opacity=".95">
+        <path d="M120 900 C130 800 150 700 190 610" stroke="#071B30" stroke-width="12" fill="none"/>
+        <path d="M190 610 c-60-10-120 10-160 50 c50-20 110-25 160-50z M190 610 c40-50 110-70 170-60 c-60 10-120 30-170 60z M190 610 c-20-60-70-100-130-110 c45 30 90 70 130 110z M190 610 c50-10 110 10 150 50 c-50-15-105-30-150-50z M190 610 c10-60 50-110 100-130 c-35 40-70 85-100 130z"/>
+      </g>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div>
+      <div class="kicker"><i></i>Travel advisor with InteleTravel, through PlanNet Marketing</div>
+      <h1><span>Plan less.</span><span class="sun">Travel more.</span><span>I'll do the booking.</span></h1>
+      <p class="sub">Cruises, resorts, all-inclusives and family trips, planned by a real person who answers her phone. Pick your door.</p>
+      <div class="passes">
+        <a class="pass a" href="#vacations">
+          <span class="who">For travelers</span>
+          <strong>I want a better vacation</strong>
+          <span class="go">See how booking works</span>
+          <span class="stub" aria-hidden="true"></span>
+          <span class="gate" aria-hidden="true"><small>Gate</small>A</span>
+        </a>
+        <a class="pass b" href="#business">
+          <span class="who">For the curious</span>
+          <strong>I want the travel business</strong>
+          <span class="go">See how it really works</span>
+          <span class="stub" aria-hidden="true"></span>
+          <span class="gate" aria-hidden="true"><small>Gate</small>B</span>
+        </a>
+      </div>
+    </div>
+    <div class="portrait">
+      <div class="arch"><img src="../img/still-03.jpg" alt="Jessica Dworak smiling" width="1600" height="900"></div>
+      <div class="tag"><b>Hi, I'm Jessica</b>Your trip, my homework</div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div>
+  <span>Cruises</span><span>All-inclusive resorts</span><span>Family trips</span><span>Destination weddings</span><span>Girls' trips</span><span>Theme parks</span><span>Tours</span><span>Group getaways</span>
+  <span>Cruises</span><span>All-inclusive resorts</span><span>Family trips</span><span>Destination weddings</span><span>Girls' trips</span><span>Theme parks</span><span>Tours</span><span>Group getaways</span>
+</div></div>
+
+<!-- DOOR A -->
+<section id="vacations">
+  <div class="wrap">
+    <div class="door-head reveal">
+      <div class="door-badge" aria-hidden="true">A</div>
+      <div>
+        <h2>Stop spending your vacation planning your vacation.</h2>
+        <p class="lede">Forty open tabs, a dozen reviews, and still that nagging feeling you overpaid. Tell me where you want to go. I'll come back with real options, and I'm there if something goes sideways.</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal"><h3>Tell me the dream</h3><p>A quick 10-minute call or the form below. Who's going, when, your budget, and what "perfect" looks like to you.</p></div>
+      <div class="step reveal"><h3>Get your options</h3><p>I search my supplier network and send back a few hand-picked choices with the details that matter, not a wall of links.</p></div>
+      <div class="step reveal"><h3>Pack. I've got the rest.</h3><p>I book it, keep the confirmations straight, and stay your contact before, during and after the trip.</p></div>
+    </div>
+
+    <div class="cards">
+      <article class="card wide reveal">
+        <div class="art" aria-hidden="true"><svg viewBox="0 0 400 220" preserveAspectRatio="xMidYMid slice"><rect width="400" height="220" fill="#7FD1C7"/><circle cx="300" cy="70" r="38" fill="#F4B33F"/><path d="M0 150 Q100 130 200 150 T400 145 V220 H0Z" fill="#0F7C8C"/><path d="M0 175 Q100 160 200 178 T400 170 V220 H0Z" fill="#0D3352"/><path d="M90 150 h170 l-25 28 h-125z" fill="#fff"/><rect x="120" y="118" width="110" height="32" rx="4" fill="#fff"/><rect x="150" y="96" width="50" height="22" rx="3" fill="#E8506E"/><g fill="#0D3352"><circle cx="135" cy="134" r="4"/><circle cx="152" cy="134" r="4"/><circle cx="169" cy="134" r="4"/><circle cx="186" cy="134" r="4"/><circle cx="203" cy="134" r="4"/></g></svg></div>
+        <div class="txt"><h3>Cruises, matched to you</h3><p>Big ship or small, families or adults-only, Caribbean or Alaska. I help you pick the line, the ship and the cabin that fit how you actually like to travel.</p></div>
+      </article>
+      <article class="card reveal">
+        <div class="art" aria-hidden="true"><svg viewBox="0 0 300 140" preserveAspectRatio="xMidYMid slice"><rect width="300" height="140" fill="#F7C66B"/><path d="M0 100 Q150 80 300 100 V140 H0Z" fill="#0F7C8C"/><path d="M60 140 C64 110 70 85 84 62" stroke="#0A2540" stroke-width="5" fill="none"/><path d="M84 62 c-25-4-48 4-62 20 c20-8 42-10 62-20z M84 62 c16-20 44-28 68-24 c-24 4-48 12-68 24z M84 62 c-8-24-28-40-52-44 c18 12 36 28 52 44z" fill="#0A2540"/><rect x="170" y="70" width="90" height="30" fill="#fff"/><path d="M160 72 l55-26 l55 26z" fill="#E8506E"/></svg></div>
+        <div class="txt"><h3>All-inclusive resorts</h3><p>Mexico, the Caribbean and beyond. One price covers meals and drinks, so you stop doing math at dinner.</p></div>
+      </article>
+      <article class="card reveal">
+        <div class="art" aria-hidden="true"><svg viewBox="0 0 300 140" preserveAspectRatio="xMidYMid slice"><rect width="300" height="140" fill="#0D3352"/><g fill="#F4B33F"><circle cx="60" cy="40" r="3"/><circle cx="230" cy="30" r="2"/><circle cx="260" cy="70" r="2.5"/></g><path d="M110 140 V80 l40-40 l40 40 V140z" fill="#E8506E"/><path d="M130 140 V95 l20-22 l20 22 V140z" fill="#7FD1C7"/><path d="M150 40 v-24" stroke="#F4B33F" stroke-width="3"/><path d="M150 16 l18 6 l-18 6z" fill="#F4B33F"/></svg></div>
+        <div class="txt"><h3>Family and theme park trips</h3><p>Park tickets, hotels and the timing tricks that save your feet and your patience. [Confirm which parks Jessica books]</p></div>
+      </article>
+      <article class="card reveal">
+        <div class="art" aria-hidden="true"><svg viewBox="0 0 300 140" preserveAspectRatio="xMidYMid slice"><rect width="300" height="140" fill="#EEF6F4"/><path d="M0 110 Q75 90 150 110 T300 105 V140 H0Z" fill="#7FD1C7"/><g transform="translate(150 62)"><circle r="34" fill="#fff" stroke="#E8506E" stroke-width="4"/><path d="M-12 -4 a8 8 0 0 1 12 -8 a8 8 0 0 1 12 8 c0 10 -12 18 -12 18 s-12 -8 -12 -18z" fill="#E8506E"/></g></svg></div>
+        <div class="txt"><h3>Weddings and honeymoons</h3><p>Destination weddings, room blocks for guests, and a honeymoon that feels like a reward, not another project.</p></div>
+      </article>
+      <article class="card reveal">
+        <div class="art" aria-hidden="true"><svg viewBox="0 0 300 140" preserveAspectRatio="xMidYMid slice"><rect width="300" height="140" fill="#E8506E"/><path d="M0 140 L70 60 L120 110 L180 40 L300 140Z" fill="#0A2540"/><path d="M180 40 l-18 22 l10 -2 l8 10 l8 -10 l10 2z" fill="#fff"/><circle cx="250" cy="40" r="20" fill="#F4B33F"/></svg></div>
+        <div class="txt"><h3>Flights, cars and tours</h3><p>The pieces around the trip, booked in one place, with one person to call if plans change.</p></div>
+      </article>
+      <article class="card wide full reveal">
+        <div class="art" aria-hidden="true"><svg viewBox="0 0 300 140" preserveAspectRatio="xMidYMid slice"><rect width="300" height="140" fill="#0F7C8C"/><g fill="#F4B33F"><circle cx="90" cy="70" r="18"/><circle cx="150" cy="62" r="22"/><circle cx="210" cy="70" r="18"/></g><g fill="#0A2540"><path d="M60 140 a30 34 0 0 1 60 0z"/><path d="M114 140 a36 40 0 0 1 72 0z"/><path d="M180 140 a30 34 0 0 1 60 0z"/></g></svg></div>
+        <div class="txt"><h3>Group and girls' trips</h3><p>Reunions, retreats, birthdays. I wrangle the details so you don't become the group's unpaid travel agent.</p></div>
+      </article>
+    </div>
+
+    <div class="save reveal" id="cost">
+      <div>
+        <span class="example-flag">The question everyone asks</span>
+        <h2>What does it cost to use me?</h2>
+        <p>Planning and booking with me comes at no extra cost to you. Travel suppliers pay advisors like me, so you pay the same price you'd see booking it yourself. [Jessica to confirm she charges no planning fees]</p>
+        <p>The difference is everything around the price: the right resort, the right cabin, the fine print, and a person to call.</p>
+        <a class="btn btn-sun" href="#contact">Get a free travel quote</a>
+      </div>
+      <div class="calc">
+        <h3 style="font-size:1.7rem;margin-bottom:14px">Booking alone vs. booking with Jess</h3>
+        <ul class="vs">
+          <li><span>Hours of tabs and reviews</span><b>One 10-minute call</b></li>
+          <li><span>Guessing which room or cabin</span><b>Options picked for you</b></li>
+          <li><span>Fine print you find later</span><b>Fine print checked first</b></li>
+          <li><span>A call center when plans break</span><b>Jessica, by name</b></li>
+          <li><span>Same published price</span><b>Same price, extra help</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOOR B -->
+<section class="biz" id="business">
+  <div class="wrap">
+    <div class="door-head reveal">
+      <div class="door-badge" aria-hidden="true">B</div>
+      <div>
+        <h2>Turn your love of travel into a side business.</h2>
+        <p class="lede">Some people I travel with end up asking how I do this. Here's the honest version: you can become a home-based travel advisor with InteleTravel, enrolling through PlanNet Marketing, and learn to book trips for yourself, your family and your friends.</p>
+      </div>
+    </div>
+
+    <div class="biz-grid">
+      <div class="reveal">
+        <h3 style="font-size:2rem;margin-bottom:12px">Who it's for</h3>
+        <ul class="forlist">
+          <li>You're the friend everyone already asks for travel tips</li>
+          <li>You want to learn how the travel industry really works</li>
+          <li>You want travel perks and a skill you can use from home</li>
+          <li>You have a few hours a week, not a few spare years</li>
+          <li>You want a team that teaches, not one that pressures</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <h3 style="font-size:2rem;margin-bottom:18px">What you get</h3>
+        <div class="get">
+          <div><h3>Training</h3><p>On-demand lessons on booking, suppliers and finding clients, plus coaching from me. [Confirm current training]</p></div>
+          <div><h3>Your own booking site</h3><p>A ready-made travel website and access to InteleTravel's supplier network. [Confirm what's included]</p></div>
+          <div><h3>Community</h3><p>Team calls, people to ask when you're stuck, and folks who love travel as much as you do.</p></div>
+          <div><h3>Travel perks</h3><p>Advisor rates and training trips that let you see places before you sell them. [Confirm current perks]</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="straight reveal">
+      <div class="seal" aria-hidden="true">Straight<br>talk</div>
+      <div>
+        <h3>No hype, no income promises.</h3>
+        <p>This is a real business with [current start-up and monthly fees], and like any business, results depend on the work you put in. PlanNet publishes an income disclosure. Please read it before you decide; it shows most people earn little or nothing, and I'd rather you know that up front. Plenty of people join mainly for the learning and the travel.</p>
+      </div>
+      <a class="btn btn-rose" href="#contact" data-pick="biz">Ask me about the business</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <figure class="polaroid" style="margin:0">
+      <img src="../img/still-02.jpg" alt="Jessica Dworak talking about travel" width="1600" height="900">
+      <figcaption>Jessica, ready for the next trip</figcaption>
+      <div class="stamp" aria-hidden="true">Real<br>human</div>
+    </figure>
+    <div class="reveal">
+      <h2 style="margin-bottom:24px">Hi, I'm Jessica.</h2>
+      <blockquote>
+        <p>I've loved travel since <span class="fill">[the trip that hooked you, and where]</span>. These days I help <span class="fill">[families / couples / friend groups]</span> take the trips they keep talking about, without the hours of planning.</p>
+        <p>I started with InteleTravel because <span class="fill">[your real reason in one or two sentences]</span>. My favorite trip to plan is <span class="fill">[type of trip]</span>, and the place I'd go back to tomorrow is <span class="fill">[destination]</span>.</p>
+        <p>When you work with me, you get a real person who answers her phone and treats your trip like it matters. Because it does.</p>
+      </blockquote>
+      <div class="sig">Jessica Dworak</div>
+      <p style="font-size:.95rem;color:var(--muted)">Based in <span class="fill">[city, state]</span>. Independent travel advisor with InteleTravel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="reveal">
+      <h2>Fair questions, straight answers</h2>
+      <p class="lede" style="margin-top:18px">If you've wondered it, someone else has asked it. Still curious? Book a call and ask me anything.</p>
+    </div>
+    <div class="reveal">
+      <details open><summary>Is this legit?</summary><p>Yes. I book through InteleTravel, a home-based travel agency that works with major cruise lines, resorts, hotels and tour companies. [Add accreditation details Jessica can confirm, such as CLIA]. You pay the supplier's price for your trip; I don't charge you extra for a quote.</p></details>
+      <details><summary>Is this an MLM?</summary><p>The business side is. PlanNet Marketing is a network marketing company, and people who want to become InteleTravel advisors enroll through a PlanNet rep like me. If you only want a vacation, none of that touches you. You just get a trip planned by me.</p></details>
+      <details><summary>Do I have to join anything to book a trip?</summary><p>No. You can book with me as a regular traveler. Joining is only for people who want to become travel advisors themselves.</p></details>
+      <details><summary>Why not just use Expedia?</summary><p>You can, and sometimes the price is the same. What you get with me is a person who knows the options, notices the fine print, and is there to help when a flight is cancelled or a room isn't right.</p></details>
+      <details><summary>What does the business cost?</summary><p>[Current PlanNet and InteleTravel fees, from the official site]. I'll walk you through every cost and share the official income disclosure before you decide anything.</p></details>
+      <details><summary>Will you pressure me?</summary><p>No. A 10-minute call is just a conversation. If it's not a fit, I'll tell you, and we stay friends.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <h2>Where to next?</h2>
+      <p>Tell me a little about the trip, or about your curiosity, and I'll reach out to set up a 10-minute call. No pressure, no spam.</p>
+      <p style="font-size:1rem;opacity:.9">Prefer to talk now? <span class="fill" style="color:var(--ink)">[Jessica's phone]</span> or <span class="fill" style="color:var(--ink)">[email]</span></p>
+    </div>
+    <form id="lead" class="reveal" novalidate>
+      <div class="seg" role="radiogroup" aria-label="I'm interested in">
+        <div><input type="radio" name="want" id="w1" value="trip" checked><label for="w1">Plan a trip</label></div>
+        <div><input type="radio" name="want" id="w2" value="biz"><label for="w2">The business</label></div>
+      </div>
+      <label>Your name<input name="name" autocomplete="name" required></label>
+      <label>Email or phone<input name="contact" autocomplete="email" required></label>
+      <label><span id="msgLabel">Where do you want to go?</span><textarea name="msg" placeholder="Dates, who's coming, budget, dream spot"></textarea></label>
+      <button class="btn btn-sun" type="submit" style="justify-content:center">Book my 10-min call</button>
+      <div class="sent" id="sent" hidden>Thanks! In the live site this goes straight to Jessica. (Mockup: form not connected yet.)</div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Travel with Jess</b><br>Jessica Dworak, Independent travel advisor with InteleTravel, enrolled through PlanNet Marketing.</div>
+    <div class="mock-note">Independent representative site, not an official PlanNet Marketing or InteleTravel page. Items in [brackets] are placeholders for Jessica to confirm.<br><span class="made">Mockup by 2 Guys and a Genie. Built live at Free AI for Business Night.</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var label=document.getElementById('msgLabel'),ta=document.querySelector('textarea');
+  function swap(v){
+    if(v==='biz'){label.textContent='What made you curious?';ta.placeholder='Your schedule, what you want to learn, any questions';}
+    else{label.textContent='Where do you want to go?';ta.placeholder="Dates, who's coming, budget, dream spot";}
+  }
+  document.querySelectorAll('input[name=want]').forEach(function(r){r.addEventListener('change',function(){swap(r.value)})});
+  document.querySelectorAll('[data-pick=biz]').forEach(function(a){a.addEventListener('click',function(){document.getElementById('w2').checked=true;swap('biz')})});
+  document.getElementById('lead').addEventListener('submit',function(e){e.preventDefault();document.getElementById('sent').hidden=false;});
+
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){io.observe(el)});
+  } else els.forEach(function(el){el.classList.add('in')});
+})();
+</script>
+</body>
+</html>
