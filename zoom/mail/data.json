@@ -36,12 +36,6 @@
    ],
    "waits": [
     {
-     "t": "Jimmy: the Higgsfield key",
-     "w": "Promised Mon 1:48pm",
-     "x": "Jimmy is sending it to you directly by a 1Password link or text, not by email. It lets the doodle engine make images.",
-     "n": "Nothing to do until it arrives."
-    },
-    {
      "t": "Jimmy's Claude: an answer to our plain-words ask",
      "w": "Sent Tue 1:47pm, about 1 hour",
      "x": "We asked it to write every message so it says plainly what it needs from you, and to start updates with \"Just so you know.\"",
@@ -68,12 +62,6 @@
      "w": "Sent Tue 1:47pm",
      "x": "We asked his Claude to write plainly and mark updates \"Just so you know.\"",
      "n": "His Claude answers in its next inbox run."
-    },
-    {
-     "t": "Send you the Higgsfield key",
-     "w": "Promised Mon 1:48pm",
-     "x": "By 1Password link or text.",
-     "n": "Jimmy sends it."
     }
    ],
    "waits": [
