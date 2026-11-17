@@ -1,0 +1,126 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Leads (Demo) · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<style>
+body{margin:0;background:#fff;color:#111;font:17px/1.5 Tahoma,Geneva,Verdana,sans-serif}
+main{max-width:680px;margin:0 auto;padding:24px 16px 70px}
+h1{font-size:30px;margin:0 0 4px}.sub{color:#555;margin:0 0 10px}
+.demo{background:#FFF3C4;padding:10px 14px;margin:12px 0 16px;font-size:15px}
+a{color:#111}
+#q{width:100%;box-sizing:border-box;font-size:18px;padding:11px;border:2px solid #111;margin:0 0 10px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.chip{font:inherit;font-size:15px;padding:7px 12px;border:2px solid #111;background:#fff;color:#111;cursor:pointer}
+.chip.on{background:#111;color:#fff}
+select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;background:#fff}
+#count{font-size:14px;color:#555;margin:0 0 8px}
+.lead{display:block;width:100%;box-sizing:border-box;text-align:left;font:inherit;background:#fff;border:3px solid #111;padding:12px 14px;margin:0 0 10px;cursor:pointer;color:#111}
+.lead b{display:block;font-size:19px}
+.lead span{display:block;font-size:14px;color:#555}
+.tier{display:inline-block;font-size:13px;font-weight:bold;padding:1px 8px;border:2px solid #111;margin-right:8px}
+.tier.A{background:#111;color:#fff}
+.st{display:inline-block;font-size:13px;color:#555}
+#one{display:none}
+#one h2{font-size:26px;margin:10px 0 2px}
+.lab{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;margin:18px 0 2px}
+.big{display:block;font-size:19px;font-weight:bold;padding:12px 14px;border:3px solid #111;text-decoration:none;margin:8px 0;text-align:center}
+.big.dark{background:#111;color:#fff}
+#note{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;min-height:90px}
+.back{font:inherit;font-size:16px;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;color:#111}
+.saved{font-size:13px;color:#555;min-height:18px}
+</style></head><body><main>
+
+<div id="list">
+<p><a href="/admin/">&larr; Admin</a> &middot; <a href="/admin/market-domination/">The Plan</a></p>
+<h1>Leads</h1>
+<p class="sub">Find a shop. Tap it. See why it's worth going to.</p>
+<a class="big" href="https://app.gohighlevel.com/" target="_blank" rel="noopener" style="margin:10px 0 14px">Jump To GoHighLevel</a>
+<p class="demo"><b>This is a demo.</b> These ten shops are made up, so we can try the page before real leads go in. Notes and stages you add here stay on your own phone or computer.</p>
+<input id="q" type="search" placeholder="Search a name, town, street or trade" autocomplete="off">
+<div class="row" id="tiers">
+<button class="chip on" data-t="">All</button>
+<button class="chip" data-t="A">A</button>
+<button class="chip" data-t="B">B</button>
+<button class="chip" data-t="Worth a visit">Worth a visit</button>
+</div>
+<div class="row">
+<select id="town"><option value="">Every town</option></select>
+<select id="stage"><option value="">Every stage</option></select>
+</div>
+<p id="count"></p>
+<div id="rows"></div>
+</div>
+
+<div id="one">
+<p><button class="back" id="back">&larr; All leads</button></p>
+<h2 id="n"></h2>
+<p class="sub" id="meta"></p>
+<a class="big dark" id="call" href="#">Call</a>
+<a class="big" id="map" href="#" target="_blank" rel="noopener">Directions</a>
+<a class="big" id="mail" href="#">Email</a>
+<a class="big" id="find" href="#" target="_blank" rel="noopener">Find Their Email</a>
+<input id="em" type="email" placeholder="Paste the email you found here" autocomplete="off" style="width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;margin:0 0 4px">
+<p class="lab">Why It's Worth Going To</p><p id="why"></p>
+<p class="lab">What We Found</p><p id="found"></p>
+<p class="lab">Where It Stands</p>
+<div class="row" id="stages"></div>
+<p class="lab">Notes From Each Visit Or Call</p>
+<textarea id="note" placeholder="What happened, what they said, what to show them next"></textarea>
+<p class="saved" id="saved"></p>
+</div>
+
+<script>
+try{if(localStorage.getItem('2g-admin')!=='1'){location.replace('/admin/')}}catch(e){}
+var STAGES=['Not yet visited','Visited','Talking','Client','Not now'];
+var L=[
+{n:'Sample Bakery',k:'Bakery',t:'Fishers',a:'100 Example St, Fishers, IN 46038',p:'317-555-0101',e:'hello@samplebakery.example',g:'A',w:'Rated 4.9 from 212 reviews. The owner is named in the reviews.',f:'A customer wrote that she called twice to order a cake and got voicemail both times. The site lists hours that differ from Google.'},
+{n:'Example Auto Repair',k:'Auto repair',t:'Carmel',a:'22 Sample Rd, Carmel, IN 46032',p:'317-555-0102',e:'',g:'A',w:'They spend to grow: ads, shop software, a careers page.',f:'The "Book Service" button on the site leads to a page that does not load.'},
+{n:'Made-Up Dance Studio',k:'Dance studio',t:'Noblesville',a:'5 Demo Ave, Noblesville, IN 46060',p:'317-555-0103',e:'info@madeupdance.example',g:'B',w:'Rated 5.0 from 88 reviews. Family-run.',f:'No leak seen. Hours and phone shown. No online sign-up.'},
+{n:'Placeholder Plumbing',k:'Plumber',t:'Westfield',a:'310 Test Ln, Westfield, IN 46074',p:'317-555-0104',e:'',g:'B',w:'Rated 4.8 from 140 reviews. The owner answers his reviews.',f:'Footer copyright reads 2021. No way to book online.'},
+{n:'Demo Boutique',k:'Boutique',t:'Zionsville',a:'8 Pretend St, Zionsville, IN 46077',p:'317-555-0105',e:'shop@demoboutique.example',g:'B',w:'Rated 4.9 from 64 reviews. Owner named in reviews.',f:'Online shop is up. The store phone is not on the homepage.'},
+{n:'Sample Coffee House',k:'Coffee shop',t:'Greenfield',a:'41 Mock Blvd, Greenfield, IN 46140',p:'317-555-0106',e:'',g:'B',w:'Rated 4.8 from 301 reviews. Owner-run.',f:'No leak seen. Online ordering in place.'},
+{n:'Example Law Office',k:'Attorney',t:'Anderson',a:'12 Sample Sq, Anderson, IN 46016',p:'765-555-0107',e:'office@examplelaw.example',g:'B',w:'Rated 5.0 from 52 reviews. Solo attorney for 30 years.',f:'Free site-builder badge in the footer. No intake form.'},
+{n:'Made-Up Hardware',k:'Hardware store',t:'Lebanon',a:'77 Demo Pike, Lebanon, IN 46052',p:'765-555-0108',e:'',g:'Worth a visit',w:'Rated 4.7 from 96 reviews. Owner named in reviews.',f:'Not looked at closely yet.'},
+{n:'Placeholder Salon',k:'Salon',t:'Brownsburg',a:'9 Test Ct, Brownsburg, IN 46112',p:'317-555-0109',e:'',g:'Worth a visit',w:'Rated 4.8 from 73 reviews. Owner named in reviews.',f:'Not looked at closely yet.'},
+{n:'Demo Yoga',k:'Yoga studio',t:'Fishers',a:'230 Example Way, Fishers, IN 46037',p:'317-555-0110',e:'hi@demoyoga.example',g:'Worth a visit',w:'Rated 4.9 from 41 reviews. Owner named in reviews.',f:'Not looked at closely yet.'}
+];
+function get(k,d){try{return localStorage.getItem('2g-lead-demo:'+k)||d}catch(e){return d}}
+function put(k,v){try{localStorage.setItem('2g-lead-demo:'+k,v)}catch(e){}}
+function $(i){return document.getElementById(i)}
+var tier='',cur=null;
+var towns=[];L.forEach(function(x){if(towns.indexOf(x.t)<0)towns.push(x.t)});towns.sort();
+towns.forEach(function(t){var o=document.createElement('option');o.textContent=t;$('town').appendChild(o)});
+STAGES.forEach(function(s){var o=document.createElement('option');o.textContent=s;$('stage').appendChild(o)});
+function draw(){
+  var q=$('q').value.toLowerCase(),tw=$('town').value,sg=$('stage').value,box=$('rows');box.textContent='';var c=0;
+  L.forEach(function(x,i){
+    var st=get('s'+i,STAGES[0]);
+    if(tier&&x.g!==tier)return;if(tw&&x.t!==tw)return;if(sg&&st!==sg)return;
+    if(q&&(x.n+' '+x.t+' '+x.a+' '+x.k).toLowerCase().indexOf(q)<0)return;
+    c++;var b=document.createElement('button');b.className='lead';
+    var h=document.createElement('b');h.textContent=x.n;b.appendChild(h);
+    var s1=document.createElement('span');s1.textContent=x.k+' · '+x.t;b.appendChild(s1);
+    var s2=document.createElement('span');var tg=document.createElement('i');tg.className='tier '+(x.g==='A'?'A':'');tg.style.fontStyle='normal';tg.textContent=x.g;s2.appendChild(tg);
+    var ss=document.createElement('i');ss.className='st';ss.style.fontStyle='normal';ss.textContent=st;s2.appendChild(ss);b.appendChild(s2);
+    b.onclick=function(){show(i)};box.appendChild(b);
+  });
+  $('count').textContent=c+(c===1?' shop':' shops');
+}
+function show(i){
+  cur=i;var x=L[i];$('list').style.display='none';$('one').style.display='block';
+  $('n').textContent=x.n;$('meta').textContent=x.g+' · '+x.k+' · '+x.a;
+  $('call').textContent='Call '+x.p;$('call').href='tel:'+x.p.replace(/\D/g,'');
+  $('map').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x.a);
+  if(x.e){$('mail').style.display='block';$('mail').textContent='Email '+x.e;$('mail').href='mailto:'+x.e}else{$('mail').style.display='none'}
+  var fe=get('e'+i,x.e||'');$('em').value=fe;$('find').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana contact email');if(fe){$('mail').style.display='block';$('mail').textContent='Email '+fe;$('mail').href='mailto:'+fe}
+  $('why').textContent=x.w;$('found').textContent=x.f;
+  var box=$('stages');box.textContent='';var st=get('s'+i,STAGES[0]);
+  STAGES.forEach(function(s){var b=document.createElement('button');b.className='chip'+(s===st?' on':'');b.textContent=s;b.onclick=function(){put('s'+i,s);show(i)};box.appendChild(b)});
+  $('note').value=get('n'+i,'');$('saved').textContent='';window.scrollTo(0,0);
+}
+$('note').oninput=function(){if(cur!==null){put('n'+cur,this.value);$('saved').textContent='Saved on this device.'}};
+$('em').onchange=function(){if(cur!==null){put('e'+cur,this.value.trim());show(cur)}};
+$('back').onclick=function(){$('one').style.display='none';$('list').style.display='block';draw()};
+$('q').oninput=draw;$('town').onchange=draw;$('stage').onchange=draw;
+[].forEach.call(document.querySelectorAll('#tiers .chip'),function(b){b.onclick=function(){tier=this.getAttribute('data-t');[].forEach.call(document.querySelectorAll('#tiers .chip'),function(o){o.className='chip'});this.className='chip on';draw()}});
+draw();
+</script>
+</main></body></html>
