@@ -10,6 +10,7 @@ a{color:#111}
 .row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
 .chip{font:inherit;font-size:15px;padding:7px 12px;border:2px solid #111;background:#fff;color:#111;cursor:pointer}
 .chip.on{background:#111;color:#fff}
+a.chip{text-decoration:none;display:inline-block}
 select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;background:#fff}
 #count{font-size:14px;color:#555;margin:0 0 8px}
 .lead{display:block;width:100%;box-sizing:border-box;text-align:left;font:inherit;background:#fff;border:3px solid #111;padding:12px 14px;margin:0 0 10px;cursor:pointer;color:#111}
@@ -69,6 +70,14 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <a class="big" id="mail" href="#">Email</a>
 <a class="big" id="find" href="#" target="_blank" rel="noopener">Find Their Email</a>
 <input id="em" type="email" placeholder="Paste the email you found here" autocomplete="off" style="width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;margin:0 0 4px">
+<p class="lab">Look Them Up</p>
+<div class="row" id="look">
+<a class="chip" id="l-web" target="_blank" rel="noopener" href="#">Website</a>
+<a class="chip" id="l-goo" target="_blank" rel="noopener" href="#">Google Reviews</a>
+<a class="chip" id="l-fb" target="_blank" rel="noopener" href="#">Facebook</a>
+<a class="chip" id="l-yelp" target="_blank" rel="noopener" href="#">Yelp</a>
+<a class="chip" id="l-ig" target="_blank" rel="noopener" href="#">Instagram</a>
+</div>
 <p class="lab">Why It's Worth Going To</p><p id="why"></p>
 <p class="lab">What We Found</p><p id="found"></p>
 <p class="lab">Where It Stands</p>
@@ -122,6 +131,7 @@ function show(i){
   $('map').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x.a);
   if(x.e){$('mail').style.display='block';$('mail').textContent='Email '+x.e;$('mail').href='mailto:'+x.e}else{$('mail').style.display='none'}
   var fe=get('e'+i,x.e||'');$('em').value=fe;$('find').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana contact email');if(fe){$('mail').style.display='block';$('mail').textContent='Email '+fe;$('mail').href='mailto:'+fe}
+  var Q=encodeURIComponent(x.n+' '+x.t+' Indiana'),N=encodeURIComponent(x.n);$('l-web').href=x.u||('https://www.google.com/search?q='+Q);$('l-goo').href='https://www.google.com/maps/search/?api=1&query='+Q;$('l-fb').href='https://www.facebook.com/search/pages/?q='+encodeURIComponent(x.n+' '+x.t);$('l-yelp').href='https://www.yelp.com/search?find_desc='+N+'&find_loc='+encodeURIComponent(x.t+', IN');$('l-ig').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana instagram');
   $('why').textContent=x.w;$('found').textContent=x.f;
   var box=$('stages');box.textContent='';var st=get('s'+i,STAGES[0]);
   STAGES.forEach(function(s){var b=document.createElement('button');b.className='chip'+(s===st?' on':'');b.textContent=s;b.onclick=function(){put('s'+i,s);show(i)};box.appendChild(b)});
