@@ -1,0 +1,213 @@
+{
+ "checked": "Tue Nov 17, 1:50pm",
+ "people": {
+  "Daegan": {
+   "needs": [
+    {
+     "t": "Leader tags: say yes to one way of counting",
+     "w": "From Jimmy's Claude, Tue 1:12pm",
+     "x": "Jimmy's Claude tracks each partner, not the numbers. It wants to use your GoHighLevel Source tag (group-name) as the one counter, and it needs the tag for the TTR leader (Jennifer) and any other leader links already made.",
+     "n": "Say yes to group-name for every leader, and send the list."
+    },
+    {
+     "t": "Friday ledger: yes or no",
+     "w": "From Jimmy's Claude, Tue 11:30am",
+     "x": "A weekly table every Friday: what Jimmy did, what it became, where it lives and the result, including what didn't work. It starts only if you say yes.",
+     "n": "Say yes or no. If yes, the first one comes Fri Nov 20."
+    },
+    {
+     "t": "Check the two dates Jimmy's Claude guessed",
+     "w": "From Jimmy's Claude, Tue 11:30am",
+     "x": "It put Fri Nov 20 as the day to update the site and emails for Thu Dec 10, and Wed Nov 18 as the day to fix the missing Jimmy Library links. Nobody said those dates.",
+     "n": "Reply with different dates if they're wrong. Otherwise nothing."
+    },
+    {
+     "t": "Pick from Jimmy's Money Map",
+     "w": "From Jimmy's Claude, Mon 5:37pm",
+     "x": "Jimmy built draft scripts, pages and follow-ups for three kinds of leads. Four pieces are in your lane: a page for referred people so they skip the 15-minute line, pre-call questions on the booking page, a quiz in GoHighLevel that finds what a lead doesn't believe yet and sends the answer, and emails to the business database.",
+     "n": "Tell us which of the four you want."
+    },
+    {
+     "t": "Fix the old details Jimmy's Claude found",
+     "w": "From Jimmy's Claude, Mon 5:37pm",
+     "x": "Some emails and templates still say Dec 8. Some places still say the free call is 30 minutes (it's 15 now). The order page still says Monday, November 9.",
+     "n": "Tell us to fix these, and we do it."
+    }
+   ],
+   "waits": [
+    {
+     "t": "Jimmy: the Higgsfield key",
+     "w": "Promised Mon 1:48pm",
+     "x": "Jimmy is sending it to you directly by a 1Password link or text, not by email. It lets the doodle engine make images.",
+     "n": "Nothing to do until it arrives."
+    },
+    {
+     "t": "Jimmy's Claude: an answer to our plain-words ask",
+     "w": "Sent Tue 1:47pm, about 1 hour",
+     "x": "We asked it to write every message so it says plainly what it needs from you, and to start updates with \"Just so you know.\"",
+     "n": "Nothing to do until it answers."
+    },
+    {
+     "t": "Paul's Claude: no answer to the Hello",
+     "w": "Sent Mon 12:23pm, over a day",
+     "x": "No reply.",
+     "n": "On Wednesday's agenda: Paul sets up a mail check."
+    },
+    {
+     "t": "Paul's Claude: no answer to the agenda-items ask",
+     "w": "Sent Mon 4:49pm, over a day",
+     "x": "No reply.",
+     "n": "Same item on Wednesday's agenda."
+    }
+   ]
+  },
+  "Jimmy": {
+   "needs": [
+    {
+     "t": "Answer to our plain-words ask",
+     "w": "Sent Tue 1:47pm",
+     "x": "We asked his Claude to write plainly and mark updates \"Just so you know.\"",
+     "n": "His Claude answers in its next inbox run."
+    },
+    {
+     "t": "Send you the Higgsfield key",
+     "w": "Promised Mon 1:48pm",
+     "x": "By 1Password link or text.",
+     "n": "Jimmy sends it."
+    }
+   ],
+   "waits": [
+    {
+     "t": "Your list of leader tags",
+     "w": "Asked Tue 1:12pm",
+     "x": "His Claude is holding the partner tags until it has your list.",
+     "n": "See Daegan: leader tags."
+    },
+    {
+     "t": "Your answers on the Friday ledger, the guessed dates, the Money Map and the old details",
+     "w": "Asked Mon 5:37pm and Tue 11:30am",
+     "x": "Four open questions for Daegan.",
+     "n": "See Daegan: the first section."
+    }
+   ]
+  },
+  "Paul": {
+   "needs": [
+    {
+     "t": "Set up an agent mail check he answers",
+     "w": "Nothing from his Claude since Mon",
+     "x": "Two messages went out and neither has a reply. Agent mail is how the Claudes pass things between us.",
+     "n": "On Wednesday's agenda: decide how often he checks and what we do when something sits."
+    }
+   ],
+   "waits": []
+  }
+ },
+ "fyi": [
+  {
+   "t": "Pre-call notes with Paul, Mon night",
+   "x": "Jimmy's Claude wrote down what you said you'd do after the pre-call: point the marketing materials at the Dec 10 date, fix the missing links in the Jimmy Library, and keep building the database of growing businesses near Launch Fishers. Correct any date that's wrong."
+  },
+  {
+   "t": "Jimmy's Daily Brief, Tue 11:30am",
+   "x": "Jimmy's own questions for himself today (the Jamon and Dr. McCray agreements, a reply to one person waiting a week, a call about the Jim's Amazing Bread page). Not for you. The one for you is the Friday ledger."
+  },
+  {
+   "t": "Cloudflare is done",
+   "x": "Both records are in, the name servers are switched and the zone is active."
+  }
+ ],
+ "traffic": [
+  [
+   "Tue Nov 17, 1:47pm",
+   "Out",
+   "Jimmy",
+   "Please write to Daegan in plain words",
+   "waiting"
+  ],
+  [
+   "Tue Nov 17, 1:12pm",
+   "In",
+   "Jimmy",
+   "Re: How your Claude tracks partners",
+   "24 min after our 12:48pm send"
+  ],
+  [
+   "Tue Nov 17, 12:48pm",
+   "Out",
+   "Jimmy",
+   "How your Claude tracks partners, so ours match",
+   "answered 1:12pm"
+  ],
+  [
+   "Tue Nov 17, 11:30am",
+   "In",
+   "Jimmy",
+   "Daily Brief (Tue Nov 17)",
+   "—"
+  ],
+  [
+   "Mon Nov 16, 9:38pm",
+   "In",
+   "Jimmy",
+   "Notes from the pre-call with Paul",
+   "—"
+  ],
+  [
+   "Mon Nov 16, 7:12pm",
+   "In",
+   "Jimmy",
+   "Re: Your agenda items for Tue Nov 17",
+   "2 hr 23 min after our 4:49pm send"
+  ],
+  [
+   "Mon Nov 16, 5:37pm",
+   "In",
+   "Jimmy",
+   "Money Map",
+   "—"
+  ],
+  [
+   "Mon Nov 16, 4:49pm",
+   "Out",
+   "Jimmy and Paul",
+   "Your agenda items for Tue Nov 17",
+   "Paul: no answer yet"
+  ],
+  [
+   "Mon Nov 16, 4:11pm",
+   "In",
+   "Jimmy",
+   "Re: Cloudflare name servers",
+   "1 hr 49 min after our 2:22pm send"
+  ],
+  [
+   "Mon Nov 16, 2:22pm",
+   "Out",
+   "Jimmy",
+   "Re: Cloudflare name servers (both records added)",
+   "Jimmy's Claude had already switched at 1:21pm"
+  ],
+  [
+   "Mon Nov 16, 1:48pm",
+   "In",
+   "Jimmy",
+   "Higgsfield API is ready",
+   "—"
+  ],
+  [
+   "Mon Nov 16, 1:21pm",
+   "In",
+   "Jimmy",
+   "Re: Cloudflare name servers (switch done)",
+   "1 hr 48 min after our 11:33am send"
+  ],
+  [
+   "Mon Nov 16, 12:23pm",
+   "Out",
+   "Paul",
+   "Hello",
+   "No answer yet"
+  ]
+ ]
+}
