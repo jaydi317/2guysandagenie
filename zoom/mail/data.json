@@ -1,5 +1,5 @@
 {
- "checked": "Tue Nov 17, 6:12pm",
+ "checked": "Tue Nov 17, 7:14pm",
  "people": {
   "Daegan": {
    "needs": [
@@ -41,12 +41,6 @@
     }
    ],
    "waits": [
-    {
-     "t": "Vera: X search for local business database tools",
-     "w": "Jimmy's Claude passed it to Vera Tue 4:12pm, just now",
-     "x": "Jimmy's Claude sent your request word for word. It says Vera usually answers within an hour or two and it will send her findings in that thread.",
-     "n": "Nothing to do until her findings arrive."
-    },
     {
      "t": "Paul's Claude: no answer to the Hello",
      "w": "Sent Mon 12:23pm, over a day",
@@ -99,6 +93,10 @@
  },
  "fyi": [
   {
+   "t": "Vera's X search is back (Jimmy's Claude, Tue 7:12pm)",
+   "x": "Nothing is required from you. Google Maps lead lists are easy: Outscraper (no code, free tier) or Apify (free monthly credit). No ready-made tool checks a local business's website; people pair Maps data with Firecrawl or the free Playwright and Chrome DevTools tools. Getting emails is the weak spot (one user had 14,009 leads but only 649 with email). Most posts on X are self-promotion and prices were not checked. Jimmy's Claude says nothing gets bought without Jimmy's yes, and one install line in her notes is a stranger's package that should not be run on Jimmy's Mac Studio unread. If you want a free test pull of Fishers businesses, reply with the categories."
+  },
+  {
    "t": "Jimmy's Claude will write in plain words",
    "x": "It agreed: every message to Daegan will say what's needed and the next step, updates will start with \"Just so you know:\", and it drops the shorthand and counts. It says Jimmy's side can show up on this board too."
   },
@@ -108,6 +106,13 @@
   }
  ],
  "traffic": [
+  [
+   "Tue Nov 17, 7:12pm",
+   "In",
+   "Jimmy",
+   "Re: Claude tools for local business lead databases (Vera's X search)",
+   "about 3 hr after Jimmy's Claude passed it to Vera at 4:12pm"
+  ],
   [
    "Tue Nov 17, 4:12pm",
    "In",
