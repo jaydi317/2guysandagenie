@@ -69,7 +69,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 </div></header>
 <main id="main">
 
-<p class="mock"><b>Mockup.</b> Walk through it like an owner would. Nothing gets sent or booked.<br>Done screen layout: <a href="?">A, stacked</a> · <a href="?layout=side">B, side by side</a> · <a href="?layout=tiles">C, both up top, details below</a></p>
+<p class="mock"><b>Mockup.</b> Walk through it like an owner would. Nothing gets sent or booked.</p>
 
 <div class="bar" id="bar"><span></span><span></span><span></span><span></span></div>
 <p class="stepno" id="stepno">Step 1 of 4</p>
@@ -142,7 +142,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     <p><b>Watch your phone.</b> In a minute you'll get a text from (317) 751-2693 with your time.</p>
   </div>
   <p class="both" id="both">Plus, two free bonuses with your call:</p>
-  <div class="tiles"><a href="#b1"><span class="k">Bonus #1 · $97/mo value</span><b>Something Cool About AI, Every Day</b><span class="s">In your inbox, starting tomorrow</span></a><a href="#b2"><span class="k">Bonus #2 · $1,000 value</span><b>A Seat At Our Next Live AI Night</b><span class="s"><span data-ev="short">Thu Dec 10</span>, Launch Fishers</span></a></div>
+
   <div class="bonuses">
   <div class="bonus" id="b1">
     <p class="k">Free Bonus #1 · A $97 A Month Value</p>
@@ -163,9 +163,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
       </ul>
       <p class="small">And it keeps going, every day after that.</p>
     </details>
-    <blockquote class="tq">"90% of them all are about AI. And they always get me excited, but they never give me any tools."<span>Kim, a local owner, on every other AI event</span></blockquote>
-    <p>That's why every one of these emails hands you a tool.</p>
-    <p class="small">It starts tomorrow morning, from Jimmy at 2 Guys and a Genie. One click unsubscribes you anytime.</p>
+    <blockquote class="tq">"It was insightful and informative, and it just sort of blows me away of what I could do."<span>Jim Chalfant, Jim's Amazing Bread, after Jimmy explained AI and showed it working</span></blockquote>
   </div>
   <div class="bonus" id="b2">
     <p class="k">Free Bonus #2 · A $1,000 Value</p>
@@ -196,8 +194,6 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 
 </main>
 <script>
-if(location.search.indexOf("layout=side")>-1)document.body.classList.add("side");
-if(location.search.indexOf("layout=tiles")>-1)document.body.classList.add("laytiles");
 (function(){
   var cur=1, data={};
   function show(n){
