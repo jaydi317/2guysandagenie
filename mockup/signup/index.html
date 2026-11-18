@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<title>Mockup: The Sign-Up · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<link rel="stylesheet" href="/assets/simple.css">
+<script src="/assets/next-event.js"></script>
+<style>
+.mock{background:#FFF3C4;font-size:14px;padding:8px 12px;margin:0 0 18px;border:1px solid #e6d58a}
+.bar{display:flex;gap:6px;margin:0 0 6px}
+.bar span{flex:1;height:8px;background:var(--rule)}
+.bar span.on{background:var(--ink)}
+.stepno{font-size:14px;color:var(--soft);margin:0 0 18px}
+.step{display:none}.step.show{display:block}
+h1{margin-top:0}
+.pick{display:block;width:100%;box-sizing:border-box;text-align:left;font:inherit;font-size:18px;padding:14px 16px;margin:0 0 10px;border:2px solid var(--ink);background:#fff;cursor:pointer}
+.pick:active,.pick.on{background:var(--ink);color:#fff}
+textarea,input{width:100%;box-sizing:border-box;font:inherit;font-size:18px;border:2px solid var(--ink);padding:12px;background:#fff;margin:0 0 12px}
+textarea{min-height:150px;resize:vertical}
+label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
+.mic{display:flex;width:100%;justify-content:center;align-items:center;gap:10px;font:inherit;font-weight:bold;font-size:19px;background:var(--ink);color:#fff;border:2px solid var(--ink);padding:14px 16px;margin:0 0 12px;cursor:pointer}
+.mic.on{background:#c62828;border-color:#c62828}
+.dot{width:12px;height:12px;border-radius:50%;background:currentColor}.mic.on .dot{animation:blink 1s infinite}@keyframes blink{50%{opacity:.2}}
+.chips{margin:0 0 16px}.chips p{font-size:14px;color:var(--soft);margin:0 0 6px}
+.chip{display:inline-block;font:inherit;font-size:15px;padding:6px 10px;margin:0 6px 6px 0;border:1px solid var(--soft);background:#fff;cursor:pointer}
+.go{display:block;width:100%;font:inherit;font-weight:bold;font-size:20px;padding:16px;background:var(--ink);color:#fff;border:0;cursor:pointer;margin:8px 0 10px}
+.back{background:none;border:0;font:inherit;font-size:15px;color:var(--soft);text-decoration:underline;cursor:pointer;padding:0}
+.err{color:#c62828;font-size:15px;display:none;margin:0 0 8px}
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 14px}
+.times{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:0 0 14px}
+.slot{font:inherit;font-size:17px;padding:12px 6px;border:2px solid var(--ink);background:#fff;cursor:pointer;text-align:center}
+.slot.on{background:var(--ink);color:#fff}
+.slot small{display:block;font-size:13px}
+.recap{border:2px solid var(--ink);padding:16px;margin:0 0 18px}
+.recap p{margin:0 0 10px}
+.bonus{background:var(--tint);border:2px solid var(--copper);padding:18px;margin:0 0 18px}
+.bonus .k{font-size:13px;font-weight:bold;letter-spacing:.5px;text-transform:uppercase;color:var(--copper);margin:0 0 6px}
+.bonus h2{margin:0 0 10px}
+.small{font-size:15px;color:var(--soft)}
+</style>
+</head><body>
+<header class="site"><div class="hwrap">
+<a class="brand" href="/"><img src="/assets/2g-square.svg" alt="">2 Guys and a Genie</a>
+</div></header>
+<main id="main">
+
+<p class="mock"><b>Mockup.</b> Walk through it like an owner would. Nothing gets sent or booked.</p>
+
+<div class="bar" id="bar"><span></span><span></span><span></span><span></span></div>
+<p class="stepno" id="stepno">Step 1 of 4</p>
+
+<!-- STEP 1 -->
+<section class="step show" id="s1">
+  <p class="kicker">Your Free 15 Minutes</p>
+  <h1>Let's Solve One Thing In Your Business.</h1>
+  <p class="sub">A free 15-minute call with Jimmy or Paul, the 2 Guys. Four quick taps to set it up.</p>
+  <p><b>First, how'd you find us?</b> Just tap one.</p>
+  <button class="pick" type="button">Google</button>
+  <button class="pick" type="button">Facebook or Instagram</button>
+  <button class="pick" type="button">A friend or another owner told me</button>
+  <button class="pick" type="button">I met Jimmy or Paul</button>
+  <button class="pick" type="button">A voicemail or call from you</button>
+  <button class="pick" type="button">A group I'm in (chamber, BNI, a meetup)</button>
+  <button class="pick" type="button">Something else</button>
+</section>
+
+<!-- STEP 2 -->
+<section class="step" id="s2">
+  <h1>What's The One Thing You'd Love Solved?</h1>
+  <p class="sub">The job that eats your week. The thing you'd hand off tomorrow if you could.</p>
+  <p>Tap the mic and just talk. Messy is fine. We'll sort it out.</p>
+  <button class="mic" id="mic" type="button"><span class="dot"></span><span id="miclabel">Tap To Talk</span></button>
+  <textarea id="one" placeholder="Or type it here..."></textarea>
+  <div class="chips"><p>Stuck? Owners often say things like:</p>
+    <button class="chip" type="button">I can't get to the phone when I'm on a job</button>
+    <button class="chip" type="button">Quotes take me forever</button>
+    <button class="chip" type="button">Follow-ups fall through the cracks</button>
+    <button class="chip" type="button">I spend nights on invoices</button>
+  </div>
+  <p class="err" id="err2">Tell us the one thing first. A few words is plenty.</p>
+  <button class="go" id="go2" type="button">That's It. Next.</button>
+  <button class="back" data-back="1" type="button">Back</button>
+</section>
+
+<!-- STEP 3 -->
+<section class="step" id="s3">
+  <h1>Where Should We Call You?</h1>
+  <p class="sub">Next, you pick the day and time. 15 minutes is all it takes.</p>
+  <p>We'll give you a call, and we'll have some fun with it.</p>
+  <label for="nm">Your name</label><input id="nm" autocomplete="name">
+  <label for="ph">Best phone for the call</label><input id="ph" type="tel" autocomplete="tel">
+  <label for="em">Email <span style="font-weight:normal">(for your reminder)</span></label><input id="em" type="email" autocomplete="email">
+  <p class="err" id="err3">We need your name and a phone number so we can call you.</p>
+  <button class="go" id="go3" type="button">Next: Pick My Time</button>
+  <button class="back" data-back="2" type="button">Back</button>
+</section>
+
+<!-- STEP 4 -->
+<section class="step" id="s4">
+  <h1>Pick A Time For Your Free 15 Minutes.</h1>
+  <p class="sub">We call you. Times are Eastern.</p>
+  <div class="days" id="days"></div>
+  <div class="times" id="times"></div>
+  <p class="err" id="err4">Pick a day and a time.</p>
+  <button class="go" id="go4" type="button">Lock In My 15 Minutes</button>
+  <button class="back" data-back="3" type="button">Back</button>
+</section>
+
+<!-- DONE -->
+<section class="step" id="s5">
+  <h1>You're All Set, <span id="dnm">friend</span>.</h1>
+  <div class="recap">
+    <p><b>Jimmy or Paul calls you <span id="dwhen">at your time</span></b> at <span id="dph">your number</span>. The call comes from (317) 751-2693.</p>
+    <p>For 15 minutes, we dig into:</p>
+    <p><i>"<span id="done1">your one thing</span>"</i></p>
+    <p>Then we go do our homework. In a day or two, we set a time to walk you through what we found.</p>
+  </div>
+  <div class="bonus">
+    <p class="k">Your Free Bonus</p>
+    <h2>A Seat At Our Next Live AI Night</h2>
+    <p><b><span data-ev="long">Thursday, December 10</span>, 6:30 to 9pm</b>, at Launch Fishers.</p>
+    <p>A room full of owners like you, real help with AI on your own business, and the pizza's on us. Bring your one thing. You'll see what else is possible.</p>
+    <button class="go" type="button" onclick="this.textContent='Seat Saved (mockup)'">Save My Free Seat</button>
+    <p class="small">Can't make it to Fishers? Your call is still on.</p>
+  </div>
+  <button class="back" type="button" onclick="location.reload()">Start the mockup over</button>
+</section>
+
+</main>
+<script>
+(function(){
+  var cur=1, data={};
+  function show(n){
+    cur=n;
+    document.querySelectorAll('.step').forEach(function(s){s.classList.remove('show')});
+    document.getElementById('s'+n).classList.add('show');
+    var bars=document.querySelectorAll('#bar span');
+    bars.forEach(function(b,i){b.classList.toggle('on', i<Math.min(n,4))});
+    document.getElementById('stepno').textContent = n<5 ? 'Step '+n+' of 4' : 'Done';
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll('[data-back]').forEach(function(b){b.addEventListener('click',function(){show(+b.dataset.back)})});
+
+  // step 1: tap to advance
+  document.querySelectorAll('#s1 .pick').forEach(function(p){p.addEventListener('click',function(){
+    document.querySelectorAll('#s1 .pick').forEach(function(x){x.classList.remove('on')});
+    p.classList.add('on'); data.found=p.textContent; setTimeout(function(){show(2)},200);
+  })});
+
+  // step 2: mic + chips
+  var ta=document.getElementById('one'), mic=document.getElementById('mic'), lbl=document.getElementById('miclabel');
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition, rec=null, on=false, base='';
+  function stop(){ if(rec){try{rec.stop()}catch(e){}} on=false; mic.classList.remove('on'); lbl.textContent = ta.value.trim() ? 'Tap To Keep Talking' : 'Tap To Talk'; }
+  mic.addEventListener('click',function(){
+    if(!SR){ lbl.textContent='Use your keyboard mic below'; ta.focus(); return; }
+    if(on) return stop();
+    base = ta.value ? ta.value.trim()+' ' : '';
+    rec=new SR(); rec.continuous=true; rec.interimResults=true; rec.lang='en-US';
+    rec.onresult=function(e){var t='';for(var r=0;r<e.results.length;r++)t+=e.results[r][0].transcript;ta.value=base+t;};
+    rec.onerror=function(){stop()}; rec.onend=function(){if(on)stop()};
+    try{rec.start()}catch(e){return}
+    on=true; mic.classList.add('on'); lbl.textContent='Listening... Tap To Stop';
+  });
+  document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){ta.value=c.textContent;})});
+  document.getElementById('go2').addEventListener('click',function(){
+    stop(); if(!ta.value.trim()){document.getElementById('err2').style.display='block';return}
+    document.getElementById('err2').style.display='none'; data.one=ta.value.trim(); show(3);
+  });
+
+  // step 3
+  document.getElementById('go3').addEventListener('click',function(){
+    var nm=document.getElementById('nm').value.trim(), ph=document.getElementById('ph').value.trim();
+    if(!nm||!ph){document.getElementById('err3').style.display='block';return}
+    document.getElementById('err3').style.display='none';
+    data.nm=nm; data.ph=ph; data.em=document.getElementById('em').value.trim(); show(4);
+  });
+
+  // step 4: next 3 weekdays, a few slots
+  var days=document.getElementById('days'), times=document.getElementById('times'), pickDay=null, pickTime=null;
+  var d=new Date(), added=0, names=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], mons=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  while(added<3){ d.setDate(d.getDate()+1); if(d.getDay()===0||d.getDay()===6) continue;
+    var b=document.createElement('button'); b.type='button'; b.className='slot';
+    b.innerHTML=names[d.getDay()]+'<small>'+mons[d.getMonth()]+' '+d.getDate()+'</small>';
+    b.dataset.label=names[d.getDay()]+', '+mons[d.getMonth()]+' '+d.getDate();
+    b.addEventListener('click',function(){days.querySelectorAll('.slot').forEach(function(x){x.classList.remove('on')});this.classList.add('on');pickDay=this.dataset.label;});
+    days.appendChild(b); added++; }
+  ['9:00 am','10:30 am','12:15 pm','2:00 pm','3:30 pm','5:00 pm'].forEach(function(t){
+    var b=document.createElement('button'); b.type='button'; b.className='slot'; b.textContent=t;
+    b.addEventListener('click',function(){times.querySelectorAll('.slot').forEach(function(x){x.classList.remove('on')});b.classList.add('on');pickTime=t;});
+    times.appendChild(b); });
+  document.getElementById('go4').addEventListener('click',function(){
+    if(!pickDay||!pickTime){document.getElementById('err4').style.display='block';return}
+    document.getElementById('dnm').textContent=data.nm.split(' ')[0];
+    document.getElementById('dwhen').textContent=pickDay+' at '+pickTime;
+    document.getElementById('dph').textContent=data.ph;
+    document.getElementById('done1').textContent=data.one;
+    show(5);
+  });
+})();
+</script>
+</body></html>
