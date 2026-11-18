@@ -92,18 +92,23 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 <!-- STEP 2 -->
 <section class="step" id="s2">
   <h1>What's The One Thing You'd Love Solved?</h1>
-  <p class="sub">The job that eats your week. The thing you'd hand off tomorrow if you could.</p>
-  <p>Tap the mic and just talk. Messy is fine. We'll sort it out.</p>
-  <button class="mic" id="mic" type="button"><span class="dot"></span><span id="miclabel">Tap To Talk</span></button>
-  <textarea id="one" placeholder="Or type it here..."></textarea>
-  <div class="chips"><p>Stuck? Owners often say things like:</p>
-    <button class="chip" type="button">I can't get to the phone when I'm on a job</button>
-    <button class="chip" type="button">Quotes take me forever</button>
-    <button class="chip" type="button">Follow-ups fall through the cracks</button>
-    <button class="chip" type="button">I spend nights on invoices</button>
+  <p class="sub">The job that eats your week. Just tap the closest one.</p>
+  <button class="pick p2" type="button">Phone calls I miss</button>
+  <button class="pick p2" type="button">Quotes and estimates</button>
+  <button class="pick p2" type="button">Following up with leads</button>
+  <button class="pick p2" type="button">Getting more customers</button>
+  <button class="pick p2" type="button">Reviews and referrals</button>
+  <button class="pick p2" type="button">Invoices and getting paid</button>
+  <button class="pick p2" type="button">Email, scheduling and paperwork</button>
+  <button class="pick p2" type="button">Something else</button>
+  <p style="margin-top:14px"><a href="#" id="more2">Want to tell us more? Tap here.</a> <span style="color:var(--soft);font-size:14px">(Optional.)</span></p>
+  <div id="morebox" style="display:none">
+    <p>Tap the mic and just talk. Messy is fine. We'll sort it out.</p>
+    <button class="mic" id="mic" type="button"><span class="dot"></span><span id="miclabel">Tap To Talk</span></button>
+    <textarea id="one" placeholder="Or type it here..."></textarea>
+    <p class="err" id="err2">Tap the closest one above first.</p>
+    <button class="go" id="go2" type="button">That's It. Next.</button>
   </div>
-  <p class="err" id="err2">Tell us the one thing first. A few words is plenty.</p>
-  <button class="go" id="go2" type="button">That's It. Next.</button>
   <button class="back" data-back="1" type="button">Back</button>
 </section>
 
@@ -227,10 +232,17 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     try{rec.start()}catch(e){return}
     on=true; mic.classList.add('on'); lbl.textContent='Listening... Tap To Stop';
   });
-  document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){ta.value=c.textContent;})});
+  var cat='', more=false;
+  document.getElementById('more2').addEventListener('click',function(e){e.preventDefault();more=true;document.getElementById('morebox').style.display='block';});
+  document.querySelectorAll('#s2 .pick').forEach(function(p){p.addEventListener('click',function(){
+    document.querySelectorAll('#s2 .pick').forEach(function(x){x.classList.remove('on')});
+    p.classList.add('on'); cat=p.textContent; data.one=cat;
+    if(!more) setTimeout(function(){show(3)},200);
+  })});
   document.getElementById('go2').addEventListener('click',function(){
-    stop(); if(!ta.value.trim()){document.getElementById('err2').style.display='block';return}
-    document.getElementById('err2').style.display='none'; data.one=ta.value.trim(); show(3);
+    stop(); if(!cat){document.getElementById('err2').style.display='block';return}
+    document.getElementById('err2').style.display='none';
+    data.one = ta.value.trim() ? cat+': '+ta.value.trim() : cat; show(3);
   });
 
   // step 3
