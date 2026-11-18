@@ -1,31 +1,37 @@
 {
- "checked": "Wed Nov 18, 11:14am",
+ "checked": "Wed Nov 18, 12:13pm",
  "people": {
   "Daegan": {
    "needs": [
     {
+     "t": "Stay out of the team Zoom room at noon today",
+     "w": "From Jimmy's Claude, Wed 11:30am",
+     "x": "Jimmy has a sales call with Jessica at 12. Her reminder sends her to 2guysandagenie.com/zoom, the same room as the team meeting. Jimmy hasn't decided yet; his Claude recommended calling off today's team meeting.",
+     "n": "Don't join the room at 12 until you hear otherwise. If the meeting is called off, today's agenda page carries to the next meeting."
+    },
+    {
      "t": "Fix website lines that don't match our records",
      "w": "From Jimmy's Claude, Tue 10:36pm (Jimmy reviewed it)",
      "x": "Jimmy's Claude compared the site with the client records and wants these changes, with suggested wording sent: (1) pizza shop AI phone line was only a demo, never on the shop's real phone, and the 4-in-10 voicemail number was a placeholder, so say demo on /what-we-do/, /leaders/, /stories/maestros/, the home tile, /jamon/, /meetup-long/ and leave the shop's name off; (2) drop the $4.58 per three-pack for Jim's bread, the story can stay; (3) Jamon's revenue should read $15,000 to $20,000 a month to over $50,000, as his own statement, since the family also ran TV and radio; (4) remove 'booked six months out' (no record of it); (5) GottaCallJack: drop 'a review request after every job' (it went out only 4 times by Nov 6); (6) Ian: drop '84 minutes', say 'the same afternoon'; (7) Just Vapor is a demo, not a working site; (8) Bruce is 'Piano entertainer', not 'Piano teacher'; (9) remove the wedding DJ mockup link (invented couple testimonials); (10) password-protect or unpublish /coltsvideo/ until Dr. McCray approves.",
-     "n": "Make the changes during your What We Do review, or tell us any line you want to keep and why. Then reply with the pages changed. The Colts page is public to anyone with the link, so that one is the most urgent."
+     "n": "Make the changes by Thu Nov 19 (Jimmy's Claude's suggested date), or tell us which lines you disagree with and why. Then reply with the pages changed. The Colts page is public to anyone with the link, so that one is the most urgent."
     },
     {
      "t": "Your 8 to-dos from Tuesday's team call",
      "w": "From Jimmy's Claude, Tue 9:39pm (from Zoom's AI summary, no transcript)",
      "x": "Add a free 15-minute one-on-one with Jimmy to the registration flow before the Dec 10 event; test registration and emails by signing up with your AgentMail address; review the new What We Do page; check whether the Facebook ads are really off; work on the client intake funnel; set your Claude to read the Notion page and pull agenda items from Jimmy and Paul; go through the meeting list and the grill-me with Jimmy; research X tools for business data (Vera's results may already cover it). No dates were set.",
-     "n": "Nothing to reply to for these; a proposed date for each comes in the next Daily Brief."
+     "n": "Nothing to reply to for these. Jimmy's Claude now suggests Fri Nov 20 for the Dec 10 site, email and registration update and the sign-up test; reply with a better date if that's wrong."
     },
     {
      "t": "Answer two questions from the call notes",
      "w": "From Jimmy's Claude, Tue 9:39pm",
      "x": "Is the 15-minute call something people choose at sign-up, or is every registrant booked automatically? (Zoom's summary says both.) And are the Facebook ads off? (Zoom says you confirmed it and also lists it as something to check.)",
-     "n": "Reply with both answers."
+     "n": "Reply with both answers by Thu Nov 19 (their suggested date). Is the free 15-minute call a choice at sign-up or automatic for everyone? Are the Facebook ads really off?"
     },
     {
      "t": "Add Jimmy's items to Wednesday's agenda page",
      "w": "From Jimmy's Claude, Tue 4:12pm",
      "x": "Jimmy's Claude answered your agenda ask for the Wed Nov 18 noon meeting. His items: agree a send date for the Jamon and Dr. McCray agreements (he's leaning Fri Nov 20); OK to send Mark Holder's short reply (waiting since Nov 10); Jim's Amazing Bread Audit Kit is finished, Jimmy calls Jim, then the page goes live; the Dec 10 event still has no start time (Jimmy plans to confirm by Fri Nov 20); Bruce the Piano Man update on Tuesday's visit and the testimonial video.",
-     "n": "Add these to the Wed Nov 18 agenda page. Also note the meeting should end by about 1pm, since Paul and Jimmy go to the TTR Social Circle 2 to 3pm."
+     "n": "Add these to the Wed Nov 18 agenda page. But Jimmy may call off today's noon meeting (see the first item); if so, treat today's agenda as carried to the next meeting. Paul and Jimmy are at the TTR Social Circle 2 to 3pm."
     },
     {
      "t": "Leader tags: say yes to one way of counting",
@@ -37,13 +43,13 @@
      "t": "Friday ledger: yes or no",
      "w": "From Jimmy's Claude, Tue 11:30am",
      "x": "A weekly table every Friday: what Jimmy did, what it became, where it lives and the result, including what didn't work. It starts only if you say yes.",
-     "n": "Say yes or no. If yes, the first one comes Fri Nov 20."
+     "n": "Say yes or no by Thu Nov 19. If yes, the first one comes Fri Nov 20."
     },
     {
-     "t": "Check the two dates Jimmy's Claude guessed",
-     "w": "From Jimmy's Claude, Tue 11:30am",
-     "x": "It put Fri Nov 20 as the day to update the site and emails for Thu Dec 10, and Wed Nov 18 as the day to fix the missing Jimmy Library links. Nobody said those dates.",
-     "n": "Reply with different dates if they're wrong. Otherwise nothing."
+     "t": "Fix the missing Jimmy Library links today",
+     "w": "From Jimmy's Claude, Wed 11:30am",
+     "x": "Raised on Monday's call with Paul; Jimmy's Claude set today as the date. Nobody confirmed the date with you.",
+     "n": "Fix them today, or reply with a better date."
     },
     {
      "t": "Pick from Jimmy's Money Map",
@@ -76,10 +82,10 @@
   "Jimmy": {
    "needs": [
     {
-     "t": "Say whether he joins Wednesday's meeting late",
-     "w": "Flagged by his Claude Tue 4:12pm",
-     "x": "His sales call with Jessica is also listed at 12pm Wed, the same time as the team meeting.",
-     "n": "Jimmy says whether he joins late or the call moves."
+     "t": "Three decisions asked of him today",
+     "w": "Flagged by his Claude Wed 11:30am",
+     "x": "Call off the noon team meeting so Jessica gets the Zoom room (recommended: yes). Send his drafted reply to Lisa Bowers, due this morning (recommended: yes). Send the Jamon and Dr. McCray agreements by Fri Nov 20 (recommended: yes).",
+     "n": "Jimmy answers; his Claude will tell Daegan's Claude as soon as he decides about the meeting."
     }
    ],
    "waits": [
@@ -116,12 +122,22 @@
      "w": "Nothing from his Claude since Mon",
      "x": "Two messages went out and neither has a reply. Agent mail is how the Claudes pass things between us.",
      "n": "On Wednesday's agenda: decide how often he checks and what we do when something sits."
+    },
+    {
+     "t": "Send his Tuesday report",
+     "w": "Noted by Jimmy's Claude Wed 11:30am",
+     "x": "His call list went out this morning with new names, but his Tuesday report hasn't arrived yet.",
+     "n": "Paul sends the report."
     }
    ],
    "waits": []
   }
  },
  "fyi": [
+  {
+   "t": "Jimmy's Daily Brief, Wed 11:30am",
+   "x": "Jimmy and Paul are at the TTR Social Circle 2 to 3pm today. The offer material from our client records is now in team Notion, and the full Daily Brief is there too."
+  },
   {
    "t": "Client proof and offer material is ready (Jimmy's Claude, Tue 10:49pm)",
    "x": "Nothing is required from you. Six files, one for each client project we built: a ledger written like your Admin items, draft offers with test prices (not for the public site), every team-safe piece sorted by problem, the three cleared case studies, market pricing research and what people charge on X. Dollar values are estimates; mockups and demos are not client results. If you want it in Admin, your Claude can start from the ledger. Same material is in Notion."
@@ -137,13 +153,16 @@
   {
    "t": "Jimmy's Claude will write in plain words",
    "x": "It agreed: every message to Daegan will say what's needed and the next step, updates will start with \"Just so you know:\", and it drops the shorthand and counts. It says Jimmy's side can show up on this board too."
-  },
-  {
-   "t": "Jimmy's Daily Brief, Tue 11:30am",
-   "x": "Jimmy's own questions for himself today (the Jamon and Dr. McCray agreements, a reply to one person waiting a week, a call about the Jim's Amazing Bread page). Not for you. The one for you is the Friday ledger."
   }
  ],
  "traffic": [
+  [
+   "Wed Nov 18, 11:30am",
+   "In",
+   "Jimmy",
+   "Daily Brief (Wed Nov 18)",
+   "—"
+  ],
   [
    "Tue Nov 17, 10:49pm",
    "In",
