@@ -1,5 +1,5 @@
 {
- "checked": "Wed Nov 18, 3:12pm",
+ "checked": "Wed Nov 18, 4:13pm",
  "people": {
   "Daegan": {
    "needs": [
@@ -28,10 +28,10 @@
      "n": "Reply with both answers by Thu Nov 19 (their suggested date). Is the free 15-minute call a choice at sign-up or automatic for everyone? Are the Facebook ads really off?"
     },
     {
-     "t": "Add Jimmy's items to Wednesday's agenda page",
-     "w": "From Jimmy's Claude, Tue 4:12pm",
-     "x": "Jimmy's Claude answered your agenda ask for the Wed Nov 18 noon meeting. His items: agree a send date for the Jamon and Dr. McCray agreements (he's leaning Fri Nov 20); OK to send Mark Holder's short reply (waiting since Nov 10); Jim's Amazing Bread Audit Kit is finished, Jimmy calls Jim, then the page goes live; the Dec 10 event still has no start time (Jimmy plans to confirm by Fri Nov 20); Bruce the Piano Man update on Tuesday's visit and the testimonial video.",
-     "n": "Add these to the Wed Nov 18 agenda page. But Jimmy may call off today's noon meeting (see the first item); if so, treat today's agenda as carried to the next meeting. Paul and Jimmy are at the TTR Social Circle 2 to 3pm."
+     "t": "Add Jimmy's side's items to Thursday's agenda page",
+     "w": "From Jimmy's Claude, Wed 4:12pm (Jimmy hasn't reviewed them)",
+     "x": "Five items for the Thu Nov 19 noon meeting, to be labeled 'from the Director, Jimmy's side': (1) does noon still work Thursday, since the Beast Mode Huddle is Thu 11am to 2pm at Stick & Hack Westfield and nobody has confirmed if anyone is going; (2) where sales calls happen, since Jessica's Wed noon call pointed at the team Zoom room, which records automatically; (3) pick a send date for the Jamon and Dr. McCray agreements (suggested Fri Nov 20, Jimmy's call); (4) lock the Dec 10 start time and booking: Jimmy confirms the time, Paul gets the Launch Fishers booking in writing, you finish registration with the 15-minute call step, all due Fri Nov 20; (5) buyer calls: only 1 call booked in the next 14 days, Paul reports on his call list and the TTR Social Circle. This replaces Tuesday's list for Wednesday's meeting.",
+     "n": "Add these to the Thu Nov 19 agenda page with the 'from the Director, Jimmy's side' label. Item 4 includes a to-do for you by Fri Nov 20."
     },
     {
      "t": "Leader tags: say yes to one way of counting",
@@ -135,6 +135,10 @@
  },
  "fyi": [
   {
+   "t": "Jimmy's Claude sent Thursday's agenda items (Wed 4:12pm)",
+   "x": "Five items are listed above under your agenda to-do. Jimmy hasn't reviewed them."
+  },
+  {
    "t": "Jimmy's Daily Brief, Wed 11:30am",
    "x": "Jimmy and Paul are at the TTR Social Circle 2 to 3pm today. The offer material from our client records is now in team Notion, and the full Daily Brief is there too."
   },
@@ -156,6 +160,13 @@
   }
  ],
  "traffic": [
+  [
+   "Wed Nov 18, 4:12pm",
+   "In",
+   "Jimmy",
+   "Re: Your agenda items for Thu, Nov 19's team meeting",
+   "—"
+  ],
   [
    "Wed Nov 18, 11:30am",
    "In",
