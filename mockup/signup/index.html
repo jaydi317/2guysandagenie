@@ -91,8 +91,8 @@ label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
   <p class="sub">Next, you pick the day and time. 15 minutes is all it takes.</p>
   <p>We'll give you a call, and we'll have some fun with it.</p>
   <label for="nm">Your name</label><input id="nm" autocomplete="name">
-  <label for="ph">Best phone for the call</label><input id="ph" type="tel" autocomplete="tel">
-  <label for="em">Email <span style="font-weight:normal">(for your reminder)</span></label><input id="em" type="email" autocomplete="email">
+  <label for="ph">Best phone for the call <span style="font-weight:normal">(we'll text your confirmation here)</span></label><input id="ph" type="tel" autocomplete="tel">
+  <label for="em">Email <span style="font-weight:normal">(for reminders and your free daily AI email)</span></label><input id="em" type="email" autocomplete="email">
   <p class="err" id="err3">We need your name and a phone number so we can call you.</p>
   <button class="go" id="go3" type="button">Next: Pick My Time</button>
   <button class="back" data-back="2" type="button">Back</button>
@@ -117,14 +117,21 @@ label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
     <p>For 15 minutes, we dig into:</p>
     <p><i>"<span id="done1">your one thing</span>"</i></p>
     <p>Then we go do our homework. In a day or two, we set a time to walk you through what we found.</p>
+    <p><b>Watch your phone.</b> In a minute you'll get a text from (317) 751-2693 with your time.</p>
   </div>
   <div class="bonus">
-    <p class="k">Your Free Bonus</p>
+    <p class="k">Free Bonus #1</p>
     <h2>A Seat At Our Next Live AI Night</h2>
     <p><b><span data-ev="long">Thursday, December 10</span>, 6:30 to 9pm</b>, at Launch Fishers.</p>
     <p>A room full of owners like you, real help with AI on your own business, and the pizza's on us. Bring your one thing. You'll see what else is possible.</p>
     <button class="go" type="button" onclick="this.textContent='Seat Saved (mockup)'">Save My Free Seat</button>
     <p class="small">Can't make it to Fishers? Your call is still on.</p>
+  </div>
+  <div class="bonus">
+    <p class="k">Free Bonus #2</p>
+    <h2>Something Cool About AI, Every Day</h2>
+    <p>Every day, one short email with something cool AI can do for a business like yours. Things we're trying, things that work, things you can use that afternoon.</p>
+    <p>It starts tomorrow morning, from Jimmy at 2 Guys and a Genie. One click unsubscribes you anytime.</p>
   </div>
   <button class="back" type="button" onclick="location.reload()">Start the mockup over</button>
 </section>
