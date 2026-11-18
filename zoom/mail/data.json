@@ -1,8 +1,26 @@
 {
- "checked": "Tue Nov 17, 9:12pm",
+ "checked": "Wed Nov 18, 7:14am",
  "people": {
   "Daegan": {
    "needs": [
+    {
+     "t": "Fix website lines that don't match our records",
+     "w": "From Jimmy's Claude, Tue 10:36pm (Jimmy reviewed it)",
+     "x": "Jimmy's Claude compared the site with the client records and wants these changes, with suggested wording sent: (1) pizza shop AI phone line was only a demo, never on the shop's real phone, and the 4-in-10 voicemail number was a placeholder, so say demo on /what-we-do/, /leaders/, /stories/maestros/, the home tile, /jamon/, /meetup-long/ and leave the shop's name off; (2) drop the $4.58 per three-pack for Jim's bread, the story can stay; (3) Jamon's revenue should read $15,000 to $20,000 a month to over $50,000, as his own statement, since the family also ran TV and radio; (4) remove 'booked six months out' (no record of it); (5) GottaCallJack: drop 'a review request after every job' (it went out only 4 times by Nov 6); (6) Ian: drop '84 minutes', say 'the same afternoon'; (7) Just Vapor is a demo, not a working site; (8) Bruce is 'Piano entertainer', not 'Piano teacher'; (9) remove the wedding DJ mockup link (invented couple testimonials); (10) password-protect or unpublish /coltsvideo/ until Dr. McCray approves.",
+     "n": "Make the changes during your What We Do review, or tell us any line you want to keep and why. Then reply with the pages changed. The Colts page is public to anyone with the link, so that one is the most urgent."
+    },
+    {
+     "t": "Your 8 to-dos from Tuesday's team call",
+     "w": "From Jimmy's Claude, Tue 9:39pm (from Zoom's AI summary, no transcript)",
+     "x": "Add a free 15-minute one-on-one with Jimmy to the registration flow before the Dec 10 event; test registration and emails by signing up with your AgentMail address; review the new What We Do page; check whether the Facebook ads are really off; work on the client intake funnel; set your Claude to read the Notion page and pull agenda items from Jimmy and Paul; go through the meeting list and the grill-me with Jimmy; research X tools for business data (Vera's results may already cover it). No dates were set.",
+     "n": "Nothing to reply to for these; a proposed date for each comes in the next Daily Brief."
+    },
+    {
+     "t": "Answer two questions from the call notes",
+     "w": "From Jimmy's Claude, Tue 9:39pm",
+     "x": "Is the 15-minute call something people choose at sign-up, or is every registrant booked automatically? (Zoom's summary says both.) And are the Facebook ads off? (Zoom says you confirmed it and also lists it as something to check.)",
+     "n": "Reply with both answers."
+    },
     {
      "t": "Add Jimmy's items to Wednesday's agenda page",
      "w": "From Jimmy's Claude, Tue 4:12pm",
@@ -76,6 +94,18 @@
      "w": "Asked Mon 5:37pm and Tue 11:30am",
      "x": "Four open questions for Daegan.",
      "n": "See Daegan: the first section."
+    },
+    {
+     "t": "Your website changes and the Colts page",
+     "w": "Asked Tue 10:36pm",
+     "x": "His Claude is waiting for you to fix the site lines, take the wedding DJ link down and lock the Colts page, then reply with what changed.",
+     "n": "See Daegan: fix website lines."
+    },
+    {
+     "t": "Your answers on the 15-minute call and the Facebook ads",
+     "w": "Asked Tue 9:39pm",
+     "x": "Two questions from the call notes.",
+     "n": "See Daegan: answer two questions."
     }
    ]
   },
@@ -93,6 +123,14 @@
  },
  "fyi": [
   {
+   "t": "Client proof and offer material is ready (Jimmy's Claude, Tue 10:49pm)",
+   "x": "Nothing is required from you. Six files, one for each client project we built: a ledger written like your Admin items, draft offers with test prices (not for the public site), every team-safe piece sorted by problem, the three cleared case studies, market pricing research and what people charge on X. Dollar values are estimates; mockups and demos are not client results. If you want it in Admin, your Claude can start from the ledger. Same material is in Notion."
+  },
+  {
+   "t": "Notes from Tuesday's team call are filed (Jimmy's Claude, Tue 9:39pm)",
+   "x": "They are in Notion. Your items and two questions are listed above."
+  },
+  {
    "t": "Vera's X search is back (Jimmy's Claude, Tue 7:12pm)",
    "x": "Nothing is required from you. Google Maps lead lists are easy: Outscraper (no code, free tier) or Apify (free monthly credit). No ready-made tool checks a local business's website; people pair Maps data with Firecrawl or the free Playwright and Chrome DevTools tools. Getting emails is the weak spot (one user had 14,009 leads but only 649 with email). Most posts on X are self-promotion and prices were not checked. Jimmy's Claude says nothing gets bought without Jimmy's yes, and one install line in her notes is a stranger's package that should not be run on Jimmy's Mac Studio unread. If you want a free test pull of Fishers businesses, reply with the categories."
   },
@@ -106,6 +144,27 @@
   }
  ],
  "traffic": [
+  [
+   "Tue Nov 17, 10:49pm",
+   "In",
+   "Jimmy",
+   "[FYI] Client proof and offer material is ready",
+   "—"
+  ],
+  [
+   "Tue Nov 17, 10:36pm",
+   "In",
+   "Jimmy",
+   "[ASK] Please correct website lines that do not match our client records",
+   "—"
+  ],
+  [
+   "Tue Nov 17, 9:39pm",
+   "In",
+   "Jimmy",
+   "[FYI] Notes from today's team call: your 8 to-dos",
+   "—"
+  ],
   [
    "Tue Nov 17, 7:12pm",
    "In",
