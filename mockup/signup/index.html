@@ -44,6 +44,24 @@ label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
 .tq{border-left:4px solid var(--ink);margin:0 0 16px;padding:2px 0 2px 14px;font-size:17px}.tq span{display:block;font-size:14px;color:var(--soft);margin-top:6px}
 .wallh{margin:34px 0 14px;padding-top:16px;border-top:3px solid var(--ink)}
 .ba{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 8px}.ba img{width:100%;border:1px solid #ccc;display:block}
+.first{background:#fff;border:2px solid var(--ink);padding:10px 14px;margin:0 0 10px;font-size:16px}
+.both{font-weight:bold;font-size:18px;margin:0 0 10px}
+body.side .bonuses{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start}
+.bonuses .bonus{padding:14px 16px}.bonuses h2{font-size:22px;line-height:1.2;margin:0 0 8px}.bonuses p{font-size:16px;margin:0 0 10px}.bonuses .tq{font-size:15px;margin:0 0 10px}.bonuses .first{font-size:15px}.bonuses .learn{margin:0 0 10px;padding:8px 12px}.bonuses .learn summary{font-size:15px}
+body.side .bonuses .bonus{padding:12px;margin:0}
+body.side .bonuses h2{font-size:18px;line-height:1.2}
+body.side .bonuses p,body.side .bonuses .tq{font-size:14px}
+body.side .bonuses .k{font-size:11px}
+body.side .bonuses .go{font-size:15px;padding:12px 6px}
+body.side .bonuses .first{font-size:13px;padding:8px}
+body.side .bonuses .learn summary{font-size:13px}
+body.side .bonuses .tq span{font-size:12px}
+.vpick{font-size:14px;margin:0 0 14px}.vpick a{color:var(--ink);font-weight:bold}
+.tiles{display:none}
+body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 14px}
+.tiles a{display:block;border:2px solid var(--copper);background:var(--tint);padding:10px;text-decoration:none;color:var(--ink)}
+.tiles .k{display:block;font-size:11px;font-weight:bold;letter-spacing:.4px;text-transform:uppercase;color:var(--copper);margin:0 0 4px}
+.tiles b{display:block;font-size:16px;line-height:1.25;margin:0 0 4px}.tiles .s{display:block;font-size:13px;color:var(--soft)}
 </style>
 </head><body>
 <header class="site"><div class="hwrap">
@@ -51,7 +69,7 @@ label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
 </div></header>
 <main id="main">
 
-<p class="mock"><b>Mockup.</b> Walk through it like an owner would. Nothing gets sent or booked.</p>
+<p class="mock"><b>Mockup.</b> Walk through it like an owner would. Nothing gets sent or booked.<br>Done screen layout: <a href="?">A, stacked</a> · <a href="?layout=side">B, side by side</a> · <a href="?layout=tiles">C, both up top, details below</a></p>
 
 <div class="bar" id="bar"><span></span><span></span><span></span><span></span></div>
 <p class="stepno" id="stepno">Step 1 of 4</p>
@@ -123,13 +141,16 @@ label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
     <p>Then we go do our homework. In a day or two, we set a time to walk you through what we found.</p>
     <p><b>Watch your phone.</b> In a minute you'll get a text from (317) 751-2693 with your time.</p>
   </div>
-  <div class="bonus">
+  <p class="both" id="both">Plus, two free bonuses with your call:</p>
+  <div class="tiles"><a href="#b1"><span class="k">Bonus #1 · $97/mo value</span><b>Something Cool About AI, Every Day</b><span class="s">In your inbox, starting tomorrow</span></a><a href="#b2"><span class="k">Bonus #2 · $1,000 value</span><b>A Seat At Our Next Live AI Night</b><span class="s"><span data-ev="short">Thu Dec 10</span>, Launch Fishers</span></a></div>
+  <div class="bonuses">
+  <div class="bonus" id="b1">
     <p class="k">Free Bonus #1 · A $97 A Month Value</p>
     <h2>Something Cool About AI, Every Day In Your Inbox</h2>
     <p>One short email every morning from Jimmy. Something AI can do for a business like yours, in plain words, that you can try that afternoon.</p>
-    <details class="learn"><summary>What you'll get in your first 10 days</summary>
+    <p class="first"><b>Your first email:</b> The 60-second trick that gets AI asking YOU the right questions. <i>HINT: the fastest way into a 60,000-seat stadium was printed on my ticket the whole time.</i></p>
+    <details class="learn"><summary>See what's in days 2 to 10</summary>
       <ul>
-        <li><b>Day 1:</b> The 60-second trick that gets AI asking YOU the right questions. <i>HINT: the fastest way into a 60,000-seat stadium was printed on my ticket the whole time.</i></li>
         <li><b>Day 2:</b> What AI really is, in one picture you won't forget, and the habit that keeps a dead-sure wrong answer away from your customers.</li>
         <li><b>Day 3:</b> The 5 simple rules that turn the candle-and-gift-card answer everybody gets into one made for your business.</li>
         <li><b>Day 4:</b> Why "behind" is the wrong word for where you are with AI. <i>NOTE: most people have a genius in the basement and ask him for recipes.</i></li>
@@ -146,7 +167,7 @@ label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
     <p>That's why every one of these emails hands you a tool.</p>
     <p class="small">It starts tomorrow morning, from Jimmy at 2 Guys and a Genie. One click unsubscribes you anytime.</p>
   </div>
-  <div class="bonus">
+  <div class="bonus" id="b2">
     <p class="k">Free Bonus #2 · A $1,000 Value</p>
     <h2>A Seat At Our Next Live AI Night</h2>
     <p><b><span data-ev="long">Thursday, December 10</span>, 6:30 to 9pm</b>, at Launch Fishers.</p>
@@ -154,6 +175,7 @@ label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
     <blockquote class="tq">"This was not talking about AI. This was actually helping people use AI."<span>Roger, at our last live night</span></blockquote>
     <button class="go" type="button" onclick="this.textContent='Seat Saved (mockup)'">Save My Free Seat</button>
     <p class="small">Can't make it to Fishers? Your call is still on.</p>
+  </div>
   </div>
 
   <h2 class="wallh">What Owners Are Saying</h2>
@@ -174,6 +196,8 @@ label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
 
 </main>
 <script>
+if(location.search.indexOf("layout=side")>-1)document.body.classList.add("side");
+if(location.search.indexOf("layout=tiles")>-1)document.body.classList.add("laytiles");
 (function(){
   var cur=1, data={};
   function show(n){
