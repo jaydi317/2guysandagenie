@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<title>Mockup v4: The Maestro's Page · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<link rel="stylesheet" href="/assets/simple.css">
+<script src="/assets/next-event.js"></script>
+<style>
+.mock{background:#FFF3C4;font-size:14px;padding:8px 12px;margin:0 0 18px;border:1px solid #e6d58a}
+.bar{display:flex;gap:6px;margin:0 0 6px}
+.bar span{flex:1;height:8px;background:var(--rule)}
+.bar span.on{background:var(--ink)}
+.stepno{font-size:14px;color:var(--soft);margin:0 0 18px}
+.step{display:none}.step.show{display:block}
+h1{margin-top:0}
+.pick{display:block;width:100%;box-sizing:border-box;text-align:left;font:inherit;font-size:18px;padding:14px 16px;margin:0 0 10px;border:2px solid var(--ink);background:#fff;cursor:pointer}
+.pick:active,.pick.on{background:var(--ink);color:#fff}
+textarea,input{width:100%;box-sizing:border-box;font:inherit;font-size:18px;border:2px solid var(--ink);padding:12px;background:#fff;margin:0 0 12px}
+textarea{min-height:150px;resize:vertical}
+label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
+.mic{display:flex;width:100%;justify-content:center;align-items:center;gap:10px;font:inherit;font-weight:bold;font-size:19px;background:var(--ink);color:#fff;border:2px solid var(--ink);padding:14px 16px;margin:0 0 12px;cursor:pointer}
+.mic.on{background:#c62828;border-color:#c62828}
+.dot{width:12px;height:12px;border-radius:50%;background:currentColor}.mic.on .dot{animation:blink 1s infinite}@keyframes blink{50%{opacity:.2}}
+.chips{margin:0 0 16px}.chips p{font-size:14px;color:var(--soft);margin:0 0 6px}
+.chip{display:inline-block;font:inherit;font-size:15px;padding:6px 10px;margin:0 6px 6px 0;border:1px solid var(--soft);background:#fff;cursor:pointer}
+.go{display:block;width:100%;font:inherit;font-weight:bold;font-size:20px;padding:16px;background:var(--ink);color:#fff;border:0;cursor:pointer;margin:8px 0 10px}
+.back{background:none;border:0;font:inherit;font-size:15px;color:var(--soft);text-decoration:underline;cursor:pointer;padding:0}
+.err{color:#c62828;font-size:15px;display:none;margin:0 0 8px}
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 14px}
+.times{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:0 0 14px}
+.slot{font:inherit;font-size:17px;padding:12px 6px;border:2px solid var(--ink);background:#fff;cursor:pointer;text-align:center}
+.slot.on{background:var(--ink);color:#fff}
+.slot small{display:block;font-size:13px}
+.recap{border:2px solid var(--ink);padding:16px;margin:0 0 18px}
+.recap p{margin:0 0 10px}
+.bonus{background:var(--tint);border:2px solid var(--copper);padding:18px;margin:0 0 18px}
+.bonus .k{font-size:13px;font-weight:bold;letter-spacing:.5px;text-transform:uppercase;color:var(--copper);margin:0 0 6px}
+.bonus h2{margin:0 0 10px}
+.small{font-size:15px;color:var(--soft)}
+.learn{border:2px solid var(--ink);background:#fff;padding:10px 14px;margin:0 0 14px}.learn summary{font-weight:bold;cursor:pointer;font-size:17px}.learn ul{padding-left:18px;margin:10px 0 6px}.learn li{margin:0 0 10px;font-size:16px}
+.tq{border-left:4px solid var(--ink);margin:0 0 16px;padding:2px 0 2px 14px;font-size:17px}.tq span{display:block;font-size:14px;color:var(--soft);margin-top:6px}
+.wallh{margin:34px 0 14px;padding-top:16px;border-top:3px solid var(--ink)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 8px}.ba img{width:100%;border:1px solid #ccc;display:block}
+.first{background:#fff;border:2px solid var(--ink);padding:10px 14px;margin:0 0 10px;font-size:16px}
+.both{font-weight:bold;font-size:18px;margin:0 0 10px}
+body.side .bonuses{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start}
+.bonuses .bonus{padding:14px 16px}.bonuses h2{font-size:22px;line-height:1.2;margin:0 0 8px}.bonuses p{font-size:16px;margin:0 0 10px}.bonuses .tq{font-size:15px;margin:0 0 10px}.bonuses .first{font-size:15px}.bonuses .learn{margin:0 0 10px;padding:8px 12px}.bonuses .learn summary{font-size:15px}
+body.side .bonuses .bonus{padding:12px;margin:0}
+body.side .bonuses h2{font-size:18px;line-height:1.2}
+body.side .bonuses p,body.side .bonuses .tq{font-size:14px}
+body.side .bonuses .k{font-size:11px}
+body.side .bonuses .go{font-size:15px;padding:12px 6px}
+body.side .bonuses .first{font-size:13px;padding:8px}
+body.side .bonuses .learn summary{font-size:13px}
+body.side .bonuses .tq span{font-size:12px}
+.vpick{font-size:14px;margin:0 0 14px}.vpick a{color:var(--ink);font-weight:bold}
+.tiles{display:none}
+body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 14px}
+.tiles a{display:block;border:2px solid var(--copper);background:var(--tint);padding:10px;text-decoration:none;color:var(--ink)}
+.tiles .k{display:block;font-size:11px;font-weight:bold;letter-spacing:.4px;text-transform:uppercase;color:var(--copper);margin:0 0 4px}
+.tiles b{display:block;font-size:16px;line-height:1.25;margin:0 0 4px}.tiles .s{display:block;font-size:13px;color:var(--soft)}
+</style>
+<style>
+.kicker{font-size:12px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#777;margin:0 0 10px}
+.thread{background:#f4f4f6;border-radius:14px;padding:12px;margin:14px 0 4px}
+.thread .th{font-size:12px;color:#777;text-align:center;margin:0 0 6px}
+.bb{max-width:80%;padding:9px 13px;border-radius:16px;font-size:16px;line-height:1.35;margin:6px 0}
+.bb.me{background:#111;color:#fff;margin-left:auto}
+.bb.ai{background:#fff;border:1px solid #ddd}
+.cap{font-size:14px;color:#555;margin:6px 0 18px}
+.pic{border:2px solid #111;margin:0 0 6px}.pic img{width:100%;display:block}
+.steps3{counter-reset:s;list-style:none;padding:0;margin:0 0 18px}
+.steps3 li{counter-increment:s;position:relative;padding:0 0 16px 46px;font-size:17px}
+.steps3 li:before{content:counter(s);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;background:#111;color:#fff;font-weight:bold;display:flex;align-items:center;justify-content:center}
+.steps3 b{display:block}
+#story h1{margin-top:0}
+.turn{border-top:3px solid #111;margin:30px 0 0;padding-top:18px}
+</style>
+<style id="v4">
+.cfm{display:block;background:#FFE45C;border:2px dashed #111;padding:8px 12px;font-size:15px;font-weight:bold;line-height:1.4;margin:0 0 16px}
+.lede{font-size:20px;font-weight:bold;line-height:1.35}
+.found{border:2px solid var(--ink);padding:14px 16px 4px;margin:0 0 18px}
+.found .pick{font-size:16px;padding:10px 12px;margin:0 0 8px}
+</style>
+</head><body>
+<header class="site"><div class="hwrap">
+<a class="brand" href="/"><img src="/assets/2g-square.svg" alt="">2 Guys and a Genie</a>
+</div></header>
+<main id="main">
+
+<p class="mock"><b>Mockup v4.</b> The Maestro's page: the story, then the sign-up right under it, then what owners say. Coming from the home page, the story is skipped. Nothing gets sent or booked.</p>
+
+<div id="story">
+<p class="kicker">Here's what we do</p>
+<h1>The Pizza Guy Who Couldn't Answer His Own Phone.</h1>
+<p class="lede">In the next minute, you'll see how one pizza guy got every call answered without touching the phone.</p>
+<div class="pic"><img src="/assets/home/dab43feed6.svg" alt="Before: 4 out of 10 calls went to voicemail. Now: every call answered."></div>
+<p class="cap">Maestro's phone: before, and now.</p>
+<p>Maestro's is a pizza and sandwich place down the street from Jimmy. Jimmy and his wife eat there about once a week.</p>
+<p>When Jimmy called to order, about <b>4 times out of 10</b>, he got voicemail.</p>
+<p>When he walked in, there was the owner. Phone pinned to his shoulder. Making the pizzas, taking the orders, ringing people up. All by himself.</p>
+<p>Think about what you do when you hit a voicemail. You don't leave a message. You call the next place.</p>
+<p>And the owner never knows you called. He was too busy making the food you wanted to buy.</p>
+<p>So Jimmy set the owner up with an AI phone line that answers like his best employee. It knows the menu. It reads you the specials. It takes your order and sends it straight to him.</p>
+<div class="thread"><div class="th">Calling Maestro's · 6:12 PM</div><div class="bb ai">Thanks for calling Maestro's! What can I get started for you?</div><div class="bb me">A large pepperoni and a Caesar salad.</div><div class="bb ai">You got it. Pickup in about 20 minutes?</div><div class="bb me">Perfect.</div><div class="bb ai">Your order's in. See you soon.</div></div>
+<p class="cap">The owner never touched the phone.</p>
+<p><b>Now every call gets answered, whether he picks up or not.</b></p>
+<p>No more dropping everything to grab the phone. No more digging through voicemails at closing time, wondering who he lost. And he gets to make pizza again.</p>
+<p><b>Worried AI will say something dumb to your customers?</b></p>
+<p>It won't. We make sure of that. And we'll show you how.</p>
+<div class="turn">
+<h2>That Was One Job. What's Yours?</h2>
+<p>Jimmy walked into Maestro's, saw the one job eating the owner's day, and found the AI that does it.</p>
+<p><b>Missed calls. Quotes. Follow-ups. Invoices.</b></p>
+<p>Whatever job is eating your day, we'll put the tools that eliminate it in front of you, whether they're already out there or we have to build them, and show you how to use them, the way we've set them up for our clients.</p>
+<ol class="steps3">
+<li><b>Pick the job you want gone.</b>A few quick taps, right below. About a minute.</li>
+<li><b>At the time you pick, on the number you give us, Jimmy or Paul spends 15 minutes listening.</b>They ask how you handle that job today, so the fix fits you and your business, not someone else's. Nothing to prepare.</li>
+<li><b>We do the homework.</b>A day or two later, at a time you pick, we put the tools that eliminate that job in front of you, and show you how to use them. It's yours to keep.</li>
+</ol>
+<p>It's free. You've never met us, so put us to the test. If we have to build it, this one's on us. If it's a tool that costs money, you know the price first, and you decide.</p>
+</div>
+</div>
+
+<div class="bar" id="bar"><span></span><span></span><span></span></div>
+<p class="stepno" id="stepno">Step 1 of 3</p>
+
+<!-- STEP 1: THE JOB -->
+<section class="step show" id="s1">
+  <p class="kicker">Your Free 15 Minutes</p>
+  <h1>Let's Solve One Thing In Your Business.</h1>
+  <p class="sub">15 free minutes with Jimmy or Paul, the 2 Guys, at the time you pick. A few quick taps to set it up.</p>
+  <p><b>First, the one job you'd hand off tomorrow if you could.</b> Tap the closest one.</p>
+  <p class="small">Not sure? Tap the one you dread most.</p>
+  <button class="pick" type="button">Phone calls I miss</button>
+  <button class="pick" type="button">Quotes and estimates</button>
+  <button class="pick" type="button">Following up with leads</button>
+  <button class="pick" type="button">Getting more customers</button>
+  <button class="pick" type="button">Reviews and referrals</button>
+  <button class="pick" type="button">Invoices and getting paid</button>
+  <button class="pick" type="button">Email, scheduling and paperwork</button>
+  <button class="pick" type="button">Something else</button>
+  <p style="margin-top:14px"><a href="#" id="more1">Want to tell us more? Tap here.</a> <span style="color:var(--soft);font-size:14px">(Optional.)</span></p>
+  <div id="morebox" style="display:none">
+    <p>Tap the mic and just talk. Messy is fine. We'll sort it out.</p>
+    <button class="mic" id="mic" type="button"><span class="dot"></span><span id="miclabel">Tap To Talk</span></button>
+    <textarea id="one" placeholder="Or type it here..."></textarea>
+    <p class="err" id="err1">Tap the closest one above first.</p>
+    <button class="go" id="go1" type="button">That's It. Next.</button>
+  </div>
+</section>
+
+<!-- STEP 2: NAME AND PHONE -->
+<section class="step" id="s2">
+  <h1>What's The Best Number For Your 15 Minutes?</h1>
+  <p class="sub">Next, you pick the day and time. 15 minutes is all it takes.</p>
+  <p>You talk. We listen and ask questions. Nothing to prepare.</p>
+  <label for="nm">Your name</label><input id="nm" autocomplete="name">
+  <label for="ph">Best number for your 15 minutes. <span style="font-weight:normal">Your confirmation text comes from (317) 751-2693, so you'll know it's us.</span></label><input id="ph" type="tel" autocomplete="tel">
+  <label for="em">Email <span style="font-weight:normal">(for your reminder and Jimmy's free daily AI email)</span></label><input id="em" type="email" autocomplete="email">
+  <p class="err" id="err2">Add your name and a phone number to save your spot.</p>
+  <button class="go" id="go2" type="button">Next: Pick My Time</button>
+  <button class="back" data-back="1" type="button">Back</button>
+</section>
+
+<!-- STEP 3: THE TIME -->
+<section class="step" id="s3">
+  <h1>Pick A Time For Your Free 15 Minutes.</h1>
+  <p class="sub">Whatever fits your day. Times are Eastern.</p>
+  <div class="days" id="days"></div>
+  <div class="times" id="times"></div>
+  <p class="err" id="err3">Pick a day and a time.</p>
+  <button class="go" id="go3" type="button">Lock In My 15 Minutes</button>
+  <button class="back" data-back="2" type="button">Back</button>
+</section>
+
+<!-- WHAT OWNERS SAY (shows only before tapping starts) -->
+<div id="tst">
+  <h2 class="wallh">What Owners Are Saying</h2>
+  <blockquote class="tq">"We were roughly bringing in maybe $15,000 to $20,000 a month, and now our revenue is over $50,000 a month. Because of this, Chase was able to buy a new house."<span>Jamon Jack, Gotta Call Jack</span></blockquote>
+  <blockquote class="tq">"Unbelievable... this is definitely gonna make my life a whole lot easier."<span>Dr. Marcus McCray, Excell Sports Chiropractic, team chiropractor for the Indianapolis Colts</span></blockquote>
+  <blockquote class="tq">"This was not talking about AI. This was actually helping people use AI."<span>Roger, a local owner, at one of our free AI nights in Fishers</span></blockquote>
+  <blockquote class="tq">"Brother, I'm slow... I got all thumbs."<span>Ian Borgerhoff, photographer. His new site was live by 3:24 that afternoon.</span></blockquote>
+</div>
+
+<!-- DONE -->
+<section class="step" id="s4">
+  <h1>You're All Set, <span id="dnm">friend</span>.</h1>
+  <div class="recap">
+    <p><b>Your 15 minutes: <span id="dwhen">your time</span></b>, at <span id="dph">your number</span>.</p>
+    <p>In a minute, you'll get a text from (317) 751-2693 with your time. <b>Save it as 2 Guys</b>, so you know it's us.</p>
+    <p>The job you want gone:</p>
+    <p><i>"<span id="done1">your one thing</span>"</i></p>
+    <p>Then we do the homework. In a day or two, we text you, and you pick a time to get the tools that eliminate it, and how to use them.</p>
+  </div>
+
+  <div class="found" id="found">
+    <p><b>One last tap (optional):</b> how'd you find us?</p>
+    <button class="pick" type="button">Google</button>
+    <button class="pick" type="button">Facebook or Instagram</button>
+    <button class="pick" type="button">A friend or another owner told me</button>
+    <button class="pick" type="button">I met Jimmy or Paul</button>
+    <button class="pick" type="button">A call or voicemail from Jimmy or Paul</button>
+    <button class="pick" type="button">A group I'm in (chamber, BNI, a meetup)</button>
+    <button class="pick" type="button">Something else</button>
+    <p class="small" id="foundok" hidden>Got it. Thanks.</p>
+  </div>
+
+  <p class="both" id="both">Plus, two free bonuses with your call:</p>
+  <div class="bonuses">
+  <div class="bonus" id="b1">
+    <p class="k">Free Bonus #1 · A $97 A Month Value</p>
+    <h2>Something Cool About AI, Every Day In Your Inbox</h2>
+    <p>One short email every morning from Jimmy. Read it with your coffee. Something AI can do for a business like yours, in plain words, that you can try that afternoon.</p>
+    <p class="first"><b>You'll learn things like:</b> Why you're not behind, even if you've never touched any of this, and why that can put you ahead of most of the competition in your town. <i>(Hint: Most people who use it at all are looking up chicken recipes.)</i></p>
+    <details class="learn"><summary>See everything else you'll learn</summary>
+      <ul>
+        <li>The simple four-step formula so that whenever someone asks their phone who to call, it says your name and your phone rings. <i>(Hint: One of the fixes costs about nine bucks.)</i></li>
+        <li>How to get AI to think about your business like a good consultant would, instead of handing you generic tips, just by venting into your phone for one minute. <i>(Hint: It's one sentence you say after you're done complaining.)</i></li>
+        <li>Why AI can sound 100% sure and still be flat wrong, and the one sentence that tells you what to double-check before you repeat it to a customer. <i>(Hint: Jimmy's AI got a room full of owners' own businesses wrong. He found out in time.)</i></li>
+        <li>How to get AI to write posts and messages that sound like you and make your best customers lean in, not the could-be-any-business stuff. <i>(Hint: Your competitor can sign up for the same AI tonight. They still can't copy this.)</i></li>
+        <li>How more of the estimates you'd have written off turn into jobs, when you change three words at the bottom of your quote. <i>(Hint: One product alone on a shelf, and about 10 people in 100 would buy it. Then they added one thing.)</i></li>
+        <li>How to make the email you've typed forty times the last one you ever write, so your evenings come back and you still keep the judgment. <i>(Hint: What wears you out isn't the thinking.)</i></li>
+        <li>The four questions that tell you whether an AI is safe to answer your phone, day or night, while your hands stay on the job. <i>(Hint: You already ask them of every new hire on day one.)</i></li>
+        <li>The one question that shows you what your customers will likely expect from you two years from now, so you can give it to them before your competitor does. <i>(Hint: Most of your competitors are still asleep. Doubling is sneaky.)</i></li>
+        <li>How to tell AI about your business one time, so every email, review reply and estimate after that comes from a chat that already knows your business. <i>(Hint: Most people stop one step short of this, which is why AI never feels like theirs.)</i></li>
+      </ul>
+      <p class="small">And it keeps going, every day after that.</p>
+    </details>
+    <blockquote class="tq">"It was insightful and informative, and it just sort of blows me away of what I could do."<span>Jim Chalfant, Jim's Amazing Bread, after Jimmy explained AI and showed it working at one of our free nights</span></blockquote>
+  </div>
+  <div class="bonus" id="b2">
+    <p class="k">Free Bonus #2 · A $1,000 Value</p>
+    <h2>A Seat At Our Next Live AI Night</h2>
+    <p><b><span data-ev="long">Thursday, December 10</span>, 6:30 to 9pm</b>, at Launch Fishers.</p>
+    <p>A room full of owners like you, real help with AI on your own business, and the pizza's on us. Bring your one thing. You'll see what else is possible.</p>
+    <button class="go" type="button" onclick="this.textContent='Seat Saved (mockup)'">Save My Free Seat</button>
+    <p class="small">Can't make it to Fishers? Your 15 minutes are still yours.</p>
+  </div>
+  </div>
+  <p class="small" style="margin:18px 0 6px"><b>Before and after, built by Jimmy:</b></p>
+  <div class="ba"><img src="/assets/before-after/excell-before.jpg" alt="Excell before"><img src="/assets/before-after/excell-after.jpg" alt="Excell after"></div>
+  <div class="ba"><img src="/assets/before-after/bruce-before.jpg" alt="Bruce before"><img src="/assets/before-after/bruce-after.jpg" alt="Bruce after"></div>
+  <div class="ba"><img src="/assets/before-after/ian-before.jpg" alt="Ian before"><img src="/assets/before-after/ian-after.jpg" alt="Ian after"></div>
+  <p class="small" style="margin:0 0 24px">Left: before. Right: after.</p>
+
+  <button class="back" type="button" onclick="location.reload()">Start the mockup over</button>
+</section>
+
+</main>
+<script>
+(function(){
+  var LAST=3, data={};
+  function show(n){
+    document.querySelectorAll('.step').forEach(function(s){s.classList.remove('show')});
+    document.getElementById('s'+n).classList.add('show');
+    document.querySelectorAll('#bar span').forEach(function(b,i){b.classList.toggle('on', i<Math.min(n,LAST))});
+    document.getElementById('stepno').textContent = n<=LAST ? 'Step '+n+' of '+LAST : 'Done';
+    var st=document.getElementById('story'),ts=document.getElementById('tst');
+    if(st)st.style.display=n>1?'none':'';
+    if(ts)ts.style.display=n>1?'none':'';
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll('[data-back]').forEach(function(b){b.addEventListener('click',function(){show(+b.dataset.back)})});
+  show(1);
+
+  // step 1: the job (tap to advance), optional mic or typing
+  var ta=document.getElementById('one'), mic=document.getElementById('mic'), lbl=document.getElementById('miclabel');
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition, rec=null, on=false, base='';
+  function stop(){ if(rec){try{rec.stop()}catch(e){}} on=false; mic.classList.remove('on'); lbl.textContent = ta.value.trim() ? 'Tap To Keep Talking' : 'Tap To Talk'; }
+  mic.addEventListener('click',function(){
+    if(!SR){ lbl.textContent='Use your keyboard mic below'; ta.focus(); return; }
+    if(on) return stop();
+    base = ta.value ? ta.value.trim()+' ' : '';
+    rec=new SR(); rec.continuous=true; rec.interimResults=true; rec.lang='en-US';
+    rec.onresult=function(e){var t='';for(var r=0;r<e.results.length;r++)t+=e.results[r][0].transcript;ta.value=base+t;};
+    rec.onerror=function(){stop()}; rec.onend=function(){if(on)stop()};
+    try{rec.start()}catch(e){return}
+    on=true; mic.classList.add('on'); lbl.textContent='Listening... Tap To Stop';
+  });
+  var cat='', more=false;
+  document.getElementById('more1').addEventListener('click',function(e){e.preventDefault();more=true;document.getElementById('morebox').style.display='block';});
+  document.querySelectorAll('#s1 .pick').forEach(function(p){p.addEventListener('click',function(){
+    document.querySelectorAll('#s1 .pick').forEach(function(x){x.classList.remove('on')});
+    p.classList.add('on'); cat=p.textContent; data.one=cat;
+    document.getElementById('err1').style.display='none';
+    if(!more) setTimeout(function(){show(2)},200);
+  })});
+  document.getElementById('go1').addEventListener('click',function(){
+    stop(); if(!cat){document.getElementById('err1').style.display='block';return}
+    document.getElementById('err1').style.display='none';
+    data.one = ta.value.trim() ? cat+': '+ta.value.trim() : cat; show(2);
+  });
+
+  // step 2: name and phone
+  document.getElementById('go2').addEventListener('click',function(){
+    var nm=document.getElementById('nm').value.trim(), ph=document.getElementById('ph').value.trim();
+    if(!nm||!ph){document.getElementById('err2').style.display='block';return}
+    document.getElementById('err2').style.display='none';
+    data.nm=nm; data.ph=ph; data.em=document.getElementById('em').value.trim(); show(3);
+  });
+
+  // step 3: next 3 weekdays, a few slots
+  var days=document.getElementById('days'), times=document.getElementById('times'), pickDay=null, pickTime=null;
+  function clr(){ if(pickDay&&pickTime) document.getElementById('err3').style.display='none'; }
+  var d=new Date(), added=0, names=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], mons=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  while(added<3){ d.setDate(d.getDate()+1); if(d.getDay()===0||d.getDay()===6) continue;
+    var b=document.createElement('button'); b.type='button'; b.className='slot';
+    b.innerHTML=names[d.getDay()]+'<small>'+mons[d.getMonth()]+' '+d.getDate()+'</small>';
+    b.dataset.label=names[d.getDay()]+', '+mons[d.getMonth()]+' '+d.getDate();
+    b.addEventListener('click',function(){days.querySelectorAll('.slot').forEach(function(x){x.classList.remove('on')});this.classList.add('on');pickDay=this.dataset.label;clr();});
+    days.appendChild(b); added++; }
+  ['9:00 am','10:30 am','12:15 pm','2:00 pm','3:30 pm','5:00 pm'].forEach(function(t){
+    var b=document.createElement('button'); b.type='button'; b.className='slot'; b.textContent=t;
+    b.addEventListener('click',function(){times.querySelectorAll('.slot').forEach(function(x){x.classList.remove('on')});b.classList.add('on');pickTime=t;clr();});
+    times.appendChild(b); });
+  document.getElementById('go3').addEventListener('click',function(){
+    if(!pickDay||!pickTime){document.getElementById('err3').style.display='block';return}
+    document.getElementById('err3').style.display='none';
+    document.getElementById('dnm').textContent=data.nm.split(' ')[0];
+    document.getElementById('dwhen').textContent=pickDay+' at '+pickTime;
+    document.getElementById('dph').textContent=data.ph;
+    document.getElementById('done1').textContent=data.one||'your one thing';
+    show(4);
+  });
+
+  // confirmation: optional "how'd you find us?"
+  document.querySelectorAll('#found .pick').forEach(function(p){p.addEventListener('click',function(){
+    document.querySelectorAll('#found .pick').forEach(function(x){x.classList.remove('on')});
+    p.classList.add('on'); data.found=p.textContent;
+    document.getElementById('foundok').hidden=false;
+  })});
+})();
+</script>
+<script>
+/* Arriving from the home page: they just read the Maestro's story there, so skip it and start at step 1. */
+(function(){try{if(/[?&]from=home\b/.test(location.search)){var s=document.getElementById('story');if(s)s.style.display='none';}}catch(e){}})();
+</script>
+</body></html>
