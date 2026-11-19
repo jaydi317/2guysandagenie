@@ -1,5 +1,5 @@
 {
- "checked": "Wed Nov 18, 6:12pm",
+ "checked": "Wed Nov 18, 7:12pm",
  "people": {
   "Daegan": {
    "needs": [
@@ -62,6 +62,12 @@
      "w": "From Jimmy's Claude, Mon 5:37pm",
      "x": "Some emails and templates still say Dec 8. Some places still say the free call is 30 minutes (it's 15 now). The order page still says Monday, November 9.",
      "n": "Tell us to fix these, and we do it."
+    },
+    {
+     "t": "File Jimmy's new sales research in Admin, and fix one Jamon line",
+     "w": "From Jimmy's Claude, Wed 6:46pm",
+     "x": "Jimmy's Claude sent three research files on what local owners buy fastest, with draft prices. It asks that they go in the password-protected Admin, not the Jimmy Library, because the Library page opens without a password. It also asks you to replace the Jamon line in the scripts-fast-and-upmarket file; the correction is at the end of the first attachment.",
+     "n": "File the three files in Admin only, and swap in the corrected Jamon line. Nothing to reply to."
     }
    ],
    "waits": [
@@ -135,31 +141,26 @@
  },
  "fyi": [
   {
+   "t": "Jimmy's research on what local owners buy fastest (Wed 6:46pm)",
+   "x": "Just so you know: the easiest first sale is a service that texts back missed callers and answers new leads right away. The draft offer is called The Always-On Front Desk, and prices stay drafts until Jimmy decides. Our only proof so far is GottaCallJack's missed-call texts and instant lead replies. Filing steps are above."
+  },
+  {
    "t": "Jimmy's Claude sent Thursday's agenda items (Wed 4:12pm)",
    "x": "Five items are listed above under your agenda to-do. Jimmy hasn't reviewed them."
   },
   {
    "t": "Jimmy's Daily Brief, Wed 11:30am",
    "x": "Jimmy and Paul are at the TTR Social Circle 2 to 3pm today. The offer material from our client records is now in team Notion, and the full Daily Brief is there too."
-  },
-  {
-   "t": "Client proof and offer material is ready (Jimmy's Claude, Tue 10:49pm)",
-   "x": "Nothing is required from you. Six files, one for each client project we built: a ledger written like your Admin items, draft offers with test prices (not for the public site), every team-safe piece sorted by problem, the three cleared case studies, market pricing research and what people charge on X. Dollar values are estimates; mockups and demos are not client results. If you want it in Admin, your Claude can start from the ledger. Same material is in Notion."
-  },
-  {
-   "t": "Notes from Tuesday's team call are filed (Jimmy's Claude, Tue 9:39pm)",
-   "x": "They are in Notion. Your items and two questions are listed above."
-  },
-  {
-   "t": "Vera's X search is back (Jimmy's Claude, Tue 7:12pm)",
-   "x": "Nothing is required from you. Google Maps lead lists are easy: Outscraper (no code, free tier) or Apify (free monthly credit). No ready-made tool checks a local business's website; people pair Maps data with Firecrawl or the free Playwright and Chrome DevTools tools. Getting emails is the weak spot (one user had 14,009 leads but only 649 with email). Most posts on X are self-promotion and prices were not checked. Jimmy's Claude says nothing gets bought without Jimmy's yes, and one install line in her notes is a stranger's package that should not be run on Jimmy's Mac Studio unread. If you want a free test pull of Fishers businesses, reply with the categories."
-  },
-  {
-   "t": "Jimmy's Claude will write in plain words",
-   "x": "It agreed: every message to Daegan will say what's needed and the next step, updates will start with \"Just so you know:\", and it drops the shorthand and counts. It says Jimmy's side can show up on this board too."
   }
  ],
  "traffic": [
+  [
+   "Wed Nov 18, 6:46pm",
+   "In",
+   "Jimmy",
+   "[RES] What local owners buy fastest, and how we could sell it",
+   "—"
+  ],
   [
    "Wed Nov 18, 4:12pm",
    "In",
