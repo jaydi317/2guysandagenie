@@ -118,10 +118,10 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 <p>Whatever job is eating your day, we'll find the AI that does it, and show you how it works for your business.</p>
 <ol class="steps3">
 <li><b>Pick the job you want gone.</b>A few quick taps, right below. About a minute.</li>
-<li><b>Jimmy or Paul calls you for 15 minutes.</b>They ask how you handle that job today, and listen, so the fix fits your shop, not someone else's. Nothing to prepare.</li>
-<li><b>We come back and show you the fix.</b>A day or two later, we show you the AI tool that does that job and walk you through using it. It's yours to keep.</li>
+<li><b>At the time you pick, on the number you give us, Jimmy or Paul spends 15 minutes listening.</b>They ask how you handle that job today, so the fix fits your shop, not someone else's. Nothing to prepare.</li>
+<li><b>We do the homework.</b>A day or two later, at a time you pick, you see the AI tool that does that job, and we walk you through using it. It's yours to keep.</li>
 </ol>
-<p>It's free. You've never met us, so we go first. If the AI tool costs money, that's the only cost, and only if you decide you want it.</p>
+<p>It's free. You've never met us, so put us to the test. If the AI tool costs money, that's the only cost, and only if you decide you want it.</p>
 </div>
 </div>
 
@@ -132,7 +132,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 <section class="step show" id="s1">
   <p class="kicker">Your Free 15 Minutes</p>
   <h1>Let's Solve One Thing In Your Business.</h1>
-  <p class="sub">A free 15-minute call with Jimmy or Paul, the 2 Guys. A few quick taps to set it up.</p>
+  <p class="sub">15 free minutes with Jimmy or Paul, the 2 Guys, at the time you pick. A few quick taps to set it up.</p>
   <p><b>First, the one job you'd hand off tomorrow if you could.</b> Tap the closest one.</p>
   <p class="small">Not sure? Tap the one you dread most.</p>
   <button class="pick" type="button">Phone calls I miss</button>
@@ -155,13 +155,13 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 
 <!-- STEP 2: NAME AND PHONE -->
 <section class="step" id="s2">
-  <h1>Where Should We Call You?</h1>
+  <h1>What's The Best Number For Your 15 Minutes?</h1>
   <p class="sub">Next, you pick the day and time. 15 minutes is all it takes.</p>
-  <p>We'll give you a call, and we'll have some fun with it.</p>
+  <p>You talk. We listen and ask questions. Nothing to prepare.</p>
   <label for="nm">Your name</label><input id="nm" autocomplete="name">
-  <label for="ph">Best phone for the call. <span style="font-weight:normal">We'll text you from (317) 751-2693 so you know it's us.</span></label><input id="ph" type="tel" autocomplete="tel">
-  <label for="em">Email <span style="font-weight:normal">(for reminders and your free daily AI email)</span></label><input id="em" type="email" autocomplete="email">
-  <p class="err" id="err2">We need your name and a phone number so we can call you.</p>
+  <label for="ph">Best number for your 15 minutes. <span style="font-weight:normal">Your confirmation text comes from (317) 751-2693, so you'll know it's us.</span></label><input id="ph" type="tel" autocomplete="tel">
+  <label for="em">Email <span style="font-weight:normal">(for your reminder and Jimmy's free daily AI email)</span></label><input id="em" type="email" autocomplete="email">
+  <p class="err" id="err2">Add your name and a phone number to save your spot.</p>
   <button class="go" id="go2" type="button">Next: Pick My Time</button>
   <button class="back" data-back="1" type="button">Back</button>
 </section>
@@ -169,7 +169,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 <!-- STEP 3: THE TIME -->
 <section class="step" id="s3">
   <h1>Pick A Time For Your Free 15 Minutes.</h1>
-  <p class="sub">Jimmy or Paul calls you at the time you pick. Times are Eastern.</p>
+  <p class="sub">Whatever fits your day. Times are Eastern.</p>
   <div class="days" id="days"></div>
   <div class="times" id="times"></div>
   <p class="err" id="err3">Pick a day and a time.</p>
@@ -192,11 +192,11 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 <section class="step" id="s4">
   <h1>You're All Set, <span id="dnm">friend</span>.</h1>
   <div class="recap">
-    <p><b>Jimmy or Paul calls you <span id="dwhen">at your time</span></b> at <span id="dph">your number</span>.</p>
-    <p><b>Save (317) 751-2693 as 2 Guys</b> so you pick up when we call. In a minute you'll get a text from it with your time.</p>
-    <p>For 15 minutes, we dig into:</p>
+    <p><b>Your 15 minutes: <span id="dwhen">your time</span></b>, at <span id="dph">your number</span>.</p>
+    <p>In a minute, you'll get a text from (317) 751-2693 with your time. <b>Save it as 2 Guys</b>, so you know it's us.</p>
+    <p>The job you want gone:</p>
     <p><i>"<span id="done1">your one thing</span>"</i></p>
-    <p>Then we go do our homework. In a day or two, we set a time to show you the tool that takes it off your plate.</p>
+    <p>Then we do the homework. In a day or two, we text you, and you pick a time to see the tool that takes it off your plate.</p>
   </div>
 
   <div class="found" id="found">
@@ -205,7 +205,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     <button class="pick" type="button">Facebook or Instagram</button>
     <button class="pick" type="button">A friend or another owner told me</button>
     <button class="pick" type="button">I met Jimmy or Paul</button>
-    <button class="pick" type="button">A voicemail or call from you</button>
+    <button class="pick" type="button">A call or voicemail from Jimmy or Paul</button>
     <button class="pick" type="button">A group I'm in (chamber, BNI, a meetup)</button>
     <button class="pick" type="button">Something else</button>
     <p class="small" id="foundok" hidden>Got it. Thanks.</p>
@@ -241,7 +241,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     <p><b><span data-ev="long">Thursday, December 10</span>, 6:30 to 9pm</b>, at Launch Fishers.</p>
     <p>A room full of owners like you, real help with AI on your own business, and the pizza's on us. Bring your one thing. You'll see what else is possible.</p>
     <button class="go" type="button" onclick="this.textContent='Seat Saved (mockup)'">Save My Free Seat</button>
-    <p class="small">Can't make it to Fishers? Your call is still on.</p>
+    <p class="small">Can't make it to Fishers? Your 15 minutes are still yours.</p>
   </div>
   </div>
   <p class="small" style="margin:18px 0 6px"><b>Before and after, built by Jimmy:</b></p>
