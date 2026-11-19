@@ -92,7 +92,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 </div></header>
 <main id="main">
 
-<p class="mock"><b>Mockup v4, updated Nov 19 (the lens pass).</b> The Maestro's page: the story, then the sign-up right under it, then what owners say. Coming from the home page, the story is skipped. Nothing gets sent or booked.</p>
+<p class="mock"><b>Mockup v4, updated Nov 19 (the lens pass; sign-up order: how you found us, how we can help, your info, your time).</b> The Maestro's page: the story, then the sign-up right under it, then what owners say. Coming from the home page, the story is skipped. Nothing gets sent or booked.</p>
 
 <div id="story">
 <p class="kicker">Here's what we do</p>
@@ -129,15 +129,27 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 </div>
 </div>
 
-<div class="bar" id="bar"><span></span><span></span><span></span></div>
-<p class="stepno" id="stepno">Step 1 of 3</p>
+<div class="bar" id="bar"><span></span><span></span><span></span><span></span></div>
+<p class="stepno" id="stepno">Step 1 of 4</p>
 
-<!-- STEP 1: THE JOB -->
+<!-- STEP 1: HOW THEY FOUND US -->
 <section class="step show" id="s1">
   <p class="kicker">Your Free 15 Minutes</p>
-  <h1>Pick The Job You Want Gone.</h1>
+  <h1>First, How Did You Find Us?</h1>
   <p class="sub">15 free minutes with Jimmy or Paul, the 2 Guys, at the time you pick. A few quick taps to set it up.</p>
-  <p><b>First, the one job you'd hand off tomorrow if you could.</b> Tap the closest one.</p>
+  <button class="pick" type="button">Google</button>
+  <button class="pick" type="button">Facebook or Instagram</button>
+  <button class="pick" type="button">A friend or another owner told me</button>
+  <button class="pick" type="button">I met Jimmy or Paul</button>
+  <button class="pick" type="button">A call or voicemail from Jimmy or Paul</button>
+  <button class="pick" type="button">A group I'm in (chamber, BNI, a meetup)</button>
+  <button class="pick" type="button">Something else</button>
+</section>
+
+<!-- STEP 2: HOW WE CAN HELP -->
+<section class="step" id="s2">
+  <h1>How Can We Help?</h1>
+  <p><b>Tap the one job you'd hand off tomorrow if you could.</b></p>
   <p class="small">Not sure? Tap the one you dread most.</p>
   <button class="pick" type="button">Phone calls I miss</button>
   <button class="pick" type="button">Quotes and estimates</button>
@@ -155,10 +167,11 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     <p class="err" id="err1">Tap the closest one above first.</p>
     <button class="go" id="go1" type="button">That's It. Next.</button>
   </div>
+  <button class="back" data-back="1" type="button">Back</button>
 </section>
 
-<!-- STEP 2: NAME AND PHONE -->
-<section class="step" id="s2">
+<!-- STEP 3: NAME AND PHONE -->
+<section class="step" id="s3">
   <h1>What's The Best Number For Your 15 Minutes?</h1>
   <p class="sub">Next, you pick the day and time. 15 minutes is all it takes.</p>
   <p>You talk. We listen and ask questions. Nothing to prepare.</p>
@@ -167,18 +180,18 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
   <label for="em">Email <span style="font-weight:normal">(for your reminder and Jimmy's free daily AI email)</span></label><input id="em" type="email" autocomplete="email">
   <p class="err" id="err2">Add your name and a phone number to save your spot.</p>
   <button class="go" id="go2" type="button">Next: Pick My Time</button>
-  <button class="back" data-back="1" type="button">Back</button>
+  <button class="back" data-back="2" type="button">Back</button>
 </section>
 
-<!-- STEP 3: THE TIME -->
-<section class="step" id="s3">
+<!-- STEP 4: THE TIME -->
+<section class="step" id="s4">
   <h1>Pick A Time For Your Free 15 Minutes.</h1>
   <p class="sub">Whatever fits your day. Times are Eastern.</p>
   <div class="days" id="days"></div>
   <div class="times" id="times"></div>
   <p class="err" id="err3">Pick a day and a time.</p>
   <button class="go" id="go3" type="button">Lock In My 15 Minutes</button>
-  <button class="back" data-back="2" type="button">Back</button>
+  <button class="back" data-back="3" type="button">Back</button>
 </section>
 
 <!-- WHAT OWNERS SAY (shows only before tapping starts) -->
@@ -191,7 +204,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 </div>
 
 <!-- DONE -->
-<section class="step" id="s4">
+<section class="step" id="s5">
   <h1>You're All Set, <span id="dnm">friend</span>.</h1>
   <div class="recap">
     <p><b>Your 15 minutes: <span id="dwhen">your time</span></b>, at <span id="dph">your number</span>.</p>
@@ -201,17 +214,6 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     <p>Then we do the homework. In a day or two, we text you, and you pick a time. We show you what fits, the one we'd use, and how to use it.</p>
   </div>
 
-  <div class="found" id="found">
-    <p><b>One last tap (optional):</b> how'd you find us?</p>
-    <button class="pick" type="button">Google</button>
-    <button class="pick" type="button">Facebook or Instagram</button>
-    <button class="pick" type="button">A friend or another owner told me</button>
-    <button class="pick" type="button">I met Jimmy or Paul</button>
-    <button class="pick" type="button">A call or voicemail from Jimmy or Paul</button>
-    <button class="pick" type="button">A group I'm in (chamber, BNI, a meetup)</button>
-    <button class="pick" type="button">Something else</button>
-    <p class="small" id="foundok" hidden>Got it. Thanks.</p>
-  </div>
 
   <p class="both" id="both">Plus, two free bonuses with your call:</p>
   <div class="bonuses">
@@ -257,7 +259,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 </main>
 <script>
 (function(){
-  var LAST=3, data={};
+  var LAST=4, data={};
   function show(n){
     document.querySelectorAll('.step').forEach(function(s){s.classList.remove('show')});
     document.getElementById('s'+n).classList.add('show');
@@ -271,7 +273,14 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
   document.querySelectorAll('[data-back]').forEach(function(b){b.addEventListener('click',function(){show(+b.dataset.back)})});
   show(1);
 
-  // step 1: the job (tap to advance), optional mic or typing
+  // step 1: how they found us (tap to advance)
+  document.querySelectorAll('#s1 .pick').forEach(function(p){p.addEventListener('click',function(){
+    document.querySelectorAll('#s1 .pick').forEach(function(x){x.classList.remove('on')});
+    p.classList.add('on'); data.found=p.textContent;
+    setTimeout(function(){show(2)},200);
+  })});
+
+  // step 2: how we can help (tap to advance), optional mic or typing
   var ta=document.getElementById('one'), mic=document.getElementById('mic'), lbl=document.getElementById('miclabel');
   var SR=window.SpeechRecognition||window.webkitSpeechRecognition, rec=null, on=false, base='';
   function stop(){ if(rec){try{rec.stop()}catch(e){}} on=false; mic.classList.remove('on'); lbl.textContent = ta.value.trim() ? 'Tap To Keep Talking' : 'Tap To Talk'; }
@@ -287,27 +296,27 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
   });
   var cat='', more=false;
   document.getElementById('more1').addEventListener('click',function(e){e.preventDefault();more=true;document.getElementById('morebox').style.display='block';});
-  document.querySelectorAll('#s1 .pick').forEach(function(p){p.addEventListener('click',function(){
-    document.querySelectorAll('#s1 .pick').forEach(function(x){x.classList.remove('on')});
+  document.querySelectorAll('#s2 .pick').forEach(function(p){p.addEventListener('click',function(){
+    document.querySelectorAll('#s2 .pick').forEach(function(x){x.classList.remove('on')});
     p.classList.add('on'); cat=p.textContent; data.one=cat;
     document.getElementById('err1').style.display='none';
-    if(!more) setTimeout(function(){show(2)},200);
+    if(!more) setTimeout(function(){show(3)},200);
   })});
   document.getElementById('go1').addEventListener('click',function(){
     stop(); if(!cat){document.getElementById('err1').style.display='block';return}
     document.getElementById('err1').style.display='none';
-    data.one = ta.value.trim() ? cat+': '+ta.value.trim() : cat; show(2);
+    data.one = ta.value.trim() ? cat+': '+ta.value.trim() : cat; show(3);
   });
 
-  // step 2: name and phone
+  // step 3: name and phone
   document.getElementById('go2').addEventListener('click',function(){
     var nm=document.getElementById('nm').value.trim(), ph=document.getElementById('ph').value.trim();
     if(!nm||!ph){document.getElementById('err2').style.display='block';return}
     document.getElementById('err2').style.display='none';
-    data.nm=nm; data.ph=ph; data.em=document.getElementById('em').value.trim(); show(3);
+    data.nm=nm; data.ph=ph; data.em=document.getElementById('em').value.trim(); show(4);
   });
 
-  // step 3: next 3 weekdays, a few slots
+  // step 4: next 3 weekdays, a few slots
   var days=document.getElementById('days'), times=document.getElementById('times'), pickDay=null, pickTime=null;
   function clr(){ if(pickDay&&pickTime) document.getElementById('err3').style.display='none'; }
   var d=new Date(), added=0, names=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], mons=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -328,15 +337,9 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     document.getElementById('dwhen').textContent=pickDay+' at '+pickTime;
     document.getElementById('dph').textContent=data.ph;
     document.getElementById('done1').textContent=data.one||'your one thing';
-    show(4);
+    show(5);
   });
 
-  // confirmation: optional "how'd you find us?"
-  document.querySelectorAll('#found .pick').forEach(function(p){p.addEventListener('click',function(){
-    document.querySelectorAll('#found .pick').forEach(function(x){x.classList.remove('on')});
-    p.classList.add('on'); data.found=p.textContent;
-    document.getElementById('foundok').hidden=false;
-  })});
 })();
 </script>
 <script>
