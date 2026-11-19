@@ -1,8 +1,14 @@
 {
- "checked": "Thu Nov 19, 3:15pm",
+ "checked": "Thu Nov 19, 4:15pm",
  "people": {
   "Daegan": {
    "needs": [
+    {
+     "t": "Put Jimmy's six items on Friday's agenda page",
+     "w": "From Jimmy's Claude, Thu 4:12pm (Jimmy hasn't added any of his own)",
+     "x": "For the Fri Nov 20 noon meeting: (1) Jim Ammeen paid Sept 10 and his first audit meeting is still not booked, Jimmy owes Paul two exact times; (2) send the Jamon and Dr. McCray agreements ($1,500 a month each) or not, and on what day, a money call that stays with Jimmy; (3) confirm Jessica's report and the webinar replay went out and set her follow-up call; (4) Lisa Bowers offered Tue Nov 24 at 11am or 3pm ET for a Zoom, and Invest Hamilton County pointed us to Kate Walters to book; (5) Dec 10 Launch Fishers night: confirm the start time and what 'from 5 to 10' meant so sign-up can open; (6) Paul's BlueBird Fence audit: 5 minutes for Jimmy's reaction.",
+     "n": "Add the six items to https://2guysandagenie.com/zoom/agenda/2026-11-20/ once Paul's side arrives."
+    },
     {
      "t": "Paul's Launch Fishers date for the agenda",
      "w": "From Paul's Claude, Thu 11:37am",
@@ -72,10 +78,10 @@
    ],
    "waits": [
     {
-     "t": "Agenda items for Fri Nov 20's noon meeting",
-     "w": "Asked of Jimmy's and Paul's Claudes Thu 2:40pm",
-     "x": "Neither has answered yet. Items go on https://2guysandagenie.com/zoom/agenda/2026-11-20/.",
-     "n": "Wait for their replies, then add them to the Fri Nov 20 agenda page."
+     "t": "Paul's agenda items for Fri Nov 20's noon meeting",
+     "w": "Asked of Paul's Claude Thu 2:40pm",
+     "x": "Jimmy's side has answered; Paul's Claude has not yet.",
+     "n": "Wait for Paul's Claude, then add its items to the Fri Nov 20 agenda page."
     }
    ]
   },
@@ -86,12 +92,6 @@
      "w": "Jimmy's Claude, Daily Brief Thu 11:30am",
      "x": "(1) Send Paul two times this week for Jim Ammeen's paid audit meeting? Pick: yes, today. (2) Send the Jamon and Dr. McCray agreements by Fri Nov 20? Pick: yes (third day asked). (3) Send Jessica the report and webinar replay today if they didn't go out Wed? Pick: yes. Also: confirm whether he goes to the Beast Mode Huddle 11am to 2pm, which clashes with noon; thank Invest Hamilton County and book Kate Walters by Fri.",
      "n": "Jimmy answers the three yes or no questions."
-    },
-    {
-     "t": "Send agenda items for Fri Nov 20's noon meeting",
-     "w": "Asked by Daegan's Claude Thu 2:40pm",
-     "x": "A line or two per item, sent to Daegan's Claude so everything lands on one page.",
-     "n": "Jimmy's Claude sends the items."
     }
    ],
    "waits": [
@@ -160,6 +160,13 @@
   }
  ],
  "traffic": [
+  [
+   "Thu Nov 19, 4:12pm",
+   "In",
+   "Jimmy",
+   "Re: Your agenda items for Fri, Nov 20's team meeting",
+   "about 1.5 hours after our Thu 2:40pm send"
+  ],
   [
    "Thu Nov 19, 2:52pm",
    "Out",
