@@ -91,7 +91,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 </div></header>
 <main id="main">
 
-<p class="mock"><b>Mockup v4.</b> The Maestro's page: the story, then the sign-up right under it, then what owners say. Nothing gets sent or booked.</p>
+<p class="mock"><b>Mockup v4.</b> The Maestro's page: the story, then the sign-up right under it, then what owners say. Coming from the home page, the story is skipped. Nothing gets sent or booked.</p>
 
 <div id="story">
 <p class="kicker">Here's what we do</p>
@@ -110,7 +110,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 <p><b>Now every call gets answered, whether he picks up or not.</b></p>
 <p>No more dropping everything to grab the phone. No more digging through voicemails at closing time, wondering who he lost. And he gets to make pizza again.</p>
 <p><b>Worried AI will say something dumb to your customers?</b></p>
-<p class="cfm">[CONFIRM WITH JIMMY: Before it took a single call, the owner heard exactly what it would say.]</p>
+<p>It won't. We make sure of that. And we'll show you how.</p>
 <div class="turn">
 <h2>That Was One Job. What's Yours?</h2>
 <p>Jimmy walked into Maestro's, saw the one job eating the owner's day, and found the AI that does it.</p>
@@ -182,7 +182,6 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
   <h2 class="wallh">What Owners Are Saying</h2>
   <video controls playsinline preload="none" poster="/assets/jamon/jamon-jack-poster-v3.jpg" style="width:100%;display:block;background:#111;margin:0 0 6px"><source src="/assets/jamon/jamon-jack-16x9.mp4" type="video/mp4"></video>
   <p class="small" style="margin:0 0 18px">Jamon, a retired Indianapolis cop, and his son Chase run Gotta Call Jack.</p>
-  <blockquote class="tq">"We were roughly bringing in maybe $15,000 to $20,000 a month, and now our revenue is over $50,000 a month. Because of this, Chase was able to buy a new house."<span>Jamon Jack, Gotta Call Jack</span></blockquote>
   <blockquote class="tq">"Unbelievable... this is definitely gonna make my life a whole lot easier."<span>Dr. Marcus McCray, Excell Sports Chiropractic, team chiropractor for the Indianapolis Colts</span></blockquote>
   <blockquote class="tq">"This was not talking about AI. This was actually helping people use AI."<span>Roger, a local owner, at one of our free AI nights in Fishers</span></blockquote>
   <blockquote class="tq">"Brother, I'm slow... I got all thumbs."<span>Ian Borgerhoff, photographer. His new site was live by 3:24 that afternoon.</span></blockquote>
@@ -209,7 +208,6 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     <button class="pick" type="button">A group I'm in (chamber, BNI, a meetup)</button>
     <button class="pick" type="button">Something else</button>
     <p class="small" id="foundok" hidden>Got it. Thanks.</p>
-    <p class="cfm">[CONFIRM WITH JIMMY: the booking tool can take the source answer after the time is locked.]</p>
   </div>
 
   <p class="both" id="both">Plus, two free bonuses with your call:</p>
@@ -337,5 +335,9 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     document.getElementById('foundok').hidden=false;
   })});
 })();
+</script>
+<script>
+/* Arriving from the home page: they just read the Maestro's story there, so skip it and start at step 1. */
+(function(){try{if(/[?&]from=home\b/.test(location.search)){var s=document.getElementById('story');if(s)s.style.display='none';}}catch(e){}})();
 </script>
 </body></html>
