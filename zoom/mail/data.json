@@ -1,13 +1,13 @@
 {
- "checked": "Thu Nov 19, 2:12pm",
+ "checked": "Thu Nov 19, 3:15pm",
  "people": {
   "Daegan": {
    "needs": [
     {
-     "t": "Paul's two agenda items for today's noon meeting",
+     "t": "Paul's Launch Fishers date for the agenda",
      "w": "From Paul's Claude, Thu 11:37am",
-     "x": "(1) Paul has done a few Business Audits for local businesses and wants one of you to look them over. His plan: make first contact to get interest, then book them with Jimmy. His question: how much of the audit should he share up front? It doesn't have to be settled on today's call. (2) Launch Fishers is set: Thu Dec 10, 5:00 to 9:00 pm.",
-     "n": "Add both to the Thu Nov 19 agenda page under Paul's name. Be ready to answer how much of the audit to share up front."
+     "x": "Paul's agenda ask (Thu 11:37am) had two items. Audit sharing is answered: your Claude told Paul at 2:52pm not to send the audit and to show one thing on the owner's phone. Still open: Launch Fishers is set for Thu Dec 10, 5:00 to 9:00 pm.",
+     "n": "Put the Dec 10, 5 to 9 pm date on the agenda page if it isn't there yet."
     },
     {
      "t": "Fix website lines that don't match our records",
@@ -70,7 +70,14 @@
      "n": "File the three files in Admin only, and swap in the corrected Jamon line. Nothing to reply to."
     }
    ],
-   "waits": []
+   "waits": [
+    {
+     "t": "Agenda items for Fri Nov 20's noon meeting",
+     "w": "Asked of Jimmy's and Paul's Claudes Thu 2:40pm",
+     "x": "Neither has answered yet. Items go on https://2guysandagenie.com/zoom/agenda/2026-11-20/.",
+     "n": "Wait for their replies, then add them to the Fri Nov 20 agenda page."
+    }
+   ]
   },
   "Jimmy": {
    "needs": [
@@ -79,6 +86,12 @@
      "w": "Jimmy's Claude, Daily Brief Thu 11:30am",
      "x": "(1) Send Paul two times this week for Jim Ammeen's paid audit meeting? Pick: yes, today. (2) Send the Jamon and Dr. McCray agreements by Fri Nov 20? Pick: yes (third day asked). (3) Send Jessica the report and webinar replay today if they didn't go out Wed? Pick: yes. Also: confirm whether he goes to the Beast Mode Huddle 11am to 2pm, which clashes with noon; thank Invest Hamilton County and book Kate Walters by Fri.",
      "n": "Jimmy answers the three yes or no questions."
+    },
+    {
+     "t": "Send agenda items for Fri Nov 20's noon meeting",
+     "w": "Asked by Daegan's Claude Thu 2:40pm",
+     "x": "A line or two per item, sent to Daegan's Claude so everything lands on one page.",
+     "n": "Jimmy's Claude sends the items."
     }
    ],
    "waits": [
@@ -115,12 +128,28 @@
      "w": "Noted by Jimmy's Claude Wed 11:30am",
      "x": "His call list went out this morning with new names, but his Tuesday report hasn't arrived yet.",
      "n": "Paul sends the report."
+    },
+    {
+     "t": "Send agenda items for Fri Nov 20's noon meeting",
+     "w": "Asked by Daegan's Claude Thu 2:40pm",
+     "x": "A line or two per item, sent to Daegan's Claude so everything lands on one page.",
+     "n": "Paul's Claude sends the items."
+    },
+    {
+     "t": "Run the call with Jeremy at BlueBird Fence the new way",
+     "w": "From Daegan's Claude, Thu 2:52pm",
+     "x": "Don't send Jeremy the audit. Show him one thing on his phone, tell the Jamon result, name a couple more finds, then ask for a sit-down with Jimmy this week.",
+     "n": "Use the fill-in script in What To Say and the Run The Audit button on the shop's Leads card."
     }
    ],
    "waits": []
   }
  },
  "fyi": [
+  {
+   "t": "Paul sent his BlueBird Fence audit pieces (Thu 1:40pm)",
+   "x": "Five links: audit report, mockups, concept page, interactive model and a teaser for the owner, Jeremy. Paul will bring his questions to Daegan himself. Already answered by your Claude at 2:52pm."
+  },
   {
    "t": "Paul's Claude is answering mail again (Thu 11:37am)",
    "x": "It replied to the agenda ask. Launch Fishers is set for Thu Dec 10, 5 to 9 pm."
@@ -131,6 +160,27 @@
   }
  ],
  "traffic": [
+  [
+   "Thu Nov 19, 2:52pm",
+   "Out",
+   "Paul",
+   "Your BlueBird audit: how to run the call with Jeremy",
+   "No answer yet"
+  ],
+  [
+   "Thu Nov 19, 2:40pm",
+   "Out",
+   "Jimmy and Paul",
+   "Your agenda items for Fri, Nov 20's team meeting",
+   "No answer yet"
+  ],
+  [
+   "Thu Nov 19, 1:40pm",
+   "In",
+   "Paul",
+   "Bluebird Fence Company audit, for Daegan's review",
+   "—"
+  ],
   [
    "Thu Nov 19, 11:37am",
    "In",
@@ -277,34 +327,6 @@
    "Jimmy",
    "Re: Cloudflare name servers",
    "1 hr 49 min after our 2:22pm send"
-  ],
-  [
-   "Mon Nov 16, 2:22pm",
-   "Out",
-   "Jimmy",
-   "Re: Cloudflare name servers (both records added)",
-   "Jimmy's Claude had already switched at 1:21pm"
-  ],
-  [
-   "Mon Nov 16, 1:48pm",
-   "In",
-   "Jimmy",
-   "Higgsfield API is ready",
-   "—"
-  ],
-  [
-   "Mon Nov 16, 1:21pm",
-   "In",
-   "Jimmy",
-   "Re: Cloudflare name servers (switch done)",
-   "1 hr 48 min after our 11:33am send"
-  ],
-  [
-   "Mon Nov 16, 12:23pm",
-   "Out",
-   "Paul",
-   "Hello",
-   "No answer yet"
   ]
  ]
 }
