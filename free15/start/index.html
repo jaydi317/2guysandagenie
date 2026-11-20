@@ -134,6 +134,9 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
   <p class="sub">We call you. Times are Eastern.</p>
   <div class="days" id="days"></div>
   <div class="times" id="times"></div>
+  <label for="more" style="margin-top:22px;display:block">Help Us Show Up Ready <span style="font-weight:normal">(optional)</span></label>
+  <p class="sub" style="margin:0 0 8px">A line or two about you and your business. The more we know walking in, the more you get out of your 15 minutes.</p>
+  <textarea id="more" style="min-height:90px" placeholder="What you do, how long you've been at it, how many people work with you..."></textarea>
   <p class="err" id="err4">Pick a day and a time.</p>
   <button class="go" id="go4" type="button">Lock In My 15 Minutes</button>
   <button class="back" data-back="3" type="button">Back</button>
@@ -272,6 +275,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     times.appendChild(b); });
   document.getElementById('go4').addEventListener('click',function(){
     if(!pickDay||!pickTime){document.getElementById('err4').style.display='block';return}
+    data.more=document.getElementById('more').value.trim();
     document.getElementById('dnm').textContent=data.nm.split(' ')[0];
     document.getElementById('dwhen').textContent=pickDay+' at '+pickTime;
     document.getElementById('dph').textContent=data.ph;
