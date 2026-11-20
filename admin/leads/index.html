@@ -157,7 +157,7 @@ function due(i){
   var wait=st==='15 minutes done'?0:st==='Slydial sent'?1:(n>1?7:3);
   if(!lt)return {t:0,txt:'Due now',late:false};
   var d0=new Date(lt);d0.setHours(0,0,0,0);var t=d0.getTime()+wait*DAY,now=new Date();now.setHours(0,0,0,0);now=now.getTime();
-  return {t:t,txt:t<now?'Overdue since '+fmt(t):t===now?'Due today':'Due '+fmt(t),late:t<now,ok:t<=now};
+  return {t:t,txt:t<now?'Due '+fmt(t)+', '+Math.round((now-t)/DAY)+(Math.round((now-t)/DAY)===1?' day late':' days late'):t===now?'Due today':'Due '+fmt(t),late:t<now,ok:t<=now};
 }
 function row(i,st,showDue){
   var x=L[i],b=document.createElement('button');b.className='lead';
@@ -166,7 +166,7 @@ function row(i,st,showDue){
   var s2=document.createElement('span');var tg=document.createElement('i');tg.className='tier '+(x.g==='A'?'A':'');tg.style.fontStyle='normal';tg.textContent=x.g;s2.appendChild(tg);
   var ss=document.createElement('i');ss.className='st';ss.style.fontStyle='normal';ss.textContent=st;s2.appendChild(ss);b.appendChild(s2);
   var s3=document.createElement('span');s3.className='nx';s3.textContent=(last(i)?'Last: '+last(i)+' · ':'')+'Next: '+NEXT[st].s;b.appendChild(s3);
-  var d=due(i);if(d&&(showDue||d.ok||d.t===0)){var s4=document.createElement('span');s4.className='due'+(d.late?' late':'');s4.textContent=d.txt;b.appendChild(s4)}
+  var d=due(i);if(!d&&st==='15 minutes booked')d={txt:'Check the calendar for the day and time',late:false,ok:true,t:1};if(d&&(showDue||d.ok||d.t===0)){var s4=document.createElement('span');s4.className='due'+(d.late?' late':'');s4.textContent=d.txt;b.appendChild(s4)}
   b.onclick=function(){show(i)};return b;
 }
 function drawToday(){
@@ -181,7 +181,7 @@ function drawToday(){
   if(!dueL.length&&!fresh.length){var p=document.createElement('p');p.className='sub';p.textContent='Nothing due and nothing new. Every shop here has been worked.';box.appendChild(p)}
   var C={};L.forEach(function(x,i){var seen={};hist(i).forEach(function(e){if(!seen[e.a]){seen[e.a]=1;C[e.a]=(C[e.a]||0)+1}})});
   function c(a){return C[a]||0}
-  $('score').textContent='So far, on this phone: '+c('Slydial sent')+' Slydials sent · '+c('Talked to the owner')+' owners talked to · '+c('Booked the 15 minutes')+' booked · '+c('Did the 15 minutes')+' done · '+c('Sent what we found and made the offer')+' offers · '+c('Became a client')+' clients';
+  $('score').textContent='So far, on this phone. Slydials sent: '+c('Slydial sent')+' \u00b7 Owners talked to: '+c('Talked to the owner')+' \u00b7 15 minutes booked: '+c('Booked the 15 minutes')+' \u00b7 15 minutes done: '+c('Did the 15 minutes')+' \u00b7 Offers made: '+c('Sent what we found and made the offer')+' \u00b7 Clients: '+c('Became a client');
 }
 function draw(){
   drawToday();
