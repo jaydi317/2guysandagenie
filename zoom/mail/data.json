@@ -1,8 +1,14 @@
 {
- "checked": "Thu Nov 19, 9:15pm",
+ "checked": "Fri Nov 20, 7:15am",
  "people": {
   "Daegan": {
    "needs": [
+    {
+     "t": "Your 7 to-dos from Thursday's team call",
+     "w": "From Jimmy's Claude, Thu 9:39pm (from Zoom's AI notes; replaces Tuesday's list)",
+     "x": "(1) Show Jimmy and Paul the new website copy and lead portal at today's Fri Nov 20 noon call; (2) connect the new sign-up flow to Jimmy's calendar; (3) update the emails and copy to the new framing: a free assessment that solves one problem; (4) keep building the lead database and the walk-in and voicemail scripts; (5) a services page with case studies and examples of Jimmy's past work; (6) a clear workflow for Jimmy on where free help ends and paid work starts; (7) text Facebook ads and retargeting for Dec 10, calendar first, event as the bonus, before Thu Dec 10. Only the first and last have dates; the rest have none.",
+     "n": "Nothing to reply to unless you want to set dates for 2 to 6; Jimmy's Claude will use any date you give."
+    },
     {
      "t": "Put Jimmy's six items on Friday's agenda page",
      "w": "From Jimmy's Claude, Thu 4:12pm (Jimmy hasn't added any of his own)",
@@ -22,22 +28,10 @@
      "n": "Make the changes by Thu Nov 19 (Jimmy's Claude's suggested date), or tell us which lines you disagree with and why. Then reply with the pages changed. The Colts page is public to anyone with the link, so that one is the most urgent."
     },
     {
-     "t": "Your 8 to-dos from Tuesday's team call",
-     "w": "From Jimmy's Claude, Tue 9:39pm (from Zoom's AI summary, no transcript)",
-     "x": "Add a free 15-minute one-on-one with Jimmy to the registration flow before the Dec 10 event; test registration and emails by signing up with your AgentMail address; review the new What We Do page; check whether the Facebook ads are really off; work on the client intake funnel; set your Claude to read the Notion page and pull agenda items from Jimmy and Paul; go through the meeting list and the grill-me with Jimmy; research X tools for business data (Vera's results may already cover it). No dates were set.",
-     "n": "Nothing to reply to for these. Jimmy's Claude now suggests Fri Nov 20 for the Dec 10 site, email and registration update and the sign-up test; reply with a better date if that's wrong."
-    },
-    {
      "t": "Answer two questions from the call notes",
      "w": "From Jimmy's Claude, Tue 9:39pm",
      "x": "Is the 15-minute call something people choose at sign-up, or is every registrant booked automatically? (Zoom's summary says both.) And are the Facebook ads off? (Zoom says you confirmed it and also lists it as something to check.)",
      "n": "Reply with both answers by Thu Nov 19 (their suggested date). Is the free 15-minute call a choice at sign-up or automatic for everyone? Are the Facebook ads really off?"
-    },
-    {
-     "t": "Add Jimmy's side's items to Thursday's agenda page",
-     "w": "From Jimmy's Claude, Wed 4:12pm (Jimmy hasn't reviewed them)",
-     "x": "Five items for the Thu Nov 19 noon meeting, to be labeled 'from the Director, Jimmy's side': (1) does noon still work Thursday, since the Beast Mode Huddle is Thu 11am to 2pm at Stick & Hack Westfield and nobody has confirmed if anyone is going; (2) where sales calls happen, since Jessica's Wed noon call pointed at the team Zoom room, which records automatically; (3) pick a send date for the Jamon and Dr. McCray agreements (suggested Fri Nov 20, Jimmy's call); (4) lock the Dec 10 start time and booking: Jimmy confirms the time, Paul gets the Launch Fishers booking in writing, you finish registration with the 15-minute call step, all due Fri Nov 20; (5) buyer calls: only 1 call booked in the next 14 days, Paul reports on his call list and the TTR Social Circle. This replaces Tuesday's list for Wednesday's meeting.",
-     "n": "Add these to the Thu Nov 19 agenda page with the 'from the Director, Jimmy's side' label. Item 4 includes a to-do for you by Fri Nov 20."
     },
     {
      "t": "Leader tags: say yes to one way of counting",
@@ -147,6 +141,10 @@
  },
  "fyi": [
   {
+   "t": "Thursday's call decisions (Jimmy's Claude, Thu 9:39pm)",
+   "x": "Daegan chairs a 30-minute noon meeting; Daegan owns the page, emails and sign-ups for Dec 10; any ad that spends $100 with zero sign-ups gets paused. Notes for the team call and the Daegan and Jason call are filed in Notion."
+  },
+  {
    "t": "Paul sent his BlueBird Fence audit pieces (Thu 1:40pm)",
    "x": "Five links: audit report, mockups, concept page, interactive model and a teaser for the owner, Jeremy. Paul will bring his questions to Daegan himself. Already answered by your Claude at 2:52pm."
   },
@@ -160,6 +158,13 @@
   }
  ],
  "traffic": [
+  [
+   "Thu Nov 19, 9:39pm",
+   "In",
+   "Jimmy",
+   "Notes from today's two calls: your 7 to-dos",
+   "—"
+  ],
   [
    "Thu Nov 19, 4:12pm",
    "In",
