@@ -1,5 +1,5 @@
 {
- "checked": "Fri Nov 20, 4:14pm",
+ "checked": "Fri Nov 20, 5:14pm",
  "people": {
   "Daegan": {
    "needs": [
@@ -17,9 +17,15 @@
     },
     {
      "t": "Put Jimmy's five items on Saturday's agenda page",
-     "w": "From Jimmy's Claude, Fri 4:11pm (answer to our Sat Nov 21 4:00pm agenda ask; Paul hasn't answered yet)",
+     "w": "From Jimmy's Claude, Fri 4:11pm (answer to our Sat Nov 21 4:00pm agenda ask; Paul answered at 4:45pm, see next item)",
      "x": "(1) Jim Ammeen has paid since Sept 10: is his first meeting booked before Thanksgiving? If not, Jimmy gives Paul two exact times on the call. (2) Offer and price: if today's noon call locked them, confirm the Jamon and Dr. McCray agreements go out before Mon Nov 23; if not, lock them Saturday. First-client goal is Fri Nov 27. (3) Warm calls this week: Lisa Bowers (Tue Nov 24, pick a time), Kate Walters at Invest Hamilton County, Jessica's report and replay, the TTR Social Circle people. Who owns each and by what day? Zero calls are booked in the next 14 days. (4) Dec 10 Launch Fishers: start time confirmed, booking in writing, sign-up flow tested end to end? 20 days out, zero sign-ups. (5) Paul's call reports for Tue to Fri, so nobody calls the same person twice. Jimmy's Claude hasn't received them.",
-     "n": "Add these five (and Paul's, once he answers) to the Sat Nov 21 agenda page. Today's Friday page items from Jimmy and Paul (including Paul's Dec 2 question for Jim Ammeen) may still need to go on that page if they weren't covered at noon."
+     "n": "Add these five and Paul's note to the Sat Nov 21 agenda page. Today's Friday page items from Jimmy and Paul (including Paul's Dec 2 question for Jim Ammeen) may still need to go on that page if they weren't covered at noon."
+    },
+    {
+     "t": "Paul's answers on the video and the meetup start time",
+     "w": "From Paul's Claude, Fri 4:45pm (his reply to our Sat Nov 21 agenda ask, copied to Jimmy)",
+     "x": "Paul has no other agenda items; he asks that his note go on Saturday's page. On your video questions: keep it about 4 minutes, nothing too long; the client should get the custom piece after they pay, or when they pay; he isn't sure yet on the hours question; in writing call it either an \"assessment\" or an \"audit\". On the meetup \"save a seat\" page he wants an earlier start, 6:30 at the latest, and what he'd really propose is doors open 5:30 for networking, program at 6, done by 8.",
+     "n": "Post Paul's note on the Sat Nov 21 agenda page. Decide whether to change the meetup page's start time (it currently shows a later start than his proposal), and whether his 4-minute length and pay-time answers settle the video."
     },
     {
      "t": "Paul's Launch Fishers date for the agenda",
@@ -117,12 +123,6 @@
   "Paul": {
    "needs": [
     {
-     "t": "Send your agenda items for Sat Nov 21, 4:00pm",
-     "w": "From Daegan's Claude, Fri 2:41pm (no answer yet)",
-     "x": "Daegan's Claude asked for his items for Saturday's 4:00pm meeting so everyone's go on one page.",
-     "n": "Reply with his items, or say he has none."
-    },
-    {
      "t": "Send his Tuesday, Wednesday and Thursday call reports",
      "w": "Noted by Jimmy's Claude, Daily Brief Fri 11:30am",
      "x": "His call list went out at 8:15am today (Jim Ammeen, Carol Blackmon, India Robertson, Farheen Imran, Roger St Hilaire, Dave Schmidt, Jeremy at BlueBird Fence), but none of his reports from Tue, Wed or Thu has reached Jimmy's Claude.",
@@ -161,6 +161,13 @@
  ],
  "traffic": [
   [
+   "Fri Nov 20, 4:45pm",
+   "In",
+   "Paul",
+   "Re: Your agenda items for Sat, Nov 21's team meeting",
+   "about 2 hr after our Fri 2:41pm send"
+  ],
+  [
    "Fri Nov 20, 4:11pm",
    "In",
    "Jimmy",
@@ -172,7 +179,7 @@
    "Out",
    "Jimmy and Paul",
    "Your agenda items for Sat, Nov 21's team meeting",
-   "Jimmy answered Fri 4:11pm (about 1.5 hr); Paul no answer yet"
+   "Jimmy answered Fri 4:11pm (about 1.5 hr); Paul answered Fri 4:45pm (about 2 hr)"
   ],
   [
    "Fri Nov 20, 11:52am",
