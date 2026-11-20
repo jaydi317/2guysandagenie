@@ -157,6 +157,9 @@ section{padding:56px 0}
 .trust-grid{display:grid;gap:28px}
 .trust h2{font-size:clamp(34px, 9vw, 54px)}
 .trust .lead{color:#d2dad5;font-size:18px;max-width:40ch;margin:14px 0 22px}
+.trust-photo{margin:26px 0 0}
+.trust-photo img{display:block;width:100%;height:auto;aspect-ratio:1400/793;object-fit:cover;border-radius:14px;border:1px solid rgba(201,165,90,.35)}
+.trust-photo figcaption{margin-top:10px;font-size:14px;color:#c8d1cb}
 .promise{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 .promise li{border:1px solid rgba(201,165,90,.3);border-radius:14px;padding:16px;background:rgba(255,255,255,.035)}
 .promise b{display:block;font-size:18px;margin-bottom:4px;color:#fff}
@@ -332,7 +335,7 @@ footer .bless{font-family:var(--display);font-size:22px;color:var(--snow)}
         <div>
           <div class="role">Momma</div>
           <h3>Luna</h3>
-          <p>Black Cane Corso, born November 2022. ICCF registered. She lives here and is with the pups every day.</p>
+          <p>Black Cane Corso, born November 2022. ICCF registered. She lives here and is with the pups every day. Playful, happy and full of life. Come see for yourself.</p>
         </div>
       </div>
       <div class="parent thor">
@@ -358,6 +361,7 @@ footer .bless{font-family:var(--display);font-size:22px;color:var(--snow)}
           <svg class="msgr" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.4 2 2 6.1 2 11.4c0 2.9 1.4 5.4 3.6 7.1V22l3.3-1.8c1 .3 2 .4 3.1.4 5.6 0 10-4.1 10-9.4S17.6 2 12 2zm1 12.6-2.6-2.7-5 2.7 5.5-5.8 2.6 2.7 5-2.7-5.5 5.8z"/></svg>
           Set up a visit or video call</a>
       </div>
+      <figure class="trust-photo"><img src="../shared/visit-playpen.jpg" alt="The pups asleep in their big playpen on a clean mat with rope toys, set up on the wood floor of the living room" loading="lazy"><figcaption>Their playpen, right in our living room</figcaption></figure>
     </div>
     <ul class="promise">
       <li><b>Written puppy agreement</b><span>What you get, what she promises, in writing before you take her home. <span class="sample">Sample, Angie confirms</span></span></li>
@@ -438,8 +442,8 @@ footer .bless{font-family:var(--display);font-size:22px;color:var(--snow)}
   var M = "https://m.me/angie.davidson.731";
   // Photo + collar assignments are SAMPLE. Angie edits this list (status: "available" or "reserved").
   var pups = [
-    {name:"Purple collar girl", color:"#6b3fa0", coat:"Black", status:"available", bg:"../shared/pup-01.jpg", pos:"8% 47%", size:"auto 250%", note:"From the litter photo"},
-    {name:"Green collar girl",  color:"#2f9a46", coat:"Black", status:"available", bg:"../shared/pup-01.jpg", pos:"24% 33%", size:"auto 250%", note:"From the litter photo"},
+    {name:"Purple collar girl", color:"#6b3fa0", coat:"Blue-gray", status:"available", img:"../shared/visit-blue-eyes.jpg", pos:"50% 35%"},
+    {name:"Green collar girl",  color:"#2f9a46", coat:"Blue-gray", status:"available", img:"../shared/visit-playtime.jpg", pos:"50% 8%"},
     {name:"Pink collar girl",   color:"#e0559a", coat:"Blue-gray", status:"available", img:"../shared/pup-04.jpg", pos:"50% 30%"},
     {name:"Orange collar girl", color:"#e8772e", coat:"Black", status:"available", img:"../shared/pup-05.jpg", pos:"50% 40%"},
     {name:"White collar girl",  color:"#f4f4f0", coat:"Blue-gray", status:"available", img:"../shared/pup-06.jpg", pos:"50% 62%"},

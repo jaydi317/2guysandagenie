@@ -156,6 +156,9 @@ section{padding:56px 0}
 .home .split{display:grid;gap:22px}
 .home .photo{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5}
 .home .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.home .photo.pen{position:relative;margin:0;aspect-ratio:7/5}
+.home .photo.pen img{object-position:50% 50%}
+.home .photo.pen figcaption{position:absolute;left:12px;bottom:12px;right:12px;width:max-content;max-width:calc(100% - 24px);background:rgba(251,247,240,.92);color:var(--walnut);font-size:13px;font-weight:600;padding:6px 10px;border-radius:8px}
 .home p{color:#eadfcd}
 .home p + p{margin-top:12px}
 
@@ -374,12 +377,12 @@ footer a{color:var(--walnut);font-weight:600}
 
       <article class="pup">
         <div class="ph">
-          <div class="crop" role="img" aria-label="Black Cane Corso girl pup with a purple collar, asleep with the litter" style="background-position:5% 56%"></div>
+          <img src="../shared/visit-blue-eyes.jpg" alt="Blue-gray Cane Corso girl pup with pale blue eyes, held in a hand at home" style="object-position:50% 38%">
           <span class="badge">Available</span>
         </div>
         <div class="body">
           <h3><i class="dot" style="background:var(--c-purple)"></i>Purple collar girl</h3>
-          <p class="meta">Girl · black</p>
+          <p class="meta">Girl · blue-gray</p>
           <p class="price">$750</p>
           <button class="ask js-msg" data-msg="Hi Angie, I'm interested in the purple collar girl.">Ask about her</button>
         </div>
@@ -387,12 +390,12 @@ footer a{color:var(--walnut);font-weight:600}
 
       <article class="pup">
         <div class="ph">
-          <div class="crop" role="img" aria-label="Black Cane Corso girl pup with a green collar, asleep with the litter" style="background-position:25% 30%"></div>
+          <img src="../shared/visit-playtime.jpg" alt="Blue-gray Cane Corso girl pup looking up at the camera from the playpen" style="object-position:50% 22%">
           <span class="badge">Available</span>
         </div>
         <div class="body">
           <h3><i class="dot" style="background:var(--c-green)"></i>Green collar girl</h3>
-          <p class="meta">Girl · black</p>
+          <p class="meta">Girl · blue-gray</p>
           <p class="price">$750</p>
           <button class="ask js-msg" data-msg="Hi Angie, I'm interested in the green collar girl.">Ask about her</button>
         </div>
@@ -443,6 +446,7 @@ footer a{color:var(--walnut);font-weight:600}
             <li>Born November 2022</li>
             <li>ICCF registered</li>
             <li>Lives right here with the pups</li>
+            <li>Playful, happy and full of life. Come see for yourself.</li>
           </ul>
         </div>
       </div>
@@ -467,7 +471,7 @@ footer a{color:var(--walnut);font-weight:600}
 <!-- RAISED AT HOME -->
 <section class="home" id="home">
   <div class="wrap split">
-    <div class="photo"><img src="../shared/pup-03.jpg" alt="Seven pups exploring their playpen in the living room, seen from above"></div>
+    <figure class="photo pen"><img src="../shared/visit-playpen.jpg" alt="The pups asleep in their big playpen on a clean mat with rope toys, set up on the wood floor of the living room"><figcaption>Their playpen, right in our living room</figcaption></figure>
     <div>
       <p class="kicker">Raised inside, not out back</p>
       <h2>Born in our house. Raised in our living room.</h2>
