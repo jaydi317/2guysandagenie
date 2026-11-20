@@ -253,6 +253,7 @@ header.site.one nav.top{flex-wrap:nowrap;gap:0 11px;font-size:12px;justify-conte
 
 <section class="s">
 <h2>Here's What You Get</h2>
+<div class="hv" id="dget"><img data-v="a" src="/assets/home/d-get-a.svg" alt="A free gift with three things in it: the one fix, why it fits, your first step." style="display:block;width:100%;height:auto"><img data-v="b" hidden src="/assets/home/d-get-b.svg" alt="Every way to do it, and the one we'd use in your business." style="display:block;width:100%;height:auto"><img data-v="c" hidden src="/assets/home/d-get-c.svg" alt="We hand you your answer. Yours either way, work with us or not." style="display:block;width:100%;height:auto"></div>
 <ol class="getlist">
 <li>You tell us the one job you want gone. 15 minutes on the phone, at a time you pick.</li>
 <li>We find every way to get rid of it. If the right tool isn't out there, <b>we build it. That's free too.</b></li>
@@ -282,6 +283,7 @@ header.site.one nav.top{flex-wrap:nowrap;gap:0 11px;font-size:12px;justify-conte
 
 <section class="s">
 <h2>Why Free?</h2>
+<div class="hv" id="dfree"><img data-v="a" src="/assets/home/d-free-a.svg" alt="Telling versus showing." style="display:block;width:100%;height:auto"><img data-v="b" hidden src="/assets/home/d-free-b.svg" alt="Free. No catch. We'd rather show you than tell you." style="display:block;width:100%;height:auto"><img data-v="c" hidden src="/assets/home/d-free-c.svg" alt="Next time you think maybe AI could handle this, you think of us." style="display:block;width:100%;height:auto"></div>
 <p>We're Jimmy and Paul, two local guys from Fishers, and odds are you've never met us.</p>
 <p>So we'd rather show you what we do than tell you.</p>
 <p>It's free. There's no catch.</p>
@@ -292,7 +294,7 @@ header.site.one nav.top{flex-wrap:nowrap;gap:0 11px;font-size:12px;justify-conte
 <section class="s">
 <h2>Here's What One Job Gone Looks Like</h2>
 <p>Maestro's is a pizza place down the street from Jimmy.</p>
-<div class="spot" style="border:2px solid #111;margin:0 0 6px"><img class="doodle" src="/assets/home/dab43feed6.svg" alt="Before: 4 out of 10 calls went to voicemail. Now: every call answered."></div>
+<div class="spot" style="border:2px solid #111;margin:0 0 6px"><div class="hv" id="dcalls"><img data-v="a" src="/assets/home/d-calls-a.svg" alt="Before: 4 of 10 calls to voicemail. Now: every call answered." style="display:block;width:100%;height:auto"><img data-v="b" hidden src="/assets/home/d-calls-b.svg" alt="Before: 4 of 10 calls went to voicemail. Now: every call answered." style="display:block;width:100%;height:auto"><img data-v="c" hidden src="/assets/home/d-calls-c.svg" alt="Before: the phone rings and 4 of 10 go to voicemail. Now: every call answered." style="display:block;width:100%;height:auto"></div></div>
 <p class="cap">Maestro's phone: before, and now.</p>
 <p>About 4 calls out of 10 went to voicemail. The owner was alone, making the pizzas.</p>
 <p><b>And at most businesses, 85% of callers who hit voicemail hang up without leaving a message.</b></p>
@@ -333,6 +335,7 @@ if(n>=1&&n<=H.length){i=n-1}else if(window.R){i=parseInt(R.pick('f15hl',['1','2'
 h.textContent=H[i];
 window.R&&R.mark('hl','hl'+(i+1));
 [].forEach.call(document.querySelectorAll('a[href^="/free15/start/"]'),function(a){a.href=a.getAttribute('href')+(a.getAttribute('href').indexOf('?')>-1?'&':'?')+'h='+(i+1)});
+window.R&&(R.show(document.getElementById('dget'),'d-get'),R.show(document.getElementById('dfree'),'d-free'),R.show(document.getElementById('dcalls'),'d-calls'));
 window.R&&R.send('free15');
 })();
 </script>
