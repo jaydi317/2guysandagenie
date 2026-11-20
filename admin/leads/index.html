@@ -92,7 +92,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <a class="big" href="/admin/scripts/#demo">The One-Thing Demo Script</a>
 <p class="lab">What's Been Done</p>
 <ol id="hist" reversed></ol>
-<p><button class="back" id="undo" style="font-size:14px">Take back the last one</button></p>
+<p><button class="back" id="undo" style="font-size:14px">Take back the last one (the stage goes back too)</button></p>
 <p class="lab">Or Set The Stage By Hand</p>
 <div class="row" id="stages"></div>
 <p class="lab">Notes From Each Visit Or Call</p>
@@ -109,14 +109,14 @@ var NEXT={
 'Not touched yet':{t:'Jimmy sends the Slydial.',s:'Slydial',l:[['The Slydial Script',S+'#slydial']]},
 'Slydial sent':{t:'The next day: call or walk in.',s:'Call or walk in',l:[['Phone Script',S+'#phone'],['Walk-In Script',S+'#walk-short']]},
 'Tried, no owner yet':{t:'Try again at a different time of day. If you call, leave a voicemail.',s:'Try again',l:[['Phone Script',S+'#phone'],['Voicemail Script',S+'#voicemail'],['Walk-In Script',S+'#walk-short']]},
-'Talked to the owner':{t:'Run the audit, show them the one thing, and book the 15 minutes.',s:'Book the 15 minutes',l:[['The One-Thing Demo Script',S+'#demo']]},
+'Talked to the owner':{t:'Run the audit if it is not done. Next time you talk, show them the one thing from the audit and book the 15 minutes.',s:'Book the 15 minutes',l:[['The One-Thing Demo Script',S+'#demo']]},
 '15 minutes booked':{t:'Run the audit before the call if it is not done. Have the questions ready.',s:'Get ready for the 15 minutes',l:[['The 15 Minutes: What To Ask',S+'#call']]},
-'15 minutes done':{t:'Send them what we found. Then ask: on your own, or with our help?',s:'Send what we found',l:[['How This Step Works (The Plan)','/admin/plan/#video']]},
+'15 minutes done':{t:'Send them what we found and make the offer: on your own, or with our help?',s:'Send what we found',l:[['How This Step Works (The Plan)','/admin/plan/#video']]},
 'Offer made':{t:'Follow up. Find out what is holding them back.',s:'Follow up',l:[['If They Ask What It Costs',S+'#cost']]},
 'Client':{t:'Nothing to do here. They are a client now.',s:'Nothing',l:[]},
-'Not now':{t:'Leave them be. Invite them to the next free night.',s:'Invite to the free night',l:[]}
+'Not now':{t:'No more calls. Only invite them to the next free night.',s:'Invite to the free night',l:[]}
 };
-var DID=[['Slydial sent',1],['Called, no answer',2],['Left a voicemail',2],['Walked in, owner not there',2],['Emailed',-1],['Talked to the owner',3],['Booked the 15 minutes',4],['Did the 15 minutes',5],['Sent what we found',6],['Became a client',7],['Not now',8]];
+var DID=[['Slydial sent',1],['Called, no answer',2],['Left a voicemail',2],['Walked in, owner not there',2],['Talked to staff, not the owner',2],['Emailed',2],['Talked to the owner',3],['Owner said call back later',3],['Booked the 15 minutes',4],['No-show for the 15 minutes',3,1],['Did the 15 minutes',5],['Sent what we found and made the offer',6],['Became a client',7,1],['Not now (they said no)',8,1]];
 var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function today(){var d=new Date();return MON[d.getMonth()]+' '+d.getDate()}
 function stg(i){var v=get('s'+i,STAGES[0]);return OLD[v]||(STAGES.indexOf(v)<0?STAGES[0]:v)}
@@ -208,7 +208,7 @@ function show(i){
   $('audit').href='https://claude.ai/new?q='+encodeURIComponent(AUD(x));
   var st=stg(i),nx=NEXT[st];$('nw-stage').textContent=st;$('nw-last').textContent=last(i)||'Nothing yet.';$('nw-next').textContent=nx.t;
   var lk=$('nw-links');lk.textContent='';nx.l.forEach(function(l){var a=document.createElement('a');a.className='big';a.href=l[1];a.textContent=l[0];lk.appendChild(a)});
-  var dd=$('did');dd.textContent='';DID.forEach(function(d){var b=document.createElement('button');b.className='chip';b.textContent=d[0];b.onclick=function(){var h=hist(i);h.push({a:d[0],d:today(),p:st});put('h'+i,JSON.stringify(h));if(d[1]>=7||d[1]>STAGES.indexOf(st))put('s'+i,STAGES[d[1]]);show(i)};dd.appendChild(b)});
+  var dd=$('did');dd.textContent='';DID.forEach(function(d){var b=document.createElement('button');b.className='chip';b.textContent=d[0];b.onclick=function(){var h=hist(i);h.push({a:d[0],d:today(),p:st});put('h'+i,JSON.stringify(h));if(d[2]||d[1]>STAGES.indexOf(st))put('s'+i,STAGES[d[1]]);show(i)};dd.appendChild(b)});
   var hl=$('hist');hl.textContent='';var H=hist(i);for(var k=H.length-1;k>=0;k--){var li=document.createElement('li');li.textContent=H[k].a+', '+H[k].d;hl.appendChild(li)}
   if(!H.length){var li0=document.createElement('li');li0.textContent='Nothing yet.';li0.style.listStyle='none';hl.appendChild(li0)}
   $('undo').style.display=H.length?'inline':'none';
