@@ -26,13 +26,15 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 .big.dark{background:#111;color:#fff}
 #note{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;min-height:90px}
 .back{font:inherit;font-size:16px;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;color:#111}
+.now{border:3px solid #111;padding:12px 14px;margin:12px 0 14px;background:#FFF3C4}.now p{margin:0 0 6px}.now .k{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;display:block}.now .v{font-size:19px;font-weight:bold}.now .big{background:#fff;margin:8px 0 0}
+#hist{padding-left:20px;margin:4px 0 6px;font-size:15px}.nx{display:block;font-size:14px;color:#111}
 .saved{font-size:13px;color:#555;min-height:18px}
 </style></head><body><main>
 
 <div id="list">
 <p><a href="/admin/">&larr; Admin</a> &middot; <a href="/admin/market-domination/">The Plan</a> &middot; <a href="/admin/scripts/">Scripts</a></p>
 <h1>Leads</h1>
-<p class="sub">Find a shop. Tap it. See why it's worth going to.</p>
+<p class="sub">Find a shop. Tap it. See where it stands and what to do next.</p>
 <a class="big dark" href="/admin/scripts/" style="margin:10px 0 8px">What To Say: Walk-In, Phone, Voicemail</a>
 <a class="big" href="https://app.gohighlevel.com/" target="_blank" rel="noopener" style="margin:10px 0 14px">Jump To GoHighLevel</a>
 <details style="border:2px solid #111;padding:8px 12px;margin:0 0 16px"><summary style="font-weight:bold;cursor:pointer">After you jump: how to find the leads in GoHighLevel</summary>
@@ -46,7 +48,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 </ol>
 <p style="font-size:14px;color:#555;margin:6px 0 4px">Quicker for one shop: type its name in the search box at the top of Contacts. Tags to know: "prospect tier a", "prospect tier b", "prospect sample".</p>
 </details>
-<p class="demo"><b>This is a demo.</b> These ten shops are made up, so we can try the page before real leads go in. Notes and stages you add here stay on your own phone or computer.</p>
+<p class="demo"><b>This is a demo.</b> These ten shops are made up, so we can try the page before real leads go in. Notes, steps and stages you add here stay on your own phone or computer. Nobody else sees them yet.</p>
 <input id="q" type="search" placeholder="Search a name, town, street or trade" autocomplete="off">
 <div class="row" id="tiers">
 <button class="chip on" data-t="">All</button>
@@ -66,8 +68,10 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <p><button class="back" id="back">&larr; All leads</button></p>
 <h2 id="n"></h2>
 <p class="sub" id="meta"></p>
-<a class="big" href="/admin/scripts/#slydial" style="background:#FFF3C4">Step 1: Slydial First</a>
-<a class="big" href="/admin/scripts/#phone">What To Say First</a>
+<div class="now"><p><span class="k">Where It Stands</span><span class="v" id="nw-stage"></span></p><p><span class="k">Last Step</span><span id="nw-last"></span></p><p><span class="k">Next Step</span><span class="v" id="nw-next"></span></p><div id="nw-links"></div></div>
+<p class="lab">Tap What You Just Did</p>
+<div class="row" id="did"></div>
+<p class="sub" style="font-size:14px;margin:0 0 6px">Each tap is saved with today's date and moves the shop to the right stage.</p>
 <a class="big dark" id="call" href="#">Call</a>
 <a class="big" id="map" href="#" target="_blank" rel="noopener">Directions</a>
 <a class="big" id="mail" href="#">Email</a>
@@ -84,9 +88,12 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <p class="lab">Why It's Worth Going To</p><p id="why"></p>
 <p class="lab">What We Found</p><p id="found"></p>
 <a class="big dark" id="audit" href="#" target="_blank" rel="noopener">Run The Audit</a>
-<p class="sub" style="margin:0 0 4px">Opens Claude with this shop already typed in. Press send and wait a few minutes. It gives you one thing the owner can see on their phone, two more to name, and two questions. Paste the answer into Notes below, then use it with the script.</p>
+<p class="sub" style="margin:0 0 4px">Opens Claude with this shop already typed in. Press send and wait a few minutes. The top half is what to say to the owner: one thing they can see on their phone, two more to name, two questions and an opener. The bottom half you keep for the 15 minutes. Paste the answer into Notes below, then use it with the script.</p>
 <a class="big" href="/admin/scripts/#demo">The One-Thing Demo Script</a>
-<p class="lab">Where It Stands</p>
+<p class="lab">What's Been Done</p>
+<ol id="hist" reversed></ol>
+<p><button class="back" id="undo" style="font-size:14px">Take back the last one</button></p>
+<p class="lab">Or Set The Stage By Hand</p>
 <div class="row" id="stages"></div>
 <p class="lab">Notes From Each Visit Or Call</p>
 <textarea id="note" placeholder="What happened, what they said, what to show them next"></textarea>
@@ -95,7 +102,26 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 
 <script>
 try{if(localStorage.getItem('2g-admin')!=='1'){location.replace('/admin/')}}catch(e){}
-var STAGES=['Not yet visited','Visited','Talking','Client','Not now'];
+var STAGES=['Not touched yet','Slydial sent','Tried, no owner yet','Talked to the owner','15 minutes booked','15 minutes done','Offer made','Client','Not now'];
+var OLD={'Not yet visited':'Not touched yet','Visited':'Tried, no owner yet','Talking':'Talked to the owner'};
+var S='/admin/scripts/';
+var NEXT={
+'Not touched yet':{t:'Jimmy sends the Slydial.',s:'Slydial',l:[['The Slydial Script',S+'#slydial']]},
+'Slydial sent':{t:'The next day: call or walk in.',s:'Call or walk in',l:[['Phone Script',S+'#phone'],['Walk-In Script',S+'#walk-short']]},
+'Tried, no owner yet':{t:'Try again at a different time of day. If you call, leave a voicemail.',s:'Try again',l:[['Phone Script',S+'#phone'],['Voicemail Script',S+'#voicemail'],['Walk-In Script',S+'#walk-short']]},
+'Talked to the owner':{t:'Run the audit, show them the one thing, and book the 15 minutes.',s:'Book the 15 minutes',l:[['The One-Thing Demo Script',S+'#demo']]},
+'15 minutes booked':{t:'Run the audit before the call if it is not done. Have the questions ready.',s:'Get ready for the 15 minutes',l:[['The 15 Minutes: What To Ask',S+'#call']]},
+'15 minutes done':{t:'Send them what we found. Then ask: on your own, or with our help?',s:'Send what we found',l:[['How This Step Works (The Plan)','/admin/plan/#video']]},
+'Offer made':{t:'Follow up. Find out what is holding them back.',s:'Follow up',l:[['If They Ask What It Costs',S+'#cost']]},
+'Client':{t:'Nothing to do here. They are a client now.',s:'Nothing',l:[]},
+'Not now':{t:'Leave them be. Invite them to the next free night.',s:'Invite to the free night',l:[]}
+};
+var DID=[['Slydial sent',1],['Called, no answer',2],['Left a voicemail',2],['Walked in, owner not there',2],['Emailed',-1],['Talked to the owner',3],['Booked the 15 minutes',4],['Did the 15 minutes',5],['Sent what we found',6],['Became a client',7],['Not now',8]];
+var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function today(){var d=new Date();return MON[d.getMonth()]+' '+d.getDate()}
+function stg(i){var v=get('s'+i,STAGES[0]);return OLD[v]||(STAGES.indexOf(v)<0?STAGES[0]:v)}
+function hist(i){try{return JSON.parse(get('h'+i,'[]'))||[]}catch(e){return []}}
+function last(i){var h=hist(i);return h.length?h[h.length-1].a+', '+h[h.length-1].d:''}
 var L=[
 {n:'Sample Bakery',k:'Bakery',t:'Fishers',a:'100 Example St, Fishers, IN 46038',p:'317-555-0101',e:'hello@samplebakery.example',g:'A',w:'Rated 4.9 from 212 reviews. The owner is named in the reviews.',f:'A customer wrote that she called twice to order a cake and got voicemail both times. The site lists hours that differ from Google.'},
 {n:'Example Auto Repair',k:'Auto repair',t:'Carmel',a:'22 Sample Rd, Carmel, IN 46032',p:'317-555-0102',e:'',g:'A',w:'They spend to grow: ads, shop software, a careers page.',f:'The "Book Service" button on the site leads to a page that does not load.'},
@@ -118,7 +144,7 @@ STAGES.forEach(function(s){var o=document.createElement('option');o.textContent=
 function draw(){
   var q=$('q').value.toLowerCase(),tw=$('town').value,sg=$('stage').value,box=$('rows');box.textContent='';var c=0;
   L.forEach(function(x,i){
-    var st=get('s'+i,STAGES[0]);
+    var st=stg(i);
     if(tier&&x.g!==tier)return;if(tw&&x.t!==tw)return;if(sg&&st!==sg)return;
     if(q&&(x.n+' '+x.t+' '+x.a+' '+x.k).toLowerCase().indexOf(q)<0)return;
     c++;var b=document.createElement('button');b.className='lead';
@@ -126,11 +152,50 @@ function draw(){
     var s1=document.createElement('span');s1.textContent=x.k+' · '+x.t;b.appendChild(s1);
     var s2=document.createElement('span');var tg=document.createElement('i');tg.className='tier '+(x.g==='A'?'A':'');tg.style.fontStyle='normal';tg.textContent=x.g;s2.appendChild(tg);
     var ss=document.createElement('i');ss.className='st';ss.style.fontStyle='normal';ss.textContent=st;s2.appendChild(ss);b.appendChild(s2);
+    var s3=document.createElement('span');s3.className='nx';s3.textContent=(last(i)?'Last: '+last(i)+' \u00b7 ':'')+'Next: '+NEXT[st].s;b.appendChild(s3);
     b.onclick=function(){show(i)};box.appendChild(b);
   });
   $('count').textContent=c+(c===1?' shop':' shops');
 }
-function AUD(x){return 'Look at this local business the way a customer would, on a phone: '+x.n+', a '+x.k.toLowerCase()+' in '+x.t+', Indiana'+(x.u?' ('+x.u+')':'')+'. Check their website, their Google listing and reviews, and a Google search for what they do in '+x.t+'.\n\nI am going to call the owner. Give me only this, short:\n\n1. ONE THING the owner can see on their own phone in 30 seconds that is costing them customers. Say exactly where to look and what they will see. It must be true right now; check it.\n\n2. TWO MORE things worth naming, one line each. Say what it costs them, not how to fix it.\n\n3. TWO QUESTIONS to ask the owner that make them think about the money (for example, how many people asked for a quote last year).\n\nNo how-to and no fixes. Don\'t knock whoever built their site. If you can\'t confirm something, leave it out.'}
+function AUD(x){var kt=x.k.toLowerCase()+' '+x.t+' IN';return [
+'You are getting me ready to call or walk in on a local business owner.',
+'',
+'What this is for: I need one true thing the owner can see on their own phone that is costing them customers, so they say "show me" and book a free 15 minutes with us. Why it matters: an owner who sees it with their own eyes believes it. An owner who is only told does not. One wrong fact and I lose them.',
+'',
+'The business: '+x.n+' ('+x.k.toLowerCase()+') in '+x.t+', Indiana. Address: '+x.a+'. Phone: '+x.p+'. Website: '+(x.u||'none on file')+'.',
+(x.f?'An earlier note, not confirmed: "'+x.f+'" Check it today or drop it.':''),
+'',
+'Do the research in this order. Public pages only. For anything you use, keep the link and the date on it.',
+'',
+'A. Right business. Match the name, address and phone before you combine pages. If two businesses fit, stop and tell me.',
+'B. The business. What they sell, who buys it, and the owner\'s name if a public page says it. Read their website, their Google listing, their last 10 reviews, their Facebook or Instagram from the last 30 days, and any job ads. If there\'s no website, do the same from the Google listing.',
+'C. The customers. What do the reviews praise and what do they complain about? Look hard for calls not returned, slow quotes, no-shows and "hard to reach."',
+'D. The competition. Search "'+kt+'." Take the top 3 local companies in Google\'s map results (no ads, no directory sites). For each: stars, number of reviews, and one thing they do that this business doesn\'t.',
+'E. The owner. From all of that, what is most likely eating their time?',
+'',
+'Then give me this, in plain words. Parts 1 to 4 in under 150 words. Everything in under 350.',
+'',
+'SAY WHEN I TALK TO THE OWNER',
+'1. ONE THING the owner can see on their own phone in 30 seconds that is costing them customers. Pick the one closest to a lost call or a lost quote. Give the link, the exact taps, what they will see, and the date you checked. If you couldn\'t see the page the way a phone shows it, say so and give me the taps to check it myself first.',
+'2. TWO MORE things worth naming, one line each. Say what it costs them in plain words (they call the next company), no made-up numbers, and not how to fix it.',
+'3. TWO QUESTIONS that make the owner think about the money (for example, how many people asked for a quote last year).',
+'4. AN OPENER: one warm line about them from something real you found. Use the owner\'s name only if a public page gives it; include the link.',
+'',
+'KEEP FOR THE 15 MINUTES (I don\'t say these to the owner yet)',
+'5. Them against the top 3, from D: stars, number of reviews, the one thing each does that they don\'t.',
+'6. THE FIRST JOB we could take off their plate, from E, and what it would give back: time, calls or money. Name the job, not the steps. Mark it GUESS.',
+'7. TESTS FOR ME TO RUN, because you can\'t: for example, call them after hours and see what answers, or send their website form and time the reply.',
+'8. COULDN\'T CHECK: anything you looked for and couldn\'t open or confirm.',
+'',
+'Rules.',
+'Parts 1 to 5 are facts you checked today, each with its link.',
+'Guesses go only in 6, marked GUESS. Unconfirmed things go only in 8.',
+'In anything I would say out loud, lead with what they get and never use the word AI.',
+'Calls and leads they are already losing come before search ranking, social media or ads.',
+'Don\'t knock whoever built their site.',
+'No statistic without its link.',
+'Never guess a name or an email.'
+].join('\n')}
 function show(i){
   cur=i;var x=L[i];$('list').style.display='none';$('one').style.display='block';
   $('n').textContent=x.n;$('meta').textContent=x.g+' · '+x.k+' · '+x.a;
@@ -141,12 +206,19 @@ function show(i){
   var Q=encodeURIComponent(x.n+' '+x.t+' Indiana'),N=encodeURIComponent(x.n);$('l-web').href=x.u||('https://www.google.com/search?q='+Q);$('l-goo').href='https://www.google.com/maps/search/?api=1&query='+Q;$('l-fb').href='https://www.facebook.com/search/pages/?q='+encodeURIComponent(x.n+' '+x.t);$('l-yelp').href='https://www.yelp.com/search?find_desc='+N+'&find_loc='+encodeURIComponent(x.t+', IN');$('l-ig').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana instagram');
   $('why').textContent=x.w;$('found').textContent=x.f;
   $('audit').href='https://claude.ai/new?q='+encodeURIComponent(AUD(x));
-  var box=$('stages');box.textContent='';var st=get('s'+i,STAGES[0]);
+  var st=stg(i),nx=NEXT[st];$('nw-stage').textContent=st;$('nw-last').textContent=last(i)||'Nothing yet.';$('nw-next').textContent=nx.t;
+  var lk=$('nw-links');lk.textContent='';nx.l.forEach(function(l){var a=document.createElement('a');a.className='big';a.href=l[1];a.textContent=l[0];lk.appendChild(a)});
+  var dd=$('did');dd.textContent='';DID.forEach(function(d){var b=document.createElement('button');b.className='chip';b.textContent=d[0];b.onclick=function(){var h=hist(i);h.push({a:d[0],d:today(),p:st});put('h'+i,JSON.stringify(h));if(d[1]>=7||d[1]>STAGES.indexOf(st))put('s'+i,STAGES[d[1]]);show(i)};dd.appendChild(b)});
+  var hl=$('hist');hl.textContent='';var H=hist(i);for(var k=H.length-1;k>=0;k--){var li=document.createElement('li');li.textContent=H[k].a+', '+H[k].d;hl.appendChild(li)}
+  if(!H.length){var li0=document.createElement('li');li0.textContent='Nothing yet.';li0.style.listStyle='none';hl.appendChild(li0)}
+  $('undo').style.display=H.length?'inline':'none';
+  var box=$('stages');box.textContent='';
   STAGES.forEach(function(s){var b=document.createElement('button');b.className='chip'+(s===st?' on':'');b.textContent=s;b.onclick=function(){put('s'+i,s);show(i)};box.appendChild(b)});
   $('note').value=get('n'+i,'');$('saved').textContent='';window.scrollTo(0,0);
 }
 $('note').oninput=function(){if(cur!==null){put('n'+cur,this.value);$('saved').textContent='Saved on this device.'}};
 $('em').onchange=function(){if(cur!==null){put('e'+cur,this.value.trim());show(cur)}};
+$('undo').onclick=function(){if(cur===null)return;var h=hist(cur),x=h.pop();if(x){put('h'+cur,JSON.stringify(h));if(x.p)put('s'+cur,x.p)}show(cur)};
 $('back').onclick=function(){$('one').style.display='none';$('list').style.display='block';draw()};
 $('q').oninput=draw;$('town').onchange=draw;$('stage').onchange=draw;
 [].forEach.call(document.querySelectorAll('#tiers .chip'),function(b){b.onclick=function(){tier=this.getAttribute('data-t');[].forEach.call(document.querySelectorAll('#tiers .chip'),function(o){o.className='chip'});this.className='chip on';draw()}});
