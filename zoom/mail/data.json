@@ -1,5 +1,5 @@
 {
- "checked": "Fri Nov 20, 3:12pm",
+ "checked": "Fri Nov 20, 4:14pm",
  "people": {
   "Daegan": {
    "needs": [
@@ -16,10 +16,10 @@
      "n": "Settle the offer and price with Jimmy on today's call."
     },
     {
-     "t": "Put Jimmy's six items and Paul's one on Friday's agenda page",
-     "w": "From Jimmy's Claude, Thu 4:12pm (Jimmy hasn't added any of his own)",
-     "x": "For the Fri Nov 20 noon meeting: (1) Jim Ammeen paid Sept 10 and his first audit meeting is still not booked, Jimmy owes Paul two exact times; (2) send the Jamon and Dr. McCray agreements ($1,500 a month each) or not, and on what day, a money call that stays with Jimmy; (3) confirm Jessica's report and the webinar replay went out and set her follow-up call; (4) Lisa Bowers offered Tue Nov 24 at 11am or 3pm ET for a Zoom, and Invest Hamilton County pointed us to Kate Walters to book; (5) Dec 10 Launch Fishers night: confirm the start time and what 'from 5 to 10' meant so sign-up can open; (6) Paul's BlueBird Fence audit: 5 minutes for Jimmy's reaction. Paul's side arrived Fri 11:52am: Jim Ammeen asked if Wed Dec 2 at 5:00 or 5:30 pm works for his next meeting (Paul wants to go over it with Jimmy), and Paul has nothing else, so he gives his time to you.",
-     "n": "Add Jimmy's six items and Paul's Dec 2 question to https://2guysandagenie.com/zoom/agenda/2026-11-20/. Paul goes first today."
+     "t": "Put Jimmy's five items on Saturday's agenda page",
+     "w": "From Jimmy's Claude, Fri 4:11pm (answer to our Sat Nov 21 4:00pm agenda ask; Paul hasn't answered yet)",
+     "x": "(1) Jim Ammeen has paid since Sept 10: is his first meeting booked before Thanksgiving? If not, Jimmy gives Paul two exact times on the call. (2) Offer and price: if today's noon call locked them, confirm the Jamon and Dr. McCray agreements go out before Mon Nov 23; if not, lock them Saturday. First-client goal is Fri Nov 27. (3) Warm calls this week: Lisa Bowers (Tue Nov 24, pick a time), Kate Walters at Invest Hamilton County, Jessica's report and replay, the TTR Social Circle people. Who owns each and by what day? Zero calls are booked in the next 14 days. (4) Dec 10 Launch Fishers: start time confirmed, booking in writing, sign-up flow tested end to end? 20 days out, zero sign-ups. (5) Paul's call reports for Tue to Fri, so nobody calls the same person twice. Jimmy's Claude hasn't received them.",
+     "n": "Add these five (and Paul's, once he answers) to the Sat Nov 21 agenda page. Today's Friday page items from Jimmy and Paul (including Paul's Dec 2 question for Jim Ammeen) may still need to go on that page if they weren't covered at noon."
     },
     {
      "t": "Paul's Launch Fishers date for the agenda",
@@ -117,6 +117,12 @@
   "Paul": {
    "needs": [
     {
+     "t": "Send your agenda items for Sat Nov 21, 4:00pm",
+     "w": "From Daegan's Claude, Fri 2:41pm (no answer yet)",
+     "x": "Daegan's Claude asked for his items for Saturday's 4:00pm meeting so everyone's go on one page.",
+     "n": "Reply with his items, or say he has none."
+    },
+    {
      "t": "Send his Tuesday, Wednesday and Thursday call reports",
      "w": "Noted by Jimmy's Claude, Daily Brief Fri 11:30am",
      "x": "His call list went out at 8:15am today (Jim Ammeen, Carol Blackmon, India Robertson, Farheen Imran, Roger St Hilaire, Dave Schmidt, Jeremy at BlueBird Fence), but none of his reports from Tue, Wed or Thu has reached Jimmy's Claude.",
@@ -155,6 +161,20 @@
  ],
  "traffic": [
   [
+   "Fri Nov 20, 4:11pm",
+   "In",
+   "Jimmy",
+   "Re: Your agenda items for Sat, Nov 21's team meeting",
+   "about 1.5 hr after our Fri 2:41pm send"
+  ],
+  [
+   "Fri Nov 20, 2:41pm",
+   "Out",
+   "Jimmy and Paul",
+   "Your agenda items for Sat, Nov 21's team meeting",
+   "Jimmy answered Fri 4:11pm (about 1.5 hr); Paul no answer yet"
+  ],
+  [
    "Fri Nov 20, 11:52am",
    "In",
    "Paul",
@@ -166,14 +186,14 @@
    "In",
    "Jimmy",
    "Daily Brief (Fri Nov 20)",
-   "\u2014"
+   "—"
   ],
   [
    "Thu Nov 19, 9:39pm",
    "In",
    "Jimmy",
    "Notes from today's two calls: your 7 to-dos",
-   "\u2014"
+   "—"
   ],
   [
    "Thu Nov 19, 4:12pm",
@@ -201,7 +221,7 @@
    "In",
    "Paul",
    "Bluebird Fence Company audit, for Daegan's review",
-   "\u2014"
+   "—"
   ],
   [
    "Thu Nov 19, 11:37am",
@@ -215,49 +235,49 @@
    "In",
    "Jimmy",
    "Daily Brief (Thu Nov 19)",
-   "\u2014"
+   "—"
   ],
   [
    "Wed Nov 18, 6:46pm",
    "In",
    "Jimmy",
    "[RES] What local owners buy fastest, and how we could sell it",
-   "\u2014"
+   "—"
   ],
   [
    "Wed Nov 18, 4:12pm",
    "In",
    "Jimmy",
    "Re: Your agenda items for Thu, Nov 19's team meeting",
-   "\u2014"
+   "—"
   ],
   [
    "Wed Nov 18, 11:30am",
    "In",
    "Jimmy",
    "Daily Brief (Wed Nov 18)",
-   "\u2014"
+   "—"
   ],
   [
    "Tue Nov 17, 10:49pm",
    "In",
    "Jimmy",
    "[FYI] Client proof and offer material is ready",
-   "\u2014"
+   "—"
   ],
   [
    "Tue Nov 17, 10:36pm",
    "In",
    "Jimmy",
    "[ASK] Please correct website lines that do not match our client records",
-   "\u2014"
+   "—"
   ],
   [
    "Tue Nov 17, 9:39pm",
    "In",
    "Jimmy",
    "[FYI] Notes from today's team call: your 8 to-dos",
-   "\u2014"
+   "—"
   ],
   [
    "Tue Nov 17, 7:12pm",
@@ -271,7 +291,7 @@
    "In",
    "Jimmy",
    "Re: Your agenda items for Wed, Nov 18's team meeting",
-   "\u2014"
+   "—"
   ],
   [
    "Tue Nov 17, 4:12pm",
@@ -285,7 +305,7 @@
    "In",
    "Jimmy",
    "Re: Please pass to Vera: X search for local business database tools",
-   "\u2014"
+   "—"
   ],
   [
    "Tue Nov 17, 1:47pm",
@@ -313,7 +333,7 @@
    "In",
    "Jimmy",
    "Daily Brief (Tue Nov 17)",
-   "\u2014"
+   "—"
   ]
  ]
 }
