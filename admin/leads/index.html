@@ -28,6 +28,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 .back{font:inherit;font-size:16px;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;color:#111}
 .now{border:3px solid #111;padding:12px 14px;margin:12px 0 14px;background:#FFF3C4}.now p{margin:0 0 6px}.now .k{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;display:block}.now .v{font-size:19px;font-weight:bold}.now .big{background:#fff;margin:8px 0 0}
 #hist{padding-left:20px;margin:4px 0 6px;font-size:15px}.nx{display:block;font-size:14px;color:#111}
+.due{display:block;font-size:14px;font-weight:bold}.due.late{color:#B00020}#score{font-size:14px;color:#555;margin:0 0 14px}#rules{font-size:14px;color:#555;border-top:2px solid #111;padding-top:10px;margin-top:24px}
 .saved{font-size:13px;color:#555;min-height:18px}
 </style></head><body><main>
 
@@ -49,6 +50,11 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <p style="font-size:14px;color:#555;margin:6px 0 4px">Quicker for one shop: type its name in the search box at the top of Contacts. Tags to know: "prospect tier a", "prospect tier b", "prospect sample".</p>
 </details>
 <p class="demo"><b>This is a demo.</b> These ten shops are made up, so we can try the page before real leads go in. Notes, steps and stages you add here stay on your own phone or computer. Nobody else sees them yet.</p>
+<h2 style="font-size:22px;margin:18px 0 2px">Today</h2>
+<p class="sub" style="font-size:15px">Follow-ups that are due come first. Then three new shops to start.</p>
+<div id="today"></div>
+<p id="score"></p>
+<h2 style="font-size:22px;margin:18px 0 6px">Every Shop</h2>
 <input id="q" type="search" placeholder="Search a name, town, street or trade" autocomplete="off">
 <div class="row" id="tiers">
 <button class="chip on" data-t="">All</button>
@@ -62,6 +68,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 </div>
 <p id="count"></p>
 <div id="rows"></div>
+<p id="rules"><b>The rules.</b> Nothing here sends anything on its own: you make every call and send every email yourself. Public information only. Never guess an email: find it, check it, then paste it in.</p>
 </div>
 
 <div id="one">
@@ -141,19 +148,49 @@ var tier='',cur=null;
 var towns=[];L.forEach(function(x){if(towns.indexOf(x.t)<0)towns.push(x.t)});towns.sort();
 towns.forEach(function(t){var o=document.createElement('option');o.textContent=t;$('town').appendChild(o)});
 STAGES.forEach(function(s){var o=document.createElement('option');o.textContent=s;$('stage').appendChild(o)});
+var DAY=86400000,RANK={'15 minutes done':0,'Talked to the owner':1,'Offer made':2,'Slydial sent':3,'Tried, no owner yet':4};
+function fmt(t){var d=new Date(t);return MON[d.getMonth()]+' '+d.getDate()}
+function due(i){
+  var st=stg(i),h=hist(i);if(!(st in RANK))return null;
+  var lt=h.length&&h[h.length-1].ts?h[h.length-1].ts:0,n=0;
+  for(var k=h.length-1;k>=0;k--){if(STAGES.indexOf(h[k].p||'')<STAGES.indexOf(st)&&k<h.length-1)break;n++}
+  var wait=st==='15 minutes done'?0:st==='Slydial sent'?1:(n>1?7:3);
+  if(!lt)return {t:0,txt:'Due now',late:false};
+  var d0=new Date(lt);d0.setHours(0,0,0,0);var t=d0.getTime()+wait*DAY,now=new Date();now.setHours(0,0,0,0);now=now.getTime();
+  return {t:t,txt:t<now?'Overdue since '+fmt(t):t===now?'Due today':'Due '+fmt(t),late:t<now,ok:t<=now};
+}
+function row(i,st,showDue){
+  var x=L[i],b=document.createElement('button');b.className='lead';
+  var h=document.createElement('b');h.textContent=x.n;b.appendChild(h);
+  var s1=document.createElement('span');s1.textContent=x.k+' · '+x.t;b.appendChild(s1);
+  var s2=document.createElement('span');var tg=document.createElement('i');tg.className='tier '+(x.g==='A'?'A':'');tg.style.fontStyle='normal';tg.textContent=x.g;s2.appendChild(tg);
+  var ss=document.createElement('i');ss.className='st';ss.style.fontStyle='normal';ss.textContent=st;s2.appendChild(ss);b.appendChild(s2);
+  var s3=document.createElement('span');s3.className='nx';s3.textContent=(last(i)?'Last: '+last(i)+' · ':'')+'Next: '+NEXT[st].s;b.appendChild(s3);
+  var d=due(i);if(d&&(showDue||d.ok||d.t===0)){var s4=document.createElement('span');s4.className='due'+(d.late?' late':'');s4.textContent=d.txt;b.appendChild(s4)}
+  b.onclick=function(){show(i)};return b;
+}
+function drawToday(){
+  var box=$('today');box.textContent='';var dueL=[],fresh=[];
+  L.forEach(function(x,i){var st=stg(i),d=due(i);
+    if(d&&(d.ok||d.t===0))dueL.push([RANK[st],d.t,i]);
+    else if(st==='15 minutes booked')dueL.push([-1,0,i]);
+    else if(st===STAGES[0])fresh.push([x.g==='A'?0:x.g==='B'?1:2,i,i]);});
+  dueL.sort(function(a,b){return a[0]-b[0]||a[1]-b[1]});fresh.sort(function(a,b){return a[0]-b[0]||a[1]-b[1]});
+  dueL.forEach(function(r){box.appendChild(row(r[2],stg(r[2]),true))});
+  fresh.slice(0,3).forEach(function(r){box.appendChild(row(r[2],stg(r[2]),false))});
+  if(!dueL.length&&!fresh.length){var p=document.createElement('p');p.className='sub';p.textContent='Nothing due and nothing new. Every shop here has been worked.';box.appendChild(p)}
+  var C={};L.forEach(function(x,i){var seen={};hist(i).forEach(function(e){if(!seen[e.a]){seen[e.a]=1;C[e.a]=(C[e.a]||0)+1}})});
+  function c(a){return C[a]||0}
+  $('score').textContent='So far, on this phone: '+c('Slydial sent')+' Slydials sent · '+c('Talked to the owner')+' owners talked to · '+c('Booked the 15 minutes')+' booked · '+c('Did the 15 minutes')+' done · '+c('Sent what we found and made the offer')+' offers · '+c('Became a client')+' clients';
+}
 function draw(){
+  drawToday();
   var q=$('q').value.toLowerCase(),tw=$('town').value,sg=$('stage').value,box=$('rows');box.textContent='';var c=0;
   L.forEach(function(x,i){
     var st=stg(i);
     if(tier&&x.g!==tier)return;if(tw&&x.t!==tw)return;if(sg&&st!==sg)return;
     if(q&&(x.n+' '+x.t+' '+x.a+' '+x.k).toLowerCase().indexOf(q)<0)return;
-    c++;var b=document.createElement('button');b.className='lead';
-    var h=document.createElement('b');h.textContent=x.n;b.appendChild(h);
-    var s1=document.createElement('span');s1.textContent=x.k+' · '+x.t;b.appendChild(s1);
-    var s2=document.createElement('span');var tg=document.createElement('i');tg.className='tier '+(x.g==='A'?'A':'');tg.style.fontStyle='normal';tg.textContent=x.g;s2.appendChild(tg);
-    var ss=document.createElement('i');ss.className='st';ss.style.fontStyle='normal';ss.textContent=st;s2.appendChild(ss);b.appendChild(s2);
-    var s3=document.createElement('span');s3.className='nx';s3.textContent=(last(i)?'Last: '+last(i)+' \u00b7 ':'')+'Next: '+NEXT[st].s;b.appendChild(s3);
-    b.onclick=function(){show(i)};box.appendChild(b);
+    c++;box.appendChild(row(i,st,true));
   });
   $('count').textContent=c+(c===1?' shop':' shops');
 }
@@ -206,9 +243,9 @@ function show(i){
   var Q=encodeURIComponent(x.n+' '+x.t+' Indiana'),N=encodeURIComponent(x.n);$('l-web').href=x.u||('https://www.google.com/search?q='+Q);$('l-goo').href='https://www.google.com/maps/search/?api=1&query='+Q;$('l-fb').href='https://www.facebook.com/search/pages/?q='+encodeURIComponent(x.n+' '+x.t);$('l-yelp').href='https://www.yelp.com/search?find_desc='+N+'&find_loc='+encodeURIComponent(x.t+', IN');$('l-ig').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana instagram');
   $('why').textContent=x.w;$('found').textContent=x.f;
   $('audit').href='https://claude.ai/new?q='+encodeURIComponent(AUD(x));
-  var st=stg(i),nx=NEXT[st];$('nw-stage').textContent=st;$('nw-last').textContent=last(i)||'Nothing yet.';$('nw-next').textContent=nx.t;
+  var st=stg(i),nx=NEXT[st];$('nw-stage').textContent=st;$('nw-last').textContent=last(i)||'Nothing yet.';var dd0=due(i);$('nw-next').textContent=nx.t+(dd0&&dd0.t?' '+dd0.txt+'.':'');
   var lk=$('nw-links');lk.textContent='';nx.l.forEach(function(l){var a=document.createElement('a');a.className='big';a.href=l[1];a.textContent=l[0];lk.appendChild(a)});
-  var dd=$('did');dd.textContent='';DID.forEach(function(d){var b=document.createElement('button');b.className='chip';b.textContent=d[0];b.onclick=function(){var h=hist(i);h.push({a:d[0],d:today(),p:st});put('h'+i,JSON.stringify(h));if(d[2]||d[1]>STAGES.indexOf(st))put('s'+i,STAGES[d[1]]);show(i)};dd.appendChild(b)});
+  var dd=$('did');dd.textContent='';DID.forEach(function(d){var b=document.createElement('button');b.className='chip';b.textContent=d[0];b.onclick=function(){var h=hist(i);h.push({a:d[0],d:today(),p:st,ts:Date.now()});put('h'+i,JSON.stringify(h));if(d[2]||d[1]>STAGES.indexOf(st))put('s'+i,STAGES[d[1]]);show(i)};dd.appendChild(b)});
   var hl=$('hist');hl.textContent='';var H=hist(i);for(var k=H.length-1;k>=0;k--){var li=document.createElement('li');li.textContent=H[k].a+', '+H[k].d;hl.appendChild(li)}
   if(!H.length){var li0=document.createElement('li');li0.textContent='Nothing yet.';li0.style.listStyle='none';hl.appendChild(li0)}
   $('undo').style.display=H.length?'inline':'none';
