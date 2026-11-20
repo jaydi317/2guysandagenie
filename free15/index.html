@@ -167,6 +167,7 @@ footer p{margin:0 0 6px}footer a{color:var(--soft)}
 .wallnote{margin:18px 0 12px}
 .startbox{border:3px solid #111;padding:16px 16px 6px;margin:22px 0 18px;background:#FFF9E0}
 .startbox .sbh{font-size:21px;font-weight:bold;margin:0 0 4px}
+.pk.on{background:#111;color:#fff}.pk .tap{display:block;font-size:14px;font-weight:normal;margin-top:2px}
 .pk{display:block;border:3px solid #111;background:#fff;color:#111;text-decoration:none;font-size:18px;padding:13px 16px;margin:8px 0}
 .try{border-left:4px solid #111;padding:2px 0 2px 12px}
 .ps{margin-top:22px}
@@ -261,10 +262,12 @@ header.site.one nav.top{flex-wrap:nowrap;gap:0 11px;font-size:12px;justify-conte
 <div class="startbox" id="start">
 <p class="sbh">Start your free 15 minutes here.</p>
 <p><b>First, how'd you find us?</b> Tap one below. It takes you straight to the next step.</p>
-<a class="pk" href="/free15/start/?f=0">Facebook, Instagram or Google</a>
-<a class="pk" href="/free15/start/?f=1">A friend, another owner or a group I'm in</a>
-<a class="pk" href="/free15/start/?f=2">I met or heard from Jimmy or Paul</a>
-<a class="pk" href="/free15/start/?f=3">Somewhere else</a>
+<div id="foundpk">
+<a class="pk" href="/free15/start/?found=fb">Facebook or Instagram</a>
+<a class="pk" href="/free15/start/?found=g">Google</a>
+<a class="pk" href="/free15/start/?found=rec">A personal recommendation</a>
+<a class="pk" href="/free15/start/?found=tv">TV, radio or a podcast</a>
+</div>
 <p class="small">Signing up takes about a minute. You pick the time for your call.</p>
 </div>
 </section>
@@ -315,6 +318,10 @@ header.site.one nav.top{flex-wrap:nowrap;gap:0 11px;font-size:12px;justify-conte
 <p>2 Guys and a Genie is a business name of Reverse Selling Limited Liability Company · 14846 Victory Ct, Carmel, IN 46032</p>
 </footer>
 </main>
+<script src="/assets/found.js"></script>
+<script>(function(){var F=window.Found,box=document.getElementById('foundpk');if(!F||!box)return;
+var keep=new URLSearchParams(location.search),extra='';keep.forEach(function(v,k){if(k==='src'||k.indexOf('utm_')===0)extra+='&'+encodeURIComponent(k)+'='+encodeURIComponent(v)});
+box.innerHTML=F.list().map(function(k){var on=k===F.src;return '<a class="pk'+(on?' on':'')+'" href="/free15/start/?found='+k+extra+'">'+(on?'&#10003; ':'')+F.label(k)+(on?'<span class="tap">That is you. Tap to continue.</span>':'')+'</a>'}).join('');})();</script>
 <script src="/assets/next-event.js"></script>
 <script src="/assets/rot.js"></script>
 <script>
