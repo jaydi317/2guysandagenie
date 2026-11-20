@@ -319,15 +319,17 @@ header.site.one nav.top{flex-wrap:nowrap;gap:0 11px;font-size:12px;justify-conte
 </footer>
 </main>
 <script src="/assets/next-event.js"></script>
+<script src="/assets/rot.js"></script>
 <script>
 (function(){
 var H=["Tell Us The One Job You Hate Doing. We'll Show You How To Eliminate It.","Tell Us The One Job That Follows You Home. We'll Show You How To Get Rid Of It."];
 var h=document.getElementById('hl');if(!h)return;
 var q=new URLSearchParams(location.search),n=parseInt(q.get('hl')||'0',10),i=0;
-if(n>=1&&n<=H.length){i=n-1}else{try{i=(parseInt(localStorage.getItem('2g-f15hl')||'-1',10)+1)%H.length;localStorage.setItem('2g-f15hl',i)}catch(e){i=Math.floor(Math.random()*H.length)}}
+if(n>=1&&n<=H.length){i=n-1}else if(window.R){i=parseInt(R.pick('f15hl',['1','2']),10)-1}else{i=Math.floor(Math.random()*H.length)}
 h.textContent=H[i];
+window.R&&R.mark('hl','hl'+(i+1));
 [].forEach.call(document.querySelectorAll('a[href^="/free15/start/"]'),function(a){a.href=a.getAttribute('href')+(a.getAttribute('href').indexOf('?')>-1?'&':'?')+'h='+(i+1)});
-if(!q.get('utm_term')){q.set('utm_term','hl'+(i+1));try{history.replaceState(null,'',location.pathname+'?'+q.toString()+location.hash)}catch(e){}}
+window.R&&R.send('free15');
 })();
 </script>
 </body></html>

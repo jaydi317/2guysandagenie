@@ -64,6 +64,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 .tiles .k{display:block;font-size:11px;font-weight:bold;letter-spacing:.4px;text-transform:uppercase;color:var(--copper);margin:0 0 4px}
 .tiles b{display:block;font-size:16px;line-height:1.25;margin:0 0 4px}.tiles .s{display:block;font-size:13px;color:var(--soft)}
 </style>
+<script src="/assets/rot.js"></script>
 </head><body>
 <header class="site"><div class="hwrap">
 <a class="brand" href="/"><img src="/assets/2g-square.svg" alt="">2 Guys and a Genie</a>
@@ -276,6 +277,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     document.getElementById('dph').textContent=data.ph;
     document.getElementById('done1').textContent=data.one;
     show(5);
+    try{window.R&&R.signup()}catch(e){}
   });
 })();
 </script>
