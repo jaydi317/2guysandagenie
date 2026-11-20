@@ -34,8 +34,9 @@
   var real={};
   try{ s=detect(); real=facts(); if(s){ sessionStorage.setItem('found_src',s); sessionStorage.setItem('found_real',JSON.stringify(real)); } else { s=sessionStorage.getItem('found_src')||''; real=JSON.parse(sessionStorage.getItem('found_real')||'{}'); } }catch(e){ s=s||''; }
   if(!L[s]) s='';
-  function list(){ return [s].concat(POOL); }
-  /* Source unread or an unrecognized site: the top choice is Online, which is always true, so it can be checked too. */
-  var realKey=s||'unknown'; if(!s) s='site';
+  function list(){ return s ? [s].concat(POOL) : ['rec','live','tv','site']; }
+  /* The four change with how they arrived. A source we can read leads, checked (an unrecognized site reads as Online).
+     Came direct, nothing to read: nothing is checked, and a recommendation is one of the four. */
+  var realKey=s||'unknown';
   window.Found={src:s,realKey:realKey,real:real,label:function(k){return L[k]||''},list:list};
 })();
