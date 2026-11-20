@@ -2,7 +2,7 @@
    and fill the other three from the standing list. Used by /free15/ and /free15/start/. (Nov 20, 2026) */
 (function(){
   var L={fb:'Facebook or Instagram',g:'Google',rec:'A personal recommendation',tv:'TV, radio or a podcast',
-         team:'Your team reached out to me',live:'I saw you at a live event',other:'Other',li:'LinkedIn',yt:'YouTube',nd:'Nextdoor',bing:'Bing',tt:'TikTok',x:'X'};
+         team:'Your team reached out to me',live:'I saw you at a live event',other:'Other',mail:'An email or newsletter',ad:'An ad online',site:'Another website',li:'LinkedIn',yt:'YouTube',nd:'Nextdoor',bing:'Bing',tt:'TikTok',x:'X'};
   /* Standing choices under the real source. Facebook and Google only ever show when the visitor really came from them.
      Source unknown (typed the address in): a personal recommendation leads, since word of mouth is the one we can't read. */
   var POOL=['live','tv','other'];
@@ -20,11 +20,21 @@
     if(/bing\./.test(h)) return 'bing';
     if(/tiktok\./.test(h)||/tiktok/.test(us)) return 'tt';
     if(/(^|\.)x\.com$|twitter\.|t\.co$/.test(h)) return 'x';
+    var um=(q.get('utm_medium')||'').toLowerCase();
+    if(/email|newsletter/.test(um)||/newsletter|email|substack|beehiiv|mailchimp/.test(us)||/substack\.|beehiiv\./.test(h)) return 'mail';
+    if(/banner|display|cpc|paid|ad/.test(um)) return 'ad';
+    if(h) return 'site';
     return '';
   }
+  /* The real facts, kept no matter which choice they tap: the site they were on and any tags on the link. */
+  function facts(){ var q=new URLSearchParams(location.search),o={},h=''; try{ if(document.referrer) h=new URL(document.referrer).hostname.toLowerCase(); }catch(e){}
+    if(h&&h.indexOf('2guysandagenie.com')<0) o.site=h; ['src','utm_source','utm_medium','utm_campaign'].forEach(function(k){ if(q.get(k)) o[k]=q.get(k); });
+    ['fbclid','gclid'].forEach(function(k){ if(q.get(k)) o[k]='yes'; }); return o; }
   var s='';
-  try{ s=detect(); if(s) sessionStorage.setItem('found_src',s); else s=sessionStorage.getItem('found_src')||''; }catch(e){ s=s||''; }
+  var real={};
+  try{ s=detect(); real=facts(); if(s){ sessionStorage.setItem('found_src',s); sessionStorage.setItem('found_real',JSON.stringify(real)); } else { s=sessionStorage.getItem('found_src')||''; real=JSON.parse(sessionStorage.getItem('found_real')||'{}'); } }catch(e){ s=s||''; }
   if(!L[s]) s='';
   function list(){ return [s||'rec'].concat(POOL); }
-  window.Found={src:s,label:function(k){return L[k]||''},list:list};
+  if(s==='site'&&real.site) L.site='A link on '+real.site.replace(/^www\./,'');
+  window.Found={src:s,real:real,label:function(k){return L[k]||''},list:list};
 })();
