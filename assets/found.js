@@ -2,8 +2,10 @@
    and fill the other three from the standing list. Used by /free15/ and /free15/start/. (Nov 20, 2026) */
 (function(){
   var L={fb:'Facebook or Instagram',g:'Google',rec:'A personal recommendation',tv:'TV, radio or a podcast',
-         team:'Your team reached out to me',li:'LinkedIn',yt:'YouTube',nd:'Nextdoor',bing:'Bing',tt:'TikTok',x:'X'};
-  var POOL=['fb','g','rec','tv'];
+         team:'Your team reached out to me',live:'I saw you at a live event',other:'Other',li:'LinkedIn',yt:'YouTube',nd:'Nextdoor',bing:'Bing',tt:'TikTok',x:'X'};
+  /* Standing choices under the real source. Facebook and Google only ever show when the visitor really came from them.
+     Source unknown (typed the address in): a personal recommendation leads, since word of mouth is the one we can't read. */
+  var POOL=['live','tv','other'];
   function detect(){
     var q=new URLSearchParams(location.search), us=(q.get('utm_source')||'').toLowerCase(), src=(q.get('src')||'').toLowerCase(), h='';
     try{ if(document.referrer) h=new URL(document.referrer).hostname.toLowerCase(); }catch(e){}
@@ -23,6 +25,6 @@
   var s='';
   try{ s=detect(); if(s) sessionStorage.setItem('found_src',s); else s=sessionStorage.getItem('found_src')||''; }catch(e){ s=s||''; }
   if(!L[s]) s='';
-  function list(){ var out=s?[s]:[]; POOL.forEach(function(k){ if(out.length<4&&out.indexOf(k)<0) out.push(k); }); return out; }
+  function list(){ return [s||'rec'].concat(POOL); }
   window.Found={src:s,label:function(k){return L[k]||''},list:list};
 })();
