@@ -2,7 +2,7 @@
    and fill the other three from the standing list. Used by /free15/ and /free15/start/. (Nov 20, 2026) */
 (function(){
   var L={fb:'Facebook or Instagram',g:'Google',rec:'A personal recommendation',tv:'TV, radio or a podcast',
-         team:'Your team reached out to me',live:'I saw you at a live event',other:'Other',mail:'An email or newsletter',ad:'An ad online',site:'Another website',li:'LinkedIn',yt:'YouTube',nd:'Nextdoor',bing:'Bing',tt:'TikTok',x:'X'};
+         team:'Your team reached out to me',live:'I saw you at a live event',other:'Other',mail:'An email or newsletter',ad:'An ad online',site:'Online',li:'LinkedIn',yt:'YouTube',nd:'Nextdoor',bing:'Bing',tt:'TikTok',x:'X'};
   /* Standing choices under the real source. Facebook and Google only ever show when the visitor really came from them.
      Source unknown (typed the address in): a personal recommendation leads, since word of mouth is the one we can't read. */
   var POOL=['live','tv','other'];
@@ -34,7 +34,8 @@
   var real={};
   try{ s=detect(); real=facts(); if(s){ sessionStorage.setItem('found_src',s); sessionStorage.setItem('found_real',JSON.stringify(real)); } else { s=sessionStorage.getItem('found_src')||''; real=JSON.parse(sessionStorage.getItem('found_real')||'{}'); } }catch(e){ s=s||''; }
   if(!L[s]) s='';
-  function list(){ return [s||'rec'].concat(POOL); }
-  if(s==='site'&&real.site) L.site='A link on '+real.site.replace(/^www\./,'');
-  window.Found={src:s,real:real,label:function(k){return L[k]||''},list:list};
+  function list(){ return [s].concat(POOL); }
+  /* Source unread or an unrecognized site: the top choice is Online, which is always true, so it can be checked too. */
+  var realKey=s||'unknown'; if(!s) s='site';
+  window.Found={src:s,realKey:realKey,real:real,label:function(k){return L[k]||''},list:list};
 })();
