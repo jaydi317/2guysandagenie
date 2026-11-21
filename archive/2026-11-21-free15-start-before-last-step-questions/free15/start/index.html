@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<title>Your Free 15 Minutes · 2 Guys and a Genie</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<link rel="stylesheet" href="/assets/simple.css">
+<script src="/assets/next-event.js"></script>
+<style>
+.mock{background:#FFF3C4;font-size:14px;padding:8px 12px;margin:0 0 18px;border:1px solid #e6d58a}
+.bar{display:flex;gap:6px;margin:0 0 6px}
+.bar span{flex:1;height:8px;background:var(--rule)}
+.bar span.on{background:var(--ink)}
+.stepno{font-size:14px;color:var(--soft);margin:0 0 18px}
+.step{display:none}.step.show{display:block}
+h1{margin-top:0}
+.pick{display:block;width:100%;box-sizing:border-box;text-align:left;font:inherit;font-size:18px;padding:14px 16px;margin:0 0 10px;border:2px solid var(--ink);background:#fff;cursor:pointer}
+.pick:active,.pick.on{background:var(--ink);color:#fff}
+textarea,input{width:100%;box-sizing:border-box;font:inherit;font-size:18px;border:2px solid var(--ink);padding:12px;background:#fff;margin:0 0 12px}
+textarea{min-height:150px;resize:vertical}
+label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
+.mic{display:flex;width:100%;justify-content:center;align-items:center;gap:10px;font:inherit;font-weight:bold;font-size:19px;background:var(--ink);color:#fff;border:2px solid var(--ink);padding:14px 16px;margin:0 0 12px;cursor:pointer}
+.mic.on{background:#c62828;border-color:#c62828}
+.dot{width:12px;height:12px;border-radius:50%;background:currentColor}.mic.on .dot{animation:blink 1s infinite}@keyframes blink{50%{opacity:.2}}
+.chips{margin:0 0 16px}.chips p{font-size:14px;color:var(--soft);margin:0 0 6px}
+.chip{display:inline-block;font:inherit;font-size:15px;padding:6px 10px;margin:0 6px 6px 0;border:1px solid var(--soft);background:#fff;cursor:pointer}
+.go{display:block;width:100%;font:inherit;font-weight:bold;font-size:20px;padding:16px;background:var(--ink);color:#fff;border:0;cursor:pointer;margin:8px 0 10px}
+.back{background:none;border:0;font:inherit;font-size:15px;color:var(--soft);text-decoration:underline;cursor:pointer;padding:0}
+.err{color:#c62828;font-size:15px;display:none;margin:0 0 8px}
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 0 14px}
+.times{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:0 0 14px}
+.slot{font:inherit;font-size:17px;padding:12px 6px;border:2px solid var(--ink);background:#fff;cursor:pointer;text-align:center}
+.slot.on{background:var(--ink);color:#fff}
+.slot small{display:block;font-size:13px}
+.recap{border:2px solid var(--ink);padding:16px;margin:0 0 18px}
+.recap p{margin:0 0 10px}
+.bonus{background:var(--tint);border:2px solid var(--copper);padding:18px;margin:0 0 18px}
+.bonus .k{font-size:13px;font-weight:bold;letter-spacing:.5px;text-transform:uppercase;color:var(--copper);margin:0 0 6px}
+.bonus h2{margin:0 0 10px}
+.small{font-size:15px;color:var(--soft)}
+.learn{border:2px solid var(--ink);background:#fff;padding:10px 14px;margin:0 0 14px}.learn summary{font-weight:bold;cursor:pointer;font-size:17px}.learn ul{padding-left:18px;margin:10px 0 6px}.learn li{margin:0 0 10px;font-size:16px}
+.tq{border-left:4px solid var(--ink);margin:0 0 16px;padding:2px 0 2px 14px;font-size:17px}.tq span{display:block;font-size:14px;color:var(--soft);margin-top:6px}
+.wallh{margin:34px 0 14px;padding-top:16px;border-top:3px solid var(--ink)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 8px}.ba img{width:100%;border:1px solid #ccc;display:block}
+.first{background:#fff;border:2px solid var(--ink);padding:10px 14px;margin:0 0 10px;font-size:16px}
+.both{font-weight:bold;font-size:18px;margin:0 0 10px}
+body.side .bonuses{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start}
+.bonuses .bonus{padding:14px 16px}.bonuses h2{font-size:22px;line-height:1.2;margin:0 0 8px}.bonuses p{font-size:16px;margin:0 0 10px}.bonuses .tq{font-size:15px;margin:0 0 10px}.bonuses .first{font-size:15px}.bonuses .learn{margin:0 0 10px;padding:8px 12px}.bonuses .learn summary{font-size:15px}
+body.side .bonuses .bonus{padding:12px;margin:0}
+body.side .bonuses h2{font-size:18px;line-height:1.2}
+body.side .bonuses p,body.side .bonuses .tq{font-size:14px}
+body.side .bonuses .k{font-size:11px}
+body.side .bonuses .go{font-size:15px;padding:12px 6px}
+body.side .bonuses .first{font-size:13px;padding:8px}
+body.side .bonuses .learn summary{font-size:13px}
+body.side .bonuses .tq span{font-size:12px}
+.vpick{font-size:14px;margin:0 0 14px}.vpick a{color:var(--ink);font-weight:bold}
+.tiles{display:none}
+body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 14px}
+.tiles a{display:block;border:2px solid var(--copper);background:var(--tint);padding:10px;text-decoration:none;color:var(--ink)}
+.tiles .k{display:block;font-size:11px;font-weight:bold;letter-spacing:.4px;text-transform:uppercase;color:var(--copper);margin:0 0 4px}
+.tiles b{display:block;font-size:16px;line-height:1.25;margin:0 0 4px}.tiles .s{display:block;font-size:13px;color:var(--soft)}
+[hidden]{display:none!important}
+.okline{background:#FFF3C4;border-left:4px solid var(--ink);padding:10px 14px;margin:0 0 22px;font-size:16px}
+.lead{font-size:21px;line-height:1.35;margin:0 0 16px}
+.ven{margin:0 0 18px}.ven img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 35%;border:2px solid var(--ink);box-sizing:border-box}
+.ven figcaption{font-size:15px;color:var(--soft);margin-top:8px}
+.hv{margin:4px 0 20px}.dd img{display:block;width:100%;height:auto;border:2px solid var(--ink);box-sizing:border-box}
+.say{font-size:24px;font-weight:bold;line-height:1.3;margin:0 0 14px}
+.nowrap{text-align:center;margin:6px 0 0}
+.emrow{display:block}
+</style>
+<script src="/assets/rot.js"></script>
+</head><body>
+<header class="site"><div class="hwrap">
+<a class="brand" href="/"><img src="/assets/2g-square.svg" alt="">2 Guys and a Genie</a>
+</div></header>
+<main id="main">
+
+<p class="mock"><b>Mockup.</b> Walk through it like an owner would. Nothing gets sent or booked.</p>
+
+<div class="bar" id="bar"><span></span><span></span><span></span><span></span></div>
+<p class="stepno" id="stepno">Step 1 of 4</p>
+
+<!-- STEP 1 -->
+<section class="step show" id="s1">
+  <p class="kicker">Your Free 15 Minutes</p>
+  <h1>Let's Solve One Thing In Your Business.</h1>
+  <p class="sub">A free 15-minute call with Jimmy or Paul, two local AI guys from Fishers. Tell us the one job you'd hand off, and we come back with what we'd use to get rid of it. Takes about a minute.</p>
+  <p><b>First, how'd you find us?</b> Tap one below. It takes you straight to the next step.</p>
+  <div id="foundpick">
+  <button class="pick" type="button" data-k="rec">A personal recommendation</button>
+  <button class="pick" type="button" data-k="live">I saw you at a live event</button>
+  <button class="pick" type="button" data-k="tv">TV, radio or a podcast</button>
+  <button class="pick" type="button" data-k="site">Online</button>
+  </div>
+</section>
+
+<!-- STEP 2 -->
+<section class="step" id="s2">
+  <h1>How Can We Help?</h1>
+  <p class="sub">Tap the one that sounds most like you. Your tap takes you to the next step.</p>
+  <button class="pick p2" type="button">Work less and make the same money</button>
+  <button class="pick p2" type="button">Get things done without me being there</button>
+  <button class="pick p2" type="button">Really grow the business</button>
+  <button class="pick p2" type="button">Bring in more business</button>
+  <button class="pick p2" type="button">Stop losing the leads I already have</button>
+  <button class="pick p2" type="button">Get more out of my team</button>
+  <button class="pick p2" type="button">Get the busywork off my plate</button>
+  <button class="pick p2" type="button">Not sure yet. Show me what's possible</button>
+  <p style="margin-top:14px"><a href="#" id="more2">Want to tell us more? Tap here.</a> <span style="color:var(--soft);font-size:14px">(Optional.)</span></p>
+  <div id="morebox" style="display:none">
+    <p>Tap the mic and just talk. Messy is fine. We'll sort it out.</p>
+    <button class="mic" id="mic" type="button"><span class="dot"></span><span id="miclabel">Tap To Talk</span></button>
+    <textarea id="one" placeholder="Or type it here..."></textarea>
+    <p class="err" id="err2">Tap the closest one above first.</p>
+    <button class="go" id="go2" type="button">That's It. Next.</button>
+  </div>
+  <button class="back" data-back="1" type="button">Back</button>
+</section>
+
+<!-- STEP 3 -->
+<section class="step" id="s3">
+  <h1>Where Should We Call You?</h1>
+  <p class="sub">Next, you pick the day and time. 15 minutes is all it takes. We'll call from (317) 751-2693.</p>
+  <p style="border-left:4px solid #111;padding:2px 0 2px 12px">Jimmy did this for Jamon's handyman business in Indy. It went from about $15,000 a month to over $50,000.</p>
+  <p>We'll give you a call, and we'll have some fun with it.</p>
+  <label for="nm">Your name</label><input id="nm" autocomplete="name">
+  <label for="ph">Best phone for the call <span style="font-weight:normal">(we'll text your confirmation here)</span></label><input id="ph" type="tel" autocomplete="tel">
+  <label for="em">Email <span style="font-weight:normal">(optional: your reminder, plus Jimmy's free daily AI email. Unsubscribe anytime.)</span></label><input id="em" type="email" autocomplete="email">
+  <p class="err" id="err3">We need your name and a phone number so we can call you.</p>
+  <button class="go" id="go3" type="button">Next: Pick My Time</button>
+  <button class="back" data-back="2" type="button">Back</button>
+</section>
+
+<!-- STEP 4 -->
+<section class="step" id="s4">
+  <h1>Pick A Time For Your Free 15 Minutes.</h1>
+  <p class="sub">We call you. Times are Eastern.</p>
+  <div class="days" id="days"></div>
+  <div class="times" id="times"></div>
+  <label for="more" style="margin-top:22px;display:block">Tell Us A Little About You, So We're Ready For You <span style="font-weight:normal">(optional)</span></label>
+  <p class="sub" style="margin:0 0 8px">A line or two about you and your business. The more we know walking in, the more you get out of your 15 minutes.</p>
+  <textarea id="more" style="min-height:90px" placeholder="What you do, how long you've been at it, how many people work with you..."></textarea>
+  <p class="err" id="err4">Pick a day and a time.</p>
+  <button class="go" id="go4" type="button">Lock In My 15 Minutes</button>
+  <button class="back" data-back="3" type="button">Back</button>
+</section>
+
+<!-- BOOKED: THE SURPRISE INVITE TO THE NIGHT (Nov 21) -->
+<section class="step" id="s5">
+  <p class="okline"><b>&#10003; You're booked<span id="inm"></span>.</b> <span id="iwhen"></span> Watch your phone for a text from (317) 751-2693.</p>
+  <p class="kicker">One More Thing</p>
+  <h1>Surprise. There's A Free Seat For You At Our Next AI Night.</h1>
+  <p class="lead"><b>Walk In Curious About AI. Walk Out Using It.</b></p>
+  <p>Hosted by Jimmy and Paul, the two local AI guys you just booked with.</p>
+  <figure class="ven"><img src="/assets/launch/front-door.jpg" alt="The front door of Launch Fishers"><figcaption><b><span data-ev="long">Thursday, December 10</span></b> · Doors 6:30, we start at 7, done by 9 · Launch Fishers, 12175 Visionary Way. Glass doors, southeast corner.</figcaption></figure>
+  <p>This is our third one.</p>
+  <p>A room of local owners, all wondering the same thing you are: what can AI really do for a business like mine?</p>
+  <p>Why free? It's how we meet the owners around here. And AI is easier to show you than to tell you.</p>
+  <p>The pizza's free too. Get there early. When it's gone, it's gone.</p>
+  <button class="go yes" type="button">Yes, Save My Seat</button>
+  <p class="small">Free. One tap. Your call stays just the way you booked it.</p>
+
+  <h2 class="wallh">Here's How The Night Goes</h2>
+  <p>It's a Thursday, after work. We know.</p>
+  <p>So we keep it easy. Come as you are.</p>
+  <div class="hv dd" id="dnight"><img data-v="a" src="/assets/home/d-night-a.svg" alt="The night in three parts: eat and meet other owners, we show you AI, then it's your turn on your own phone with one of us beside you."><img data-v="b" hidden src="/assets/home/d-night-b.svg" alt="The night as one bar from 6:30 to 9: eat, we show you, and the biggest part is your turn, with one of us beside you."><img data-v="c" hidden src="/assets/home/d-night-c.svg" alt="Owners working on their own phones while the two of us walk the room and help."></div>
+  <p>You eat first, and you meet a few other owners.</p>
+  <p>Then we tell you who we are and how we got into this.</p>
+  <p>We show you why we're so fired up about AI: what's changing right now, and what's coming next.</p>
+  <p>We teach you the basics: how to ask it for what you need, and get it back.</p>
+  <p>And we show you what we've built for owners like you, so you can see what it could do in your business.</p>
+  <p>All of that takes 45 minutes to an hour.</p>
+  <p><b>The rest of the night is yours.</b></p>
+  <p>You work on whatever you want. We walk the room and help any way we can.</p>
+  <p>Bring your phone, and the one job you'd love to hand off.</p>
+
+  <h2 class="wallh">The Part You'll Remember</h2>
+  <div class="hv dd" id="dfeel"><img data-v="a" src="/assets/home/d-feel-a.svg" alt="Walking in, AI is far off on a hill. Walking out, it's right here beside you."><img data-v="b" hidden src="/assets/home/d-feel-b.svg" alt="Three steps up: walk in with a question, halfway it clicks, walk out with AI beside you."><img data-v="c" hidden src="/assets/home/d-feel-c.svg" alt="That night at home, phone in hand, telling the family: I know AI now."></div>
+  <p>It's one of those nights you remember.</p>
+  <p>You walk in thinking AI is somewhere out there. For tech people. For someday.</p>
+  <p>Somewhere in the night, it clicks.</p>
+  <p>You walk out with it right there in your hand. Yours, every day.</p>
+  <p>Then you get home, somebody asks how it went, and you hear yourself say:</p>
+  <p class="say">"Oh, man. I know AI now."</p>
+  <button class="go yes" type="button">Yes, Save My Seat</button>
+
+  <h2 class="wallh">What Owners Told Us</h2>
+  <p>Here's what one local owner told us about the business events around here:</p>
+  <blockquote class="tq">"90% of them all are about AI. And they always get me excited, but they never give me any tools."<span>Kim, a local owner, on every other AI event</span></blockquote>
+  <p>Ours is the other kind.</p>
+  <blockquote class="tq">"This was not talking about AI. This was actually helping people use AI."<span>Roger, at our last live night</span></blockquote>
+  <blockquote class="tq">"It was insightful and informative, and it just sort of blows me away of what I could do."<span>Jim Chalfant, Jim's Amazing Bread, after Jimmy explained AI and showed it working at one of our free nights</span></blockquote>
+
+  <h2 class="wallh">Not A Bad Deal, Right?</h2>
+  <p>Pizza. Owners like you. An hour of us showing you what AI can do right now.</p>
+  <p>Then our help on your one job.</p>
+  <p>All of it free.</p>
+  <p>If you want to come, tap the button.</p>
+  <p>If not, that's cool. Somebody else gets the seat.</p>
+  <p>Just know we only have so much room. Wait, and it might be gone.</p>
+  <button class="go yes" type="button">Yes, Save My Seat</button>
+  <p class="nowrap"><button class="back" id="nobtn" type="button">No thanks, not this time</button></p>
+</section>
+
+<!-- DONE -->
+<section class="step" id="s6">
+  <h1><span id="fht">You're All Set</span><span id="fnm"></span>.</h1>
+  <div class="recap" id="seatbox" hidden>
+    <p><b>Your seat is saved.</b></p>
+    <p><span data-ev="long">Thursday, December 10</span>. Doors 6:30, done by 9. Launch Fishers, 12175 Visionary Way.</p>
+    <p style="margin:0">Get there early for the pizza. We'll text the details to <span id="fph">your phone</span> before the night.</p>
+  </div>
+  <p id="nomsg" hidden>No problem. Your 15 minutes is on, just the way you booked it.</p>
+  <div class="recap">
+    <p><b>Jimmy or Paul calls you <span id="dwhen">at your time</span></b> at <span id="dph">your number</span>. The call comes from (317) 751-2693.</p>
+    <p>For 15 minutes, we dig into:</p>
+    <p><i>"<span id="done1">your one thing</span>"</i></p>
+    <p>Then we do our homework. We line your job up against the tools we know. In a day or two, we walk you through what fits, and the one we'd use.</p>
+    <p><b>Watch your phone.</b> In a minute you'll get a text from (317) 751-2693 with your time.</p>
+  </div>
+
+  <div class="bonus" id="b1">
+    <p class="k">Free Bonus · A $97 A Month Value</p>
+    <h2>Plus: Our Cool AI Thing Of The Day, In Your Inbox Every Morning</h2>
+    <p id="emyes" hidden><b>&#10003; You're on the list,</b> since you gave us your email. It goes to <span id="emshow"></span>. Unsubscribe anytime.</p>
+    <div id="emno" hidden>
+      <p><b>Where should we send it?</b></p>
+      <label for="em2">Your email</label><input id="em2" type="email" autocomplete="email">
+      <button class="go" id="emgo" type="button">Put Me On The List</button>
+      <p class="small">Free. Unsubscribe anytime.</p>
+    </div>
+    <p style="margin:12px 0 4px"><label for="txtok" style="font-weight:bold;cursor:pointer"><input type="checkbox" id="txtok" style="width:20px;height:20px;vertical-align:-3px;margin-right:8px">Text me when a new one goes out, too.</label></p>
+    <p class="small" id="txtnote">To the phone number you gave us. Message and data rates may apply. Reply STOP anytime to end the texts.</p>
+    <p>One short email every morning from Jimmy. Something AI can do for a business like yours, in plain words, that you can try that afternoon.</p>
+    <p class="first"><b>You'll learn things like:</b> Why you're not behind, even if you've never touched any of this, and why that can put you ahead of most of the competition in your town. <i>(Hint: Most people who use it at all are looking up chicken recipes.)</i></p>
+    <details class="learn"><summary>See everything else you'll learn</summary>
+      <ul>
+        <li>The simple four-step formula so that whenever someone asks their phone who to call, it says your name and your phone rings. <i>(Hint: One of the fixes costs about nine bucks.)</i></li>
+        <li>How to get AI to think about your business like a good consultant would, instead of handing you generic tips, just by venting into your phone for one minute. <i>(Hint: It's one sentence you say after you're done complaining.)</i></li>
+        <li>Why AI can sound 100% sure and still be flat wrong, and the one sentence that tells you what to double-check before you repeat it to a customer. <i>(Hint: Jimmy's AI got a room full of owners' own businesses wrong. He found out in time.)</i></li>
+        <li>How to get AI to write posts and messages that sound like you and make your best customers lean in, not the could-be-any-business stuff. <i>(Hint: Your competitor can sign up for the same AI tonight. They still can't copy this.)</i></li>
+        <li>How more of the estimates you'd have written off turn into jobs, when you change three words at the bottom of your quote. <i>(Hint: One product alone on a shelf, and about 10 people in 100 would buy it. Then they added one thing.)</i></li>
+        <li>How to make the email you've typed forty times the last one you ever write, so your evenings come back and you still keep the judgment. <i>(Hint: What wears you out isn't the thinking.)</i></li>
+        <li>The four questions that tell you whether an AI is safe to answer your phone, day or night, while your hands stay on the job. <i>(Hint: You already ask them of every new hire on day one.)</i></li>
+        <li>The one question that shows you what your customers will likely expect from you two years from now, so you can give it to them before your competitor does. <i>(Hint: Most of your competitors are still asleep. Doubling is sneaky.)</i></li>
+        <li>How to tell AI about your business one time, so every email, review reply and estimate after that comes from a chat that already knows your shop. <i>(Hint: Most people stop one step short of this, which is why AI never feels like theirs.)</i></li>
+      </ul>
+      <p class="small">And it keeps going, every day after that.</p>
+    </details>
+  </div>
+
+  <h2 class="wallh">What Owners Are Saying</h2>
+  <video controls playsinline preload="none" poster="/assets/jamon/jamon-jack-poster-v3.jpg" style="width:100%;display:block;background:#111;margin:0 0 6px"><source src="/assets/jamon/jamon-jack-16x9.mp4" type="video/mp4"></video>
+  <p class="small" style="margin:0 0 18px">Jamon, a retired Indianapolis cop, and his son Chase run Gotta Call Jack.</p>
+  <blockquote class="tq">"We were roughly bringing in maybe $15,000 to $20,000 a month, and now our revenue is over $50,000 a month. Because of this, Chase was able to buy a new house."<span>Jamon Jack, Gotta Call Jack</span></blockquote>
+  <blockquote class="tq">"Dad, I'm just glad that we can actually have this business, and grow this business, and still have a life at the same time."<span>Chase, to his dad Jamon</span></blockquote>
+  <blockquote class="tq">"Unbelievable... this is definitely gonna make my life a whole lot easier."<span>Dr. Marcus McCray, Excell Sports Chiropractic, team chiropractor for the Indianapolis Colts</span></blockquote>
+  <blockquote class="tq">"Brother, I'm slow... I got all thumbs."<span>Ian Borgerhoff, photographer. His new site was live by 3:24 that afternoon.</span></blockquote>
+  <blockquote class="tq">"HOLY COW!!! I'm blown away Jimmy! ... what you put together TODAY is UNREAL!!"<span>Bruce Barker, piano teacher, after seeing the website Jimmy built for him</span></blockquote>
+  <p class="small" style="margin:18px 0 6px"><b>Before and after, built by Jimmy:</b></p>
+  <div class="ba"><img src="/assets/before-after/excell-before.jpg" alt="Excell before"><img src="/assets/before-after/excell-after.jpg" alt="Excell after"></div>
+  <div class="ba"><img src="/assets/before-after/bruce-before.jpg" alt="Bruce before"><img src="/assets/before-after/bruce-after.jpg" alt="Bruce after"></div>
+  <div class="ba"><img src="/assets/before-after/ian-before.jpg" alt="Ian before"><img src="/assets/before-after/ian-after.jpg" alt="Ian after"></div>
+  <p class="small" style="margin:0 0 24px">Left: before. Right: after.</p>
+
+  <button class="back" type="button" onclick="location.href=location.pathname">Start the mockup over</button>
+</section>
+
+</main>
+<script src="/assets/found.js"></script>
+<script>
+(function(){
+  var cur=1, data={};
+  if(window.Found){ data.real_source=Found.realKey; data.real_source_facts=Found.real; }
+  function show(n){
+    cur=n;
+    document.querySelectorAll('.step').forEach(function(s){s.classList.remove('show')});
+    document.getElementById('s'+n).classList.add('show');
+    var bars=document.querySelectorAll('#bar span');
+    bars.forEach(function(b,i){b.classList.toggle('on', i<Math.min(n,4))});
+    document.getElementById('stepno').textContent = n<5 ? 'Step '+n+' of 4' : (n===5 ? 'Booked. One more thing.' : 'Done');
+    window.scrollTo(0,0);
+  }
+  (function(){var F=window.Found,box=document.getElementById('foundpick');if(!F||!box)return;
+    box.innerHTML=F.list().map(function(k){var on=k===F.src;return '<button class="pick'+(on?' on':'')+'" type="button" data-k="'+k+'">'+(on?'&#10003; ':'')+F.label(k)+(on?'<span style="display:block;font-size:14px;margin-top:2px">That is you. Tap to continue.</span>':'')+'</button>'}).join('');})();
+  (function(){var m=location.search.match(/[?&]found=([a-z]+)/);if(!m||!window.Found)return;var l=Found.label(m[1]);if(!l)return;data.found=l;show(2);})();
+  document.querySelectorAll('[data-back]').forEach(function(b){b.addEventListener('click',function(){show(+b.dataset.back)})});
+
+  // step 1: tap to advance
+  document.querySelectorAll('#s1 .pick').forEach(function(p){p.addEventListener('click',function(){
+    document.querySelectorAll('#s1 .pick').forEach(function(x){x.classList.remove('on')});
+    p.classList.add('on'); data.found=(window.Found&&Found.label(p.dataset.k))||p.textContent; setTimeout(function(){show(2)},200);
+  })});
+
+  // step 2: mic + chips
+  var ta=document.getElementById('one'), mic=document.getElementById('mic'), lbl=document.getElementById('miclabel');
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition, rec=null, on=false, base='';
+  function stop(){ if(rec){try{rec.stop()}catch(e){}} on=false; mic.classList.remove('on'); lbl.textContent = ta.value.trim() ? 'Tap To Keep Talking' : 'Tap To Talk'; }
+  mic.addEventListener('click',function(){
+    if(!SR){ lbl.textContent='Use your keyboard mic below'; ta.focus(); return; }
+    if(on) return stop();
+    base = ta.value ? ta.value.trim()+' ' : '';
+    rec=new SR(); rec.continuous=true; rec.interimResults=true; rec.lang='en-US';
+    rec.onresult=function(e){var t='';for(var r=0;r<e.results.length;r++)t+=e.results[r][0].transcript;ta.value=base+t;};
+    rec.onerror=function(){stop()}; rec.onend=function(){if(on)stop()};
+    try{rec.start()}catch(e){return}
+    on=true; mic.classList.add('on'); lbl.textContent='Listening... Tap To Stop';
+  });
+  var cat='', more=false;
+  document.getElementById('more2').addEventListener('click',function(e){e.preventDefault();more=true;document.getElementById('morebox').style.display='block';});
+  document.querySelectorAll('#s2 .pick').forEach(function(p){p.addEventListener('click',function(){
+    document.querySelectorAll('#s2 .pick').forEach(function(x){x.classList.remove('on')});
+    p.classList.add('on'); cat=p.textContent; data.one=cat;
+    if(!more) setTimeout(function(){show(3)},200);
+  })});
+  document.getElementById('go2').addEventListener('click',function(){
+    stop(); if(!cat){document.getElementById('err2').style.display='block';return}
+    document.getElementById('err2').style.display='none';
+    data.one = ta.value.trim() ? cat+': '+ta.value.trim() : cat; show(3);
+  });
+
+  // step 3
+  document.getElementById('go3').addEventListener('click',function(){
+    var nm=document.getElementById('nm').value.trim(), ph=document.getElementById('ph').value.trim();
+    if(!nm||!ph){document.getElementById('err3').style.display='block';return}
+    document.getElementById('err3').style.display='none';
+    data.nm=nm; data.ph=ph; data.em=document.getElementById('em').value.trim(); show(4);
+  });
+
+  // step 4: next 3 weekdays, a few slots
+  var days=document.getElementById('days'), times=document.getElementById('times'), pickDay=null, pickTime=null;
+  var d=new Date(), added=0, names=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], mons=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  while(added<3){ d.setDate(d.getDate()+1); if(d.getDay()===0||d.getDay()===6) continue;
+    var b=document.createElement('button'); b.type='button'; b.className='slot';
+    b.innerHTML=names[d.getDay()]+'<small>'+mons[d.getMonth()]+' '+d.getDate()+'</small>';
+    b.dataset.label=names[d.getDay()]+', '+mons[d.getMonth()]+' '+d.getDate();
+    b.addEventListener('click',function(){days.querySelectorAll('.slot').forEach(function(x){x.classList.remove('on')});this.classList.add('on');pickDay=this.dataset.label;});
+    days.appendChild(b); added++; }
+  ['9:00 am','10:30 am','12:15 pm','2:00 pm','3:30 pm','5:00 pm'].forEach(function(t){
+    var b=document.createElement('button'); b.type='button'; b.className='slot'; b.textContent=t;
+    b.addEventListener('click',function(){times.querySelectorAll('.slot').forEach(function(x){x.classList.remove('on')});b.classList.add('on');pickTime=t;});
+    times.appendChild(b); });
+  document.getElementById('go4').addEventListener('click',function(){
+    if(!pickDay||!pickTime){document.getElementById('err4').style.display='block';return}
+    data.more=document.getElementById('more').value.trim();
+    data.when=pickDay+' at '+pickTime;
+    fill(); show(5);
+    try{window.R&&R.signup()}catch(e){}
+  });
+
+  // step 5: the surprise invite to the night; step 6: all set
+  function $(id){return document.getElementById(id)}
+  function first(){return (data.nm||'').trim().split(' ')[0]||''}
+  function fill(){
+    var f=first();
+    $('inm').textContent=f?', '+f:''; $('fnm').textContent=f?', '+f:'';
+    $('iwhen').textContent=data.when?('Your 15 minutes: '+data.when+'.'):'';
+    if(data.when)$('dwhen').textContent=data.when;
+    if(data.ph){$('dph').textContent=data.ph;$('fph').textContent=data.ph}
+    if(data.one)$('done1').textContent=data.one;
+  }
+  function email(){var has=!!(data.em&&data.em.indexOf('@')>0);$('emyes').hidden=!has;$('emno').hidden=has;if(has)$('emshow').textContent=data.em}
+  function finish(yes){
+    data.seat=yes?'yes':'no';
+    $('fht').textContent=yes?"You're In":"You're All Set";
+    $('seatbox').hidden=!yes; $('nomsg').hidden=yes;
+    fill(); email(); show(6);
+  }
+  document.querySelectorAll('#s5 .yes').forEach(function(b){b.addEventListener('click',function(){finish(true)})});
+  $('nobtn').addEventListener('click',function(){finish(false)});
+  $('emgo').addEventListener('click',function(){var v=$('em2').value.trim();if(v.indexOf('@')<1){$('em2').focus();return}data.em=v;email()});
+
+  // the two doodle spots: three versions each, one per visitor (add ?dn=a|b|c or ?df=a|b|c to look at one)
+  (function(){var q=new URLSearchParams(location.search);
+    [['dnight','d-night','dn'],['dfeel','d-feel','df']].forEach(function(x){var el=$(x[0]),want=q.get(x[2]);if(!el)return;
+      if(want&&el.querySelector('[data-v="'+want+'"]')){[].forEach.call(el.querySelectorAll('[data-v]'),function(k){k.hidden=k.getAttribute('data-v')!==want})}
+      else if(window.R){R.show(el,x[1])}});})();
+
+  // look at one step without walking the whole sign-up: ?show=invite, ?show=yes, ?show=no
+  (function(){var m=location.search.match(/[?&]show=(invite|yes|no)/);if(!m)return;
+    var d1=days.querySelector('.slot');data.when=(d1?d1.dataset.label:'your day')+' at 10:30 am';
+    fill(); if(m[1]==='invite')show(5);else finish(m[1]==='yes');})();
+})();
+</script>
+</body></html>

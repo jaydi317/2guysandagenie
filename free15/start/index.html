@@ -64,6 +64,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 .tiles .k{display:block;font-size:11px;font-weight:bold;letter-spacing:.4px;text-transform:uppercase;color:var(--copper);margin:0 0 4px}
 .tiles b{display:block;font-size:16px;line-height:1.25;margin:0 0 4px}.tiles .s{display:block;font-size:13px;color:var(--soft)}
 [hidden]{display:none!important}
+.qb{border-top:3px solid var(--ink);padding:16px 0 4px;margin:18px 0 0}.qb h3{margin:0 0 8px;font-size:22px;line-height:1.25}.qn{font-size:13px;font-weight:bold;letter-spacing:.5px;text-transform:uppercase;color:var(--soft);margin:0 0 6px}
 .okline{background:#FFF3C4;border-left:4px solid var(--ink);padding:10px 14px;margin:0 0 22px;font-size:16px}
 .lead{font-size:21px;line-height:1.35;margin:0 0 16px}
 .ven{margin:0 0 18px}.ven img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:50% 35%;border:2px solid var(--ink);box-sizing:border-box}
@@ -254,6 +255,25 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     </details>
   </div>
 
+  <section id="prep">
+    <p class="kicker" style="margin-top:30px">Last Step · Optional</p>
+    <h2 style="margin-top:0">Help Us Get Ready For Your Call.</h2>
+    <p>Four quick questions, all right here. Tap a mic and talk, or type. Messy is fine. The more we know walking in, the more you get out of your 15 minutes.</p>
+    <div class="qb q" data-s="What you do over and over"><p class="qn">1 of 4</p><h3>What Do You Or Your Team Do Over And Over, Every Week?</h3><p class="small">The jobs that never end. Name as many as come to mind.</p></div>
+    <div class="qb q" data-s="Where things get stuck"><p class="qn">2 of 4</p><h3>Where Do Things Slow Down, Get Stuck, Or Fall Through The Cracks?</h3><p class="small">A call nobody returned. A quote that sat. Paperwork that piles up.</p></div>
+    <div class="qb q" data-s="Hours a week, and who"><p class="qn">3 of 4</p><h3>About How Many Hours A Week Does That Take, And Who Does It?</h3><p class="small">A rough guess is fine.</p></div>
+    <div class="qb q" data-s="What would change"><p class="qn">4 of 4</p><h3>If That One Thing Ran Itself, What Would Change For You?</h3><p class="small">For the business, or for you.</p></div>
+    <p class="err" id="perr">Answer at least one first. A rough answer is fine.</p>
+    <button class="go" id="pdone" type="button">I'm Done. Send It To Jimmy And Paul</button>
+    <div class="recap" id="psure" hidden>
+      <p><b>Are you sure? Is that everything you want us to know?</b></p>
+      <p class="small" id="pleft"></p>
+      <button class="go" id="pyes" type="button">Yes, Send It</button>
+      <button class="back" id="pno" type="button">Not yet. Let me add more.</button>
+    </div>
+  </section>
+  <div class="okline" id="pgot" hidden><b>&#10003; Got it.</b> Jimmy and Paul will read this before your call.</div>
+
   <h2 class="wallh">What Owners Are Saying</h2>
   <video controls playsinline preload="none" poster="/assets/jamon/jamon-jack-poster-v3.jpg" style="width:100%;display:block;background:#111;margin:0 0 6px"><source src="/assets/jamon/jamon-jack-16x9.mp4" type="video/mp4"></video>
   <p class="small" style="margin:0 0 18px">Jamon, a retired Indianapolis cop, and his son Chase run Gotta Call Jack.</p>
@@ -364,6 +384,39 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     if(data.ph){$('dph').textContent=data.ph;$('fph').textContent=data.ph}
     if(data.one)$('done1').textContent=data.one;
   }
+
+  // last step on the last page: four questions to get ready for the call
+  (function(){
+    var qs=[].slice.call(document.querySelectorAll('#prep .qb.q')), SR2=window.SpeechRecognition||window.webkitSpeechRecognition, r2=null, on2=false, mb=null, mt=null, b2='';
+    function stop2(){ if(r2){try{r2.stop()}catch(e){}} on2=false; if(mb){mb.classList.remove('on'); mb.querySelector('.l').textContent = mt.value.trim() ? 'Tap To Keep Talking' : 'Tap To Talk';} }
+    qs.forEach(function(sec){
+      var mic=document.createElement('button'); mic.className='mic'; mic.type='button'; mic.innerHTML='<span class="dot"></span><span class="l">Tap To Talk</span>';
+      var ta=document.createElement('textarea'); ta.placeholder='Or type it here...'; ta.style.minHeight='110px';
+      sec.appendChild(mic); sec.appendChild(ta); sec._ta=ta;
+      ta.addEventListener('input',function(){$('psure').hidden=true});
+      mic.addEventListener('click',function(){
+        if(!SR2){ mic.querySelector('.l').textContent='Use your keyboard mic below'; ta.focus(); return; }
+        if(on2){ var same=mb===mic; stop2(); if(same) return; }
+        mb=mic; mt=ta; b2 = ta.value ? ta.value.trim()+' ' : '';
+        r2=new SR2(); r2.continuous=true; r2.interimResults=true; r2.lang='en-US';
+        r2.onresult=function(e){var t='';for(var r=0;r<e.results.length;r++)t+=e.results[r][0].transcript;ta.value=b2+t;};
+        r2.onerror=function(){stop2()}; r2.onend=function(){if(on2)stop2()};
+        try{r2.start()}catch(e){return}
+        on2=true; mic.classList.add('on'); mic.querySelector('.l').textContent='Listening... Tap To Stop';
+      });
+    });
+    $('pdone').addEventListener('click',function(){
+      stop2(); var n=qs.filter(function(q){return q._ta.value.trim()}).length;
+      if(!n){$('perr').style.display='block';return} $('perr').style.display='none';
+      $('pleft').textContent = n<4 ? 'You answered '+n+' of the 4. That is fine.' : 'You answered all four.';
+      $('psure').hidden=false; $('psure').scrollIntoView({block:'center'});
+    });
+    $('pno').addEventListener('click',function(){$('psure').hidden=true; $('prep').scrollIntoView()});
+    $('pyes').addEventListener('click',function(){
+      data.prep=qs.map(function(q){return [q.dataset.s,q._ta.value.trim()]});
+      $('prep').hidden=true; $('pgot').hidden=false; $('pgot').scrollIntoView({block:'center'});
+    });
+  })();
   function email(){var has=!!(data.em&&data.em.indexOf('@')>0);$('emyes').hidden=!has;$('emno').hidden=has;if(has)$('emshow').textContent=data.em}
   function finish(yes){
     data.seat=yes?'yes':'no';
