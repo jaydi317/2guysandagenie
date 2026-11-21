@@ -30,6 +30,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 #hist{padding-left:20px;margin:4px 0 6px;font-size:15px}.nx{display:block;font-size:14px;color:#111}
 .due{display:block;font-size:14px;font-weight:bold}.due.late{color:#B00020}#score{font-size:14px;color:#555;margin:0 0 14px}#rules{font-size:14px;color:#555;border-top:2px solid #111;padding-top:10px;margin-top:24px}
 .crumb{font-size:14px;margin:0 0 6px}.bar{display:flex;flex-wrap:wrap;gap:6px 18px;margin:8px 0 6px;padding:10px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;font-size:16px}.bar a{font-weight:bold;white-space:nowrap}.prac{font-size:13px;color:#777;margin:0 0 4px}.prac a{color:#777}
+.add{margin:0 0 12px}.add summary{font-weight:bold;cursor:pointer;text-decoration:underline;font-size:16px}.add input{display:block;width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:9px;border:2px solid #111;margin:0 0 6px}
 .saved{font-size:13px;color:#555;min-height:18px}
 </style></head><body><main>
 
@@ -37,13 +38,26 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <p class="crumb"><a href="/admin/">&larr; Admin</a> &middot; <a href="/admin/market-domination/">The Plan</a></p>
 <h1>Leads</h1>
 <p class="sub">Start at Today. Tap a shop. Do the next step. Tap what you did.</p>
-<p class="bar"><a href="/admin/leads/explainer/">&#9654; Watch how it works</a><a href="/admin/leads/how-to/">How-to</a><a href="/admin/scripts/">What to say</a><a href="https://app.gohighlevel.com/" target="_blank" rel="noopener">GoHighLevel &#8599;</a></p>
+<p class="bar"><a href="/admin/leads/explainer/">&#9654; Watch how it works</a><a href="/admin/leads/how-to/">How-to</a><a href="/admin/scripts/">What to say</a><a href="/admin/leads/steps/">The steps</a><a href="https://app.gohighlevel.com/" target="_blank" rel="noopener">GoHighLevel &#8599;</a></p>
 <p class="prac">Practice mode: these ten shops are made up, and what you tap stays on this phone. <a href="/admin/leads/how-to/#notyet">More</a></p>
 <h2 style="font-size:24px;margin:16px 0 2px">Today</h2>
 <p class="sub" style="font-size:15px">Follow-ups that are due come first. Then three new shops to start.</p>
 <div id="today"></div>
 <p id="score"></p>
 <h2 style="font-size:22px;margin:18px 0 6px">Every Shop</h2>
+<details id="addbox" class="add"><summary>+ Add a shop</summary>
+<p class="sub" style="font-size:14px;margin:8px 0">For someone you met or heard about who isn't on the list. Only the name is needed. It saves on this phone.</p>
+<input id="a-n" placeholder="Shop name" autocomplete="off">
+<input id="a-k" placeholder="What they do (plumber, bakery...)" autocomplete="off">
+<input id="a-t" placeholder="Town" autocomplete="off">
+<input id="a-a" placeholder="Address" autocomplete="off">
+<input id="a-p" type="tel" placeholder="Phone" autocomplete="off">
+<input id="a-u" type="url" placeholder="Website" autocomplete="off">
+<input id="a-w" placeholder="Why they're worth going to" autocomplete="off">
+<select id="a-g"><option value="Worth a visit">Worth a visit</option><option value="A">A</option><option value="B">B</option></select>
+<button class="chip on" id="a-save" type="button" style="margin-left:8px">Save This Shop</button>
+<p class="saved" id="a-msg"></p>
+</details>
 <input id="q" type="search" placeholder="Search a name, town, street or trade" autocomplete="off">
 <div class="row" id="tiers">
 <button class="chip on" data-t="">All</button>
@@ -130,6 +144,7 @@ var L=[
 {n:'Placeholder Salon',k:'Salon',t:'Brownsburg',a:'9 Test Ct, Brownsburg, IN 46112',p:'317-555-0109',e:'',g:'Worth a visit',w:'Rated 4.8 from 73 reviews. Owner named in reviews.',f:'Not looked at closely yet.'},
 {n:'Demo Yoga',k:'Yoga studio',t:'Fishers',a:'230 Example Way, Fishers, IN 46037',p:'317-555-0110',e:'hi@demoyoga.example',g:'Worth a visit',w:'Rated 4.9 from 41 reviews. Owner named in reviews.',f:'Not looked at closely yet.'}
 ];
+try{JSON.parse(localStorage.getItem('2g-lead-demo:custom')||'[]').forEach(function(c){c.custom=1;L.push(c)})}catch(e){}
 function get(k,d){try{return localStorage.getItem('2g-lead-demo:'+k)||d}catch(e){return d}}
 function put(k,v){try{localStorage.setItem('2g-lead-demo:'+k,v)}catch(e){}}
 function $(i){return document.getElementById(i)}
@@ -188,7 +203,7 @@ function AUD(x){var kt=x.k.toLowerCase()+' '+x.t+' IN';return [
 '',
 'What this is for: I need one true thing the owner can see on their own phone that is costing them customers, so they say "show me" and book a free 15 minutes with us. Why it matters: an owner who sees it with their own eyes believes it. An owner who is only told does not. One wrong fact and I lose them.',
 '',
-'The business: '+x.n+' ('+x.k.toLowerCase()+') in '+x.t+', Indiana. Address: '+x.a+'. Phone: '+x.p+'. Website: '+(x.u||'none on file')+'.',
+'The business: '+x.n+' ('+x.k.toLowerCase()+') in '+x.t+', Indiana. Address: '+(x.a||'not on file')+'. Phone: '+(x.p||'not on file')+'. Website: '+(x.u||'none on file')+'.',
 (x.f?'An earlier note, not confirmed: "'+x.f+'" Check it today or drop it.':''),
 '',
 'Do the research in this order. Public pages only. For anything you use, keep the link and the date on it.',
@@ -224,9 +239,9 @@ function AUD(x){var kt=x.k.toLowerCase()+' '+x.t+' IN';return [
 ].join('\n')}
 function show(i){
   cur=i;var x=L[i];$('list').style.display='none';$('one').style.display='block';
-  $('n').textContent=x.n;$('meta').textContent=x.g+' · '+x.k+' · '+x.a;
-  $('call').textContent='Call '+x.p;$('call').href='tel:'+x.p.replace(/\D/g,'');
-  $('map').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x.a);
+  $('n').textContent=x.n;$('meta').textContent=x.g+' · '+x.k+' · '+(x.a||x.t)+(x.custom?' · added by hand':'');
+  $('call').style.display=x.p?'block':'none';$('call').textContent='Call '+(x.p||'');$('call').href='tel:'+(x.p||'').replace(/\D/g,'');
+  $('map').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x.a||(x.n+' '+x.t+' Indiana'));
   if(x.e){$('mail').style.display='block';$('mail').textContent='Email '+x.e;$('mail').href='mailto:'+x.e}else{$('mail').style.display='none'}
   var fe=get('e'+i,x.e||'');$('em').value=fe;$('find').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana contact email');if(fe){$('mail').style.display='block';$('mail').textContent='Email '+fe;$('mail').href='mailto:'+fe}
   var Q=encodeURIComponent(x.n+' '+x.t+' Indiana'),N=encodeURIComponent(x.n);$('l-web').href=x.u||('https://www.google.com/search?q='+Q);$('l-goo').href='https://www.google.com/maps/search/?api=1&query='+Q;$('l-fb').href='https://www.facebook.com/search/pages/?q='+encodeURIComponent(x.n+' '+x.t);$('l-yelp').href='https://www.yelp.com/search?find_desc='+N+'&find_loc='+encodeURIComponent(x.t+', IN');$('l-ig').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana instagram');
@@ -245,6 +260,9 @@ function show(i){
 $('note').oninput=function(){if(cur!==null){put('n'+cur,this.value);$('saved').textContent='Saved on this device.'}};
 $('em').onchange=function(){if(cur!==null){put('e'+cur,this.value.trim());show(cur)}};
 $('undo').onclick=function(){if(cur===null)return;var h=hist(cur),x=h.pop();if(x){put('h'+cur,JSON.stringify(h));if(x.p)put('s'+cur,x.p)}show(cur)};
+$('a-save').onclick=function(){var n=$('a-n').value.trim();if(!n){$('a-msg').textContent='Put in the shop name first.';return}
+  var c={n:n,k:$('a-k').value.trim()||'Business',t:$('a-t').value.trim()||'Town not set',a:$('a-a').value.trim(),p:$('a-p').value.trim(),e:'',g:$('a-g').value,w:$('a-w').value.trim()||'Added by hand.',f:'',u:$('a-u').value.trim()};
+  try{var cu=JSON.parse(localStorage.getItem('2g-lead-demo:custom')||'[]');cu.push(c);localStorage.setItem('2g-lead-demo:custom',JSON.stringify(cu));location.reload()}catch(e){$('a-msg').textContent='Could not save on this phone.'}};
 $('back').onclick=function(){$('one').style.display='none';$('list').style.display='block';draw()};
 $('q').oninput=draw;$('town').onchange=draw;$('stage').onchange=draw;
 [].forEach.call(document.querySelectorAll('#tiers .chip'),function(b){b.onclick=function(){tier=this.getAttribute('data-t');[].forEach.call(document.querySelectorAll('#tiers .chip'),function(o){o.className='chip'});this.className='chip on';draw()}});

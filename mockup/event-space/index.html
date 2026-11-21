@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<title>Mockup: The Night Sign-Up, If There's Space · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<link rel="stylesheet" href="/assets/simple.css">
+<style>
+.mock{background:#FFF3C4;font-size:14px;padding:8px 12px;margin:0 0 18px;border:1px solid #e6d58a}
+.step{display:none}.step.show{display:block}
+h1{margin-top:0}
+input{width:100%;box-sizing:border-box;font:inherit;font-size:18px;border:2px solid var(--ink);padding:12px;background:#fff;margin:0 0 12px}
+label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
+.go{display:block;width:100%;font:inherit;font-weight:bold;font-size:20px;padding:16px;background:var(--ink);color:#fff;border:0;cursor:pointer;margin:8px 0 10px}
+.no{background:none;border:0;font:inherit;font-size:15px;color:var(--soft);text-decoration:underline;cursor:pointer;padding:0}
+.when{font-weight:bold;margin:0 0 14px}
+</style>
+</head><body>
+<header class="site"><div class="hwrap">
+<a class="brand" href="/"><img src="/assets/2g-mark.svg" alt="">2 Guys and a Genie</a>
+</div></header>
+<main class="wrap" style="max-width:560px;margin:0 auto;padding:22px 16px 60px">
+<p class="mock"><b>Mockup.</b> Draft words. Nothing is sent or saved. The idea: no forced commitment up front, then the surprise that there's space.</p>
+
+<section class="step show" id="s1">
+<h1>Free AI For Business Night</h1>
+<p class="when">Thursday, December 10 &middot; 6:30 to 9pm &middot; Launch Fishers</p>
+<p>One night. Local business owners in one room.</p>
+<p>You'll see what AI can take off your plate, shown on real businesses like yours.</p>
+<p>Seats are limited to the room.</p>
+<button class="go" id="b1" type="button">Yes, I Want To Come If There's Space</button>
+</section>
+
+<section class="step" id="s2">
+<h1>Where Do We Send Word?</h1>
+<p>Tell us who you are and we'll check the room.</p>
+<label for="nm">Your first name</label><input id="nm" autocomplete="given-name">
+<label for="em">Your email</label><input id="em" type="email" autocomplete="email">
+<button class="go" id="b2" type="button">Check For Space</button>
+</section>
+
+<section class="step" id="s3">
+<h1>Good News<span id="hi"></span>: There's Space.</h1>
+<p>We checked the room, and there's a seat open.</p>
+<p>Claim your ticket now and it's yours.</p>
+<p><b>Do you want one?</b></p>
+<button class="go" id="b3" type="button">Yes, Claim My Ticket</button>
+<button class="no" id="b3n" type="button">Not this time</button>
+</section>
+
+<section class="step" id="s4">
+<h1>You're In.</h1>
+<p>Your seat is saved for Thursday, December 10, 6:30pm, at Launch Fishers.</p>
+<p>We'll email the details. Bring one job you'd love to never do again.</p>
+</section>
+
+<section class="step" id="s5">
+<h1>No Problem.</h1>
+<p>We'll let you know about the next night.</p>
+</section>
+</main>
+<script>
+function go(n){[1,2,3,4,5].forEach(function(i){document.getElementById('s'+i).className='step'+(i===n?' show':'')});window.scrollTo(0,0)}
+document.getElementById('b1').onclick=function(){go(2)};
+document.getElementById('b2').onclick=function(){var n=document.getElementById('nm').value.trim();document.getElementById('hi').textContent=n?', '+n:'';go(3)};
+document.getElementById('b3').onclick=function(){go(4)};
+document.getElementById('b3n').onclick=function(){go(5)};
+</script>
+</body></html>
