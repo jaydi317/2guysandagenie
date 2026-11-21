@@ -373,10 +373,27 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     times.appendChild(b); });
   document.getElementById('go4').addEventListener('click',function(){
     if(!pickDay||!pickTime){document.getElementById('err4').style.display='block';return}
-    data.when=pickDay+' at '+pickTime;
+    data.when=pickDay+' at '+pickTime; booked=true; setTimeout(send,15*60*1000);
     fill(); show(5);
     try{window.R&&R.signup()}catch(e){}
   });
+
+
+  // send the sign-up to GoHighLevel once: when they reach the end, or when they leave after booking
+  var HOOK='https://services.leadconnectorhq.com/hooks/JlyvutcExMEgYfPX2TuI/webhook-trigger/990910a0-b245-4a52-bec8-bd1e22a5e665';
+  var booked=false, done=false, sent=false, sentEm='', preview=/[?&]show=/.test(location.search);
+  function send(){
+    if(sent||!booked||preview) return; sent=true; sentEm=data.em||'';
+    var parts=(data.nm||'').trim().split(/\s+/), rem=document.getElementById('remok').checked;
+    var body={first_name:parts[0]||'', last_name:parts.slice(1).join(' '), full_name:data.nm||'', email:data.em||'', phone:data.ph||'',
+      call_time:data.when||'', the_job:data.one||'', how_found:data.found||'', event_seat:data.seat==='yes'?'Yes':(data.seat==='no'?'No':''),
+      prep_answers:(data.prep||[]).filter(function(x){return x[1]}).map(function(x){return x[0]+': '+x[1]}).join('\n'),
+      text_reminder_ok:rem?'Yes':'No', text_new_ones_ok:document.getElementById('txtok').checked?'Yes':'No',
+      source:location.hostname+location.pathname};
+    try{fetch(HOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),keepalive:true})}catch(e){}
+  }
+  window.addEventListener('pagehide',send);
+  document.addEventListener('visibilitychange',function(){if(done&&document.visibilityState==='hidden')send()});
 
   // step 5: the surprise invite to the night; step 6: all set
   function $(id){return document.getElementById(id)}
@@ -417,11 +434,11 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
       $('pleft').textContent = n<4 ? 'You answered '+n+' of the 4. That is fine.' : 'You answered all four.';
       $('psure').hidden=false; $('psure').scrollIntoView({block:'center'});
     });
-    $('pskip').addEventListener('click',function(){stop2(); show(6)});
+    $('pskip').addEventListener('click',function(){stop2(); show(6); done=true});
     $('pno').addEventListener('click',function(){$('psure').hidden=true; $('prep').scrollIntoView()});
     $('pyes').addEventListener('click',function(){
       data.prep=qs.map(function(q){return [q.dataset.s,q._ta.value.trim()]});
-      $('pgot').hidden=false; show(6);
+      $('pgot').hidden=false; show(6); done=true;
     });
   })();
   function email(){var has=!!(data.em&&data.em.indexOf('@')>0);$('emyes').hidden=!has;$('emno').hidden=has;if(has)$('emshow').textContent=data.em}
@@ -434,7 +451,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
   }
   document.querySelectorAll('#s5 .yes').forEach(function(b){b.addEventListener('click',function(){finish(true)})});
   $('nobtn').addEventListener('click',function(){finish(false)});
-  $('emgo').addEventListener('click',function(){var v=$('em2').value.trim();if(v.indexOf('@')<1){$('em2').focus();return}data.em=v;email()});
+  $('emgo').addEventListener('click',function(){var v=$('em2').value.trim();if(v.indexOf('@')<1){$('em2').focus();return}data.em=v;email();if(sent&&!sentEm){sent=false;send()}});
 
   // the two doodle spots: three versions each, one per visitor (add ?dn=a|b|c or ?df=a|b|c to look at one)
   (function(){var q=new URLSearchParams(location.search);
