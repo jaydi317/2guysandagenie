@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="light">
+<title>The Market Domination Plan · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<link rel="stylesheet" href="/assets/simple.css">
+<style>
+main img.d{width:100%;height:auto;border:1px solid #e3e3e3;border-radius:6px;margin:10px 0 8px}
+.box{border:2px solid #111;padding:14px 16px;margin:18px 0}
+.note{font-size:15px;color:#555}
+.two{border:3px solid #111;padding:4px 16px;margin:18px 0 8px}
+.two a.go{display:block;padding:14px 0;text-decoration:none;color:#111;border-bottom:1px solid #ddd}
+.two a.go:last-of-type{border-bottom:0}
+.two a.go b{display:block;font-size:21px;line-height:1.25}
+.two a.go span{display:block;font-size:16px;color:#444;margin-top:4px}
+.two a.go i{font-style:normal;font-size:13px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#555}
+.fit{background:#FFF3C4;border-left:4px solid #111;padding:12px 16px;margin:0 0 6px;font-size:17px}
+.fit p{margin:0 0 6px}.fit p:last-child{margin:0}
+details.part{border:0;border-top:4px solid #111;padding:0;margin:44px 0 0}
+details.part>summary{list-style:none;padding:18px 0 12px;font-size:inherit}
+details.part>summary::-webkit-details-marker{display:none}
+details.part>summary .pk{display:block;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#555}
+details.part>summary .pt{display:block;font-size:30px;font-weight:900;line-height:1.15;margin:2px 0 6px}
+details.part>summary .pt::before{content:"+ ";font-weight:normal}
+details.part[open]>summary .pt::before{content:"\2212  "}
+details.part>summary .pd{display:block;font-size:17px;font-weight:normal;color:#333}
+.top{font-size:15px;margin:26px 0 0}
+#map{--m-fg:#111;--m-bg:#fff;--m-muted:#555;--m-line:#111;--m-soft:#f4f2ee;--m-copper:#111;--m-wait:#b0602a;--m-build:#2a5db0;--m-done:#2a7a3a;font-size:16px;line-height:1.45;margin-top:18px}
+#map p{margin:0 0 10px}
+#map .kicker{font-size:11px;font-weight:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--m-muted);margin:0 0 4px}
+#map .sub{margin:0 0 14px;color:var(--m-muted);font-size:15px}
+#map .legend{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px;font-size:12px}
+#map .chip{display:inline-block;font-size:11px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;border:1.5px solid currentColor;border-radius:3px;padding:1px 6px;white-space:nowrap}
+#map .wait{color:var(--m-wait)}#map .build{color:var(--m-build)}#map .done{color:var(--m-done)}#map .watch{color:var(--m-muted)}
+#map .prog li.done{color:#111}
+#map .stage{border:2px solid var(--m-line);padding:14px 14px 12px;margin:0;background:var(--m-bg)}
+#map .stage h2{font-size:18px;line-height:1.3;margin:0 0 2px}
+#map .stage .why{font-size:13px;color:var(--m-muted);margin:0 0 10px}
+#map .num{display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;border-radius:50%;background:var(--m-fg);color:var(--m-bg);font-size:13px;font-weight:bold;margin-right:6px}
+#map .card{display:block;border:1px solid var(--m-line);padding:9px 10px;margin:8px 0;background:var(--m-soft)}
+#map .card b{display:block;font-size:15px;margin-bottom:2px}
+#map .card p{margin:4px 0 0;font-size:13.5px}
+#map .card .chip{float:right;margin-left:8px}
+#map details{margin-top:6px;font-size:13px;border:0;padding:0}
+#map summary{cursor:pointer;color:var(--m-copper);font-weight:bold;font-size:13px}
+#map details ul,#map details ol{margin:6px 0 0;padding-left:18px}
+#map details li{margin:3px 0}
+#map details p{margin:6px 0 0;font-size:13px}
+#map .arrow{display:flex;flex-direction:column;align-items:center;margin:2px 0;color:var(--m-fg)}
+#map .arrow svg{display:block}
+#map .arrow span{font-size:12px;color:var(--m-muted);margin-top:-2px;text-align:center;max-width:300px}
+#map .feeders{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#map .feeders .card{margin:0}
+@media (max-width:420px){#map .feeders{grid-template-columns:1fr}}
+#map .pool{border:3px solid var(--m-copper)}
+#map .pool h2{color:var(--m-copper)}
+#map .nets{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px;text-align:center}
+#map .net{border:1px solid var(--m-line);padding:6px 2px;font-size:12px;background:var(--m-soft)}
+#map .net strong{display:block;font-size:17px}
+#map .loop{border:2px dashed var(--m-line)}
+#map .note{font-size:12.5px;color:var(--m-muted);margin:8px 0 0}
+#map .rule{border:0;border-top:1px solid var(--m-line);margin:26px 0 14px}
+#map ol.now{padding-left:20px;margin:6px 0}#map ol.now li{margin:5px 0;font-size:14.5px}
+</style>
+<script>try{if(localStorage.getItem('2g-admin')!=='1'){location.replace('/admin/')}}catch(e){}</script>
+</head><body>
+<header class="site"><div class="hwrap">
+<a class="brand" href="/"><img src="/assets/2g-mark.svg" alt="">2 Guys and a Genie</a>
+<nav class="top"><a href="/admin/">Admin</a></nav>
+</div></header>
+<main id="main">
+
+<p class="kicker">Team Reference · Two Pages Made One On Nov 21, 2026</p>
+<h1>The Market Domination Plan</h1>
+<p>This is the plan. One page, two parts, so the three of us are always looking at the same thing.</p>
+
+<div class="two">
+<a class="go" href="#now"><i>Part 1 · Updated Nov 20</i><b>What We're Doing Right Now</b><span>The road one owner walks with us, from the first hello to a monthly client, and what's built so far. This was the page "Where We're Taking 2 Guys."</span></a>
+<a class="go" href="#map"><i>Part 2 · Updated Nov 16</i><b>The Whole Map</b><span>The six stages that make us the name every local owner knows, and where each stage stands. This was the page "Market Domination."</span></a>
+</div>
+<div class="fit">
+<p><b>How the two fit:</b> Part 2 is how we get in front of every local owner. Part 1 is the road one owner walks with us once we are.</p>
+<p>Where the two disagree, Part 1 is newer.</p>
+</div>
+
+<details class="part" id="now" open>
+<summary><span class="pk">Part 1 · Started Nov 18 · Updated Nov 20</span><span class="pt">What We're Doing Right Now</span><span class="pd">Where we're taking 2 Guys: the first ask, the road after it, and what's built so far.</span></summary>
+
+
+
+<p>This part is the picture behind everything we're working on right now.</p>
+<p>Read it once and you'll know what's changing, why, and what comes next.</p>
+
+<div class="box">
+<p><strong>The change, in one line:</strong></p>
+<p>Our first ask stops being "come to our night."</p>
+<p>It becomes "let us fix one thing in your business."</p>
+<p style="margin:0">The night stays. It just becomes a bonus.</p>
+</div>
+<p class="note"><strong>New on Nov 19:</strong> <a href="#built">what's built so far</a>, and <a href="#offer">what we found about the offer</a>.</p>
+<p><b>New on Nov 20:</b> <a href="#video">the second call becomes a video made just for them</a>.</p>
+
+<section class="s">
+<p class="kicker">How It Works Today</p>
+<h2>Everything Goes Through One Room.</h2>
+<img width="1400" height="778" class="d" src="img/plan-now.png" alt="Today: ad or walk-in, save a seat, the night, the offer in the room, then book Jimmy, then free work.">
+<p>Every road leads to the free night at Launch Fishers.</p>
+<p>No night, no money.</p>
+<p>And because people have to drive there, we can only reach people near Fishers.</p>
+<p>After the night, we ask people to book Jimmy without giving them a clear reason why. Then the free help piles up with no limit.</p>
+</section>
+
+<section class="s">
+<p class="kicker">How It Will Work</p>
+<h2>A Win At Every Step.</h2>
+<img width="1400" height="1004" class="d" src="img/plan-later.png" alt="Later: fix one thing, call 1, we dig, call 2 with the fix, the wall, the assessment, four boxes, the first one or two fixes, then the dashboard. Daily emails and the bonus night are side doors.">
+<ul>
+<li>We offer to fix one thing. In person, or online, where they book the 15 minutes themselves.</li>
+<li>Fifteen minutes on the phone. We mostly listen.</li>
+<li>Between the calls, Jimmy digs and finds one tool that fixes it.</li>
+<li>Second call: we hand them the fix, free. (Changed Nov 20: this becomes a video we send, not a call. <a href="#video">See below.</a>)</li>
+<li>Then one honest question: "Do you know what to do, or do you want help?"</li>
+<li>Help starts with a paid meeting. We come back with everything we found that would work, and the few we'd use. (Changed Nov 19. It was an assessment. The drawing above still says so. Changed back Nov 20: it's the assessment again, price on test. See "The Second Call Becomes A Video" below.)</li>
+<li>We sort everything we found into four boxes: big wins that are easy, big wins that take work, small easy ones, and what to skip. They pick what we do first.</li>
+<li>We start on one or two fixes. An idea on the table: if we don't save them at least five hours a week, we didn't deliver.</li>
+<li>Then the monthly: we keep working in their business every month. It runs on a dashboard of their own numbers, so everyone can see it working and what comes next.</li>
+</ul>
+<p>The emails and the night are side doors. They feed the path. They aren't steps in it.</p>
+<p>The night becomes a bonus for anyone in the path: meet other owners, see what's working, get help on your own business, and there's food.</p>
+</section>
+
+<section class="s">
+<p class="kicker">Why It Matters · 1</p>
+<h2>The Money No Longer Waits For A Room.</h2>
+<img width="1400" height="545" class="d" src="img/rough-1.png" alt="Three ways to see it: a timeline, a map, and a person at a locked door versus a person on a phone.">
+<p>Today the first dollar comes after the night.</p>
+<p>In the new shape it can come after two short calls on a phone.</p>
+</section>
+
+<section class="s">
+<p class="kicker">Why It Matters · 2</p>
+<h2>No Room Needed, So The Market Goes Everywhere.</h2>
+<img width="1400" height="545" class="d" src="img/rough-5.png" alt="Rings spreading out from Fishers; one person fishing a pond versus many fishing open water; two darts at a target versus many.">
+<p>Once the business doesn't depend on people driving to Fishers, we can advertise to small businesses anywhere in the U.S.</p>
+<p>Honestly, anywhere they speak English.</p>
+<p>It all happens on calls and screens, so it works for a business anywhere.</p>
+<p>That's a far bigger market. And a free fix over the phone is an easier yes than giving up an evening, so more of the people who see an ad should become leads.</p>
+<p><strong>What we don't know yet:</strong> whether those leads are worth as much as local ones. They might be less qualified.</p>
+<p>We don't have the answer from the room either. This gets us more shots at the answer, faster.</p>
+</section>
+
+<section class="s">
+<p class="kicker">Why It Matters · 3</p>
+<h2>The Wall: Free To See, Paid To Do.</h2>
+<img width="1400" height="545" class="d" src="img/rough-2.png" alt="A brick wall between free and paid; a fork in the road; showing versus doing.">
+<p>We'll show anyone what's possible, free.</p>
+<p>If they want our hands on it, that costs money.</p>
+<p>And it's always clear which side of the wall they're on.</p>
+</section>
+
+<section class="s">
+<p class="kicker">Why It Matters · 4</p>
+<h2>A Win At Each Step. They Pick When To Pay.</h2>
+<img width="1400" height="545" class="d" src="img/rough-3.png" alt="The path as a snake of steps; stairs from free to paid; a chart where what we give stays ahead of what we ask.">
+<p>Every step hands the owner something real before we ask for the next thing.</p>
+<p>They move from free to paid when they're ready.</p>
+</section>
+
+<section class="s">
+<p class="kicker">Why It Matters · 5</p>
+<h2>Off The Shelf Doesn't Stick. Custom Does.</h2>
+<img width="1400" height="545" class="d" src="img/rough-4.png" alt="One size fits nobody versus a fit made for you; a puzzle piece that fits; a chart where off-the-shelf fades and custom keeps climbing.">
+<p>When owners grab an AI tool off the shelf, or try it with no structure, it doesn't stick.</p>
+<p>We learn how their business actually works first. Then we build for that business, and only that business.</p>
+<p>That's why every client on our services page looks so different.</p>
+</section>
+
+<section class="s" id="built">
+<p class="kicker">Built So Far · Nov 18 To 21 · Updated Saturday, Nov 21</p>
+<h2>What's Done, In The Order It Happened.</h2>
+<ul>
+<li><strong>This plan.</strong> The picture of the whole change, with the doodles. (Part 1 here; it was its own page until Nov 21.)</li>
+<li><strong>The menu.</strong> Every way we work with a business, in the order most owners take it, with a typical price range on each. Linked from the bottom of every page. <a href="/what-we-do/menu/">See it here.</a></li>
+<li><strong>What to say.</strong> A short walk-in, a full walk-in, a phone call, a voicemail, what to ask on the 15 minutes, and one answer for "what does it cost?" <a href="/admin/scripts/">See it here.</a></li>
+<li><strong>Call first, then the message.</strong> Jimmy calls. If voicemail picks up, he leaves his message. If it rings out and it's a cell phone, he sends it as a Slydial (Slydial only works on cell phones). Step 1 for every shop, with a button in Leads. Changed Nov 21. <a href="/admin/scripts/#slydial">See it here.</a></li>
+<li><strong>A sign-up in small steps.</strong> One small yes at a time: tap the job you want gone, name and number, pick a time. Then two free bonuses: Jimmy's daily AI email, and a seat at the Dec 10 night. A demo. Nothing gets sent or booked. <a href="/mockup/maestros-v4/?from=home">See it here.</a></li>
+<li><strong>A demo home page that leads to the call.</strong> "Tell Us The One Job You Hate Doing. We'll Show You How To Eliminate It." Maestro's is the example. The owner is the boss at every step. The live home page hasn't changed. <a href="/mockup/home-v4/">See it here.</a></li>
+<li><strong>The offer after the free fix.</strong> Worked on late Wednesday night. Not finished. <a href="#offer">What we found is below.</a></li>
+<li><strong>The demo pages, rewritten around what we found.</strong> Thursday morning. The home page and the sign-up now say what we actually do for a busy owner: we know the tools, we tell him which one fits his business, and if the right one isn't out there, we build it. The steps are now "You Tap. You Talk. You Pick. You Keep It." Two weak statistics came out. <a href="/mockup/home-v4/">See the home page here.</a> <a href="/mockup/maestros-v4/">See the sign-up here.</a></li>
+<li><strong>Bruce's case study videos.</strong> Jimmy sent two videos of Bruce the piano guy, plus his doodle method. All three are in the Jimmy Library. The long one is 18 minutes and still needs an edit. <a href="/library/">See them here.</a></li>
+<li><strong>The meeting page.</strong> Every item now opens and closes on its own. Jimmy's and Paul's items come in through agent mail and go on the same page. <a href="/zoom/">See every meeting page here.</a></li>
+<li><strong>Added Nov 20 to 21: the ad page.</strong> "Tell Us The One Job You Hate Doing. We'll Show You How To Eliminate It." Jamon's video, what you get, why it's free, with our own doodles rotating. Its buttons go to the sign-up, which is still a mockup. <a href="/free15/">See it here.</a></li>
+<li><strong>The sign-up, with the surprise invite.</strong> Four small taps, then a free seat at the Dec 10 night, yes or no, then a last page with the daily AI email and what owners say. Nothing is sent or booked yet. <a href="/free15/start/?show=invite">See the invite here.</a></li>
+<li><strong>The Leads Portal, usable through the sale.</strong> Today's list, the stage each shop is at, the last step and the next one, the audit button, add a shop, a 3-minute walkthrough and a how-to. Ten made-up shops until it's connected to GoHighLevel. <a href="/admin/leads/">See it here.</a></li>
+<li><strong>What changed on the site.</strong> Every change, by day, for Jimmy's Claude to check. <a href="/admin/changes/">See it here.</a></li>
+<li><strong>Admin, three doors.</strong> Meetings, the Leads Portal and this plan on top, everything else folded with a search box. This plan became one page with two parts. <a href="/admin/">See it here.</a></li>
+</ul>
+<p><strong>Still open on the demo page, to decide together:</strong></p>
+<ul>
+<li>Who sets the tool up, us or the owner? The page says the job is "gone," and it says "we'll show you how."</li>
+<li>Can we stand behind "Knowing them is our job"?</li>
+<li><b>Answered Nov 20:</b> "If we have to build it, this one's on us" came off the pages. The offer now is an assessment, plus the thing we already built that they use right away, then they choose which way to go.</li>
+<li>Better statistics. Being looked for now.</li>
+<li>One real moment from Paul, in his own words, for the box about him.</li>
+</ul>
+</section>
+
+<section class="s" id="offer">
+<p class="kicker">What We Found · Nov 19</p>
+<h2>Don't Hand Him A Pile. Show Him 15 And Point To 3.</h2>
+<img width="3200" height="1800" class="d" src="img/pick.png" alt="Left: a tired owner next to a tall pile of boxes. Right: we point to 3 red cards out of 15, and the owner is happy.">
+<p>Daegan spent Wednesday studying how other people sell AI help to small businesses.</p>
+<p>The common one is a report: about $999, delivered in 48 hours, with "5 hours a week back or a refund."</p>
+<p>Then he ran his own irresistible offer process on ours, the direct response way: stack up everything they could want.</p>
+<p>It didn't fit the person we're selling to.</p>
+<div class="box"><p><b>The Offer That Works On A Tired Owner</b></p><p>A direct response offer is built for someone who showed up hungry. He's in the room, he's leaning in, and a stack of everything he could want makes him say yes.</p><p>A local owner at the end of his day is not that person. He's tired and a little fuzzy. He's asking one small question: will this help my business? Pile a huge promise on him and he doesn't get excited. He gets tired, and he expects to watch you fail to deliver it.</p><p>Nobody goes looking for the guy who says "we could do that for you." What everybody hopes to find is the person whose answer goes past what they knew to ask.</p><p>So he asks for one thing. You show him everything that would work. You tell him which few you'd use. Then you say what a friend would say: I could do better than all of these.</p><p>His reaction is the whole sale: "That's better than I could have asked you for."</p><p>In the regular human world, that is the irresistible offer.</p></div>
+<p><strong>The three things we are to him:</strong></p>
+<ul>
+<li><strong>Guide.</strong> Here is everything that works for what you're trying to do.</li>
+<li><strong>Expert.</strong> Here are the few I think are best, and why.</li>
+<li><strong>Friend.</strong> I could do better than all of these. That line is what leads from tools that already exist to us building something for him.</li>
+</ul>
+<p><strong>The same shape at every step. The owner picks every time:</strong></p>
+<ul>
+<li><strong>Free.</strong> He picks the job he hates. We come back and show him how to eliminate it.</li>
+<li><strong>Paid.</strong> We show him everything we found, and the few we'd use. He picks.</li>
+<li><strong>Monthly.</strong> He picks the next one.</li>
+</ul>
+<p><strong>Settled:</strong> the paid step is a meeting, not an assessment. <i>(Changed Nov 20: it's the assessment again, price on test. See the next section.)</i></p>
+<p><strong>Not settled:</strong> the price of that meeting, and what the monthly looks like.</p>
+</section>
+
+<section class="s" id="video">
+<p class="kicker">What We Found · Nov 20</p>
+<h2>The Second Call Becomes A Video Made Just For Them.</h2>
+<img width="2800" height="2000" class="d" src="img/video-path.png" alt="The path now: fix one thing, call 1, we dig and build, then a video by email instead of call 2, the choice, the assessment, what we built is theirs right away, then the whole business.">
+<p class="note">Status: this is the direction Daegan set on Nov 20. The items under "Still open" at the bottom are not decided, so nothing here is ready to build yet.</p>
+<p>Daegan watched the video Jimmy's Claude made for Ian, start to finish. (Ian sells sponsorships for the Indy Fuel. Jimmy built him a tool that puts new sponsors to contact on his phone every morning.)</p>
+<p>It answered a question we've had open: how do we put the paid step, the assessment, in front of someone without us having to sell it?</p>
+<p>Step 4 in "How It Will Work" above says the second call is where we hand them the fix.</p>
+<p><b>New: there is no second call.</b> After the 15 minutes we do the research, build one custom piece for the job they named, and send what we found.</p>
+<p>It's an email and a video, made only for them.</p>
+<p>Nobody has to be on the phone. We don't have to do the selling. The video does it.</p>
+<p>And our home page and ads can say so: "15 minutes. Then we send you what we found." With a video like Ian's as the example of what to expect.</p>
+<p>That's less pressure for the owner, and something to look forward to.</p>
+<div class="box"><p><b>The Video, Beat By Beat</b></p>
+<img width="2800" height="1600" class="d" src="img/video-beats.png" alt="The video in three parts: what you asked, what we built, what's next.">
+<ol>
+<li><b>"Here's what you asked us for."</b> The one job they want gone, in their own words.</li>
+<li><b>"Here's what it took."</b> Everything we had to do, in broad strokes. This is where the value builds.</li>
+<li><b>"Here's what that would cost with people."</b> The real hours a human team would need to do the same work.</li>
+<li><b>"Here's why we could do it."</b> People who are very good at marketing and AI, and the system we've built.</li>
+<li><b>"Here are the tools out there."</b> The one we'd use in their case and why, and their first step. That's what we promised on the 15 minutes, and it's theirs free.</li>
+<li><b>"Here's what we built for you."</b> The custom piece, shown working in the video, and how they'd use it each morning.</li>
+<li><b>"You can go either way."</b> The off-the-shelf tool is right there, go use it. Or we really get to work on your business.</li>
+<li><b>"The custom piece is yours right away."</b> It's the first thing they get, as soon as the assessment is scheduled.</li>
+<li><b>"Here's the assessment."</b> What happens in it, what happens after, the price and the value.</li>
+<li><b>"The guarantee is already met."</b> The custom piece buys back at least five hours a week, every week. They've already watched it work. (This is the five-hours idea from "How It Will Work" above.)</li>
+<li><b>"This is just the beginning."</b> That was one 15-minute call. In the assessment we do this for the whole business.</li>
+</ol>
+<p class="note">Beats 1, 2 and 6 are what Ian's video already does well. Everything else, the tools and the whole close, is what Daegan added after watching it.</p>
+<p class="note">Worth keeping from Ian's video: it opens on his own line ("If I see a deer, I can shoot it"), it shows the exact steps for tomorrow morning, and it says what the tool will never do.</p></div>
+<p><b>Why this is the offer.</b></p>
+<img width="2800" height="1120" class="d" src="img/video-win.png" alt="Three ways to see it: the win lands before the yes on a timeline; hours back stacking up every week; one person handing another a gift.">
+<p>We give them exactly what they asked for.</p>
+<p>Then we show them something better than the tool: a custom piece we already built.</p>
+<p>They've watched it work before we ask for anything.</p>
+<p>And it's in their hands the moment the assessment is scheduled.</p>
+<p>Custom. Specific. And we did what we said we'd do.</p>
+<p>Daegan's read: this is the irresistible offer we were looking for.</p>
+<p><b>The price: we test it from the start.</b></p>
+<p>Corey Ganim charges $1,000 for his assessment. There may be a reason for that number when it comes to getting a yes.</p>
+<p>Daegan's read: with a custom video in front of it, ours can be at least $2,000.</p>
+<p>Payments are fine. The figures he's playing with, none settled: one payment of $2,000. Two payments of $1,000, or $1,050. Three payments of $700, or $750.</p>
+<p>So we go out of the gate with the test running, client by client, and see what happens. It doesn't have to be one standing price.</p>
+<p><b>Still open, to decide together:</b></p>
+<ul>
+<li>Ian's video had seven weeks of work behind it. After one 15-minute call, what stands in for "here's what it took"?</li>
+<li>How long the video should be. Ian's runs ten and a half minutes.</li>
+<li>Does the custom piece hand over when they book the assessment, or when they pay?</li>
+<li>The five hours: how we work out the number for each owner, and what we say when a piece saves less.</li>
+<li>How the owner gets from the email to booked with no call: the link, the booking page, and who answers their questions.</li>
+<li>The name and price of the paid step. On Nov 19 this plan called it a paid meeting. On Nov 20 Daegan called it the assessment, with the price on test (see just above). The Nov 19 lines above now carry a note saying so.</li>
+<li>Who makes each video, and how fast. Jimmy's Claude and Daegan's Claude are each adapting what was built for Ian so Jimmy and Paul can use it on the leads in our database. The two versions still need to be lined up.</li>
+<li>Ian's video is still marked for Jimmy to review first. It goes on our public pages after Jimmy clears it and Ian says yes.</li>
+</ul>
+</section>
+
+<section class="s">
+<p class="kicker">The Work, In Order</p>
+<h2>What We're Building Next.</h2>
+<img width="2800" height="2080" class="d" src="img/plan-work.png" alt="The work in order: catch the guys up, flow map, walk-in script, website (the menu is live, the home page is next), post-call emails, dashboard. Below: four answers only Daegan can give.">
+<ul>
+<li><strong>Catch the guys up.</strong> This plan. Done.</li>
+<li><strong>Firm up the flow.</strong> The drawings above, made final.</li>
+<li><strong>The walk-in script.</strong> A softer first hello, plus a one-page card of what to ask on the 15-minute call. Paul does the walk-ins, so he reads it first. Written Nov 18, with the phone, voicemail and Slydial scripts. <a href="/admin/scripts/">See it here.</a></li>
+<li><strong>The website.</strong> Starting with a menu of what we offer and how fees are worked out. The menu is live. A demo home page and sign-up are built. The live home page hasn't changed.</li>
+<li><strong>Emails after the call.</strong> A new series for people who've done the 15 minutes. Not built yet.</li>
+<li><strong>The dashboard.</strong> One real example first, likely for Jamon, our handyman client.</li>
+</ul>
+<p class="note">Still open, Daegan's call: the paid step's price (it's the assessment again since Nov 20, with the price on test), what the monthly looks like, the five-hours-a-week promise, prices on the site, and whether the script names Carmel or Fishers.</p>
+</section>
+
+
+<p class="top"><a href="#main">Back to the top</a> · <a href="#map">Go to Part 2: The Whole Map</a></p>
+</details>
+
+<details class="part" id="map">
+<summary><span class="pk">Part 2 · Started Nov 8 · Updated Nov 16</span><span class="pt">The Whole Map</span><span class="pd">How every piece feeds the next, from finding a business to being everywhere it looks.</span></summary>
+
+  
+  <style>.prog{display:flex;gap:0;margin:18px 0 26px;padding:0;list-style:none}.prog li{flex:1;text-align:center;font-size:12px;line-height:1.25;color:#999;position:relative}.prog li:before{content:"";position:absolute;top:15px;left:-50%;width:100%;height:2px;background:#ddd}.prog li:first-child:before{display:none}.prog li.done:before,.prog li.next:before{background:#111}.prog i{position:relative;z-index:1;display:block;width:30px;height:30px;line-height:28px;margin:0 auto 6px;border-radius:50%;border:2px solid #ddd;background:#fff;font-style:normal;font-weight:bold;font-size:14px;box-sizing:border-box}.prog li.done{color:#111}.prog li.done i{background:#111;border-color:#111;color:#fff}.prog li.next{color:#111;font-weight:bold}.prog li.next i{border-color:#111;color:#111}.prog small{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:normal;color:#777;margin-top:2px}</style>
+  <ol class="prog" aria-label="How far in we are">
+    <li class="done"><i>&#10003;</i>Tracks<small>Done</small></li>
+    <li class="done"><i>&#10003;</i>Find the leak<small>Done</small></li>
+    <li class="next"><i>2</i>The gift<small>Next</small></li>
+    <li class=""><i>3</i>Feed the pool</li>
+    <li class=""><i>4</i>Everywhere</li>
+    <li class=""><i>5</i>Hand goes up</li>
+  </ol>
+  <div class="legend">
+    <span class="chip wait">Waiting on you</span>
+    <span class="chip build">To build</span>
+    <span class="chip done">Done</span>
+    <span class="chip watch">Watch</span>
+  </div>
+
+  <!-- STAGE 0 -->
+  <section class="stage" aria-label="Stage 0: lay the tracks">
+    <h2><span class="num">0</span>Lay The Tracks First &#10003;</h2>
+    <p class="why">Done. The tags went on weeks ago, so every visitor to a front-facing page is already being counted. This is the plan having happened, not a step still ahead.</p>
+    <div class="card"><span class="chip done">Done</span><b>All four tags are on every front-facing page</b>
+      <p>Home, What We Do, the meetup pages, Proof, the Jamon story, the stories, Ideas, Book, Order, Contact, Thanks, Share, Privacy and Terms on 2guysandagenie.com. The same four are on daegansmith.me.</p>
+      <ul>
+        <li><b>Meta pixel:</b> 1965691120685809</li>
+        <li><b>Google Ads tag:</b> AW-411908051</li>
+        <li><b>LinkedIn Insight Tag (Partner ID):</b> 11296761</li>
+        <li><b>TikTok pixel:</b> DBP1AR3C77U9PB4O8CE0</li>
+      </ul></div>
+    <div class="card"><span class="chip done">Done Nov 16</span><b>And on every page that goes out to a client</b>
+      <p>The pages made for one person (their kit, their mock-ups, the agreement, the welcome and report pages) now carry the same four tags. If a client passes their page to a friend or another owner, we catch that referral too.</p>
+      <p>Not tagged: the team pages only (Admin, Meetings, Leads Portal, this page, drafts).</p><p><b>Nov 21:</b> the Admin page itself does carry all four tags, so team visits there count. Whether to take them off is Daegan's call.</p></div>
+  </section>
+
+  <div class="arrow" aria-hidden="true"><svg width="22" height="30" viewBox="0 0 22 30"><line x1="11" y1="0" x2="11" y2="22" stroke="currentColor" stroke-width="2"/><polygon points="4,20 18,20 11,29" fill="currentColor"/></svg><span>now every visitor is counted</span></div>
+
+  <!-- STAGE 1 -->
+  <section class="stage" aria-label="Stage 1: find them and find the leak">
+    <h2><span class="num">1</span>Find Them, Find The Leak &#10003;</h2>
+    <p class="why">Walk in knowing something specific about their business that's costing them money.</p>
+    <div class="card"><span class="chip done">200 A's and B's</span><b>The database</b>
+      <p>Updated Nov 16: about 1,800 owner-run businesses found inside 30 miles of Launch Fishers, swept by place. 11 graded A, 189 graded B, 90 worth a visit. The pilot before it: 50 home-service businesses, 41 good targets.</p>
+      <p><a href="/admin/leads/" style="display:inline-block;font-weight:bold;padding:9px 14px;border:2px solid currentColor;color:inherit;text-decoration:none">Open The Leads Portal (Demo) &rarr;</a></p></div>
+    <div class="card"><span class="chip done">In the Leads Portal</span><b>Read every business from the outside</b>
+      <p>Google reviews (problems + owner's first name), then the website (dead links, wrong phone, no booking). Facebook and Yelp checked by hand.</p>
+      <p>Done for the 200 A's and B's as of Nov 16. Each shop in the Leads Portal shows why it is worth going to and what we found, with quick links to its website, Google reviews, Facebook, Yelp and Instagram. <a href="/admin/leads/" style="color:inherit;font-weight:bold">Open the Leads Portal (demo)</a> <b>Nov 21:</b> the portal online now holds ten made-up shops while the site is public. The real list lives in the Local Business Database sheet.</p>
+      <details><summary>Rank the finding by money</summary><ul>
+        <li><b>Today's money:</b> dead contact link, phone mismatch, calls not returned</li>
+        <li><b>This month's:</b> no booking, empty testimonials, site from 2019</li>
+        <li><b>Background:</b> old copyright, typos (proof we looked)</li>
+      </ul></details></div>
+    <div class="card"><span class="chip build">To start</span><b>The first touch: Slydial, then call or walk in</b>
+      <p>For every shop on the list: Jimmy leaves a short Slydial voicemail introducing himself (it goes straight to voicemail, no ring). The next day, call or walk in. The goal of every touch: book the free 15 minutes.</p>
+      <ol style="margin:6px 0 8px;padding-left:20px;font-size:13.5px">
+        <li><b>Day 1:</b> Slydial, live, in Jimmy's voice. Note it in Leads.</li>
+        <li><b>Day 2:</b> call (phone script) or walk in (walk-in script).</li>
+        <li><b>Book</b> the 15 minutes. Invite them to the free night.</li>
+      </ol>
+      <p><a href="/admin/scripts/#slydial" style="display:inline-block;font-weight:bold;padding:9px 14px;border:2px solid currentColor;color:inherit;text-decoration:none">The Slydial Script And How-To &rarr;</a></p></div>
+    <div class="card"><span class="chip done">Ready, Nov 18</span><b>What to say when you walk in or call</b>
+      <p>Four short scripts (walk-in short, walk-in full, phone, voicemail) and the five questions for the 15 minutes. Introduce ourselves, fix one thing, invite them to the night.</p>
+      <p><a href="/admin/scripts/" style="display:inline-block;font-weight:bold;padding:9px 14px;border:2px solid currentColor;color:inherit;text-decoration:none">Open The Scripts &rarr;</a></p></div>
+    <div class="card"><span class="chip done">Done</span><b>Turn the research into a skill</b>
+      <p>So every business's report runs on its own, not on anyone's evening.</p>
+      <p>The skill is called prospect-finder. Any of our Claudes can run a round with it and add to the same list without repeating an area. <a href="/admin/skills/prospect-finder/" style="color:inherit;font-weight:bold">Open the skill (copy and paste)</a> &middot; <a href="https://claude.ai/artifact/7CTwegryw3DbsfdLUCwopa" style="color:inherit;font-weight:bold">How we built the list</a></p>
+      <details><summary>How to run it without repeating what's done</summary><ul>
+        <li><b>1.</b> Open the skill page, tap Copy The Skill, and paste it into your Claude with "Make this a skill called prospect-finder". Then say "run a batch".</li>
+        <li><b>2.</b> Open the "Areas Covered" tab of the <a href="https://claude.ai/artifact/L7VNFamPeupMwuVhpDVszY" style="color:inherit">Local Business Database sheet</a>. It lists every area already swept.</li>
+        <li><b>3.</b> Pick an area that is not on it, inside 30 miles of Launch Fishers. Add a row with your name and "in progress" before you start.</li>
+        <li><b>4.</b> Your Claude drops any shop already on the sheet, so nothing is researched twice.</li>
+        <li><b>5.</b> Results go in a new tab. New A's and B's are added as new rows on "Worth Going To". Nobody edits another person's rows.</li>
+        <li><b>6.</b> Mark the area "done", and send what the round taught to Daegan so the skill is updated in one place.</li>
+      </ul></details>
+      <p class="note">The sheet and the write-up open only for people Daegan has shared them with.</p></div>
+  </section>
+
+  <div class="arrow" aria-hidden="true"><svg width="22" height="30" viewBox="0 0 22 30"><line x1="11" y1="0" x2="11" y2="22" stroke="currentColor" stroke-width="2"/><polygon points="4,20 18,20 11,29" fill="currentColor"/></svg><span>the finding becomes the gift</span></div>
+
+  <!-- STAGE 2 -->
+  <section class="stage" aria-label="Stage 2: the gift">
+    <h2><span class="num">2</span>The Gift: Money Leak Report</h2>
+    <p class="why">"Here are the 3 things on your site and reviews costing you calls this week." The gift is done as the work is done.</p>
+    <p class="why"><b>Since Nov 18:</b> the free 15 minutes, then the video of what we found, stand where this report was. Whether the report still gets built is to decide together. <a href="#video" style="color:inherit">See Part 1.</a></p>
+    <div class="card"><span class="chip build">To build</span><b>One report, three jobs</b>
+      <p>The walk-in hook. The proof we're good. A free sample of the paid assessment.</p></div>
+    <div class="card"><span class="chip build">To build</span><b>Opened by Jamon's "ugly baby" story</b>
+      <p>Nobody likes hearing their baby's ugly. Jamon almost decked the guy who said it, then his business went from about $15K to over $50K a month. Then: here's yours, and here's it fixed.</p></div>
+    <div class="card"><span class="chip build">To build</span><b>One tagged landing page</b>
+      <p>Every channel gets its own tagged link to it, so we see which one gets owners to click.</p></div>
+  </section>
+
+  <div class="arrow" aria-hidden="true"><svg width="22" height="30" viewBox="0 0 22 30"><line x1="11" y1="0" x2="11" y2="22" stroke="currentColor" stroke-width="2"/><polygon points="4,20 18,20 11,29" fill="currentColor"/></svg><span>every touch carries the link</span></div>
+
+  <!-- STAGE 3 -->
+  <section class="stage" aria-label="Stage 3: feed the pool">
+    <h2><span class="num">3</span>Feed The Pool</h2>
+    <p class="why">Everything below ends at a tagged page, so every yes, scan and view adds to the same audiences.</p>
+    <div class="feeders">
+      <div class="card"><span class="chip build">Fastest</span><b>Upload the registrant list</b>
+        <p>They gave us their details. Meta + Google, plus a lookalike.</p></div>
+      <div class="card"><span class="chip build">To launch</span><b>Buy the pool</b>
+        <p>Jamon video-views ad to owners within 50 to 100 miles. Pennies a view.</p></div>
+      <div class="card"><span class="chip build">To plan</span><b>Walk-ins</b>
+        <p>Paul with the report and a QR code. Doesn't have to feel like marketing.</p></div>
+      <div class="card"><span class="chip build">To plan</span><b>Postcards, texts, email</b>
+        <p>The finding plus the link.</p></div>
+      <div class="card"><span class="chip build">To plan</span><b>DMs, by hand</b>
+        <p>Facebook, Instagram, LinkedIn, TikTok. One person at a time, his business named.</p></div>
+      <div class="card"><span class="chip build">To plan</span><b>Gatekeepers</b>
+        <p>Chamber directors, BNI leaders, HOA presidents. One yes, hundreds of owners.</p></div>
+      <div class="card"><span class="chip build">To plan</span><b>Money Leak Of The Week</b>
+        <p>Names stripped. Owners start checking their own sites.</p></div>
+      <div class="card"><span class="chip build">Ongoing</span><b>Clients as billboards</b>
+        <p>"Built by 2 Guys" footer + every before-and-after.</p></div>
+    </div>
+  </section>
+
+  <div class="arrow" aria-hidden="true"><svg width="22" height="30" viewBox="0 0 22 30"><line x1="11" y1="0" x2="11" y2="22" stroke="currentColor" stroke-width="2"/><polygon points="4,20 18,20 11,29" fill="currentColor"/></svg><span>they land in</span></div>
+
+  <!-- STAGE 4 -->
+  <section class="stage pool" aria-label="Stage 4: the pool and omnipresence">
+    <h2><span class="num">4</span>The Pool → Omnipresence</h2>
+    <p class="why">Each network switches on when its pool crosses its minimum. From then on he sees us everywhere he looks.</p>
+    <div class="nets">
+      <div class="net">Meta<strong>100</strong>FB · IG</div>
+      <div class="net">Google<strong>100</strong>YouTube · Gmail · Search</div>
+      <div class="net">LinkedIn<strong>300</strong>owners at work</div>
+      <div class="net">TikTok<strong>1,000</strong>tag now, ads later</div>
+    </div>
+    <p class="note">Ads to the pool feel personal without naming anyone: Jamon, "your site's leaking money," the next free night. Third-party networks (AdRoll, StackAdapt) only once the pool justifies $500+ a month. Platform tags first because iPhones block the cookie-based ones.</p>
+  </section>
+
+  <div class="arrow" aria-hidden="true"><svg width="22" height="30" viewBox="0 0 22 30"><line x1="11" y1="0" x2="11" y2="22" stroke="currentColor" stroke-width="2"/><polygon points="4,20 18,20 11,29" fill="currentColor"/></svg><span>sooner or later</span></div>
+
+  <!-- STAGE 5 -->
+  <section class="stage" aria-label="Stage 5: the hand goes up">
+    <h2><span class="num">5</span>The Hand Goes Up</h2>
+    <p class="why">The free night, the paid assessment, a client. The report already showed him what we'd fix.</p>
+    <p class="why"><b>Since Nov 18:</b> the first yes is the free 15 minutes, and the night is a bonus. Part 1 has the road from there. <a href="#now" style="color:inherit">Go to Part 1.</a></p>
+    <div class="card"><b>Free night → assessment → client</b>
+      <p>Daegan and Jimmy build. Each finished client becomes a before-and-after and a "Built by 2 Guys" link.</p></div>
+  </section>
+
+  <div class="arrow" aria-hidden="true"><svg width="22" height="30" viewBox="0 0 22 30"><line x1="11" y1="0" x2="11" y2="22" stroke="currentColor" stroke-width="2"/><polygon points="4,20 18,20 11,29" fill="currentColor"/></svg><span>and it loops</span></div>
+
+  <section class="stage loop" aria-label="The loop">
+    <h2>↺ The Loop</h2>
+    <p class="why" style="margin:0">Every client is new proof → better reports, better ads, more content → a bigger pool → more hands up. Every channel's tagged link tells us which prong to feed next.</p>
+  </section>
+
+  <div class="card" style="margin-top:14px"><span class="chip watch">Watch</span><b>Capacity</b>
+    <p>If demand outruns the two of you, the lever moves to price and choosing who gets in, not more reach.</p></div>
+
+  <hr class="rule">
+  <p class="kicker">Do These First</p>
+  <ol class="now" style="list-style:none;padding-left:0">
+    <li>&#10003; <b>Done.</b> <s>Say "go" on the Meta pixel for every page.</s></li>
+    <li>&#10003; <b>Done.</b> <s>Pick whose login owns the ad accounts, then sign up for Google, LinkedIn, TikTok and send the IDs.</s> All four IDs are in Stage 0.</li>
+    <li>&#9744; Upload the registrant list to Meta and Google.</li>
+    <li>&#9744; Launch the Jamon video-views ad to owners within 50 to 100 miles. Waits on the audiences.</li>
+    <li>&#10003; <b>Half done.</b> The research skill is built and has run five rounds. &#9744; The Money Leak Report is next.</li>
+  </ol>
+
+  <p class="note">Full detail lives in the project doc "Local Business Database / Pilot 1 Findings (Nov 8)." Audience minimums researched Nov 8, 2026.</p>
+
+<p class="top" style="font-size:15px"><a href="#main">Back to the top</a> · <a href="#now">Go to Part 1: What We're Doing Right Now</a></p>
+</details>
+
+<footer>
+<p><a href="/">About 2 Guys and a Genie</a> · <a href="/what-we-do/menu/">Services And Prices</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · Contact: hello@2guysandagenie.com · This site is not part of Facebook or Meta.</p>
+<p>2 Guys and a Genie is a business name of Reverse Selling Limited Liability Company · 14846 Victory Ct, Carmel, IN 46032</p>
+<p style="font-size:12px;margin:10px 0 0"><a href="/admin/" style="color:#888">Admin</a></p>
+</footer>
+</main>
+<script>
+// a link to a part or to anything inside it opens that part
+(function(){function open(){var h=location.hash.slice(1);if(!h)return;var e=document.getElementById(h);if(!e)return;
+  for(var p=e;p;p=p.parentElement){if(p.tagName==='DETAILS')p.open=true}
+  function go(){try{e.scrollIntoView({behavior:'instant',block:'start'})}catch(x){e.scrollIntoView()}}
+  setTimeout(go,30);if(document.readyState!=='complete')window.addEventListener('load',go,{once:true})}
+  window.addEventListener('hashchange',open);open();})();
+</script>
+</body></html>
