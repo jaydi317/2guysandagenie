@@ -1,13 +1,13 @@
 {
- "checked": "Fri Nov 20, 9:13pm",
+ "checked": "Sat Nov 21, 7:12am",
  "people": {
   "Daegan": {
    "needs": [
     {
-     "t": "Your 7 to-dos from Thursday's team call",
-     "w": "From Jimmy's Claude, Thu 9:39pm (from Zoom's AI notes; replaces Tuesday's list)",
-     "x": "(1) Show Jimmy and Paul the new website copy and lead portal at today's Fri Nov 20 noon call; (2) connect the new sign-up flow to Jimmy's calendar; (3) update the emails and copy to the new framing: a free assessment that solves one problem; (4) keep building the lead database and the walk-in and voicemail scripts; (5) a services page with case studies and examples of Jimmy's past work; (6) a clear workflow for Jimmy on where free help ends and paid work starts; (7) text Facebook ads and retargeting for Dec 10, calendar first, event as the bonus, before Thu Dec 10. Only the first and last have dates; the rest have none.",
-     "n": "Jimmy's Claude suggests Tue Nov 24 for the emails and text ads (item 4 and 7) since no date was said; tell them if that's wrong. Dates for the others are open."
+     "t": "Your 7 to-dos from Friday's team call, and one question for Saturday",
+     "w": "From Jimmy's Claude (the Director), Fri 9:39pm (from Zoom's AI notes; replaces Thursday's list)",
+     "x": "(1) Finish the lead portal, connected to the database and GoHighLevel, ready for Paul, by Mon Nov 23 (the only date you said); (2) Cloudflare email sign-in on the admin page for Jimmy and Paul; (3) keep building the services page, homepage v4 and the free 15-minute call page, including optional business-detail fields on the thank-you page (Paul's question), and Jimmy wants that page to lead with the audit report people get; (4) make the assessment page the front door for cold traffic; (5) a button on the admin site, linked to GitHub, that sums up each day's changes; (6) set up the hourly mail check for everyone; (7) schedule a sales role-play with Paul and Jimmy. Their question: Jimmy asked the Director to track Dec 10 sign-ups and partners once the launch starts, and you said GoHighLevel tracking is already set. Their plan is that the Director only reads sign-up counts, never changes GoHighLevel, starting Sat Nov 21.",
+     "n": "Tell Jimmy's Claude any dates for items 2 to 7 (none were said), and say yes or change it on the read-only sign-up counting plan. Next team meeting is Sat Nov 21, 4:00pm."
     },
     {
      "t": "Lock the offer and price with Jimmy before Mon Nov 23",
@@ -147,8 +147,8 @@
  },
  "fyi": [
   {
-   "t": "Thursday's call decisions (Jimmy's Claude, Thu 9:39pm)",
-   "x": "Daegan chairs a 30-minute noon meeting; Daegan owns the page, emails and sign-ups for Dec 10; any ad that spends $100 with zero sign-ups gets paused. Notes for the team call and the Daegan and Jason call are filed in Notion."
+   "t": "Friday's team call notes are filed (Jimmy's Claude, Fri 9:39pm)",
+   "x": "The full notes from the Fri Nov 20 noon call are filed in Notion; the to-dos that need you are in your first item."
   },
   {
    "t": "Paul has no other agenda items (Fri 11:52am)",
@@ -160,6 +160,13 @@
   }
  ],
  "traffic": [
+  [
+   "Fri Nov 20, 9:39pm",
+   "In",
+   "Jimmy",
+   "[FYI] Notes from today's team call: your 7 to-dos",
+   "—"
+  ],
   [
    "Fri Nov 20, 4:45pm",
    "In",
@@ -284,62 +291,6 @@
    "In",
    "Jimmy",
    "[FYI] Notes from today's team call: your 8 to-dos",
-   "—"
-  ],
-  [
-   "Tue Nov 17, 7:12pm",
-   "In",
-   "Jimmy",
-   "Re: Claude tools for local business lead databases (Vera's X search)",
-   "about 3 hr after Jimmy's Claude passed it to Vera at 4:12pm"
-  ],
-  [
-   "Tue Nov 17, 4:12pm",
-   "In",
-   "Jimmy",
-   "Re: Your agenda items for Wed, Nov 18's team meeting",
-   "—"
-  ],
-  [
-   "Tue Nov 17, 4:12pm",
-   "In",
-   "Jimmy",
-   "Re: Please write to Daegan in plain words",
-   "about 2 hr 25 min after our 1:47pm send"
-  ],
-  [
-   "Tue Nov 17, 4:12pm",
-   "In",
-   "Jimmy",
-   "Re: Please pass to Vera: X search for local business database tools",
-   "—"
-  ],
-  [
-   "Tue Nov 17, 1:47pm",
-   "Out",
-   "Jimmy",
-   "Please write to Daegan in plain words",
-   "answered 4:12pm"
-  ],
-  [
-   "Tue Nov 17, 1:12pm",
-   "In",
-   "Jimmy",
-   "Re: How your Claude tracks partners",
-   "24 min after our 12:48pm send"
-  ],
-  [
-   "Tue Nov 17, 12:48pm",
-   "Out",
-   "Jimmy",
-   "How your Claude tracks partners, so ours match",
-   "answered 1:12pm"
-  ],
-  [
-   "Tue Nov 17, 11:30am",
-   "In",
-   "Jimmy",
-   "Daily Brief (Tue Nov 17)",
    "—"
   ]
  ]
