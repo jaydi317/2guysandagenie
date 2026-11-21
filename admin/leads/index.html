@@ -116,8 +116,8 @@ var STAGES=['Not touched yet','Slydial sent','Tried, no owner yet','Talked to th
 var OLD={'Not yet visited':'Not touched yet','Visited':'Tried, no owner yet','Talking':'Talked to the owner'};
 var S='/admin/scripts/';
 var NEXT={
-'Not touched yet':{t:'Jimmy sends the Slydial.',s:'Slydial',l:[['The Slydial Script',S+'#slydial']]},
-'Slydial sent':{t:'The next day: call or walk in.',s:'Call or walk in',l:[['Phone Script',S+'#phone'],['Walk-In Script',S+'#walk-short']]},
+'Not touched yet':{t:'Call first. If voicemail picks up, leave the message right then. If it just rings out and the number is a cell phone, send the Slydial. Slydial only works on cell phones.',s:'Call first',l:[['The First Call And Message',S+'#slydial'],['Phone Script',S+'#phone']]},
+'Slydial sent':{t:'Message left. The next day: call again or walk in.',s:'Call or walk in',l:[['Phone Script',S+'#phone'],['Walk-In Script',S+'#walk-short']]},
 'Tried, no owner yet':{t:'Try again at a different time of day. If you call, leave a voicemail.',s:'Try again',l:[['Phone Script',S+'#phone'],['Voicemail Script',S+'#voicemail'],['Walk-In Script',S+'#walk-short']]},
 'Talked to the owner':{t:'Run the audit if it is not done. Next time you talk, show them the one thing from the audit and book the 15 minutes.',s:'Book the 15 minutes',l:[['The One-Thing Demo Script',S+'#demo']]},
 '15 minutes booked':{t:'Run the audit before the call if it is not done. Have the questions ready.',s:'Get ready for the 15 minutes',l:[['The 15 Minutes: What To Ask',S+'#call']]},

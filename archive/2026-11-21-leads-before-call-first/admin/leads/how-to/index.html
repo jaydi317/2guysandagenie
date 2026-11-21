@@ -1,0 +1,193 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>How The Leads Portal Works · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<style>
+body{margin:0;background:#fff;color:#111;font:17px/1.5 Tahoma,Geneva,Verdana,sans-serif}
+main{max-width:680px;margin:0 auto;padding:24px 16px 70px}
+h1{font-size:30px;margin:0 0 4px}.sub{color:#555;margin:0 0 10px}
+.demo{background:#FFF3C4;padding:10px 14px;margin:12px 0 16px;font-size:15px}
+a{color:#111}
+#q{width:100%;box-sizing:border-box;font-size:18px;padding:11px;border:2px solid #111;margin:0 0 10px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.chip{font:inherit;font-size:15px;padding:7px 12px;border:2px solid #111;background:#fff;color:#111;cursor:pointer}
+.chip.on{background:#111;color:#fff}
+a.chip{text-decoration:none;display:inline-block}
+select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;background:#fff}
+#count{font-size:14px;color:#555;margin:0 0 8px}
+.lead{display:block;width:100%;box-sizing:border-box;text-align:left;font:inherit;background:#fff;border:3px solid #111;padding:12px 14px;margin:0 0 10px;cursor:pointer;color:#111}
+.lead b{display:block;font-size:19px}
+.lead span{display:block;font-size:14px;color:#555}
+.tier{display:inline-block;font-size:13px;font-weight:bold;padding:1px 8px;border:2px solid #111;margin-right:8px}
+.tier.A{background:#111;color:#fff}
+.st{display:inline-block;font-size:13px;color:#555}
+#one{display:none}
+#one h2{font-size:26px;margin:10px 0 2px}
+.lab{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;margin:18px 0 2px}
+.big{display:block;font-size:19px;font-weight:bold;padding:12px 14px;border:3px solid #111;text-decoration:none;margin:8px 0;text-align:center}
+.big.dark{background:#111;color:#fff}
+#note{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;min-height:90px}
+.back{font:inherit;font-size:16px;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;color:#111}
+.now{border:3px solid #111;padding:12px 14px;margin:12px 0 14px;background:#FFF3C4}.now p{margin:0 0 6px}.now .k{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;display:block}.now .v{font-size:19px;font-weight:bold}.now .big{background:#fff;margin:8px 0 0}
+#hist{padding-left:20px;margin:4px 0 6px;font-size:15px}.nx{display:block;font-size:14px;color:#111}
+.due{display:block;font-size:14px;font-weight:bold}.due.late{color:#B00020}#score{font-size:14px;color:#555;margin:0 0 14px}#rules{font-size:14px;color:#555;border-top:2px solid #111;padding-top:10px;margin-top:24px}
+.saved{font-size:13px;color:#555;min-height:18px}
+
+h2{font-size:22px;margin:26px 0 6px;border-top:3px solid #111;padding-top:14px}
+li{margin:0 0 8px}ol,ul{padding-left:22px;margin:6px 0 10px}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:8px 0}td,th{border:2px solid #111;padding:6px 8px;text-align:left;vertical-align:top}th{background:#FFF3C4}
+.toc a{display:block;padding:3px 0}
+</style><script>try{if(localStorage.getItem('2g-admin')!=='1'){location.replace('/admin/')}}catch(e){}</script></head><body><main>
+<p><a href="/admin/leads/">&larr; Leads</a> &middot; <a href="/admin/">Admin</a> &middot; <a href="/admin/scripts/">Scripts</a></p>
+<h1>How The Leads Portal Works</h1>
+<p class="sub">Look things up here when you need them. Updated Nov 20, 2026.</p>
+<a class="big dark" href="/admin/leads/explainer/">Watch The 4-Minute Walkthrough</a>
+
+<div class="toc">
+<a href="#short">The Short Version</a>
+<a href="#today">The Today List</a>
+<a href="#box">The Yellow Box On Each Shop</a>
+<a href="#did">Tap What You Just Did</a>
+<a href="#stages">The Stages And What Comes Next</a>
+<a href="#due">When The Next Try Comes Due</a>
+<a href="#reach">Reaching Them: Call, Directions, Email</a>
+<a href="#audit">Run The Audit</a>
+<a href="#ghl">Finding The Leads In GoHighLevel</a>
+<a href="#notes">Notes, Search And Filters</a>
+<a href="#add">Adding A Shop</a>
+<a href="#rules">The Rules</a>
+<a href="#notyet">What It Doesn't Do Yet</a>
+</div>
+
+<h2 id="short">The Short Version</h2>
+<ol>
+<li><b>Open Today.</b> It's the first thing on the Leads page.</li>
+<li><b>Tap the top shop.</b></li>
+<li><b>Do the next step</b> in the yellow box. The script for it is right under it.</li>
+<li><b>Tap what you did.</b> One tap saves the date and moves the shop along.</li>
+<li><b>Go to the next shop.</b></li>
+</ol>
+
+<h2 id="today">The Today List</h2>
+<ul>
+<li><b>Follow-ups that are due come first.</b> A booked call sits at the very top. Then: 15 minutes done, talked to the owner, offer made, Slydial sent, tried with no owner yet.</li>
+<li><b>Then three new shops to start,</b> A's before B's.</li>
+<li><b>A late one says how many days late:</b> "Due Nov 19, 1 day late."</li>
+<li><b>The count line under it</b> shows what's been done so far on your phone: Slydials sent, owners talked to, 15 minutes booked, 15 minutes done, offers made, clients.</li>
+</ul>
+
+<h2 id="box">The Yellow Box On Each Shop</h2>
+<ul>
+<li><b>Where It Stands:</b> the stage the shop is in.</li>
+<li><b>Last Step:</b> the last thing done, and the date.</li>
+<li><b>Next Step:</b> what to do now, and when it's due.</li>
+<li><b>The buttons under it</b> open the script for that step.</li>
+</ul>
+
+<h2 id="did">Tap What You Just Did</h2>
+<p>After every touch, tap the one that fits. It saves today's date and moves the shop to the right stage. A tap never moves a shop backward, except the three marked below.</p>
+<table>
+<tr><th>You tap</th><th>The shop moves to</th></tr>
+<tr><td>Slydial sent</td><td>Slydial sent</td></tr>
+<tr><td>Called, no answer</td><td>Tried, no owner yet</td></tr>
+<tr><td>Left a voicemail</td><td>Tried, no owner yet</td></tr>
+<tr><td>Walked in, owner not there</td><td>Tried, no owner yet</td></tr>
+<tr><td>Talked to staff, not the owner</td><td>Tried, no owner yet</td></tr>
+<tr><td>Emailed</td><td>Tried, no owner yet</td></tr>
+<tr><td>Talked to the owner</td><td>Talked to the owner</td></tr>
+<tr><td>Owner said call back later</td><td>Talked to the owner</td></tr>
+<tr><td>Booked the 15 minutes</td><td>15 minutes booked</td></tr>
+<tr><td>No-show for the 15 minutes</td><td>Back to: Talked to the owner</td></tr>
+<tr><td>Did the 15 minutes</td><td>15 minutes done</td></tr>
+<tr><td>Sent what we found and made the offer</td><td>Offer made</td></tr>
+<tr><td>Became a client</td><td>Client (always)</td></tr>
+<tr><td>Not now (they said no)</td><td>Not now (always)</td></tr>
+</table>
+<ul>
+<li><b>Tapped the wrong one?</b> Tap "Take back the last one." The stage goes back too.</li>
+<li><b>Need to fix a stage by hand?</b> Use "Or Set The Stage By Hand" lower on the shop's page.</li>
+<li><b>What's Been Done</b> lists every tap with its date, newest first.</li>
+</ul>
+
+<h2 id="stages">The Stages And What Comes Next</h2>
+<table>
+<tr><th>Stage</th><th>Next step</th></tr>
+<tr><td>Not touched yet</td><td>Jimmy sends the Slydial.</td></tr>
+<tr><td>Slydial sent</td><td>The next day: call or walk in.</td></tr>
+<tr><td>Tried, no owner yet</td><td>Try again at a different time of day. If you call, leave a voicemail.</td></tr>
+<tr><td>Talked to the owner</td><td>Run the audit if it is not done. Next time you talk, show them the one thing from the audit and book the 15 minutes.</td></tr>
+<tr><td>15 minutes booked</td><td>Run the audit before the call if it is not done. Have the questions ready.</td></tr>
+<tr><td>15 minutes done</td><td>Send them what we found and make the offer: on your own, or with our help?</td></tr>
+<tr><td>Offer made</td><td>Follow up. Find out what is holding them back.</td></tr>
+<tr><td>Client</td><td>Nothing to do here. They are a client now.</td></tr>
+<tr><td>Not now</td><td>No more calls. Only invite them to the next free night.</td></tr>
+</table>
+
+<h2 id="due">When The Next Try Comes Due</h2>
+<ul>
+<li><b>After a Slydial:</b> the next day.</li>
+<li><b>After a try with no owner, a talk that didn't book, or an offer:</b> 3 days after the first one, 7 days after each one that follows.</li>
+<li><b>After the 15 minutes:</b> the same day. Send what we found.</li>
+<li><b>A booked call</b> has no day or time saved here yet. Check the calendar.</li>
+<li>These are starting numbers. They count every day, weekends too. We tune them as we learn.</li>
+</ul>
+
+<h2 id="reach">Reaching Them: Call, Directions, Email</h2>
+<ul>
+<li><b>Call</b> dials the shop.</li>
+<li><b>Directions</b> opens the map.</li>
+<li><b>Find Their Email</b> opens a search. When you find one and have checked it, paste it in the box. The Email button appears.</li>
+<li><b>Look Them Up</b> opens their website, Google reviews, Facebook, Yelp and Instagram.</li>
+</ul>
+
+<h2 id="audit">Run The Audit</h2>
+<ol>
+<li><b>Tap Run The Audit.</b> Claude opens with the shop filled in.</li>
+<li><b>Press send.</b> Wait a few minutes.</li>
+<li><b>Paste the answer into Notes.</b></li>
+<li><b>Use the top half</b> with the <a href="/admin/scripts/#demo">One-Thing Demo script</a>.</li>
+</ol>
+<p><b>The top half is what you say to the owner:</b> one thing they can see on their own phone, two more worth naming, two money questions, and a warm opener.</p>
+<p><b>The bottom half you keep for the 15 minutes:</b> them against the top three nearby, the first job we'd take off their plate, tests for you to run (like calling after hours), and anything it couldn't check.</p>
+<p>Before you use the one thing, look at it yourself on your own phone. If it isn't there, don't say it.</p>
+
+<h2 id="ghl">Finding The Leads In GoHighLevel</h2>
+<ol>
+<li><b>Sign in</b> if it asks.</li>
+<li><b>Tap Contacts</b> in the menu on the left side.</li>
+<li><b>Tap More Filters</b> near the top right of the list.</li>
+<li><b>Pick Tag</b>, then choose <b>prospect list</b>, then tap Apply. Only our leads show now.</li>
+<li><b>Tap a shop's name</b> to open it.</li>
+<li><b>Open Notes</b> on the right side. The pinned note says why the shop is on the list and what we found.</li>
+</ol>
+<p>Quicker for one shop: type its name in the search box at the top of Contacts. Tags to know: "prospect tier a", "prospect tier b", "prospect sample".</p>
+
+<h2 id="notes">Notes, Search And Filters</h2>
+<ul>
+<li><b>Notes</b> on each shop save as you type. Put what they said and what to show them next.</li>
+<li><b>Search</b> finds a name, town, street or trade.</li>
+<li><b>Filters:</b> A, B or Worth a visit; town; stage.</li>
+</ul>
+
+<h2 id="add">Adding A Shop</h2>
+<ul>
+<li><b>Tap "+ Add a shop"</b> above the search box. Only the name is needed.</li>
+<li><b>It shows in the list and in Today</b> like any other shop.</li>
+<li>It saves on your own phone, like everything else for now.</li>
+</ul>
+
+<h2 id="rules">The Rules</h2>
+<ul>
+<li>Nothing here sends anything on its own. You make every call and send every email yourself.</li>
+<li>Public information only.</li>
+<li>Never guess an email. Find it, check it, then paste it in.</li>
+</ul>
+
+<h2 id="notyet">What It Doesn't Do Yet</h2>
+<ul>
+<li><b>The ten shops are made up,</b> for practice.</li>
+<li><b>Your taps and notes stay on your own phone.</b> The other person doesn't see them.</li>
+<li><b>No day or time on a booked call.</b></li>
+<li><b>No email script yet.</b></li>
+<li>These change when the real leads go into GoHighLevel.</li>
+</ul>
+<p style="margin-top:26px"><a href="/admin/leads/">&larr; Back to Leads</a></p>
+</main></body></html>
