@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>How To Work The Leads Portal</title><meta name="robots" content="noindex,nofollow"><script>try{if(localStorage.getItem('2g-admin')!=='1'){location.replace('/admin/')}}catch(e){}</script>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a self-playing "stage" on top, its controls under it, the full text version below. */
+:root{
+  --bg:#EDEFEA; --surface:#FAFBF7; --ink:#17201C; --muted:#56645D; --line:#CBD2CA;
+  --accent:#2747D8; --accent-ink:#FFFFFF; --mark:#F2C230; --lane2:#C2410C;
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1412; --surface:#171E1B; --ink:#E6ECE8; --muted:#98A69F; --line:#2B3631;
+  --accent:#8199FF; --accent-ink:#0F1412; --mark:#E2B320; --lane2:#F28B54; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1412; --surface:#171E1B; --ink:#E6ECE8; --muted:#98A69F; --line:#2B3631;
+  --accent:#8199FF; --accent-ink:#0F1412; --mark:#E2B320; --lane2:#F28B54; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:12px 48px}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+header.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+header.top .series{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+header.top h1{font-family:var(--display);font-weight:800;font-size:clamp(18px,3vw,30px);margin:0;letter-spacing:-.01em;text-wrap:balance}
+
+/* stage */
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:14px;position:relative;
+  flex:1;min-height:0;padding:clamp(14px,3.2vw,40px);display:flex;flex-direction:column;gap:12px;overflow:hidden}
+/* v3: the player is exactly one screen tall. The scene is measured and scaled to fit its box, so nothing scrolls while it plays. */
+.player{display:flex;flex-direction:column;gap:10px;height:calc(100vh - 24px);height:calc(100dvh - 24px);max-height:940px;min-height:300px}
+.fitbox{flex:1;min-height:0;position:relative;overflow:hidden}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:flex;gap:10px;flex-wrap:wrap}
+.eyebrow .n{color:var(--muted)}
+.scene{display:flex;flex-direction:column;gap:18px;position:absolute;left:0;top:50%;width:100%;transform:translateY(-50%);transform-origin:left center}
+.scene h2{font-family:var(--display);font-weight:800;font-size:clamp(26px,4.4vw,50px);line-height:1.04;letter-spacing:-.02em;margin:0;text-wrap:balance;max-width:20ch}
+.scene.title h2{font-size:clamp(36px,7vw,82px);max-width:14ch}
+.scene .sub{font-size:clamp(17px,2.1vw,22px);color:var(--muted);max-width:44ch;margin:0}
+.items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;max-width:62ch}
+.items li{font-size:clamp(16px,1.9vw,20px);padding-left:22px;position:relative}
+.items li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:2px;background:var(--accent)}
+strong{font-weight:600}
+code{font-family:var(--mono);font-size:.88em;background:color-mix(in srgb, var(--accent) 12%, transparent);padding:1px 5px;border-radius:4px}
+.analogy{display:flex;flex-direction:column;gap:4px;max-width:62ch;border-left:3px solid var(--mark);padding:4px 0 4px 14px}
+.analogy .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.analogy .txt{font-size:clamp(16px,1.9vw,20px)}
+.analogy .txt span{background:linear-gradient(transparent 58%, color-mix(in srgb, var(--mark) 50%, transparent) 58%)}
+.note{font-family:var(--mono);font-size:13px;color:var(--muted);max-width:70ch}
+
+.flow{display:flex;align-items:stretch;gap:8px;flex-wrap:nowrap}
+.node{flex:1;min-width:0;border:1.5px solid var(--ink);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;background:var(--surface)}
+.node.hi{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.node .t{font-family:var(--mono);font-weight:500;font-size:clamp(13px,1.5vw,15px)}
+.node .s{font-size:14px;opacity:.85}
+.arrow{align-self:center;font-family:var(--mono);color:var(--muted);font-size:20px}
+.arrow::before{content:"→"}
+.arrow{opacity:0;transition:opacity .35s ease}
+.arrow:has(+ .node.on){opacity:1}
+@media (max-width:680px){.flow{flex-direction:column;gap:4px}.arrow{align-self:flex-start;padding-left:18px;font-size:14px;line-height:1}.arrow::before{content:"↓"}
+  .node{flex:0 0 auto;flex-direction:row;align-items:baseline;gap:10px;padding:8px 12px}}
+
+.tree{font-family:var(--mono);font-size:clamp(14px,1.7vw,17px);display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:10px;padding:14px 18px;max-width:560px;overflow-x:auto}
+.tree div{white-space:pre}
+.tree .c{color:var(--muted)}
+
+.graph{display:flex;flex-direction:column;max-width:620px}
+.grow{display:grid;grid-template-columns:64px 1fr;align-items:center;min-height:40px}
+.lanes{position:relative;height:100%;min-height:40px}
+.lanes i{position:absolute;top:0;bottom:0;width:2px;background:var(--line)}
+.lanes i.l0{left:14px}.lanes i.l1{left:44px;background:var(--lane2)}
+.lanes b{position:absolute;top:50%;width:14px;height:14px;border-radius:50%;transform:translate(-6px,-50%);background:var(--accent);border:2px solid var(--surface)}
+.lanes b.l0{left:14px}.lanes b.l1{left:44px;background:var(--lane2)}
+.grow .m{font-size:clamp(15px,1.8vw,18px);min-width:0}
+.grow .m code{margin-right:8px}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.col{border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.col.b{border-color:var(--accent);border-width:1.5px}
+.col .lbl{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.col.b .lbl{color:var(--accent)}
+.col ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:clamp(15px,1.7vw,18px)}
+@media (max-width:680px){.compare{grid-template-columns:1fr}}
+
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.chip{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.chip .t{font-family:var(--mono);font-weight:500;color:var(--accent)}
+.chip .d{font-size:15px}
+
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;max-width:66ch;counter-reset:s}
+.steps li{display:grid;grid-template-columns:34px 1fr;gap:10px;font-size:clamp(16px,1.9vw,19px);counter-increment:s}
+.steps li::before{content:counter(s);font-family:var(--mono);font-weight:500;background:var(--ink);color:var(--surface);border-radius:50%;width:28px;height:28px;display:grid;place-items:center;font-size:13px;margin-top:1px}
+
+.bit{opacity:0;transform:translateY(10px);transition:opacity .35s ease, transform .45s cubic-bezier(.2,.7,.2,1)}
+.bit.on{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.bit{transition:none;transform:none}}
+
+/* controls */
+.controls{display:flex;flex-direction:column;gap:10px}
+.segs{display:flex;gap:3px;height:12px;cursor:pointer}
+.seg{flex:1;background:var(--line);border-radius:3px;overflow:hidden;border:0;padding:0;min-width:0}
+.seg span{display:block;height:100%;width:0;background:var(--accent)}
+.seg:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+button{font:inherit;color:inherit}
+.btn{font-family:var(--mono);font-size:13px;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 12px;cursor:pointer;min-height:38px}
+.btn:hover{border-color:var(--ink)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn.play{background:var(--ink);color:var(--surface);border-color:var(--ink);min-width:92px}
+.speed{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-left:auto}
+.speed button{font-family:var(--mono);font-size:13px;border:0;background:var(--surface);padding:8px 10px;cursor:pointer;min-height:38px}
+.speed button+button{border-left:1px solid var(--line)}
+.speed button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.speed button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.clock{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.chapters{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.chapters::-webkit-scrollbar{display:none}
+.chapters button{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:transparent;border-radius:999px;padding:5px 11px;cursor:pointer;color:var(--muted);white-space:nowrap;flex:none}
+.chapters button.cur{border-color:var(--accent);color:var(--accent)}
+.chapters button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:680px){header.top .series{display:none}.controls{gap:8px}.bar{gap:6px}
+  .btn,.speed button{padding:6px 9px;min-height:34px;font-size:12px}.btn.play{min-width:70px}.stage{gap:8px}}
+@media (max-height:520px){header.top{display:none}.chapters{display:none}.player{height:calc(100dvh - 16px)}body{padding-block:8px 48px}}
+
+/* transcript */
+.read{margin-top:26px;display:flex;flex-direction:column;gap:18px}
+.read>h3{font-family:var(--display);font-weight:800;font-size:24px;margin:0}
+.read>p{margin:0;color:var(--muted);max-width:65ch}
+.tchap{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line);padding-top:14px}
+.tchap h4{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0}
+.tsc{display:flex;flex-direction:column;gap:4px;max-width:70ch}
+.tsc button{all:unset;cursor:pointer;font-family:var(--display);font-weight:600;font-size:19px;line-height:1.25}
+.tsc button:hover{color:var(--accent)}
+.tsc button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tsc p,.tsc ul{margin:0;color:var(--ink)}
+.tsc ul{padding-left:18px}
+.tsc .an{color:var(--muted);font-style:italic}
+
+/* v2 additions: narration */
+[hidden]{display:none!important}
+.stage{cursor:default}
+.start{position:absolute;inset:auto clamp(20px,4vw,48px) clamp(20px,4vw,40px) auto;display:flex;align-items:center;gap:10px;
+  background:var(--accent);color:var(--accent-ink);border:0;border-radius:999px;padding:12px 20px 12px 16px;font-family:var(--mono);font-size:14px;cursor:pointer;
+  box-shadow:0 6px 24px color-mix(in srgb, var(--accent) 35%, transparent)}
+.start svg{width:18px;height:18px;fill:currentColor}
+.start:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.cc{min-height:1.6em;font-size:clamp(15px,1.8vw,18px);color:var(--ink);background:color-mix(in srgb, var(--ink) 6%, var(--surface));border-radius:8px;padding:8px 12px}
+.bit.now{color:inherit}
+.items li.bit.now::before,.steps li.bit.now::before{background:var(--mark)}
+.node.bit.now:not(.hi){border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent)}
+.chip.bit.now{border-color:var(--accent)}
+.grow.bit.now .m{font-weight:600}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.voice{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.tsc .say{color:var(--ink)}
+.tsc .shown{color:var(--muted);font-size:14px}
+</style>
+
+<div class="wrap">
+ <div class="player" id="player">
+  <header class="top">
+    <h1 id="ttl"></h1>
+    <span class="series">Daegan's explainers</span>
+  </header>
+
+  <section class="stage" id="stage">
+    <div class="eyebrow"><span id="chap"></span><span class="n" id="cnt"></span></div>
+    <div class="fitbox" id="fitbox"><div class="scene" id="scene"></div></div>
+    <button class="start" id="start" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3.5v13l11-6.5z"/></svg><span id="startTxt">Play with sound</span></button>
+  </section>
+  <div class="cc" id="cc" hidden aria-live="polite"></div>
+
+  <div class="controls">
+    <div class="segs" id="segs" role="group" aria-label="Scenes"></div>
+    <div class="bar">
+      <button class="btn play" id="play" type="button">Play</button>
+      <button class="btn" id="prev" type="button" aria-label="Previous scene">◀ Back</button>
+      <button class="btn" id="next" type="button" aria-label="Next scene">Next ▶</button>
+      <button class="btn" id="back10" type="button" aria-label="Back 10 seconds">↺ 10s</button>
+      <button class="btn" id="ccBtn" type="button" aria-pressed="false">Captions</button>
+      <span class="clock" id="clock"></span>
+      <div class="speed" id="speed" role="group" aria-label="Playback speed"></div>
+    </div>
+    <div class="chapters" id="chapters"></div>
+  </div>
+ </div>
+
+  <section class="read" id="read">
+    <h3>Read it instead</h3>
+    <p>The full narration, scene by scene. Tap a heading to play from there.</p>
+  </section>
+  <audio id="vo" preload="auto"></audio>
+</div>
+
+<script>
+const DATA = {"title": "How To Work The Leads Portal", "scenes": [{"chapter": "Start", "type": "title", "h": "How To Work The Leads Portal", "sub": "Open it. See who's next. Tap what you did."}, {"chapter": "Start", "type": "text", "h": "What It Does For You", "items": ["Who to work **today**", "What to **say** to them", "What you **did**, and when", "What comes **next**"], "analogy": "A good dispatcher: here's your next stop, and here's what to bring."}, {"chapter": "Each morning", "type": "flow", "h": "The Path Every Shop Takes", "nodes": [{"t": "Slydial", "s": "Jimmy leaves a voicemail"}, {"t": "Call or walk in", "s": "the next day"}, {"t": "Talk to the owner", "s": "show them one thing"}, {"t": "Free 15 minutes", "s": "book it, then do it"}, {"t": "What we found", "s": "and the offer", "hi": true}]}, {"chapter": "Each morning", "type": "text", "h": "Start At Today", "sub": "It's the first thing on the page.", "items": ["Follow-ups that are **due** come first", "Then **three new shops** to start", "A's before B's", "Late ones say **how many days late**"]}, {"chapter": "One shop", "type": "text", "h": "Tap A Shop. Read The Yellow Box.", "items": ["**Where it stands**: the stage it's in", "**Last step**: what was done, and the date", "**Next step**: what to do now, and when it's due", "The right **script** sits right under it"]}, {"chapter": "One shop", "type": "text", "h": "Everything To Reach Them", "items": ["**Call**: one tap dials the shop", "**Directions**: opens the map", "**Email**: only one you found and checked", "**Look them up**: website, Google reviews, Facebook, Yelp, Instagram"]}, {"chapter": "After each touch", "type": "text", "h": "Tap What You Just Did", "sub": "One tap saves the date and moves the shop to the right stage.", "items": ["Slydial sent", "Called, no answer", "Talked to the owner", "Booked the 15 minutes", "...and ten more, for whatever happened"], "note": "Tapped the wrong one? Tap **Take back the last one**."}, {"chapter": "After each touch", "type": "compare", "h": "When The Next Try Comes Due", "a": {"label": "After a Slydial", "items": ["Call or walk in **the next day**"]}, "b": {"label": "After a try or a talk", "items": ["First follow-up: **3 days**", "Each one after: **7 days**"]}, "caption": "Starting numbers. We tune them as we learn."}, {"chapter": "The audit", "type": "steps", "h": "Run The Audit Before You Talk", "items": ["Tap **Run The Audit**. Claude opens with the shop filled in.", "Press send. Wait a few minutes.", "Paste the answer into **Notes**.", "Use the top half with the **One-Thing Demo** script."]}, {"chapter": "The audit", "type": "compare", "h": "The Answer Comes In Two Halves", "a": {"label": "Say to the owner", "items": ["One thing they can see on their phone", "Two more worth naming", "Two money questions", "A warm opener"]}, "b": {"label": "Keep for the 15 minutes", "items": ["Them against the top three", "The first job we'd take off their plate", "Tests for you to run", "What it couldn't check"]}}, {"chapter": "Good to know", "type": "text", "h": "Three Rules", "items": ["Nothing sends on its own. **You** make every call and send every email.", "Public information only.", "Never guess an email. Find it, check it, paste it in."]}, {"chapter": "Good to know", "type": "text", "h": "Two Things To Know Right Now", "items": ["The ten shops are **made up**, for practice.", "Your taps stay on **your own phone** for now.", "Both change when the real leads go into GoHighLevel."]}, {"chapter": "Good to know", "type": "steps", "h": "Each Day, In Order", "items": ["Open **Today**", "Tap the top shop", "Do the next step", "Tap what you did", "Go to the next shop"], "caption": "The full how-to is one tap away, at the top of the page."}], "timeline": [{"start": 0.3, "lines": [{"t": 0.35, "end": 7.881, "text": "This is the Leads Portal. It tells you who to work today, what to say, and what comes next, so none of it has to live in your head.", "r": 2}]}, {"start": 8.681, "lines": [{"t": 8.731, "end": 10.48, "text": "The portal does four jobs.", "r": 1}, {"t": 10.76, "end": 12.552, "text": "It tells you who to work today.", "r": 2}, {"t": 12.832, "end": 14.795, "text": "It hands you what to say to them.", "r": 3}, {"t": 15.075, "end": 17.293, "text": "It remembers what you did, with the date.", "r": 4}, {"t": 17.573, "end": 19.472, "text": "And it tells you what comes next.", "r": 5}, {"t": 19.752, "end": 23.635, "text": "Think of a good dispatcher. Here's your next stop, and here's what to bring.", "r": 6}]}, {"start": 24.435, "lines": [{"t": 24.485, "end": 27.855, "text": "First, the path. Every shop moves through the same steps.", "r": 1}, {"t": 28.135, "end": 32.85, "text": "Jimmy sends a Slydial, a voicemail that lands without ringing their phone.", "r": 2}, {"t": 33.13, "end": 35.754, "text": "The next day, one of you calls or walks in.", "r": 3}, {"t": 36.034, "end": 40.109, "text": "When you reach the owner, you show them one thing that's costing them customers.", "r": 4}, {"t": 40.389, "end": 42.159, "text": "That books the free fifteen minutes.", "r": 5}, {"t": 42.439, "end": 46.215, "text": "After the fifteen minutes, we send what we found and make the offer.", "r": 6}]}, {"start": 47.015, "lines": [{"t": 47.065, "end": 51.332, "text": "Each morning, start at the list called Today. It's the first thing on the page.", "r": 2}, {"t": 51.612, "end": 56.113, "text": "Follow-ups that are due sit on top, because a warm lead goes cold fast.", "r": 3}, {"t": 56.393, "end": 58.761, "text": "Under those are three new shops to start.", "r": 4}, {"t": 59.041, "end": 60.833, "text": "The A's come before the B's.", "r": 5}, {"t": 61.113, "end": 65.593, "text": "And if something is late, it says how many days late. Work from the top down.", "r": 6}]}, {"start": 66.393, "lines": [{"t": 66.443, "end": 70.945, "text": "Tap any shop and you'll see a yellow box. That box is the whole answer.", "r": 1}, {"t": 71.225, "end": 73.977, "text": "Where it stands is the stage the shop is in.", "r": 2}, {"t": 74.257, "end": 77.329, "text": "Last step is the last thing anyone did, with the date.", "r": 3}, {"t": 77.609, "end": 80.275, "text": "Next step is what to do now, and when it's due.", "r": 4}, {"t": 80.555, "end": 87.809, "text": "And the script for that step is right under it. A Slydial shows the Slydial script. A call shows the phone script.", "r": 5}]}, {"start": 88.609, "lines": [{"t": 88.659, "end": 91.88, "text": "Below the yellow box is everything you need to reach them.", "r": 1}, {"t": 92.16, "end": 94.272, "text": "Call dials the shop with one tap.", "r": 2}, {"t": 94.552, "end": 96.984, "text": "Directions opens the map from where you are.", "r": 3}, {"t": 97.264, "end": 103.067, "text": "Email only works with an address you found and checked yourself. Paste it in and the button appears.", "r": 4}, {"t": 103.347, "end": 109.021, "text": "And the look them up row opens their website, Google reviews, Facebook, Yelp and Instagram.", "r": 5}]}, {"start": 109.821, "lines": [{"t": 109.871, "end": 115.333, "text": "This is the one habit that makes the page work. After every touch, tap what you just did.", "r": 1}, {"t": 115.613, "end": 121.373, "text": "One tap saves it with today's date and moves the shop to the right stage. You don't type anything.", "r": 2}, {"t": 121.653, "end": 127.711, "text": "Sent the Slydial? Tap Slydial sent. Called and nobody picked up? Tap called, no answer.", "r": 4}, {"t": 127.991, "end": 132.77, "text": "Got the owner? Tap talked to the owner. Booked the call? Tap booked the fifteen minutes.", "r": 6}, {"t": 133.05, "end": 137.487, "text": "There's a button for whatever happened, including a no-show and a call me back later.", "r": 7}, {"t": 137.767, "end": 141.394, "text": "And if you tap the wrong one, take back the last one undoes it.", "r": 8}]}, {"start": 142.194, "lines": [{"t": 142.244, "end": 145.401, "text": "Once you tap, the page sets when the next try is due.", "r": 1}, {"t": 145.681, "end": 149.415, "text": "After a Slydial, the call or walk-in is due the next day.", "r": 2}, {"t": 149.695, "end": 158.1, "text": "After a try with no owner, or a talk that didn't book, the first follow-up is due in three days, and each one after that in seven.", "r": 3}, {"t": 158.38, "end": 162.092, "text": "Those are starting numbers. We'll tune them as we learn what works.", "r": 4}]}, {"start": 162.892, "lines": [{"t": 162.942, "end": 167.699, "text": "Before you talk to an owner, run the audit. It's one button on the shop's page.", "r": 1}, {"t": 167.979, "end": 171.969, "text": "Tap Run The Audit. Claude opens with that shop already filled in.", "r": 2}, {"t": 172.249, "end": 174.382, "text": "Press send and give it a few minutes.", "r": 3}, {"t": 174.662, "end": 177.649, "text": "Paste the answer into Notes so it stays with the shop.", "r": 4}, {"t": 177.929, "end": 180.979, "text": "Then use the top half with the One-Thing Demo script.", "r": 5}]}, {"start": 181.779, "lines": [{"t": 181.829, "end": 183.728, "text": "The audit comes back in two halves.", "r": 1}, {"t": 184.008, "end": 193.309, "text": "The top half is what you say to the owner. One thing they can see on their own phone, two more worth naming, two questions about the money, and a warm opener.", "r": 2}, {"t": 193.589, "end": 206.197, "text": "The bottom half you keep for the fifteen minutes. How they stack up against the top three, the first job we'd take off their plate, tests for you to run, like calling them after hours, and anything it couldn't check.", "r": 3}]}, {"start": 206.997, "lines": [{"t": 207.047, "end": 208.199, "text": "Three rules.", "r": 1}, {"t": 208.479, "end": 214.111, "text": "Nothing here sends anything on its own. You make every call and send every email yourself.", "r": 2}, {"t": 214.391, "end": 216.61, "text": "It uses public information only.", "r": 3}, {"t": 216.89, "end": 220.431, "text": "And never guess an email. Find it, check it, then paste it in.", "r": 4}]}, {"start": 221.231, "lines": [{"t": 221.281, "end": 223.052, "text": "Two things to know right now.", "r": 1}, {"t": 223.332, "end": 228.623, "text": "The ten shops on the page are made up, so you can practice without touching a real lead.", "r": 2}, {"t": 228.903, "end": 233.383, "text": "And your taps stay on your own phone for now. The other person doesn't see them yet.", "r": 3}, {"t": 233.663, "end": 237.012, "text": "Both change when the real leads go into GoHighLevel.", "r": 4}]}, {"start": 237.812, "lines": [{"t": 237.862, "end": 239.505, "text": "So each day, in order.", "r": 1}, {"t": 239.785, "end": 242.238, "text": "Open Today, and tap the top shop.", "r": 3}, {"t": 242.518, "end": 244.203, "text": "Do the next step it gives you.", "r": 4}, {"t": 244.483, "end": 245.678, "text": "Tap what you did.", "r": 5}, {"t": 245.958, "end": 247.494, "text": "Then go to the next shop.", "r": 6}, {"t": 247.774, "end": 252.595, "text": "And if you ever get stuck, the full how-to is one tap away, at the top of the page.", "r": 7}]}], "total": 253.445, "audio": "leads-portal.mp3"};
+(function(){
+  const S = DATA.scenes, TL = DATA.timeline, TOTAL = DATA.total;
+  document.getElementById('ttl').textContent = DATA.title;
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const fmt = s => esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/`(.+?)`/g,'<code>$1</code>');
+  const plain = s => String(s).replace(/\*\*|`/g,'');
+  const SPEEDS = [1,1.25,1.5,1.75,2];
+  const $ = id=>document.getElementById(id);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function bit(html, cls){ return '<div class="bit '+(cls||'')+'">'+html+'</div>'; }
+  function render(sc){
+    let h = bit('<h2>'+fmt(sc.h)+'</h2>');
+    if(sc.sub) h += bit('<p class="sub">'+fmt(sc.sub)+'</p>');
+    switch(sc.type){
+      case 'text': if(sc.items) h += '<ul class="items">'+sc.items.map(x=>'<li class="bit">'+fmt(x)+'</li>').join('')+'</ul>'; break;
+      case 'steps': h += '<ol class="steps">'+sc.items.map(x=>'<li class="bit"><span>'+fmt(x)+'</span></li>').join('')+'</ol>'; break;
+      case 'flow': h += '<div class="flow">'+sc.nodes.map((n,k)=>(k?'<span class="arrow"></span>':'')+'<div class="node bit '+(n.hi?'hi':'')+'"><span class="t">'+fmt(n.t)+'</span>'+(n.s?'<span class="s">'+fmt(n.s)+'</span>':'')+'</div>').join('')+'</div>'; break;
+      case 'tree': h += '<div class="tree bit">'+sc.lines.map(l=>{const p=l.split('#');return '<div>'+esc(p[0])+(p[1]?'<span class="c">#'+esc(p[1])+'</span>':'')+'</div>';}).join('')+'</div>'; break;
+      case 'graph': { const two = sc.rows.some(r=>r.lane===1);
+        h += '<div class="graph">'+sc.rows.map(r=>'<div class="grow bit"><div class="lanes"><i class="l0"></i>'+(two&&r.span?'<i class="l1"></i>':'')+'<b class="l'+r.lane+'"></b></div><div class="m">'+fmt(r.msg)+'</div></div>').join('')+'</div>'; break; }
+      case 'compare': { const col=(c,cl)=>'<div class="col bit '+cl+'"><span class="lbl">'+esc(c.label)+'</span><ul>'+c.items.map(x=>'<li>'+fmt(x)+'</li>').join('')+'</ul></div>';
+        h += '<div class="compare">'+col(sc.a,'a')+col(sc.b,'b')+'</div>'; break; }
+      case 'chips': h += '<div class="chips">'+sc.items.map(x=>'<div class="chip bit"><span class="t">'+fmt(x[0])+'</span><span class="d">'+fmt(x[1])+'</span></div>').join('')+'</div>'; break;
+    }
+    if(sc.caption) h += bit('<p class="sub">'+fmt(sc.caption)+'</p>');
+    if(sc.analogy) h += bit('<div class="analogy"><span class="lbl">Think of it like</span><span class="txt"><span>'+fmt(sc.analogy)+'</span></span></div>');
+    if(sc.note) h += bit('<p class="note">'+fmt(sc.note)+'</p>');
+    return h;
+  }
+
+  // ---- clock: the narration track is the master clock; a virtual clock stands in if audio can't load
+  const audio = $('vo');
+  let audioOK = false, virt = {t:0, playing:false, last:0};
+  let speed = 1.5;
+  try{ const v=parseFloat(localStorage.getItem('explainer-speed')); if(SPEEDS.includes(v)) speed=v; }catch(e){}
+  (async function loadAudio(){
+    try{
+      const r = await fetch(DATA.audio); if(!r.ok) throw 0;
+      audio.src = URL.createObjectURL(await r.blob());
+    }catch(e){ audio.src = DATA.audio; }
+    audio.addEventListener('canplay', ()=>{ audioOK = true; }, {once:true});
+    audio.addEventListener('error', ()=>{ audioOK = false; $('startTxt').textContent='Play (sound unavailable)'; });
+  })();
+  const now = () => audioOK ? audio.currentTime : virt.t;
+  const isPlaying = () => audioOK ? !audio.paused : virt.playing;
+  function seek(t){ t=Math.max(0,Math.min(TOTAL-0.05,t)); if(audioOK){ audio.currentTime=t; } virt.t=t; frame(true); }
+  async function play(){
+    started=true; $('start').hidden=true;
+    if(now()>=TOTAL-0.1) seek(0);
+    if(audioOK){ audio.playbackRate=speed; audio.preservesPitch=true; try{ await audio.play(); }catch(e){ audioOK=false; } }
+    if(!audioOK){ virt.playing=true; virt.last=performance.now(); }
+    loop();
+  }
+  function pause(){ if(audioOK) audio.pause(); virt.playing=false; frame(true); }
+  let started=false;
+
+  // ---- UI scaffolding
+  const segsEl=$('segs');
+  S.forEach((sc,k)=>{const b=document.createElement('button');b.className='seg';b.type='button';b.setAttribute('aria-label','Scene '+(k+1)+': '+plain(sc.h));b.innerHTML='<span></span>';b.onclick=()=>goScene(k);segsEl.appendChild(b);});
+  const segs=[...segsEl.children];
+  SPEEDS.forEach(v=>{const b=document.createElement('button');b.type='button';b.textContent=v+'×';b.onclick=()=>setSpeed(v);$('speed').appendChild(b);});
+  function setSpeed(v){ speed=v; audio.playbackRate=v; try{localStorage.setItem('explainer-speed',String(v));}catch(e){}
+    [...$('speed').children].forEach((b,k)=>b.setAttribute('aria-pressed',SPEEDS[k]===v?'true':'false')); frame(true); }
+  const chaps=[]; S.forEach((sc,k)=>{if(!chaps.length||chaps[chaps.length-1].name!==sc.chapter)chaps.push({name:sc.chapter,start:k});});
+  chaps.forEach(c=>{const b=document.createElement('button');b.type='button';b.textContent=c.name;b.onclick=()=>goScene(c.start);c.el=b;$('chapters').appendChild(b);});
+  let cc=false; try{ cc = localStorage.getItem('explainer-cc')==='1'; }catch(e){}
+  function setCC(on){ cc=on; $('cc').hidden=!on; $('ccBtn').setAttribute('aria-pressed',on?'true':'false'); try{localStorage.setItem('explainer-cc',on?'1':'0');}catch(e){} frame(true); }
+
+  // ---- fit: scale the scene so it always fits its box (up to 1.25x on wide screens, down as far as needed)
+  let fitScale=1;
+  function fit(){
+    const box=$('fitbox'), el=$('scene'), W=box.clientWidth, H=box.clientHeight; if(!W||!H) return;
+    let s = W>=700 ? 1.25 : 1;
+    for(; s>0.35; s-=0.05){ el.style.width=(W/s)+'px'; if(el.offsetHeight*s<=H) break; }
+    fitScale=s; el.style.transform='translateY(-50%) scale('+s+')'; box.dataset.scale=s.toFixed(2);
+  }
+  if(window.ResizeObserver) new ResizeObserver(fit).observe($('fitbox')); else addEventListener('resize',fit);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+
+  // ---- frame
+  let curScene=-1, bits=[], lastLine=-2;
+  function sceneAt(t){ let k=0; for(let i=0;i<TL.length;i++){ if(t>=TL[i].start) k=i; } return k; }
+  function goScene(k){ k=Math.max(0,Math.min(S.length-1,k)); seek(TL[k].start+0.001); }
+  function frame(force){
+    const t=now(), k=sceneAt(t);
+    if(k!==curScene){
+      curScene=k; const sc=S[k];
+      $('scene').className='scene '+(sc.type==='title'?'title':''); $('scene').innerHTML=render(sc);
+      $('chap').textContent=sc.chapter; $('cnt').textContent=(k+1)+' / '+S.length;
+      bits=[...$('scene').querySelectorAll('.bit')];
+      chaps.forEach(c=>{const on=c.name===sc.chapter; c.el.classList.toggle('cur',on); if(on&&c.el.scrollIntoView) $('chapters').scrollLeft=Math.max(0,c.el.offsetLeft-$('chapters').offsetLeft-40);}); lastLine=-2;
+      fit();
+    }
+    const lines=TL[k].lines; let li=-1; for(let i=0;i<lines.length;i++){ if(t>=lines[i].t) li=i; }
+    // at rest before the first play, show the scene complete so it reads as a still
+    const show = !started ? bits.length : (li<0 ? 1 : Math.min(bits.length, li===lines.length-1 && t>lines[li].end ? bits.length : lines[li].r));
+    if(li!==lastLine || force){
+      const prevShow = li>0 ? lines[li-1].r : 1;
+      bits.forEach((b,j)=>{ b.classList.toggle('on', j<show); b.classList.toggle('now', started && li>=0 && j>=prevShow-(li===0?1:0) && j<show && j>0); });
+      $('cc').textContent = li>=0 ? lines[li].text : '';
+      lastLine=li;
+    }
+    const end = k<TL.length-1 ? TL[k+1].start : TOTAL;
+    segs.forEach((s,j)=>s.firstChild.style.width = j<k?'100%': j>k?'0': Math.min(100,(t-TL[k].start)/(end-TL[k].start)*100)+'%');
+    const rem=Math.max(0,Math.round((TOTAL-t)/speed)); $('clock').textContent=Math.floor(rem/60)+':'+String(rem%60).padStart(2,'0')+' left';
+    $('play').textContent = isPlaying() ? 'Pause' : (t>=TOTAL-0.1 ? 'Replay' : 'Play');
+  }
+  function loop(){
+    if(!isPlaying()){ frame(true); return; }
+    if(!audioOK){ const n=performance.now(); virt.t+=Math.min(0.25,(n-virt.last)/1000)*speed; virt.last=n; if(virt.t>=TOTAL){ virt.t=TOTAL; virt.playing=false; } }
+    frame(false); requestAnimationFrame(loop);
+  }
+  audio.addEventListener('ended', ()=>frame(true));
+
+  $('start').onclick=play;
+  $('play').onclick=()=> isPlaying()?pause():play();
+  $('prev').onclick=()=>{ const k=sceneAt(now()); goScene(now()-TL[k].start>1.5?k:k-1); if(!started){started=true;$('start').hidden=true;frame(true);} };
+  $('next').onclick=()=>{ goScene(sceneAt(now())+1); if(!started){started=true;$('start').hidden=true;frame(true);} };
+  $('back10').onclick=()=>seek(now()-10);
+  $('ccBtn').onclick=()=>setCC(!cc);
+  document.addEventListener('keydown',e=>{
+    if(e.target.closest && e.target.closest('input,textarea')) return;
+    if(e.key==='ArrowRight') $('next').click(); else if(e.key==='ArrowLeft') $('prev').click();
+    else if(e.key===' ' && (e.target===document.body)){e.preventDefault(); $('play').click();}
+    else if(e.key==='+'||e.key==='='){const k=SPEEDS.indexOf(speed);setSpeed(SPEEDS[Math.min(SPEEDS.length-1,k+1)]);}
+    else if(e.key==='-'){const k=SPEEDS.indexOf(speed);setSpeed(SPEEDS[Math.max(0,k-1)]);}
+    else if(e.key==='c') setCC(!cc);
+  });
+
+  // ---- transcript = the narration itself
+  const read=$('read');
+  chaps.forEach((c,ci)=>{
+    const end = ci<chaps.length-1?chaps[ci+1].start:S.length;
+    const sec=document.createElement('div'); sec.className='tchap';
+    let h='<h4>'+esc(c.name)+'</h4>';
+    for(let k=c.start;k<end;k++){
+      h+='<div class="tsc"><button type="button" data-k="'+k+'">'+fmt(S[k].h)+'</button><p class="say">'+TL[k].lines.map(l=>esc(l.shown||l.text)).join(' ')+'</p></div>';
+    }
+    sec.innerHTML=h; read.appendChild(sec);
+  });
+  read.addEventListener('click',e=>{const b=e.target.closest('button[data-k]');if(!b)return;
+    window.scrollTo({top:0,behavior:reduce?'auto':'smooth'}); goScene(+b.dataset.k); play();});
+
+  setSpeed(speed); setCC(cc); frame(true);
+})();
+</script>
