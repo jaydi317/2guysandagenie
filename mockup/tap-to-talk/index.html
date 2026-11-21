@@ -30,6 +30,7 @@ label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
 .recap{border:2px solid var(--ink);padding:16px;margin:0 0 18px}.recap p{margin:0 0 10px}
 .okline{background:#FFF3C4;border-left:4px solid var(--ink);padding:10px 14px;margin:0 0 22px;font-size:16px}
 [hidden]{display:none!important}
+.qb{border-top:3px solid var(--ink);padding:18px 0 6px;margin:22px 0 0}.qb h2{margin:0 0 10px}.qn{font-size:13px;font-weight:bold;letter-spacing:.5px;text-transform:uppercase;color:var(--soft);margin:0 0 6px}
 </style>
 </head><body>
 <header class="site"><div class="hwrap">
@@ -37,66 +38,62 @@ label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
 </div></header>
 <main id="main">
 
-<p class="mock"><b>Mockup, for the team to look at.</b> The "skip the call" path. Nothing gets sent. The questions are the five from the 15-minute call.</p>
+<p class="mock"><b>Mockup, for the team to look at.</b> The "skip the call" path. An owner lands here after giving us a name, phone and email on the sign-up, in place of picking a time. Nothing gets sent. The questions are the five from the 15-minute call.</p>
 
-<div class="bar" id="bar"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-<p class="stepno" id="stepno"></p>
-
-<section class="step show" id="s0">
+<section id="form">
+  <p class="okline"><b>&#10003; We have your name and where to reach you.</b> You're on our list, and this part is optional.</p>
   <p class="kicker">No Call Needed</p>
   <h1>Rather Skip The Call? Tell Us Here.</h1>
-  <p class="sub">Five quick questions. Tap the mic and talk, or type. Messy is fine.</p>
+  <p class="sub">Five questions, all on this page. Tap a mic and talk, or type. Messy is fine. Answer as many as you like, in any order.</p>
   <p>Then we go do our homework. In a few days you get an email with a short video made for your business: what we found, and what we'd use to take that one job off your plate.</p>
-  <p>You never have to get on the phone unless you want to.</p>
-  <button class="go" data-go="1" type="button">Start: Question 1 Of 5</button>
+
+  <div class="qb">
+    <p class="qn">1 of 5</p>
+    <h2>If We Fixed One Thing In The Next 30 Days, Which Would Matter Most?</h2>
+    <button class="pick p1" type="button">More money coming in</button>
+    <button class="pick p1" type="button">More hours back in my week</button>
+    <button class="pick p1" type="button">Happier customers</button>
+  </div>
+
+  <div class="qb q" data-s="What you do over and over">
+    <p class="qn">2 of 5</p>
+    <h2>What Do You Or Your Team Do Over And Over, Every Week?</h2>
+    <p class="sub">The jobs that never end. Name as many as come to mind.</p>
+  </div>
+
+  <div class="qb q" data-s="Where things get stuck">
+    <p class="qn">3 of 5</p>
+    <h2>Where Do Things Slow Down, Get Stuck, Or Fall Through The Cracks?</h2>
+    <p class="sub">A call nobody returned. A quote that sat. Paperwork that piles up.</p>
+  </div>
+
+  <div class="qb q" data-s="Hours a week, and who">
+    <p class="qn">4 of 5</p>
+    <h2>About How Many Hours A Week Does That Take, And Who Does It?</h2>
+    <p class="sub">A rough guess is fine.</p>
+  </div>
+
+  <div class="qb q" data-s="What would change">
+    <p class="qn">5 of 5</p>
+    <h2>If That One Thing Ran Itself, What Would Change For You?</h2>
+    <p class="sub">For the business, or for you.</p>
+  </div>
+
+  <p class="err" id="err">Answer at least one question first. A rough answer is fine.</p>
+  <button class="go" id="done" type="button">I'm Done. Send It To Jimmy And Paul</button>
+  <div class="recap" id="sure" hidden>
+    <p><b>Are you sure? Is that everything you want us to know?</b></p>
+    <p class="small" id="left"></p>
+    <button class="go" id="yes" type="button">Yes, Send It</button>
+    <button class="back" id="no" type="button">Not yet. Let me add more.</button>
+  </div>
   <p class="small">Would you rather talk it through? <a href="/free15/start/">Pick a time for a free 15-minute call instead.</a></p>
 </section>
 
-<section class="step" id="s1">
-  <h1>If We Fixed One Thing In The Next 30 Days, Which Would Matter Most?</h1>
-  <p class="sub">Tap one. Your tap takes you to the next question.</p>
-  <button class="pick p1" type="button">More money coming in</button>
-  <button class="pick p1" type="button">More hours back in my week</button>
-  <button class="pick p1" type="button">Happier customers</button>
-  <button class="back" data-go="0" type="button">Back</button>
-</section>
-
-<section class="step q" id="s2" data-q="What do you or your team do over and over every week?">
-  <h1>What Do You Or Your Team Do Over And Over, Every Week?</h1>
-  <p class="sub">The jobs that never end. Name as many as come to mind.</p>
-</section>
-
-<section class="step q" id="s3" data-q="Where do things slow down, get stuck, or fall through the cracks?">
-  <h1>Where Do Things Slow Down, Get Stuck, Or Fall Through The Cracks?</h1>
-  <p class="sub">A call nobody returned. A quote that sat. Paperwork that piles up.</p>
-</section>
-
-<section class="step q" id="s4" data-q="About how many hours a week does that take, and who does it?">
-  <h1>About How Many Hours A Week Does That Take, And Who Does It?</h1>
-  <p class="sub">A rough guess is fine.</p>
-</section>
-
-<section class="step q" id="s5" data-q="If that one thing ran itself, what would change for you?">
-  <h1>If That One Thing Ran Itself, What Would Change For You?</h1>
-  <p class="sub">For the business, or for you.</p>
-</section>
-
-<section class="step" id="s6">
-  <h1>Where Should We Send What We Find?</h1>
-  <p class="sub">Your video comes by email in a few days.</p>
-  <label for="nm">Your name</label><input id="nm" autocomplete="name">
-  <label for="biz">Your business <span style="font-weight:normal">(the name, and your website if you have one)</span></label><input id="biz" autocomplete="organization">
-  <label for="em">Email</label><input id="em" type="email" autocomplete="email">
-  <label for="ph">Phone <span style="font-weight:normal">(optional. Only if you'd like us to be able to call.)</span></label><input id="ph" type="tel" autocomplete="tel">
-  <p class="err" id="err6">We need your name, your business and an email to send it to.</p>
-  <button class="go" id="send" type="button">Send It To Jimmy And Paul</button>
-  <button class="back" data-go="5" type="button">Back</button>
-</section>
-
-<section class="step" id="s7">
-  <p class="okline"><b>&#10003; Got it, <span id="dnm"></span>.</b> We're on it.</p>
+<section id="after" hidden>
+  <p class="okline"><b>&#10003; Got it.</b> We're on it.</p>
   <h1>Now We Go Do Our Homework.</h1>
-  <p>In a few days, look for an email from Jimmy at <b id="dem"></b>. In it is a short video made for <span id="dbiz">your business</span>: what we found, and what we'd use to take that one job off your plate.</p>
+  <p>In a few days, look for an email from Jimmy. In it is a short video made for your business: what we found, and what we'd use to take that one job off your plate.</p>
   <p>Watch it when you have a few minutes. If you want to go further, the video tells you how. If not, what we found is still yours.</p>
   <div class="recap"><p><b>What you told us:</b></p><div id="said"></div></div>
   <p class="small">Mockup note for the team: the next pieces would be the same as the call path, the surprise seat at the next AI night and the daily AI email.</p>
@@ -105,30 +102,21 @@ label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
 </main>
 <script>
 (function(){
-  var $=function(i){return document.getElementById(i)}, data={a:[]}, cur=0, rec=null, on=false, micBtn=null, micTa=null, base='';
+  var $=function(i){return document.getElementById(i)}, a1='', rec=null, on=false, micBtn=null, micTa=null, base='';
   var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   function stop(){ if(rec){try{rec.stop()}catch(e){}} on=false; if(micBtn){micBtn.classList.remove('on'); micBtn.querySelector('.l').textContent = micTa.value.trim() ? 'Tap To Keep Talking' : 'Tap To Talk';} }
-  function show(n){ stop(); cur=n;
-    document.querySelectorAll('.step').forEach(function(s){s.classList.remove('show')}); $('s'+n).classList.add('show');
-    document.querySelectorAll('#bar span').forEach(function(b,i){b.classList.toggle('on', n>=1 && i<Math.min(n,6))});
-    $('stepno').textContent = n===0 ? '' : (n<=5 ? 'Question '+n+' of 5' : (n===6 ? 'Last step' : 'Done'));
-    window.scrollTo(0,0);
-  }
-  document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(+b.dataset.go)})});
   document.querySelectorAll('.p1').forEach(function(p){p.addEventListener('click',function(){
-    document.querySelectorAll('.p1').forEach(function(x){x.classList.remove('on')}); p.classList.add('on'); data.a[1]=p.textContent; setTimeout(function(){show(2)},200);
+    document.querySelectorAll('.p1').forEach(function(x){x.classList.remove('on')}); p.classList.add('on'); a1=p.textContent; $('sure').hidden=true;
   })});
-  document.querySelectorAll('.step.q').forEach(function(sec){
-    var n=+sec.id.slice(1);
+  var qs=[].slice.call(document.querySelectorAll('.qb.q'));
+  qs.forEach(function(sec){
     var mic=document.createElement('button'); mic.className='mic'; mic.type='button'; mic.innerHTML='<span class="dot"></span><span class="l">Tap To Talk</span>';
     var ta=document.createElement('textarea'); ta.placeholder='Or type it here...';
-    var err=document.createElement('p'); err.className='err'; err.textContent='Say or type a few words first. A rough answer is fine.';
-    var go=document.createElement('button'); go.className='go'; go.type='button'; go.textContent = n<5 ? 'Next: Question '+(n+1)+' Of 5' : 'Next: Where To Send It';
-    var back=document.createElement('button'); back.className='back'; back.type='button'; back.textContent='Back';
-    sec.appendChild(mic); sec.appendChild(ta); sec.appendChild(err); sec.appendChild(go); sec.appendChild(back);
+    sec.appendChild(mic); sec.appendChild(ta); sec._ta=ta;
+    ta.addEventListener('input',function(){$('sure').hidden=true});
     mic.addEventListener('click',function(){
       if(!SR){ mic.querySelector('.l').textContent='Use your keyboard mic below'; ta.focus(); return; }
-      if(on) return stop();
+      if(on){ var same=micBtn===mic; stop(); if(same) return; }
       micBtn=mic; micTa=ta; base = ta.value ? ta.value.trim()+' ' : '';
       rec=new SR(); rec.continuous=true; rec.interimResults=true; rec.lang='en-US';
       rec.onresult=function(e){var t='';for(var r=0;r<e.results.length;r++)t+=e.results[r][0].transcript;ta.value=base+t;};
@@ -136,20 +124,20 @@ label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
       try{rec.start()}catch(e){return}
       on=true; mic.classList.add('on'); mic.querySelector('.l').textContent='Listening... Tap To Stop';
     });
-    go.addEventListener('click',function(){ stop(); if(!ta.value.trim()){err.style.display='block';return} err.style.display='none'; data.a[n]=ta.value.trim(); show(n+1); });
-    back.addEventListener('click',function(){show(n-1)});
   });
-  $('send').addEventListener('click',function(){
-    var nm=$('nm').value.trim(), biz=$('biz').value.trim(), em=$('em').value.trim();
-    if(!nm||!biz||em.indexOf('@')<1){$('err6').style.display='block';return}
-    $('err6').style.display='none';
-    $('dnm').textContent=nm; $('dem').textContent=em; $('dbiz').textContent=biz;
-    var qs=['','What matters most','What you do over and over','Where things get stuck','Hours a week, and who','What would change'];
+  function answers(){ var out=[['What matters most',a1]]; qs.forEach(function(s){out.push([s.dataset.s,s._ta.value.trim()])}); return out; }
+  $('done').addEventListener('click',function(){
+    stop(); var an=answers(), n=an.filter(function(x){return x[1]}).length;
+    if(!n){$('err').style.display='block';return} $('err').style.display='none';
+    $('left').textContent = n<5 ? 'You answered '+n+' of the 5. That is fine. The more you tell us, the better your video.' : 'You answered all five.';
+    $('sure').hidden=false; $('sure').scrollIntoView({block:'center'});
+  });
+  $('no').addEventListener('click',function(){$('sure').hidden=true; window.scrollTo(0,0)});
+  $('yes').addEventListener('click',function(){
     var box=$('said'); box.innerHTML='';
-    for(var i=1;i<=5;i++){ var p=document.createElement('p'); var b=document.createElement('b'); b.textContent=qs[i]+': '; p.appendChild(b); p.appendChild(document.createTextNode(data.a[i]||'')); box.appendChild(p); }
-    show(7);
+    answers().forEach(function(x){ if(!x[1])return; var p=document.createElement('p'); var b=document.createElement('b'); b.textContent=x[0]+': '; p.appendChild(b); p.appendChild(document.createTextNode(x[1])); box.appendChild(p); });
+    $('form').hidden=true; $('after').hidden=false; window.scrollTo(0,0);
   });
-  var m=location.search.match(/[?&]show=(\d)/); if(m) show(+m[1]);
 })();
 </script>
 </body></html>

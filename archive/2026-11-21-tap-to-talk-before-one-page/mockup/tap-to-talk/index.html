@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<title>Skip The Call · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<link rel="stylesheet" href="/assets/simple.css">
+<style>
+.mock{background:#FFF3C4;font-size:14px;padding:8px 12px;margin:0 0 18px;border:1px solid #e6d58a}
+.bar{display:flex;gap:6px;margin:0 0 6px}
+.bar span{flex:1;height:8px;background:var(--rule)}
+.bar span.on{background:var(--ink)}
+.stepno{font-size:14px;color:var(--soft);margin:0 0 18px}
+.step{display:none}.step.show{display:block}
+h1{margin-top:0}
+.pick{display:block;width:100%;box-sizing:border-box;text-align:left;font:inherit;font-size:18px;padding:14px 16px;margin:0 0 10px;border:2px solid var(--ink);background:#fff;cursor:pointer}
+.pick:active,.pick.on{background:var(--ink);color:#fff}
+textarea,input{width:100%;box-sizing:border-box;font:inherit;font-size:18px;border:2px solid var(--ink);padding:12px;background:#fff;margin:0 0 12px}
+textarea{min-height:130px;resize:vertical}
+label{display:block;font-size:15px;font-weight:bold;margin:0 0 4px}
+.mic{display:flex;width:100%;justify-content:center;align-items:center;gap:10px;font:inherit;font-weight:bold;font-size:19px;background:var(--ink);color:#fff;border:2px solid var(--ink);padding:14px 16px;margin:0 0 12px;cursor:pointer}
+.mic.on{background:#c62828;border-color:#c62828}
+.dot{width:12px;height:12px;border-radius:50%;background:currentColor}.mic.on .dot{animation:blink 1s infinite}@keyframes blink{50%{opacity:.2}}
+.go{display:block;width:100%;font:inherit;font-weight:bold;font-size:20px;padding:16px;background:var(--ink);color:#fff;border:0;cursor:pointer;margin:8px 0 10px}
+.back{background:none;border:0;font:inherit;font-size:15px;color:var(--soft);text-decoration:underline;cursor:pointer;padding:0}
+.err{color:#c62828;font-size:15px;display:none;margin:0 0 8px}
+.small{font-size:15px;color:var(--soft)}
+.recap{border:2px solid var(--ink);padding:16px;margin:0 0 18px}.recap p{margin:0 0 10px}
+.okline{background:#FFF3C4;border-left:4px solid var(--ink);padding:10px 14px;margin:0 0 22px;font-size:16px}
+[hidden]{display:none!important}
+</style>
+</head><body>
+<header class="site"><div class="hwrap">
+<a class="brand" href="/"><img src="/assets/2g-square.svg" alt="">2 Guys and a Genie</a>
+</div></header>
+<main id="main">
+
+<p class="mock"><b>Mockup, for the team to look at.</b> The "skip the call" path. Nothing gets sent. The questions are the five from the 15-minute call.</p>
+
+<div class="bar" id="bar"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<p class="stepno" id="stepno"></p>
+
+<section class="step show" id="s0">
+  <p class="kicker">No Call Needed</p>
+  <h1>Rather Skip The Call? Tell Us Here.</h1>
+  <p class="sub">Five quick questions. Tap the mic and talk, or type. Messy is fine.</p>
+  <p>Then we go do our homework. In a few days you get an email with a short video made for your business: what we found, and what we'd use to take that one job off your plate.</p>
+  <p>You never have to get on the phone unless you want to.</p>
+  <button class="go" data-go="1" type="button">Start: Question 1 Of 5</button>
+  <p class="small">Would you rather talk it through? <a href="/free15/start/">Pick a time for a free 15-minute call instead.</a></p>
+</section>
+
+<section class="step" id="s1">
+  <h1>If We Fixed One Thing In The Next 30 Days, Which Would Matter Most?</h1>
+  <p class="sub">Tap one. Your tap takes you to the next question.</p>
+  <button class="pick p1" type="button">More money coming in</button>
+  <button class="pick p1" type="button">More hours back in my week</button>
+  <button class="pick p1" type="button">Happier customers</button>
+  <button class="back" data-go="0" type="button">Back</button>
+</section>
+
+<section class="step q" id="s2" data-q="What do you or your team do over and over every week?">
+  <h1>What Do You Or Your Team Do Over And Over, Every Week?</h1>
+  <p class="sub">The jobs that never end. Name as many as come to mind.</p>
+</section>
+
+<section class="step q" id="s3" data-q="Where do things slow down, get stuck, or fall through the cracks?">
+  <h1>Where Do Things Slow Down, Get Stuck, Or Fall Through The Cracks?</h1>
+  <p class="sub">A call nobody returned. A quote that sat. Paperwork that piles up.</p>
+</section>
+
+<section class="step q" id="s4" data-q="About how many hours a week does that take, and who does it?">
+  <h1>About How Many Hours A Week Does That Take, And Who Does It?</h1>
+  <p class="sub">A rough guess is fine.</p>
+</section>
+
+<section class="step q" id="s5" data-q="If that one thing ran itself, what would change for you?">
+  <h1>If That One Thing Ran Itself, What Would Change For You?</h1>
+  <p class="sub">For the business, or for you.</p>
+</section>
+
+<section class="step" id="s6">
+  <h1>Where Should We Send What We Find?</h1>
+  <p class="sub">Your video comes by email in a few days.</p>
+  <label for="nm">Your name</label><input id="nm" autocomplete="name">
+  <label for="biz">Your business <span style="font-weight:normal">(the name, and your website if you have one)</span></label><input id="biz" autocomplete="organization">
+  <label for="em">Email</label><input id="em" type="email" autocomplete="email">
+  <label for="ph">Phone <span style="font-weight:normal">(optional. Only if you'd like us to be able to call.)</span></label><input id="ph" type="tel" autocomplete="tel">
+  <p class="err" id="err6">We need your name, your business and an email to send it to.</p>
+  <button class="go" id="send" type="button">Send It To Jimmy And Paul</button>
+  <button class="back" data-go="5" type="button">Back</button>
+</section>
+
+<section class="step" id="s7">
+  <p class="okline"><b>&#10003; Got it, <span id="dnm"></span>.</b> We're on it.</p>
+  <h1>Now We Go Do Our Homework.</h1>
+  <p>In a few days, look for an email from Jimmy at <b id="dem"></b>. In it is a short video made for <span id="dbiz">your business</span>: what we found, and what we'd use to take that one job off your plate.</p>
+  <p>Watch it when you have a few minutes. If you want to go further, the video tells you how. If not, what we found is still yours.</p>
+  <div class="recap"><p><b>What you told us:</b></p><div id="said"></div></div>
+  <p class="small">Mockup note for the team: the next pieces would be the same as the call path, the surprise seat at the next AI night and the daily AI email.</p>
+</section>
+
+</main>
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)}, data={a:[]}, cur=0, rec=null, on=false, micBtn=null, micTa=null, base='';
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  function stop(){ if(rec){try{rec.stop()}catch(e){}} on=false; if(micBtn){micBtn.classList.remove('on'); micBtn.querySelector('.l').textContent = micTa.value.trim() ? 'Tap To Keep Talking' : 'Tap To Talk';} }
+  function show(n){ stop(); cur=n;
+    document.querySelectorAll('.step').forEach(function(s){s.classList.remove('show')}); $('s'+n).classList.add('show');
+    document.querySelectorAll('#bar span').forEach(function(b,i){b.classList.toggle('on', n>=1 && i<Math.min(n,6))});
+    $('stepno').textContent = n===0 ? '' : (n<=5 ? 'Question '+n+' of 5' : (n===6 ? 'Last step' : 'Done'));
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(+b.dataset.go)})});
+  document.querySelectorAll('.p1').forEach(function(p){p.addEventListener('click',function(){
+    document.querySelectorAll('.p1').forEach(function(x){x.classList.remove('on')}); p.classList.add('on'); data.a[1]=p.textContent; setTimeout(function(){show(2)},200);
+  })});
+  document.querySelectorAll('.step.q').forEach(function(sec){
+    var n=+sec.id.slice(1);
+    var mic=document.createElement('button'); mic.className='mic'; mic.type='button'; mic.innerHTML='<span class="dot"></span><span class="l">Tap To Talk</span>';
+    var ta=document.createElement('textarea'); ta.placeholder='Or type it here...';
+    var err=document.createElement('p'); err.className='err'; err.textContent='Say or type a few words first. A rough answer is fine.';
+    var go=document.createElement('button'); go.className='go'; go.type='button'; go.textContent = n<5 ? 'Next: Question '+(n+1)+' Of 5' : 'Next: Where To Send It';
+    var back=document.createElement('button'); back.className='back'; back.type='button'; back.textContent='Back';
+    sec.appendChild(mic); sec.appendChild(ta); sec.appendChild(err); sec.appendChild(go); sec.appendChild(back);
+    mic.addEventListener('click',function(){
+      if(!SR){ mic.querySelector('.l').textContent='Use your keyboard mic below'; ta.focus(); return; }
+      if(on) return stop();
+      micBtn=mic; micTa=ta; base = ta.value ? ta.value.trim()+' ' : '';
+      rec=new SR(); rec.continuous=true; rec.interimResults=true; rec.lang='en-US';
+      rec.onresult=function(e){var t='';for(var r=0;r<e.results.length;r++)t+=e.results[r][0].transcript;ta.value=base+t;};
+      rec.onerror=function(){stop()}; rec.onend=function(){if(on)stop()};
+      try{rec.start()}catch(e){return}
+      on=true; mic.classList.add('on'); mic.querySelector('.l').textContent='Listening... Tap To Stop';
+    });
+    go.addEventListener('click',function(){ stop(); if(!ta.value.trim()){err.style.display='block';return} err.style.display='none'; data.a[n]=ta.value.trim(); show(n+1); });
+    back.addEventListener('click',function(){show(n-1)});
+  });
+  $('send').addEventListener('click',function(){
+    var nm=$('nm').value.trim(), biz=$('biz').value.trim(), em=$('em').value.trim();
+    if(!nm||!biz||em.indexOf('@')<1){$('err6').style.display='block';return}
+    $('err6').style.display='none';
+    $('dnm').textContent=nm; $('dem').textContent=em; $('dbiz').textContent=biz;
+    var qs=['','What matters most','What you do over and over','Where things get stuck','Hours a week, and who','What would change'];
+    var box=$('said'); box.innerHTML='';
+    for(var i=1;i<=5;i++){ var p=document.createElement('p'); var b=document.createElement('b'); b.textContent=qs[i]+': '; p.appendChild(b); p.appendChild(document.createTextNode(data.a[i]||'')); box.appendChild(p); }
+    show(7);
+  });
+  var m=location.search.match(/[?&]show=(\d)/); if(m) show(+m[1]);
+})();
+</script>
+</body></html>
