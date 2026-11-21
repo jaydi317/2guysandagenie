@@ -205,9 +205,33 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
   <p class="nowrap"><button class="back" id="nobtn" type="button">No thanks, not this time</button></p>
 </section>
 
+<!-- OPTIONAL: GET US READY (its own page, before the last page; picked by the Nov 21 simulation) -->
+<section class="step" id="s7">
+  <div class="okline" id="pseat"></div>
+  <section id="prep">
+    <p class="kicker" style="margin-top:18px">Optional</p>
+    <h2 style="margin-top:0">Help Us Get Ready For Your Call.</h2>
+    <p>Four quick questions, all right here. Tap a mic and talk, or type. Messy is fine. The more we know walking in, the more you get out of your 15 minutes.</p>
+    <div class="qb q" data-s="What you do over and over"><p class="qn">1 of 4</p><h3>What Do You Or Your Team Do Over And Over, Every Week?</h3><p class="small">The jobs that never end. Name as many as come to mind.</p></div>
+    <div class="qb q" data-s="Where things get stuck"><p class="qn">2 of 4</p><h3>Where Do Things Slow Down, Get Stuck, Or Fall Through The Cracks?</h3><p class="small">A call nobody returned. A quote that sat. Paperwork that piles up.</p></div>
+    <div class="qb q" data-s="Hours a week, and who"><p class="qn">3 of 4</p><h3>About How Many Hours A Week Does That Take, And Who Does It?</h3><p class="small">A rough guess is fine.</p></div>
+    <div class="qb q" data-s="What would change"><p class="qn">4 of 4</p><h3>If That One Thing Ran Itself, What Would Change For You?</h3><p class="small">For the business, or for you.</p></div>
+    <p class="err" id="perr">Answer at least one first. A rough answer is fine.</p>
+    <button class="go" id="pdone" type="button">I'm Done. Send It To Jimmy And Paul</button>
+    <div class="recap" id="psure" hidden>
+      <p><b>Are you sure? Is that everything you want us to know?</b></p>
+      <p class="small" id="pleft"></p>
+      <button class="go" id="pyes" type="button">Yes, Send It</button>
+      <button class="back" id="pno" type="button">Not yet. Let me add more.</button>
+    </div>
+    <p class="nowrap" style="margin-top:14px"><button class="back" id="pskip" type="button">Skip This</button></p>
+  </section>
+</section>
+
 <!-- DONE -->
 <section class="step" id="s6">
   <h1><span id="fht">You're All Set</span><span id="fnm"></span>.</h1>
+  <div class="okline" id="pgot" hidden><b>&#10003; Got it.</b> Jimmy and Paul will read this before your call.</div>
   <div class="recap" id="seatbox" hidden>
     <p><b>Your seat is saved.</b></p>
     <p><span data-ev="long">Thursday, December 10</span>. Doors 6:30, done by 9. Launch Fishers, 12175 Visionary Way.</p>
@@ -252,25 +276,6 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     </details>
   </div>
 
-  <section id="prep">
-    <p class="kicker" style="margin-top:30px">Last Step · Optional</p>
-    <h2 style="margin-top:0">Help Us Get Ready For Your Call.</h2>
-    <p>Four quick questions, all right here. Tap a mic and talk, or type. Messy is fine. The more we know walking in, the more you get out of your 15 minutes.</p>
-    <div class="qb q" data-s="What you do over and over"><p class="qn">1 of 4</p><h3>What Do You Or Your Team Do Over And Over, Every Week?</h3><p class="small">The jobs that never end. Name as many as come to mind.</p></div>
-    <div class="qb q" data-s="Where things get stuck"><p class="qn">2 of 4</p><h3>Where Do Things Slow Down, Get Stuck, Or Fall Through The Cracks?</h3><p class="small">A call nobody returned. A quote that sat. Paperwork that piles up.</p></div>
-    <div class="qb q" data-s="Hours a week, and who"><p class="qn">3 of 4</p><h3>About How Many Hours A Week Does That Take, And Who Does It?</h3><p class="small">A rough guess is fine.</p></div>
-    <div class="qb q" data-s="What would change"><p class="qn">4 of 4</p><h3>If That One Thing Ran Itself, What Would Change For You?</h3><p class="small">For the business, or for you.</p></div>
-    <p class="err" id="perr">Answer at least one first. A rough answer is fine.</p>
-    <button class="go" id="pdone" type="button">I'm Done. Send It To Jimmy And Paul</button>
-    <div class="recap" id="psure" hidden>
-      <p><b>Are you sure? Is that everything you want us to know?</b></p>
-      <p class="small" id="pleft"></p>
-      <button class="go" id="pyes" type="button">Yes, Send It</button>
-      <button class="back" id="pno" type="button">Not yet. Let me add more.</button>
-    </div>
-  </section>
-  <div class="okline" id="pgot" hidden><b>&#10003; Got it.</b> Jimmy and Paul will read this before your call.</div>
-
   <h2 class="wallh">What Owners Are Saying</h2>
   <video controls playsinline preload="none" poster="/assets/jamon/jamon-jack-poster-v3.jpg" style="width:100%;display:block;background:#111;margin:0 0 6px"><source src="/assets/jamon/jamon-jack-16x9.mp4" type="video/mp4"></video>
   <p class="small" style="margin:0 0 18px">Jamon, a retired Indianapolis cop, and his son Chase run Gotta Call Jack.</p>
@@ -300,7 +305,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     document.getElementById('s'+n).classList.add('show');
     var bars=document.querySelectorAll('#bar span');
     bars.forEach(function(b,i){b.classList.toggle('on', i<Math.min(n,4))});
-    document.getElementById('stepno').textContent = n<5 ? 'Step '+n+' of 4' : (n===5 ? 'Booked. One more thing.' : 'Done');
+    document.getElementById('stepno').textContent = n<5 ? 'Step '+n+' of 4' : (n===5 ? 'Booked. One more thing.' : (n===7 ? 'Booked. One optional step.' : 'Done'));
     window.scrollTo(0,0);
   }
   (function(){var F=window.Found,box=document.getElementById('foundpick');if(!F||!box)return;
@@ -407,10 +412,11 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
       $('pleft').textContent = n<4 ? 'You answered '+n+' of the 4. That is fine.' : 'You answered all four.';
       $('psure').hidden=false; $('psure').scrollIntoView({block:'center'});
     });
+    $('pskip').addEventListener('click',function(){stop2(); show(6)});
     $('pno').addEventListener('click',function(){$('psure').hidden=true; $('prep').scrollIntoView()});
     $('pyes').addEventListener('click',function(){
       data.prep=qs.map(function(q){return [q.dataset.s,q._ta.value.trim()]});
-      $('prep').hidden=true; $('pgot').hidden=false; $('pgot').scrollIntoView({block:'center'});
+      $('pgot').hidden=false; show(6);
     });
   })();
   function email(){var has=!!(data.em&&data.em.indexOf('@')>0);$('emyes').hidden=!has;$('emno').hidden=has;if(has)$('emshow').textContent=data.em}
@@ -418,7 +424,8 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     data.seat=yes?'yes':'no';
     $('fht').textContent=yes?"You're In":"You're All Set";
     $('seatbox').hidden=!yes; $('nomsg').hidden=yes;
-    fill(); email(); show(6);
+    $('pseat').innerHTML=yes?'<b>&#10003; Your seat is saved.</b>':'<b>&#10003; No problem.</b> Your 15 minutes is on, just the way you booked it.';
+    fill(); email(); show(7);
   }
   document.querySelectorAll('#s5 .yes').forEach(function(b){b.addEventListener('click',function(){finish(true)})});
   $('nobtn').addEventListener('click',function(){finish(false)});
@@ -430,10 +437,10 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
       if(want&&el.querySelector('[data-v="'+want+'"]')){[].forEach.call(el.querySelectorAll('[data-v]'),function(k){k.hidden=k.getAttribute('data-v')!==want})}
       else if(window.R){R.show(el,x[1])}});})();
 
-  // look at one step without walking the whole sign-up: ?show=invite, ?show=yes, ?show=no
-  (function(){var m=location.search.match(/[?&]show=(invite|yes|no)/);if(!m)return;
+  // look at one step without walking the whole sign-up: ?show=invite, ?show=prep, ?show=yes, ?show=no
+  (function(){var m=location.search.match(/[?&]show=(invite|prep|yes|no)/);if(!m)return;
     var d1=days.querySelector('.slot');data.when=(d1?d1.dataset.label:'your day')+' at 10:30 am';
-    fill(); if(m[1]==='invite')show(5);else finish(m[1]==='yes');})();
+    fill(); if(m[1]==='invite')show(5);else if(m[1]==='prep')finish(true);else{finish(m[1]==='yes');show(6)}})();
 })();
 </script>
 </body></html>
