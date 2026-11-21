@@ -126,7 +126,7 @@ var NEXT={
 'Client':{t:'Nothing to do here. They are a client now.',s:'Nothing',l:[]},
 'Not now':{t:'No more calls. Only invite them to the next free night.',s:'Invite to the free night',l:[]}
 };
-var DID=[['Slydial sent',1],['Called, no answer',2],['Left a voicemail',2],['Walked in, owner not there',2],['Talked to staff, not the owner',2],['Emailed',2],['Talked to the owner',3],['Owner said call back later',3],['Booked the 15 minutes',4],['No-show for the 15 minutes',3,1],['Did the 15 minutes',5],['Sent what we found and made the offer',6],['Became a client',7,1],['Not now (they said no)',8,1]];
+var DID=[['Slydial sent',1],['Called, no answer',2],['Left a voicemail',2],['Walked in, owner not there',2],['Talked to staff, not the owner',2],['Emailed',2],['Texted (only after the owner said yes to texts)',3],['Talked to the owner',3],['Owner said call back later',3],['Booked the 15 minutes',4],['No-show for the 15 minutes',3,1],['Did the 15 minutes',5],['Sent what we found and made the offer',6],['Became a client',7,1],['Not now (they said no)',8,1]];
 var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function today(){var d=new Date();return MON[d.getMonth()]+' '+d.getDate()}
 function stg(i){var v=get('s'+i,STAGES[0]);return OLD[v]||(STAGES.indexOf(v)<0?STAGES[0]:v)}

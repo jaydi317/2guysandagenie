@@ -1,0 +1,271 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Leads (Demo) · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<style>
+body{margin:0;background:#fff;color:#111;font:17px/1.5 Tahoma,Geneva,Verdana,sans-serif}
+main{max-width:680px;margin:0 auto;padding:24px 16px 70px}
+h1{font-size:30px;margin:0 0 4px}.sub{color:#555;margin:0 0 10px}
+.demo{background:#FFF3C4;padding:10px 14px;margin:12px 0 16px;font-size:15px}
+a{color:#111}
+#q{width:100%;box-sizing:border-box;font-size:18px;padding:11px;border:2px solid #111;margin:0 0 10px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.chip{font:inherit;font-size:15px;padding:7px 12px;border:2px solid #111;background:#fff;color:#111;cursor:pointer}
+.chip.on{background:#111;color:#fff}
+a.chip{text-decoration:none;display:inline-block}
+select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;background:#fff}
+#count{font-size:14px;color:#555;margin:0 0 8px}
+.lead{display:block;width:100%;box-sizing:border-box;text-align:left;font:inherit;background:#fff;border:3px solid #111;padding:12px 14px;margin:0 0 10px;cursor:pointer;color:#111}
+.lead b{display:block;font-size:19px}
+.lead span{display:block;font-size:14px;color:#555}
+.tier{display:inline-block;font-size:13px;font-weight:bold;padding:1px 8px;border:2px solid #111;margin-right:8px}
+.tier.A{background:#111;color:#fff}
+.st{display:inline-block;font-size:13px;color:#555}
+#one{display:none}
+#one h2{font-size:26px;margin:10px 0 2px}
+.lab{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;margin:18px 0 2px}
+.big{display:block;font-size:19px;font-weight:bold;padding:12px 14px;border:3px solid #111;text-decoration:none;margin:8px 0;text-align:center}
+.big.dark{background:#111;color:#fff}
+#note{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;min-height:90px}
+.back{font:inherit;font-size:16px;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;color:#111}
+.now{border:3px solid #111;padding:12px 14px;margin:12px 0 14px;background:#FFF3C4}.now p{margin:0 0 6px}.now .k{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;display:block}.now .v{font-size:19px;font-weight:bold}.now .big{background:#fff;margin:8px 0 0}
+#hist{padding-left:20px;margin:4px 0 6px;font-size:15px}.nx{display:block;font-size:14px;color:#111}
+.due{display:block;font-size:14px;font-weight:bold}.due.late{color:#B00020}#score{font-size:14px;color:#555;margin:0 0 14px}#rules{font-size:14px;color:#555;border-top:2px solid #111;padding-top:10px;margin-top:24px}
+.crumb{font-size:14px;margin:0 0 6px}.bar{display:flex;flex-wrap:wrap;gap:6px 18px;margin:8px 0 6px;padding:10px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;font-size:16px}.bar a{font-weight:bold;white-space:nowrap}.prac{font-size:13px;color:#777;margin:0 0 4px}.prac a{color:#777}
+.add{margin:0 0 12px}.add summary{font-weight:bold;cursor:pointer;text-decoration:underline;font-size:16px}.add input{display:block;width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:9px;border:2px solid #111;margin:0 0 6px}
+.saved{font-size:13px;color:#555;min-height:18px}
+</style></head><body><main>
+
+<div id="list">
+<p class="crumb"><a href="/admin/">&larr; Admin</a> &middot; <a href="/admin/plan/">The Plan</a></p>
+<h1>Leads</h1>
+<p class="sub">Start at Today. Tap a shop. Do the next step. Tap what you did.</p>
+<p class="bar"><a href="/admin/leads/explainer/">&#9654; Watch how it works</a><a href="/admin/leads/how-to/">How-to</a><a href="/admin/scripts/">What to say</a><a href="/admin/leads/steps/">The steps</a><a href="https://app.gohighlevel.com/" target="_blank" rel="noopener">GoHighLevel &#8599;</a></p>
+<p class="prac">Practice mode: these ten shops are made up, and what you tap stays on this phone. <a href="/admin/leads/how-to/#notyet">More</a></p>
+<h2 style="font-size:24px;margin:16px 0 2px">Today</h2>
+<p class="sub" style="font-size:15px">Follow-ups that are due come first. Then three new shops to start.</p>
+<div id="today"></div>
+<p id="score"></p>
+<h2 style="font-size:22px;margin:18px 0 6px">Every Shop</h2>
+<details id="addbox" class="add"><summary>+ Add a shop</summary>
+<p class="sub" style="font-size:14px;margin:8px 0">For someone you met or heard about who isn't on the list. Only the name is needed. It saves on this phone.</p>
+<input id="a-n" placeholder="Shop name" autocomplete="off">
+<input id="a-k" placeholder="What they do (plumber, bakery...)" autocomplete="off">
+<input id="a-t" placeholder="Town" autocomplete="off">
+<input id="a-a" placeholder="Address" autocomplete="off">
+<input id="a-p" type="tel" placeholder="Phone" autocomplete="off">
+<input id="a-u" type="url" placeholder="Website" autocomplete="off">
+<input id="a-w" placeholder="Why they're worth going to" autocomplete="off">
+<select id="a-g"><option value="Worth a visit">Worth a visit</option><option value="A">A</option><option value="B">B</option></select>
+<button class="chip on" id="a-save" type="button" style="margin-left:8px">Save This Shop</button>
+<p class="saved" id="a-msg"></p>
+</details>
+<input id="q" type="search" placeholder="Search a name, town, street or trade" autocomplete="off">
+<div class="row" id="tiers">
+<button class="chip on" data-t="">All</button>
+<button class="chip" data-t="A">A</button>
+<button class="chip" data-t="B">B</button>
+<button class="chip" data-t="Worth a visit">Worth a visit</button>
+</div>
+<div class="row">
+<select id="town"><option value="">Every town</option></select>
+<select id="stage"><option value="">Every stage</option></select>
+</div>
+<p id="count"></p>
+<div id="rows"></div>
+<p id="rules"><b>The rules.</b> Nothing here sends anything on its own: you make every call and send every email yourself. Public information only. Never guess an email: find it, check it, then paste it in.</p>
+</div>
+
+<div id="one">
+<p><button class="back" id="back">&larr; All leads</button> &middot; <a href="/admin/leads/how-to/">How this works</a></p>
+<h2 id="n"></h2>
+<p class="sub" id="meta"></p>
+<div class="now"><p><span class="k">Where It Stands</span><span class="v" id="nw-stage"></span></p><p><span class="k">Last Step</span><span id="nw-last"></span></p><p><span class="k">Next Step</span><span class="v" id="nw-next"></span></p><div id="nw-links"></div></div>
+<p class="lab">Tap What You Just Did</p>
+<div class="row" id="did"></div>
+<p class="sub" style="font-size:14px;margin:0 0 6px">Each tap is saved with today's date and moves the shop to the right stage.</p>
+<a class="big dark" id="call" href="#">Call</a>
+<a class="big" id="map" href="#" target="_blank" rel="noopener">Directions</a>
+<a class="big" id="mail" href="#">Email</a>
+<a class="big" id="find" href="#" target="_blank" rel="noopener">Find Their Email</a>
+<input id="em" type="email" placeholder="Paste the email you found here" autocomplete="off" style="width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;margin:0 0 4px">
+<p class="lab">Look Them Up</p>
+<div class="row" id="look">
+<a class="chip" id="l-web" target="_blank" rel="noopener" href="#">Website</a>
+<a class="chip" id="l-goo" target="_blank" rel="noopener" href="#">Google Reviews</a>
+<a class="chip" id="l-fb" target="_blank" rel="noopener" href="#">Facebook</a>
+<a class="chip" id="l-yelp" target="_blank" rel="noopener" href="#">Yelp</a>
+<a class="chip" id="l-ig" target="_blank" rel="noopener" href="#">Instagram</a>
+</div>
+<p class="lab">Why It's Worth Going To</p><p id="why"></p>
+<p class="lab">What We Found</p><p id="found"></p>
+<a class="big dark" id="audit" href="#" target="_blank" rel="noopener">Run The Audit</a>
+<p class="sub" style="margin:0 0 4px">Opens Claude with this shop already typed in. Press send and wait a few minutes. The top half is what to say to the owner: one thing they can see on their phone, two more to name, two questions and an opener. The bottom half you keep for the 15 minutes. Paste the answer into Notes below, then use it with the script.</p>
+<a class="big" href="/admin/scripts/#demo">The One-Thing Demo Script</a>
+<p class="lab">What's Been Done</p>
+<ol id="hist" reversed></ol>
+<p><button class="back" id="undo" style="font-size:14px">Take back the last one (the stage goes back too)</button></p>
+<p class="lab">Or Set The Stage By Hand</p>
+<div class="row" id="stages"></div>
+<p class="lab">Notes From Each Visit Or Call</p>
+<textarea id="note" placeholder="What happened, what they said, what to show them next"></textarea>
+<p class="saved" id="saved"></p>
+</div>
+
+<script>
+try{if(localStorage.getItem('2g-admin')!=='1'){location.replace('/admin/')}}catch(e){}
+var STAGES=['Not touched yet','Slydial sent','Tried, no owner yet','Talked to the owner','15 minutes booked','15 minutes done','Offer made','Client','Not now'];
+var OLD={'Not yet visited':'Not touched yet','Visited':'Tried, no owner yet','Talking':'Talked to the owner'};
+var S='/admin/scripts/';
+var NEXT={
+'Not touched yet':{t:'Call first. If voicemail picks up, leave the message right then. If it just rings out and the number is a cell phone, send the Slydial. Slydial only works on cell phones.',s:'Call first',l:[['The First Call And Message',S+'#slydial'],['Phone Script',S+'#phone']]},
+'Slydial sent':{t:'Message left. The next day: call again or walk in.',s:'Call or walk in',l:[['Phone Script',S+'#phone'],['Walk-In Script',S+'#walk-short']]},
+'Tried, no owner yet':{t:'Try again at a different time of day. If you call, leave a voicemail.',s:'Try again',l:[['Phone Script',S+'#phone'],['Voicemail Script',S+'#voicemail'],['Walk-In Script',S+'#walk-short']]},
+'Talked to the owner':{t:'Run the audit if it is not done. Next time you talk, show them the one thing from the audit and book the 15 minutes.',s:'Book the 15 minutes',l:[['The One-Thing Demo Script',S+'#demo']]},
+'15 minutes booked':{t:'Run the audit before the call if it is not done. Have the questions ready.',s:'Get ready for the 15 minutes',l:[['The 15 Minutes: What To Ask',S+'#call']]},
+'15 minutes done':{t:'Send them what we found and make the offer: on your own, or with our help?',s:'Send what we found',l:[['How This Step Works (The Plan)','/admin/plan/#video']]},
+'Offer made':{t:'Follow up. Find out what is holding them back.',s:'Follow up',l:[['If They Ask What It Costs',S+'#cost']]},
+'Client':{t:'Nothing to do here. They are a client now.',s:'Nothing',l:[]},
+'Not now':{t:'No more calls. Only invite them to the next free night.',s:'Invite to the free night',l:[]}
+};
+var DID=[['Slydial sent',1],['Called, no answer',2],['Left a voicemail',2],['Walked in, owner not there',2],['Talked to staff, not the owner',2],['Emailed',2],['Talked to the owner',3],['Owner said call back later',3],['Booked the 15 minutes',4],['No-show for the 15 minutes',3,1],['Did the 15 minutes',5],['Sent what we found and made the offer',6],['Became a client',7,1],['Not now (they said no)',8,1]];
+var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function today(){var d=new Date();return MON[d.getMonth()]+' '+d.getDate()}
+function stg(i){var v=get('s'+i,STAGES[0]);return OLD[v]||(STAGES.indexOf(v)<0?STAGES[0]:v)}
+function hist(i){try{return JSON.parse(get('h'+i,'[]'))||[]}catch(e){return []}}
+function last(i){var h=hist(i);return h.length?h[h.length-1].a+', '+h[h.length-1].d:''}
+var L=[
+{n:'Sample Bakery',k:'Bakery',t:'Fishers',a:'100 Example St, Fishers, IN 46038',p:'317-555-0101',e:'hello@samplebakery.example',g:'A',w:'Rated 4.9 from 212 reviews. The owner is named in the reviews.',f:'A customer wrote that she called twice to order a cake and got voicemail both times. The site lists hours that differ from Google.'},
+{n:'Example Auto Repair',k:'Auto repair',t:'Carmel',a:'22 Sample Rd, Carmel, IN 46032',p:'317-555-0102',e:'',g:'A',w:'They spend to grow: ads, shop software, a careers page.',f:'The "Book Service" button on the site leads to a page that does not load.'},
+{n:'Made-Up Dance Studio',k:'Dance studio',t:'Noblesville',a:'5 Demo Ave, Noblesville, IN 46060',p:'317-555-0103',e:'info@madeupdance.example',g:'B',w:'Rated 5.0 from 88 reviews. Family-run.',f:'No leak seen. Hours and phone shown. No online sign-up.'},
+{n:'Placeholder Plumbing',k:'Plumber',t:'Westfield',a:'310 Test Ln, Westfield, IN 46074',p:'317-555-0104',e:'',g:'B',w:'Rated 4.8 from 140 reviews. The owner answers his reviews.',f:'Footer copyright reads 2021. No way to book online.'},
+{n:'Demo Boutique',k:'Boutique',t:'Zionsville',a:'8 Pretend St, Zionsville, IN 46077',p:'317-555-0105',e:'shop@demoboutique.example',g:'B',w:'Rated 4.9 from 64 reviews. Owner named in reviews.',f:'Online shop is up. The store phone is not on the homepage.'},
+{n:'Sample Coffee House',k:'Coffee shop',t:'Greenfield',a:'41 Mock Blvd, Greenfield, IN 46140',p:'317-555-0106',e:'',g:'B',w:'Rated 4.8 from 301 reviews. Owner-run.',f:'No leak seen. Online ordering in place.'},
+{n:'Example Law Office',k:'Attorney',t:'Anderson',a:'12 Sample Sq, Anderson, IN 46016',p:'765-555-0107',e:'office@examplelaw.example',g:'B',w:'Rated 5.0 from 52 reviews. Solo attorney for 30 years.',f:'Free site-builder badge in the footer. No intake form.'},
+{n:'Made-Up Hardware',k:'Hardware store',t:'Lebanon',a:'77 Demo Pike, Lebanon, IN 46052',p:'765-555-0108',e:'',g:'Worth a visit',w:'Rated 4.7 from 96 reviews. Owner named in reviews.',f:'Not looked at closely yet.'},
+{n:'Placeholder Salon',k:'Salon',t:'Brownsburg',a:'9 Test Ct, Brownsburg, IN 46112',p:'317-555-0109',e:'',g:'Worth a visit',w:'Rated 4.8 from 73 reviews. Owner named in reviews.',f:'Not looked at closely yet.'},
+{n:'Demo Yoga',k:'Yoga studio',t:'Fishers',a:'230 Example Way, Fishers, IN 46037',p:'317-555-0110',e:'hi@demoyoga.example',g:'Worth a visit',w:'Rated 4.9 from 41 reviews. Owner named in reviews.',f:'Not looked at closely yet.'}
+];
+try{JSON.parse(localStorage.getItem('2g-lead-demo:custom')||'[]').forEach(function(c){c.custom=1;L.push(c)})}catch(e){}
+function get(k,d){try{return localStorage.getItem('2g-lead-demo:'+k)||d}catch(e){return d}}
+function put(k,v){try{localStorage.setItem('2g-lead-demo:'+k,v)}catch(e){}}
+function $(i){return document.getElementById(i)}
+var tier='',cur=null;
+var towns=[];L.forEach(function(x){if(towns.indexOf(x.t)<0)towns.push(x.t)});towns.sort();
+towns.forEach(function(t){var o=document.createElement('option');o.textContent=t;$('town').appendChild(o)});
+STAGES.forEach(function(s){var o=document.createElement('option');o.textContent=s;$('stage').appendChild(o)});
+var DAY=86400000,RANK={'15 minutes done':0,'Talked to the owner':1,'Offer made':2,'Slydial sent':3,'Tried, no owner yet':4};
+function fmt(t){var d=new Date(t);return MON[d.getMonth()]+' '+d.getDate()}
+function due(i){
+  var st=stg(i),h=hist(i);if(!(st in RANK))return null;
+  var lt=h.length&&h[h.length-1].ts?h[h.length-1].ts:0,n=0;
+  for(var k=h.length-1;k>=0;k--){if(STAGES.indexOf(h[k].p||'')<STAGES.indexOf(st)&&k<h.length-1)break;n++}
+  var wait=st==='15 minutes done'?0:st==='Slydial sent'?1:(n>1?7:3);
+  if(!lt)return {t:0,txt:'Due now',late:false};
+  var d0=new Date(lt);d0.setHours(0,0,0,0);var t=d0.getTime()+wait*DAY,now=new Date();now.setHours(0,0,0,0);now=now.getTime();
+  return {t:t,txt:t<now?'Due '+fmt(t)+', '+Math.round((now-t)/DAY)+(Math.round((now-t)/DAY)===1?' day late':' days late'):t===now?'Due today':'Due '+fmt(t),late:t<now,ok:t<=now};
+}
+function row(i,st,showDue){
+  var x=L[i],b=document.createElement('button');b.className='lead';
+  var h=document.createElement('b');h.textContent=x.n;b.appendChild(h);
+  var s1=document.createElement('span');s1.textContent=x.k+' · '+x.t;b.appendChild(s1);
+  var s2=document.createElement('span');var tg=document.createElement('i');tg.className='tier '+(x.g==='A'?'A':'');tg.style.fontStyle='normal';tg.textContent=x.g;s2.appendChild(tg);
+  var ss=document.createElement('i');ss.className='st';ss.style.fontStyle='normal';ss.textContent=st;s2.appendChild(ss);b.appendChild(s2);
+  var s3=document.createElement('span');s3.className='nx';s3.textContent=(last(i)?'Last: '+last(i)+' · ':'')+'Next: '+NEXT[st].s;b.appendChild(s3);
+  var d=due(i);if(!d&&st==='15 minutes booked')d={txt:'Check the calendar for the day and time',late:false,ok:true,t:1};if(d&&(showDue||d.ok||d.t===0)){var s4=document.createElement('span');s4.className='due'+(d.late?' late':'');s4.textContent=d.txt;b.appendChild(s4)}
+  b.onclick=function(){show(i)};return b;
+}
+function drawToday(){
+  var box=$('today');box.textContent='';var dueL=[],fresh=[];
+  L.forEach(function(x,i){var st=stg(i),d=due(i);
+    if(d&&(d.ok||d.t===0))dueL.push([RANK[st],d.t,i]);
+    else if(st==='15 minutes booked')dueL.push([-1,0,i]);
+    else if(st===STAGES[0])fresh.push([x.g==='A'?0:x.g==='B'?1:2,i,i]);});
+  dueL.sort(function(a,b){return a[0]-b[0]||a[1]-b[1]});fresh.sort(function(a,b){return a[0]-b[0]||a[1]-b[1]});
+  dueL.forEach(function(r){box.appendChild(row(r[2],stg(r[2]),true))});
+  fresh.slice(0,3).forEach(function(r){box.appendChild(row(r[2],stg(r[2]),false))});
+  if(!dueL.length&&!fresh.length){var p=document.createElement('p');p.className='sub';p.textContent='Nothing due and nothing new. Every shop here has been worked.';box.appendChild(p)}
+  var C={};L.forEach(function(x,i){var seen={};hist(i).forEach(function(e){if(!seen[e.a]){seen[e.a]=1;C[e.a]=(C[e.a]||0)+1}})});
+  function c(a){return C[a]||0}
+  $('score').textContent='So far, on this phone. Slydials sent: '+c('Slydial sent')+' \u00b7 Owners talked to: '+c('Talked to the owner')+' \u00b7 15 minutes booked: '+c('Booked the 15 minutes')+' \u00b7 15 minutes done: '+c('Did the 15 minutes')+' \u00b7 Offers made: '+c('Sent what we found and made the offer')+' \u00b7 Clients: '+c('Became a client');
+}
+function draw(){
+  drawToday();
+  var q=$('q').value.toLowerCase(),tw=$('town').value,sg=$('stage').value,box=$('rows');box.textContent='';var c=0;
+  L.forEach(function(x,i){
+    var st=stg(i);
+    if(tier&&x.g!==tier)return;if(tw&&x.t!==tw)return;if(sg&&st!==sg)return;
+    if(q&&(x.n+' '+x.t+' '+x.a+' '+x.k).toLowerCase().indexOf(q)<0)return;
+    c++;box.appendChild(row(i,st,true));
+  });
+  $('count').textContent=c+(c===1?' shop':' shops');
+}
+function AUD(x){var kt=x.k.toLowerCase()+' '+x.t+' IN';return [
+'You are getting me ready to call or walk in on a local business owner.',
+'',
+'What this is for: I need one true thing the owner can see on their own phone that is costing them customers, so they say "show me" and book a free 15 minutes with us. Why it matters: an owner who sees it with their own eyes believes it. An owner who is only told does not. One wrong fact and I lose them.',
+'',
+'The business: '+x.n+' ('+x.k.toLowerCase()+') in '+x.t+', Indiana. Address: '+(x.a||'not on file')+'. Phone: '+(x.p||'not on file')+'. Website: '+(x.u||'none on file')+'.',
+(x.f?'An earlier note, not confirmed: "'+x.f+'" Check it today or drop it.':''),
+'',
+'Do the research in this order. Public pages only. For anything you use, keep the link and the date on it.',
+'',
+'A. Right business. Match the name, address and phone before you combine pages. If two businesses fit, stop and tell me.',
+'B. The business. What they sell, who buys it, and the owner\'s name if a public page says it. Read their website, their Google listing, their last 10 reviews, their Facebook or Instagram from the last 30 days, and any job ads. If there\'s no website, do the same from the Google listing.',
+'C. The customers. What do the reviews praise and what do they complain about? Look hard for calls not returned, slow quotes, no-shows and "hard to reach."',
+'D. The competition. Search "'+kt+'." Take the top 3 local companies in Google\'s map results (no ads, no directory sites). For each: stars, number of reviews, and one thing they do that this business doesn\'t.',
+'E. The owner. From all of that, what is most likely eating their time?',
+'',
+'Then give me this, in plain words. Parts 1 to 4 in under 150 words. Everything in under 350.',
+'',
+'SAY WHEN I TALK TO THE OWNER',
+'1. ONE THING the owner can see on their own phone in 30 seconds that is costing them customers. Pick the one closest to a lost call or a lost quote. Give the link, the exact taps, what they will see, and the date you checked. If you couldn\'t see the page the way a phone shows it, say so and give me the taps to check it myself first.',
+'2. TWO MORE things worth naming, one line each. Say what it costs them in plain words (they call the next company), no made-up numbers, and not how to fix it.',
+'3. TWO QUESTIONS that make the owner think about the money (for example, how many people asked for a quote last year).',
+'4. AN OPENER: one warm line about them from something real you found. Use the owner\'s name only if a public page gives it; include the link.',
+'',
+'KEEP FOR THE 15 MINUTES (I don\'t say these to the owner yet)',
+'5. Them against the top 3, from D: stars, number of reviews, the one thing each does that they don\'t.',
+'6. THE FIRST JOB we could take off their plate, from E, and what it would give back: time, calls or money. Name the job, not the steps. Mark it GUESS.',
+'7. TESTS FOR ME TO RUN, because you can\'t: for example, call them after hours and see what answers, or send their website form and time the reply.',
+'8. COULDN\'T CHECK: anything you looked for and couldn\'t open or confirm.',
+'',
+'Rules.',
+'Parts 1 to 5 are facts you checked today, each with its link.',
+'Guesses go only in 6, marked GUESS. Unconfirmed things go only in 8.',
+'In anything I would say out loud, lead with what they get and never use the word AI.',
+'Calls and leads they are already losing come before search ranking, social media or ads.',
+'Don\'t knock whoever built their site.',
+'No statistic without its link.',
+'Never guess a name or an email.'
+].join('\n')}
+function show(i){
+  cur=i;var x=L[i];$('list').style.display='none';$('one').style.display='block';
+  $('n').textContent=x.n;$('meta').textContent=x.g+' · '+x.k+' · '+(x.a||x.t)+(x.custom?' · added by hand':'');
+  $('call').style.display=x.p?'block':'none';$('call').textContent='Call '+(x.p||'');$('call').href='tel:'+(x.p||'').replace(/\D/g,'');
+  $('map').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x.a||(x.n+' '+x.t+' Indiana'));
+  if(x.e){$('mail').style.display='block';$('mail').textContent='Email '+x.e;$('mail').href='mailto:'+x.e}else{$('mail').style.display='none'}
+  var fe=get('e'+i,x.e||'');$('em').value=fe;$('find').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana contact email');if(fe){$('mail').style.display='block';$('mail').textContent='Email '+fe;$('mail').href='mailto:'+fe}
+  var Q=encodeURIComponent(x.n+' '+x.t+' Indiana'),N=encodeURIComponent(x.n);$('l-web').href=x.u||('https://www.google.com/search?q='+Q);$('l-goo').href='https://www.google.com/maps/search/?api=1&query='+Q;$('l-fb').href='https://www.facebook.com/search/pages/?q='+encodeURIComponent(x.n+' '+x.t);$('l-yelp').href='https://www.yelp.com/search?find_desc='+N+'&find_loc='+encodeURIComponent(x.t+', IN');$('l-ig').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana instagram');
+  $('why').textContent=x.w;$('found').textContent=x.f;
+  $('audit').href='https://claude.ai/new?q='+encodeURIComponent(AUD(x));
+  var st=stg(i),nx=NEXT[st];$('nw-stage').textContent=st;$('nw-last').textContent=last(i)||'Nothing yet.';var dd0=due(i);$('nw-next').textContent=nx.t+(dd0&&dd0.t?' '+dd0.txt+'.':'');
+  var lk=$('nw-links');lk.textContent='';nx.l.forEach(function(l){var a=document.createElement('a');a.className='big';a.href=l[1];a.textContent=l[0];lk.appendChild(a)});
+  var dd=$('did');dd.textContent='';DID.forEach(function(d){var b=document.createElement('button');b.className='chip';b.textContent=d[0];b.onclick=function(){var h=hist(i);h.push({a:d[0],d:today(),p:st,ts:Date.now()});put('h'+i,JSON.stringify(h));if(d[2]||d[1]>STAGES.indexOf(st))put('s'+i,STAGES[d[1]]);show(i)};dd.appendChild(b)});
+  var hl=$('hist');hl.textContent='';var H=hist(i);for(var k=H.length-1;k>=0;k--){var li=document.createElement('li');li.textContent=H[k].a+', '+H[k].d;hl.appendChild(li)}
+  if(!H.length){var li0=document.createElement('li');li0.textContent='Nothing yet.';li0.style.listStyle='none';hl.appendChild(li0)}
+  $('undo').style.display=H.length?'inline':'none';
+  var box=$('stages');box.textContent='';
+  STAGES.forEach(function(s){var b=document.createElement('button');b.className='chip'+(s===st?' on':'');b.textContent=s;b.onclick=function(){put('s'+i,s);show(i)};box.appendChild(b)});
+  $('note').value=get('n'+i,'');$('saved').textContent='';window.scrollTo(0,0);
+}
+$('note').oninput=function(){if(cur!==null){put('n'+cur,this.value);$('saved').textContent='Saved on this device.'}};
+$('em').onchange=function(){if(cur!==null){put('e'+cur,this.value.trim());show(cur)}};
+$('undo').onclick=function(){if(cur===null)return;var h=hist(cur),x=h.pop();if(x){put('h'+cur,JSON.stringify(h));if(x.p)put('s'+cur,x.p)}show(cur)};
+$('a-save').onclick=function(){var n=$('a-n').value.trim();if(!n){$('a-msg').textContent='Put in the shop name first.';return}
+  var c={n:n,k:$('a-k').value.trim()||'Business',t:$('a-t').value.trim()||'Town not set',a:$('a-a').value.trim(),p:$('a-p').value.trim(),e:'',g:$('a-g').value,w:$('a-w').value.trim()||'Added by hand.',f:'',u:$('a-u').value.trim()};
+  try{var cu=JSON.parse(localStorage.getItem('2g-lead-demo:custom')||'[]');cu.push(c);localStorage.setItem('2g-lead-demo:custom',JSON.stringify(cu));location.reload()}catch(e){$('a-msg').textContent='Could not save on this phone.'}};
+$('back').onclick=function(){$('one').style.display='none';$('list').style.display='block';draw()};
+$('q').oninput=draw;$('town').onchange=draw;$('stage').onchange=draw;
+[].forEach.call(document.querySelectorAll('#tiers .chip'),function(b){b.onclick=function(){tier=this.getAttribute('data-t');[].forEach.call(document.querySelectorAll('#tiers .chip'),function(o){o.className='chip'});this.className='chip on';draw()}});
+draw();
+</script>
+</main></body></html>
