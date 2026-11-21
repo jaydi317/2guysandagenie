@@ -72,19 +72,19 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 <main id="all"><h1>2 Guys Admin</h1>
 <p class="sub">Three doors. Most days, you want one of these.</p>
 <div class="doors">
-<div class="door"><a class="dm" href="/zoom/"><b>Meetings</b><span>Today's agenda, what we said last time, and the Zoom link.</span></a>
-<p class="ds"><a id="nextmtg" href="/zoom/">Newest meeting page</a> · <a href="/zoom/mail/">What our Claudes are waiting on</a></p></div>
-<div class="door"><a class="dm" href="/admin/leads/"><b>Leads</b><span>Who to reach today, what to say, and the next step for each one.</span></a>
+<div class="door"><a class="dm" href="/zoom/"><b>Meetings &rarr;</b><span>The Team Room: the Zoom link, and every meeting page with its agenda, what we said, and what happens next.</span></a>
+<p class="ds"><a id="nextmtg" href="/zoom/">Newest meeting page</a> · <a href="/zoom/">Join the Zoom</a> · <a href="/zoom/mail/">What our Claudes are waiting on</a> · <a href="/admin/changes/">What changed on the site</a></p></div>
+<div class="door"><a class="dm" href="/admin/leads/"><b>Leads Portal &rarr;</b><span>Today's list: who to reach, what to say, and the next step for each one. A demo with ten made-up shops until it's connected to GoHighLevel.</span></a>
 <p class="ds"><a href="/admin/scripts/">What to say</a> · <a href="/admin/leads/steps/">The steps</a> · <a href="/admin/leads/how-to/">How it works</a> · <a href="/admin/leads/explainer/">3-minute walkthrough</a></p></div>
-<div class="door"><a class="dm" href="/admin/plan/"><b>The Market Domination Plan</b><span>Where we're taking 2 Guys, and what we're building right now.</span></a>
-<p class="ds"><a href="/admin/plan/#now">Part 1: what we're doing now</a> · <a href="/admin/plan/#map">Part 2: the whole map</a> · <a href="/admin/changes/">What changed on the site</a></p></div>
+<div class="door"><a class="dm" href="/admin/plan/"><b>The Market Domination Plan &rarr;</b><span>Where we're taking 2 Guys, and what we're building right now.</span></a>
+<p class="ds"><a href="/admin/plan/#now">Part 1: what we're doing now</a> · <a href="/admin/plan/#map">Part 2: the whole map</a></p></div>
 </div>
 
 <h2 class="else">Everything Else</h2>
-<p class="note">Seven groups, all folded. Tap a heading to open it. Every item says what it is, where it lives and its status.</p>
+<p class="note">Every group below starts folded. Tap a heading to open it. Every item says what it is, where it lives and its status.</p>
 <div class="find"><label for="q">Looking for something? Type a word.</label><input id="q" type="search" placeholder="jamon, order, email, agenda..." autocomplete="off"><p class="note" id="qn" style="min-height:20px;margin:4px 0 0"></p></div>
 <div id="tagbar" style="margin:6px 0 0">
-<p class="note" style="margin:0 0 6px">Or tap a tag to follow one thread across every group. Tap it again to see everything.</p><button type="button" class="tg" data-t="f15">The Free 15 Minutes</button><button type="button" class="tg" data-t="jamon">Jamon</button><button type="button" class="tg" data-t="night">The Free Night</button><button type="button" class="tg" data-t="engine">Big Ideas And Doodles</button><button type="button" class="tg" data-t="offer">The Offer</button><button type="button" class="tg" data-t="proof">Proof</button><button type="button" class="tg" data-t="clients">Clients</button><button type="button" class="tg" data-t="emails">Emails</button><button type="button" class="tg" data-t="skills">The Twelve Skills</button><button type="button" class="tg" data-t="team">How We Work</button>
+<p class="note" style="margin:0 0 6px">Or tap a tag to follow one thread across every group. Tap it again to see everything.</p><button type="button" class="tg" data-t="f15">The Free 15 Minutes</button><button type="button" class="tg" data-t="leads">Leads</button><button type="button" class="tg" data-t="jamon">Jamon</button><button type="button" class="tg" data-t="night">The Free Night</button><button type="button" class="tg" data-t="engine">Big Ideas And Doodles</button><button type="button" class="tg" data-t="offer">The Offer</button><button type="button" class="tg" data-t="proof">Proof</button><button type="button" class="tg" data-t="clients">Clients</button><button type="button" class="tg" data-t="emails">Emails</button><button type="button" class="tg" data-t="skills">The Twelve Skills</button><button type="button" class="tg" data-t="team">How We Work</button>
 </div>
 <p class="oc"><a href="#" id="openall">Open all</a> · <a href="#" id="closeall">Close all</a></p>
 <details id="team">
@@ -101,31 +101,21 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 </ul>
 <p class="note" style="margin:16px 0 4px"><b>The last few meetings, in short</b> (filed in Notion by Jimmy's Claude after each call):</p>
 <div id="mag"><p class="note">Loading the meeting summaries. If they do not appear, <a style="color:#111" href="https://app.notion.com/p/c7fce6d687984638ab82ac9e824e44e4?v=21c229c4928046a8bc75d73e393808cf">open them in Notion</a>.</p></div><script>fetch("/assets/meetings-at-a-glance.html").then(function(r){return r.ok?r.text():""}).then(function(h){if(h){document.getElementById("mag").innerHTML=h}}).catch(function(){})</script>
-<details>
-<summary>Shortcuts And Working Files</summary>
-<p class="note">Small things that open something else, and files we keep for the work.</p>
-<ul>
-<li data-tags="team"><a href="/jimmysheet/">Jimmy's Sheet</a><p class="what">A shortcut that opens Jimmy's sheet (a Claude page).</p><span>/jimmysheet/ · Shortcut</span></li>
-<li data-tags="team"><a href="/jimmy/">Opening</a><p class="what">A shortcut that opens one of Jimmy's Claude pages. [What it is isn't labeled; ask Jimmy.]</p><span>/jimmy/ · Shortcut</span></li>
-<li data-tags="team"><a href="/daegan/">Hi, Yep, Here We Are</a><p class="what">A test page from Daegan.</p><span>/daegan/ · Test version</span></li>
-<li data-tags="engine team"><a href="/cast/daegan/">Daegan, for the cast</a><p class="what">Three photos of Daegan for the 2 Guys doodle cast (on stage, with a reader, the view from his stage).</p><span>/cast/daegan/ · Live, not linked from the site · noindex · added Nov 15</span></li>
-</ul>
-</details>
 </details>
 <details id="leads">
 <summary>Leads And Outreach</summary>
 <p class="note">Finding owners and getting the first yes: the portal, what to say, the steps, and the tools behind them.</p>
 <ul>
-<li data-tags="team engine f15"><a href="/admin/leads/">Leads Portal</a>
+<li data-tags="team f15 leads"><a href="/admin/leads/">Leads Portal</a>
 <p class="what">Where we work the list. Start at Today, tap a shop, do the next step, tap what you did. It shows where each lead stands, the last step and the next one. Ten made-up shops for now. What you tap is saved on your own phone until it's connected to GoHighLevel.</p><span>/admin/leads/ · Demo, behind the Admin sign-in · added Nov 16 · stages, Today and add-a-shop added Nov 20 to 21</span></li>
-<li data-tags="team offer f15"><a href="/admin/scripts/">What To Say</a>
+<li data-tags="team offer f15 leads"><a href="/admin/scripts/">What To Say</a>
 <p class="what">Step 1 for every shop: Jimmy's Slydial voicemail. Then the scripts for walking in, calling and leaving a voicemail, plus the five questions for the 15 minutes.</p><span>/admin/scripts/ · Live, behind the Admin sign-in · added Nov 18</span></li>
-<li data-tags="engine team"><a href="/admin/leads/steps/">The steps for going after the leads (draft)</a><p class="what">One road for every shop, from the Slydial to the offer, with the parts we still have to decide marked in yellow.</p><span>/admin/leads/steps/ · Draft, to decide together · added Nov 21</span></li>
-<li data-tags="engine team"><a href="/admin/leads/how-to/">How the Leads Portal works</a><p class="what">The look-it-up reference: Today, the yellow box, every tap and where it moves a shop, due dates, the audit, adding a shop.</p><span>/admin/leads/how-to/ · Live, behind the Admin sign-in · added Nov 20</span></li>
-<li data-tags="engine team"><a href="/admin/leads/explainer/">Walkthrough: how to work the Leads Portal</a><p class="what">A narrated walkthrough, just under 3 minutes at 1.5 times speed.</p><span>/admin/leads/explainer/ · Live, behind the Admin sign-in · added Nov 20</span></li>
-<li data-tags="team engine"><a href="/admin/skills/prospect-finder/">The Prospect Finder Skill</a>
+<li data-tags="team leads"><a href="/admin/leads/steps/">The steps for going after the leads (draft)</a><p class="what">One road for every shop, from the Slydial to the offer, with the parts we still have to decide marked in yellow.</p><span>/admin/leads/steps/ · Draft, to decide together · added Nov 21</span></li>
+<li data-tags="team leads"><a href="/admin/leads/how-to/">How the Leads Portal works</a><p class="what">The look-it-up reference: Today, the yellow box, every tap and where it moves a shop, due dates, the audit, adding a shop.</p><span>/admin/leads/how-to/ · Live, behind the Admin sign-in · added Nov 20</span></li>
+<li data-tags="team leads"><a href="/admin/leads/explainer/">Walkthrough: how to work the Leads Portal</a><p class="what">A narrated walkthrough, just under 3 minutes at 1.5 times speed.</p><span>/admin/leads/explainer/ · Live, behind the Admin sign-in · added Nov 20</span></li>
+<li data-tags="team leads"><a href="/admin/skills/prospect-finder/">The Prospect Finder Skill</a>
 <p class="what">The method we used to build the list of local businesses, written so any of our Claudes can run it. Tap Copy The Skill, paste it into your Claude, and say "run a batch."</p><span>/admin/skills/prospect-finder/ · Reference · added Nov 16</span></li>
-<li data-tags="night"><a href="#leaderlinks">Leader links</a><p class="what">Give each group leader their own link. Everyone who signs up through it is marked with that group in GoHighLevel (the Source field), so you can see which leader sent who.</p><div id="leaderlinks" style="margin:8px 0 0"><input id="llg" placeholder="Group name, e.g. BNI Fishers" style="width:100%;box-sizing:border-box;font-size:16px;padding:8px;border:2px solid #111"><p id="llo" style="font-size:15px;word-break:break-all;margin:8px 0 0"></p><button id="llc" style="font-size:15px;padding:8px 14px;background:#111;color:#fff;border:0;display:none">Copy link</button></div><span>Sign-ups show in GoHighLevel with Source = group-&lt;name&gt;. Ask Claude "how many from each group" for a count.</span></li>
+<li data-tags="night leads"><a href="#leaderlinks">Leader links</a><p class="what">Give each group leader their own link. Everyone who signs up through it is marked with that group in GoHighLevel (the Source field), so you can see which leader sent who. Type the group's name in the box below, then tap Copy link.</p><div id="leaderlinks" style="margin:8px 0 0"><input id="llg" placeholder="Group name, e.g. BNI Fishers" style="width:100%;box-sizing:border-box;font-size:16px;padding:8px;border:2px solid #111"><p id="llo" style="font-size:15px;word-break:break-all;margin:8px 0 0"></p><button id="llc" style="font-size:15px;padding:8px 14px;background:#111;color:#fff;border:0;display:none">Copy link</button></div><span>Sign-ups show in GoHighLevel with Source = group-&lt;name&gt;. Ask Claude "how many from each group" for a count.</span></li>
 </ul>
 </details>
 <details id="plan">
@@ -133,7 +123,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 <p class="note">Where we're going and how it's doing: the plan, what changed on the site, and the scoreboard.</p>
 <ul>
 <li data-tags="team engine offer f15"><a href="/admin/plan/">The Market Domination Plan</a>
-<p class="what">The plan, on one page, in two parts. Part 1, What We're Doing Right Now: the first ask becomes "let us fix one thing," the road from there to a monthly client, and what's built so far, told through the doodles. Part 2, The Whole Map: the six stages that make us the name every local owner knows, each step marked done, to build or waiting. Until Nov 21 these were two pages, "Where We're Taking 2 Guys" and "Market Domination."</p><span>/admin/plan/ · Reference, behind the Admin sign-in · noindex · combined Nov 21 · /admin/market-domination/ now forwards to Part 2</span></li>
+<p class="what">The plan, on one page, in two parts. Part 1, What We're Doing Right Now: the first ask becomes "let us fix one thing," then the video of what we found and the assessment, the road from there to a monthly client, and what's built so far, told through the doodles. Part 2, The Whole Map: the six stages that make us the name every local owner knows, each step marked done, to build or waiting. Until Nov 21 these were two pages, "Where We're Taking 2 Guys" and "Market Domination."</p><span>/admin/plan/ · Live, behind the Admin sign-in · noindex · combined Nov 21 · /admin/market-domination/ now forwards to Part 2</span></li>
 <li data-tags="engine team"><a href="/admin/changes/">What changed on the site</a><p class="what">Every change to the site, by day, newest first, in the words written when it was saved. Built for Jimmy's Claude to check. Rebuild with: python3 tools/changes.py</p><span>/admin/changes/ · Live, behind the Admin sign-in · added Nov 21</span></li>
 <li data-tags="team"><a href="/scoreboard/">Scoreboard</a><p class="what">What's winning: for every rotating headline, picture and quote, who saw it and who signed up. The password is below.</p><span>/scoreboard/ · Password page</span></li>
 </ul><p id="sbp" style="font-size:14px;margin:10px 0 0">Scoreboard password: <a href="#" id="sbshow" style="font-weight:bold">Show it</a></p>
@@ -145,23 +135,23 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 <summary>The Free 15 Minutes</summary>
 <p class="note">The new front door: the page ads send people to, the sign-up, and the mockups that led to them.</p>
 <ul>
-<li data-tags="offer f15"><a href="/free15/">The ad page: Your Free 15 Minutes</a>
-<p class="what">The short page for ads and new visitors: "Tell Us The One Job You Hate Doing. We'll Show You How To Eliminate It." Jamon's video, what you get, and why it's free. Two headlines rotate, and three doodles rotate in each spot.</p><span>/free15/ · Live, not linked from the site · noindex · added Nov 19</span></li>
+<li data-tags="offer f15 jamon"><a href="/free15/">The ad page: Your Free 15 Minutes</a>
+<p class="what">The short page for ads and new visitors: "Tell Us The One Job You Hate Doing. We'll Show You How To Eliminate It." Jamon's video, what you get, and why it's free. Two headlines rotate, and three doodles rotate in each spot.</p><span>/free15/ · Live, not linked from the site · noindex · added Nov 19 · its buttons go to the sign-up mockup, which doesn't send or book anything yet</span></li>
 <li data-tags="offer night f15"><a href="/free15/start/">The free 15 sign-up, with the surprise invite to the night</a>
 <p class="what">Four small taps: how'd you find us, how can we help, name and phone, pick a time. Then the surprise: a free seat at the next AI night, yes or no. The last page confirms the call, puts them on the daily AI email and shows what owners say. Still a mockup: nothing is sent or booked. Jump straight to <a href="/free15/start/?show=invite" style="font-weight:normal">the invite</a>, <a href="/free15/start/?show=yes" style="font-weight:normal">the last page after yes</a> or <a href="/free15/start/?show=no" style="font-weight:normal">after no</a>. Three doodles rotate in each of the invite's two spots; add &amp;dn=a, b or c and &amp;df=a, b or c to the invite's address to look at one.</p><span>/free15/start/ · Mock-up, not linked from the site · noindex · added Nov 19 · invite and new last page added Nov 21 · the Nov 21 mockup at /mockup/event-space/ now forwards here</span></li>
-<li data-tags="offer f15"><a href="/mockup/home-v4/">Mockup v4: the home page that leads to the free 15 minutes</a>
+<li data-tags="offer f15 jamon"><a href="/mockup/home-v4/">Mockup v4: the home page that leads to the free 15 minutes</a>
 <p class="what">The home page rebuilt around the free 15 minutes: "Tell Us The One Job You Hate Doing. We'll Show You How To Eliminate It." Three doodles rotate at the top and in each spot. The live home page hasn't changed. Earlier tries: <a href="/mockup/home-v2/" style="font-weight:normal">v2</a>, <a href="/mockup/home/" style="font-weight:normal">v1</a>.</p><span>/mockup/home-v4/ · Mock-up · noindex · added Nov 18 · last changed Nov 21</span></li>
 <li data-tags="offer proof f15"><a href="/mockup/maestros-v4/">Mockup v4: the Maestro's page (the story, then the sign-up)</a>
 <p class="what">"The Pizza Guy Who Couldn't Answer His Own Phone." The Maestro's story, then the sign-up right under it, then what owners say. Nothing gets sent or booked. Earlier try: <a href="/mockup/maestros/" style="font-weight:normal">v3</a>.</p><span>/mockup/maestros-v4/ · Mock-up · noindex · added Nov 18 · last changed Nov 21</span></li>
-<li data-tags="offer night f15"><a href="/mockup/signup/">Mockup: the new sign-up (free 15 minutes)</a><p class="what">The four-tap sign-up that replaces "Save my seat": how did you find us, the one thing you want solved, name, phone and email, pick a time. Ends with the free seat at the next live night as a bonus. Click-through mockup for Daegan; nothing is sent or booked.</p><span>/mockup/signup/ · Mock-up, not linked from the site · noindex · added Nov 18</span></li>
+<li data-tags="offer night f15"><a href="/mockup/signup/">Mockup: the new sign-up (free 15 minutes)</a><p class="what">The four-tap sign-up that replaces "Save my seat": how did you find us, the one thing you want solved, name, phone and email, pick a time. Ends with the free seat at the next live night as a bonus. Click-through mockup for Daegan; nothing is sent or booked.</p><span>/mockup/signup/ · Mock-up, not linked from the site · noindex · added Nov 18 · earlier try, replaced by the free 15 sign-up above</span></li>
 </ul>
 </details>
 <details>
 <summary>Bring Them In</summary>
 <p class="note">Everything that gets a business owner to sign up for a free night: the registration page, its test versions, thank-you pages and sharing.</p>
 <ul>
-<li data-tags="night"><a href="/meetup/">Registration page</a><p class="what">The main sign-up page. Every ad and every "save my seat" button points here.</p><span>/meetup/ · Live on the site · no date: says the next free night (checked Nov 10)</span></li>
-<li data-tags="night"><a href="/">Home page</a><p class="what">The front door: Jamon's video, client before-and-afters, quotes and the free night.</p><span>/ · Live on the site · no date: says the next free night (checked Nov 10)</span></li>
+<li data-tags="night"><a href="/meetup/">Registration page</a><p class="what">The main sign-up page. Every ad and every "save my seat" button points here.</p><span>/meetup/ · Live on the site · no date: says the next free night (checked Nov 10) · this is the night's sign-up; the free 15 minutes has its own ad page, /free15/</span></li>
+<li data-tags="night jamon"><a href="/">Home page</a><p class="what">The front door: Jamon's video, client before-and-afters, quotes and the free night.</p><span>/ · Live on the site · no date: says the next free night (checked Nov 10)</span></li>
 <li data-tags="skills"><a href="/ready/home/">Model: home page with the "Twelve Things" section</a><p class="what">A copy of the home page with the section added just above Save Your Seat. Tracking is off on this copy. The live home page is unchanged.</p><span>/ready/home/ · Model, not live · Nov 10</span></li>
 <li data-tags="night"><a href="/meetup-long/">Registration, long version</a><p class="what">The full-length sign-up page we started with. Kept in case the short one stops winning.</p><span>/meetup-long/ · Live, not linked from the site</span></li>
 <li data-tags="night"><a href="/meetup-video/">Registration, video version</a><p class="what">The long sign-up page with a video at the top.</p><span>/meetup-video/ · Live, not linked from the site</span></li>
@@ -169,10 +159,10 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 <li data-tags="night"><a href="/thanks/">Thank-you page after sign-up</a><p class="what">Where people land right after they register.</p><span>/thanks/ · Live on the site · moved to the shared simple look Nov 17 (was the old Archivo kit); date comes from the next-event file</span></li>
 <li data-tags="night"><a href="/thanks-genie/">Thank-you page, genie version</a><p class="what">An alternate thank-you page with the genie theme.</p><span>/thanks-genie/ · Test version</span></li>
 <li data-tags="night"><a href="/share/">Help fill the room</a><p class="what">For Jimmy's family and friends: a picture and a post to copy onto Facebook to invite people.</p><span>/share/ · Live, not linked from the site · Jimmy's page, left as it is (Daegan, Nov 10): still says Nov 9, his to change</span></li>
-<li data-tags="night"><a href="/leaders/">For group leaders</a><p class="what">The page Jimmy sends to chamber, BNI and group leaders. Jimmy tells how it started (Jamon, the van, Paul), with Jamon's video at the top, five more businesses, then the free night, the perks and the invite to copy.</p><span>/leaders/ · Live on the site · story version in the site's look, Nov 10 · approved by Daegan; Ray's pass still to come · no date: says the next free night</span></li>
+<li data-tags="night jamon"><a href="/leaders/">For group leaders</a><p class="what">The page Jimmy sends to chamber, BNI and group leaders. Jimmy tells how it started (Jamon, the van, Paul), with Jamon's video at the top, five more businesses, then the free night, the perks and the invite to copy.</p><span>/leaders/ · Live on the site · story version in the site's look, Nov 10 · approved by Daegan; Ray's pass still to come · no date: says the next free night</span></li>
 <li data-tags="jamon engine proof"><a href="/fuss/">What all the fuss is about (the friend page)</a><p class="what">Referral page mockup from Nov 11: why AI is so hard to explain, with the before/after roads doodle, the room demo story, Jamon and Dr. McCray, and "Who sent you?" chips.</p><span>/fuss/ · Live, link-only (the page a friend sends people to), noindex · cleaned up Nov 15 · added Nov 13</span></li>
 <li data-tags="offer"><a href="/what-we-do/menu/">The Menu: services and what they cost </a><p class="what">Every way we work with a business, in order, with prices: the free 15 minutes, the Assessment ($1,000), five kinds of build work with typical ranges and how we scope fees by hours, the monthly, and the free night as a bonus. Layout draft for Daegan to react to; ranges are placeholders from Corey Ganim's.</p><span>/what-we-do/menu/ · Live, linked from What We Do (three places) and the footer of every page · client showcase added · noindex · added Nov 18 · ranges still placeholders</span></li>
-<li data-tags="proof clients offer"><a href="/what-we-do/">What We Do</a><p class="what">The page to send an owner or CEO who asks "what do you guys actually do?" How it started (Jamon, then Paul), the monthly four steps, everything we build, every client with a new site (biggest first), who we are, our superpower, quotes, and how it starts. Every button books a call on Jimmy's calendar.</p><span>/what-we-do/ · Live, "Services" in the top menu of every page · noindex · Nov 16</span></li>
+<li data-tags="proof clients offer jamon"><a href="/what-we-do/">What We Do</a><p class="what">The page to send an owner or CEO who asks "what do you guys actually do?" How it started (Jamon, then Paul), the monthly four steps, everything we build, every client with a new site (biggest first), who we are, our superpower, quotes, and how it starts. Every button books a call on Jimmy's calendar.</p><span>/what-we-do/ · Live, "Services" in the top menu of every page · noindex · Nov 16</span></li>
 </ul>
 </details>
 <details>
@@ -244,9 +234,9 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 <ul>
 <li data-tags="offer"><a href="/book/">Book 30 minutes with Jimmy</a><p class="what">A free 30-minute Zoom with Jimmy, booked from his calendar.</p><span>/book/ · Live, not linked from the site</span></li>
 <li data-tags="offer"><a href="/book/booked/">Booked confirmation (30-minute call)</a><p class="what">Where people land after booking the 30-minute call.</p><span>/book/booked/ · Live, not linked from the site</span></li>
-<li data-tags="team"><a href="/contact/">Contact</a><p class="what">How to reach Jimmy and Paul.</p><span>/contact/ · Live on the site</span></li>
-<li data-tags="team"><a href="/privacy/">Privacy policy</a><p class="what">Required for ads and forms.</p><span>/privacy/ · Live on the site</span></li>
-<li data-tags="team"><a href="/terms/">Terms</a><p class="what">Required for ads and forms.</p><span>/terms/ · Live on the site</span></li>
+<li data-tags="site"><a href="/contact/">Contact</a><p class="what">How to reach Jimmy and Paul.</p><span>/contact/ · Live on the site</span></li>
+<li data-tags="site"><a href="/privacy/">Privacy policy</a><p class="what">Required for ads and forms.</p><span>/privacy/ · Live on the site</span></li>
+<li data-tags="site"><a href="/terms/">Terms</a><p class="what">Required for ads and forms.</p><span>/terms/ · Live on the site</span></li>
 </ul>
 </details>
 <details>
@@ -266,12 +256,11 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 <summary>Emails</summary>
 <p class="note">Every email we send, word for word, so we can find and reuse them. The email series, the post-event email and where they are kept.</p>
 <ul>
-<li data-tags="night emails"><a href="/report/email/">Post-event email and resend (Nov 9)</a><p class="what">See Pages, After The Nov 9 Night.</p><span>/report/email/ · Reference</span></li>
-<li data-tags="night emails"><a href="/archive/2026-10-16-fishers-funnel-and-emails/">The original event email series (Oct 16)</a><p class="what">The 14-message follow-up for the free night: the story emails (Jamon, Maestro's, Dr. McCray, Jim's Amazing Bread, Bruce the Piano Man and more), the day-before and day-of emails, the confirmation and the day-of text. Also on this page: the first opt-in, thank-you and registration mockups. Next: revised through the clean-copy process for the next event's follow-up sequence.</p><span>/archive/2026-10-16-fishers-funnel-and-emails/ · Reference · emails v4 (Ray read) Oct 17 · dated for the Oct 27 night · copied from Daegan's artifact Nov 9</span></li>
+<li data-tags="night emails jamon"><a href="/archive/2026-10-16-fishers-funnel-and-emails/">The original event email series (Oct 16)</a><p class="what">The 14-message follow-up for the free night: the story emails (Jamon, Maestro's, Dr. McCray, Jim's Amazing Bread, Bruce the Piano Man and more), the day-before and day-of emails, the confirmation and the day-of text. Also on this page: the first opt-in, thank-you and registration mockups. Next: revised through the clean-copy process for the next event's follow-up sequence.</p><span>/archive/2026-10-16-fishers-funnel-and-emails/ · Reference · emails v4 (Ray read) Oct 17 · dated for the Oct 27 night · copied from Daegan's artifact Nov 9</span></li>
 <li data-tags="emails"><b>Other event emails</b><p class="what">The registration and show-up emails that ran for Nov 9 are still on daegansmith.me. Each one moves here when it's revised.</p><span>on daegansmith.me for now</span></li>
 <li data-tags="night emails"><a href="/report/email/">The post-event email</a><p class="what">The email to every Nov 9 registrant, plus the next-day resend to anyone who didn't open it. Word for word.</p><span>/report/email/ · Reference · approved by Daegan Nov 9 · goes out only after Daegan and Jimmy both give a thumbs up</span></li>
 <li data-tags="emails skills"><a href="/ready/series/stories/">Model: the twelve emails alone (stories only)</a><p class="what">The twelve story emails by themselves, with no skill handoffs. Same stories as the draft below.</p><span>/ready/series/stories/ · Model, not live · Nov 10</span></li>
-<li data-tags="emails skills"><a href="/ready/series/">Model: the twelve emails with the skills (draft)</a><p class="what">One story email a morning from registration, each handing off to that day's skill. Built from the Oct 16 series with the dates out and Jamon's story in two parts. Not sent and not loaded anywhere.</p><span>/ready/series/ · Draft · Nov 10 · needs Daegan's read, then Jimmy's yes on Jamon's figures</span></li>
+<li data-tags="emails skills jamon"><a href="/ready/series/">Model: the twelve emails with the skills (draft)</a><p class="what">One story email a morning from registration, each handing off to that day's skill. Built from the Oct 16 series with the dates out and Jamon's story in two parts. Not sent and not loaded anywhere.</p><span>/ready/series/ · Draft · Nov 10 · needs Daegan's read, then Jimmy's yes on Jamon's figures</span></li>
 <li data-tags="emails skills"><a href="/ready/plan/">The event email series: how it works</a><p class="what">The whole design on one page: stories, visuals, a five-minute AI skill a day, baselines not answers, open loops the night closes, testimonials and sharing. Plus the notes that point at the night, the 12 skills, what was taken out and why, and what's still to do.</p><span>/ready/plan/ · Reference · Nov 10</span></li>
 </ul>
 </details>
@@ -293,10 +282,20 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 <li data-tags="team"><a href="https://app.notion.com/p/3f233948febc81a8a87bf18c246316e0">Library</a><p class="what">Where every file, page and link lives.</p><span>in Notion · Shortcut · last edited Oct 14, needs a refresh</span></li>
 </ul>
 </details>
+<details>
+<summary>Odds And Ends</summary>
+<p class="note">Shortcuts that open something else, a test page, and files we keep for the work.</p>
+<ul>
+<li data-tags="team"><a href="/jimmysheet/">Jimmy's Sheet</a><p class="what">A shortcut that opens Jimmy's sheet (a Claude page).</p><span>/jimmysheet/ · Shortcut</span></li>
+<li data-tags="team"><a href="/jimmy/">Opening</a><p class="what">A shortcut that opens one of Jimmy's Claude pages. [What it is isn't labeled; ask Jimmy.]</p><span>/jimmy/ · Shortcut</span></li>
+<li data-tags="team"><a href="/daegan/">Hi, Yep, Here We Are</a><p class="what">A test page from Daegan.</p><span>/daegan/ · Test version</span></li>
+<li data-tags="engine team"><a href="/cast/daegan/">Daegan, for the cast</a><p class="what">Three photos of Daegan for the 2 Guys doodle cast (on stage, with a reader, the view from his stage).</p><span>/cast/daegan/ · Live, not linked from the site · noindex · added Nov 15</span></li>
+</ul>
+</details>
 <details id="howto">
 <summary>How This Page Is Organized</summary>
 <p class="note">For anyone, or any Claude, adding to it.</p>
-<div class="how"><p style="margin:0"><b>Three doors on top</b> (Meetings, Leads, The Market Domination Plan), because that is where we go most days. <b>Everything else</b> sits in seven folded groups: Meetings And The Team, Leads And Outreach, Plans And Numbers, Pages (every page an owner can land on, in the order he meets them), Emails (every email, word for word), Notion, and Saved Earlier Versions.</p><p>Every item says what it is, where it lives, and its status: <i>Live on the site</i> (people can find it), <i>Live, not linked</i> (works, but only if you have the link), <i>Test version</i>, <i>Mock-up</i>, <i>Reference</i> (kept for us), <i>Shortcut</i> (a link to somewhere else, such as Notion), <i>Print file</i>. Anything new goes into its section the day it's made, with one line saying what it is.</p><p>Before a page changes, save the old one under Saved Earlier Versions. Nothing gets deleted.</p>
+<div class="how"><p style="margin:0"><b>Three doors on top</b> (Meetings, the Leads Portal, The Market Domination Plan), because that is where we go most days. <b>Everything else</b> sits in folded groups: Meetings And The Team, Leads And Outreach, Plans And Numbers, Pages (every page an owner can land on, in the order he meets them), Emails (every email, word for word), Notion, Odds And Ends, and Saved Earlier Versions.</p><p>Every item says what it is, where it lives, and its status: <i>Live on the site</i> (people can find it), <i>Live, not linked</i> (works, but only if you have the link), <i>Test version</i>, <i>Mock-up</i>, <i>Reference</i> (kept for us), <i>Shortcut</i> (a link to somewhere else, such as Notion), <i>Print file</i>. Anything new goes into its section the day it's made, with one line saying what it is.</p><p>Also used: <i>Demo</i> (works, with made-up data), <i>Draft</i> (words still being decided), <i>Model</i> or <i>Preview</i> (built only to look at or test), <i>Private draft</i> (for one of us, not for clients), <i>Password page</i>.</p><p>Before a page changes, save the old one under Saved Earlier Versions. Nothing gets deleted.</p>
 </div>
 </details>
 <details id="earlier"><summary>Saved Earlier Versions</summary><p class="note">Every version saved before a change, newest first. Nothing gets deleted.</p><ul class="arch">
@@ -312,10 +311,10 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   dets.forEach(function(d){var s=d.querySelector('summary'),n=d.querySelectorAll('li').length;if(!s||!n)return;var i=document.createElement('i');i.className='n';i.textContent=n;s.appendChild(i)});
   var tag=null,q='',box=document.getElementById('q'),out=document.getElementById('qn');
   function run(){var w=q.toLowerCase().split(/\s+/).filter(Boolean),act=!!(tag||w.length),hit=0;
-    [].slice.call(all.querySelectorAll('li')).forEach(function(li){var ok=true;if(tag)ok=(li.getAttribute('data-tags')||'').split(' ').indexOf(tag)>-1;
+    [].slice.call(all.querySelectorAll('li')).forEach(function(li){if(li.closest('#earlier'))return;var ok=true;if(tag)ok=(li.getAttribute('data-tags')||'').split(' ').indexOf(tag)>-1;
       if(ok&&w.length){var t=(li.textContent+' '+[].map.call(li.querySelectorAll('a'),function(a){return a.getAttribute('href')}).join(' ')).toLowerCase();ok=w.every(function(x){return t.indexOf(x)>-1})}
       li.classList.toggle('tghide',act&&!ok);if(act&&ok)hit++});
-    [].slice.call(all.querySelectorAll('details')).forEach(function(d){if(!d.querySelector('li'))return;if(act){var any=d.querySelectorAll('li:not(.tghide)').length;d.classList.toggle('tghide',!any);d.open=!!any}else{d.classList.remove('tghide');d.open=false}});
+    [].slice.call(all.querySelectorAll('details')).forEach(function(d){if(!d.querySelector('li'))return;if(d.id==='earlier'){d.classList.toggle('tghide',act);if(act)d.open=false;return}if(act){var any=d.querySelectorAll('li:not(.tghide)').length;d.classList.toggle('tghide',!any);d.open=!!any}else{d.classList.remove('tghide');d.open=false}});
     out.textContent=act?(hit?hit+' found':'Nothing found. Try one plain word.'):''}
   document.addEventListener('click',function(e){var b=e.target.closest('.tg');if(!b)return;tag=tag===b.getAttribute('data-t')?null:b.getAttribute('data-t');
     [].forEach.call(document.querySelectorAll('.tg'),function(x){x.classList.toggle('on',x.getAttribute('data-t')===tag)});run()});
