@@ -7,12 +7,15 @@ details.day{border-top:3px solid #111;margin:18px 0 0;padding-top:4px}summary{fo
 ul{list-style:none;padding:0;margin:0}li{padding:8px 0;border-bottom:1px solid #e5e5e5}
 .t{display:block;font-size:13px;color:#777}
 .how{background:#FFF3C4;padding:10px 14px;margin:12px 0 4px;font-size:15px}
-#new{display:none}#new h2{font-size:20px;margin:18px 0 0;border-top:3px solid #111;padding-top:10px}</style></head><body><main>
+#new{display:none}#new h2{font-size:20px;margin:18px 0 0;border-top:3px solid #111;padding-top:10px}</style><script>try{if(localStorage.getItem('2g-admin')!=='1'){location.replace('/admin/')}}catch(e){}</script></head><body><main>
 <p><a href="/admin/">&larr; Admin</a> &middot; <a href="/zoom/">Team Room</a></p>
 <h1>What Changed On The Site</h1>
 <p class="sub">Every change, newest first, in the words written when it was saved. Times are Eastern.</p>
-<p class="how">This list was built Sat, Nov 21, 2026, 1:45am Eastern. Anything saved after that shows under "Since Then" when you open the page in a browser. The hourly agent mail board saves are left out.</p>
+<p class="how">This list was built Sat, Nov 21, 2026, 1:52am Eastern. Anything saved after that shows under "Since Then" when you open the page in a browser. The hourly agent mail board saves are left out.</p>
 <div id="new"><h2>Since Then</h2><ul id="newl"></ul></div>
+<details class="day" open id="d2026-11-21"><summary>Saturday, Nov 21, 2026 <span class="cnt">1 change</span></summary><ul>
+<li><span class="t">1:45am &middot; Daegan&#x27;s Claude</span>Add /admin/changes: every site change by day, built from the site&#x27;s own history; Nov 21 agenda: four items from Daegan (change page, Jimmy on camera, story videos, what each of us is best at)</li>
+</ul></details>
 <details class="day" open id="d2026-11-20"><summary>Friday, Nov 20, 2026 <span class="cnt">23 changes</span></summary><ul>
 <li><span class="t">5:02pm &middot; Daegan&#x27;s Claude</span>Leads Portal: narrated walkthrough and how-to reference, linked at the top</li>
 <li><span class="t">4:48pm &middot; Daegan&#x27;s Claude</span>Leads Portal: clearer late wording, count line, calendar note on booked calls</li>
@@ -38,7 +41,7 @@ ul{list-style:none;padding:0;margin:0}li{padding:8px 0;border-bottom:1px solid #
 <li><span class="t">2:21pm &middot; Daegan&#x27;s Claude</span>Meeting pages: Daegan&#x27;s full to-do list under What Happens Next (Nov 20) and Start Here (Nov 21)</li>
 <li><span class="t">1:51pm &middot; Daegan&#x27;s Claude</span>Nov 20 meeting page: what we discussed and what happens next (from the Bee recording); Sat Nov 21 4pm agenda with what carried over; Paul&#x27;s Jim Ammeen item</li>
 </ul></details>
-<details class="day" open id="d2026-11-19"><summary>Thursday, Nov 19, 2026 <span class="cnt">25 changes</span></summary><ul>
+<details class="day" id="d2026-11-19"><summary>Thursday, Nov 19, 2026 <span class="cnt">25 changes</span></summary><ul>
 <li><span class="t">11:54pm &middot; Daegan&#x27;s Claude</span>Ad page /free15: headline test now counts on the Cloudflare scoreboard, the same way the home page does</li>
 <li><span class="t">11:39pm &middot; Daegan&#x27;s Claude</span>Ad page /free15 run 4: two headlines rotate, owner quotes, the voicemail stat, clarity fixes from two fresh reads</li>
 <li><span class="t">11:24pm &middot; Daegan&#x27;s Claude</span>/free15 run 3: shorter, Jamon&#x27;s video back at the top, every section hands to the next</li>
@@ -415,7 +418,7 @@ ul{list-style:none;padding:0;margin:0}li{padding:8px 0;border-bottom:1px solid #
 <li><span class="t">6:43pm &middot; Jimmy Davis</span>Publish authorized holding page</li>
 </ul></details>
 <script>
-(function(){var since=1795212138,box=document.getElementById('new'),ul=document.getElementById('newl');
+(function(){var since=1795243537,box=document.getElementById('new'),ul=document.getElementById('newl');
 var WHO={"Claude":"Daegan's Claude","Daegan Smith (via Claude)":"Daegan's Claude","jaydi317":"Jimmy Davis"};
 fetch('https://api.github.com/repos/jaydi317/2guysandagenie/commits?per_page=100&since='+new Date((since+1)*1000).toISOString()).then(function(r){return r.ok?r.json():[]}).then(function(a){
 a.forEach(function(c){var m=(c.commit.message||'').split('\n')[0];if(/relay board update/i.test(m))return;

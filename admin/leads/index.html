@@ -29,30 +29,17 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 .now{border:3px solid #111;padding:12px 14px;margin:12px 0 14px;background:#FFF3C4}.now p{margin:0 0 6px}.now .k{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;display:block}.now .v{font-size:19px;font-weight:bold}.now .big{background:#fff;margin:8px 0 0}
 #hist{padding-left:20px;margin:4px 0 6px;font-size:15px}.nx{display:block;font-size:14px;color:#111}
 .due{display:block;font-size:14px;font-weight:bold}.due.late{color:#B00020}#score{font-size:14px;color:#555;margin:0 0 14px}#rules{font-size:14px;color:#555;border-top:2px solid #111;padding-top:10px;margin-top:24px}
+.crumb{font-size:14px;margin:0 0 6px}.bar{display:flex;flex-wrap:wrap;gap:6px 18px;margin:8px 0 6px;padding:10px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;font-size:16px}.bar a{font-weight:bold;white-space:nowrap}.prac{font-size:13px;color:#777;margin:0 0 4px}.prac a{color:#777}
 .saved{font-size:13px;color:#555;min-height:18px}
 </style></head><body><main>
 
 <div id="list">
-<p><a href="/admin/">&larr; Admin</a> &middot; <a href="/admin/market-domination/">The Plan</a> &middot; <a href="/admin/scripts/">Scripts</a></p>
+<p class="crumb"><a href="/admin/">&larr; Admin</a> &middot; <a href="/admin/market-domination/">The Plan</a></p>
 <h1>Leads</h1>
-<p class="sub">Find a shop. Tap it. See where it stands and what to do next.</p>
-<a class="big" href="/admin/leads/explainer/" style="margin:10px 0 8px;background:#FFF3C4">&#9654; Watch First: How This Page Works (4 Minutes)</a>
-<a class="big" href="/admin/leads/how-to/" style="margin:0 0 8px">How Everything Works (Look It Up)</a>
-<a class="big dark" href="/admin/scripts/" style="margin:10px 0 8px">What To Say: Walk-In, Phone, Voicemail</a>
-<a class="big" href="https://app.gohighlevel.com/" target="_blank" rel="noopener" style="margin:10px 0 14px">Jump To GoHighLevel</a>
-<details style="border:2px solid #111;padding:8px 12px;margin:0 0 16px"><summary style="font-weight:bold;cursor:pointer">After you jump: how to find the leads in GoHighLevel</summary>
-<ol style="padding-left:22px;margin:10px 0 4px">
-<li style="margin:0 0 8px"><b>Sign in</b> if it asks.</li>
-<li style="margin:0 0 8px"><b>Tap Contacts</b> in the menu on the left side.</li>
-<li style="margin:0 0 8px"><b>Tap More Filters</b> near the top right of the list.</li>
-<li style="margin:0 0 8px"><b>Pick Tag</b>, then choose <b>prospect list</b>, then tap Apply. Only our leads show now.</li>
-<li style="margin:0 0 8px"><b>Tap a shop's name</b> to open it.</li>
-<li style="margin:0 0 8px"><b>Open Notes</b> on the right side. The pinned note says why the shop is on the list and what we found.</li>
-</ol>
-<p style="font-size:14px;color:#555;margin:6px 0 4px">Quicker for one shop: type its name in the search box at the top of Contacts. Tags to know: "prospect tier a", "prospect tier b", "prospect sample".</p>
-</details>
-<p class="demo"><b>This is a demo.</b> These ten shops are made up, so we can try the page before real leads go in. Notes, steps and stages you add here stay on your own phone or computer. Nobody else sees them yet.</p>
-<h2 style="font-size:22px;margin:18px 0 2px">Today</h2>
+<p class="sub">Start at Today. Tap a shop. Do the next step. Tap what you did.</p>
+<p class="bar"><a href="/admin/leads/explainer/">&#9654; Watch how it works</a><a href="/admin/leads/how-to/">How-to</a><a href="/admin/scripts/">What to say</a><a href="https://app.gohighlevel.com/" target="_blank" rel="noopener">GoHighLevel &#8599;</a></p>
+<p class="prac">Practice mode: these ten shops are made up, and what you tap stays on this phone. <a href="/admin/leads/how-to/#notyet">More</a></p>
+<h2 style="font-size:24px;margin:16px 0 2px">Today</h2>
 <p class="sub" style="font-size:15px">Follow-ups that are due come first. Then three new shops to start.</p>
 <div id="today"></div>
 <p id="score"></p>

@@ -40,7 +40,7 @@ details.day{border-top:3px solid #111;margin:18px 0 0;padding-top:4px}summary{fo
 ul{list-style:none;padding:0;margin:0}li{padding:8px 0;border-bottom:1px solid #e5e5e5}
 .t{display:block;font-size:13px;color:#777}
 .how{background:#FFF3C4;padding:10px 14px;margin:12px 0 4px;font-size:15px}
-#new{display:none}#new h2{font-size:20px;margin:18px 0 0;border-top:3px solid #111;padding-top:10px}</style></head><body><main>
+#new{display:none}#new h2{font-size:20px;margin:18px 0 0;border-top:3px solid #111;padding-top:10px}</style><script>try{if(localStorage.getItem('2g-admin')!=='1'){location.replace('/admin/')}}catch(e){}</script></head><body><main>
 <p><a href="/admin/">&larr; Admin</a> &middot; <a href="/zoom/">Team Room</a></p>
 <h1>What Changed On The Site</h1>
 <p class="sub">Every change, newest first, in the words written when it was saved. Times are Eastern.</p>
