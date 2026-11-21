@@ -130,8 +130,10 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
   <p style="border-left:4px solid #111;padding:2px 0 2px 12px">Jimmy did this for Jamon's handyman business in Indy. It went from about $15,000 a month to over $50,000.</p>
   <p>We'll give you a call, and we'll have some fun with it.</p>
   <label for="nm">Your name</label><input id="nm" autocomplete="name">
-  <label for="ph">Best phone for the call <span style="font-weight:normal">(we'll text your confirmation here)</span></label><input id="ph" type="tel" autocomplete="tel">
+  <label for="ph">Best phone for the call</label><input id="ph" type="tel" autocomplete="tel">
   <p class="small" style="margin:6px 0 0">We need it for one reason: to call you at the time you pick. We won't blow up your phone.</p>
+  <p style="margin:12px 0 4px"><label for="remok" style="font-weight:bold;cursor:pointer"><input type="checkbox" id="remok" style="width:20px;height:20px;vertical-align:-3px;margin-right:8px">Text me a reminder before my call.</label></p>
+  <p class="small" style="margin:0 0 6px;font-size:12px;line-height:1.5">Optional. Checking it means you agree to receive non-marketing text messages from Reverse Selling Limited Liability Company, doing business as 2 Guys and a Genie, about your free 15-minute call, including confirmations and reminders. Message frequency may vary. Message &amp; data rates may apply. Text HELP for assistance, reply STOP to opt out. Consent is not a condition of booking or purchase. Texts come from (317) 751-2693. See our <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms and SMS Terms</a>.</p>
   <label for="em">Email <span style="font-weight:normal">(optional: your reminder, plus Jimmy's free daily AI email. Unsubscribe anytime.)</span></label><input id="em" type="email" autocomplete="email">
   <p class="err" id="err3">We need your name and a phone number so we can call you.</p>
   <button class="go" id="go3" type="button">Next: Pick My Time</button>
@@ -151,7 +153,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 
 <!-- BOOKED: THE SURPRISE INVITE TO THE NIGHT (Nov 21) -->
 <section class="step" id="s5">
-  <p class="okline"><b>&#10003; You're booked<span id="inm"></span>.</b> <span id="iwhen"></span> Watch your phone for a text from (317) 751-2693.</p>
+  <p class="okline"><b>&#10003; You're booked<span id="inm"></span>.</b> <span id="iwhen"></span><span id="iremind" hidden> Your text reminder will come from (317) 751-2693.</span></p>
   <p class="kicker">One More Thing</p>
   <h1>Surprise. There's A Free Seat For You At Our Next AI Night.</h1>
   <p class="lead"><b>Walk In Curious About AI. Walk Out Using It.</b></p>
@@ -244,7 +246,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     <p>For 15 minutes, we dig into:</p>
     <p><i>"<span id="done1">your one thing</span>"</i></p>
     <p>Then we do our homework. We line your job up against the tools we know. In a day or two, we walk you through what fits, and the one we'd use.</p>
-    <p><b>Watch your phone.</b> In a minute you'll get a text from (317) 751-2693 with your time.</p>
+    <p id="dremind" hidden><b>Watch your phone.</b> Your text reminder will come from (317) 751-2693 before the call.</p>
   </div>
 
   <div class="bonus" id="b1">
@@ -382,6 +384,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     var f=first();
     $('inm').textContent=f?', '+f:''; $('fnm').textContent=f?', '+f:'';
     $('iwhen').textContent=data.when?('Your 15 minutes: '+data.when+'.'):'';
+    var rem=document.getElementById('remok').checked; $('iremind').hidden=!rem; $('dremind').hidden=!rem;
     if(data.when)$('dwhen').textContent=data.when;
     if(data.ph){$('dph').textContent=data.ph;$('fph').textContent=data.ph}
     if(data.one)$('done1').textContent=data.one;
