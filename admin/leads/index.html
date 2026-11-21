@@ -23,7 +23,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 #one h2{font-size:26px;margin:10px 0 2px}
 .lab{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;margin:18px 0 2px}
 .big{display:block;font-size:19px;font-weight:bold;padding:12px 14px;border:3px solid #111;text-decoration:none;margin:8px 0;text-align:center}
-.big.dark{background:#111;color:#fff}
+.big.dark{background:#111;color:#fff}button.big.dark{background:#111 !important}
 #note{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;min-height:90px}
 .back{font:inherit;font-size:16px;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;color:#111}
 .now{border:3px solid #111;padding:12px 14px;margin:12px 0 14px;background:#FFF3C4}.now p{margin:0 0 6px}.now .k{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;display:block}.now .v{font-size:19px;font-weight:bold}.now .big{background:#fff;margin:8px 0 0}
@@ -39,14 +39,16 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <h1>Leads</h1>
 <p class="sub">Start at Today. Tap a shop. Do the next step. Tap what you did.</p>
 <p class="bar"><a href="/admin/leads/explainer/">&#9654; Watch how it works</a><a href="/admin/leads/how-to/">How-to</a><a href="/admin/scripts/">What to say</a><a href="/admin/leads/steps/">The steps</a><a href="/admin/leads/how-we-built-it/">How we built the list</a><a href="https://app.gohighlevel.com/" target="_blank" rel="noopener">GoHighLevel &#8599;</a></p>
-<p class="prac">Practice mode: these ten shops are made up, and what you tap stays on this phone. <a href="/admin/leads/how-to/#notyet">More</a></p>
+<p class="prac" id="prac">Loading...</p>
+<p class="saved" id="status" style="font-weight:bold;color:#111"></p>
 <h2 style="font-size:24px;margin:16px 0 2px">Today</h2>
-<p class="sub" style="font-size:15px">Follow-ups that are due come first. Then three new shops to start.</p>
+<p class="sub" style="font-size:15px">Follow-ups that are due come first. Then your shops, or three new ones to start. Shops someone else is working stay off your Today.</p>
+<p style="margin:0 0 10px"><button class="chip" id="give" type="button">Give me 5 for today</button></p>
 <div id="today"></div>
 <p id="score"></p>
 <h2 style="font-size:22px;margin:18px 0 6px">Every Shop</h2>
 <details id="addbox" class="add"><summary>+ Add a shop</summary>
-<p class="sub" style="font-size:14px;margin:8px 0">For someone you met or heard about who isn't on the list. Only the name is needed. It saves on this phone.</p>
+<p class="sub" style="font-size:14px;margin:8px 0">For someone you met or heard about who isn't on the list. Only the name is needed. It saves for all three of us.</p>
 <input id="a-n" placeholder="Shop name" autocomplete="off">
 <input id="a-k" placeholder="What they do (plumber, bakery...)" autocomplete="off">
 <input id="a-t" placeholder="Town" autocomplete="off">
@@ -64,6 +66,8 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <button class="chip" data-t="A">A</button>
 <button class="chip" data-t="B">B</button>
 <button class="chip" data-t="Worth a visit">Worth a visit</button>
+<button class="chip" data-t="Signed up">Signed up</button>
+<button class="chip" data-t="mine">Mine</button>
 </div>
 <div class="row">
 <select id="town"><option value="">Every town</option></select>
@@ -78,10 +82,11 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <p><button class="back" id="back">&larr; All leads</button> &middot; <a href="/admin/leads/how-to/">How this works</a></p>
 <h2 id="n"></h2>
 <p class="sub" id="meta"></p>
+<button class="big" id="claim" type="button" style="width:100%;font-family:inherit;cursor:pointer;background:#fff"></button>
 <div class="now"><p><span class="k">Where It Stands</span><span class="v" id="nw-stage"></span></p><p><span class="k">Last Step</span><span id="nw-last"></span></p><p><span class="k">Next Step</span><span class="v" id="nw-next"></span></p><div id="nw-links"></div></div>
 <p class="lab">Tap What You Just Did</p>
 <div class="row" id="did"></div>
-<p class="sub" style="font-size:14px;margin:0 0 6px">Each tap is saved with today's date and moves the shop to the right stage.</p>
+<p class="sub" style="font-size:14px;margin:0 0 6px">Each tap is saved with today's date and your name, and moves the shop to the right stage.</p>
 <a class="big dark" id="call" href="#">Call</a>
 <a class="big" id="map" href="#" target="_blank" rel="noopener">Directions</a>
 <a class="big" id="mail" href="#">Email</a>
@@ -128,32 +133,32 @@ var NEXT={
 };
 var DID=[['Slydial sent',1],['Called, no answer',2],['Left a voicemail',2],['Walked in, owner not there',2],['Talked to staff, not the owner',2],['Emailed',2],['Texted (only after the owner said yes to texts)',3],['Talked to the owner',3],['Owner said call back later',3],['Booked the 15 minutes',4],['No-show for the 15 minutes',3,1],['Did the 15 minutes',5],['Sent what we found and made the offer',6],['Became a client',7,1],['Not now (they said no)',8,1]];
 var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-function today(){var d=new Date();return MON[d.getMonth()]+' '+d.getDate()}
-function stg(i){var v=get('s'+i,STAGES[0]);return OLD[v]||(STAGES.indexOf(v)<0?STAGES[0]:v)}
-function hist(i){try{return JSON.parse(get('h'+i,'[]'))||[]}catch(e){return []}}
-function last(i){var h=hist(i);return h.length?h[h.length-1].a+', '+h[h.length-1].d:''}
-var L=[
-{n:'Sample Bakery',k:'Bakery',t:'Fishers',a:'100 Example St, Fishers, IN 46038',p:'317-555-0101',e:'hello@samplebakery.example',g:'A',w:'Rated 4.9 from 212 reviews. The owner is named in the reviews.',f:'A customer wrote that she called twice to order a cake and got voicemail both times. The site lists hours that differ from Google.'},
-{n:'Example Auto Repair',k:'Auto repair',t:'Carmel',a:'22 Sample Rd, Carmel, IN 46032',p:'317-555-0102',e:'',g:'A',w:'They spend to grow: ads, shop software, a careers page.',f:'The "Book Service" button on the site leads to a page that does not load.'},
-{n:'Made-Up Dance Studio',k:'Dance studio',t:'Noblesville',a:'5 Demo Ave, Noblesville, IN 46060',p:'317-555-0103',e:'info@madeupdance.example',g:'B',w:'Rated 5.0 from 88 reviews. Family-run.',f:'No leak seen. Hours and phone shown. No online sign-up.'},
-{n:'Placeholder Plumbing',k:'Plumber',t:'Westfield',a:'310 Test Ln, Westfield, IN 46074',p:'317-555-0104',e:'',g:'B',w:'Rated 4.8 from 140 reviews. The owner answers his reviews.',f:'Footer copyright reads 2021. No way to book online.'},
-{n:'Demo Boutique',k:'Boutique',t:'Zionsville',a:'8 Pretend St, Zionsville, IN 46077',p:'317-555-0105',e:'shop@demoboutique.example',g:'B',w:'Rated 4.9 from 64 reviews. Owner named in reviews.',f:'Online shop is up. The store phone is not on the homepage.'},
-{n:'Sample Coffee House',k:'Coffee shop',t:'Greenfield',a:'41 Mock Blvd, Greenfield, IN 46140',p:'317-555-0106',e:'',g:'B',w:'Rated 4.8 from 301 reviews. Owner-run.',f:'No leak seen. Online ordering in place.'},
-{n:'Example Law Office',k:'Attorney',t:'Anderson',a:'12 Sample Sq, Anderson, IN 46016',p:'765-555-0107',e:'office@examplelaw.example',g:'B',w:'Rated 5.0 from 52 reviews. Solo attorney for 30 years.',f:'Free site-builder badge in the footer. No intake form.'},
-{n:'Made-Up Hardware',k:'Hardware store',t:'Lebanon',a:'77 Demo Pike, Lebanon, IN 46052',p:'765-555-0108',e:'',g:'Worth a visit',w:'Rated 4.7 from 96 reviews. Owner named in reviews.',f:'Not looked at closely yet.'},
-{n:'Placeholder Salon',k:'Salon',t:'Brownsburg',a:'9 Test Ct, Brownsburg, IN 46112',p:'317-555-0109',e:'',g:'Worth a visit',w:'Rated 4.8 from 73 reviews. Owner named in reviews.',f:'Not looked at closely yet.'},
-{n:'Demo Yoga',k:'Yoga studio',t:'Fishers',a:'230 Example Way, Fishers, IN 46037',p:'317-555-0110',e:'hi@demoyoga.example',g:'Worth a visit',w:'Rated 4.9 from 41 reviews. Owner named in reviews.',f:'Not looked at closely yet.'}
-];
-try{JSON.parse(localStorage.getItem('2g-lead-demo:custom')||'[]').forEach(function(c){c.custom=1;L.push(c)})}catch(e){}
-function get(k,d){try{return localStorage.getItem('2g-lead-demo:'+k)||d}catch(e){return d}}
-function put(k,v){try{localStorage.setItem('2g-lead-demo:'+k,v)}catch(e){}}
+
 function $(i){return document.getElementById(i)}
-var tier='',cur=null;
-var towns=[];L.forEach(function(x){if(towns.indexOf(x.t)<0)towns.push(x.t)});towns.sort();
-towns.forEach(function(t){var o=document.createElement('option');o.textContent=t;$('town').appendChild(o)});
-STAGES.forEach(function(s){var o=document.createElement('option');o.textContent=s;$('stage').appendChild(o)});
-var DAY=86400000,RANK={'15 minutes done':0,'Talked to the owner':1,'Offer made':2,'Slydial sent':3,'Tried, no owner yet':4};
+var L=[],ME='',GHL=false,tier='',cur=null,curId=null,noteT=null;
+var API='/admin/api/';
 function fmt(t){var d=new Date(t);return MON[d.getMonth()]+' '+d.getDate()}
+function stg(i){var v=L[i].st;return STAGES.indexOf(v)<0?STAGES[0]:v}
+function hist(i){return (L[i].h||[]).map(function(e){return {a:e.a,d:fmt(e.ts),p:e.p,ts:e.ts,by:e.by}})}
+function last(i){var h=hist(i);return h.length?h[h.length-1].a+', '+h[h.length-1].d+(h[h.length-1].by?' ('+h[h.length-1].by+')':''):''}
+function msg(t){$('status').textContent=t||''}
+function take(j){
+  L=j.leads||[];ME=j.me||'';GHL=!!j.ghl;
+  $('prac').textContent='The real list. What you tap is saved for all three of us'+(ME?' (you are signed in as '+ME+')':'')+'. '+(GHL?'Each tap also goes to GoHighLevel.':'Not going to GoHighLevel yet.');
+  var tw=$('town'),keep=tw.value;while(tw.options.length>1)tw.remove(1);
+  var towns=[];L.forEach(function(x){if(x.t&&towns.indexOf(x.t)<0)towns.push(x.t)});towns.sort();
+  towns.forEach(function(t){var o=document.createElement('option');o.textContent=t;tw.appendChild(o)});tw.value=keep;
+  if(curId!==null){cur=null;L.forEach(function(x,i){if(x.id===curId)cur=i})}
+}
+function load(){
+  msg('Loading the list...');
+  return fetch(API+'leads',{credentials:'same-origin',cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){take(j);msg('');draw()}).catch(function(){msg('Could not reach the list. Refresh the page. If it asks, sign in with your email.')});
+}
+function send(b,quiet){
+  if(!quiet)msg('Saving...');
+  return fetch(API+'act',{method:'POST',credentials:'same-origin',headers:{'content-type':'application/json'},body:JSON.stringify(b)}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(j.leads)take(j);if(!quiet)msg('');return j}).catch(function(){msg('That did not save. Check your signal and try again.');throw 0});
+}
+var DAY=86400000,RANK={'15 minutes done':0,'Talked to the owner':1,'Offer made':2,'Slydial sent':3,'Tried, no owner yet':4};
 function due(i){
   var st=stg(i),h=hist(i);if(!(st in RANK))return null;
   var lt=h.length&&h[h.length-1].ts?h[h.length-1].ts:0,n=0;
@@ -168,35 +173,39 @@ function row(i,st,showDue){
   var h=document.createElement('b');h.textContent=x.n;b.appendChild(h);
   var s1=document.createElement('span');s1.textContent=x.k+' · '+x.t;b.appendChild(s1);
   var s2=document.createElement('span');var tg=document.createElement('i');tg.className='tier '+(x.g==='A'?'A':'');tg.style.fontStyle='normal';tg.textContent=x.g;s2.appendChild(tg);
-  var ss=document.createElement('i');ss.className='st';ss.style.fontStyle='normal';ss.textContent=st;s2.appendChild(ss);b.appendChild(s2);
+  var ss=document.createElement('i');ss.className='st';ss.style.fontStyle='normal';ss.textContent=st+(x.wk?' · '+(x.wk===ME?'You are':x.wk+' is')+' working this one':'');s2.appendChild(ss);b.appendChild(s2);
   var s3=document.createElement('span');s3.className='nx';s3.textContent=(last(i)?'Last: '+last(i)+' · ':'')+'Next: '+NEXT[st].s;b.appendChild(s3);
   var d=due(i);if(!d&&st==='15 minutes booked')d={txt:'Check the calendar for the day and time',late:false,ok:true,t:1};if(d&&(showDue||d.ok||d.t===0)){var s4=document.createElement('span');s4.className='due'+(d.late?' late':'');s4.textContent=d.txt;b.appendChild(s4)}
   b.onclick=function(){show(i)};return b;
 }
+function mineOrOpen(x){return !x.wk||x.wk===ME}
 function drawToday(){
   var box=$('today');box.textContent='';var dueL=[],fresh=[];
   L.forEach(function(x,i){var st=stg(i),d=due(i);
+    if(!mineOrOpen(x))return;
     if(d&&(d.ok||d.t===0))dueL.push([RANK[st],d.t,i]);
     else if(st==='15 minutes booked')dueL.push([-1,0,i]);
-    else if(st===STAGES[0])fresh.push([x.g==='A'?0:x.g==='B'?1:2,i,i]);});
+    else if(st===STAGES[0]&&(x.g==='A'||x.g==='B'||x.g==='Signed up'))fresh.push([x.wk===ME?-1:x.g==='Signed up'?0:x.g==='A'?1:2,i,i]);});
   dueL.sort(function(a,b){return a[0]-b[0]||a[1]-b[1]});fresh.sort(function(a,b){return a[0]-b[0]||a[1]-b[1]});
+  var mine=fresh.filter(function(r){return r[0]===-1});
   dueL.forEach(function(r){box.appendChild(row(r[2],stg(r[2]),true))});
-  fresh.slice(0,3).forEach(function(r){box.appendChild(row(r[2],stg(r[2]),false))});
-  if(!dueL.length&&!fresh.length){var p=document.createElement('p');p.className='sub';p.textContent='Nothing due and nothing new. Every shop here has been worked.';box.appendChild(p)}
+  (mine.length?mine:fresh.slice(0,3)).forEach(function(r){box.appendChild(row(r[2],stg(r[2]),false))});
+  if(!dueL.length&&!fresh.length){var p=document.createElement('p');p.className='sub';p.textContent='Nothing due and nothing new for you.';box.appendChild(p)}
   var C={};L.forEach(function(x,i){var seen={};hist(i).forEach(function(e){if(!seen[e.a]){seen[e.a]=1;C[e.a]=(C[e.a]||0)+1}})});
   function c(a){return C[a]||0}
-  $('score').textContent='So far, on this phone. Slydials sent: '+c('Slydial sent')+' \u00b7 Owners talked to: '+c('Talked to the owner')+' \u00b7 15 minutes booked: '+c('Booked the 15 minutes')+' \u00b7 15 minutes done: '+c('Did the 15 minutes')+' \u00b7 Offers made: '+c('Sent what we found and made the offer')+' \u00b7 Clients: '+c('Became a client');
+  $('score').textContent='So far, all of us. Slydials sent: '+c('Slydial sent')+' · Owners talked to: '+c('Talked to the owner')+' · 15 minutes booked: '+c('Booked the 15 minutes')+' · 15 minutes done: '+c('Did the 15 minutes')+' · Offers made: '+c('Sent what we found and made the offer')+' · Clients: '+c('Became a client');
 }
 function draw(){
   drawToday();
-  var q=$('q').value.toLowerCase(),tw=$('town').value,sg=$('stage').value,box=$('rows');box.textContent='';var c=0;
+  var q=$('q').value.toLowerCase(),tw=$('town').value,sg=$('stage').value,box=$('rows');box.textContent='';var c=0,shown=0;
   L.forEach(function(x,i){
     var st=stg(i);
-    if(tier&&x.g!==tier)return;if(tw&&x.t!==tw)return;if(sg&&st!==sg)return;
+    if(tier==='mine'){if(x.wk!==ME)return}else if(tier&&x.g!==tier)return;
+    if(tw&&x.t!==tw)return;if(sg&&st!==sg)return;
     if(q&&(x.n+' '+x.t+' '+x.a+' '+x.k).toLowerCase().indexOf(q)<0)return;
-    c++;box.appendChild(row(i,st,true));
+    c++;if(shown<60){shown++;box.appendChild(row(i,st,true))}
   });
-  $('count').textContent=c+(c===1?' shop':' shops');
+  $('count').textContent=c+(c===1?' shop':' shops')+(c>shown?'. Showing the first '+shown+': search or pick a town to narrow it.':'');
 }
 function AUD(x){var kt=x.k.toLowerCase()+' '+x.t+' IN';return [
 'You are getting me ready to call or walk in on a local business owner.',
@@ -237,35 +246,42 @@ function AUD(x){var kt=x.k.toLowerCase()+' '+x.t+' IN';return [
 'No statistic without its link.',
 'Never guess a name or an email.'
 ].join('\n')}
+
 function show(i){
-  cur=i;var x=L[i];$('list').style.display='none';$('one').style.display='block';
-  $('n').textContent=x.n;$('meta').textContent=x.g+' · '+x.k+' · '+(x.a||x.t)+(x.custom?' · added by hand':'');
+  cur=i;var x=L[i];curId=x.id;$('list').style.display='none';$('one').style.display='block';
+  $('n').textContent=x.n;$('meta').textContent=x.g+' · '+x.k+' · '+(x.a||x.t)+(x.rt?' · Rated '+x.rt+(x.rv?' from '+x.rv+' reviews':''):'')+(x.mi?' · '+x.mi+' miles from Launch Fishers':'')+(x.custom?' · '+(x.src||'added by hand'):'');
+  var wk=$('claim');wk.textContent=x.wk===ME?'You are working this one. Tap to let it go.':x.wk?x.wk+' is working this one. Tap to take it over.':'I\'m working this one';wk.className='big'+(x.wk===ME?' dark':'');
+  wk.onclick=function(){send({op:'claim',id:x.id,on:x.wk!==ME}).then(function(){show(cur)},function(){})};
   $('call').style.display=x.p?'block':'none';$('call').textContent='Call '+(x.p||'');$('call').href='tel:'+(x.p||'').replace(/\D/g,'');
   $('map').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x.a||(x.n+' '+x.t+' Indiana'));
-  if(x.e){$('mail').style.display='block';$('mail').textContent='Email '+x.e;$('mail').href='mailto:'+x.e}else{$('mail').style.display='none'}
-  var fe=get('e'+i,x.e||'');$('em').value=fe;$('find').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana contact email');if(fe){$('mail').style.display='block';$('mail').textContent='Email '+fe;$('mail').href='mailto:'+fe}
+  var fe=x.e||'';$('em').value=fe;$('find').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana contact email');
+  if(fe){$('mail').style.display='block';$('mail').textContent='Email '+fe;$('mail').href='mailto:'+fe}else{$('mail').style.display='none'}
   var Q=encodeURIComponent(x.n+' '+x.t+' Indiana'),N=encodeURIComponent(x.n);$('l-web').href=x.u||('https://www.google.com/search?q='+Q);$('l-goo').href='https://www.google.com/maps/search/?api=1&query='+Q;$('l-fb').href='https://www.facebook.com/search/pages/?q='+encodeURIComponent(x.n+' '+x.t);$('l-yelp').href='https://www.yelp.com/search?find_desc='+N+'&find_loc='+encodeURIComponent(x.t+', IN');$('l-ig').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana instagram');
-  $('why').textContent=x.w;$('found').textContent=x.f;
+  $('why').textContent=x.w||'';$('found').textContent=x.f||'Not looked at closely yet.';
   $('audit').href='https://claude.ai/new?q='+encodeURIComponent(AUD(x));
   var st=stg(i),nx=NEXT[st];$('nw-stage').textContent=st;$('nw-last').textContent=last(i)||'Nothing yet.';var dd0=due(i);$('nw-next').textContent=nx.t+(dd0&&dd0.t?' '+dd0.txt+'.':'');
   var lk=$('nw-links');lk.textContent='';nx.l.forEach(function(l){var a=document.createElement('a');a.className='big';a.href=l[1];a.textContent=l[0];lk.appendChild(a)});
-  var dd=$('did');dd.textContent='';DID.forEach(function(d){var b=document.createElement('button');b.className='chip';b.textContent=d[0];b.onclick=function(){var h=hist(i);h.push({a:d[0],d:today(),p:st,ts:Date.now()});put('h'+i,JSON.stringify(h));if(d[2]||d[1]>STAGES.indexOf(st))put('s'+i,STAGES[d[1]]);show(i)};dd.appendChild(b)});
-  var hl=$('hist');hl.textContent='';var H=hist(i);for(var k=H.length-1;k>=0;k--){var li=document.createElement('li');li.textContent=H[k].a+', '+H[k].d;hl.appendChild(li)}
+  var dd=$('did');dd.textContent='';DID.forEach(function(d){var b=document.createElement('button');b.className='chip';b.textContent=d[0];b.onclick=function(){var to=(d[2]||d[1]>STAGES.indexOf(st))?STAGES[d[1]]:st;send({op:'did',id:x.id,a:d[0],to:to}).then(function(){show(cur)},function(){})};dd.appendChild(b)});
+  var hl=$('hist');hl.textContent='';var H=hist(i);for(var k=H.length-1;k>=0;k--){var li=document.createElement('li');li.textContent=H[k].a+', '+H[k].d+(H[k].by?' ('+H[k].by+')':'');hl.appendChild(li)}
   if(!H.length){var li0=document.createElement('li');li0.textContent='Nothing yet.';li0.style.listStyle='none';hl.appendChild(li0)}
   $('undo').style.display=H.length?'inline':'none';
   var box=$('stages');box.textContent='';
-  STAGES.forEach(function(s){var b=document.createElement('button');b.className='chip'+(s===st?' on':'');b.textContent=s;b.onclick=function(){put('s'+i,s);show(i)};box.appendChild(b)});
-  $('note').value=get('n'+i,'');$('saved').textContent='';window.scrollTo(0,0);
+  STAGES.forEach(function(s){var b=document.createElement('button');b.className='chip'+(s===st?' on':'');b.textContent=s;b.onclick=function(){send({op:'stage',id:x.id,to:s}).then(function(){show(cur)},function(){})};box.appendChild(b)});
+  if(document.activeElement!==$('note'))$('note').value=x.note||'';$('saved').textContent='';window.scrollTo(0,0);
 }
-$('note').oninput=function(){if(cur!==null){put('n'+cur,this.value);$('saved').textContent='Saved on this device.'}};
-$('em').onchange=function(){if(cur!==null){put('e'+cur,this.value.trim());show(cur)}};
-$('undo').onclick=function(){if(cur===null)return;var h=hist(cur),x=h.pop();if(x){put('h'+cur,JSON.stringify(h));if(x.p)put('s'+cur,x.p)}show(cur)};
+$('note').oninput=function(){if(cur===null)return;var id=L[cur].id,v=this.value;L[cur].note=v;$('saved').textContent='Saving...';clearTimeout(noteT);noteT=setTimeout(function(){send({op:'note',id:id,note:v},true).then(function(){$('saved').textContent='Saved for all three of us.'},function(){$('saved').textContent='Not saved. Check your signal.'})},1200)};
+$('em').onchange=function(){if(cur!==null){send({op:'email',id:L[cur].id,e:this.value.trim()}).then(function(){show(cur)},function(){})}};
+$('undo').onclick=function(){if(cur===null)return;send({op:'undo',id:L[cur].id}).then(function(){show(cur)},function(){})};
 $('a-save').onclick=function(){var n=$('a-n').value.trim();if(!n){$('a-msg').textContent='Put in the shop name first.';return}
-  var c={n:n,k:$('a-k').value.trim()||'Business',t:$('a-t').value.trim()||'Town not set',a:$('a-a').value.trim(),p:$('a-p').value.trim(),e:'',g:$('a-g').value,w:$('a-w').value.trim()||'Added by hand.',f:'',u:$('a-u').value.trim()};
-  try{var cu=JSON.parse(localStorage.getItem('2g-lead-demo:custom')||'[]');cu.push(c);localStorage.setItem('2g-lead-demo:custom',JSON.stringify(cu));location.reload()}catch(e){$('a-msg').textContent='Could not save on this phone.'}};
-$('back').onclick=function(){$('one').style.display='none';$('list').style.display='block';draw()};
+  send({op:'add',n:n,k:$('a-k').value.trim(),t:$('a-t').value.trim(),a:$('a-a').value.trim(),p:$('a-p').value.trim(),g:$('a-g').value,w:$('a-w').value.trim(),u:$('a-u').value.trim()}).then(function(){['a-n','a-k','a-t','a-a','a-p','a-u','a-w'].forEach(function(k){$(k).value=''});$('a-msg').textContent='Saved. It is on the list for all three of us.';draw()},function(){$('a-msg').textContent='Could not save it.'})};
+$('give').onclick=function(){
+  var pick=[];L.forEach(function(x,i){if(pick.length<5&&!x.wk&&stg(i)===STAGES[0]&&(x.g==='A'||x.g==='B'))pick.push(x.id)});
+  if(!pick.length){msg('No untouched A or B shops are left unclaimed.');return}
+  var run=function(k){if(k>=pick.length){draw();return}send({op:'claim',id:pick[k],on:true}).then(function(){run(k+1)},function(){})};run(0)};
+$('back').onclick=function(){cur=null;curId=null;$('one').style.display='none';$('list').style.display='block';load()};
 $('q').oninput=draw;$('town').onchange=draw;$('stage').onchange=draw;
+STAGES.forEach(function(s){var o=document.createElement('option');o.textContent=s;$('stage').appendChild(o)});
 [].forEach.call(document.querySelectorAll('#tiers .chip'),function(b){b.onclick=function(){tier=this.getAttribute('data-t');[].forEach.call(document.querySelectorAll('#tiers .chip'),function(o){o.className='chip'});this.className='chip on';draw()}});
-draw();
+load();
 </script>
 </main></body></html>

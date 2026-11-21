@@ -67,10 +67,20 @@ async function ensure(env, x) {
     const m = /^(.*?),\s*([^,]+),\s*IN\s*(\d{5})?/.exec(x.a || '') || [];
     const body = { locationId: c.location, firstName: x.n, companyName: x.n, address1: m[1] || x.a || undefined, city: m[2] || x.t || undefined, state: 'IN', postalCode: m[3] || undefined, website: x.u || undefined, email: x.e || undefined, source: 'Local Business Database', dnd: true,
       tags: ['prospect list', 'prospect tier ' + String(x.g || '').toLowerCase()],
-      customFields: [{ id: c.f.id, field_value: x.id }, { id: c.f.tier, field_value: x.g || '' }, { id: c.f.kind, field_value: x.k || '' }, { id: c.f.found, field_value: x.f || '' }, { id: c.f.why, field_value: x.w || '' }] };
+      customFields: [[c.f.id, x.id], [c.f.tier, x.g || ''], [c.f.kind, x.k || ''], [c.f.found, x.f || ''], [c.f.why, x.w || '']].map(([id, v]) => ({ id, fieldValue: v, field_value: v })) };
     const d = (x.p || '').replace(/\D/g, ''); if (d.length === 10) body.phone = '+1' + d;
-    const r = (body.phone || body.email) ? await ghl(env, 'POST', '/contacts/upsert', body) : await ghl(env, 'POST', '/contacts/', body);
-    gc = (r.contact || {}).id; if (!gc) throw new Error('no contact id');
+    // Someone with this phone may already be in GoHighLevel (a registrant, a client). Never overwrite them:
+    // no tag wipe, no do-not-disturb. Just link, add our tags and fill in our own fields.
+    let ex = null;
+    if (body.phone) { try { ex = (await ghl(env, 'GET', `/contacts/search/duplicate?locationId=${c.location}&number=${encodeURIComponent(body.phone)}`)).contact || null; } catch (e) {} }
+    if (ex && ex.id) {
+      gc = ex.id;
+      await ghl(env, 'PUT', '/contacts/' + gc, { customFields: body.customFields });
+      await ghl(env, 'POST', '/contacts/' + gc + '/tags', { tags: body.tags });
+    } else {
+      const r = await ghl(env, 'POST', '/contacts/', body);
+      gc = (r.contact || {}).id; if (!gc) throw new Error('no contact id');
+    }
   }
   const stage = c.stages[x.st || STAGES[0]];
   if (!go) {
