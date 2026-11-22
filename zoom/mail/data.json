@@ -1,13 +1,19 @@
 {
- "checked": "Sat Nov 21, 9:14pm",
+ "checked": "Sun Nov 22, 7:15am",
  "people": {
   "Daegan": {
    "needs": [
     {
+     "t": "Your 6 to-dos from Saturday's team call and the Kenneth Mason call (replaces Friday's list)",
+     "w": "From Jimmy's Claude (the Director), Sat Nov 21, 9:39pm (from Zoom's AI notes)",
+     "x": "(1) Connect the free 15-minute time picker to Jimmy's calendar before Mon Nov 23. (2) Upload the lead database into the portal Mon Nov 23, the day the portal goes to Paul. (3) The admin page now asks for a Cloudflare sign-in, so the Director can no longer read the daily changes log for the Brief; if you want it to keep reading it, a read-only path or service token would fix it, your call. (4) Finish the GoHighLevel form wiring and test a sign-up, move \"No thanks\" higher, fix the ad landing page redirect, clean up the lessons and story emails for the new page; no dates were said. (5) Send Kenneth Mason the notes from Friday; no date said. (6) Personality test: you said tonight; compared Monday.",
+     "n": "Tell Jimmy's Claude a date for items 4 and 5, and say if any date above is wrong. Decide whether the Director gets read-only access to the admin changes log."
+    },
+    {
      "t": "Build the free 15-minute call calendar: Jimmy's Claude answered your 8 questions",
      "w": "From Jimmy's Claude, Sat Nov 21, 7:12pm (answer to your calendar questions)",
      "x": "Answered from records: (1) no Free 15 calendar exists yet; Jimmy's Claude suggests you create a new one named \"Free 15-Minute Call\" in GoHighLevel, separate from the report-call, paid and 30-min calendars. (5) Notice 24 hours, show only the next 5 open days. (6) Keep your own pick-a-time step and write into the GoHighLevel calendar. (7) Office line is (317) 751-2693; the \"your time is\" text is not built yet, and texts go only to people who ticked consent. (8) Conflict checks cover only Jimmy's iCloud calendars and bookings are written to iCloud \"Block-Thrive\"; his Google calendar is not checked, so copy that setup. Jimmy's own picks (his Claude's suggestions until he answers): Jimmy takes the calls alone the first week, Monday to Thursday 1:00 to 4:30pm Eastern, at most 4 calls a day.",
-     "n": "Build with those picks. Jimmy is asked for his real answers on who, hours and daily limit by Sun Nov 22, 6pm; if none by then, keep the picks. Jimmy's Claude will pass his answers along the day he gives them."
+     "n": "Build with those picks. Jimmy is asked for his real answers on who, hours and daily limit by Sun Nov 22, 6pm; if none by then, keep the picks. Jimmy's Claude will pass his answers along the day he gives them. Deadline from Jimmy's Claude: before Mon Nov 23, because traffic starts that day."
     },
     {
      "t": "Case studies: three things for Jimmy on today's 4pm agenda",
@@ -16,34 +22,10 @@
      "n": "Put the three items on today's 4pm agenda as one 2-minute item. If they don't come up, Jimmy's Claude will ask Jimmy and reply by Mon Nov 23."
     },
     {
-     "t": "Your 7 to-dos from Friday's team call, and one question for Saturday",
-     "w": "From Jimmy's Claude (the Director), Fri 9:39pm (from Zoom's AI notes; replaces Thursday's list)",
-     "x": "(1) Finish the lead portal, connected to the database and GoHighLevel, ready for Paul, by Mon Nov 23 (the only date you said); (2) Cloudflare email sign-in on the admin page for Jimmy and Paul; (3) keep building the services page, homepage v4 and the free 15-minute call page, including optional business-detail fields on the thank-you page (Paul's question), and Jimmy wants that page to lead with the audit report people get; (4) make the assessment page the front door for cold traffic; (5) a button on the admin site, linked to GitHub, that sums up each day's changes; (6) set up the hourly mail check for everyone; (7) schedule a sales role-play with Paul and Jimmy. Their sign-up counting question is settled: Jimmy's Claude confirmed Sat 1:12pm that the Director reads the Dec 10 sign-up counts in GoHighLevel, read-only, starting today, and you keep GoHighLevel.",
-     "n": "Tell Jimmy's Claude any dates for items 2 to 7 (none were said). Next team meeting is Sat Nov 21, 4:00pm."
-    },
-    {
      "t": "Lock the offer and price with Jimmy before Mon Nov 23",
      "w": "From Jimmy's Claude, Daily Brief Fri 11:30am (from Thursday's call)",
      "x": "The Jamon and Dr. McCray agreements ($1,500 a month each) have been on Jimmy's list 4 days and depend on the offer and price being settled, so it is on today's noon call.",
      "n": "Settle the offer and price with Jimmy on today's call."
-    },
-    {
-     "t": "Put Jimmy's five items on Saturday's agenda page",
-     "w": "From Jimmy's Claude, Fri 4:11pm (answer to our Sat Nov 21 4:00pm agenda ask; Paul answered at 4:45pm, see next item)",
-     "x": "(1) Jim Ammeen has paid since Sept 10: is his first meeting booked before Thanksgiving? If not, Jimmy gives Paul two exact times on the call. (2) Offer and price: if today's noon call locked them, confirm the Jamon and Dr. McCray agreements go out before Mon Nov 23; if not, lock them Saturday. First-client goal is Fri Nov 27. (3) Warm calls this week: Lisa Bowers (Tue Nov 24, pick a time), Kate Walters at Invest Hamilton County, Jessica's report and replay, the TTR Social Circle people. Who owns each and by what day? Zero calls are booked in the next 14 days. (4) Dec 10 Launch Fishers: start time confirmed, booking in writing, sign-up flow tested end to end? 20 days out, zero sign-ups. (5) Paul's call reports for Tue to Fri, so nobody calls the same person twice. Jimmy's Claude hasn't received them.",
-     "n": "Add these five and Paul's note to the Sat Nov 21 agenda page. Today's Friday page items from Jimmy and Paul (including Paul's Dec 2 question for Jim Ammeen) may still need to go on that page if they weren't covered at noon."
-    },
-    {
-     "t": "Paul's answers on the video and the meetup start time",
-     "w": "From Paul's Claude, Fri 4:45pm (his reply to our Sat Nov 21 agenda ask, copied to Jimmy)",
-     "x": "Paul has no other agenda items; he asks that his note go on Saturday's page. On your video questions: keep it about 4 minutes, nothing too long; the client should get the custom piece after they pay, or when they pay; he isn't sure yet on the hours question; in writing call it either an \"assessment\" or an \"audit\". On the meetup \"save a seat\" page he wants an earlier start, 6:30 at the latest, and what he'd really propose is doors open 5:30 for networking, program at 6, done by 8.",
-     "n": "Post Paul's note on the Sat Nov 21 agenda page. Decide whether to change the meetup page's start time (it currently shows a later start than his proposal), and whether his 4-minute length and pay-time answers settle the video."
-    },
-    {
-     "t": "Paul's Launch Fishers date for the agenda",
-     "w": "From Paul's Claude, Thu 11:37am",
-     "x": "Paul's agenda ask (Thu 11:37am) had two items. Audit sharing is answered: your Claude told Paul at 2:52pm not to send the audit and to show one thing on the owner's phone. Still open: Launch Fishers is set for Thu Dec 10, 5:00 to 9:00 pm.",
-     "n": "Put the Dec 10, 5 to 9 pm date on the agenda page if it isn't there yet."
     }
    ],
    "waits": [
@@ -99,6 +81,10 @@
  },
  "fyi": [
   {
+   "t": "Saturday's team call and your Friday-night call with Kenneth Mason are filed (Jimmy's Claude, Sat 9:39pm)",
+   "x": "Both are saved in the 2 Guys Meetings notes. The Kenneth call came from the Zoom summary only; Jimmy and Paul were not on it, so it holds no team decisions. The Saturday agenda-page items from Jimmy and Paul are no longer on your list because that meeting has happened."
+  },
+  {
    "t": "Ian's case study timing (Jimmy's Claude, Sat 4:12pm)",
    "x": "Once Jimmy says yes, Ian's case study comes to you within one business day, one client per email. Nothing is sent to any client."
   },
@@ -108,6 +94,13 @@
   }
  ],
  "traffic": [
+  [
+   "Sat Nov 21, 9:39pm",
+   "In",
+   "Jimmy",
+   "[FYI] Notes from today's team call (+ Kenneth call): your to-dos",
+   "—"
+  ],
   [
    "Sat Nov 21, 7:12pm",
    "In",
