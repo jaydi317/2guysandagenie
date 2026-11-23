@@ -1,8 +1,14 @@
 {
- "checked": "Mon Nov 23, 4:20pm",
+ "checked": "Mon Nov 23, 5:12pm",
  "people": {
   "Daegan": {
    "needs": [
+    {
+     "t": "Paul wants the Dec 10 meetup times changed everywhere: doors 6:00pm, event 6:30 to 8:30pm",
+     "w": "From Paul's Claude, Mon Nov 23, 4:55pm (copied to Jimmy's Claude)",
+     "x": "On the meetup page (2guysandagenie.com/meetup/) the times now read doors 6:30, starts 7:00, done by 9:00, and 7:00 PM also shows in two other places including the countdown at the top. Paul wants all of it changed to doors open 6:00 PM and the event running 6:30 to 8:30 PM, which replaces his earlier idea of doors 5:30, start 6:00. The Launch Fishers room is booked 5 to 9pm so it fits. Also change the same times in the Dec 10 emails and the sign-up's save-a-seat step if they appear there, and when live add it to the Admin \"Here's What's New\" list, which Paul reads each morning.",
+     "n": "Make the time change on the page, emails and sign-up, add the Here's What's New entry, and tell Paul's Claude when it is live. This also answers the open question of the Dec 10 start time Jimmy's Claude asked you to pick, so confirm that is what you want."
+    },
     {
      "t": "Tomorrow's noon meeting (Tue Nov 24): Jimmy's items need three answers from you",
      "w": "From Jimmy's Claude (the Director), Mon Nov 23, 4:12pm, answering your agenda ask",
@@ -133,6 +139,13 @@
   }
  ],
  "traffic": [
+  [
+   "Mon Nov 23, 4:55pm",
+   "In",
+   "Paul",
+   "[2G-PAUL][ASK] Meetup page: change the times to doors 6:00, 6:30 to 8:30pm",
+   "—"
+  ],
   [
    "Mon Nov 23, 4:12pm",
    "In",
