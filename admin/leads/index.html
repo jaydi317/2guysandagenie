@@ -32,6 +32,15 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 .crumb{font-size:14px;margin:0 0 6px}.bar{display:flex;flex-wrap:wrap;gap:6px 18px;margin:8px 0 6px;padding:10px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;font-size:16px}.bar a{font-weight:bold;white-space:nowrap}.prac{font-size:15px;color:#111;margin:4px 0 8px;padding:8px 12px;background:#fff3b8;border:2px solid #111;border-radius:6px;font-weight:bold}.prac a{color:#111}
 .add{margin:0 0 12px}.add summary{font-weight:bold;cursor:pointer;text-decoration:underline;font-size:16px}.add input{display:block;width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:9px;border:2px solid #111;margin:0 0 6px}
 .saved{font-size:13px;color:#555;min-height:18px}
+#sp{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;overflow:auto;z-index:50;-webkit-overflow-scrolling:touch}
+#sp .in{max-width:680px;margin:0 auto;padding:0 16px 60px}
+#sp .topbar{position:sticky;top:0;background:#fff;border-bottom:3px solid #111;padding:10px 0;margin:0 0 14px;z-index:2}
+#sp .topbar button{font:inherit;font-size:18px;font-weight:bold;background:#111;color:#fff;border:0;padding:11px 14px;cursor:pointer;width:100%;text-align:left}
+#sp .who{font-size:15px;margin:8px 0 0}#sp .who b{font-size:17px}
+#sp .s{border:3px solid #111;padding:16px 18px;margin:0 0 18px}#sp .s .k{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;margin:0 0 2px}#sp .s h2{font-size:22px;margin:0 0 4px}#sp .s .when{font-size:15px;color:#555;margin:0 0 12px}
+#sp .say p{margin:0 0 10px;font-size:18px}#sp .do{font-size:15px;font-style:italic;color:#555}#sp .fill{background:#FFF3C4;padding:0 3px}#sp .fill.set{font-weight:bold}
+#sp .copy,#sp .top{display:none}#sp ol.q{padding-left:22px;margin:0 0 10px}#sp ol.q li{margin:0 0 8px;font-size:17px}
+#sp .ref{border:2px solid #111;padding:10px 14px;margin:0 0 12px;white-space:pre-wrap;font-size:15px}
 </style></head><body><main>
 
 <div id="list">
@@ -104,7 +113,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <p class="lab">What We Found</p><p id="found"></p>
 <a class="big dark" id="audit" href="#" target="_blank" rel="noopener">Run The Audit</a>
 <p class="sub" style="margin:0 0 4px">Opens Claude with this shop already typed in. Press send and wait a few minutes. The top half is what to say to the owner: one thing they can see on their phone, two more to name, two questions and an opener. The bottom half you keep for the 15 minutes. Paste the answer into Notes below, then use it with the script.</p>
-<a class="big" href="/admin/scripts/#demo">The One-Thing Demo Script</a>
+<a class="big" href="/admin/scripts/#demo" data-say="demo">The One-Thing Demo Script</a>
 <p class="lab">What's Been Done</p>
 <ol id="hist" reversed></ol>
 <p><button class="back" id="undo" style="font-size:14px">Take back the last one (the stage goes back too)</button></p>
@@ -115,8 +124,16 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <p class="saved" id="saved"></p>
 </div>
 
+<div id="sp"><div class="in">
+<div class="topbar"><button type="button" id="sp-back">&larr; Back</button><p class="who" id="sp-who"></p></div>
+<a class="big dark" id="sp-call" href="#">Call</a>
+<div id="sp-body"></div>
+<p class="lab">What We Found</p><div class="ref" id="sp-found"></div>
+<p class="lab">Your Notes On This Shop</p><div class="ref" id="sp-note"></div>
+<button class="big dark" type="button" id="sp-back2" style="width:100%;font-family:inherit;cursor:pointer">&larr; Back</button>
+<p class="sub" style="font-size:14px"><a href="/admin/scripts/" target="_blank" rel="noopener">See every script (opens in a new tab)</a></p>
+</div></div>
 <script>
-try{if(localStorage.getItem('2g-admin')!=='1'){location.replace('/admin/')}}catch(e){}
 var STAGES=['Not touched yet','Slydial sent','Tried, no owner yet','Talked to the owner','15 minutes booked','15 minutes done','Offer made','Client','Not now'];
 var OLD={'Not yet visited':'Not touched yet','Visited':'Tried, no owner yet','Talking':'Talked to the owner'};
 var S='/admin/scripts/';
@@ -142,17 +159,27 @@ function stg(i){var v=L[i].st;return STAGES.indexOf(v)<0?STAGES[0]:v}
 function hist(i){return (L[i].h||[]).map(function(e){return {a:e.a,d:fmt(e.ts),p:e.p,ts:e.ts,by:e.by}})}
 function last(i){var h=hist(i);return h.length?h[h.length-1].a+', '+h[h.length-1].d+(h[h.length-1].by?' ('+h[h.length-1].by+')':''):''}
 function msg(t){$('status').textContent=t||''}
-function take(j){
-  L=j.leads||[];ME=j.me||'';GHL=!!j.ghl;
+var CK='2g-leads-copy',STALE=0;
+function stash(j){try{localStorage.setItem(CK,JSON.stringify({t:Date.now(),j:{leads:j.leads,me:j.me,ghl:j.ghl}}))}catch(e){}}
+function kept(){try{var c=JSON.parse(localStorage.getItem(CK)||'null');return c&&c.j&&c.j.leads&&c.j.leads.length?c:null}catch(e){return null}}
+function clock(t){var d=new Date(t),h=d.getHours(),m=d.getMinutes();return fmt(t)+' at '+((h%12)||12)+':'+(m<10?'0':'')+m+(h<12?' am':' pm')}
+function take(j,old){
+  L=j.leads||[];ME=j.me||'';GHL=!!j.ghl;if(!old){STALE=0;stash(j)}
   $('prac').textContent='The real list. What you tap is saved for all three of us'+(ME?' (you are signed in as '+ME+')':'')+'. '+(GHL?'Each tap also goes to GoHighLevel.':'Not going to GoHighLevel yet.');
   var tw=$('town'),keep=tw.value;while(tw.options.length>1)tw.remove(1);
   var towns=[];L.forEach(function(x){if(x.t&&towns.indexOf(x.t)<0)towns.push(x.t)});towns.sort();
   towns.forEach(function(t){var o=document.createElement('option');o.textContent=t;tw.appendChild(o)});tw.value=keep;
   if(curId!==null){cur=null;L.forEach(function(x,i){if(x.id===curId)cur=i})}
 }
-function load(){
-  msg('Loading the list...');
-  return fetch(API+'leads',{credentials:'same-origin',cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){take(j);msg('');draw()}).catch(function(){msg('Could not reach the list. Refresh the page. If it asks, sign in with your email.')});
+function stale(){
+  var c=kept();
+  if(c){if(!L.length){take(c.j,true);draw();route()}STALE=c.t;$('prac').textContent='The shared list is not answering right now. This is the copy saved on this phone on '+clock(c.t)+'. What you tap will not save until it is back.';msg('');}
+  else{$('prac').textContent='The shared list is not answering right now.';msg('');}
+  var st=$('status'),b=document.createElement('button');b.className='chip on';b.type='button';b.textContent='Try again';b.onclick=function(){load()};st.textContent='';st.appendChild(b);
+}
+function load(n){
+  n=n||0;msg(n?'Still trying to reach the list...':'Loading the list...');
+  return fetch(API+'leads',{credentials:'same-origin',cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){take(j);msg('');draw();route();if(cur!==null){var y=window.pageYOffset;show(cur);window.scrollTo(0,y)}}).catch(function(){if(n<3){if(!n&&!L.length){var c=kept();if(c){take(c.j,true);draw();route()}}return new Promise(function(ok){setTimeout(ok,2500)}).then(function(){return load(n+1)})}stale()});
 }
 function send(b,quiet){
   if(!quiet)msg('Saving...');
@@ -176,7 +203,7 @@ function row(i,st,showDue){
   var ss=document.createElement('i');ss.className='st';ss.style.fontStyle='normal';ss.textContent=st+(x.wk?' · '+(x.wk===ME?'You are':x.wk+' is')+' working this one':'');s2.appendChild(ss);b.appendChild(s2);
   var s3=document.createElement('span');s3.className='nx';s3.textContent=(last(i)?'Last: '+last(i)+' · ':'')+'Next: '+NEXT[st].s;b.appendChild(s3);
   var d=due(i);if(!d&&st==='15 minutes booked')d={txt:'Check the calendar for the day and time',late:false,ok:true,t:1};if(d&&(showDue||d.ok||d.t===0)){var s4=document.createElement('span');s4.className='due'+(d.late?' late':'');s4.textContent=d.txt;b.appendChild(s4)}
-  b.onclick=function(){show(i)};return b;
+  b.onclick=function(){go('lead='+encodeURIComponent(x.id))};return b;
 }
 function mineOrOpen(x){return !x.wk||x.wk===ME}
 function drawToday(){
@@ -275,13 +302,51 @@ $('undo').onclick=function(){if(cur===null)return;send({op:'undo',id:L[cur].id})
 $('a-save').onclick=function(){var n=$('a-n').value.trim();if(!n){$('a-msg').textContent='Put in the shop name first.';return}
   send({op:'add',n:n,k:$('a-k').value.trim(),t:$('a-t').value.trim(),a:$('a-a').value.trim(),p:$('a-p').value.trim(),g:$('a-g').value,w:$('a-w').value.trim(),u:$('a-u').value.trim()}).then(function(){['a-n','a-k','a-t','a-a','a-p','a-u','a-w'].forEach(function(k){$(k).value=''});$('a-msg').textContent='Saved. It is on the list for all three of us.';draw()},function(){$('a-msg').textContent='Could not save it.'})};
 $('give').onclick=function(){
-  var pick=[];L.forEach(function(x,i){if(pick.length<5&&!x.wk&&stg(i)===STAGES[0]&&(x.g==='A'||x.g==='B'))pick.push(x.id)});
+  if(STALE){msg('The shared list is not answering, so it can\'t hand you shops right now. Tap Try again above.');return}
+  var have=0,pick=[];L.forEach(function(x,i){if(x.wk===ME&&ME&&stg(i)===STAGES[0])have++});
+  L.forEach(function(x,i){if(have+pick.length<5&&!x.wk&&stg(i)===STAGES[0]&&(x.g==='A'||x.g==='B'))pick.push(x.id)});
+  if(have>=5){msg('You already have '+have+' untouched shops on your Today.');return}
   if(!pick.length){msg('No untouched A or B shops are left unclaimed.');return}
-  var run=function(k){if(k>=pick.length){draw();return}send({op:'claim',id:pick[k],on:true}).then(function(){run(k+1)},function(){})};run(0)};
-$('back').onclick=function(){cur=null;curId=null;$('one').style.display='none';$('list').style.display='block';load()};
+  var run=function(k){if(k>=pick.length){draw();msg('You now have '+(have+pick.length)+' shops on your Today.');return}send({op:'claim',id:pick[k],on:true}).then(function(){run(k+1)},function(){draw();msg('Only '+k+' of '+pick.length+' saved. The shared list stopped answering. Tap Give me 5 again in a minute.')})};run(0)};
+$('back').onclick=function(){up('');load()};
+// Where you are lives in the address bar: #lead=<shop> and #lead=<shop>&say=<script>. Back and Forward just work.
+function depth(){return (history.state&&history.state.d)||0}
+function go(h){if(location.hash.replace(/^#/,'')!==h){try{history.pushState({d:depth()+1},'','#'+h)}catch(e){location.hash=h;return}}route()}
+// Step back one screen. If you got here by a tap, it is the same as the browser's Back button. If you landed here from a link, it goes to the screen above.
+function up(h){if(depth()>0){history.back()}else{try{history.replaceState(null,'','#'+h)}catch(e){location.hash=h;return}route()}}
+function where(){var o={};location.hash.replace(/^#/,'').split('&').forEach(function(kv){var a=kv.split('=');if(a[0])o[a[0]]=decodeURIComponent(a[1]||'')});return o}
+function route(){
+  var w=where(),i=-1;if(w.lead)L.forEach(function(x,k){if(x.id===w.lead)i=k});
+  if(i<0){cur=null;curId=null;$('sp').style.display='none';$('one').style.display='none';$('list').style.display='block';return}
+  if(cur!==i||$('one').style.display!=='block')show(i);
+  if(w.say)say(w.say);else $('sp').style.display='none';
+}
+window.addEventListener('hashchange',route);window.addEventListener('popstate',route);
+// The script opens on top of the shop, with the shop's name, town and phone filled in.
+var SDOC=null;
+function scripts(){if(SDOC)return Promise.resolve(SDOC);return fetch(S,{credentials:'same-origin'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){SDOC=new DOMParser().parseFromString(t,'text/html');return SDOC})}
+function say(id){
+  if(cur===null)return;var x=L[cur],sp=$('sp');
+  $('sp-back').textContent='\u2190 Back to '+x.n;$('sp-back2').textContent='\u2190 Back to '+x.n;
+  $('sp-who').textContent='';var b=document.createElement('b');b.textContent=x.n;$('sp-who').appendChild(b);$('sp-who').appendChild(document.createTextNode(' \u00b7 '+x.k+' \u00b7 '+x.t+(x.p?' \u00b7 '+x.p:'')));
+  $('sp-call').style.display=x.p?'block':'none';$('sp-call').textContent='Call '+(x.p||'');$('sp-call').href='tel:'+(x.p||'').replace(/\D/g,'');
+  $('sp-found').textContent=x.f||'Not looked at closely yet.';$('sp-note').textContent=x.note||'No notes yet.';
+  $('sp-body').textContent='Loading the script...';sp.style.display='block';sp.scrollTop=0;
+  scripts().then(function(d){
+    var sec=d.getElementById(id);if(!sec)throw 0;sec=document.importNode(sec,true);sec.removeAttribute('id');
+    [].forEach.call(sec.querySelectorAll('.fill'),function(f){if(f.textContent==='[Carmel]'&&x.t){f.textContent=x.t;f.className='fill set'}});
+    [].forEach.call(sec.querySelectorAll('a[href^="#"]'),function(a){a.parentNode.removeChild(a)});
+    $('sp-body').textContent='';$('sp-body').appendChild(sec);
+  }).catch(function(){$('sp-body').textContent='';var a=document.createElement('a');a.className='big';a.href=S+'#'+id;a.target='_blank';a.rel='noopener';a.textContent='Open the script in a new tab';$('sp-body').appendChild(a)});
+}
+function unsay(){if(cur!==null)up('lead='+encodeURIComponent(L[cur].id))}
+$('sp-back').onclick=unsay;$('sp-back2').onclick=unsay;
+document.addEventListener('click',function(e){var a=e.target.closest?e.target.closest('a'):null;if(!a||cur===null)return;var h=a.getAttribute('href')||'';if(h.indexOf(S+'#')!==0||a.target==='_blank')return;e.preventDefault();go('lead='+encodeURIComponent(L[cur].id)+'&say='+h.slice((S+'#').length))});
 $('q').oninput=draw;$('town').onchange=draw;$('stage').onchange=draw;
 STAGES.forEach(function(s){var o=document.createElement('option');o.textContent=s;$('stage').appendChild(o)});
 [].forEach.call(document.querySelectorAll('#tiers .chip'),function(b){b.onclick=function(){tier=this.getAttribute('data-t');[].forEach.call(document.querySelectorAll('#tiers .chip'),function(o){o.className='chip'});this.className='chip on';draw()}});
+(function(){var c=kept();if(c){take(c.j,true);draw();route()}})();
 load();
 </script>
-</main></body></html>
+</main>
+</body></html>
