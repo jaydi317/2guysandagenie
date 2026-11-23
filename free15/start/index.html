@@ -358,22 +358,28 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     data.nm=nm; data.ph=ph; data.em=document.getElementById('em').value.trim(); show(4);
   });
 
-  // step 4: next 3 weekdays, a few slots
-  var days=document.getElementById('days'), times=document.getElementById('times'), pickDay=null, pickTime=null;
-  var d=new Date(), added=0, names=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], mons=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  while(added<3){ d.setDate(d.getDate()+1); if(d.getDay()===0||d.getDay()===6) continue;
-    var b=document.createElement('button'); b.type='button'; b.className='slot';
-    b.innerHTML=names[d.getDay()]+'<small>'+mons[d.getMonth()]+' '+d.getDate()+'</small>';
-    b.dataset.label=names[d.getDay()]+', '+mons[d.getMonth()]+' '+d.getDate();
-    b.addEventListener('click',function(){days.querySelectorAll('.slot').forEach(function(x){x.classList.remove('on')});this.classList.add('on');pickDay=this.dataset.label;});
-    days.appendChild(b); added++; }
-  ['9:00 am','10:30 am','12:15 pm','2:00 pm','3:30 pm','5:00 pm'].forEach(function(t){
-    var b=document.createElement('button'); b.type='button'; b.className='slot'; b.textContent=t;
-    b.addEventListener('click',function(){times.querySelectorAll('.slot').forEach(function(x){x.classList.remove('on')});b.classList.add('on');pickTime=t;});
-    times.appendChild(b); });
+  // step 4: Jimmy's real open times from GoHighLevel (falls back to a fixed list if they can't load)
+  var days=document.getElementById('days'), times=document.getElementById('times'), pickDay=null, pickTime=null, pickSlot=null, real=false;
+  var names=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], mons=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function dayBtn(label,small,full,onpick){var b=document.createElement('button'); b.type='button'; b.className='slot'; b.innerHTML=label+'<small>'+small+'</small>'; b.dataset.label=full;
+    b.addEventListener('click',function(){days.querySelectorAll('.slot').forEach(function(x){x.classList.remove('on')});this.classList.add('on');pickDay=this.dataset.label;pickTime=null;pickSlot=null;onpick&&onpick();}); days.appendChild(b);}
+  function timeBtns(list){times.innerHTML=''; list.forEach(function(t){var b=document.createElement('button'); b.type='button'; b.className='slot'; b.textContent=t.label;
+    b.addEventListener('click',function(){times.querySelectorAll('.slot').forEach(function(x){x.classList.remove('on')});b.classList.add('on');pickTime=t.label;pickSlot=t.slot||null;}); times.appendChild(b);});}
+  function fallback(){ if(days.children.length) return; var d=new Date(), added=0;
+    while(added<3){ d.setDate(d.getDate()+1); if(d.getDay()===0||d.getDay()===6) continue; dayBtn(names[d.getDay()],mons[d.getMonth()]+' '+d.getDate(),names[d.getDay()]+', '+mons[d.getMonth()]+' '+d.getDate()); added++; }
+    timeBtns(['9:00 am','10:30 am','12:15 pm','2:00 pm','3:30 pm','5:00 pm'].map(function(t){return {label:t}})); }
+  function lab(iso){var h=+iso.slice(11,13), m=iso.slice(14,16); return (h%12||12)+':'+m+(h<12?' am':' pm');}
+  fetch('/hooks/ghl-slots',{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){
+    var ds=(j&&j.days)||[]; if(!ds.length) return fallback(); real=true;
+    ds.slice(0,4).forEach(function(x,k){var dt=new Date(x.date+'T12:00:00'), full=names[dt.getDay()]+', '+mons[dt.getMonth()]+' '+dt.getDate();
+      dayBtn(names[dt.getDay()],mons[dt.getMonth()]+' '+dt.getDate(),full,function(){timeBtns(x.slots.map(function(s){return {label:lab(s)+' Eastern',slot:s}}))});});
+    times.innerHTML='<p style="margin:6px 0;color:#555">Pick a day to see Jimmy\'s open times.</p>';
+  }).catch(fallback);
+  setTimeout(function(){ if(!real) fallback(); },4000);
   document.getElementById('go4').addEventListener('click',function(){
     if(!pickDay||!pickTime){document.getElementById('err4').style.display='block';return}
     data.when=pickDay+' at '+pickTime; booked=true; setTimeout(send,15*60*1000);
+    if(pickSlot&&!preview){try{fetch('/hooks/ghl-book',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({slot:pickSlot,when:data.when,name:data.nm||'',phone:data.ph||'',email:data.em||'',job:data.one||''})})}catch(e){}}
     fill(); show(5);
     try{window.R&&R.signup()}catch(e){}
   });
