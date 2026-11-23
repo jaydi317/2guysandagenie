@@ -1,13 +1,19 @@
 {
- "checked": "Mon Nov 23, 11:13am",
+ "checked": "Mon Nov 23, 12:13pm",
  "people": {
   "Daegan": {
    "needs": [
     {
+     "t": "Two asks for today about the free 15-minute booking page",
+     "w": "From Jimmy's Claude, Daily Brief Mon Nov 23, 11:30am",
+     "x": "(1) The booking page only shows Tue Nov 24, Wed Nov 25 and Tue Dec 1, nothing from Wed Dec 2 on, because of 24 hours' notice, 5 days out and Thanksgiving blocked. Paul read it as \"December is full.\" Jimmy's Claude suggests widening the window to 21 days. (2) The page at 2guysandagenie.com/free15/start/ still shows a banner saying \"Mockup. Nothing gets sent or booked,\" but it books real times and sends sign-ups to GoHighLevel. Paul's Claude flagged that real owners may find it confusing.",
+     "n": "Give the new booking window (21 days, or another number, or no) and say whether the mockup banner comes off or stays and why. Both wanted today."
+    },
+    {
      "t": "Your 6 to-dos from Saturday's team call and the Kenneth Mason call (replaces Friday's list)",
      "w": "From Jimmy's Claude (the Director), Sat Nov 21, 9:39pm (from Zoom's AI notes)",
-     "x": "(1) Connect the free 15-minute time picker to Jimmy's calendar before Mon Nov 23 (done: the calendar was built and sent to Jimmy's Claude at 12:40am Mon; only Jimmy's Apple calendar link is left, see Jimmy). (2) Upload the lead database into the portal Mon Nov 23, the day the portal goes to Paul. (3) The admin page now asks for a Cloudflare sign-in, so the Director can no longer read the daily changes log for the Brief; if you want it to keep reading it, a read-only path or service token would fix it, your call. (4) Finish the GoHighLevel form wiring and test a sign-up, move \"No thanks\" higher, fix the ad landing page redirect, clean up the lessons and story emails for the new page; no dates were said. (5) Send Kenneth Mason the notes from Friday; no date said. (6) Personality test: you said tonight; compared Monday.",
-     "n": "Tell Jimmy's Claude a date for items 4 and 5, and say if any date above is wrong. Decide whether the Director gets read-only access to the admin changes log."
+     "x": "(1) Connect the free 15-minute time picker to Jimmy's calendar before Mon Nov 23 (done: the calendar was built and sent to Jimmy's Claude at 12:40am Mon; only Jimmy's Apple calendar link is left, see Jimmy). (2) Upload the lead database into the portal Mon Nov 23, the day the portal goes to Paul. (3) The admin page now asks for a Cloudflare sign-in, so the Director can no longer read the daily changes log for the Brief; if you want it to keep reading it, a read-only path or service token would fix it, your call. (4) Finish the GoHighLevel form wiring and test a sign-up, move \"No thanks\" higher, fix the ad landing page redirect, clean up the lessons and story emails for the new page; no dates were said. (5) Send Kenneth Mason the notes from Friday; no date said. (6) Personality test: you said tonight; compared Monday. Jimmy's Claude repeated on Mon Nov 23: the lead database upload is due today, and it asks what date works for sending Kenneth Mason his notes.",
+     "n": "Tell Jimmy's Claude a date for the Kenneth Mason notes and for item 4, and say if any date above is wrong. Decide whether the Director gets read-only access to the admin changes log."
     },
     {
      "t": "Case studies: three things for Jimmy on today's 4pm agenda",
@@ -40,10 +46,10 @@
      "n": "Do the Apple calendar connection in GoHighLevel today (needs an app-specific password from Apple, not copied here). Until then Jimmy's Claude watches new bookings for clashes with his known schedule."
     },
     {
-     "t": "Three decisions asked of him today (Fri Nov 20)",
-     "w": "Jimmy's Claude, Daily Brief Fri 11:30am (sent to his phone this morning)",
-     "x": "(1) Send Paul two exact times next week for Jim Ammeen's first paid audit meeting (paid Sept 10, still no meeting)? Pick: yes, today. Paul also relays that Jim asked about Wed Dec 2 at 5:00 or 5:30 pm and wants to go over it with Jimmy. (2) Send Jessica the research report and webinar replay today if they didn't go out Wed? Pick: yes. (3) Take Lisa Bowers' Tue Nov 24 3pm Zoom, ask Jennifer for 20 minutes on a TTR AI night, thank Hadleigh for the Kate Walters intro? Pick: yes to all three. Partner desk drafts wait on his yes.",
-     "n": "Jimmy answers the three questions and tells Paul whether Dec 2 at 5:00 or 5:30 works."
+     "t": "Three decisions asked of him today (Mon Nov 23)",
+     "w": "Jimmy's Claude, Daily Brief Mon 11:30am (sent to his phone this morning)",
+     "x": "(1) Take Lisa Bowers' Zoom on Tue Nov 24 at 3pm Eastern? Pick: yes. (2) Connect his Apple calendar in GoHighLevel (needs an app-specific password) so free 15 bookings never clash with his day? Pick: yes, today. (3) Did the research report and webinar replay go out to Jessica on Friday? If not, send today. Pick: send today.",
+     "n": "Jimmy answers the three questions today."
     }
    ],
    "waits": []
@@ -51,9 +57,9 @@
   "Paul": {
    "needs": [
     {
-     "t": "Send his Tuesday, Wednesday and Thursday call reports",
+     "t": "Send his call reports (none since Tue Nov 17)",
      "w": "Noted by Jimmy's Claude, Daily Brief Fri 11:30am",
-     "x": "His call list went out at 8:15am today (Jim Ammeen, Carol Blackmon, India Robertson, Farheen Imran, Roger St Hilaire, Dave Schmidt, Jeremy at BlueBird Fence), but none of his reports from Tue, Wed or Thu has reached Jimmy's Claude.",
+     "x": "His Monday call list went out 8:15am and pointed everyone to the free 15 page, but none of his call reports since Tue Nov 17 has reached Jimmy's Claude.",
      "n": "Paul sends the report."
     },
     {
@@ -61,19 +67,22 @@
      "w": "From Daegan's Claude, Thu 2:52pm",
      "x": "Don't send Jeremy the audit. Show him one thing on his phone, tell the Jamon result, name a couple more finds, then ask for a sit-down with Jimmy this week.",
      "n": "Use the fill-in script in What To Say and the Run The Audit button on the shop's Leads card."
+    },
+    {
+     "t": "Send Jimmy the invite by hand for Jim Ammeen on Wed Dec 2, 5:00 to 5:30pm",
+     "w": "From Jimmy's Claude, Daily Brief Mon Nov 23, 11:30am",
+     "x": "Paul is booking Jim Ammeen's first paid audit meeting for Wed Dec 2, 5:00 to 5:30pm. That is outside the free 15 hours, so the booking page can't take it.",
+     "n": "Paul sends Jimmy the calendar invite himself."
     }
    ],
-   "waits": [
-    {
-     "t": "Jimmy's answer on Dec 2 at 5:00 or 5:30 pm for Jim Ammeen",
-     "w": "Paul's Claude, Fri 11:52am",
-     "x": "Jim will be in NJ next week and asked if either time works for his next meeting.",
-     "n": "Waiting on Jimmy; likely settled on today's noon call."
-    }
-   ]
+   "waits": []
   }
  },
  "fyi": [
+  {
+   "t": "Jim Ammeen's meeting is set for Wed Dec 2, 5:00 to 5:30pm (Jimmy's Claude, Mon 11:30am)",
+   "x": "Paul is booking it, so the earlier question to Jimmy about the time is settled. Nothing needed from Daegan."
+  },
   {
    "t": "Jimmy's Claude confirmed the free 15-minute calendar (Mon 8:12am)",
    "x": "Built to the picks, bookings land in the Leads Portal as \"15 minutes booked.\" Text reminders are held for today's team meeting decision; nothing is done on them before then. Paul's call list this morning points people to 2guysandagenie.com/free15/start/, with /book as the backup."
@@ -84,6 +93,13 @@
   }
  ],
  "traffic": [
+  [
+   "Mon Nov 23, 11:30am",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN] Daily Brief for Daegan (Mon Nov 23)",
+   "—"
+  ],
   [
    "Mon Nov 23, 8:12am",
    "In",
