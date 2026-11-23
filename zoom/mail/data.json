@@ -1,19 +1,13 @@
 {
- "checked": "Sun Nov 22, 9:12pm",
+ "checked": "Mon Nov 23, 12:55am",
  "people": {
   "Daegan": {
    "needs": [
     {
      "t": "Your 6 to-dos from Saturday's team call and the Kenneth Mason call (replaces Friday's list)",
      "w": "From Jimmy's Claude (the Director), Sat Nov 21, 9:39pm (from Zoom's AI notes)",
-     "x": "(1) Connect the free 15-minute time picker to Jimmy's calendar before Mon Nov 23. (2) Upload the lead database into the portal Mon Nov 23, the day the portal goes to Paul. (3) The admin page now asks for a Cloudflare sign-in, so the Director can no longer read the daily changes log for the Brief; if you want it to keep reading it, a read-only path or service token would fix it, your call. (4) Finish the GoHighLevel form wiring and test a sign-up, move \"No thanks\" higher, fix the ad landing page redirect, clean up the lessons and story emails for the new page; no dates were said. (5) Send Kenneth Mason the notes from Friday; no date said. (6) Personality test: you said tonight; compared Monday.",
+     "x": "(1) Connect the free 15-minute time picker to Jimmy's calendar before Mon Nov 23 (done: the calendar was built and sent to Jimmy's Claude at 12:40am Mon; only Jimmy's Apple calendar link is left, see Jimmy). (2) Upload the lead database into the portal Mon Nov 23, the day the portal goes to Paul. (3) The admin page now asks for a Cloudflare sign-in, so the Director can no longer read the daily changes log for the Brief; if you want it to keep reading it, a read-only path or service token would fix it, your call. (4) Finish the GoHighLevel form wiring and test a sign-up, move \"No thanks\" higher, fix the ad landing page redirect, clean up the lessons and story emails for the new page; no dates were said. (5) Send Kenneth Mason the notes from Friday; no date said. (6) Personality test: you said tonight; compared Monday.",
      "n": "Tell Jimmy's Claude a date for items 4 and 5, and say if any date above is wrong. Decide whether the Director gets read-only access to the admin changes log."
-    },
-    {
-     "t": "Build the free 15-minute call calendar: Jimmy's Claude answered your 8 questions",
-     "w": "From Jimmy's Claude, Sat Nov 21, 7:12pm (answer to your calendar questions)",
-     "x": "Answered from records: (1) no Free 15 calendar exists yet; Jimmy's Claude suggests you create a new one named \"Free 15-Minute Call\" in GoHighLevel, separate from the report-call, paid and 30-min calendars. (5) Notice 24 hours, show only the next 5 open days. (6) Keep your own pick-a-time step and write into the GoHighLevel calendar. (7) Office line is (317) 751-2693; the \"your time is\" text is not built yet, and texts go only to people who ticked consent. (8) Conflict checks cover only Jimmy's iCloud calendars and bookings are written to iCloud \"Block-Thrive\"; his Google calendar is not checked, so copy that setup. Jimmy's own picks (his Claude's suggestions until he answers): Jimmy takes the calls alone the first week, Monday to Thursday 1:00 to 4:30pm Eastern, at most 4 calls a day.",
-     "n": "Build with those picks. Jimmy is asked for his real answers on who, hours and daily limit by Sun Nov 22, 6pm; if none by then, keep the picks. Jimmy's Claude will pass his answers along the day he gives them. Deadline from Jimmy's Claude: before Mon Nov 23, because traffic starts that day."
     },
     {
      "t": "Case studies: three things for Jimmy on today's 4pm agenda",
@@ -31,14 +25,20 @@
    "waits": [
     {
      "t": "Jimmy's real answers on who, hours and daily limit for the free 15-minute call",
-     "w": "Promised by Jimmy's Claude, Sat Nov 21, 7:12pm; waiting under 1 hour",
+     "w": "Promised by Jimmy's Claude, Sat Nov 21, 7:12pm; due Sun Nov 22, 6pm; no answer has reached the inbox",
      "x": "Who takes the calls, which days and hours, and the most calls a day. Only Jimmy can answer.",
-     "n": "Build with the suggested picks now; swap in his answers when they arrive (due Sun Nov 22, 6pm)."
+     "n": "The calendar is built to the suggested picks. Swap in Jimmy's answers if they arrive; otherwise the picks stand."
     }
    ]
   },
   "Jimmy": {
    "needs": [
+    {
+     "t": "Connect your Apple calendar inside GoHighLevel for the free 15-minute call",
+     "w": "Daegan's Claude, Mon Nov 23, 12:40am",
+     "x": "The free 15-minute calendar is built (Jimmy only, Mon to Thu 1:00 to 4:30pm Eastern, 4 a day, 24 hours' notice, 5 days out, Thanksgiving blocked). Until you connect your Apple calendar, your own appointments won't block these times. It checks Calendar, Work, Home, Block-Thrive and Block-InnerCircle and writes bookings into Block-Thrive. Apple asks for an app-specific password, so only you can do it (not copied here).",
+     "n": "Do the Apple calendar connection in GoHighLevel, and say if the hours or daily limit should change."
+    },
     {
      "t": "Three decisions asked of him today (Fri Nov 20)",
      "w": "Jimmy's Claude, Daily Brief Fri 11:30am (sent to his phone this morning)",
@@ -47,7 +47,7 @@
     },
     {
      "t": "Three calendar answers for the free 15-minute call (asked Sat night)",
-     "w": "Sent to his phone by his Claude, Sat Nov 21 evening, answer wanted by Sun Nov 22, 6pm",
+     "w": "Sent to his phone by his Claude, Sat Nov 21 evening, answer was wanted by Sun Nov 22, 6pm; no answer seen",
      "x": "Who takes the free 15-minute calls, which days and hours, and the most calls in one day. His Claude suggests: Jimmy alone the first week, Monday to Thursday 1:00 to 4:30pm Eastern, 4 a day.",
      "n": "Jimmy answers on his phone; his Claude then sends the answers to Daegan."
     }
@@ -81,6 +81,10 @@
  },
  "fyi": [
   {
+   "t": "Free 15-minute calendar built and sent to Jimmy's Claude (Daegan's Claude, Mon 12:40am)",
+   "x": "It runs on the suggested picks. Booking page is 2guysandagenie.com/free15/start/ and owners land in the Leads Portal as \"15 minutes booked.\" Text reminders are not on; the three of you decide Monday whether to build them."
+  },
+  {
    "t": "Saturday's team call and your Friday-night call with Kenneth Mason are filed (Jimmy's Claude, Sat 9:39pm)",
    "x": "Both are saved in the 2 Guys Meetings notes. The Kenneth call came from the Zoom summary only; Jimmy and Paul were not on it, so it holds no team decisions. The Saturday agenda-page items from Jimmy and Paul are no longer on your list because that meeting has happened."
   },
@@ -94,6 +98,13 @@
   }
  ],
  "traffic": [
+  [
+   "Mon Nov 23, 12:40am",
+   "Out",
+   "Jimmy",
+   "Re: Jimmy's calendar for the free 15",
+   "No answer yet"
+  ],
   [
    "Sat Nov 21, 9:39pm",
    "In",
