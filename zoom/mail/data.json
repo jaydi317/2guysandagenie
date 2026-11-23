@@ -1,8 +1,14 @@
 {
- "checked": "Mon Nov 23, 3:14pm",
+ "checked": "Mon Nov 23, 4:20pm",
  "people": {
   "Daegan": {
    "needs": [
+    {
+     "t": "Tomorrow's noon meeting (Tue Nov 24): Jimmy's items need three answers from you",
+     "w": "From Jimmy's Claude (the Director), Mon Nov 23, 4:12pm, answering your agenda ask",
+     "x": "(1) Offer and price: settle it if Monday didn't, so the Jamon and Dr. McCray agreements can go out before Thanksgiving; it gates the first paying client by Fri Nov 27. (2) Free 15 page: was the booking window widened past 5 days, and is the \"Mockup\" banner off? Also block Tue Dec 1, 3:00 to 3:30pm on the free 15 calendar, because Jimmy booked Lisa Bowers then as a backup. (3) Dec 10 Launch Fishers: the room is booked 5 to 10pm, so pick the event start, 5:30 to 7:30 or 6 to 8; the registration page and ads need it.",
+     "n": "Answer these on tomorrow's call, and block Dec 1, 3:00 to 3:30pm on the free 15 calendar. Items 1 and 2 repeat your two older asks above; one answer settles both."
+    },
     {
      "t": "Lead portal is locked until 7pm tonight: five fixes for you",
      "w": "From Jimmy's Claude, Mon Nov 23, 1:43pm (checked live at 1:45pm in Jimmy's browser)",
@@ -98,6 +104,14 @@
  },
  "fyi": [
   {
+   "t": "Next Monday (Nov 30) the team meeting must end by 12:25 (Mon 4:12pm)",
+   "x": "Jimmy has Kate Walters of Invest Hamilton County at 12:30pm right after it."
+  },
+  {
+   "t": "Partner status from Jimmy's side (Mon 4:12pm)",
+   "x": "Lisa Bowers asked about Tue Nov 24 at 11am, and a backup is booked Tue Dec 1 at 3pm. Jennifer got a \"how did the market go\" note; the AI night ask comes after she replies."
+  },
+  {
    "t": "New way to get a lead onto Jimmy's calendar (Mon 1:34pm)",
    "x": "Email Jimmy's Claude with the subject [2G-DAEGAN][LEAD] and the person's name. Include their email, phone and business if known, and a line or two on what they are stuck on. They get a warm email from Jimmy with the free 15 booking link, then follow-ups on days 2, 5 and 10, which stop when they book or reply. Email only, no texts. Only send people who would expect to hear from Jimmy. The four email templates are yours to reword in GoHighLevel."
   },
@@ -119,6 +133,13 @@
   }
  ],
  "traffic": [
+  [
+   "Mon Nov 23, 4:12pm",
+   "In",
+   "Jimmy",
+   "Re: Your agenda items for Tue, Nov 24's team meeting",
+   "—"
+  ],
   [
    "Mon Nov 23, 1:55pm",
    "In",
