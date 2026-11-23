@@ -1,5 +1,5 @@
 {
- "checked": "Mon Nov 23, 12:55am",
+ "checked": "Mon Nov 23, 8:15am",
  "people": {
   "Daegan": {
    "needs": [
@@ -25,9 +25,9 @@
    "waits": [
     {
      "t": "Jimmy's real answers on who, hours and daily limit for the free 15-minute call",
-     "w": "Promised by Jimmy's Claude, Sat Nov 21, 7:12pm; due Sun Nov 22, 6pm; no answer has reached the inbox",
+     "w": "Promised by Jimmy's Claude, Sat Nov 21, 7:12pm; due Sun Nov 22, 6pm; still no answer from Jimmy as of Mon 8:12am",
      "x": "Who takes the calls, which days and hours, and the most calls a day. Only Jimmy can answer.",
-     "n": "The calendar is built to the suggested picks. Swap in Jimmy's answers if they arrive; otherwise the picks stand."
+     "n": "Jimmy's Claude built the calendar to the suggested picks (Jimmy alone, Mon to Thu 1:00 to 4:30pm Eastern, 4 a day), so the picks stand unless Jimmy changes them."
     }
    ]
   },
@@ -35,21 +35,15 @@
    "needs": [
     {
      "t": "Connect your Apple calendar inside GoHighLevel for the free 15-minute call",
-     "w": "Daegan's Claude, Mon Nov 23, 12:40am",
+     "w": "Daegan's Claude, Mon Nov 23, 12:40am; Jimmy's Claude confirmed Mon 8:12am it is sending this to his phone at 11:30am today",
      "x": "The free 15-minute calendar is built (Jimmy only, Mon to Thu 1:00 to 4:30pm Eastern, 4 a day, 24 hours' notice, 5 days out, Thanksgiving blocked). Until you connect your Apple calendar, your own appointments won't block these times. It checks Calendar, Work, Home, Block-Thrive and Block-InnerCircle and writes bookings into Block-Thrive. Apple asks for an app-specific password, so only you can do it (not copied here).",
-     "n": "Do the Apple calendar connection in GoHighLevel, and say if the hours or daily limit should change."
+     "n": "Do the Apple calendar connection in GoHighLevel today (needs an app-specific password from Apple, not copied here). Until then Jimmy's Claude watches new bookings for clashes with his known schedule."
     },
     {
      "t": "Three decisions asked of him today (Fri Nov 20)",
      "w": "Jimmy's Claude, Daily Brief Fri 11:30am (sent to his phone this morning)",
      "x": "(1) Send Paul two exact times next week for Jim Ammeen's first paid audit meeting (paid Sept 10, still no meeting)? Pick: yes, today. Paul also relays that Jim asked about Wed Dec 2 at 5:00 or 5:30 pm and wants to go over it with Jimmy. (2) Send Jessica the research report and webinar replay today if they didn't go out Wed? Pick: yes. (3) Take Lisa Bowers' Tue Nov 24 3pm Zoom, ask Jennifer for 20 minutes on a TTR AI night, thank Hadleigh for the Kate Walters intro? Pick: yes to all three. Partner desk drafts wait on his yes.",
      "n": "Jimmy answers the three questions and tells Paul whether Dec 2 at 5:00 or 5:30 works."
-    },
-    {
-     "t": "Three calendar answers for the free 15-minute call (asked Sat night)",
-     "w": "Sent to his phone by his Claude, Sat Nov 21 evening, answer was wanted by Sun Nov 22, 6pm; no answer seen",
-     "x": "Who takes the free 15-minute calls, which days and hours, and the most calls in one day. His Claude suggests: Jimmy alone the first week, Monday to Thursday 1:00 to 4:30pm Eastern, 4 a day.",
-     "n": "Jimmy answers on his phone; his Claude then sends the answers to Daegan."
     }
    ],
    "waits": []
@@ -81,29 +75,28 @@
  },
  "fyi": [
   {
+   "t": "Jimmy's Claude confirmed the free 15-minute calendar (Mon 8:12am)",
+   "x": "Built to the picks, bookings land in the Leads Portal as \"15 minutes booked.\" Text reminders are held for today's team meeting decision; nothing is done on them before then. Paul's call list this morning points people to 2guysandagenie.com/free15/start/, with /book as the backup."
+  },
+  {
    "t": "Free 15-minute calendar built and sent to Jimmy's Claude (Daegan's Claude, Mon 12:40am)",
    "x": "It runs on the suggested picks. Booking page is 2guysandagenie.com/free15/start/ and owners land in the Leads Portal as \"15 minutes booked.\" Text reminders are not on; the three of you decide Monday whether to build them."
-  },
-  {
-   "t": "Saturday's team call and your Friday-night call with Kenneth Mason are filed (Jimmy's Claude, Sat 9:39pm)",
-   "x": "Both are saved in the 2 Guys Meetings notes. The Kenneth call came from the Zoom summary only; Jimmy and Paul were not on it, so it holds no team decisions. The Saturday agenda-page items from Jimmy and Paul are no longer on your list because that meeting has happened."
-  },
-  {
-   "t": "Ian's case study timing (Jimmy's Claude, Sat 4:12pm)",
-   "x": "Once Jimmy says yes, Ian's case study comes to you within one business day, one client per email. Nothing is sent to any client."
-  },
-  {
-   "t": "Jimmy's side dropped the website line edits (Jimmy's Claude, Sat 1:12pm)",
-   "x": "The site stays as it is; nothing is changed from Jimmy's side. The Colts video page stays with you and Jimmy for today's 4pm meeting. Jimmy's Claude also closed its older open asks to you (website lines, the two call-note questions, leader tags, Friday ledger, library links, Money Map, old details)."
   }
  ],
  "traffic": [
+  [
+   "Mon Nov 23, 8:12am",
+   "In",
+   "Jimmy",
+   "Re: Jimmy's calendar for the free 15",
+   "about 7.5 hr after our Mon 12:40am send"
+  ],
   [
    "Mon Nov 23, 12:40am",
    "Out",
    "Jimmy",
    "Re: Jimmy's calendar for the free 15",
-   "No answer yet"
+   "Jimmy's Claude answered Mon 8:12am (about 7.5 hr)"
   ],
   [
    "Sat Nov 21, 9:39pm",
