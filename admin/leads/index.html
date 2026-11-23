@@ -52,7 +52,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <p class="saved" id="status" style="font-weight:bold;color:#111"></p>
 <h2 style="font-size:24px;margin:16px 0 2px">Today</h2>
 <p class="sub" style="font-size:15px">Follow-ups that are due come first. Then your shops, or three new ones to start. Shops someone else is working stay off your Today.</p>
-<p style="margin:0 0 10px"><button class="chip" id="give" type="button">Give me 5 for today</button></p>
+<p style="margin:0 0 10px"><button class="chip" id="give" type="button">Give me 5 for today</button> <button class="chip" id="letgo" type="button" style="display:none"></button></p>
 <div id="today"></div>
 <p id="score"></p>
 <h2 style="font-size:22px;margin:18px 0 6px">Every Shop</h2>
@@ -127,6 +127,8 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <div id="sp"><div class="in">
 <div class="topbar"><button type="button" id="sp-back">&larr; Back</button><p class="who" id="sp-who"></p></div>
 <a class="big dark" id="sp-call" href="#">Call</a>
+<p class="lab" style="margin-top:10px">Look Them Up While You Talk</p>
+<div class="row" id="sp-look"></div>
 <div id="sp-body"></div>
 <p class="lab">What We Found</p><div class="ref" id="sp-found"></div>
 <p class="lab">Your Notes On This Shop</p><div class="ref" id="sp-note"></div>
@@ -207,6 +209,7 @@ function row(i,st,showDue){
 }
 function mineOrOpen(x){return !x.wk||x.wk===ME}
 function drawToday(){
+  var un=0;L.forEach(function(x,i){if(ME&&x.wk===ME&&stg(i)===STAGES[0])un++});var lg=$('letgo');lg.style.display=un?'inline-block':'none';lg.textContent='Let go of my '+un+' untouched '+(un===1?'shop':'shops');
   var box=$('today');box.textContent='';var dueL=[],fresh=[];
   L.forEach(function(x,i){var st=stg(i),d=due(i);
     if(!mineOrOpen(x))return;
@@ -308,6 +311,11 @@ $('give').onclick=function(){
   if(have>=5){msg('You already have '+have+' untouched shops on your Today.');return}
   if(!pick.length){msg('No untouched A or B shops are left unclaimed.');return}
   var run=function(k){if(k>=pick.length){draw();msg('You now have '+(have+pick.length)+' shops on your Today.');return}send({op:'claim',id:pick[k],on:true}).then(function(){run(k+1)},function(){draw();msg('Only '+k+' of '+pick.length+' saved. The shared list stopped answering. Tap Give me 5 again in a minute.')})};run(0)};
+$('letgo').onclick=function(){
+  if(STALE){msg('The shared list is not answering, so nothing can be let go right now. Tap Try again above.');return}
+  var ids=[];L.forEach(function(x,i){if(ME&&x.wk===ME&&stg(i)===STAGES[0])ids.push(x.id)});if(!ids.length)return;
+  if(!confirm('Let go of '+ids.length+(ids.length===1?' shop':' shops')+' you haven\'t touched yet? Jimmy and Paul can pick them up. Shops you\'ve already worked stay yours.'))return;
+  var run=function(k){if(k>=ids.length){draw();msg('Done. '+ids.length+(ids.length===1?' shop is':' shops are')+' back for anyone to pick up.');return}send({op:'claim',id:ids[k],on:false},true).then(function(){run(k+1)},function(){draw();msg('Only '+k+' of '+ids.length+' let go. Tap it again in a minute.')})};run(0)};
 $('back').onclick=function(){up('');load()};
 // Where you are lives in the address bar: #lead=<shop> and #lead=<shop>&say=<script>. Back and Forward just work.
 function depth(){return (history.state&&history.state.d)||0}
@@ -330,6 +338,7 @@ function say(id){
   $('sp-back').textContent='\u2190 Back to '+x.n;$('sp-back2').textContent='\u2190 Back to '+x.n;
   $('sp-who').textContent='';var b=document.createElement('b');b.textContent=x.n;$('sp-who').appendChild(b);$('sp-who').appendChild(document.createTextNode(' \u00b7 '+x.k+' \u00b7 '+x.t+(x.p?' \u00b7 '+x.p:'')));
   $('sp-call').style.display=x.p?'block':'none';$('sp-call').textContent='Call '+(x.p||'');$('sp-call').href='tel:'+(x.p||'').replace(/\D/g,'');
+  var lk2=$('sp-look');lk2.textContent='';[].forEach.call($('look').querySelectorAll('a'),function(a){lk2.appendChild(a.cloneNode(true))});
   $('sp-found').textContent=x.f||'Not looked at closely yet.';$('sp-note').textContent=x.note||'No notes yet.';
   $('sp-body').textContent='Loading the script...';sp.style.display='block';sp.scrollTop=0;
   scripts().then(function(d){
