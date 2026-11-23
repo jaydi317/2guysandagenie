@@ -49,6 +49,8 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <p class="sub">Start at Today. Tap a shop. Do the next step. Tap what you did.</p>
 <p class="bar"><a href="/admin/leads/explainer/">&#9654; Watch how it works</a><a href="/admin/leads/how-to/">How-to</a><a href="/admin/scripts/">What to say</a><a href="/admin/leads/steps/">The steps</a><a href="/admin/leads/how-we-built-it/">How we built the list</a><a href="https://app.gohighlevel.com/" target="_blank" rel="noopener">GoHighLevel &#8599;</a></p>
 <p class="prac" id="prac">Loading...</p>
+<p id="pm" style="display:none;margin:0 0 8px;padding:10px 12px;background:#B00020;color:#fff;font-weight:bold;font-size:15px">Practice mode. Nothing you tap here is saved, and nobody else sees it. Tap "Stop practicing" to go back to the real list.</p>
+<p style="margin:0 0 8px"><button class="chip" id="pmb" type="button">Practice mode</button></p>
 <p class="saved" id="status" style="font-weight:bold;color:#111"></p>
 <h2 style="font-size:24px;margin:16px 0 2px">Today</h2>
 <p class="sub" style="font-size:15px">Follow-ups that are due come first. Then your shops, or three new ones to start. Shops someone else is working stay off your Today.</p>
@@ -166,7 +168,7 @@ function stash(j){try{localStorage.setItem(CK,JSON.stringify({t:Date.now(),j:{le
 function kept(){try{var c=JSON.parse(localStorage.getItem(CK)||'null');return c&&c.j&&c.j.leads&&c.j.leads.length?c:null}catch(e){return null}}
 function clock(t){var d=new Date(t),h=d.getHours(),m=d.getMinutes();return fmt(t)+' at '+((h%12)||12)+':'+(m<10?'0':'')+m+(h<12?' am':' pm')}
 function take(j,old){
-  L=j.leads||[];ME=j.me||'';GHL=!!j.ghl;if(!old){STALE=0;stash(j)}
+  L=j.leads||[];ME=j.me||'';GHL=!!j.ghl;if(!old){STALE=0;if(!PM)stash(j)}
   $('prac').textContent='The real list. What you tap is saved for all three of us'+(ME?' (you are signed in as '+ME+')':'')+'. '+(GHL?'Each tap also goes to GoHighLevel.':'Not going to GoHighLevel yet.');
   var tw=$('town'),keep=tw.value;while(tw.options.length>1)tw.remove(1);
   var towns=[];L.forEach(function(x){if(x.t&&towns.indexOf(x.t)<0)towns.push(x.t)});towns.sort();
@@ -181,9 +183,23 @@ function stale(){
 }
 function load(n){
   n=n||0;msg(n?'Still trying to reach the list...':'Loading the list...');
-  return fetch(API+'leads',{credentials:'same-origin',cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){take(j);msg('');draw();route();if(cur!==null){var y=window.pageYOffset;show(cur);window.scrollTo(0,y)}}).catch(function(){if(n<3){if(!n&&!L.length){var c=kept();if(c){take(c.j,true);draw();route()}}return new Promise(function(ok){setTimeout(ok,2500)}).then(function(){return load(n+1)})}stale()});
+  return fetch(API+'leads',{credentials:'same-origin',cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(PM&&L.length){msg('');draw();route();return}take(j);msg('');draw();route();if(cur!==null){var y=window.pageYOffset;show(cur);window.scrollTo(0,y)}}).catch(function(){if(n<3){if(!n&&!L.length){var c=kept();if(c){take(c.j,true);draw();route()}}return new Promise(function(ok){setTimeout(ok,2500)}).then(function(){return load(n+1)})}stale()});
+}
+var PM=false;try{PM=sessionStorage.getItem('2g-practice')==='1'}catch(e){}
+function fake(b){
+  var now=Date.now(),i=-1;L.forEach(function(x,k){if(x.id===b.id)i=k});
+  if(b.op==='add'){L.push({id:'P'+now.toString(36),g:b.g||'Worth a visit',n:b.n,k:b.k||'Business',t:b.t||'Town not set',a:b.a||'',p:b.p||'',u:b.u||'',e:'',w:b.w||'',f:'',src:'Practice',custom:1,st:STAGES[0],wk:'',note:'',h:[]});return {leads:L,me:ME,ghl:GHL}}
+  if(i<0)return {leads:L,me:ME,ghl:GHL};var x=L[i],st=stg(i);x.h=x.h||[];
+  if(b.op==='did'){x.h.push({ts:now,by:ME,a:b.a,p:st});x.st=b.to||st}
+  else if(b.op==='undo'){var e=x.h.pop();if(e)x.st=e.p||STAGES[0]}
+  else if(b.op==='stage'){x.st=b.to}
+  else if(b.op==='note'){x.note=b.note}
+  else if(b.op==='email'){x.e=b.e}
+  else if(b.op==='claim'){x.wk=b.on?ME:''}
+  return {leads:L,me:ME,ghl:GHL};
 }
 function send(b,quiet){
+  if(PM){var j=fake(b);take(j,true);if(!quiet)msg('');return Promise.resolve(j)}
   if(!quiet)msg('Saving...');
   return fetch(API+'act',{method:'POST',credentials:'same-origin',headers:{'content-type':'application/json'},body:JSON.stringify(b)}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(j.leads)take(j);if(!quiet)msg('');return j}).catch(function(){msg('That did not save. Check your signal and try again.');throw 0});
 }
@@ -316,6 +332,12 @@ $('letgo').onclick=function(){
   var ids=[];L.forEach(function(x,i){if(ME&&x.wk===ME&&stg(i)===STAGES[0])ids.push(x.id)});if(!ids.length)return;
   if(!confirm('Let go of '+ids.length+(ids.length===1?' shop':' shops')+' you haven\'t touched yet? Jimmy and Paul can pick them up. Shops you\'ve already worked stay yours.'))return;
   var run=function(k){if(k>=ids.length){draw();msg('Done. '+ids.length+(ids.length===1?' shop is':' shops are')+' back for anyone to pick up.');return}send({op:'claim',id:ids[k],on:false},true).then(function(){run(k+1)},function(){draw();msg('Only '+k+' of '+ids.length+' let go. Tap it again in a minute.')})};run(0)};
+function pmShow(){$('pm').style.display=PM?'block':'none';$('pmb').textContent=PM?'Stop practicing':'Practice mode';$('pmb').className=PM?'chip on':'chip';document.title=(PM?'PRACTICE · ':'')+'Leads · 2 Guys and a Genie'}
+$('pmb').onclick=function(){
+  if(!PM){PM=true;try{sessionStorage.setItem('2g-practice','1')}catch(e){};L=JSON.parse(JSON.stringify(L));pmShow();draw();if(cur!==null)show(cur);msg('Practice mode is on. Try anything.');return}
+  PM=false;try{sessionStorage.removeItem('2g-practice')}catch(e){};pmShow();msg('Back to the real list.');var c=kept();if(c){take(c.j,true);draw();route()}load();
+};
+pmShow();
 $('back').onclick=function(){up('');load()};
 // Where you are lives in the address bar: #lead=<shop> and #lead=<shop>&say=<script>. Back and Forward just work.
 function depth(){return (history.state&&history.state.d)||0}
