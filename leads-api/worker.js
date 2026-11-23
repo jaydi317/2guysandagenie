@@ -192,6 +192,10 @@ async function act(b, me, env, ctx) {
 async function hook(u, req, env) {
   if (!env.HOOK_KEY || u.searchParams.get('key') !== env.HOOK_KEY) return J({ error: 'key' }, 403);
   let b = {}; try { b = await req.json(); } catch (e) {}
+  return J(await record(env, b, 'GoHighLevel'));
+}
+// Put a sign-up or a booking on the shared list (new shop if we don't have it), with a line in its history.
+async function record(env, b, who) {
   const d = String(b.phone || '').replace(/\D/g, '').slice(-10), what = String(b.event || b.what || 'Something happened in GoHighLevel').slice(0, 200), now = Date.now();
   let x = b.contact_id ? await env.DB.prepare('SELECT id,st FROM leads WHERE gc=?').bind(String(b.contact_id)).first() : null;
   if (!x && d.length === 10) x = await env.DB.prepare("SELECT id,st FROM leads WHERE replace(p,'-','')=?").bind(d).first();
@@ -201,8 +205,32 @@ async function hook(u, req, env) {
     x = { id, st: STAGES[0] };
   }
   const to = STAGES.includes(b.stage) ? b.stage : (x.st || STAGES[0]);
-  await env.DB.batch([env.DB.prepare('INSERT INTO ev (lead,ts,who,a,p) VALUES (?,?,?,?,?)').bind(x.id, now, 'GoHighLevel', what, x.st || STAGES[0]), env.DB.prepare('UPDATE leads SET st=?, upd=? WHERE id=?').bind(to, now, x.id)]);
-  return J({ ok: 1, id: x.id });
+  await env.DB.batch([env.DB.prepare('INSERT INTO ev (lead,ts,who,a,p) VALUES (?,?,?,?,?)').bind(x.id, now, who, what, x.st || STAGES[0]), env.DB.prepare('UPDATE leads SET st=?, upd=? WHERE id=?').bind(to, now, x.id)]);
+  return { ok: 1, id: x.id };
+}
+
+// ---------- The free 15-minute call: Jimmy's real times, and booking them (public, from /free15/start/) ----------
+const FREE15 = 'sUuL0HSvAbB0kwLJhhtL', TZ = 'America/New_York';
+async function slots(env) {
+  if (!env.GHL_TOKEN) return J({ days: [] });
+  const now = Date.now(), r = await ghl(env, 'GET', `/calendars/${FREE15}/free-slots?startDate=${now}&endDate=${now + 9 * 864e5}&timezone=${encodeURIComponent(TZ)}`);
+  const days = Object.keys(r).filter(k => /^\d{4}-\d{2}-\d{2}$/.test(k) && (r[k].slots || []).length).sort().map(k => ({ date: k, slots: r[k].slots }));
+  return new Response(JSON.stringify({ days }), { headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
+}
+async function book(req, env) {
+  let b = {}; try { b = await req.json(); } catch (e) {}
+  const slot = String(b.slot || ''), ph0 = String(b.phone || '').replace(/[^\d+]/g, '').slice(0, 16), ph = /^\d{10}$/.test(ph0) ? '+1' + ph0 : ph0, nm = String(b.name || '').trim().slice(0, 120);
+  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[-+]\d{2}:\d{2}$/.test(slot) || ph.replace(/\D/g, '').length < 10 || !nm) return J({ error: 'missing' }, 400);
+  const parts = nm.split(/\s+/), loc = cfg(env).location, out = { ok: 0 };
+  if (env.GHL_TOKEN) {
+    const c = await ghl(env, 'POST', '/contacts/upsert', { locationId: loc, firstName: parts[0], lastName: parts.slice(1).join(' ') || undefined, phone: ph, email: String(b.email || '').trim() || undefined, source: '2guysandagenie.com free 15' });
+    const cid = (c.contact || {}).id; out.contact = cid;
+    const start = new Date(slot), end = new Date(start.getTime() + 15 * 6e4);
+    const a = await ghl(env, 'POST', '/calendars/events/appointments', { calendarId: FREE15, locationId: loc, contactId: cid, assignedUserId: 'in2AJWryMpawGX9gUhFe', startTime: slot, endTime: end.toISOString(), title: 'Free 15: ' + nm, appointmentStatus: 'confirmed', ignoreFreeSlotValidation: false, toNotify: true });
+    out.ok = 1; out.appointment = a.id || (a.appointment || {}).id;
+  }
+  try { await record(env, { name: nm, business: b.business, phone: ph, email: b.email, job: b.job, contact_id: out.contact, stage: '15 minutes booked', event: 'Booked the free 15 for ' + String(b.when || slot).slice(0, 60) + ' (from the website)' }, 'Website'); } catch (e) {}
+  return J(out);
 }
 
 export default {
@@ -211,6 +239,8 @@ export default {
     try {
       await init(env);
       if (u.pathname === '/hooks/ghl' && req.method === 'POST') return hook(u, req, env);
+      if (u.pathname === '/hooks/ghl-slots' && req.method === 'GET') return slots(env);
+      if (u.pathname === '/hooks/ghl-book' && req.method === 'POST') return book(req, env);
       if (!u.pathname.startsWith('/admin/api/')) return J({ error: 'not found' }, 404);
       const me = await who(req, env); if (!me) return J({ error: 'sign in' }, 401);
       if (u.pathname === '/admin/api/leads' && req.method === 'GET') return J(await all(env, me));
