@@ -19,6 +19,9 @@ async function init(env) {
     env.DB.prepare('CREATE TABLE IF NOT EXISTS leads (id TEXT PRIMARY KEY, g TEXT, n TEXT, k TEXT, t TEXT, a TEXT, p TEXT, u TEXT, e TEXT, rt REAL, rv INTEGER, mi REAL, w TEXT, f TEXT, src TEXT, custom INTEGER DEFAULT 0, st TEXT, wk TEXT, note TEXT, gc TEXT, go TEXT, gs TEXT, gn TEXT, upd INTEGER)'),
     env.DB.prepare('CREATE TABLE IF NOT EXISTS ev (id INTEGER PRIMARY KEY AUTOINCREMENT, lead TEXT, ts INTEGER, who TEXT, a TEXT, p TEXT)'),
     env.DB.prepare('CREATE INDEX IF NOT EXISTS ev_lead ON ev (lead, id)'),
+    env.DB.prepare('CREATE INDEX IF NOT EXISTS leads_go ON leads (go)'),
+    env.DB.prepare('CREATE INDEX IF NOT EXISTS leads_gc ON leads (gc)'),
+    env.DB.prepare('CREATE INDEX IF NOT EXISTS jobs_done ON jobs (done, id)'),
     env.DB.prepare('CREATE TABLE IF NOT EXISTS jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, kind TEXT, arg TEXT, done INTEGER DEFAULT 0, out TEXT, ts INTEGER)'),
   ]);
   ready = true;
@@ -112,11 +115,13 @@ async function pushNote(env, id) {
 async function pull(env) {
   if (!env.GHL_TOKEN) return;
   const c = cfg(env), back = {}; for (const k in c.stages) back[c.stages[k]] = k;
+  const { results: have } = await env.DB.prepare("SELECT id,st,gs,go FROM leads WHERE go IS NOT NULL AND go<>''").all();
+  const byGo = {}; for (const h of have) byGo[h.go] = h;
   for (let page = 1; page <= 10; page++) {
     const r = await ghl(env, 'GET', `/opportunities/search?location_id=${c.location}&pipeline_id=${c.pipeline}&limit=100&page=${page}`);
     const ops = r.opportunities || [];
     for (const o of ops) {
-      const x = await env.DB.prepare('SELECT id,st,gs FROM leads WHERE go=?').bind(o.id).first();
+      const x = byGo[o.id];
       if (!x || !back[o.pipelineStageId] || x.gs === o.pipelineStageId) continue;
       const to = back[o.pipelineStageId];
       await env.DB.batch([
@@ -237,10 +242,10 @@ export default {
   async fetch(req, env, ctx) {
     const u = new URL(req.url);
     try {
+      if (u.pathname === '/hooks/ghl-slots' && req.method === 'GET') return slots(env);
+      if (u.pathname === '/hooks/ghl-book' && req.method === 'POST') { try { await init(env); } catch (e) {} return book(req, env); }
       await init(env);
       if (u.pathname === '/hooks/ghl' && req.method === 'POST') return hook(u, req, env);
-      if (u.pathname === '/hooks/ghl-slots' && req.method === 'GET') return slots(env);
-      if (u.pathname === '/hooks/ghl-book' && req.method === 'POST') return book(req, env);
       if (!u.pathname.startsWith('/admin/api/')) return J({ error: 'not found' }, 404);
       const me = await who(req, env); if (!me) return J({ error: 'sign in' }, 401);
       if (u.pathname === '/admin/api/leads' && req.method === 'GET') return J(await all(env, me));

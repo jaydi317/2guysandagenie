@@ -81,7 +81,6 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 </div></header>
 <main id="main">
 
-<p class="mock"><b>Mockup.</b> Walk through it like an owner would. Nothing gets sent or booked.</p>
 
 <div class="bar" id="bar"><span></span><span></span><span></span><span></span></div>
 <p class="stepno" id="stepno">Step 1 of 4</p>
@@ -294,7 +293,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
   <div class="ba"><img src="/assets/before-after/ian-before.jpg" alt="Ian before"><img src="/assets/before-after/ian-after.jpg" alt="Ian after"></div>
   <p class="small" style="margin:0 0 24px">Left: before. Right: after.</p>
 
-  <button class="back" type="button" onclick="location.href=location.pathname">Start the mockup over</button>
+  <button class="back" type="button" onclick="location.href=location.pathname">Start over</button>
 </section>
 
 </main>
@@ -440,11 +439,11 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
       $('pleft').textContent = n<4 ? 'You answered '+n+' of the 4. That is fine.' : 'You answered all four.';
       $('psure').hidden=false; $('psure').scrollIntoView({block:'center'});
     });
-    $('pskip').addEventListener('click',function(){stop2(); show(6); done=true});
+    $('pskip').addEventListener('click',function(){stop2(); show(6); done=true; send()});
     $('pno').addEventListener('click',function(){$('psure').hidden=true; $('prep').scrollIntoView()});
     $('pyes').addEventListener('click',function(){
       data.prep=qs.map(function(q){return [q.dataset.s,q._ta.value.trim()]});
-      $('pgot').hidden=false; show(6); done=true;
+      $('pgot').hidden=false; show(6); done=true; send();
     });
   })();
   function email(){var has=!!(data.em&&data.em.indexOf('@')>0);$('emyes').hidden=!has;$('emno').hidden=has;if(has)$('emshow').textContent=data.em}
