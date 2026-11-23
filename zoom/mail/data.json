@@ -1,12 +1,18 @@
 {
- "checked": "Mon Nov 23, 12:13pm",
+ "checked": "Mon Nov 23, 1:13pm",
  "people": {
   "Daegan": {
    "needs": [
     {
+     "t": "Free 15 sign-up: confirmation email only goes out sometimes, and four other calls for you",
+     "w": "From Jimmy's Claude, Mon Nov 23, 1:03pm (after Jimmy tested it with two emails and Paul tested too)",
+     "x": "All three tests booked a time fine, but only one got the \"You're booked\" email (and it did not reach Jimmy's inbox until the sender was fixed). The other two never started the email workflow, because the page only sends that signal when the visitor finishes or closes the page, and phones often drop it. Jimmy's Claude recommends having the booking step send the signal itself the moment the time is booked. Also asked: (a) confirm the 10 daily story emails should be live in this workflow (your Nov 22 note said none were active; Jimmy's test contact gets Email 2 Tue Nov 24 at 12:30pm), (b) the page promises a text reminder from (317) 751-2693 but none is built, (c) change the calendar's internal notes line to plain customer wording if you like, (d) two other workflows (Dec 10 daily story emails, Dec 10 day before and day of) may have the same blank sender problem and are worth a check, (e) remove the two test contacts if you want. Already done by Jimmy's Claude: all 11 emails and the alert now send from jimmy@2guysandagenie.com; reload the workflow before saving if it was open in another tab.",
+     "n": "Decide whether the booking step sends the email signal itself (your latest page change already sends it the moment they book, so confirm that covers it), and answer the story emails yes or no and the text reminder yes or no."
+    },
+    {
      "t": "Two asks for today about the free 15-minute booking page",
      "w": "From Jimmy's Claude, Daily Brief Mon Nov 23, 11:30am",
-     "x": "(1) The booking page only shows Tue Nov 24, Wed Nov 25 and Tue Dec 1, nothing from Wed Dec 2 on, because of 24 hours' notice, 5 days out and Thanksgiving blocked. Paul read it as \"December is full.\" Jimmy's Claude suggests widening the window to 21 days. (2) The page at 2guysandagenie.com/free15/start/ still shows a banner saying \"Mockup. Nothing gets sent or booked,\" but it books real times and sends sign-ups to GoHighLevel. Paul's Claude flagged that real owners may find it confusing.",
+     "x": "(1) The booking page only shows Tue Nov 24, Wed Nov 25 and Tue Dec 1, nothing from Wed Dec 2 on, because of 24 hours' notice, 5 days out and Thanksgiving blocked. Paul read it as \"December is full.\" Jimmy's Claude now recommends 14 days (Mon 1:03pm), and says that is Jimmy's call; the page itself shows only 4 days at a time. (2) The page at 2guysandagenie.com/free15/start/ still shows a banner saying \"Mockup. Nothing gets sent or booked,\" but it books real times and sends sign-ups to GoHighLevel. Paul's Claude flagged that real owners may find it confusing.",
      "n": "Give the new booking window (21 days, or another number, or no) and say whether the mockup banner comes off or stays and why. Both wanted today."
     },
     {
@@ -80,19 +86,33 @@
  },
  "fyi": [
   {
-   "t": "Jim Ammeen's meeting is set for Wed Dec 2, 5:00 to 5:30pm (Jimmy's Claude, Mon 11:30am)",
-   "x": "Paul is booking it, so the earlier question to Jimmy about the time is settled. Nothing needed from Daegan."
+   "t": "Jimmy's Claude turned off the Apple invite owners were getting after booking (Mon 1:09pm)",
+   "x": "It was emailing owners an invite with an internal notes line and Accept/Decline buttons. Tested with a booking at 1:09pm, no invite went out, and the test booking was cancelled. Jimmy's Apple calendar still gets the booking. Owners now get only the \"You're booked\" email; an \"Add to calendar\" link inside Email 1 is the suggested way to give them a calendar file."
+  },
+  {
+   "t": "Jimmy's Claude switched the sender on the free 15 emails (Mon 12:55pm)",
+   "x": "All 11 emails and the alert now send as Jimmy Davis at jimmy@2guysandagenie.com instead of a Gmail login address, and a test landed in Jimmy's inbox within a minute."
   },
   {
    "t": "Jimmy's Claude confirmed the free 15-minute calendar (Mon 8:12am)",
-   "x": "Built to the picks, bookings land in the Leads Portal as \"15 minutes booked.\" Text reminders are held for today's team meeting decision; nothing is done on them before then. Paul's call list this morning points people to 2guysandagenie.com/free15/start/, with /book as the backup."
-  },
-  {
-   "t": "Free 15-minute calendar built and sent to Jimmy's Claude (Daegan's Claude, Mon 12:40am)",
-   "x": "It runs on the suggested picks. Booking page is 2guysandagenie.com/free15/start/ and owners land in the Leads Portal as \"15 minutes booked.\" Text reminders are not on; the three of you decide Monday whether to build them."
+   "x": "Built to the picks, bookings land in the Leads Portal as \"15 minutes booked.\" Text reminders are held for today's team meeting decision."
   }
  ],
  "traffic": [
+  [
+   "Mon Nov 23, 1:09pm",
+   "In",
+   "Jimmy",
+   "[FYI] Free 15: iCloud invite to owners turned off (tested)",
+   "—"
+  ],
+  [
+   "Mon Nov 23, 1:03pm",
+   "In",
+   "Jimmy",
+   "[FYI] Free 15: why Jimmy got no confirmation email + suggested fixes",
+   "—"
+  ],
   [
    "Mon Nov 23, 11:30am",
    "In",
