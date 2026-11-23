@@ -11,9 +11,10 @@ ul{list-style:none;padding:0;margin:0}li{padding:8px 0;border-bottom:1px solid #
 <p><a href="/admin/">&larr; Admin</a> &middot; <a href="/zoom/">Team Room</a></p>
 <h1>What Changed On The Site</h1>
 <p class="sub">Every change, newest first, in the words written when it was saved. Times are Eastern.</p>
-<p class="how">This list was built Sun, Nov 22, 2026, 11:50pm Eastern. Anything saved after that shows under "Since Then" when you open the page in a browser. The hourly agent mail board saves are left out.</p>
+<p class="how">This list was built Sun, Nov 22, 2026, 11:51pm Eastern. Anything saved after that shows under "Since Then" when you open the page in a browser. The hourly agent mail board saves are left out.</p>
 <div id="new"><h2>Since Then</h2><ul id="newl"></ul></div>
-<details class="day" open id="d2026-11-22"><summary>Sunday, Nov 22, 2026 <span class="cnt">8 changes</span></summary><ul>
+<details class="day" open id="d2026-11-22"><summary>Sunday, Nov 22, 2026 <span class="cnt">9 changes</span></summary><ul>
+<li><span class="t">11:50pm &middot; Daegan Smith</span>Free 15 sign-up: show Jimmy&#x27;s real open times from GoHighLevel and book the one picked (falls back to the old list if they can&#x27;t load)</li>
 <li><span class="t">11:47pm &middot; Daegan Smith</span>Lead portal Worker: Jimmy&#x27;s real free-15 times and booking (/hooks/ghl-slots, /hooks/ghl-book); website bookings land on the shared list</li>
 <li><span class="t">11:45pm &middot; Daegan Smith</span>Monday agenda: emails come from &#x27;Reverse Selling LLC&#x27;, Jimmy&#x27;s misspelled address, Promotions tab how-to</li>
 <li><span class="t">11:45pm &middot; Daegan Smith</span>Admin: remove the old password box; Cloudflare&#x27;s emailed code is the only sign-in</li>
@@ -478,7 +479,7 @@ ul{list-style:none;padding:0;margin:0}li{padding:8px 0;border-bottom:1px solid #
 <li><span class="t">6:43pm &middot; Jimmy Davis</span>Publish authorized holding page</li>
 </ul></details>
 <script>
-(function(){var since=1795409278,box=document.getElementById('new'),ul=document.getElementById('newl');
+(function(){var since=1795409431,box=document.getElementById('new'),ul=document.getElementById('newl');
 var WHO={"Claude":"Daegan's Claude","Daegan Smith (via Claude)":"Daegan's Claude","jaydi317":"Jimmy Davis"};
 fetch('https://api.github.com/repos/jaydi317/2guysandagenie/commits?per_page=100&since='+new Date((since+1)*1000).toISOString()).then(function(r){return r.ok?r.json():[]}).then(function(a){
 a.forEach(function(c){var m=(c.commit.message||'').split('\n')[0];if(/relay board update/i.test(m))return;

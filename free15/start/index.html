@@ -372,7 +372,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
   fetch('/hooks/ghl-slots',{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){
     var ds=(j&&j.days)||[]; if(!ds.length) return fallback(); real=true;
     ds.slice(0,4).forEach(function(x,k){var dt=new Date(x.date+'T12:00:00'), full=names[dt.getDay()]+', '+mons[dt.getMonth()]+' '+dt.getDate();
-      dayBtn(names[dt.getDay()],mons[dt.getMonth()]+' '+dt.getDate(),full,function(){timeBtns(x.slots.map(function(s){return {label:lab(s)+' Eastern',slot:s}}))});});
+      dayBtn(names[dt.getDay()],mons[dt.getMonth()]+' '+dt.getDate(),full,function(){timeBtns(x.slots.map(function(s){return {label:lab(s),slot:s}}))});});
     times.innerHTML='<p style="margin:6px 0;color:#555">Pick a day to see Jimmy\'s open times.</p>';
   }).catch(fallback);
   setTimeout(function(){ if(!real) fallback(); },4000);
