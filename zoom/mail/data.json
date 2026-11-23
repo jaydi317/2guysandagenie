@@ -1,8 +1,14 @@
 {
- "checked": "Mon Nov 23, 1:13pm",
+ "checked": "Mon Nov 23, 2:15pm",
  "people": {
   "Daegan": {
    "needs": [
+    {
+     "t": "Lead portal is locked until 7pm tonight: five fixes for you",
+     "w": "From Jimmy's Claude, Mon Nov 23, 1:43pm (checked live at 1:45pm in Jimmy's browser)",
+     "x": "The portal shows \"Could not reach the list\" and \"That did not save\" because the database hit its free daily read limit (the old 3-minute sync used it up before your 12:39 fix took over). It resets at 7pm Eastern tonight. Nothing is lost, and signing in to GoHighLevel is not the cause. Fixes asked: (1) show the real reason on the page (\"The list is resting until 7pm tonight. Nothing is lost.\") instead of telling people to sign in again, (2) make Give me 5 claim all five shops in one call and read the list once, (3) create the jobs table before its index so a fresh database does not fail, (4) the worker code sits in a public repo and names the team's sign-in emails, so move those into a private setting, (5) after 7pm, check the Cloudflare rows-read graph stays small. Jimmy is deciding on the $5 a month paid plan; hold on it for now.",
+     "n": "Make the five fixes, then check the rows-read graph after 7pm tonight. Paul gets the portal today, so the page message (1) matters most."
+    },
     {
      "t": "Free 15 sign-up: confirmation email only goes out sometimes, and four other calls for you",
      "w": "From Jimmy's Claude, Mon Nov 23, 1:03pm (after Jimmy tested it with two emails and Paul tested too)",
@@ -56,6 +62,12 @@
      "w": "Jimmy's Claude, Daily Brief Mon 11:30am (sent to his phone this morning)",
      "x": "(1) Take Lisa Bowers' Zoom on Tue Nov 24 at 3pm Eastern? Pick: yes. (2) Connect his Apple calendar in GoHighLevel (needs an app-specific password) so free 15 bookings never clash with his day? Pick: yes, today. (3) Did the research report and webinar replay go out to Jessica on Friday? If not, send today. Pick: send today.",
      "n": "Jimmy answers the three questions today."
+    },
+    {
+     "t": "Decide whether to move the lead portal to the $5 a month paid plan",
+     "w": "From Jimmy's Claude, Mon Nov 23, 1:43pm",
+     "x": "The free plan locked the portal until 7pm tonight because of a daily limit. The paid plan would stop that happening mid-day.",
+     "n": "Jimmy decides yes or no on the $5 a month plan."
     }
    ],
    "waits": []
@@ -86,6 +98,14 @@
  },
  "fyi": [
   {
+   "t": "New way to get a lead onto Jimmy's calendar (Mon 1:34pm)",
+   "x": "Email Jimmy's Claude with the subject [2G-DAEGAN][LEAD] and the person's name. Include their email, phone and business if known, and a line or two on what they are stuck on. They get a warm email from Jimmy with the free 15 booking link, then follow-ups on days 2, 5 and 10, which stop when they book or reply. Email only, no texts. Only send people who would expect to hear from Jimmy. The four email templates are yours to reword in GoHighLevel."
+  },
+  {
+   "t": "Hormozi library added to Notion (Mon 1:55pm)",
+   "x": "Jimmy's Claude added 18 Alex Hormozi books and playbooks to Notion (2 Guys HQ, AI shelf) with a which-book-for-which-job picker, plus pages for 2 Guys, the Dec 10 free night, Jim's Amazing Bread and Jim Ammeen. Its main finding: nobody is being asked to pay yet, so lock one paid first step, run a 3-day ask sprint before Thanksgiving, and treat Dec 10 as a free dinner. All drafts, nothing sent. Nothing needed unless you want to use it."
+  },
+  {
    "t": "Jimmy's Claude turned off the Apple invite owners were getting after booking (Mon 1:09pm)",
    "x": "It was emailing owners an invite with an internal notes line and Accept/Decline buttons. Tested with a booking at 1:09pm, no invite went out, and the test booking was cancelled. Jimmy's Apple calendar still gets the booking. Owners now get only the \"You're booked\" email; an \"Add to calendar\" link inside Email 1 is the suggested way to give them a calendar file."
   },
@@ -99,6 +119,27 @@
   }
  ],
  "traffic": [
+  [
+   "Mon Nov 23, 1:55pm",
+   "In",
+   "Jimmy",
+   "[FYI] Hormozi $100M Library added: 18 books + 2 Guys picks",
+   "—"
+  ],
+  [
+   "Mon Nov 23, 1:43pm",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][DO] Lead portal down till 7pm tonight: database daily limit, fix list",
+   "—"
+  ],
+  [
+   "Mon Nov 23, 1:34pm",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][FYI] New: send Jimmy's Claude a lead and they get invited to Jimmy's calendar",
+   "—"
+  ],
   [
    "Mon Nov 23, 1:09pm",
    "In",
