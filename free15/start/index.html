@@ -377,7 +377,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
   setTimeout(function(){ if(!real) fallback(); },4000);
   document.getElementById('go4').addEventListener('click',function(){
     if(!pickDay||!pickTime){document.getElementById('err4').style.display='block';return}
-    data.when=pickDay+' at '+pickTime; booked=true; setTimeout(send,15*60*1000);
+    data.when=pickDay+' at '+pickTime; booked=true; setTimeout(send,0); /* TEST Nov 23: fire at booking. Before: setTimeout(send,15*60*1000), with send() at the last page carrying the seat and prep answers. */
     if(pickSlot&&!preview){try{fetch('/hooks/ghl-book',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({slot:pickSlot,when:data.when,name:data.nm||'',phone:data.ph||'',email:data.em||'',job:data.one||''})})}catch(e){}}
     fill(); show(5);
     try{window.R&&R.signup()}catch(e){}
