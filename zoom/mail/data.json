@@ -1,8 +1,14 @@
 {
- "checked": "Tue Nov 24, 3:12pm",
+ "checked": "Tue Nov 24, 4:20pm",
  "people": {
   "Daegan": {
    "needs": [
+    {
+     "t": "Wed Nov 25 noon meeting: Jimmy's six items, two need your answer",
+     "w": "From Jimmy's Claude, Tue Nov 24, 4:12pm",
+     "x": "Jimmy's list for Wed noon, which he may change live and which skips anything settled at Tuesday's call: (1) lock the starting price, guarantee words and December limit, which gates the one-page offer, the Stripe link and the Jamon and Dr. McCray agreements, goal a first paying client by Fri Nov 27; (2) decide the Jamon and Dr. McCray agreements right after the price, nothing goes to either before Jimmy decides; (3) confirm Riley as our AI phone receptionist pick, Paul called all four test numbers Tue and called Riley far and away the best, and any public demo line still needs a spend cap first; (4) the Free 15 page changes (about 10-day window, mockup banner off, block Tue Dec 1 3:00 to 3:30pm for Lisa Bowers) plus Jimmy connecting his Apple calendar; (5) quick status on Jessica (report and replay), Dr. McCray (mock-up) and Jim Chalfant (Audit Kit call); (6) who checks the email settings after Lisa Bowers's email flagged 2guysandagenie.com as a recently created domain, and by when.",
+     "n": "Be ready to confirm Riley and say who checks the email domain warning and by when; the price and Free 15 items repeat asks already listed here. Next Monday's meeting must end by 12:25."
+    },
     {
      "t": "Add six new lead fields to your lead portal and say how Jimmy's Claude should send the data",
      "w": "From Jimmy's Claude, Tue Nov 24, 1:06pm",
@@ -143,45 +149,16 @@
   {
    "t": "Jimmy's Claude sent the word-for-word script of Ian's Fuel Hunting video (Tue 8:12am)",
    "x": "It answers your transcript request: the full 10:32 narration with times is in the email, and a 720p copy of the video plus the Findings Film kit are in the shared Drive folder \"2 Guys - Findings Film kit\". If Drive says you have no access, reply \"no access\" and Jimmy will share it by hand. The script, video and the Ian-named files stay team-only until Ian says yes in writing; the format file and templates are safe to share."
-  },
-  {
-   "t": "Jimmy's Claude filed Monday's two team call notes (Mon 9:40pm)",
-   "x": "The notes for the 11:58am testing-day call and the 1:54pm Go Day call are in Notion; the to-do list is under Needs Daegan."
-  },
-  {
-   "t": "Jimmy's Claude sent the full kit for the Ian video format (Mon 8:05pm)",
-   "x": "This is the \"Fuel Hunting Explained\" film you loved: the line-by-line transcript, why it worked, the reusable 11-beat format for AI audits and case studies, and templates including the audit intake questions and one prompt that makes the next film. The video and frames are in a shared Drive folder and the same kit is in Notion. Nothing is asked of you except to read it and build on it. Keep the how-it-was-made note, the transcript, the why-it-worked note, the frames and the video off the library and the website, because they name Ian and he has not OK'd public use."
-  },
-  {
-   "t": "Jimmy's Claude confirmed your tools list picks (Mon 7:12pm)",
-   "x": "Six tools are a yes and four are not yet. Nothing happens tonight, since you said you'd make those calls tomorrow."
-  },
-  {
-   "t": "Next Monday (Nov 30) the team meeting must end by 12:25 (Mon 4:12pm)",
-   "x": "Jimmy has Kate Walters of Invest Hamilton County at 12:30pm right after it."
-  },
-  {
-   "t": "Partner status from Jimmy's side (Mon 4:12pm)",
-   "x": "Lisa Bowers asked about Tue Nov 24 at 11am, and a backup is booked Tue Dec 1 at 3pm. Jennifer got a \"how did the market go\" note; the AI night ask comes after she replies."
-  },
-  {
-   "t": "New way to get a lead onto Jimmy's calendar (Mon 1:34pm)",
-   "x": "Email Jimmy's Claude with the subject [2G-DAEGAN][LEAD] and the person's name. Include their email, phone and business if known, and a line or two on what they are stuck on. They get a warm email from Jimmy with the free 15 booking link, then follow-ups on days 2, 5 and 10, which stop when they book or reply. Email only, no texts. Only send people who would expect to hear from Jimmy. The four email templates are yours to reword in GoHighLevel."
-  },
-  {
-   "t": "Hormozi library added to Notion (Mon 1:55pm)",
-   "x": "Jimmy's Claude added 18 Alex Hormozi books and playbooks to Notion (2 Guys HQ, AI shelf) with a which-book-for-which-job picker, plus pages for 2 Guys, the Dec 10 free night, Jim's Amazing Bread and Jim Ammeen. Its main finding: nobody is being asked to pay yet, so lock one paid first step, run a 3-day ask sprint before Thanksgiving, and treat Dec 10 as a free dinner. All drafts, nothing sent. Nothing needed unless you want to use it."
-  },
-  {
-   "t": "Jimmy's Claude turned off the Apple invite owners were getting after booking (Mon 1:09pm)",
-   "x": "It was emailing owners an invite with an internal notes line and Accept/Decline buttons. Tested with a booking at 1:09pm, no invite went out, and the test booking was cancelled. Jimmy's Apple calendar still gets the booking. Owners now get only the \"You're booked\" email; an \"Add to calendar\" link inside Email 1 is the suggested way to give them a calendar file."
-  },
-  {
-   "t": "Jimmy's Claude switched the sender on the free 15 emails (Mon 12:55pm)",
-   "x": "All 11 emails and the alert now send as Jimmy Davis at jimmy@2guysandagenie.com instead of a Gmail login address, and a test landed in Jimmy's inbox within a minute."
   }
  ],
  "traffic": [
+  [
+   "Tue Nov 24, 4:12pm",
+   "In",
+   "Jimmy",
+   "Re: [2G-DAEGAN][ASK] Your agenda items for Wed, Nov 25's team meeting",
+   "—"
+  ],
   [
    "Tue Nov 24, 1:06pm",
    "In",
@@ -327,13 +304,6 @@
    "In",
    "Jimmy",
    "Re: A case study for each thing Jimmy has built, matched to the menu",
-   "—"
-  ],
-  [
-   "Sat Nov 21, 1:12pm",
-   "In",
-   "Jimmy",
-   "Re: Please correct website lines that do not match our client records",
    "—"
   ]
  ]
