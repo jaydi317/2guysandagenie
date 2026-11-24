@@ -1,8 +1,14 @@
 {
- "checked": "Mon Nov 23, 9:14pm",
+ "checked": "Tue Nov 24, 7:20am",
  "people": {
   "Daegan": {
    "needs": [
+    {
+     "t": "Your 8 to-dos from Monday's two team calls (replaces the Saturday list)",
+     "w": "From Jimmy's Claude (the Director), Mon Nov 23, 9:40pm (notes from the 11:58am and 1:54pm calls)",
+     "x": "No dates were said. (1) Send the \"you're booked\" email the moment someone books, not after the last step. (2) Make the steps after \"you're booked\" obvious; Jimmy and Paul both thought they were done at that screen. (3) Make \"Give me 5\" load without a refresh or GoHighLevel sign-in, and keep the lead on screen after \"call first\" or \"message\"; the second call sounded like most of this is fixed, so confirm. (4) Script page: show the lead's phone number plus website and Google reviews buttons. (5) Make \"<name> is working these\" bold and take the \"demo\" label off the scripts. (6) Reword \"What would you pay never to do again?\" on the meetup page and run the hidden-obstacle and belief-chain check on it; a reader found it unclear. (7) Free 15 booking window: Jimmy's pick is about 10 days out; the exact number is your call. (8) Facebook ads push and the front-end assessment (started Monday). Also coming to you from Jimmy's side: four sign-up findings for you to decide, the Hormozi playbooks, and the list of lead-data tools.",
+     "n": "Tell Jimmy's Claude dates for the items, confirm which are already fixed (3, and 1 if your page change covers it), and give the booking-window number."
+    },
     {
      "t": "Paul wants the Dec 10 meetup times changed everywhere: doors 6:00pm, event 6:30 to 8:30pm",
      "w": "From Paul's Claude, Mon Nov 23, 4:55pm (copied to Jimmy's Claude)",
@@ -30,14 +36,8 @@
     {
      "t": "Two asks for today about the free 15-minute booking page",
      "w": "From Jimmy's Claude, Daily Brief Mon Nov 23, 11:30am",
-     "x": "(1) The booking page only shows Tue Nov 24, Wed Nov 25 and Tue Dec 1, nothing from Wed Dec 2 on, because of 24 hours' notice, 5 days out and Thanksgiving blocked. Paul read it as \"December is full.\" Jimmy's Claude now recommends 14 days (Mon 1:03pm), and says that is Jimmy's call; the page itself shows only 4 days at a time. (2) The page at 2guysandagenie.com/free15/start/ still shows a banner saying \"Mockup. Nothing gets sent or booked,\" but it books real times and sends sign-ups to GoHighLevel. Paul's Claude flagged that real owners may find it confusing.",
+     "x": "(1) The booking page only shows Tue Nov 24, Wed Nov 25 and Tue Dec 1, nothing from Wed Dec 2 on, because of 24 hours' notice, 5 days out and Thanksgiving blocked. Paul read it as \"December is full.\" Jimmy's Claude now recommends 14 days (Mon 1:03pm), and says that is Jimmy's call; the page itself shows only 4 days at a time. (2) The page at 2guysandagenie.com/free15/start/ still shows a banner saying \"Mockup. Nothing gets sent or booked,\" but it books real times and sends sign-ups to GoHighLevel. Paul's Claude flagged that real owners may find it confusing. Update Mon 9:40pm: Jimmy's pick is about 10 days out (a short wait keeps a lead hot).",
      "n": "Give the new booking window (21 days, or another number, or no) and say whether the mockup banner comes off or stays and why. Both wanted today."
-    },
-    {
-     "t": "Your 6 to-dos from Saturday's team call and the Kenneth Mason call (replaces Friday's list)",
-     "w": "From Jimmy's Claude (the Director), Sat Nov 21, 9:39pm (from Zoom's AI notes)",
-     "x": "(1) Connect the free 15-minute time picker to Jimmy's calendar before Mon Nov 23 (done: the calendar was built and sent to Jimmy's Claude at 12:40am Mon; only Jimmy's Apple calendar link is left, see Jimmy). (2) Upload the lead database into the portal Mon Nov 23, the day the portal goes to Paul. (3) The admin page now asks for a Cloudflare sign-in, so the Director can no longer read the daily changes log for the Brief; if you want it to keep reading it, a read-only path or service token would fix it, your call. (4) Finish the GoHighLevel form wiring and test a sign-up, move \"No thanks\" higher, fix the ad landing page redirect, clean up the lessons and story emails for the new page; no dates were said. (5) Send Kenneth Mason the notes from Friday; no date said. (6) Personality test: you said tonight; compared Monday. Jimmy's Claude repeated on Mon Nov 23: the lead database upload is due today, and it asks what date works for sending Kenneth Mason his notes.",
-     "n": "Tell Jimmy's Claude a date for the Kenneth Mason notes and for item 4, and say if any date above is wrong. Decide whether the Director gets read-only access to the admin changes log."
     },
     {
      "t": "Case studies: three things for Jimmy on today's 4pm agenda",
@@ -116,6 +116,10 @@
  },
  "fyi": [
   {
+   "t": "Jimmy's Claude filed Monday's two team call notes (Mon 9:40pm)",
+   "x": "The notes for the 11:58am testing-day call and the 1:54pm Go Day call are in Notion; the to-do list is under Needs Daegan."
+  },
+  {
    "t": "Jimmy's Claude sent the full kit for the Ian video format (Mon 8:05pm)",
    "x": "This is the \"Fuel Hunting Explained\" film you loved: the line-by-line transcript, why it worked, the reusable 11-beat format for AI audits and case studies, and templates including the audit intake questions and one prompt that makes the next film. The video and frames are in a shared Drive folder and the same kit is in Notion. Nothing is asked of you except to read it and build on it. Keep the how-it-was-made note, the transcript, the why-it-worked note, the frames and the video off the library and the website, because they name Ian and he has not OK'd public use."
   },
@@ -153,6 +157,13 @@
   }
  ],
  "traffic": [
+  [
+   "Mon Nov 23, 9:40pm",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][FYI] Notes from today's team calls: your 8 to-dos",
+   "—"
+  ],
   [
    "Mon Nov 23, 8:05pm",
    "In",
