@@ -13,11 +13,12 @@ const J = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: 
 const b64 = x => { x = x.replace(/-/g, '+').replace(/_/g, '/'); x += '='.repeat((4 - x.length % 4) % 4); return Uint8Array.from(atob(x), c => c.charCodeAt(0)); };
 let ready = false, certs = null, certsAt = 0;
 
-// The seven pieces, in the order an owner gets them (Draft 6, Nov 23). Only used to fill an empty database once.
+// The six pieces, in the order an owner gets them (three postcards locked Nov 24, three emails from Draft 6, Nov 23). Only used to fill an empty database.
 // Mail pieces have one version (sender "Any"). Each email has a version per sender; only Paul's is written so far.
 // [First Name]: with no owner name on file, the greeting line is left off and the piece just starts.
+const RETIRED = ['postcard', 'letter1', 'letter2', 'letter3'];
 const SEED = [
-{ pid: 'postcard', sender: 'Any', ord: 1, kind: 'mail', name: 'Postcard', tip: 'The QR code is added to the card in a later build step. Nothing for you to do about it.', body:
+{ pid: 'postcard1', sender: 'Any', ord: 1, kind: 'mail', name: 'Postcard 1', tip: 'The QR code goes on the card when it is printed. Nothing for you to do about it.', body:
 `FRONT
 
 2GuysAndAGenie.com
@@ -28,53 +29,26 @@ But It Might Be What You Need To Hear Most. Especially Right Now...
 
 BACK
 
-Right now, AI can take jobs off an owner's plate that used to eat hours every week.
+58% of small businesses say they now use AI.
 
-Most owners around here haven't seen it yet. The first ones who do get a head start on everyone else.
+But in Indiana, only 22% of businesses are actually using it.
+(U.S. Chamber of Commerce, 2025 · Indiana: U.S. Census Bureau, Nov 2026)
 
-I told a handyman named Jamon Jack that nobody would ever find his business with the name on his van. Here's how he tells it:
+That's good news. Start now and you're ahead of the game. Ever heard of first-mover advantage?
 
-"Now, I'm a retired cop. I don't trust you. And nobody wants to hear their baby's ugly."
+I've seen what getting ahead can do when you move fast.
 
-Then we put AI to work for him. His business was doing $15,000 a month. Jamon again:
+I'm Jimmy. A couple months ago, I told my handyman, Jamon, nobody could find him from the name painted on his van.
 
-"...now our revenue is over $50,000 a month."
+So I changed it and put AI to work in his business. In about 60 days, he went from $15,000 a month to $50,000, right here in Fishers. You can too.
 
-I'm Jimmy. My partner is Paul, and we're right here in Fishers.
+Go here now. Let's get started. It's free.
 
-A letter from us is on its way. Can't wait? Scan the code and tell us the one job you'd love off your plate.
+2GuysAndAGenie.com/free15
+Or call us: (317) 751-2693 · or scan the code
 
-[QR] 2GuysAndAGenie.com/free15 · (317) 751-2693` },
-{ pid: 'letter1', sender: 'Any', ord: 2, kind: 'mail', name: 'Letter 1', body:
-`Dear [First Name],
-
-A few days ago I sent you a postcard. It said nobody wants to be told their baby's ugly. I promised a letter, and this is it.
-
-My name is Jimmy Davis, and my partner is Paul Lorkowski. We're right here in Fishers. We've been helping the businesses around here with AI, making the business better and the owner's life easier.
-
-It all started with a coincidence. A man named Jamon Jack came to build a gazebo in my backyard. I looked at the name on his van and told him nobody would ever find his business with it. Jamon is a retired Indianapolis cop. He wanted to punch me in the face.
-
-Then I showed him what I meant, and we went to work. His business went from $15,000 a month to over $50,000.
-
-After that, Paul and I decided to help other owners around here. A pizza shop that now answers every call. Jim's Amazing Bread. Dr. Marcus McCray, the team chiropractor for the Indianapolis Colts, whose practice runs on referrals. They're real, they're local, and you can look every one of them up at 2GuysAndAGenie.com.
-
-So this letter is simply the two of us introducing ourselves.
-
-I know AI can feel like one more thing on a full plate, the kind of thing that waits until tomorrow. It's what we love to do, so it never has to be one more thing for you.
-
-We'd rather show you than tell you. Pick one thing in your business you don't want to do anymore, and give us 15 minutes on the phone. We'll listen and ask every question we can think of. Then we'll go find the answer, or build it, and bring it back to you.
-
-That way, the next time you think, "Maybe AI could solve this," you'll know who to call. It's us, Jimmy and Paul at 2 Guys and a Genie.
-
-One of us will probably call this week, or stop in to say hello.
-
-Sincerely,
-
-Jimmy Davis, with Paul Lorkowski
-2 Guys and a Genie · 2GuysAndAGenie.com · (317) 751-2693
-
-P.S. If you'd rather not wait for our call, pick a time at 2GuysAndAGenie.com/free15.` },
-{ pid: 'email1', sender: 'Paul', ord: 3, kind: 'email', name: 'Email 1', subj: 'Paul Lorkowski, from Fishers', body:
+Jimmy and Paul` },
+{ pid: 'email1', sender: 'Paul', ord: 2, kind: 'email', name: 'Email 1', subj: 'Paul Lorkowski, from Fishers', body:
 `Hi [First Name],
 
 My name is Paul Lorkowski.
@@ -94,29 +68,43 @@ You can reply to this email, or call us at (317) 751-2693.
 Paul
 
 2GuysAndAGenie.com` },
-{ pid: 'letter2', sender: 'Any', ord: 4, kind: 'mail', name: 'Letter 2', body:
-`Dear [First Name],
+{ pid: 'postcard2', sender: 'Any', ord: 3, kind: 'mail', name: 'Postcard 2', tip: 'The QR code goes on the card when it is printed. Nothing for you to do about it.', body:
+`FRONT
 
-I wrote to you last week to introduce Paul and me. I'm writing again with an invitation.
+2GuysAndAGenie.com
 
-On Thursday, December 10, we're hosting an evening for local business owners at Launch Fishers. It's free, and we're buying the pizza.
+You're Invited.
 
-This will be our third. Owners come after work, eat, and meet each other. Then Paul and I spend about an hour showing what AI can do in a business today, starting with the basics. After that, the room is yours. You take out your phone, pick something from your own business, and we walk around and help you with it.
+Bring Your Phone And Your Curiosity.
 
-Roger, a local owner, told us after the last one: "This was not talking about AI. This was actually helping people use AI."
+The Pizza's Free. One Night In Fishers. One Job Off Your Plate...
 
-Doors open at 6:30. We start at 7 and finish by 9. Launch Fishers is at 12175 Visionary Way.
+BACK
 
-You can save a seat at 2GuysAndAGenie.com/meetup. Or call us at (317) 751-2693 and I'll put your name down myself.
+5.6 hours a week back when small business workers use AI.
+(business.com small business AI study, 2025)
 
-And if there's still one thing in your business you'd like fixed, my offer from the first letter stands. Tell us what it is.
+Close your eyes. It's Friday. You leave at noon instead of 5.
 
-I hope to meet you on the 10th.
+What would you do with that afternoon?
 
-Jimmy Davis, with Paul Lorkowski
+Now picture it every week.
 
-P.S. Come at 6:30 if you want pizza. It goes fast.` },
-{ pid: 'email2', sender: 'Paul', ord: 5, kind: 'email', name: 'Email 2', subj: 'an invitation for December 10', body:
+On December 10, let's make it real.
+
+Free pizza for local business owners at Launch Fishers.
+
+Bring the one thing you never want to do again. We'll help you put AI to work on it, on your phone.
+
+Thursday, December 10 · Doors 6:30, done by 9 · 12175 Visionary Way
+
+Save your free spot (and your pizza) here:
+
+2GuysAndAGenie.com/meetup
+Or call us: (317) 751-2693 · or scan the code
+
+Jimmy and Paul` },
+{ pid: 'email2', sender: 'Paul', ord: 4, kind: 'email', name: 'Email 2', subj: 'an invitation for December 10', body:
 `Hi [First Name],
 
 It's Paul Lorkowski again.
@@ -136,29 +124,41 @@ If you'd like to come, reply and I'll save you a seat myself.
 Paul
 
 2GuysAndAGenie.com` },
-{ pid: 'letter3', sender: 'Any', ord: 6, kind: 'mail', name: 'Letter 3', tip: 'Found something on this shop? (See What We Found, under the words.) Change the paragraph that starts "I don\'t know what yours is yet" to "I took a look at your business, and one thing stood out:" and the finding, in plain words.', body:
-`Dear [First Name],
+{ pid: 'postcard3', sender: 'Any', ord: 5, kind: 'mail', name: 'Postcard 3', tip: 'The QR code goes on the card when it is printed. Nothing for you to do about it.', body:
+`FRONT
 
-This is my third letter, so I'll keep it short.
+2GuysAndAGenie.com
 
-There's a saying: small hinges swing big doors. In my experience, that's how a business changes. One small thing first.
+FACT: The Thing That Changes Your Business Is Usually Small.
 
-For Jamon, the handyman I told you about, it was his name. His van said T-J-O-A-T. We changed it to GottaCallJack.com. "I don't even have to give people my number anymore," he says. Everything else followed from that.
+So Small You've Stopped Noticing It...
 
-For the pizza shop, it was the phone. For the baker, it was the box he shipped in.
+BACK
 
-I don't know what yours is yet. It might be a name. It might be the calls you miss, the quotes you write at night, or a website that doesn't show how good you are.
+85% of callers who reach your voicemail hang up without leaving a message.
+(Quo, 18 million missed calls, 2026)
 
-I'd like to find out. Give Paul and me 15 minutes and tell us the one thing you want fixed. We'll come back and show you how we'd handle it. It costs you nothing.
+So your voicemail looks quiet. Like nobody called.
 
-Your week gets a little lighter. And we're a little happier for having done it.
+They called. Then they called someone else.
 
-You can call us at (317) 751-2693, or pick a time at 2GuysAndAGenie.com/free15.
+Jamon Jack, a local handyman, had two small things he'd stopped noticing. Calls that went to voicemail. And a van that said TJOAT, for The Jack Of All Trades.
 
-Jimmy Davis, with Paul Lorkowski
+Nobody could find him.
 
-P.S. Jamon was just one domain name away. You could be too.` },
-{ pid: 'email3', sender: 'Paul', ord: 7, kind: 'email', name: 'Email 3', subj: 'one thing', body:
+Now he's GottaCallJack.com, and every missed call gets a text back. He's doing three times the business.
+
+What's your one little thing? You probably can't see it. Jamon couldn't. We can.
+
+Let's find it together.
+
+Book your free 15-minute call here:
+
+2GuysAndAGenie.com/free15
+Or call us: (317) 751-2693 · or scan the code
+
+Jimmy and Paul` },
+{ pid: 'email3', sender: 'Paul', ord: 6, kind: 'email', name: 'Email 3', subj: 'one thing', body:
 `Hi [First Name],
 
 Paul Lorkowski here, one more time.
@@ -177,7 +177,7 @@ And if you'd rather I stop writing, just say so.
 
 Paul
 
-2GuysAndAGenie.com` },
+2GuysAndAGenie.com` }
 ];
 
 async function init(env) {
@@ -200,6 +200,10 @@ async function init(env) {
   ]);
   // The pieces' starting words go in once. After that the database is the master copy, so they can change without a code change.
   // A piece already in the database is never overwritten from here; a new piece or a new sender's version is added.
+  // Retired Nov 24: the first postcard and the three letters, replaced by the three locked postcards. Gone only if nothing was ever sent, drafted or approved with them.
+  for (const pid of RETIRED) { const used = await env.DB.prepare('SELECT (SELECT COUNT(*) FROM sends WHERE pid=?) + (SELECT COUNT(*) FROM drafts WHERE pid=?) AS n').bind(pid, pid).first(); if (!used || !used.n) await env.DB.prepare('DELETE FROM pieces WHERE pid=?').bind(pid).run(); }
+  // The order comes from here, so the emails sit between the postcards.
+  await env.DB.batch(SEED.map(p => env.DB.prepare('UPDATE pieces SET ord=? WHERE pid=? AND ord<>?').bind(p.ord, p.pid, p.ord)));
   const have = await env.DB.prepare('SELECT pid, sender FROM pieces').all(), got = new Set(have.results.map(r => r.pid + '|' + r.sender)), add = SEED.filter(p => !got.has(p.pid + '|' + p.sender));
   if (add.length) { const s = env.DB.prepare('INSERT OR IGNORE INTO pieces (pid,sender,ord,kind,name,subj,body,tip,upd) VALUES (?,?,?,?,?,?,?,?,?)'); await env.DB.batch(add.map(p => s.bind(p.pid, p.sender, p.ord, p.kind, p.name, p.subj || '', p.body, p.tip || '', Date.now()))); }
   // What GoHighLevel was last told, so each is only sent when it changes: ga = who it's assigned to (a first name), ge = email, gd = do not contact.
@@ -434,7 +438,7 @@ async function jobs(env) {
 }
 
 // ---------- Mail and email (step 1) ----------
-// piece      {id, pid, st, subj, body, why}  st: "sent" (an email, after "Did it send?" Yes), "ready" (a postcard or letter, approved for the next mail drop), "notsent" (with a reason)
+// piece      {id, pid, st, subj, body, why}  st: "sent" (an email, after "Did it send?" Yes), "ready" (a postcard, approved for the next mail drop), "notsent" (with a reason)
 // pieceback  {id, pid}                       takes back the last record for that piece on that shop
 // draft      {id, pid, subj, body}           keeps edits not sent yet; empty subj and body throws the draft away (Back to original)
 // words      {id, pid, sid?}                 the exact words of a record
@@ -472,7 +476,7 @@ async function pieceAct(b, me, env, ctx) {
   }
   // op "piece"
   const st = String(b.st || '');
-  // Postcards and letters go to every shop in batches; nothing is recorded for them from a shop.
+  // Postcards go to every shop in batches; nothing is recorded for them from a shop.
   if (pc.kind !== 'email' || !['sent', 'notsent'].includes(st)) return J({ error: 'Mail goes out in batches, not from a shop.' }, 400);
   const subj = String(b.subj || '').slice(0, 300), body = String(b.body || '').slice(0, 20000), why = String(b.why || '').trim().slice(0, 300);
   if (st === 'notsent' && !why) return J({ error: 'Say why it was not sent.' }, 400);

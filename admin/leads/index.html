@@ -131,7 +131,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <input id="em" type="email" placeholder="Paste the email you found here" autocomplete="off" style="width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;margin:0 0 4px">
 <p style="margin:0 0 4px"><button class="chip on" type="button" id="em-save">Save This Email</button> <span class="saved" id="em-msg" style="font-weight:bold"></span></p>
 <p class="lab">Mail And Email</p>
-<p class="sub" style="font-size:14px;margin:0 0 8px">Emails: make each one personal, then send it from your own mail app. Paper letters go to every shop in batches, so there is nothing to do for those, only something to look at.</p>
+<p class="sub" style="font-size:14px;margin:0 0 8px">Emails: make each one personal, then send it from your own mail app. Each postcard goes to all the shops in one mailing, so there's nothing to do for the postcards here, only something to look at. <a href="/admin/mail/">See the postcards as they'll look.</a></p>
 <div id="pcnext"></div>
 <div id="pcall" style="margin:0 0 8px"><p class="lab" id="pcall-h" style="margin:14px 0 2px">The Three Emails, In Order</p><p class="sub" id="pcall-s" style="font-size:14px;margin:0 0 8px">Each one unlocks after the one before it is sent.</p><div id="pcs"></div></div>
 <details id="pmail" style="margin:0 0 8px"><summary style="cursor:pointer;font-size:15px;text-decoration:underline">Mail to this shop</summary><div id="pms" style="margin-top:8px"></div></details>
@@ -465,9 +465,9 @@ document.addEventListener('click',function(e){var a=e.target.closest?e.target.cl
 $('q').oninput=draw;$('town').onchange=draw;$('stage').onchange=draw;
 STAGES.forEach(function(s){var o=document.createElement('option');o.textContent=s;$('stage').appendChild(o)});
 [].forEach.call(document.querySelectorAll('#tiers .chip'),function(b){b.onclick=function(){tier=this.getAttribute('data-t');[].forEach.call(document.querySelectorAll('#tiers .chip'),function(o){o.className='chip'});this.className='chip on';draw()}});
-// ---------- Mail and email: the seven pieces on each shop (step 1, Nov 23) ----------
+// ---------- Mail and email: the six pieces on each shop (three postcards and three emails, Nov 24) ----------
 // Each piece opens with the shop filled in. Edit it for this one owner, then Send, Back to original, Not yet, or Not sent.
-// Emails open the sender's own mail app, and are recorded only after "Did it send?" Yes. Postcards and letters are approved for the next mail drop (practice for now: nothing mails).
+// Emails open the sender's own mail app, and are recorded only after "Did it send?" Yes. Postcards are approved for the next mail drop (practice for now: nothing mails).
 var COLD=STAGES.indexOf('Talked to the owner'); // from this stage on, the cold pieces have stopped
 function pids(){var o=[],seen={};PIECES.slice().sort(function(a,b){return a.ord-b.ord}).forEach(function(p){if(!seen[p.pid]){seen[p.pid]=1;o.push(p.pid)}});return o}
 function piece(pid,who){for(var k=0;k<PIECES.length;k++){var p=PIECES[k];if(p.pid===pid&&p.sender===who)return p}return null}
@@ -553,7 +553,7 @@ function pcur(){if(!PEK||cur===null)return null;var k=PEK.split('|');if(L[cur].i
 function peErr(){$('pe-dr').textContent=$('status').textContent||'That did not save. Check your signal and try again.'}
 function peClose(){if(peT){clearTimeout(peT);peT=null;if(pcur()&&!ASK)pdraft().catch(function(){})}$('pe').style.display='none';PEK=null;ASK=null;$('pe-subj').readOnly=$('pe-body').readOnly=false}
 function pcount(){var c=pcur(),a=c&&anyPiece(c.pid),n=($('pe-body').value.match(/\S+/g)||[]).length,o=$('pe-count');
-  if(!a||a.kind!=='mail'||c.pid==='postcard'){o.textContent='';return}
+  if(!a||a.kind!=='mail'||/^postcard/.test(c.pid)){o.textContent='';return}
   o.textContent=n+' words. A one-page letter holds about 450 (a guess until the mail service shows a proof).';o.style.color=n>450?'#B00020':'';o.style.fontWeight=n>450?'bold':''}
 function pview(i,pid,a,r){var x=L[i];
   $('pe-back').textContent='\u2190 Back to '+x.n;$('pe-back2').textContent='\u2190 Back to '+x.n;
