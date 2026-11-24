@@ -232,7 +232,7 @@ function stale(){
 }
 function load(n){
   n=n||0;msg(n?'Still trying to reach the list...':'Loading the list...');
-  return fetch(API+'leads',{credentials:'same-origin',cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(PM&&L.length){msg('');draw();route();return}take(j);msg('');draw();route();if(cur!==null){var y=window.pageYOffset;show(cur);window.scrollTo(0,y)}}).catch(function(){if(n<3){if(!n&&!L.length){var c=kept();if(c){take(c.j,true);draw();route()}}return new Promise(function(ok){setTimeout(ok,2500)}).then(function(){return load(n+1)})}stale()});
+  return fetch(API+'leads',{credentials:'same-origin',cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(j&&j.pieces&&j.pieces.length)PIECES=j.pieces;if(PM&&L.length){msg('');draw();route();if(cur!==null)show(cur);return}take(j);msg('');draw();route();if(cur!==null){var y=window.pageYOffset;show(cur);window.scrollTo(0,y)}}).catch(function(){if(n<3){if(!n&&!L.length){var c=kept();if(c){take(c.j,true);draw();route()}}return new Promise(function(ok){setTimeout(ok,2500)}).then(function(){return load(n+1)})}stale()});
 }
 var PM=false;try{PM=sessionStorage.getItem('2g-practice')==='1'}catch(e){}
 function fake(b){
@@ -474,7 +474,8 @@ function mpids(){return pids().filter(function(q){return anyPiece(q).kind!=='ema
 function mstate(i,pid){var x=L[i],r=lastRec(i,pid);if(r&&r.st==='mailed')return {s:'Mailed '+fmt(r.ts),c:'ok'};if(x.dnc)return {s:'Won\'t be mailed: Do not contact',c:''};if(STAGES.indexOf(stg(i))>=COLD)return {s:'Won\'t be mailed: the cold pieces have stopped',c:''};if(!(x.a||'').trim())return {s:'Won\'t be mailed: no mailing address',c:''};return {s:'Not mailed yet',c:''}}
 function drawPieces(i){
   var x=L[i],box=$('pcs'),top=$('pcnext'),mb=$('pms');box.textContent='';top.textContent='';mb.textContent='';
-  if(!PIECES.length){var p0=document.createElement('p');p0.className='sub';p0.textContent='The pieces have not loaded yet.';top.appendChild(p0)}
+  $('pcall').style.display=$('pmail').style.display=PIECES.length?'':'none';
+  if(!PIECES.length){var p0=document.createElement('p');p0.className='sub';p0.textContent='Loading the emails and mail...';top.appendChild(p0)}
   var E=epids(),wait=null,nxt=null,done=0;if(!PM)E.forEach(function(q){var r=lastRec(i,q);if(!wait&&askLoad(x.id+'|'+q)&&!(r&&r.st!=='notsent'))wait=q});
   E.forEach(function(q){if(!nxt&&avail(i,q))nxt=q;if(pstate(i,q).done)done++});
   var open=function(pid){return function(){go('lead='+encodeURIComponent(x.id)+'&piece='+pid)}};
@@ -487,7 +488,7 @@ function drawPieces(i){
     var hn=document.createElement('b');hn.textContent=why;card.appendChild(hn);
     if(!x.dnc&&!(x.e||'').trim()){var sn=document.createElement('span');sn.textContent='Find their email and paste it in above, and the emails open up.';card.appendChild(sn)}
     else if(!x.dnc&&done<E.length&&STAGES.indexOf(stg(i))<COLD&&E.length&&!mine(E[0])){var sn2=document.createElement('span');sn2.textContent='The emails are not written for '+(ME||'you')+' yet.';card.appendChild(sn2)}}
-  top.appendChild(card);
+  if(PIECES.length)top.appendChild(card);
   $('pcall').querySelector('summary').textContent='See all three emails ('+done+' of '+E.length+' done)';
   E.forEach(function(pid){var a=anyPiece(pid),b=document.createElement('button');b.type='button';b.className='pc row2';
     var h=document.createElement('b');h.textContent=a.name;b.appendChild(h);
