@@ -47,7 +47,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 
 .wkby{display:inline-block;font-weight:bold;font-style:normal;background:#FFF3C4;border:2px solid #111;padding:1px 8px;margin:4px 0 0 6px;font-size:14px}
 .wkby.me{background:#111;color:#fff}
-.pc{display:block;width:100%;box-sizing:border-box;text-align:left;font:inherit;background:#fff;border:2px solid #111;padding:7px 12px;margin:0 0 6px;cursor:pointer;color:#111}.pc.one{border-width:3px;padding:12px 14px;background:#FFF3C4}.pc.one b{font-size:19px}.pc.one .go{display:block;margin-top:6px;font-weight:bold;text-decoration:underline;color:#111}.pc.row2 b{font-size:16px}.pc.row2 span{display:inline;margin-left:6px}#pe .chip:disabled{opacity:.35;cursor:not-allowed}#pe-more .chip{padding:11px 16px;font-size:16px}.pc b{font-size:17px}.pc span{display:block;font-size:14px;color:#555}.pc span.ok{color:#111;font-weight:bold}.pc span.no{color:#B00020;font-weight:bold}
+.pc{display:block;width:100%;box-sizing:border-box;text-align:left;font:inherit;background:#fff;border:2px solid #111;padding:7px 12px;margin:0 0 6px;cursor:pointer;color:#111}.pc.one{border-width:3px;padding:12px 14px;background:#FFF3C4}.pc.one b{font-size:19px}.pc.one .go{display:block;margin-top:6px;font-weight:bold;text-decoration:underline;color:#111}.pc.row2 b{font-size:16px}.pseq{border:2px solid #111;padding:10px 12px;margin:0 0 10px;background:#fff}.pseq.off{border-style:dashed;background:#f7f7f7}.pseq .ph{margin:0 0 6px;font-size:16px}.pseq .ph span{display:block;font-size:14px;color:#555}.pseq .ph span.ok{color:#111;font-weight:bold}.pseq .ph span.no{color:#B00020;font-weight:bold}.pseq .psj{margin:0 0 4px;font-size:15px;font-weight:bold}.pseq .pbd{white-space:pre-wrap;font-size:15px;line-height:1.45;border-left:3px solid #ccc;padding:2px 0 2px 10px;margin:0 0 8px}.pseq.off .pbd,.pseq.off .psj{color:#555}.pseq .pnt{margin:0;font-size:14px;color:#555;font-style:italic}.pseq .pc.one{margin:4px 0 0}.pc.row2 span{display:inline;margin-left:6px}#pe .chip:disabled{opacity:.35;cursor:not-allowed}#pe-more .chip{padding:11px 16px;font-size:16px}.pc b{font-size:17px}.pc span{display:block;font-size:14px;color:#555}.pc span.ok{color:#111;font-weight:bold}.pc span.no{color:#B00020;font-weight:bold}
 .warn{border:3px solid #B00020;padding:10px 12px;margin:0 0 10px;font-size:15px;font-weight:bold;color:#B00020}.warn.soft{border-color:#111;color:#111;font-weight:normal}
 .tip{background:#FFF3C4;padding:10px 12px;margin:0 0 12px;font-size:15px}
 #pe{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;overflow:auto;z-index:60;-webkit-overflow-scrolling:touch}
@@ -133,7 +133,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <p class="lab">Mail And Email</p>
 <p class="sub" style="font-size:14px;margin:0 0 8px">Emails: make it personal, then send it from your own mail app. Mail goes to every shop in batches, so there is nothing to do here, only something to look at.</p>
 <div id="pcnext"></div>
-<details id="pcall" style="margin:0 0 8px"><summary style="cursor:pointer;font-size:15px;text-decoration:underline">See all three emails</summary><div id="pcs" style="margin-top:8px"></div></details>
+<div id="pcall" style="margin:0 0 8px"><p class="lab" id="pcall-h" style="margin:14px 0 2px">The Three Emails, In Order</p><p class="sub" style="font-size:14px;margin:0 0 8px">Each one opens after the one before it is sent.</p><div id="pcs"></div></div>
 <details id="pmail" style="margin:0 0 8px"><summary style="cursor:pointer;font-size:15px;text-decoration:underline">Mail to this shop</summary><div id="pms" style="margin-top:8px"></div></details>
 <p style="margin:0 0 6px"><button class="back" id="dncb" type="button" style="font-size:14px"></button></p>
 <p class="saved" id="dnc-msg" style="font-weight:bold;margin:0 0 6px"></p>
@@ -202,7 +202,7 @@ var STAGES=['Not touched yet','Slydial sent','Tried, no owner yet','Talked to th
 var OLD={'Not yet visited':'Not touched yet','Visited':'Tried, no owner yet','Talking':'Talked to the owner'};
 var S='/admin/scripts/';
 var NEXT={
-'Not touched yet':{t:'Call first. If voicemail picks up, leave the message right then. If it just rings out and the number is a cell phone, send the Slydial. Slydial only works on cell phones.',s:'Call first',l:[['The First Call And Message',S+'#slydial'],['Phone Script',S+'#phone']]},
+'Not touched yet':{t:'Call first, with the phone script. If no one answers and voicemail picks up, leave the message right then. If it just rings out and the number is a cell phone, send the same message as a Slydial. Slydial only works on cell phones.',s:'Call first',l:[['Phone Script',S+'#phone'],['If No One Answers: The Message',S+'#slydial']]},
 'Slydial sent':{t:'Message left. The next day: call again or walk in.',s:'Call or walk in',l:[['Phone Script',S+'#phone'],['Walk-In Script',S+'#walk-short']]},
 'Tried, no owner yet':{t:'Try again at a different time of day. If you call, leave a voicemail.',s:'Try again',l:[['Phone Script',S+'#phone'],['Voicemail Script',S+'#voicemail'],['Walk-In Script',S+'#walk-short']]},
 'Talked to the owner':{t:'Run the audit if it is not done. Next time you talk, show them the one thing from the audit and book the 15 minutes.',s:'Book the 15 minutes',l:[['The One-Thing Demo Script',S+'#demo']]},
@@ -492,7 +492,9 @@ function asSender(t,who){var S=SENDERS[who];if(!S||who==='Paul')return t;
 function orig(i,pid){var a=anyPiece(pid),p=mine(pid)||(a&&a.kind==='email'?piece(pid,'Paul'):null);if(!p)return null;var w=a.kind==='email'&&!mine(pid)?ME:'Paul';return {subj:fill(asSender(p.subj||'',w),L[i]),body:fill(asSender(p.body||'',w),L[i])}}
 // Can this piece go to this shop right now? (Do not contact, the cold pieces stopped, no address or email, not written for you, or already gone: no.)
 function avail(i,pid){var x=L[i],a=anyPiece(pid),r=lastRec(i,pid);if(!a||x.dnc)return false;if(r&&r.st!=='notsent')return false;if(STAGES.indexOf(stg(i))>=COLD)return false;
-  if(a.kind!=='email')return false;return !!(x.e||'').trim()&&!!(mine(pid)||piece(pid,'Paul'))}
+  if(a.kind!=='email')return false;if(lockedBy(i,pid))return false;return !!(x.e||'').trim()&&!!(mine(pid)||piece(pid,'Paul'))}
+// The email before this one that hasn't gone yet (sent, or marked not sent). Emails go in order.
+function lockedBy(i,pid){var E=epids(),k=E.indexOf(pid);for(var j=k-1;j>=0;j--){var r=lastRec(i,E[j]);if(!r||(r.st!=='sent'&&r.st!=='notsent'))return anyPiece(E[j]).name}return ''}
 function pworked(i){return (L[i].ps||[]).some(function(r){return r.st==='sent'})}
 function holes(t){return (t.match(/\[[^\]\n]*\]/g)||[]).filter(function(h){return h!=='[QR]'})}
 function pstate(i,pid){
@@ -525,12 +527,16 @@ function drawPieces(i){
     var hn=document.createElement('b');hn.textContent=why;card.appendChild(hn);
     if(!x.dnc&&!(x.e||'').trim()){var sn=document.createElement('span');sn.textContent='Find their email and paste it in above, and the emails open up.';card.appendChild(sn)}
 }
-  if(PIECES.length)top.appendChild(card);
-  $('pcall').querySelector('summary').textContent='See all three emails ('+done+' of '+E.length+' done)';
-  E.forEach(function(pid){var a=anyPiece(pid),b=document.createElement('button');b.type='button';b.className='pc row2';
-    var h=document.createElement('b');h.textContent=a.name;b.appendChild(h);
-    var s0=pstate(i,pid),sp=document.createElement('span');sp.textContent=pid===wait?'Waiting: did it send?':s0.s;if(s0.c)sp.className=s0.c;if(pid===wait)sp.className='no';b.appendChild(sp);
-    b.onclick=open(pid);box.appendChild(b)});
+  if(PIECES.length&&!lead)top.appendChild(card); // with an email ready, the list below shows it in place
+  $('pcall-h').textContent='The Three Emails, In Order ('+done+' of '+E.length+' done)';
+  E.forEach(function(pid,n){var a=anyPiece(pid),s0=pstate(i,pid),lk=s0.done?'':lockedBy(i,pid),can=avail(i,pid),d=document.createElement('div');d.className='pseq'+(lk||(!can&&!s0.done&&pid!==wait)?' off':'');
+    var h=document.createElement('p');h.className='ph';var hb=document.createElement('b');hb.textContent=(n+1)+' of '+E.length+': '+a.name;h.appendChild(hb);
+    var sp=document.createElement('span');sp.textContent=pid===wait?'Waiting: did it send?':s0.done?s0.s:lk?'Opens after '+lk+' is sent':s0.s;if(s0.c)sp.className=s0.c;if(pid===wait)sp.className='no';h.appendChild(sp);d.appendChild(h);
+    if(!s0.done){var o=orig(i,pid);if(o){var sj=document.createElement('p');sj.className='psj';sj.textContent='Subject: '+o.subj;d.appendChild(sj);var bd=document.createElement('div');bd.className='pbd';bd.textContent=o.body;d.appendChild(bd)}}
+    var note='',btn='';if(pid===wait)btn='Did it send? Tap to answer →';else if(s0.done)btn='See what went →';else if(can)btn='Make It Personal And Send →';else if(x.dnc)note='';else if(lk)note='You can send this one once '+lk+' has gone.';else if(!(x.e||'').trim())note='Opens once their email is saved above, under "Find Their Email".';
+    if(btn){var b=document.createElement('button');b.type='button';b.className='pc one';var bb2=document.createElement('b');bb2.textContent=btn;b.appendChild(bb2);b.onclick=open(pid);d.appendChild(b)}
+    if(note){var nt=document.createElement('p');nt.className='pnt';nt.textContent=note;d.appendChild(nt)}
+    box.appendChild(d)});
   var M=mpids(),mailed=0;M.forEach(function(pid){var m=mstate(i,pid);if(m.c)mailed++;var b=document.createElement('button');b.type='button';b.className='pc row2';
     var h=document.createElement('b');h.textContent=anyPiece(pid).name;b.appendChild(h);var sp=document.createElement('span');sp.textContent=m.s;if(m.c)sp.className=m.c;b.appendChild(sp);b.onclick=open(pid);mb.appendChild(b)});
   $('pmail').querySelector('summary').textContent='Mail to this shop ('+(mailed?mailed+' of '+M.length+' mailed':'none mailed yet')+')';
