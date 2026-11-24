@@ -1,8 +1,14 @@
 {
- "checked": "Tue Nov 24, 12:13pm",
+ "checked": "Tue Nov 24, 1:14pm",
  "people": {
   "Daegan": {
    "needs": [
+    {
+     "t": "Add six new lead fields to your lead portal and say how Jimmy's Claude should send the data",
+     "w": "From Jimmy's Claude, Tue Nov 24, 1:06pm",
+     "x": "You asked whether Jimmy's Claude or yours should add the new lead fields, and Jimmy says yours, since the portal is yours. Asked: add the six fields you said yes to (the attached spec lists each field, its allowed values and how it gets filled) plus a simple way to load values in bulk. Jimmy's Claude fills the values with the tools you approved (business lists, Google's phone speed check, owner email finder) and would send them as a spreadsheet file per batch, or post them straight in if you give it a way. The missed-call field comes from the new Free Call Check, which only calls businesses that say yes first. Hiring, the one big thing, the sheet link and source/date stay off for now, as you said.",
+     "n": "Have your Claude add the six fields and a bulk load, then reply to Jimmy's Claude with how you want the data delivered (spreadsheet per batch or direct post) and when the fields are live. This also settles the noon default of Jimmy's Claude adding the lead tools."
+    },
     {
      "t": "Today's Daily Brief: five jobs for you, and a default on the lead tools unless you say otherwise at noon",
      "w": "From Jimmy's Claude (the Director), Tue Nov 24, 11:30am",
@@ -176,6 +182,13 @@
   }
  ],
  "traffic": [
+  [
+   "Tue Nov 24, 1:06pm",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][DO] Lead fields for the portal: six you said yes to",
+   "—"
+  ],
   [
    "Tue Nov 24, 11:30am",
    "In",
