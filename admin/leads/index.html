@@ -111,6 +111,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <h2 id="n"></h2>
 <p class="sub" id="meta"></p>
 <p id="dncbar"></p>
+<p class="pmbar" style="display:none;margin:8px 0;padding:10px 12px;background:#B00020;color:#fff;font-weight:bold;font-size:15px">Practice mode: nothing here is saved. <button type="button" class="pmstop" style="font:inherit;font-size:14px;background:#fff;color:#B00020;border:0;padding:4px 10px;cursor:pointer;font-weight:bold">Stop practicing</button></p>
 <button class="big" id="claim" type="button" style="width:100%;font-family:inherit;cursor:pointer;background:#fff"></button>
 <div class="now"><p><span class="k">Where It Stands</span><span class="v" id="nw-stage"></span></p><p><span class="k">Last Step</span><span id="nw-last"></span></p><p><span class="k">Next Step</span><span class="v" id="nw-next"></span></p><div id="nw-links"></div></div>
 <p class="lab" id="did-lab">Tap What You Just Did</p>
@@ -121,6 +122,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <a class="big" id="mail" href="#">Email</a>
 <a class="big" id="find" href="#" target="_blank" rel="noopener">Find Their Email</a>
 <input id="em" type="email" placeholder="Paste the email you found here" autocomplete="off" style="width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;margin:0 0 4px">
+<p style="margin:0 0 4px"><button class="chip on" type="button" id="em-save">Save This Email</button> <span class="saved" id="em-msg" style="font-weight:bold"></span></p>
 <p class="lab">Mail And Email</p>
 <p class="sub" style="font-size:14px;margin:0 0 8px">Emails: make it personal, then send it from your own mail app. Mail goes to every shop in batches, so there is nothing to do here, only something to look at.</p>
 <div id="pcnext"></div>
@@ -163,6 +165,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 </div></div>
 <div id="pe"><div class="in">
 <div class="topbar"><button type="button" id="pe-back">&larr; Back</button><p class="who" id="pe-who"></p></div>
+<p class="pmbar" style="display:none;margin:0 0 10px;padding:10px 12px;background:#B00020;color:#fff;font-weight:bold;font-size:15px">Practice mode: nothing here is saved. <button type="button" class="pmstop" style="font:inherit;font-size:14px;background:#fff;color:#B00020;border:0;padding:4px 10px;cursor:pointer;font-weight:bold">Stop practicing</button></p>
 <p class="k" id="pe-kind"></p><h2 id="pe-name"></h2>
 <p class="sub" id="pe-route" style="font-size:15px"></p>
 <div id="pe-rec"></div>
@@ -173,11 +176,12 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <p class="lab">The Words</p><textarea id="pe-body" spellcheck="true"></textarea>
 <p class="saved" id="pe-count"></p><p class="saved" id="pe-dr"></p>
 <div id="pe-ask" class="now" style="display:none"><p><b>Did it send?</b></p><p style="font-size:15px">Tap Yes only after you pressed Send in your mail app. Then it is saved on this shop with your name and the exact words.</p><button class="big dark" type="button" id="pe-yes">Yes, it sent</button><button class="big" type="button" id="pe-no">No, it didn't</button></div>
-<button class="big dark" type="button" id="pe-send">Send</button>
+<button class="big dark" type="button" id="pe-gmail">Send From Gmail</button>
+<button class="big" type="button" id="pe-send">Send From My Mail App</button>
 <div class="row" id="pe-more" style="margin-top:4px"><button class="chip" type="button" id="pe-later">Not yet</button><button class="chip" type="button" id="pe-ns">Not sent</button><button class="chip" type="button" id="pe-orig">Back to original</button></div>
 <p id="pe-mhelp" style="font-size:14px;color:#555;margin:0 0 8px">Not yet keeps your edits for later. Not sent skips it, with a reason.</p>
 <div id="pe-nsbox" style="display:none;border:3px solid #111;padding:10px 12px;margin:8px 0"><p style="margin:0 0 6px;font-size:15px">Why isn't it going? A few words is enough. It is noted on the shop, the piece stays on the list, and it can still be sent later.</p><input id="pe-why" maxlength="300" autocomplete="off" placeholder="For example: owner asked us to call instead"><button class="big dark" type="button" id="pe-nssave">Save "Not Sent"</button></div>
-<p style="font-size:14px;margin:0 0 8px">Mail app didn't open? <button class="back" type="button" id="pe-copy" style="font-size:14px">Copy the words</button></p>
+<p style="font-size:14px;margin:0 0 8px">Sending some other way? <button class="back" type="button" id="pe-copy" style="font-size:14px">Copy the words</button></p>
 </div>
 <div id="pe-view" style="display:none"><p class="lab" id="pe-vl">The Words That Went</p><div class="ref" id="pe-words"></div></div>
 <details style="margin:14px 0 4px"><summary style="cursor:pointer;font-size:15px;text-decoration:underline">Look them up (website, reviews, Facebook)</summary><div class="row" id="pe-look" style="margin-top:8px"></div></details>
@@ -361,7 +365,7 @@ function show(i){
   wk.onclick=function(){send({op:'claim',id:x.id,on:x.wk!==ME}).then(function(){show(cur)},function(){})};
   $('call').style.display=x.p?'block':'none';$('call').textContent='Call '+(x.p||'');$('call').href='tel:'+(x.p||'').replace(/\D/g,'');
   $('map').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x.a||(x.n+' '+x.t+' Indiana'));
-  var fe=x.e||'';$('em').value=fe;$('find').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana contact email');
+  var fe=x.e||'';$('em').value=fe;$('em-msg').textContent='';$('find').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana contact email');
   if(fe){$('mail').style.display='block';$('mail').textContent='Blank email to '+fe+' (not one of the three)';$('mail').href='mailto:'+fe}else{$('mail').style.display='none'}
   var Q=encodeURIComponent(x.n+' '+x.t+' Indiana'),N=encodeURIComponent(x.n);$('l-web').href=x.u||('https://www.google.com/search?q='+Q);$('l-goo').href='https://www.google.com/maps/search/?api=1&query='+Q;$('l-fb').href='https://www.facebook.com/search/pages/?q='+encodeURIComponent(x.n+' '+x.t);$('l-yelp').href='https://www.yelp.com/search?find_desc='+N+'&find_loc='+encodeURIComponent(x.t+', IN');$('l-ig').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana instagram');
   $('why').textContent=x.w||'';$('found').textContent=x.f||'Not looked at closely yet.';
@@ -378,7 +382,10 @@ function show(i){
   if(document.activeElement!==$('note'))$('note').value=x.note||'';$('saved').textContent='';drawPieces(i);window.scrollTo(0,0);
 }
 $('note').oninput=function(){if(cur===null)return;var id=L[cur].id,v=this.value;L[cur].note=v;$('saved').textContent='Saving...';clearTimeout(noteT);noteT=setTimeout(function(){send({op:'note',id:id,note:v},true).then(function(){$('saved').textContent='Saved for all three of us.'},function(){$('saved').textContent='Not saved. Check your signal.'})},1200)};
-$('em').onchange=function(){if(cur!==null){send({op:'email',id:L[cur].id,e:this.value.trim()}).then(function(){show(cur)},function(){})}};
+function emSave(){if(cur===null)return;var v=$('em').value.trim();if(v&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){$('em-msg').textContent='That doesn\'t look like an email address.';return}
+  if(v===(L[cur].e||'')&&!PM){$('em-msg').textContent=v?'Saved.':'';return}
+  send({op:'email',id:L[cur].id,e:v}).then(function(){var y=window.pageYOffset;show(cur);window.scrollTo(0,y);$('em-msg').textContent=PM?'Practice mode is on, so this is NOT saved. Stop practicing to save it for real.':(v?'Saved for all three of us.':'Email taken off.')},function(){$('em-msg').textContent='Not saved. Check your signal and tap Save again.'})}
+$('em').onchange=emSave;$('em-save').onclick=emSave;
 $('undo').onclick=function(){if(cur===null)return;send({op:'undo',id:L[cur].id}).then(function(){show(cur)},function(){})};
 $('a-save').onclick=function(){var n=$('a-n').value.trim();if(!n){$('a-msg').textContent='Put in the shop name first.';return}
   send({op:'add',n:n,k:$('a-k').value.trim(),t:$('a-t').value.trim(),a:$('a-a').value.trim(),p:$('a-p').value.trim(),g:$('a-g').value,w:$('a-w').value.trim(),u:$('a-u').value.trim()}).then(function(){['a-n','a-k','a-t','a-a','a-p','a-u','a-w'].forEach(function(k){$(k).value=''});$('a-msg').textContent='Saved. It is on the list for all three of us.';draw()},function(){$('a-msg').textContent='Could not save it.'})};
@@ -394,11 +401,12 @@ $('letgo').onclick=function(){
   var ids=[];L.forEach(function(x,i){if(ME&&x.wk===ME&&stg(i)===STAGES[0]&&!pworked(i))ids.push(x.id)});if(!ids.length)return;
   if(!confirm('Let go of '+ids.length+(ids.length===1?' shop':' shops')+' you haven\'t touched yet? Jimmy and Paul can pick them up. Shops you\'ve already worked stay yours.'))return;
   var run=function(k){if(k>=ids.length){draw();msg('Done. '+ids.length+(ids.length===1?' shop is':' shops are')+' back for anyone to pick up.');return}send({op:'claim',id:ids[k],on:false},true).then(function(){run(k+1)},function(){draw();msg('Only '+k+' of '+ids.length+' let go. Tap it again in a minute.')})};run(0)};
-function pmShow(){$('pm').style.display=PM?'block':'none';$('pmb').textContent=PM?'Stop practicing':'Practice mode';$('pmb').className=PM?'chip on':'chip';document.title=(PM?'PRACTICE · ':'')+'Leads · 2 Guys and a Genie'}
+function pmShow(){[].forEach.call(document.querySelectorAll('.pmbar'),function(e){e.style.display=PM?'block':'none'});$('pm').style.display=PM?'block':'none';$('pmb').textContent=PM?'Stop practicing':'Practice mode';$('pmb').className=PM?'chip on':'chip';document.title=(PM?'PRACTICE · ':'')+'Leads · 2 Guys and a Genie'}
 $('pmb').onclick=function(){
   if(!PM){PM=true;try{sessionStorage.setItem('2g-practice','1')}catch(e){};L=JSON.parse(JSON.stringify(L));pmShow();draw();if(cur!==null)show(cur);msg('Practice mode is on. Try anything.');return}
   PM=false;try{sessionStorage.removeItem('2g-practice')}catch(e){};pmShow();msg('Back to the real list.');var c=kept();if(c){take(c.j,true);draw();route()}load();
 };
+[].forEach.call(document.querySelectorAll('.pmstop'),function(b){b.onclick=function(){if(PM)$('pmb').onclick()}});
 pmShow();
 $('back').onclick=function(){up('');load()};
 // Where you are lives in the address bar: #lead=<shop> and #lead=<shop>&say=<script>. Back and Forward just work.
@@ -451,10 +459,22 @@ function lastRec(i,pid){var ps=L[i].ps||[];for(var k=ps.length-1;k>=0;k--)if(ps[
 // No owner name on file: the greeting line is left off and the piece just starts.
 function fill(t,x){var fn=(x.fn||'').trim();if(fn)return t.split('[First Name]').join(fn);
   var a=t.split('\n'),o=[];for(var k=0;k<a.length;k++){if(a[k].indexOf('[First Name]')>=0){if(a[k+1]!==undefined&&!a[k+1].trim())k++;continue}o.push(a[k])}return o.join('\n')}
-function orig(i,pid){var p=mine(pid);return p?{subj:fill(p.subj||'',L[i]),body:fill(p.body||'',L[i])}:null}
+var SENDERS={Paul:{full:'Paul Lorkowski',first:'Paul',pair:'Jimmy and I',started:'Jimmy and I',about:'I ran a business here in Hamilton County for 20 years before I sold it.'},
+  Jimmy:{full:'Jimmy Davis',first:'Jimmy',pair:'Paul and I',started:'Paul and I',about:''},
+  Daegan:{full:'Daegan Smith',first:'Daegan',pair:'Jimmy, Paul and I',started:'Jimmy and Paul',about:''}};
+// Turn the master email into one from the person sending it. Missing info (a line about you) is just left out.
+function asSender(t,who){var S=SENDERS[who];if(!S||who==='Paul')return t;
+  t=t.split('I ran a business here in Hamilton County for 20 years before I sold it.').join(S.about||'\u0000');t=t.replace(/\u0000\n\n?/g,'').replace(/\u0000/g,'');
+  t=t.split('Jimmy and I started this business').join(S.started+' started this business');
+  t=t.split('Now my partner Jimmy and I help').join((S.about?'Now ':'')+(who==='Daegan'?'Jimmy, Paul and I':(S.about?'my partner Paul and I':'My partner Paul and I'))+' help');
+  if(who==='Daegan'){t=t.split('Paul Lorkowski, from Fishers').join('Daegan Smith, with Jimmy and Paul in Fishers');t=t.split('before I call or stop by this week').join('before I call this week')}
+  t=t.split('Jimmy and I are hosting').join(S.pair+' are hosting');
+  t=t.split('Paul Lorkowski').join(S.full);
+  return t.replace(/^Paul$/m,S.first)}
+function orig(i,pid){var a=anyPiece(pid),p=mine(pid)||(a&&a.kind==='email'?piece(pid,'Paul'):null);if(!p)return null;var w=a.kind==='email'&&!mine(pid)?ME:'Paul';return {subj:fill(asSender(p.subj||'',w),L[i]),body:fill(asSender(p.body||'',w),L[i])}}
 // Can this piece go to this shop right now? (Do not contact, the cold pieces stopped, no address or email, not written for you, or already gone: no.)
 function avail(i,pid){var x=L[i],a=anyPiece(pid),r=lastRec(i,pid);if(!a||x.dnc)return false;if(r&&r.st!=='notsent')return false;if(STAGES.indexOf(stg(i))>=COLD)return false;
-  if(a.kind!=='email')return false;return !!(x.e||'').trim()&&!!mine(pid)}
+  if(a.kind!=='email')return false;return !!(x.e||'').trim()&&!!(mine(pid)||piece(pid,'Paul'))}
 function pworked(i){return (L[i].ps||[]).some(function(r){return r.st==='sent'})}
 function holes(t){return (t.match(/\[[^\]\n]*\]/g)||[]).filter(function(h){return h!=='[QR]'})}
 function pstate(i,pid){
@@ -464,7 +484,6 @@ function pstate(i,pid){
   if(x.dnc)return {t:'Do not contact',s:'Do not contact',c:'no'};
   var pre=r&&r.st==='notsent'?'Not sent ('+fmt(r.ts)+', '+r.by+': '+r.why+'). ':'',ps=r&&r.st==='notsent'?'Not sent: '+r.why:'';
   if(a.kind==='email'&&!(x.e||'').trim())return {t:pre+'Skipped: no email address for this shop. It gets mail and calls.',s:ps||'No email address',c:pre?'no':''};
-  if(a.kind==='email'&&!mine(pid))return {t:pre+'Not written for '+(ME||'you')+' yet. Only Paul\'s version is written.',s:ps||'Not written for '+(ME||'you')+' yet',c:pre?'no':''};
   if(a.kind==='mail'&&!(x.a||'').trim())return {t:pre+'No mailing address on file.',s:ps||'No mailing address',c:pre?'no':''};
   var d=(x.dr||{})[pid],cold=STAGES.indexOf(st)>=COLD;
   return {t:pre+(d?'Draft started by '+d.by+', '+fmt(d.ts)+'.':'Not sent yet.')+(cold?' The cold pieces have stopped for this shop ('+st+').':''),s:ps||(cold?'Stopped':d?'Draft started':'Not yet'),c:pre?'no':''};
@@ -487,7 +506,7 @@ function drawPieces(i){
   else{var why=x.dnc?'Do not contact.':done===E.length&&E.length?'All three emails are done for this shop.':STAGES.indexOf(stg(i))>=COLD?'The cold emails have stopped for this shop.':!(x.e||'').trim()?'No email address for this shop yet.':'No email to send right now.';
     var hn=document.createElement('b');hn.textContent=why;card.appendChild(hn);
     if(!x.dnc&&!(x.e||'').trim()){var sn=document.createElement('span');sn.textContent='Find their email and paste it in above, and the emails open up.';card.appendChild(sn)}
-    else if(!x.dnc&&done<E.length&&STAGES.indexOf(stg(i))<COLD&&E.length&&!mine(E[0])){var sn2=document.createElement('span');sn2.textContent='The emails are not written for '+(ME||'you')+' yet.';card.appendChild(sn2)}}
+}
   if(PIECES.length)top.appendChild(card);
   $('pcall').querySelector('summary').textContent='See all three emails ('+done+' of '+E.length+' done)';
   E.forEach(function(pid){var a=anyPiece(pid),b=document.createElement('button');b.type='button';b.className='pc row2';
@@ -545,7 +564,7 @@ function pedit(pid){
   if(x.dnc)warn('Do not contact. Nothing goes to this shop.');
   else if(!done){
     if(em&&!(x.e||'').trim())warn('No email address for this shop, so this email is skipped. Paste one in on the shop page, under "Find Their Email", and it opens up.',1);
-    if(em&&!pc)warn(a.name+' is not written for '+(ME||'you')+' yet. Only Paul\'s version is written. Whoever works a shop sends its emails as themselves.',1);
+    if(em&&!pc&&ME&&ME!=='Paul')warn('Filled in to come from you ('+ME+'). Read it over before you send'+(SENDERS[ME]&&!SENDERS[ME].about&&/Hamilton County/.test((piece(pid,'Paul')||{}).body||'')?'. Paul\'s line about his own business is left out; add a line about you if you like.':'.'),1);
     if(!em&&!(x.a||'').trim())warn('No mailing address on file for this shop, so this piece can\'t go in a mail drop.',1);
     if(STAGES.indexOf(st)>=COLD)warn('The cold pieces have stopped for this shop: it is at "'+st+'". They can\'t be sent from here. You can still mark one Not sent.');
     if(em&&x.wk&&x.wk!==ME)warn(x.wk+' is working this shop. Emails go out from whoever works it.',1);
@@ -562,7 +581,7 @@ function pedit(pid){
     $('pe-dr').textContent=d?'This is a draft by '+d.by+', '+clock(d.ts)+', for this shop only. "Back to original" throws it away.':(PEO?'These are the original words for this shop.':'');
     peAsk(key);}
   var can=avail(i,pid);
-  $('pe-send').disabled=!can;$('pe-send').textContent=em?'Send (opens your mail app)':'Send (puts it in the next mail drop)';
+  $('pe-send').disabled=!can;$('pe-gmail').disabled=!can;$('pe-send').textContent='Send From My Mail App';
   $('pe-orig').disabled=!PEO;$('pe-copy').parentNode.style.display=em&&can?'block':'none';
   pcount();
   $('pe-found').textContent=x.f||'Not looked at closely yet.';$('pe-note').textContent=x.note||'No notes yet.';
@@ -580,26 +599,28 @@ var ASK=null,AK='2g-asks';
 function asks(){try{return JSON.parse(localStorage.getItem(AK)||'{}')||{}}catch(e){return {}}}
 function askLoad(k){return asks()[k]||null}
 function askSet(subj,body){ASK={k:PEK,subj:subj,body:body,ts:Date.now()};if(!PM){try{var A=asks();A[PEK]=ASK;localStorage.setItem(AK,JSON.stringify(A))}catch(e){}}askShow()}
-function askShow(){$('pe-more').style.display='none';$('pe-mhelp').style.display='none';$('pe-subj').value=ASK.subj;$('pe-body').value=ASK.body;$('pe-subj').readOnly=$('pe-body').readOnly=true;$('pe-ask').style.display='block';$('pe-send').style.display='none';
+function askShow(){$('pe-gmail').style.display='none';$('pe-more').style.display='none';$('pe-mhelp').style.display='none';$('pe-subj').value=ASK.subj;$('pe-body').value=ASK.body;$('pe-subj').readOnly=$('pe-body').readOnly=true;$('pe-ask').style.display='block';$('pe-send').style.display='none';
   $('pe-dr').textContent='These are the words that went into your mail app. They are locked until you answer "Did it send?".'}
-function askClear(){$('pe-more').style.display='';$('pe-mhelp').style.display='';if(ASK){try{var A=asks();delete A[ASK.k];localStorage.setItem(AK,JSON.stringify(A))}catch(e){}}ASK=null;$('pe-subj').readOnly=$('pe-body').readOnly=false;$('pe-ask').style.display='none';$('pe-send').style.display='block'}
+function askClear(){$('pe-gmail').style.display='';$('pe-more').style.display='';$('pe-mhelp').style.display='';if(ASK){try{var A=asks();delete A[ASK.k];localStorage.setItem(AK,JSON.stringify(A))}catch(e){}}ASK=null;$('pe-subj').readOnly=$('pe-body').readOnly=false;$('pe-ask').style.display='none';$('pe-send').style.display='block'}
 function peAsk(key){var a=askLoad(key),c=pcur();if(a&&c&&!PM){ASK=a;if(lastRec(c.i,c.pid)&&lastRec(c.i,c.pid).st!=='notsent'){askClear();return}askShow()}else{ASK=null;$('pe-subj').readOnly=$('pe-body').readOnly=false}}
 // Get the latest record before acting on a piece, so a stale phone screen doesn't send something already sent.
 function peFresh(pid,after){if(PM)return;fetch(API+'leads',{credentials:'same-origin',cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){take(j);stash(j);if(cur!==null&&pcur()&&pcur().pid===pid){pedit(pid);if(after)after()}}).catch(function(){})}
 function peAlready(e,pid){if(!(e&&e.message==='409'))return false;askClear();PEK=null;fetch(API+'leads',{credentials:'same-origin',cache:'no-store'}).then(function(r){return r.json()}).then(function(j){take(j);show(cur);pedit(pid);var d=document.createElement('div');d.className='warn';d.textContent=e.why||'Already recorded.';$('pe-warn').insertBefore(d,$('pe-warn').firstChild);$('pe').scrollTop=0}).catch(function(){});return true}
-$('pe-send').onclick=function(){var c=pcur();if(!c||!avail(c.i,c.pid))return;var x=c.x,a=anyPiece(c.pid),em=a.kind==='email',s0=$('pe-subj').value.trim(),b0=$('pe-body').value,me=this;
+function peSend(how){var c=pcur();if(!c||!avail(c.i,c.pid))return;var x=c.x,a=anyPiece(c.pid),em=a.kind==='email',s0=$('pe-subj').value.trim(),b0=$('pe-body').value,me=$('pe-send');
   var hs=holes((em?s0+'\n':'')+b0);if(hs.length){alert('Fill in or take out '+hs.join(', ')+' first.');return}
   if(!b0.trim()){alert('The words are empty.');return}
   if(em&&!s0){alert('Put in a subject first.');return}
+  if(em&&ME&&ME!=='Paul'&&/Paul Lorkowski|^\s*Paul\s*$/m.test(s0+'\n'+b0)){alert('This still says it\'s from Paul. Change it to come from you first.');return}
   if(em&&x.wk&&x.wk!==ME&&!confirm(x.wk+' is working '+x.n+'. Emails go out from whoever works the shop. Send this from you ('+ME+') anyway?'))return;
   clearTimeout(peT);peT=null;
   if(!em){me.disabled=true;send({op:'piece',id:x.id,pid:c.pid,st:'ready',body:b0}).then(function(){me.disabled=false;show(cur);PEK=null;pedit(c.pid)},function(e){me.disabled=false;if(!peAlready(e,c.pid))peErr()});return}
   pdraft().catch(function(){});askSet(s0,b0);
   if(PM){$('pe-dr').textContent='Practice mode: your mail app does not open. Answer "Did it send?" to see how it works.'}
-  else{var m=document.createElement('a');m.href='mailto:'+encodeURIComponent((x.e||'').trim()).replace(/%40/g,'@')+'?subject='+encodeURIComponent(s0)+'&body='+encodeURIComponent(b0.replace(/\r?\n/g,'\r\n'));document.body.appendChild(m);m.click();m.parentNode.removeChild(m);
+  else{var to=(x.e||'').trim();if(how==='gmail'){window.open('https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(to)+'&su='+encodeURIComponent(s0)+'&body='+encodeURIComponent(b0),'_blank','noopener')}else{var m=document.createElement('a');m.href='mailto:'+encodeURIComponent(to).replace(/%40/g,'@')+'?subject='+encodeURIComponent(s0)+'&body='+encodeURIComponent(b0.replace(/\r?\n/g,'\r\n'));document.body.appendChild(m);m.click();m.parentNode.removeChild(m)}
     // Check, while the mail app is open, that nobody recorded this piece a moment ago.
     peFresh(c.pid,function(){var r=lastRec(cur,c.pid);if(r&&r.st!=='notsent'){var d=document.createElement('div');d.className='warn';d.textContent='Stop: '+r.by+' already sent '+a.name+' to this shop ('+clock(r.ts)+'). Don\'t press Send in your mail app.';$('pe-warn').insertBefore(d,$('pe-warn').firstChild);$('pe').scrollTop=0}})}
-  setTimeout(function(){$('pe-ask').scrollIntoView({block:'center'})},300)};
+  setTimeout(function(){$('pe-ask').scrollIntoView({block:'center'})},300)}
+$('pe-send').onclick=function(){peSend('app')};$('pe-gmail').onclick=function(){peSend('gmail')};
 $('pe-yes').onclick=function(){var c=pcur();if(!c||!ASK)return;var me=this;me.disabled=true;send({op:'piece',id:c.x.id,pid:c.pid,st:'sent',subj:ASK.subj,body:ASK.body}).then(function(){me.disabled=false;askClear();show(cur);PEK=null;pedit(c.pid)},function(e){me.disabled=false;if(!peAlready(e,c.pid))peErr()})};
 $('pe-no').onclick=function(){askClear();$('pe-dr').textContent='Nothing was recorded. Your words are kept as a draft.'};
 $('pe-orig').onclick=function(){if(!pcur()||!PEO)return;var ch=$('pe-subj').value!==PEO.subj||$('pe-body').value!==PEO.body;if(ch&&!confirm('Throw away the changes to this piece and go back to the original words?'))return;

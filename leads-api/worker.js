@@ -400,8 +400,8 @@ async function pieceAct(b, me, env, ctx) {
     if (!body.trim()) return J({ error: 'The words are empty.' }, 400);
     if (st === 'sent') {
       if (!(x.e || '').trim()) return J({ error: 'No email address for this shop.' }, 400);
-      const mine = await env.DB.prepare('SELECT 1 ok FROM pieces WHERE pid=? AND sender=?').bind(pid, me).first();
-      if (!mine) return J({ error: pc.name + ' is not written for ' + me + ' yet.' }, 400);
+      // No version for this sender yet: the page starts them from Paul's words and won't send while it still says Paul.
+      if (me !== 'Paul' && /Paul Lorkowski|^\s*Paul\s*$/m.test(subj + '\n' + body)) return J({ error: 'This still says it\'s from Paul. Change it to come from you first.' }, 400);
     }
     if (st === 'ready' && !(x.a || '').trim()) return J({ error: 'No mailing address for this shop.' }, 400);
   }
