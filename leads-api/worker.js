@@ -204,8 +204,9 @@ async function init(env) {
   if (add.length) { const s = env.DB.prepare('INSERT OR IGNORE INTO pieces (pid,sender,ord,kind,name,subj,body,tip,upd) VALUES (?,?,?,?,?,?,?,?,?)'); await env.DB.batch(add.map(p => s.bind(p.pid, p.sender, p.ord, p.kind, p.name, p.subj || '', p.body, p.tip || '', Date.now()))); }
   // What GoHighLevel was last told, so each is only sent when it changes: ga = who it's assigned to (a first name), ge = email, gd = do not contact.
   // gt = how many catch-up tries in a row have failed (it stops at 3, so a shop GoHighLevel keeps refusing isn't retried forever).
+  // gf = '1' when a new import changed the shop's details and GoHighLevel hasn't had them yet.
   // gx = whose contact it is there: 'ours' (the portal made it) or 'theirs' (it was there before, a client or a sign-up, and the portal only linked to it).
-  for (const c of ['ga TEXT', 'ge TEXT', 'gd TEXT', 'gx TEXT', 'gt INTEGER']) { try { await env.DB.prepare('ALTER TABLE leads ADD COLUMN ' + c).run(); } catch (e) {} }
+  for (const c of ['ga TEXT', 'ge TEXT', 'gd TEXT', 'gx TEXT', 'gt INTEGER', 'gf TEXT']) { try { await env.DB.prepare('ALTER TABLE leads ADD COLUMN ' + c).run(); } catch (e) {} }
   ready = true;
 }
 
@@ -283,6 +284,12 @@ async function ensure(env, x) {
   if (!go) {
     const r = await ghl(env, 'POST', '/opportunities/', { locationId: c.location, pipelineId: c.pipeline, pipelineStageId: stage, name: x.n, status: status(x.st), contactId: gc });
     go = (r.opportunity || {}).id; made = !!go;
+    if (go) {
+      // Two sends at once could both make a card: only the first one written is kept.
+      await env.DB.prepare("UPDATE leads SET go=? WHERE id=? AND COALESCE(go,'')=''").bind(go, x.id).run();
+      const y = await env.DB.prepare('SELECT go FROM leads WHERE id=?').bind(x.id).first();
+      if (y && y.go && y.go !== go) { try { await ghl(env, 'DELETE', '/opportunities/' + go); } catch (e) {} go = y.go; made = false; }
+    }
   }
   await env.DB.prepare('UPDATE leads SET gc=?, go=?, gs=CASE WHEN ? THEN ? ELSE gs END, gx=COALESCE(?, gx) WHERE id=?').bind(gc, go || null, made ? 1 : 0, stage, x.gx || null, x.id).run();
   return { gc, go };
@@ -333,6 +340,16 @@ async function push(env, id, line) {
         }
       }
     }
+    // Details changed by a new import: our own fields on any contact; name, address and website only on contacts the portal made.
+    if (x.gf === '1' && gx) {
+      try {
+        const m = /^(.*?),\s*([^,]+),\s*IN\s*(\d{5})?/.exec(x.a || '') || [];
+        const body = { customFields: [[c.f.tier, x.g || ''], [c.f.kind, x.k || ''], [c.f.found, x.f || ''], [c.f.why, x.w || '']].map(([fid, v]) => ({ id: fid, fieldValue: v, field_value: v })) };
+        if (gx === 'ours') Object.assign(body, { firstName: x.n, companyName: x.n, address1: m[1] || x.a || undefined, city: m[2] || x.t || undefined, postalCode: m[3] || undefined, website: x.u || undefined });
+        await ghl(env, 'PUT', '/contacts/' + gc, body);
+        await env.DB.prepare("UPDATE leads SET gf='' WHERE id=?").bind(id).run();
+      } catch (e) { await fail(e); }
+    }
     const f = await env.DB.prepare('SELECT dnc FROM flags WHERE lead=?').bind(id).first(), dn = f && f.dnc ? '1' : '';
     if (f && dn !== (x.gd || '')) {
       try { await ghl(env, dn ? 'POST' : 'DELETE', '/contacts/' + gc + '/tags', { tags: ['do not contact'] }); await env.DB.prepare('UPDATE leads SET gd=? WHERE id=?').bind(dn, id).run(); } catch (e) { await fail(e); }
@@ -377,10 +394,10 @@ async function pull(env) {
 // ---------- Jobs the cron runs ----------
 // Every run: catch GoHighLevel up on shops whose owner, email or Do not contact it hasn't taken yet (a missed or failed send).
 // 5 a run, fewest failed tries first, then most recently changed. After 3 failed tries in a row a shop is left alone until someone taps it again.
-// A refused email ("!" in ge) isn't retried until the email changes. Website sign-ups with no deal card are left out.
+// A refused email ("!" in ge) isn't retried until the email changes. A website sign-up with no deal card gets one here.
 async function catchUp(env) {
   if (!env.GHL_TOKEN) return;
-  const { results: L } = await env.DB.prepare("SELECT l.id FROM leads l LEFT JOIN flags f ON f.lead=l.id WHERE l.gc IS NOT NULL AND l.go IS NOT NULL AND CAST(COALESCE(l.gt,0) AS INTEGER)<3 AND (COALESCE(l.wk,'')<>COALESCE(l.ga,'') OR (TRIM(COALESCE(l.e,''), ' '||char(9,10,13))<>COALESCE(l.ge,'') AND '!' || TRIM(COALESCE(l.e,''), ' '||char(9,10,13))<>COALESCE(l.ge,'')) OR (f.lead IS NOT NULL AND (CASE WHEN f.dnc THEN '1' ELSE '' END)<>COALESCE(l.gd,''))) ORDER BY CAST(COALESCE(l.gt,0) AS INTEGER), l.upd DESC LIMIT 5").all();
+  const { results: L } = await env.DB.prepare("SELECT l.id FROM leads l LEFT JOIN flags f ON f.lead=l.id WHERE l.gc IS NOT NULL AND CAST(COALESCE(l.gt,0) AS INTEGER)<3 AND (COALESCE(l.go,'')='' OR COALESCE(l.wk,'')<>COALESCE(l.ga,'') OR (TRIM(COALESCE(l.e,''), ' '||char(9,10,13))<>COALESCE(l.ge,'') AND '!' || TRIM(COALESCE(l.e,''), ' '||char(9,10,13))<>COALESCE(l.ge,'')) OR COALESCE(l.gf,'')='1' OR (f.lead IS NOT NULL AND (CASE WHEN f.dnc THEN '1' ELSE '' END)<>COALESCE(l.gd,''))) ORDER BY CAST(COALESCE(l.gt,0) AS INTEGER), l.upd DESC LIMIT 5").all();
   for (const x of L) await push(env, x.id, null);
 }
 async function jobs(env) {
@@ -393,16 +410,21 @@ async function jobs(env) {
         const r = await fetch(j.arg, { cf: { cacheTtl: 0 } }); if (!r.ok) throw new Error('fetch ' + r.status);
         const raw = b64((await r.text()).trim()), key = await crypto.subtle.importKey('raw', b64(env.DATA_KEY), 'AES-GCM', false, ['decrypt']);
         const rows = JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: raw.slice(0, 12) }, key, raw.slice(12))));
-        const st = env.DB.prepare('INSERT INTO leads (id,g,n,k,t,a,p,u,e,rt,rv,mi,w,f,src,st,upd) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET g=excluded.g,n=excluded.n,k=excluded.k,t=excluded.t,a=excluded.a,p=excluded.p,u=excluded.u,rt=excluded.rt,rv=excluded.rv,mi=excluded.mi,w=excluded.w,f=excluded.f,src=excluded.src');
+        const st = env.DB.prepare(`INSERT INTO leads (id,g,n,k,t,a,p,u,e,rt,rv,mi,w,f,src,st,upd) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET gf=CASE WHEN leads.g IS NOT excluded.g OR leads.n IS NOT excluded.n OR leads.k IS NOT excluded.k OR leads.t IS NOT excluded.t OR leads.a IS NOT excluded.a OR leads.u IS NOT excluded.u OR leads.w IS NOT excluded.w OR leads.f IS NOT excluded.f THEN '1' ELSE leads.gf END,gt=CASE WHEN leads.g IS NOT excluded.g OR leads.n IS NOT excluded.n OR leads.k IS NOT excluded.k OR leads.t IS NOT excluded.t OR leads.a IS NOT excluded.a OR leads.u IS NOT excluded.u OR leads.w IS NOT excluded.w OR leads.f IS NOT excluded.f THEN 0 ELSE leads.gt END,g=excluded.g,n=excluded.n,k=excluded.k,t=excluded.t,a=excluded.a,p=excluded.p,u=excluded.u,rt=excluded.rt,rv=excluded.rv,mi=excluded.mi,w=excluded.w,f=excluded.f,src=excluded.src`);
         for (let i = 0; i < rows.length; i += 50) await env.DB.batch(rows.slice(i, i + 50).map(x => st.bind(x.id, x.g, x.n, x.k, x.t, x.a, x.p, x.u || '', '', x.rt, x.rv, x.mi, x.w, x.f, x.src, STAGES[0], Date.now())));
         out = 'imported ' + rows.length;
+        // New shops go into GoHighLevel too (a batch per run); changed ones are caught up by catchUp.
+        if (env.GHL_TOKEN) await env.DB.prepare('INSERT INTO jobs (kind,arg,ts) VALUES (?,?,?)').bind('ghl-load', JSON.stringify({ tiers: [...new Set(rows.map(x => x.g))], limit: 25 }), Date.now()).run();
       } else if (j.kind === 'ghl-load') {
         // arg: {"tiers":["A","B"],"limit":25}. Loads shops that aren't in GoHighLevel yet, a batch per run.
         if (!env.GHL_TOKEN) throw new Error('no GoHighLevel key yet');
         const a = JSON.parse(j.arg || '{}'), tiers = a.tiers || ['A'], lim = Math.min(a.limit || 25, 40);
-        const { results: L } = await env.DB.prepare(`SELECT * FROM leads WHERE (go IS NULL OR go='') AND g IN (${tiers.map(() => '?').join(',')}) ORDER BY id LIMIT ?`).bind(...tiers, lim).all();
-        let n = 0; for (const x of L) { await ensure(env, x); n++; }
-        const left = await env.DB.prepare(`SELECT COUNT(*) c FROM leads WHERE (go IS NULL OR go='') AND g IN (${tiers.map(() => '?').join(',')})`).bind(...tiers).first();
+        const { results: L } = await env.DB.prepare(`SELECT * FROM leads WHERE (go IS NULL OR go='') AND CAST(COALESCE(gt,0) AS INTEGER)<3 AND g IN (${tiers.map(() => '?').join(',')}) ORDER BY id LIMIT ?`).bind(...tiers, lim).all();
+        let n = 0; for (const x of L) {
+          try { await ensure(env, x); n++; }
+          catch (e) { await env.DB.batch([env.DB.prepare('INSERT INTO jobs (kind,arg,done,out,ts) VALUES (?,?,1,?,?)').bind('ghl-error', x.id, String(e).slice(0, 400), Date.now()), env.DB.prepare('UPDATE leads SET gt=CAST(COALESCE(gt,0) AS INTEGER)+1 WHERE id=?').bind(x.id)]); }
+        }
+        const left = await env.DB.prepare(`SELECT COUNT(*) c FROM leads WHERE (go IS NULL OR go='') AND CAST(COALESCE(gt,0) AS INTEGER)<3 AND g IN (${tiers.map(() => '?').join(',')})`).bind(...tiers).first();
         out = 'loaded ' + n + ', left ' + left.c;
         if (left.c > 0 && n > 0) await env.DB.prepare('INSERT INTO jobs (kind,arg,ts) VALUES (?,?,?)').bind('ghl-load', j.arg, Date.now()).run();
       } else out = 'unknown job';
@@ -424,8 +446,8 @@ async function pieceAct(b, me, env, ctx) {
   if (b.op === 'dnc') {
     const on = b.on ? 1 : 0, why = String(b.why || '').trim().slice(0, 300);
     await env.DB.prepare('INSERT INTO flags (lead,dnc,who,ts,why) VALUES (?,?,?,?,?) ON CONFLICT(lead) DO UPDATE SET dnc=excluded.dnc, who=excluded.who, ts=excluded.ts, why=excluded.why').bind(id, on, me, now, why).run();
-    ctx.waitUntil(push(env, id, on ? me + ' marked this shop DO NOT CONTACT. Nothing more goes to them.' + (why ? ' Why: ' + why : '') : me + ' took off Do not contact.'));
-    return J(await all(env, me));
+    const g = await push(env, id, on ? me + ' marked this shop DO NOT CONTACT. Nothing more goes to them.' + (why ? ' Why: ' + why : '') : me + ' took off Do not contact.');
+    return J({ ...(await all(env, me)), ghlr: g });
   }
   const pc = await env.DB.prepare('SELECT pid,kind,name FROM pieces WHERE pid=? ORDER BY sender LIMIT 1').bind(pid).first(); if (!pc) return J({ error: 'no such piece' }, 404);
   if (b.op === 'draft') {
@@ -544,6 +566,7 @@ async function record(env, b, who) {
   }
   const to = STAGES.includes(b.stage) ? b.stage : (x.st || STAGES[0]);
   await env.DB.batch([env.DB.prepare('INSERT INTO ev (lead,ts,who,a,p) VALUES (?,?,?,?,?)').bind(x.id, now, who, what, x.st || STAGES[0]), env.DB.prepare('UPDATE leads SET st=?, upd=? WHERE id=?').bind(to, now, x.id)]);
+  // Its deal card goes on the board at the next catch-up (within about 3 minutes), so the person booking never waits on GoHighLevel.
   return { ok: 1, id: x.id };
 }
 

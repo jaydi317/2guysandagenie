@@ -136,6 +136,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <details id="pcall" style="margin:0 0 8px"><summary style="cursor:pointer;font-size:15px;text-decoration:underline">See all three emails</summary><div id="pcs" style="margin-top:8px"></div></details>
 <details id="pmail" style="margin:0 0 8px"><summary style="cursor:pointer;font-size:15px;text-decoration:underline">Mail to this shop</summary><div id="pms" style="margin-top:8px"></div></details>
 <p style="margin:0 0 6px"><button class="back" id="dncb" type="button" style="font-size:14px"></button></p>
+<p class="saved" id="dnc-msg" style="font-weight:bold;margin:0 0 6px"></p>
 <p class="lab">Look Them Up</p>
 <div class="row" id="look">
 <a class="chip" id="l-web" target="_blank" rel="noopener" href="#">Website</a>
@@ -380,7 +381,7 @@ function show(i){
   wk.onclick=function(){var on=x.wk!==ME;send({op:'claim',id:x.id,on:on}).then(function(j){show(cur);if(!PM)$('wk-msg').textContent=((on?'This one is yours.':'You let it go. Anyone can pick it up.')+ghlSays(j,on?'It\'s assigned to you in GoHighLevel too.':'It\'s unassigned in GoHighLevel too.'))},function(){})};
   $('call').style.display=x.p?'block':'none';$('call').textContent='Call '+(x.p||'');$('call').href='tel:'+(x.p||'').replace(/\D/g,'');
   $('map').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x.a||(x.n+' '+x.t+' Indiana'));
-  var fe=x.e||'';$('em').value=fe;$('em-msg').textContent='';$('wk-msg').textContent='';$('find').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana contact email');
+  var fe=x.e||'';$('em').value=fe;$('em-msg').textContent='';$('wk-msg').textContent='';$('dnc-msg').textContent='';$('find').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana contact email');
   if(fe){$('mail').style.display='block';$('mail-sub').style.display='';$('mail').textContent='Write Your Own Email From Scratch';$('mail').href='mailto:'+fe}else{$('mail').style.display='none';$('mail-sub').style.display='none'}
   var Q=encodeURIComponent(x.n+' '+x.t+' Indiana'),N=encodeURIComponent(x.n);$('l-web').href=x.u||('https://www.google.com/search?q='+Q);$('l-goo').href='https://www.google.com/maps/search/?api=1&query='+Q;$('l-fb').href='https://www.facebook.com/search/pages/?q='+encodeURIComponent(x.n+' '+x.t);$('l-yelp').href='https://www.yelp.com/search?find_desc='+N+'&find_loc='+encodeURIComponent(x.t+', IN');$('l-ig').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana instagram');
   $('why').textContent=x.w||'';$('found').textContent=x.f||'Not looked at closely yet.';
@@ -537,9 +538,9 @@ function drawPieces(i){
   var bar=$('dncbar');if(x.dnc){bar.style.display='block';bar.textContent='DO NOT CONTACT. Marked by '+x.dnc.by+', '+fmt(x.dnc.ts)+(x.dnc.why?': '+x.dnc.why:'')+'. Nothing more goes to this shop: no mail, no email, no calls.'}else bar.style.display='none';
   var db=$('dncb');db.textContent=x.dnc?'Take off "Do not contact"':'Mark "Do not contact" (stops everything for this shop)';
   db.onclick=function(){
-    if(x.dnc){if(!confirm('Take off "Do not contact" for '+x.n+'?'))return;send({op:'dnc',id:x.id,on:false}).then(function(){show(cur)},function(){});return}
+    if(x.dnc){if(!confirm('Take off "Do not contact" for '+x.n+'?'))return;send({op:'dnc',id:x.id,on:false}).then(function(j){show(cur);if(!PM)$('dnc-msg').textContent='"Do not contact" is off.'+ghlSays(j,'The tag is off in GoHighLevel too.')},function(){});return}
     var why=prompt('Mark '+x.n+' "Do not contact"? Nothing more goes to them: no mail, no email, no calls. A few words on why:','');if(why===null)return;
-    send({op:'dnc',id:x.id,on:true,why:why}).then(function(){show(cur)},function(){})};
+    send({op:'dnc',id:x.id,on:true,why:why}).then(function(j){show(cur);if(!PM)$('dnc-msg').textContent='Marked "Do not contact."'+ghlSays(j,'It\'s tagged "do not contact" in GoHighLevel too.')},function(){})};
 }
 var PEK=null,peT=null,PEO=null,PEF=null; // the open piece (shop|piece), the draft timer, the piece's original words for this shop
 function pcur(){if(!PEK||cur===null)return null;var k=PEK.split('|');if(L[cur].id!==k[0])return null;return {i:cur,x:L[cur],pid:k[1]}}
