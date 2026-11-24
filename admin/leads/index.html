@@ -26,7 +26,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 #one h2{font-size:26px;margin:10px 0 2px}
 .lab{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;margin:18px 0 2px}
 .big{display:block;font-size:19px;font-weight:bold;padding:12px 14px;border:3px solid #111;text-decoration:none;margin:8px 0;text-align:center}
-.big.dark{background:#111;color:#fff}button.big.dark{background:#111 !important}
+.big.dark{background:#111;color:#fff}button.big.dark{background:#111 !important}.big.blue{background:#dceeff;border-color:#111;color:#111;box-shadow:4px 4px 0 #111;margin-bottom:12px}.pc.one.lockd{border:3px solid #111;background:#dceeff;box-shadow:6px 6px 0 #111;margin-bottom:14px}.pc.lockd b{color:#111}.pc.lockd span{color:#111}.pc.lockd a{color:#1d3fbf;font-weight:bold}
 #note{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;min-height:90px}
 .back{font:inherit;font-size:16px;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;color:#111}
 .now{border:3px solid #111;padding:12px 14px;margin:12px 0 14px;background:#FFF3C4}.now p{margin:0 0 6px}.now .k{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;display:block}.now .v{font-size:19px;font-weight:bold}.now .big{background:#fff;margin:8px 0 0}
@@ -127,13 +127,13 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <a class="big" id="map" href="#" target="_blank" rel="noopener">Directions</a>
 <a class="big" id="mail" href="#">Email</a>
 <p class="sub" id="mail-sub" style="margin:-4px 0 10px">Opens a blank email to this shop in your mail app. The ready-made emails are further down, under Mail And Email.</p>
-<a class="big" id="find" href="#" target="_blank" rel="noopener">Find Their Email</a>
+<a class="big blue" id="find" href="#" target="_blank" rel="noopener">Find Their Email</a>
 <input id="em" type="email" placeholder="Paste the email you found here" autocomplete="off" style="width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;margin:0 0 4px">
 <p style="margin:0 0 4px"><button class="chip on" type="button" id="em-save">Save This Email</button> <span class="saved" id="em-msg" style="font-weight:bold"></span></p>
 <p class="lab">Mail And Email</p>
-<p class="sub" style="font-size:14px;margin:0 0 8px">Emails: make it personal, then send it from your own mail app. Mail goes to every shop in batches, so there is nothing to do here, only something to look at.</p>
+<p class="sub" style="font-size:14px;margin:0 0 8px">Emails: make each one personal, then send it from your own mail app. Paper letters go to every shop in batches, so there is nothing to do for those, only something to look at.</p>
 <div id="pcnext"></div>
-<div id="pcall" style="margin:0 0 8px"><p class="lab" id="pcall-h" style="margin:14px 0 2px">The Three Emails, In Order</p><p class="sub" style="font-size:14px;margin:0 0 8px">Each one opens after the one before it is sent.</p><div id="pcs"></div></div>
+<div id="pcall" style="margin:0 0 8px"><p class="lab" id="pcall-h" style="margin:14px 0 2px">The Three Emails, In Order</p><p class="sub" id="pcall-s" style="font-size:14px;margin:0 0 8px">Each one unlocks after the one before it is sent.</p><div id="pcs"></div></div>
 <details id="pmail" style="margin:0 0 8px"><summary style="cursor:pointer;font-size:15px;text-decoration:underline">Mail to this shop</summary><div id="pms" style="margin-top:8px"></div></details>
 <p style="margin:0 0 6px"><button class="back" id="dncb" type="button" style="font-size:14px"></button></p>
 <p class="saved" id="dnc-msg" style="font-weight:bold;margin:0 0 6px"></p>
@@ -525,15 +525,15 @@ function drawPieces(i){
     var gb=document.createElement('span');gb.className='go';gb.textContent='Open '+anyPiece(lead).name+' →';card.appendChild(gb);card.onclick=open(lead)}
   else{var why=x.dnc?'Do not contact.':done===E.length&&E.length?'All three emails are done for this shop.':STAGES.indexOf(stg(i))>=COLD?'The cold emails have stopped for this shop.':!(x.e||'').trim()?'No email address for this shop yet.':'No email to send right now.';
     var hn=document.createElement('b');hn.textContent=why;card.appendChild(hn);
-    if(!x.dnc&&!(x.e||'').trim()){var sn=document.createElement('span');sn.textContent='Find their email and paste it in above, and the emails open up.';card.appendChild(sn)}
+    if(!x.dnc&&!(x.e||'').trim()){hn.textContent='We don\'t have their email yet, so the emails are locked.';card.className='pc one lockd';var sn=document.createElement('span');var fl=document.createElement('a');fl.href=$('find').href;fl.target='_blank';fl.rel='noopener';sn.appendChild(document.createTextNode('Tap '));fl.textContent='Find Their Email';sn.appendChild(fl);sn.appendChild(document.createTextNode(' to search for it. Paste it in above and tap Save This Email. Email 1 unlocks right away.'));card.appendChild(sn)}
 }
   if(PIECES.length&&!lead)top.appendChild(card); // with an email ready, the list below shows it in place
-  $('pcall-h').textContent='The Three Emails, In Order ('+done+' of '+E.length+' done)';
+  $('pcall-h').textContent='The Three Emails, In Order ('+done+' of '+E.length+' sent)';$('pcall-s').textContent=!(x.e||'').trim()&&!x.dnc?'Read all three below. They unlock in order, starting with Email 1.':'Each one unlocks after the one before it is sent.';
   E.forEach(function(pid,n){var a=anyPiece(pid),s0=pstate(i,pid),lk=s0.done?'':lockedBy(i,pid),can=avail(i,pid),d=document.createElement('div');d.className='pseq'+(lk||(!can&&!s0.done&&pid!==wait)?' off':'');
     var h=document.createElement('p');h.className='ph';var hb=document.createElement('b');hb.textContent=(n+1)+' of '+E.length+': '+a.name;h.appendChild(hb);
-    var sp=document.createElement('span');sp.textContent=pid===wait?'Waiting: did it send?':s0.done?s0.s:lk?'Opens after '+lk+' is sent':s0.s;if(s0.c)sp.className=s0.c;if(pid===wait)sp.className='no';h.appendChild(sp);d.appendChild(h);
+    var sp=document.createElement('span');sp.textContent=pid===wait?'Waiting: did it send?':s0.done?s0.s:lk?'Unlocks after '+lk+' is sent':!(x.e||'').trim()&&!x.dnc?'Locked until we have their email':s0.s;if(s0.c)sp.className=s0.c;if(pid===wait)sp.className='no';h.appendChild(sp);d.appendChild(h);
     if(!s0.done){var o=orig(i,pid);if(o){var sj=document.createElement('p');sj.className='psj';sj.textContent='Subject: '+o.subj;d.appendChild(sj);var bd=document.createElement('div');bd.className='pbd';bd.textContent=o.body;d.appendChild(bd)}}
-    var note='',btn='';if(pid===wait)btn='Did it send? Tap to answer →';else if(s0.done)btn='See what went →';else if(can)btn='Make It Personal And Send →';else if(x.dnc)note='';else if(lk)note='You can send this one once '+lk+' has gone.';else if(!(x.e||'').trim())note='Opens once their email is saved above, under "Find Their Email".';
+    var note='',btn='';if(pid===wait)btn='Did it send? Tap to answer →';else if(s0.done)btn='See what went →';else if(can)btn='Make It Personal And Send →';else if(x.dnc)note='';else if(lk)note='';else if(!(x.e||'').trim())note='';
     if(btn){var b=document.createElement('button');b.type='button';b.className='pc one';var bb2=document.createElement('b');bb2.textContent=btn;b.appendChild(bb2);b.onclick=open(pid);d.appendChild(b)}
     if(note){var nt=document.createElement('p');nt.className='pnt';nt.textContent=note;d.appendChild(nt)}
     box.appendChild(d)});
