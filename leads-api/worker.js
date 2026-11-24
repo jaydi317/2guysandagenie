@@ -202,6 +202,10 @@ async function init(env) {
   // A piece already in the database is never overwritten from here; a new piece or a new sender's version is added.
   const have = await env.DB.prepare('SELECT pid, sender FROM pieces').all(), got = new Set(have.results.map(r => r.pid + '|' + r.sender)), add = SEED.filter(p => !got.has(p.pid + '|' + p.sender));
   if (add.length) { const s = env.DB.prepare('INSERT OR IGNORE INTO pieces (pid,sender,ord,kind,name,subj,body,tip,upd) VALUES (?,?,?,?,?,?,?,?,?)'); await env.DB.batch(add.map(p => s.bind(p.pid, p.sender, p.ord, p.kind, p.name, p.subj || '', p.body, p.tip || '', Date.now()))); }
+  // What GoHighLevel was last told, so each is only sent when it changes: ga = who it's assigned to (a first name), ge = email, gd = do not contact.
+  // gt = how many catch-up tries in a row have failed (it stops at 3, so a shop GoHighLevel keeps refusing isn't retried forever).
+  // gx = whose contact it is there: 'ours' (the portal made it) or 'theirs' (it was there before, a client or a sign-up, and the portal only linked to it).
+  for (const c of ['ga TEXT', 'ge TEXT', 'gd TEXT', 'gx TEXT', 'gt INTEGER']) { try { await env.DB.prepare('ALTER TABLE leads ADD COLUMN ' + c).run(); } catch (e) {} }
   ready = true;
 }
 
@@ -264,30 +268,80 @@ async function ensure(env, x) {
     let ex = null;
     if (body.phone) { try { ex = (await ghl(env, 'GET', `/contacts/search/duplicate?locationId=${c.location}&number=${encodeURIComponent(body.phone)}`)).contact || null; } catch (e) {} }
     if (ex && ex.id) {
-      gc = ex.id;
+      gc = ex.id; x.gx = 'theirs';
       await ghl(env, 'PUT', '/contacts/' + gc, { customFields: body.customFields });
       await ghl(env, 'POST', '/contacts/' + gc + '/tags', { tags: body.tags });
     } else {
       const r = await ghl(env, 'POST', '/contacts/', body);
-      gc = (r.contact || {}).id; if (!gc) throw new Error('no contact id');
+      gc = (r.contact || {}).id; if (!gc) throw new Error('no contact id'); x.gx = 'ours';
     }
   }
   const stage = c.stages[x.st || STAGES[0]];
+  // gs (the stage GoHighLevel has) is only written here when the deal card is made. A stage change is written after GoHighLevel takes it,
+  // so a refused change can't make the next check-back move the shop backwards.
+  let made = false;
   if (!go) {
     const r = await ghl(env, 'POST', '/opportunities/', { locationId: c.location, pipelineId: c.pipeline, pipelineStageId: stage, name: x.n, status: status(x.st), contactId: gc });
-    go = (r.opportunity || {}).id;
+    go = (r.opportunity || {}).id; made = !!go;
   }
-  await env.DB.prepare('UPDATE leads SET gc=?, go=?, gs=? WHERE id=?').bind(gc, go || null, stage, x.id).run();
+  await env.DB.prepare('UPDATE leads SET gc=?, go=?, gs=CASE WHEN ? THEN ? ELSE gs END, gx=COALESCE(?, gx) WHERE id=?').bind(gc, go || null, made ? 1 : 0, stage, x.gx || null, x.id).run();
   return { gc, go };
 }
+// Everything the portal knows about a shop also goes onto its GoHighLevel contact, so GoHighLevel can carry the work if the site is down:
+// the stage (deal card), who is working it (assigned to, on the contact and the deal), its email, Do not contact (a tag),
+// and every step as a note. Returns 'ok', 'off' (no GoHighLevel key), or the first thing GoHighLevel refused.
 async function push(env, id, line) {
-  if (!env.GHL_TOKEN) return;
+  if (!env.GHL_TOKEN) return 'off';
+  const bad = []; let mode = 'ok';
+  const fail = async e => { bad.push(String(e).slice(0, 300)); try { await env.DB.prepare('INSERT INTO jobs (kind,arg,done,out,ts) VALUES (?,?,1,?,?)').bind('ghl-error', id, String(e).slice(0, 400), Date.now()).run(); } catch (e2) {} };
   try {
-    const x = await env.DB.prepare('SELECT * FROM leads WHERE id=?').bind(id).first(); if (!x) return;
+    const x = await env.DB.prepare('SELECT * FROM leads WHERE id=?').bind(id).first(); if (!x) return 'off';
     const c = cfg(env), had = x.go, { gc, go } = await ensure(env, x), stage = c.stages[x.st || STAGES[0]];
-    if (go && had && x.gs !== stage) { await ghl(env, 'PUT', '/opportunities/' + go, { pipelineStageId: stage, status: status(x.st) }); await env.DB.prepare('UPDATE leads SET gs=? WHERE id=?').bind(stage, id).run(); }
-    if (line) await ghl(env, 'POST', '/contacts/' + gc + '/notes', { body: line });
-  } catch (e) { await env.DB.prepare('INSERT INTO jobs (kind,arg,done,out,ts) VALUES (?,?,1,?,?)').bind('ghl-error', id, String(e).slice(0, 400), Date.now()).run(); }
+    if (go && had && x.gs !== stage) { try { await ghl(env, 'PUT', '/opportunities/' + go, { pipelineStageId: stage, status: status(x.st) }); await env.DB.prepare('UPDATE leads SET gs=? WHERE id=?').bind(stage, id).run(); } catch (e) { await fail(e); } }
+    // Whose contact is it? Shops loaded before this check have no gx yet: look once.
+    let gx = x.gx;
+    if (!gx) { try { const k = (await ghl(env, 'GET', '/contacts/' + gc)).contact || {}; gx = k.source === 'Local Business Database' ? 'ours' : 'theirs'; await env.DB.prepare('UPDATE leads SET gx=? WHERE id=?').bind(gx, id).run(); } catch (e) { await fail(e); } }
+    // Re-read right before sending, so a take and a let-go tapped fast both land in the right order.
+    const y = await env.DB.prepare('SELECT wk,e,ga,ge FROM leads WHERE id=?').bind(id).first() || x;
+    const wk = y.wk || '', uid = ((c.users || {})[wk]) || '', em = (y.e || '').trim();
+    if (gx === 'theirs') {
+      // A contact that was in GoHighLevel before the portal (a client, a sign-up) keeps its own owner and email. A note says what changed instead.
+      if (wk !== (y.ga || '') || em !== (y.ge || '').replace(/^!/, '')) {
+        try {
+          await ghl(env, 'POST', '/contacts/' + gc + '/notes', { body: 'Lead portal: ' + (wk ? wk + ' is working this shop.' : 'Nobody is working this shop.') + (em ? ' Email on file: ' + em + '.' : '') + ' (This contact was here before the portal, so its owner and email were left as they are.)' });
+          await env.DB.prepare('UPDATE leads SET ga=?, ge=? WHERE id=?').bind(wk, em, id).run();
+        } catch (e) { await fail(e); }
+      }
+    } else if (gx === 'ours') {
+      if (wk !== (y.ga || '')) {
+        if (wk && !uid) await fail('No GoHighLevel user is set up for ' + wk + ', so the shop is not assigned there.');
+        else {
+          try {
+            await ghl(env, 'PUT', '/contacts/' + gc, { assignedTo: uid || null });
+            if (go) await ghl(env, 'PUT', '/opportunities/' + go, { assignedTo: uid || null });
+            await env.DB.prepare('UPDATE leads SET ga=? WHERE id=? AND COALESCE(wk,\'\')=?').bind(wk, id, wk).run();
+          } catch (e) { await fail(e); }
+        }
+      }
+      // ge is the email GoHighLevel last took, or "!" + the email it refused, so a refused one isn't tried again on every tap.
+      if (em !== (y.ge || '') && '!' + em !== (y.ge || '')) {
+        try { await ghl(env, 'PUT', '/contacts/' + gc, { email: em || null }); await env.DB.prepare('UPDATE leads SET ge=? WHERE id=?').bind(em, id).run(); }
+        catch (e) {
+          const dup = em && /duplicat|already|exist/i.test(String(e));
+          if (dup) await env.DB.prepare('UPDATE leads SET ge=? WHERE id=?').bind('!' + em, id).run();
+          await fail(dup ? 'Another GoHighLevel contact already has ' + em + '. ' + e : e);
+        }
+      }
+    }
+    const f = await env.DB.prepare('SELECT dnc FROM flags WHERE lead=?').bind(id).first(), dn = f && f.dnc ? '1' : '';
+    if (f && dn !== (x.gd || '')) {
+      try { await ghl(env, dn ? 'POST' : 'DELETE', '/contacts/' + gc + '/tags', { tags: ['do not contact'] }); await env.DB.prepare('UPDATE leads SET gd=? WHERE id=?').bind(dn, id).run(); } catch (e) { await fail(e); }
+    }
+    if (line) { try { await ghl(env, 'POST', '/contacts/' + gc + '/notes', { body: line }); } catch (e) { await fail(e); } }
+    if (gx === 'theirs') mode = 'theirs';
+  } catch (e) { await fail(e); }
+  try { await env.DB.prepare(bad.length ? 'UPDATE leads SET gt=CAST(COALESCE(gt,0) AS INTEGER)+1 WHERE id=?' : 'UPDATE leads SET gt=0 WHERE id=?').bind(id).run(); } catch (e) {}
+  return bad.length ? bad[0] : mode;
 }
 async function pushNote(env, id) {
   if (!env.GHL_TOKEN) return;
@@ -321,6 +375,14 @@ async function pull(env) {
 }
 
 // ---------- Jobs the cron runs ----------
+// Every run: catch GoHighLevel up on shops whose owner, email or Do not contact it hasn't taken yet (a missed or failed send).
+// 5 a run, fewest failed tries first, then most recently changed. After 3 failed tries in a row a shop is left alone until someone taps it again.
+// A refused email ("!" in ge) isn't retried until the email changes. Website sign-ups with no deal card are left out.
+async function catchUp(env) {
+  if (!env.GHL_TOKEN) return;
+  const { results: L } = await env.DB.prepare("SELECT l.id FROM leads l LEFT JOIN flags f ON f.lead=l.id WHERE l.gc IS NOT NULL AND l.go IS NOT NULL AND CAST(COALESCE(l.gt,0) AS INTEGER)<3 AND (COALESCE(l.wk,'')<>COALESCE(l.ga,'') OR (TRIM(COALESCE(l.e,''), ' '||char(9,10,13))<>COALESCE(l.ge,'') AND '!' || TRIM(COALESCE(l.e,''), ' '||char(9,10,13))<>COALESCE(l.ge,'')) OR (f.lead IS NOT NULL AND (CASE WHEN f.dnc THEN '1' ELSE '' END)<>COALESCE(l.gd,''))) ORDER BY CAST(COALESCE(l.gt,0) AS INTEGER), l.upd DESC LIMIT 5").all();
+  for (const x of L) await push(env, x.id, null);
+}
 async function jobs(env) {
   const { results } = await env.DB.prepare('SELECT * FROM jobs WHERE done=0 ORDER BY id LIMIT 3').all();
   for (const j of results) {
@@ -424,6 +486,7 @@ async function act(b, me, env, ctx) {
     const n = String(b.n || '').trim().slice(0, 120); if (!n) return J({ error: 'name' }, 400);
     const nid = 'C' + now.toString(36).toUpperCase(), s = v => String(v || '').trim().slice(0, 400);
     await env.DB.prepare('INSERT INTO leads (id,g,n,k,t,a,p,u,e,w,f,src,custom,st,upd) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,1,?,?)').bind(nid, ['A', 'B', 'Worth a visit'].includes(b.g) ? b.g : 'Worth a visit', n, s(b.k) || 'Business', s(b.t) || 'Town not set', s(b.a), s(b.p), s(b.u), '', s(b.w) || 'Added by hand.', '', 'Added by ' + me, STAGES[0], now).run();
+    ctx.waitUntil(push(env, nid, me + ' added this shop to the lead portal by hand.'));
     return J(await all(env, me));
   }
   if (['piece', 'pieceback', 'draft', 'words', 'dnc'].includes(b.op)) return pieceAct(b, me, env, ctx);
@@ -443,9 +506,22 @@ async function act(b, me, env, ctx) {
     await env.DB.prepare('UPDATE leads SET note=?, upd=? WHERE id=?').bind(String(b.note || '').slice(0, 20000), now, id).run(); ctx.waitUntil(pushNote(env, id));
     return J({ ok: 1 });
   } else if (b.op === 'email') {
-    await env.DB.prepare('UPDATE leads SET e=?, upd=? WHERE id=?').bind(String(b.e || '').trim().slice(0, 200), now, id).run();
+    const e = String(b.e || '').trim().slice(0, 200);
+    await env.DB.prepare('UPDATE leads SET e=?, upd=?, gt=0 WHERE id=?').bind(e, now, id).run();
+    const g = await push(env, id, e ? me + ' saved this shop\'s email: ' + e : me + ' took this shop\'s email off.');
+    // Saved twice fast, the second save finds the refusal already recorded: still say so.
+    const gx = g === 'ok' && e ? await env.DB.prepare('SELECT ge FROM leads WHERE id=?').bind(id).first() : null;
+    if (gx && gx.ge === '!' + e) return J({ ...(await all(env, me)), ghlr: 'Another GoHighLevel contact already has ' + e + '.' });
+    return J({ ...(await all(env, me)), ghlr: g });
   } else if (b.op === 'claim') {
-    await env.DB.prepare('UPDATE leads SET wk=?, upd=? WHERE id=?').bind(b.on ? me : '', now, id).run();
+    if (b.free) {
+      // From the list's Take button: only a shop nobody is working (or already yours).
+      const r = await env.DB.prepare("UPDATE leads SET wk=?, upd=?, gt=0 WHERE id=? AND COALESCE(wk,'') IN ('', ?)").bind(me, now, id, me).run();
+      const y = await env.DB.prepare('SELECT wk FROM leads WHERE id=?').bind(id).first();
+      if (!y || y.wk !== me) return J({ ...(await all(env, me)), gone: (y && y.wk) || 'someone' });
+    } else await env.DB.prepare('UPDATE leads SET wk=?, upd=?, gt=0 WHERE id=?').bind(b.on ? me : '', now, id).run();
+    const g = await push(env, id, b.on ? me + ' is working this shop.' : me + ' let this shop go. Anyone can pick it up.');
+    return J({ ...(await all(env, me)), ghlr: g });
   } else return J({ error: 'op' }, 400);
   return J(await all(env, me));
 }
@@ -510,5 +586,5 @@ export default {
       return J({ error: 'not found' }, 404);
     } catch (e) { return J({ error: String(e).slice(0, 200) }, 500); }
   },
-  async scheduled(ev, env, ctx) { await init(env); await jobs(env); try { await pull(env); } catch (e) {} },
+  async scheduled(ev, env, ctx) { await init(env); await jobs(env); try { await pull(env); } catch (e) {} try { await catchUp(env); } catch (e) {} },
 };

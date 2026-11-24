@@ -15,6 +15,9 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 #count{font-size:14px;color:#555;margin:0 0 8px}
 .lead{display:block;width:100%;box-sizing:border-box;text-align:left;font:inherit;background:#fff;border:3px solid #111;padding:12px 14px;margin:0 0 10px;cursor:pointer;color:#111}
 .lead b{display:block;font-size:19px}
+.pk{display:flex;align-items:stretch;gap:8px;margin:0 0 10px}.pk .lead{margin:0;flex:1}
+.pk label{display:flex;align-items:center;justify-content:center;width:46px;border:3px solid #111;background:#fff;cursor:pointer;flex:none}.pk input{width:24px;height:24px;margin:0;cursor:pointer}
+#takebar{position:fixed;left:0;right:0;bottom:0;background:#111;color:#fff;padding:10px 14px;display:none;z-index:20;text-align:center}#takebar button{font:inherit;font-weight:bold;font-size:17px;padding:10px 16px;border:2px solid #fff;background:#FFD400;color:#111;cursor:pointer}#takebar a{color:#fff;margin-left:14px}
 .lead span{display:block;font-size:14px;color:#555}
 .tier{display:inline-block;font-size:13px;font-weight:bold;padding:1px 8px;border:2px solid #111;margin-right:8px}
 .tier.A{background:#111;color:#fff}
@@ -59,6 +62,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 #dncbar{display:none;margin:8px 0;padding:10px 12px;background:#B00020;color:#fff;font-weight:bold;font-size:15px}
 </style></head><body><main>
 
+<div id="takebar"><button type="button" id="take"></button><a href="#" id="untick">Untick all</a></div>
 <div id="list">
 <p class="crumb"><a href="/admin/">&larr; Admin</a> &middot; <a href="/admin/plan/">The Plan</a></p>
 <h1>Leads</h1>
@@ -71,7 +75,8 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <details id="funnel" style="border:3px solid #111;padding:10px 14px;margin:8px 0 6px"></details>
 <h2 style="font-size:24px;margin:16px 0 2px">Today</h2>
 <p class="sub" style="font-size:15px">Follow-ups that are due come first. Then your shops, or three new ones to start. Shops someone else is working stay off your Today.</p>
-<p style="margin:0 0 10px"><button class="chip" id="give" type="button">Give me 5 for today</button> <button class="chip" id="letgo" type="button" style="display:none"></button></p>
+<p class="sub" style="margin:0 0 6px">To make shops yours to work, tick the box beside each one (only shops nobody is working have a box; take as many as you like), then tap Take at the bottom.</p>
+<p style="margin:0 0 10px"><button class="chip" id="letgo" type="button" style="display:none"></button></p>
 <div id="today"></div>
 
 <h2 style="font-size:22px;margin:18px 0 6px">Every Shop</h2>
@@ -113,6 +118,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <p id="dncbar"></p>
 <p class="pmbar" style="display:none;margin:8px 0;padding:10px 12px;background:#B00020;color:#fff;font-weight:bold;font-size:15px">Practice mode: nothing here is saved. <button type="button" class="pmstop" style="font:inherit;font-size:14px;background:#fff;color:#B00020;border:0;padding:4px 10px;cursor:pointer;font-weight:bold">Stop practicing</button></p>
 <button class="big" id="claim" type="button" style="width:100%;font-family:inherit;cursor:pointer;background:#fff"></button>
+<p class="saved" id="wk-msg" style="font-weight:bold;margin:4px 0 0"></p>
 <div class="now"><p><span class="k">Where It Stands</span><span class="v" id="nw-stage"></span></p><p><span class="k">Last Step</span><span id="nw-last"></span></p><p><span class="k">Next Step</span><span class="v" id="nw-next"></span></p><div id="nw-links"></div></div>
 <p class="lab" id="did-lab">Tap What You Just Did</p>
 <div class="row" id="did"></div>
@@ -120,6 +126,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <a class="big dark" id="call" href="#">Call</a>
 <a class="big" id="map" href="#" target="_blank" rel="noopener">Directions</a>
 <a class="big" id="mail" href="#">Email</a>
+<p class="sub" id="mail-sub" style="margin:-4px 0 10px">Opens a blank email to this shop in your mail app. The ready-made emails are further down, under Mail And Email.</p>
 <a class="big" id="find" href="#" target="_blank" rel="noopener">Find Their Email</a>
 <input id="em" type="email" placeholder="Paste the email you found here" autocomplete="off" style="width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;margin:0 0 4px">
 <p style="margin:0 0 4px"><button class="chip on" type="button" id="em-save">Save This Email</button> <span class="saved" id="em-msg" style="font-weight:bold"></span></p>
@@ -216,6 +223,8 @@ function hist(i){return (L[i].h||[]).map(function(e){return {a:e.a,d:fmt(e.ts),p
 function hist2(i){var h=hist(i);(L[i].ps||[]).forEach(function(r){if(r.st==='ready')return;var a=anyPiece(r.pid)||{name:r.pid};h.push({a:a.name+(r.st==='sent'?' sent by email':r.st==='mailed'?' mailed':' not sent: '+r.why),d:fmt(r.ts),ts:r.ts,by:r.st==='mailed'?'':r.by,pc:1})});return h.sort(function(a,b){return a.ts-b.ts})}
 function last(i){var h=hist2(i);return h.length?h[h.length-1].a+', '+h[h.length-1].d+(h[h.length-1].by?' ('+h[h.length-1].by+')':''):''}
 function msg(t){$('status').textContent=t||''}
+function ghlSays(j,what){var g=j&&j.ghlr;if(PM||!g)return '';if(g==='ok')return ' '+what;if(g==='theirs')return ' This shop\'s contact was in GoHighLevel before the portal (a client or a sign-up), so it keeps its own owner and email there. A note on it says what changed.';if(g==='off')return ' (GoHighLevel isn\'t connected, so it\'s only here.)';
+  return /already has/.test(g)?' GoHighLevel already has this email on a different contact, so GoHighLevel doesn\'t have it on this shop. Keep working; it\'s saved in the portal.':' GoHighLevel didn\'t take it. It\'s saved in the portal, so keep working, and tell Daegan so he can fix GoHighLevel.'}
 var CK='2g-leads-copy',STALE=0;
 function stash(j){try{localStorage.setItem(CK,JSON.stringify({t:Date.now(),j:{leads:j.leads,me:j.me,ghl:j.ghl,pieces:j.pieces}}))}catch(e){}}
 function kept(){try{var c=JSON.parse(localStorage.getItem(CK)||'null');return c&&c.j&&c.j.leads&&c.j.leads.length?c:null}catch(e){return null}}
@@ -279,8 +288,14 @@ function row(i,st,showDue){
   var ss=document.createElement('i');ss.className='st';ss.style.fontStyle='normal';ss.textContent=(x.dnc?'DO NOT CONTACT · ':'')+st;s2.appendChild(ss);if(x.wk){var wb=document.createElement('b');wb.className='wkby'+(x.wk===ME?' me':'');wb.textContent=(x.wk===ME?'You are':x.wk+' is')+' working this one';s2.appendChild(wb)}b.appendChild(s2);
   var s3=document.createElement('span');s3.className='nx';s3.textContent=(last(i)?'Last: '+last(i)+' · ':'')+'Next: '+NEXT[st].s;b.appendChild(s3);
   var d=due(i);if(!d&&st==='15 minutes booked')d={txt:'Check the calendar for the day and time',late:false,ok:true,t:1};if(d&&(showDue||d.ok||d.t===0)){var s4=document.createElement('span');s4.className='due'+(d.late?' late':'');s4.textContent=d.txt;b.appendChild(s4)}
-  b.onclick=function(){go('lead='+encodeURIComponent(x.id))};return b;
+  b.onclick=function(){go('lead='+encodeURIComponent(x.id))};
+  if(x.wk||x.dnc||!ME)return b;
+  var w=document.createElement('div');w.className='pk';var lb=document.createElement('label');var cb=document.createElement('input');cb.type='checkbox';cb.checked=!!PICK[x.id];
+  cb.setAttribute('aria-label','Take '+x.n);cb.onchange=function(){if(cb.checked)PICK[x.id]=1;else delete PICK[x.id];pickBar()};lb.appendChild(cb);w.appendChild(lb);w.appendChild(b);return w;
 }
+var PICK={},TAKING=0;
+function pickBar(){var ids=Object.keys(PICK).filter(function(id){return L.some(function(x){return x.id===id&&!x.wk&&!x.dnc})});PICK={};ids.forEach(function(id){PICK[id]=1});
+  $('takebar').style.display=ids.length&&$('list').style.display!=='none'?'block':'none';$('take').textContent='Take the '+(ids.length===1?'1 shop':ids.length+' shops')+' I ticked'}
 function mineOrOpen(x){return !x.wk||x.wk===ME}
 function drawToday(){
   var un=0;L.forEach(function(x,i){if(ME&&x.wk===ME&&stg(i)===STAGES[0]&&!pworked(i))un++});var lg=$('letgo');lg.style.display=un?'inline-block':'none';lg.textContent='Let go of my '+un+' untouched '+(un===1?'shop':'shops');
@@ -362,11 +377,11 @@ function show(i){
   cur=i;var x=L[i];curId=x.id;$('list').style.display='none';$('one').style.display='block';
   $('n').textContent=x.n;$('meta').textContent=x.g+' · '+x.k+' · '+(x.a||x.t)+(x.rt?' · Rated '+x.rt+(x.rv?' from '+x.rv+' reviews':''):'')+(x.mi?' · '+x.mi+' miles from Launch Fishers':'')+(x.custom?' · '+(x.src||'added by hand'):'');
   var wk=$('claim');wk.textContent=x.wk===ME?'You are working this one. Tap to let it go.':x.wk?x.wk+' is working this one. Tap to take it over.':'I\'m working this one';wk.className='big'+(x.wk===ME?' dark':'');
-  wk.onclick=function(){send({op:'claim',id:x.id,on:x.wk!==ME}).then(function(){show(cur)},function(){})};
+  wk.onclick=function(){var on=x.wk!==ME;send({op:'claim',id:x.id,on:on}).then(function(j){show(cur);if(!PM)$('wk-msg').textContent=((on?'This one is yours.':'You let it go. Anyone can pick it up.')+ghlSays(j,on?'It\'s assigned to you in GoHighLevel too.':'It\'s unassigned in GoHighLevel too.'))},function(){})};
   $('call').style.display=x.p?'block':'none';$('call').textContent='Call '+(x.p||'');$('call').href='tel:'+(x.p||'').replace(/\D/g,'');
   $('map').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x.a||(x.n+' '+x.t+' Indiana'));
-  var fe=x.e||'';$('em').value=fe;$('em-msg').textContent='';$('find').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana contact email');
-  if(fe){$('mail').style.display='block';$('mail').textContent='Blank email to '+fe+' (not one of the three)';$('mail').href='mailto:'+fe}else{$('mail').style.display='none'}
+  var fe=x.e||'';$('em').value=fe;$('em-msg').textContent='';$('wk-msg').textContent='';$('find').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana contact email');
+  if(fe){$('mail').style.display='block';$('mail-sub').style.display='';$('mail').textContent='Write Your Own Email From Scratch';$('mail').href='mailto:'+fe}else{$('mail').style.display='none';$('mail-sub').style.display='none'}
   var Q=encodeURIComponent(x.n+' '+x.t+' Indiana'),N=encodeURIComponent(x.n);$('l-web').href=x.u||('https://www.google.com/search?q='+Q);$('l-goo').href='https://www.google.com/maps/search/?api=1&query='+Q;$('l-fb').href='https://www.facebook.com/search/pages/?q='+encodeURIComponent(x.n+' '+x.t);$('l-yelp').href='https://www.yelp.com/search?find_desc='+N+'&find_loc='+encodeURIComponent(x.t+', IN');$('l-ig').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana instagram');
   $('why').textContent=x.w||'';$('found').textContent=x.f||'Not looked at closely yet.';
   $('audit').href='https://claude.ai/new?q='+encodeURIComponent(AUD(x));
@@ -382,26 +397,27 @@ function show(i){
   if(document.activeElement!==$('note'))$('note').value=x.note||'';$('saved').textContent='';drawPieces(i);window.scrollTo(0,0);
 }
 $('note').oninput=function(){if(cur===null)return;var id=L[cur].id,v=this.value;L[cur].note=v;$('saved').textContent='Saving...';clearTimeout(noteT);noteT=setTimeout(function(){send({op:'note',id:id,note:v},true).then(function(){$('saved').textContent='Saved for all three of us.'},function(){$('saved').textContent='Not saved. Check your signal.'})},1200)};
-function emSave(){if(cur===null)return;var v=$('em').value.trim();if(v&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){$('em-msg').textContent='That doesn\'t look like an email address.';return}
+var EMB=null;function emSave(){if(cur===null)return;var v=$('em').value.trim();if(EMB===v)return;if(v&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){$('em-msg').textContent='That doesn\'t look like an email address.';return}
   if(v===(L[cur].e||'')&&!PM){$('em-msg').textContent=v?'Saved.':'';return}
-  send({op:'email',id:L[cur].id,e:v}).then(function(){var y=window.pageYOffset;show(cur);window.scrollTo(0,y);$('em-msg').textContent=PM?'Practice mode is on, so this is NOT saved. Stop practicing to save it for real.':(v?'Saved for all three of us.':'Email taken off.')},function(){$('em-msg').textContent='Not saved. Check your signal and tap Save again.'})}
+  EMB=v;send({op:'email',id:L[cur].id,e:v}).then(function(j){EMB=null;var y=window.pageYOffset;show(cur);window.scrollTo(0,y);$('em-msg').textContent=PM?'Practice mode is on, so this is NOT saved. Stop practicing to save it for real.':(v?'Saved for all three of us.'+ghlSays(j,'It\'s on the shop\'s contact in GoHighLevel too.'):'Email taken off.'+ghlSays(j,'It\'s off the shop\'s contact in GoHighLevel too.'))},function(){EMB=null;$('em-msg').textContent='Not saved. Check your signal and tap Save again.'})}
 $('em').onchange=emSave;$('em-save').onclick=emSave;
 $('undo').onclick=function(){if(cur===null)return;send({op:'undo',id:L[cur].id}).then(function(){show(cur)},function(){})};
 $('a-save').onclick=function(){var n=$('a-n').value.trim();if(!n){$('a-msg').textContent='Put in the shop name first.';return}
   send({op:'add',n:n,k:$('a-k').value.trim(),t:$('a-t').value.trim(),a:$('a-a').value.trim(),p:$('a-p').value.trim(),g:$('a-g').value,w:$('a-w').value.trim(),u:$('a-u').value.trim()}).then(function(){['a-n','a-k','a-t','a-a','a-p','a-u','a-w'].forEach(function(k){$(k).value=''});$('a-msg').textContent='Saved. It is on the list for all three of us.';draw()},function(){$('a-msg').textContent='Could not save it.'})};
-$('give').onclick=function(){
-  if(STALE){msg('The shared list is not answering, so it can\'t hand you shops right now. Tap Try again above.');return}
-  var have=0,pick=[];L.forEach(function(x,i){if(x.wk===ME&&ME&&stg(i)===STAGES[0]&&!pworked(i))have++});
-  L.forEach(function(x,i){if(have+pick.length<5&&!x.wk&&!x.dnc&&stg(i)===STAGES[0]&&(x.g==='A'||x.g==='B'))pick.push(x.id)});
-  if(have>=5){msg('You already have '+have+' untouched shops on your Today.');return}
-  if(!pick.length){msg('No untouched A or B shops are left unclaimed.');return}
-  var run=function(k){if(k>=pick.length){draw();msg('You now have '+(have+pick.length)+' shops on your Today.');return}send({op:'claim',id:pick[k],on:true}).then(function(){run(k+1)},function(){draw();msg('Only '+k+' of '+pick.length+' saved. The shared list stopped answering. Tap Give me 5 again in a minute.')})};run(0)};
+$('untick').onclick=function(e){e.preventDefault();PICK={};draw();pickBar()};
+$('take').onclick=function(){
+  if(STALE){msg('The shared list is not answering, so shops can\'t be taken right now. Tap Try again above.');return}
+  var ids=Object.keys(PICK);if(!ids.length||TAKING)return;var miss=0,gone=0;TAKING=1;$('take').disabled=true;
+  var run=function(k){if(k>=ids.length){TAKING=0;$('take').disabled=false;PICK={};draw();pickBar();msg('You took '+(ids.length-gone)+(ids.length-gone===1?' shop':' shops')+'. They\'re on your Today.'+(gone?' '+gone+' had just been taken by someone else.':'')+(miss&&!PM?' GoHighLevel didn\'t take '+miss+' of them; they\'re saved in the portal, so keep working, and tell Daegan.':''));return}
+    var x=L.filter(function(y){return y.id===ids[k]})[0];if(!x||(x.wk&&x.wk!==ME)){gone++;run(k+1);return}
+    send({op:'claim',id:ids[k],on:true,free:1},true).then(function(j){if(j&&j.gone)gone++;else if(j&&j.ghlr&&j.ghlr!=='ok'&&j.ghlr!=='theirs')miss++;run(k+1)},function(){TAKING=0;$('take').disabled=false;PICK={};draw();pickBar();msg('Only '+k+' of '+ids.length+' saved. The shared list stopped answering. Tick them again in a minute.')})};
+  msg('Taking '+ids.length+(ids.length===1?' shop':' shops')+'...');run(0)};
 $('letgo').onclick=function(){
   if(STALE){msg('The shared list is not answering, so nothing can be let go right now. Tap Try again above.');return}
   var ids=[];L.forEach(function(x,i){if(ME&&x.wk===ME&&stg(i)===STAGES[0]&&!pworked(i))ids.push(x.id)});if(!ids.length)return;
   if(!confirm('Let go of '+ids.length+(ids.length===1?' shop':' shops')+' you haven\'t touched yet? Jimmy and Paul can pick them up. Shops you\'ve already worked stay yours.'))return;
-  var run=function(k){if(k>=ids.length){draw();msg('Done. '+ids.length+(ids.length===1?' shop is':' shops are')+' back for anyone to pick up.');return}send({op:'claim',id:ids[k],on:false},true).then(function(){run(k+1)},function(){draw();msg('Only '+k+' of '+ids.length+' let go. Tap it again in a minute.')})};run(0)};
-function pmShow(){[].forEach.call(document.querySelectorAll('.pmbar'),function(e){e.style.display=PM?'block':'none'});$('pm').style.display=PM?'block':'none';$('pmb').textContent=PM?'Stop practicing':'Practice mode';$('pmb').className=PM?'chip on':'chip';document.title=(PM?'PRACTICE · ':'')+'Leads · 2 Guys and a Genie'}
+  var miss=0,run=function(k){if(k>=ids.length){draw();msg('Done. '+ids.length+(ids.length===1?' shop is':' shops are')+' back for anyone to pick up.'+(miss&&!PM?' GoHighLevel didn\'t take '+miss+' of them; tell Daegan.':''));return}send({op:'claim',id:ids[k],on:false},true).then(function(j){if(j&&j.ghlr&&j.ghlr!=='ok'&&j.ghlr!=='theirs')miss++;run(k+1)},function(){draw();msg('Only '+k+' of '+ids.length+' let go. Tap it again in a minute.')})};run(0)};
+function pmShow(){PICK={};if($('takebar'))$('takebar').style.display='none';[].forEach.call(document.querySelectorAll('.pmbar'),function(e){e.style.display=PM?'block':'none'});$('pm').style.display=PM?'block':'none';$('pmb').textContent=PM?'Stop practicing':'Practice mode';$('pmb').className=PM?'chip on':'chip';document.title=(PM?'PRACTICE · ':'')+'Leads · 2 Guys and a Genie'}
 $('pmb').onclick=function(){
   if(!PM){PM=true;try{sessionStorage.setItem('2g-practice','1')}catch(e){};L=JSON.parse(JSON.stringify(L));pmShow();draw();if(cur!==null)show(cur);msg('Practice mode is on. Try anything.');return}
   PM=false;try{sessionStorage.removeItem('2g-practice')}catch(e){};pmShow();msg('Back to the real list.');var c=kept();if(c){take(c.j,true);draw();route()}load();
@@ -417,7 +433,8 @@ function up(h){if(depth()>0){history.back()}else{try{history.replaceState(null,'
 function where(){var o={};location.hash.replace(/^#/,'').split('&').forEach(function(kv){var a=kv.split('=');if(a[0])o[a[0]]=decodeURIComponent(a[1]||'')});return o}
 function route(){
   var w=where(),i=-1;if(w.lead)L.forEach(function(x,k){if(x.id===w.lead)i=k});
-  if(i<0){peClose();cur=null;curId=null;$('sp').style.display='none';$('one').style.display='none';$('list').style.display='block';return}
+  if(i<0){peClose();cur=null;curId=null;$('sp').style.display='none';$('one').style.display='none';$('list').style.display='block';pickBar();return}
+  $('takebar').style.display='none';
   if(cur!==i||$('one').style.display!=='block')show(i);
   if(w.say)say(w.say);else $('sp').style.display='none';
   if(w.piece)pedit(w.piece);else peClose();
