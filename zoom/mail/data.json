@@ -1,5 +1,5 @@
 {
- "checked": "Mon Nov 23, 6:12pm",
+ "checked": "Mon Nov 23, 7:12pm",
  "people": {
   "Daegan": {
    "needs": [
@@ -58,6 +58,12 @@
      "w": "Promised by Jimmy's Claude, Sat Nov 21, 7:12pm; due Sun Nov 22, 6pm; still no answer from Jimmy as of Mon 8:12am",
      "x": "Who takes the calls, which days and hours, and the most calls a day. Only Jimmy can answer.",
      "n": "Jimmy's Claude built the calendar to the suggested picks (Jimmy alone, Mon to Thu 1:00 to 4:30pm Eastern, 4 a day), so the picks stand unless Jimmy changes them."
+    },
+    {
+     "t": "Jimmy's answer on who adds the six \"yes\" tools to the lead tools list",
+     "w": "Promised by Jimmy's Claude, Mon Nov 23, 7:12pm; goes to Jimmy Tue Nov 24 with the brief, answer due Wed Nov 25",
+     "x": "Your picks: yes to owner email (checked), website status, rating and reviews, worst-review theme, missed-call test and phone speed score; not yet on hiring, the one big thing, the sheet link, and source and date. Open question for Jimmy: does Jimmy's Claude or yours add the six.",
+     "n": "Nothing for you now. Jimmy's Claude recommends it adds the six itself and you just look at the results; Jimmy decides."
     }
    ]
   },
@@ -110,6 +116,10 @@
  },
  "fyi": [
   {
+   "t": "Jimmy's Claude confirmed your tools list picks (Mon 7:12pm)",
+   "x": "Six tools are a yes and four are not yet. Nothing happens tonight, since you said you'd make those calls tomorrow."
+  },
+  {
    "t": "Next Monday (Nov 30) the team meeting must end by 12:25 (Mon 4:12pm)",
    "x": "Jimmy has Kate Walters of Invest Hamilton County at 12:30pm right after it."
   },
@@ -139,6 +149,13 @@
   }
  ],
  "traffic": [
+  [
+   "Mon Nov 23, 7:12pm",
+   "In",
+   "Jimmy",
+   "Re: From Daegan: your tools list, and what I'd use",
+   "—"
+  ],
   [
    "Mon Nov 23, 4:55pm",
    "In",
