@@ -8,5 +8,9 @@
 - Once the Worker has a GoHighLevel key (`GHL_TOKEN`), each tap also moves the shop's deal card in the "Local Leads (Lead Portal)" pipeline and adds a note to the contact, and stage changes made in GoHighLevel come back within a few minutes.
 - `/hooks/ghl?key=...` is where GoHighLevel can tell the portal something happened (a sign-up, a booked call).
 
-To change it: edit `worker.js`, then redeploy the Worker in Cloudflare (Workers, 2g-leads). Settings that are not in this file: `AUD`, `TEAM`, `GHL_CFG` (plain), and `DATA_KEY`, `HOOK_KEY`, `GHL_TOKEN` (secret).
+To change it: edit `worker.js`, test it on the local stand-in (`leads-api/test/`, made-up shops only), then redeploy the Worker in Cloudflare (Workers, 2g-leads):
+  1. Check the live code matches this repo's last version first. If it doesn't, stop and find out why before replacing it.
+  2. Upload with the D1 binding named and `keep_bindings: ["plain_text","secret_text"]`, so the settings and secrets stay. Then confirm all seven bindings and the 3-minute timer are still there.
+  3. Write down the version you replaced, so it can be put back in a minute.
+  4. After the next timer run (within 3 minutes), check the database shows the change. Settings that are not in this file: `AUD`, `TEAM`, `GHL_CFG` (plain), and `DATA_KEY`, `HOOK_KEY`, `GHL_TOKEN` (secret).
 - Mail and email (Nov 23, postcards Nov 24): the database also holds the six pieces' master words (table `pieces`: three postcards locked Nov 24 and three emails; a new piece is added once, then the database is the master copy; the first postcard and the three letters are removed on start-up if nothing was ever sent with them), every send or skip with the exact words (`sends`), drafts (`drafts`) and Do not contact (`flags`). Emails open the sender's own mail app and are recorded only after "Did it send?" Yes. Postcards are approved for the next mail drop; nothing mails yet (practice).

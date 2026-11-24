@@ -1,0 +1,4 @@
+*.db
+*.log
+worker.mjs
+shots/
