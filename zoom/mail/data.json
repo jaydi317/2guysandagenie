@@ -1,5 +1,5 @@
 {
- "checked": "Mon Nov 23, 7:12pm",
+ "checked": "Mon Nov 23, 8:12pm",
  "people": {
   "Daegan": {
    "needs": [
@@ -116,6 +116,10 @@
  },
  "fyi": [
   {
+   "t": "Jimmy's Claude sent the full kit for the Ian video format (Mon 8:05pm)",
+   "x": "This is the \"Fuel Hunting Explained\" film you loved: the line-by-line transcript, why it worked, the reusable 11-beat format for AI audits and case studies, and templates including the audit intake questions and one prompt that makes the next film. The video and frames are in a shared Drive folder and the same kit is in Notion. Nothing is asked of you except to read it and build on it. Keep the how-it-was-made note, the transcript, the why-it-worked note, the frames and the video off the library and the website, because they name Ian and he has not OK'd public use."
+  },
+  {
    "t": "Jimmy's Claude confirmed your tools list picks (Mon 7:12pm)",
    "x": "Six tools are a yes and four are not yet. Nothing happens tonight, since you said you'd make those calls tomorrow."
   },
@@ -149,6 +153,13 @@
   }
  ],
  "traffic": [
+  [
+   "Mon Nov 23, 8:05pm",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][RES] Findings Film kit: how the Ian video was made, and the format",
+   "—"
+  ],
   [
    "Mon Nov 23, 7:12pm",
    "In",
@@ -301,76 +312,6 @@
    "In",
    "Jimmy",
    "Daily Brief (Fri Nov 20)",
-   "—"
-  ],
-  [
-   "Thu Nov 19, 9:39pm",
-   "In",
-   "Jimmy",
-   "Notes from today's two calls: your 7 to-dos",
-   "—"
-  ],
-  [
-   "Thu Nov 19, 4:12pm",
-   "In",
-   "Jimmy",
-   "Re: Your agenda items for Fri, Nov 20's team meeting",
-   "about 1.5 hours after our Thu 2:40pm send"
-  ],
-  [
-   "Thu Nov 19, 2:52pm",
-   "Out",
-   "Paul",
-   "Your BlueBird audit: how to run the call with Jeremy",
-   "No answer yet"
-  ],
-  [
-   "Thu Nov 19, 2:40pm",
-   "Out",
-   "Jimmy and Paul",
-   "Your agenda items for Fri, Nov 20's team meeting",
-   "Jimmy answered 4:12pm Thu (about 1.5 hr); Paul answered Fri 11:52am (about 21 hr)"
-  ],
-  [
-   "Thu Nov 19, 1:40pm",
-   "In",
-   "Paul",
-   "Bluebird Fence Company audit, for Daegan's review",
-   "—"
-  ],
-  [
-   "Thu Nov 19, 11:37am",
-   "In",
-   "Paul",
-   "Re: Your agenda items for Thu, Nov 19's team meeting",
-   "about 21 hours after our Wed 2:41pm send"
-  ],
-  [
-   "Thu Nov 19, 11:30am",
-   "In",
-   "Jimmy",
-   "Daily Brief (Thu Nov 19)",
-   "—"
-  ],
-  [
-   "Tue Nov 17, 10:49pm",
-   "In",
-   "Jimmy",
-   "[FYI] Client proof and offer material is ready",
-   "—"
-  ],
-  [
-   "Tue Nov 17, 10:36pm",
-   "In",
-   "Jimmy",
-   "[ASK] Please correct website lines that do not match our client records",
-   "—"
-  ],
-  [
-   "Tue Nov 17, 9:39pm",
-   "In",
-   "Jimmy",
-   "[FYI] Notes from today's team call: your 8 to-dos",
    "—"
   ]
  ]
