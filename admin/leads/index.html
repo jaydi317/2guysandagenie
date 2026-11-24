@@ -41,6 +41,9 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 #sp .say p{margin:0 0 10px;font-size:18px}#sp .do{font-size:15px;font-style:italic;color:#555}#sp .fill{background:#FFF3C4;padding:0 3px}#sp .fill.set{font-weight:bold}
 #sp .copy,#sp .top{display:none}#sp ol.q{padding-left:22px;margin:0 0 10px}#sp ol.q li{margin:0 0 8px;font-size:17px}
 #sp .ref{border:2px solid #111;padding:10px 14px;margin:0 0 12px;white-space:pre-wrap;font-size:15px}
+
+.wkby{display:inline-block;font-weight:bold;font-style:normal;background:#FFF3C4;border:2px solid #111;padding:1px 8px;margin:4px 0 0 6px;font-size:14px}
+.wkby.me{background:#111;color:#fff}
 </style></head><body><main>
 
 <div id="list">
@@ -218,7 +221,7 @@ function row(i,st,showDue){
   var h=document.createElement('b');h.textContent=x.n;b.appendChild(h);
   var s1=document.createElement('span');s1.textContent=x.k+' · '+x.t;b.appendChild(s1);
   var s2=document.createElement('span');var tg=document.createElement('i');tg.className='tier '+(x.g==='A'?'A':'');tg.style.fontStyle='normal';tg.textContent=x.g;s2.appendChild(tg);
-  var ss=document.createElement('i');ss.className='st';ss.style.fontStyle='normal';ss.textContent=st+(x.wk?' · '+(x.wk===ME?'You are':x.wk+' is')+' working this one':'');s2.appendChild(ss);b.appendChild(s2);
+  var ss=document.createElement('i');ss.className='st';ss.style.fontStyle='normal';ss.textContent=st;s2.appendChild(ss);if(x.wk){var wb=document.createElement('b');wb.className='wkby'+(x.wk===ME?' me':'');wb.textContent=(x.wk===ME?'You are':x.wk+' is')+' working this one';s2.appendChild(wb)}b.appendChild(s2);
   var s3=document.createElement('span');s3.className='nx';s3.textContent=(last(i)?'Last: '+last(i)+' · ':'')+'Next: '+NEXT[st].s;b.appendChild(s3);
   var d=due(i);if(!d&&st==='15 minutes booked')d={txt:'Check the calendar for the day and time',late:false,ok:true,t:1};if(d&&(showDue||d.ok||d.t===0)){var s4=document.createElement('span');s4.className='due'+(d.late?' late':'');s4.textContent=d.txt;b.appendChild(s4)}
   b.onclick=function(){go('lead='+encodeURIComponent(x.id))};return b;
