@@ -73,6 +73,12 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 .say{font-size:24px;font-weight:bold;line-height:1.3;margin:0 0 14px}
 .nowrap{text-align:center;margin:6px 0 0}
 .emrow{display:block}
+.wait{background:#FFF3C4;border-left:5px solid var(--ink);padding:12px 16px;margin:0 0 14px;font-size:18px;line-height:1.4}.wait b{display:block;font-size:22px;line-height:1.2}
+.reg{padding:4px 0 4px;font-size:17px;line-height:1.4}.reg b{display:block;font-size:20px}
+.held{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid var(--rule);padding:6px 0 8px;margin:0 0 14px;font-size:15px;color:var(--soft)}.held .t{font-weight:bold;color:var(--ink);font-variant-numeric:tabular-nums}.held.low,.held.low .t{color:#c62828}
+.bar span.now{background:var(--soft)}
+.go .gs{display:block;font-size:15px;font-weight:normal;margin-top:4px}
+body.at5 #bar,body.at5 #stepno{display:none}
 </style>
 <script src="/assets/rot.js"></script>
 </head><body>
@@ -82,8 +88,8 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 <main id="main">
 
 
-<div class="bar" id="bar"><span></span><span></span><span></span><span></span></div>
-<p class="stepno" id="stepno">Step 1 of 4</p>
+<div class="bar" id="bar"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<p class="stepno" id="stepno">Step 1 of 6</p>
 
 <!-- STEP 1 -->
 <section class="step show" id="s1">
@@ -150,62 +156,63 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
   <button class="back" data-back="3" type="button">Back</button>
 </section>
 
-<!-- BOOKED: THE SURPRISE INVITE TO THE NIGHT (Nov 21) -->
+<!-- BOOKED: THE ONE-TIME SPOT AND PIZZA (Nov 24, from the mockup Daegan locked at 1:47am; before it, the Nov 21 surprise invite, archived) -->
 <section class="step" id="s5">
-  <p class="okline"><b>&#10003; You're booked<span id="inm"></span>.</b> <span id="iwhen"></span><span id="iremind" hidden> Your text reminder will come from (317) 751-2693.</span></p>
-  <p class="kicker">One More Thing</p>
-  <h1>Surprise. There's A Free Seat For You At Our Next AI Night.</h1>
-  <p class="lead"><b>Walk In Curious About AI. Walk Out Using It.</b></p>
-  <p>Hosted by Jimmy and Paul, the two local AI guys you just booked with.</p>
-  <figure class="ven"><img src="/assets/launch/front-door.jpg" alt="The front door of Launch Fishers"><figcaption><b><span data-ev="long">Thursday, December 10</span></b> · Doors 6:30, we start at 7, done by 9 · Launch Fishers, 12175 Visionary Way. Glass doors, southeast corner.</figcaption></figure>
-  <p>This is our third one.</p>
-  <p>A room of local owners, all wondering the same thing you are: what can AI really do for a business like mine?</p>
-  <p>Why free? It's how we meet the owners around here. And AI is easier to show you than to tell you.</p>
-  <p>The pizza's free too. Get there early. When it's gone, it's gone.</p>
-  <button class="go yes" type="button">Yes, Save My Seat</button>
-  <p class="small">Free. One tap. Your call stays just the way you booked it.</p>
-  <p class="nowrap" style="margin:4px 0 0"><button class="back" type="button" onclick="document.getElementById('nobtn').click()">No thanks, not this time</button></p>
+  <div class="wait"><b>Wait. Don't close this window.</b>You'll only see it once.</div>
+  <div class="reg"><b>Your registration is almost complete.</b>Grab a free spot at our next AI meetup. Pizza's on us.</div>
+  <div class="held" id="held">We're holding it for <span class="t" id="ht">5:00</span></div>
+  <div class="bar bar6"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="now"></span><span></span></div>
+  <p class="stepno">Step 5 of 6</p>
+  <p class="small" style="margin:0 0 20px"><span id="iwhen"></span> To finish your registration, tap Yes or No below.<span id="inm" hidden></span><span id="iremind" hidden> Your text reminder will come from (317) 751-2693.</span></p>
+
+  <p class="kicker">Insiders Only &middot; <span data-ev="long">Thursday, December 10</span></p>
+  <h1>Walk In Curious About AI. Walk Out Using It.</h1>
+  <p>You just raised your hand.</p>
+  <p>So before we finish your registration, we want to put you in the room with us on December 10.</p>
+  <figure class="ven"><img src="/assets/launch/front-door.jpg" alt="The front door of Launch Fishers"><figcaption><b><span data-ev="long">Thursday, December 10</span></b> &middot; Doors 6:30, we start at 7, done by 9 &middot; Launch Fishers, 12175 Visionary Way. Glass doors, southeast corner.</figcaption></figure>
+  <div class="recap" style="background:var(--tint)">
+    <p><b>Here's what your spot gets you:</b></p>
+    <p>Pizza, and a room of local owners asking the same question you are: what can AI really do for a business like mine?</p>
+    <p>About an hour of Jimmy and Paul, the two local AI guys you just booked with, showing you what AI can do right now, on real businesses.</p>
+    <p style="margin:0">Then your turn. Your own phone, the one job you'd love to hand off, and one of us beside you while you set it up.</p>
+  </div>
+  <div class="tq" style="font-size:19px">
+    <p style="margin:0 0 10px">This spot is free only in this window.</p>
+    <p style="margin:0 0 10px">The clock up top shows how long we hold it for you. Close this window, and your spot goes to the next owner.</p>
+    <p style="margin:0">Want in later? It won't be free.</p>
+  </div>
+  <button class="go yes" type="button">Yes, Register Me<span class="gs">One tap. Your call stays exactly as you picked it.</span></button>
+  <p class="nowrap" style="margin:4px 0 0"><button class="back" type="button" onclick="document.getElementById('nobtn').click()">No thanks. I'll give up my spot.</button></p>
 
   <h2 class="wallh">Here's How The Night Goes</h2>
-  <p>It's a Thursday, after work. We know.</p>
-  <p>So we keep it easy. Come as you are.</p>
   <div class="hv dd" id="dnight"><img data-v="a" src="/assets/home/d-night-a.svg" alt="The night in three parts: eat and meet other owners, we show you AI, then it's your turn on your own phone with one of us beside you."><img data-v="b" hidden src="/assets/home/d-night-b.svg" alt="The night as one bar from 6:30 to 9: eat, we show you, and the biggest part is your turn, with one of us beside you."><img data-v="c" hidden src="/assets/home/d-night-c.svg" alt="Owners working on their own phones while the two of us walk the room and help."></div>
+  <p>It's a Thursday, after work. We know you're tired. So we keep it easy. Come as you are.</p>
   <p>You eat first, and you meet a few other owners.</p>
-  <p>Then we tell you who we are and how we got into this.</p>
   <p>We show you why we're so fired up about AI: what's changing right now, and what's coming next.</p>
   <p>We teach you the basics: how to ask it for what you need, and get it back.</p>
-  <p>And we show you what we've built for owners like you, so you can see what it could do in your business.</p>
   <p>All of that takes 45 minutes to an hour.</p>
-  <p><b>The rest of the night is yours.</b></p>
-  <p>You work on whatever you want. We walk the room and help any way we can.</p>
-  <p>Bring your phone, and the one job you'd love to hand off.</p>
+  <p><b>The rest of the night is yours:</b> your phone, your one job, and one of us beside you. Bring the one job you'd love to hand off.</p>
 
   <h2 class="wallh">The Part You'll Remember</h2>
-  <div class="hv dd" id="dfeel"><img data-v="a" src="/assets/home/d-feel-a.svg" alt="Walking in, AI is far off on a hill. Walking out, it's right here beside you."><img data-v="b" hidden src="/assets/home/d-feel-b.svg" alt="Three steps up: walk in with a question, halfway it clicks, walk out with AI beside you."><img data-v="c" hidden src="/assets/home/d-feel-c.svg" alt="That night at home, phone in hand, telling the family: I know AI now."></div>
-  <p>It's one of those nights you remember.</p>
   <p>You walk in thinking AI is somewhere out there. For tech people. For someday.</p>
   <p>Somewhere in the night, it clicks.</p>
-  <p>You walk out with it right there in your hand. Yours, every day.</p>
-  <p>Then you get home, somebody asks how it went, and you hear yourself say:</p>
+  <p>You get home, somebody asks how it went, and you hear yourself say:</p>
   <p class="say">"Oh, man. I know AI now."</p>
-  <button class="go yes" type="button">Yes, Save My Seat</button>
+  <button class="go yes" type="button">Yes, Register Me<span class="gs">Free right now. Not free later.</span></button>
 
   <h2 class="wallh">What Owners Told Us</h2>
   <p>Here's what one local owner told us about the business events around here:</p>
   <blockquote class="tq">"90% of them all are about AI. And they always get me excited, but they never give me any tools."<span>Kim, a local owner, on every other AI event</span></blockquote>
   <p>Ours is the other kind.</p>
   <blockquote class="tq">"This was not talking about AI. This was actually helping people use AI."<span>Roger, at our last live night</span></blockquote>
-  <blockquote class="tq">"It was insightful and informative, and it just sort of blows me away of what I could do."<span>Jim Chalfant, Jim's Amazing Bread, after Jimmy explained AI and showed it working at one of our free nights</span></blockquote>
+  <blockquote class="tq">"It was insightful and informative, and it just sort of blows me away of what I could do."<span>Jim Chalfant, Jim's Amazing Bread</span></blockquote>
 
   <h2 class="wallh">Not A Bad Deal, Right?</h2>
-  <p>Pizza. Owners like you. An hour of us showing you what AI can do right now.</p>
-  <p>Then our help on your one job.</p>
-  <p>All of it free.</p>
-  <p>If you want to come, tap the button.</p>
-  <p>If not, that's cool. Somebody else gets the seat.</p>
-  <p>Just know we only have so much room. Wait, and it might be gone.</p>
-  <button class="go yes" type="button">Yes, Save My Seat</button>
-  <p class="nowrap"><button class="back" id="nobtn" type="button">No thanks, not this time</button></p>
+  <p>Pizza. Owners like you. An hour of us showing you what AI can do. Then our help on your one job.</p>
+  <p>Free, if you say yes now.</p>
+  <p>Close this window, and your spot goes to the next owner.</p>
+  <button class="go yes" type="button">Yes, Register Me<span class="gs">Then one last step and you're done.</span></button>
+  <p class="nowrap"><button class="back" id="nobtn" type="button">No thanks. I'll give up my spot.</button></p>
 </section>
 
 <!-- OPTIONAL: GET US READY (its own page, before the last page; picked by the Nov 21 simulation) -->
@@ -236,7 +243,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
   <h1><span id="fht">You're All Set</span><span id="fnm"></span>.</h1>
   <div class="okline" id="pgot" hidden><b>&#10003; Got it.</b> Jimmy and Paul will read this before your call.</div>
   <div class="recap" id="seatbox" hidden>
-    <p><b>Your seat is saved.</b></p>
+    <p><b>Your spot is saved.</b></p>
     <p><span data-ev="long">Thursday, December 10</span>. Doors 6:30, done by 9. Launch Fishers, 12175 Visionary Way.</p>
     <p style="margin:0">Get there early for the pizza. We'll text the details to <span id="fph">your phone</span> before the night.</p>
   </div>
@@ -307,8 +314,9 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     document.querySelectorAll('.step').forEach(function(s){s.classList.remove('show')});
     document.getElementById('s'+n).classList.add('show');
     var bars=document.querySelectorAll('#bar span');
-    bars.forEach(function(b,i){b.classList.toggle('on', i<Math.min(n,4))});
-    document.getElementById('stepno').textContent = n<5 ? 'Step '+n+' of 4' : (n===5 ? 'Booked. One more thing.' : (n===7 ? 'Booked. One optional step.' : 'Done'));
+    var k=n<5?n:(n===7?6:(n===6?6:5));bars.forEach(function(b,i){b.classList.toggle('on', i<k)});
+    document.getElementById('stepno').textContent = n<5 ? 'Step '+n+' of 6' : (n===5 ? 'Step 5 of 6' : (n===7 ? 'Step 6 of 6' : 'Done'));
+    document.body.classList.toggle('at5', n===5); if(n===5&&window.startHold)startHold();
     window.scrollTo(0,0);
   }
   (function(){var F=window.Found,box=document.getElementById('foundpick');if(!F||!box)return;
@@ -406,7 +414,7 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
   function fill(){
     var f=first();
     $('inm').textContent=f?', '+f:''; $('fnm').textContent=f?', '+f:'';
-    $('iwhen').textContent=data.when?('Your 15 minutes: '+data.when+'.'):'';
+    $('iwhen').textContent=data.when?('Your call: '+data.when+'.'):'';
     var rem=document.getElementById('remok').checked; $('iremind').hidden=!rem; $('dremind').hidden=!rem;
     if(data.when)$('dwhen').textContent=data.when;
     if(data.ph){$('dph').textContent=data.ph;$('fph').textContent=data.ph}
@@ -451,9 +459,15 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
     data.seat=yes?'yes':'no';
     $('fht').textContent=yes?"You're In":"You're All Set";
     $('seatbox').hidden=!yes; $('nomsg').hidden=yes;
-    $('pseat').innerHTML=yes?'<b>&#10003; Your seat is saved.</b>':'<b>&#10003; No problem.</b> Your 15 minutes is on, just the way you booked it.';
+    $('pseat').innerHTML=yes?'<b>&#10003; You\'re in for '+((window.NEXT_EVENT||{}).long||'the night')+'.</b>':'<b>&#10003; No problem.</b> Your 15 minutes is on, just the way you booked it.';
+    if(window.stopHold)stopHold();
     fill(); email(); show(7);
   }
+  // the 5-minute hold on step 5 (Nov 24)
+  (function(){var iv=null,left=300;
+    window.startHold=function(){if(iv)return;left=300;iv=setInterval(function(){left--;var h=$('held');if(left<0){clearInterval(iv);h.textContent='Time\'s up. Last chance: tap yes before you close this window.';h.classList.add('low');return}
+      var m=Math.floor(left/60),x=left%60;$('ht').textContent=m+':'+(x<10?'0':'')+x;if(left<=60)h.classList.add('low')},1000)};
+    window.stopHold=function(){if(iv){clearInterval(iv);iv=null}}})();
   document.querySelectorAll('#s5 .yes').forEach(function(b){b.addEventListener('click',function(){finish(true)})});
   $('nobtn').addEventListener('click',function(){finish(false)});
   $('emgo').addEventListener('click',function(){var v=$('em2').value.trim();if(v.indexOf('@')<1){$('em2').focus();return}data.em=v;email();if(sent&&!sentEm){sent=false;send()}});
