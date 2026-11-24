@@ -29,7 +29,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 .big.dark{background:#111;color:#fff}button.big.dark{background:#111 !important}.big.blue{background:#f2d27a;border-color:#111;color:#111;box-shadow:4px 4px 0 #111;margin-bottom:12px}.pc.one.lockd{border:3px solid #111;background:#dceeff;box-shadow:6px 6px 0 #111;margin-bottom:14px}.pc.lockd b{color:#111}.pc.lockd span{color:#111}.pc.lockd a{color:#1d3fbf;font-weight:bold}
 #note{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;min-height:90px}
 .back{font:inherit;font-size:16px;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;color:#111}
-.now{border:3px solid #111;padding:12px 14px;margin:12px 0 14px;background:#FFF3C4}.now p{margin:0 0 6px}.now .k{font-size:17px;font-weight:bold;color:#111;display:block}.now .v{font-size:18px;font-weight:normal;color:#111}.now #nw-last{color:#666}.now #nw-stage{font-size:21px}.now .big{background:#fff;margin:8px 0 0}
+.now{border:3px solid #111;padding:12px 14px;margin:12px 0 14px;background:#FFF3C4}.now p{margin:0 0 6px}.now .k{font-size:17px;font-weight:bold;color:#111;display:block}.now .v{font-size:18px;font-weight:normal;color:#111}.now #nw-last{color:#666}.now #nw-stage{font-size:21px}.now .big{background:#fff;margin:8px 0 0}.pcard{border:1px solid #bbb;box-shadow:3px 3px 0 #ddd;margin:0 0 14px;overflow:hidden;position:relative;width:100%;aspect-ratio:864/576;background:#fff}.pcard .cardin{position:absolute;top:0;left:0;width:864px;height:576px;transform-origin:0 0}.pcard .cardin p{margin:0}
 #hist{padding-left:20px;margin:4px 0 6px;font-size:15px}.nx{display:block;font-size:14px;color:#111}
 .due{display:block;font-size:14px;font-weight:bold}.due.late{color:#B00020}#score{font-size:14px;color:#555;margin:0 0 14px}#rules{font-size:14px;color:#555;border-top:2px solid #111;padding-top:10px;margin-top:24px}
 .crumb{font-size:14px;margin:0 0 6px}.bar{display:flex;flex-wrap:wrap;gap:6px 18px;margin:8px 0 6px;padding:10px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;font-size:16px}.bar a{font-weight:bold;white-space:nowrap}.prac{font-size:15px;color:#111;margin:4px 0 8px;padding:8px 12px;background:#fff3b8;border:2px solid #111;border-radius:6px;font-weight:bold}.prac a{color:#111}
@@ -191,7 +191,7 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <div id="pe-nsbox" style="display:none;border:3px solid #111;padding:10px 12px;margin:8px 0"><p style="margin:0 0 6px;font-size:15px">Why isn't it going? A few words is enough. It is noted on the shop, the piece stays on the list, and it can still be sent later.</p><input id="pe-why" maxlength="300" autocomplete="off" placeholder="For example: owner asked us to call instead"><button class="big dark" type="button" id="pe-nssave">Save "Not Sent"</button></div>
 <p style="font-size:14px;margin:0 0 8px">Sending some other way? <button class="back" type="button" id="pe-copy" style="font-size:14px">Copy the words</button></p>
 </div>
-<div id="pe-view" style="display:none"><p class="lab" id="pe-vl">The Words That Went</p><div class="ref" id="pe-words"></div></div>
+<div id="pe-view" style="display:none"><p class="lab" id="pe-vl">The Words That Went</p><div id="pe-cards"></div><div class="ref" id="pe-words"></div><details id="pe-pd" style="display:none;margin:4px 0 10px"><summary style="cursor:pointer;font-size:15px;text-decoration:underline">The same words as plain text</summary><div class="ref" id="pe-words2" style="margin-top:8px"></div></details></div>
 <details style="margin:14px 0 4px"><summary style="cursor:pointer;font-size:15px;text-decoration:underline">Look them up (website, reviews, Facebook)</summary><div class="row" id="pe-look" style="margin-top:8px"></div></details>
 <p class="lab">What We Found</p><div class="ref" id="pe-found"></div>
 <p class="lab">Your Notes On This Shop</p><div class="ref" id="pe-note"></div>
@@ -555,6 +555,9 @@ function peClose(){if(peT){clearTimeout(peT);peT=null;if(pcur()&&!ASK)pdraft().c
 function pcount(){var c=pcur(),a=c&&anyPiece(c.pid),n=($('pe-body').value.match(/\S+/g)||[]).length,o=$('pe-count');
   if(!a||a.kind!=='mail'||/^postcard/.test(c.pid)){o.textContent='';return}
   o.textContent=n+' words. A one-page letter holds about 450 (a guess until the mail service shows a proof).';o.style.color=n>450?'#B00020':'';o.style.fontWeight=n>450?'bold':''}
+var MAILC=null;function mailCards(){if(!MAILC)MAILC=fetch('/admin/mail/',{credentials:'same-origin',cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){return new DOMParser().parseFromString(t,'text/html')},function(e){MAILC=null;throw e});return MAILC}
+function fitCards(){[].forEach.call(document.querySelectorAll('#pe-cards .pcard'),function(c){var w=c.clientWidth;if(w)c.firstElementChild.style.transform='scale('+(w/864)+')'})}
+window.addEventListener('resize',fitCards);
 function pview(i,pid,a,r){var x=L[i];
   $('pe-back').textContent='\u2190 Back to '+x.n;$('pe-back2').textContent='\u2190 Back to '+x.n;
   $('pe-who').textContent='';var bb=document.createElement('b');bb.textContent=x.n;$('pe-who').appendChild(bb);$('pe-who').appendChild(document.createTextNode(' \u00b7 '+x.k+' \u00b7 '+x.t));
@@ -565,6 +568,11 @@ function pview(i,pid,a,r){var x=L[i];
   $('pe-vl').textContent=r&&r.st==='mailed'?'The Words That Went':'The Words For This Shop (Not Mailed Yet)';$('pe-words').textContent='';
   if(r&&r.st==='mailed')send({op:'words',id:x.id,pid:pid},true).then(function(j){$('pe-words').textContent=(j.rec||{}).body||''},function(){$('pe-words').textContent='Could not load the words.'});
   else{var o=orig(i,pid);$('pe-words').textContent=o?o.body:''}
+  var cb=$('pe-cards'),pm=/^postcard(\d)$/.exec(pid);cb.textContent='';$('pe-words').style.display='';$('pe-pd').style.display='none';
+  if(pm&&!(r&&r.st==='mailed')){var want=PEK;$('pe-vl').textContent='How It Will Look (Not Mailed Yet)';$('pe-words').style.display='none';$('pe-words2').textContent=$('pe-words').textContent;$('pe-pd').style.display='block';cb.textContent='Loading the postcard...';
+    mailCards().then(function(d){if(PEK!==want)return;var sec=d.getElementById('postcard-'+pm[1]);if(!sec)throw 0;var sd=sec.querySelectorAll('.side'),cs=sec.querySelectorAll('.card .cardin');if(!cs.length)throw 0;cb.textContent='';
+      [].forEach.call(cs,function(c,k){var l=document.createElement('p');l.className='lab';l.textContent=sd[k]?sd[k].textContent:'';cb.appendChild(l);var w=document.createElement('div');w.className='pcard';var cn=document.importNode(c,true);[].forEach.call(cn.querySelectorAll('div'),function(dv){if(dv.innerHTML.indexOf('[Business Name]')===0||/^\[Owner Name\]/.test(dv.innerHTML)){var ad=(x.a||'').trim(),cm=ad.indexOf(',');dv.textContent='';[x.n,cm>0?ad.slice(0,cm):ad,cm>0?ad.slice(cm+1).trim():''].forEach(function(t,n){if(!t)return;if(dv.childNodes.length)dv.appendChild(document.createElement('br'));dv.appendChild(document.createTextNode(t))});dv.style.color='#111'}});w.appendChild(cn);cb.appendChild(w)});fitCards()},
+    function(){if(PEK!==want)return;cb.textContent='';$('pe-vl').textContent='The Words For This Shop (Not Mailed Yet)';$('pe-words').style.display='';$('pe-pd').style.display='none'})}
   $('pe-found').textContent=x.f||'Not looked at closely yet.';$('pe-note').textContent=x.note||'No notes yet.';
   var lk=$('pe-look');lk.textContent='';[].forEach.call($('look').querySelectorAll('a'),function(z){lk.appendChild(z.cloneNode(true))});
   if($('pe').style.display!=='block'){$('pe').style.display='block';$('pe').scrollTop=0}}
@@ -573,6 +581,7 @@ function pedit(pid){
   var key=x.id+'|'+pid,same=PEK===key&&$('pe').style.display==='block';PEK=key;
   var pc=mine(pid),r=lastRec(i,pid),done=!!(r&&r.st!=='notsent'),em=a.kind==='email',st=stg(i),all=epids();
   if(!em){pview(i,pid,a,r);return}
+  $('pe-cards').textContent='';$('pe-words').style.display='';$('pe-pd').style.display='none';
   $('pe-back').textContent='← Back to '+x.n;$('pe-back2').textContent='← Back to '+x.n;
   $('pe-who').textContent='';var bb=document.createElement('b');bb.textContent=x.n;$('pe-who').appendChild(bb);$('pe-who').appendChild(document.createTextNode(' · '+x.k+' · '+x.t+(x.wk?' · '+(x.wk===ME?'you are':x.wk+' is')+' working it':'')));
   $('pe-kind').textContent=em?'Email':'Mail';
