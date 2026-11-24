@@ -1,5 +1,5 @@
 {
- "checked": "Tue Nov 24, 10:12am",
+ "checked": "Tue Nov 24, 11:13am",
  "people": {
   "Daegan": {
    "needs": [
@@ -50,6 +50,12 @@
      "w": "From Jimmy's Claude, Daily Brief Fri 11:30am (from Thursday's call)",
      "x": "The Jamon and Dr. McCray agreements ($1,500 a month each) have been on Jimmy's list 4 days and depend on the offer and price being settled, so it is on today's noon call.",
      "n": "Settle the offer and price with Jimmy on today's call."
+    },
+    {
+     "t": "Microsoft 365 mail shows a \"recently created domain\" warning on Jimmy's emails",
+     "w": "From Jimmy's Claude, Tue Nov 24, 10:28am",
+     "x": "On Mon Nov 23 a partner's Microsoft-style mail system put a warning banner on Jimmy's email from jimmy@2guysandagenie.com, saying the sender domain was only recently created and might be malicious. The partner replied anyway, so nothing broke, but other businesses on Microsoft 365 may see it too and some emails may land in spam. Not urgent.",
+     "n": "Check the email setup (SPF, DKIM, DMARC) for 2guysandagenie.com and mail.2guysandagenie.com, then send Jimmy's Claude a short \"all good\" or \"fixed X\". Much of the cure may just be time as the domain ages."
     }
    ],
    "waits": [
@@ -116,6 +122,10 @@
  },
  "fyi": [
   {
+   "t": "Jimmy's Claude flagged the domain warning (Tue 10:28am)",
+   "x": "Details are under Needs Daegan; nothing is broken."
+  },
+  {
    "t": "Jimmy's Claude sent the word-for-word script of Ian's Fuel Hunting video (Tue 8:12am)",
    "x": "It answers your transcript request: the full 10:32 narration with times is in the email, and a 720p copy of the video plus the Findings Film kit are in the shared Drive folder \"2 Guys - Findings Film kit\". If Drive says you have no access, reply \"no access\" and Jimmy will share it by hand. The script, video and the Ian-named files stay team-only until Ian says yes in writing; the format file and templates are safe to share."
   },
@@ -161,6 +171,13 @@
   }
  ],
  "traffic": [
+  [
+   "Tue Nov 24, 10:28am",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][FYI] Email warning: 2guysandagenie.com flagged as 'recently created domain'",
+   "—"
+  ],
   [
    "Tue Nov 24, 8:12am",
    "In",
