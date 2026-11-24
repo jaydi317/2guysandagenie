@@ -1,5 +1,5 @@
 {
- "checked": "Tue Nov 24, 7:20am",
+ "checked": "Tue Nov 24, 8:15am",
  "people": {
   "Daegan": {
    "needs": [
@@ -116,6 +116,10 @@
  },
  "fyi": [
   {
+   "t": "Jimmy's Claude sent the word-for-word script of Ian's Fuel Hunting video (Tue 8:12am)",
+   "x": "It answers your transcript request: the full 10:32 narration with times is in the email, and a 720p copy of the video plus the Findings Film kit are in the shared Drive folder \"2 Guys - Findings Film kit\". If Drive says you have no access, reply \"no access\" and Jimmy will share it by hand. The script, video and the Ian-named files stay team-only until Ian says yes in writing; the format file and templates are safe to share."
+  },
+  {
    "t": "Jimmy's Claude filed Monday's two team call notes (Mon 9:40pm)",
    "x": "The notes for the 11:58am testing-day call and the 1:54pm Go Day call are in Notion; the to-do list is under Needs Daegan."
   },
@@ -157,6 +161,13 @@
   }
  ],
  "traffic": [
+  [
+   "Tue Nov 24, 8:12am",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN] Re: Request from Daegan: transcript of Ian's Fuel Hunting video",
+   "—"
+  ],
   [
    "Mon Nov 23, 9:40pm",
    "In",
@@ -281,48 +292,6 @@
    "In",
    "Jimmy",
    "Re: Please correct website lines that do not match our client records",
-   "—"
-  ],
-  [
-   "Fri Nov 20, 9:39pm",
-   "In",
-   "Jimmy",
-   "[FYI] Notes from today's team call: your 7 to-dos",
-   "—"
-  ],
-  [
-   "Fri Nov 20, 4:45pm",
-   "In",
-   "Paul",
-   "Re: Your agenda items for Sat, Nov 21's team meeting",
-   "about 2 hr after our Fri 2:41pm send"
-  ],
-  [
-   "Fri Nov 20, 4:11pm",
-   "In",
-   "Jimmy",
-   "Re: Your agenda items for Sat, Nov 21's team meeting",
-   "about 1.5 hr after our Fri 2:41pm send"
-  ],
-  [
-   "Fri Nov 20, 2:41pm",
-   "Out",
-   "Jimmy and Paul",
-   "Your agenda items for Sat, Nov 21's team meeting",
-   "Jimmy answered Fri 4:11pm (about 1.5 hr); Paul answered Fri 4:45pm (about 2 hr)"
-  ],
-  [
-   "Fri Nov 20, 11:52am",
-   "In",
-   "Paul",
-   "Re: Your agenda items for Fri, Nov 20's team meeting",
-   "about 21 hr after our Thu 2:40pm send"
-  ],
-  [
-   "Fri Nov 20, 11:30am",
-   "In",
-   "Jimmy",
-   "Daily Brief (Fri Nov 20)",
    "—"
   ]
  ]
