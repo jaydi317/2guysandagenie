@@ -227,7 +227,11 @@ html{overflow-x:clip}
 .ink{background:#111;color:#fff;margin:34px calc(50% - 50vw) 0;padding:44px calc(50vw - 50%) 46px}
 .ink p,.ink li{color:#fff}.ink .hi2{font-family:Caveat,cursive;font-weight:700;color:var(--yel);font-size:34px;line-height:1.1;margin:0 0 18px}
 .ink .card{background:#fff;color:#111;border-color:#fff}.ink .card .cd{color:#444}
-.ink .testhead{border-top-color:#fff}
+.ink .slab{background:#fff;color:#111;padding:28px 24px 26px;margin:30px 0 26px}
+.ink .slab p,.ink .slab li{color:#111}
+.ink .slab .testhead{border-top:0;padding-top:0;margin-top:0;font-size:28px;font-weight:900}
+.ink .slab .testlist{background:none;box-shadow:none;padding:0 0 0 24px}
+.ink .slab .btn{background:#111;color:#fff;border-color:#111;box-shadow:6px 6px 0 var(--blue)}
 .ink .testlist{background:#fff;color:#111;padding:20px 20px 10px 44px;box-shadow:7px 7px 0 var(--yel)}.ink .testlist li{color:#111}
 .ink .callout{background:var(--yel);border-left-color:#111}.ink .callout p{color:#111}
 .ink .btn{background:var(--yel);color:#111;border-color:#fff;box-shadow:6px 6px 0 var(--blue)}
@@ -237,15 +241,18 @@ html{overflow-x:clip}
 .swap .was{border:2px solid #111;padding:6px 10px;font-weight:900;font-size:22px;text-decoration:line-through;text-decoration-color:var(--blue);text-decoration-thickness:3px}
 .swap .now{border:2px solid #111;background:var(--yel);box-shadow:5px 5px 0 var(--gold);padding:6px 10px;font-weight:900;font-size:22px}
 .swap .hand{font-size:32px}.swap small{color:var(--soft);font-size:15px}
-.askbox{}
-.askbox .btn{box-shadow:6px 6px 0 var(--gold)}
+.askbox{background:#FFF3C4;border:2px solid #111;box-shadow:9px 9px 0 #111;padding:26px 22px 18px}
 /* The logic: sections take turns, white then tan, full width. Black once, for who we are. Proof sits in a white card with a black pop-out shadow. Our own words stay plain. Every button looks the same. */
 section.s,aside.wonder{border-top:0;margin:0 calc(50% - 50vw);padding:52px calc(50vw - 50%) 48px}
 .band{background:#F7F1E3}
+.news h2{font-size:30px;line-height:1.15}
+.quote.star{background:var(--yel);border:2px solid #111;border-left:2px solid #111;box-shadow:8px 8px 0 #111;padding:22px 22px 14px;margin:26px 0 0}
+.quote.star p:first-child{font-family:"Courier New",monospace;font-size:22px;font-weight:bold;line-height:1.4}
 .proof{background:#fff;border:2px solid #111;box-shadow:8px 8px 0 #111;padding:22px 20px 8px;margin:0 0 18px}
-aside.wonder .wq{background:#111;color:#fff;border:2px solid #111;box-shadow:7px 7px 0 var(--gold);padding:16px 18px;margin:0 0 18px;transition:transform .12s}
-aside.wonder .wq:hover{background:#111;color:#fff;transform:translate(-2px,-2px)}
-aside.wonder .wq .ans{color:#fff!important}aside.wonder .wq span{color:var(--yel)!important}
+aside.wonder{background:#fff}
+aside.wonder .wq{background:#fff;color:#111;border:2px solid #111;box-shadow:7px 7px 0 #111;padding:16px 18px;margin:0 0 18px;transition:transform .12s}
+aside.wonder .wq:hover{background:#fff;color:#111;transform:translate(-2px,-2px)}
+aside.wonder .wq:hover span{color:var(--link)!important}
 #seat .btn{box-shadow:6px 6px 0 var(--blue)}
 </style>
 <!-- Meta Pixel Code -->
@@ -306,6 +313,7 @@ gtag('config', 'AW-411908051');
 <p>There are thousands of AI tools, and you have a business to run.</p>
 <p>Knowing them is our job.</p>
 <p>So you hand us the job you hate. We tell you which tool eliminates it.</p>
+<div class="slab">
 <p class="testhead">You've never met us. So put us to the test.</p>
 <ol class="testlist">
 <li>Tell us the one job you want gone. You pick the time.</li>
@@ -315,9 +323,10 @@ gtag('config', 'AW-411908051');
 <li>And we show you how to use it, the way we've set them up for our clients.</li>
 </ol>
 <p>If the right tool isn't out there, we build it.</p>
-<div class="callout"><p><b>The 15 minutes are free. What we bring back is yours to keep.</b></p></div>
-<p style="margin-bottom:26px">If it's a tool that costs money, you know the price first, and you decide.</p>
+<p><b>The 15 minutes are free. What we bring back is yours to keep.</b></p>
+<p style="margin-bottom:24px">If it's a tool that costs money, you know the price first, and you decide.</p>
 <a class="btn" href="/free15/start/?from=home">Get My Free 15 Minutes</a>
+</div>
 <div class="proofline">"This was not talking about AI. This was actually helping people use AI."<b>Roger, a local owner, at one of our free AI nights in Fishers</b></div>
 </div>
 </section>
@@ -362,7 +371,7 @@ gtag('config', 'AW-411908051');
 </section>
 
 <!-- 4. BELIEF 1: IT WASN'T YOU -->
-<section class="s band">
+<section class="s">
 <p class="kicker">Tried AI already?</p>
 <h2>Tried ChatGPT And It Didn't Wow You? It's Not Your Fault.</h2>
 <p>You probably asked it something and got an answer so generic it could have been for anybody.</p>
@@ -380,9 +389,9 @@ gtag('config', 'AW-411908051');
 
 <!-- 5. BELIEF 2: JAMON, AND WHO WE ARE -->
 <section class="s">
+<div class="proof news">
 <p class="kicker">How the 2 Guys started</p>
 <h2>The Retired Cop Who Wanted To Punch Jimmy In The Face... Then Called Him A Genie.</h2>
-<div class="proof">
 <p style="font-size:20px;font-weight:bold;line-height:1.35">How a local handyman went from chasing work to booked 6 months out, and from $15,000 a month to over $50,000.</p>
 <figure class="jvid"><video controls playsinline preload="none" poster="/assets/jamon/jamon-jack-poster-v3.jpg"><source src="/assets/jamon/jamon-jack-16x9.mp4" type="video/mp4"></video>
 <figcaption><b>Jamon's Story.</b> 1 minute 27 seconds, in his own words.</figcaption></figure>
@@ -407,7 +416,7 @@ gtag('config', 'AW-411908051');
 </section>
 
 <!-- 6. YOUR EVENINGS BACK (folded into Jamon's story) -->
-<section class="s band">
+<section class="s">
 <h2>Keep The Business. Lose The Late Nights.</h2>
 <div class="hv" id="dnights"><img data-v="a" src="/assets/home/d-nights-a.svg" alt="Before: still at it, late. Now: home with the family." style="display:block;width:100%;height:auto"><img data-v="b" hidden src="/assets/home/d-nights-b.svg" alt="The business plus a life. You get both." style="display:block;width:100%;height:auto"><img data-v="c" hidden src="/assets/home/d-nights-c.svg" alt="Before, the whole day was work. Now the evening is yours." style="display:block;width:100%;height:auto"></div><script>window.R&&R.show(document.getElementById('dnights'),'d-nights')</script>
 <div class="quote"><p>"There is no business worth building that destroys the family, that keeps us from being a dad or a husband. But today, with these tools and these capabilities, we now can have both."</p><p class="who">Jamon, GottaCallJack.com</p></div>
@@ -418,7 +427,7 @@ gtag('config', 'AW-411908051');
 </section>
 
 <!-- 7. THE WALL -->
-<section class="s" id="stories">
+<section class="s band" id="stories">
 <p class="kicker">Not a handyman or a pizza shop?</p>
 <h2>A Lawyer, A Piano Teacher, A Chiropractor And More. None Of Them Knew Where To Start With AI.</h2>
 <p>Find a business like yours. Tap it to see the before and after.</p>
@@ -428,12 +437,12 @@ gtag('config', 'AW-411908051');
 <a class="tile" href="https://ineedjimmy.com/excell/sites/10-in-your-words.html" target="_blank" rel="noopener"><img src="/assets/home/47f311aa00.jpg" alt="Excell Sports Chiropractic's new site"><span><span class="wl">More 5-star reviews</span><b>Chiropractor</b><br>Excell Sports Chiropractic<span class="go">See the before and after ›</span></span></a>
 </div>
 <ul class="sites" style="margin:18px 0 10px;padding-left:18px"><li><a href="https://ineedjimmy.com/law/c.html" target="_blank" rel="noopener"><b>Lawyer</b>, Jim Ammeen: see the before and after ›</a></li><li><a href="https://ineedjimmy.com/bruce/home.html" target="_blank" rel="noopener"><b>Piano teacher</b>, Bruce Barker: see the before and after ›</a></li><li><a href="https://ineedjimmy.com/mason/4-machine.html" target="_blank" rel="noopener"><b>Vape shop</b>, Just Vapor: see the before and after ›</a></li><li><a href="https://ineedjimmy.com/katherine/exhibit-b.html" target="_blank" rel="noopener"><b>Financial advisor</b>, MD Financial Advisors: see the before and after ›</a></li><li><a href="https://ineedjimmy.com/ianb/c.html" target="_blank" rel="noopener"><b>Photographer</b>, Ian Borgerhoff: see the before and after ›</a></li><li><a href="https://ineedjimmy.com/forian/sunset-v2.html" target="_blank" rel="noopener"><b>Wedding DJ</b>, Digital Sound Services: see the before and after ›</a></li></ul>
-<div class="quote"><p>"Unbelievable... this is definitely gonna make my life a whole lot easier."</p><p class="who">Dr. Marcus McCray, Excell Sports Chiropractic<small>Team Chiropractor, Indianapolis Colts. His practice runs on referrals.</small></p></div>
+<div class="quote star"><p>"Unbelievable... this is definitely gonna make my life a whole lot easier."</p><p class="who">Dr. Marcus McCray, Excell Sports Chiropractic<small>Team Chiropractor, Indianapolis Colts. His practice runs on referrals.</small></p></div>
 </div>
 </section>
 
 <!-- 8. THE DOUBTS -->
-<aside class="wonder band">
+<aside class="wonder">
 <p class="kicker">Still wondering?</p>
 <h2>Tap The One That's On Your Mind.</h2>
 <div class="wq"><b>"What's the catch?"</b><span class="ans" style="color:var(--ink);font-weight:normal;font-size:16px;margin-top:6px">There isn't one. We'd rather show you than tell you. If the fix is an AI tool you'd pay for, the only cost is the tool, and only if you decide you want it. Next time a job eats your week, you know who to call. One job gone. Then the next. That's how a business keeps getting better.</span></div>
