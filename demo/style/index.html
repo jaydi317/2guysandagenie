@@ -232,15 +232,20 @@ html{overflow-x:clip}
 .ink .callout{background:var(--yel);border-left-color:#111}.ink .callout p{color:#111}
 .ink .btn{background:var(--yel);color:#111;border-color:#fff;box-shadow:6px 6px 0 var(--blue)}
 .ink .proofline{border-left-color:var(--yel)}
-.skybox{background:#FFF3C4;border:2px solid #111;box-shadow:8px 8px 0 #111;padding:24px 20px 8px}
+.skyboxOLD{background:#FFF3C4;border:2px solid #111;box-shadow:8px 8px 0 #111;padding:24px 20px 8px}
 .swap{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:4px 0 22px}
 .swap .was{border:2px solid #111;padding:6px 10px;font-weight:900;font-size:22px;text-decoration:line-through;text-decoration-color:var(--blue);text-decoration-thickness:3px}
 .swap .now{border:2px solid #111;background:var(--yel);box-shadow:5px 5px 0 var(--gold);padding:6px 10px;font-weight:900;font-size:22px}
 .swap .hand{font-size:32px}.swap small{color:var(--soft);font-size:15px}
-.askbox{background:#FFF3C4;border:2px solid #111;box-shadow:9px 9px 0 #111;padding:26px 22px 18px}
-.wonder{background:#fff;padding-left:0;padding-right:0}
-.wq{background:#111;color:#fff;border-color:#111;box-shadow:6px 6px 0 var(--yel);margin:0 0 18px;transition:transform .12s}.wq:hover{transform:translate(-2px,-2px)}
-.wq .ans{color:#fff!important}.wq span{color:var(--yel)!important}.askbox .btn{box-shadow:6px 6px 0 var(--gold)}
+.askbox{}
+.askbox .btn{box-shadow:6px 6px 0 var(--gold)}
+/* The logic: sections take turns, white then tan, full width. Black once, for who we are. Proof sits in a white card with a black pop-out shadow. Our own words stay plain. Every button looks the same. */
+section.s,aside.wonder{border-top:0;margin:0 calc(50% - 50vw);padding:52px calc(50vw - 50%) 48px}
+.band{background:#F7F1E3}
+.proof{background:#fff;border:2px solid #111;box-shadow:8px 8px 0 #111;padding:22px 20px 8px;margin:0 0 18px}
+aside.wonder .wq{background:transparent;border:0;border-bottom:1px solid #d8ceb6;padding:14px 0;margin:0}
+aside.wonder .wq:hover{background:transparent;color:#111}aside.wonder .wq:hover span{color:var(--link)!important}
+#seat .btn{box-shadow:6px 6px 0 var(--blue)}
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -317,9 +322,9 @@ gtag('config', 'AW-411908051');
 </section>
 
 <!-- 2. MAESTRO'S, THE WHOLE STORY -->
-<section class="s">
+<section class="s band">
 <p class="kicker">Here's what a fix looks like</p>
-<div class="skybox">
+<div class="proof">
 <h2>The Pizza Guy Who Couldn't Answer His Own Phone.</h2>
 <div class="spot" style="border:2px solid #111;margin:0 0 6px"><div class="hv" id="dcalls"><img data-v="a" src="/assets/home/d-calls-a.svg" alt="Before: 4 of 10 calls to voicemail. Now: every call answered." style="display:block;width:100%;height:auto"><img data-v="b" hidden src="/assets/home/d-calls-b.svg" alt="Before: 4 of 10 calls went to voicemail. Now: every call answered." style="display:block;width:100%;height:auto"><img data-v="c" hidden src="/assets/home/d-calls-c.svg" alt="Before: the phone rings and 4 of 10 go to voicemail. Now: every call answered." style="display:block;width:100%;height:auto"></div><script>window.R&&R.show(document.getElementById('dcalls'),'d-calls')</script></div>
 <p class="cap">Maestro's phone: before, and now.</p>
@@ -356,7 +361,7 @@ gtag('config', 'AW-411908051');
 </section>
 
 <!-- 4. BELIEF 1: IT WASN'T YOU -->
-<section class="s">
+<section class="s band">
 <p class="kicker">Tried AI already?</p>
 <h2>Tried ChatGPT And It Didn't Wow You? It's Not Your Fault.</h2>
 <p>You probably asked it something and got an answer so generic it could have been for anybody.</p>
@@ -376,6 +381,7 @@ gtag('config', 'AW-411908051');
 <section class="s">
 <p class="kicker">How the 2 Guys started</p>
 <h2>The Retired Cop Who Wanted To Punch Jimmy In The Face... Then Called Him A Genie.</h2>
+<div class="proof">
 <p style="font-size:20px;font-weight:bold;line-height:1.35">How a local handyman went from chasing work to booked 6 months out, and from $15,000 a month to over $50,000.</p>
 <figure class="jvid"><video controls playsinline preload="none" poster="/assets/jamon/jamon-jack-poster-v3.jpg"><source src="/assets/jamon/jamon-jack-16x9.mp4" type="video/mp4"></video>
 <figcaption><b>Jamon's Story.</b> 1 minute 27 seconds, in his own words.</figcaption></figure>
@@ -396,10 +402,11 @@ gtag('config', 'AW-411908051');
 </div>
 <p style="margin-top:22px">Jimmy told Jamon that AI was like a Ferrari. Here's what Jamon said:</p>
 <div class="quote"><p>"I don't have time to learn how to drive it... Jimmy, just let me drive."</p><p class="who">Jamon, with his son Chase, GottaCallJack.com</p></div>
+</div>
 </section>
 
 <!-- 6. YOUR EVENINGS BACK (folded into Jamon's story) -->
-<section class="s">
+<section class="s band">
 <h2>Keep The Business. Lose The Late Nights.</h2>
 <div class="hv" id="dnights"><img data-v="a" src="/assets/home/d-nights-a.svg" alt="Before: still at it, late. Now: home with the family." style="display:block;width:100%;height:auto"><img data-v="b" hidden src="/assets/home/d-nights-b.svg" alt="The business plus a life. You get both." style="display:block;width:100%;height:auto"><img data-v="c" hidden src="/assets/home/d-nights-c.svg" alt="Before, the whole day was work. Now the evening is yours." style="display:block;width:100%;height:auto"></div><script>window.R&&R.show(document.getElementById('dnights'),'d-nights')</script>
 <div class="quote"><p>"There is no business worth building that destroys the family, that keeps us from being a dad or a husband. But today, with these tools and these capabilities, we now can have both."</p><p class="who">Jamon, GottaCallJack.com</p></div>
@@ -414,16 +421,18 @@ gtag('config', 'AW-411908051');
 <p class="kicker">Not a handyman or a pizza shop?</p>
 <h2>A Lawyer, A Piano Teacher, A Chiropractor And More. None Of Them Knew Where To Start With AI.</h2>
 <p>Find a business like yours. Tap it to see the before and after.</p>
+<div class="proof">
 <div class="wall">
 <a class="tile" href="/stories/gotta-call-jack/"><img src="/assets/home/44360e310d.jpg" alt="Gotta Call Jack's new site"><span><span class="wl">Never lose another lead</span><b>Handyman</b><br>Gotta Call Jack<span class="go">Read his whole story ›</span></span></a>
 <a class="tile" href="https://ineedjimmy.com/excell/sites/10-in-your-words.html" target="_blank" rel="noopener"><img src="/assets/home/47f311aa00.jpg" alt="Excell Sports Chiropractic's new site"><span><span class="wl">More 5-star reviews</span><b>Chiropractor</b><br>Excell Sports Chiropractic<span class="go">See the before and after ›</span></span></a>
 </div>
 <ul class="sites" style="margin:18px 0 10px;padding-left:18px"><li><a href="https://ineedjimmy.com/law/c.html" target="_blank" rel="noopener"><b>Lawyer</b>, Jim Ammeen: see the before and after ›</a></li><li><a href="https://ineedjimmy.com/bruce/home.html" target="_blank" rel="noopener"><b>Piano teacher</b>, Bruce Barker: see the before and after ›</a></li><li><a href="https://ineedjimmy.com/mason/4-machine.html" target="_blank" rel="noopener"><b>Vape shop</b>, Just Vapor: see the before and after ›</a></li><li><a href="https://ineedjimmy.com/katherine/exhibit-b.html" target="_blank" rel="noopener"><b>Financial advisor</b>, MD Financial Advisors: see the before and after ›</a></li><li><a href="https://ineedjimmy.com/ianb/c.html" target="_blank" rel="noopener"><b>Photographer</b>, Ian Borgerhoff: see the before and after ›</a></li><li><a href="https://ineedjimmy.com/forian/sunset-v2.html" target="_blank" rel="noopener"><b>Wedding DJ</b>, Digital Sound Services: see the before and after ›</a></li></ul>
 <div class="quote"><p>"Unbelievable... this is definitely gonna make my life a whole lot easier."</p><p class="who">Dr. Marcus McCray, Excell Sports Chiropractic<small>Team Chiropractor, Indianapolis Colts. His practice runs on referrals.</small></p></div>
+</div>
 </section>
 
 <!-- 8. THE DOUBTS -->
-<aside class="wonder">
+<aside class="wonder band">
 <p class="kicker">Still wondering?</p>
 <h2>Tap The One That's On Your Mind.</h2>
 <div class="wq"><b>"What's the catch?"</b><span class="ans" style="color:var(--ink);font-weight:normal;font-size:16px;margin-top:6px">There isn't one. We'd rather show you than tell you. If the fix is an AI tool you'd pay for, the only cost is the tool, and only if you decide you want it. Next time a job eats your week, you know who to call. One job gone. Then the next. That's how a business keeps getting better.</span></div>
