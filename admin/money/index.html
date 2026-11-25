@@ -1,0 +1,262 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex, nofollow">
+<title>The Money Board · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<link rel="stylesheet" href="/assets/simple.css">
+<style>
+:root{--copper:#111111;--gold:#111111;--link:#111111;--tint:#FFF3C4}
+main{max-width:860px}
+h1{margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.chip{font:inherit;font-size:15px;padding:7px 12px;border:2px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer}
+.chip.on{background:var(--ink);color:#fff}
+.wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:2px solid var(--ink);margin:0 0 8px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:15px}
+th{font-size:12px;font-weight:bold;text-transform:uppercase;letter-spacing:.5px;color:var(--soft);text-align:right;padding:10px 8px;border-bottom:2px solid var(--ink);vertical-align:bottom;background:#fff}
+td{text-align:right;padding:10px 8px;border-bottom:1px solid var(--rule);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal;position:sticky;left:0;background:#fff;min-width:170px;max-width:220px}
+tr.g td{font-weight:bold}
+tr.g.open td{background:var(--tint)}
+tr.sub td{font-size:14px;color:#333;padding-top:6px;padding-bottom:6px}
+tr.sub td:first-child{padding-left:22px;font-weight:normal}
+tr.none td{color:#888;font-weight:normal}
+.tog{font:inherit;font-weight:bold;background:none;border:0;padding:0;cursor:pointer;text-align:left;color:var(--ink);text-decoration:underline}
+.neg{color:#B00020}.pos{color:#1a7f37}
+.tag{display:inline-block;font-size:12px;font-weight:bold;padding:1px 7px;border:2px solid var(--ink);margin-left:6px;background:#fff}
+.tag.real{background:var(--ink);color:#fff}.tag.lean{background:#FFF3C4}
+.lnd{display:block;font-size:12px;color:var(--soft)}
+.box{border:3px solid var(--ink);padding:16px 18px;margin:0 0 22px}
+.box h2{margin:0 0 4px}
+.box label{display:block;font-size:14px;font-weight:bold;margin:12px 0 4px}
+.box input,.box select{font:inherit;font-size:16px;width:100%;box-sizing:border-box;padding:9px 10px;border:2px solid var(--ink);background:#fff}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+@media (max-width:560px){.two{grid-template-columns:1fr}}
+.hint{font-size:14px;color:var(--soft);margin:4px 0 0}
+.out{display:flex;gap:8px;align-items:center;margin:12px 0 0;flex-wrap:wrap}
+.out code{flex:1;min-width:220px;font-size:16px;background:#FFF3C4;border:2px solid var(--ink);padding:9px 10px;word-break:break-all}
+.btn.sm{font-size:15px;padding:9px 14px}
+.err{color:#B00020;font-size:14px;min-height:18px;margin:6px 0 0}
+.ok{font-size:14px;min-height:18px;margin:6px 0 0}
+.list{list-style:none;padding:0;margin:8px 0 0;font-size:15px}
+.list li{border-top:1px solid var(--rule);padding:8px 0;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.list li b{flex:1;min-width:160px}
+.x{font:inherit;font-size:14px;background:none;border:0;text-decoration:underline;cursor:pointer;color:#B00020;padding:0}
+.lk{font:inherit;font-size:14px;background:none;border:0;text-decoration:underline;cursor:pointer;color:var(--ink);padding:0}
+.msg{background:#FFF3C4;border:2px solid var(--ink);padding:10px 14px;margin:0 0 14px;font-size:16px}
+details.more{margin:0 0 22px}details.more summary{font-weight:bold;cursor:pointer;font-size:18px}
+</style>
+</head><body>
+<header class="site"><div class="hwrap">
+<a class="brand" href="/"><img src="/assets/2g-square.svg" alt="">2 Guys and a Genie</a>
+</div></header>
+<main id="main">
+<section>
+<p style="margin:0 0 14px"><a href="/admin/" style="color:inherit">&larr; Admin</a> · <a href="/admin/leads/" style="color:inherit">Leads Portal</a> · <a href="/zoom/" style="color:inherit">Team Room</a></p>
+<p class="kicker">Jimmy · Paul · Daegan</p>
+<h1>The Money Board.</h1>
+<p>Every way people find us: what we put in, and what came back.</p>
+<div id="msg" class="msg" style="display:none"></div>
+
+<p class="hint" style="margin:0 0 6px">Show</p>
+<div class="chips" id="range"><button class="chip on" data-r="week">This week</button><button class="chip" data-r="month">This month</button><button class="chip" data-r="all">All time</button></div>
+<p class="hint" style="margin:0 0 6px">Money columns</p>
+<div class="chips" id="per" style="margin-bottom:4px"><button class="chip on" data-p="total">Totals</button><button class="chip" data-p="visitor">Per visitor</button><button class="chip" data-p="lead">Per lead</button></div>
+<p class="hint" style="margin:0 0 12px">Per visitor divides Spent, Money in and Profit by Visitors. Per lead divides them by Leads.</p>
+<div class="wrap"><table id="board"><thead><tr><th>Where they came from</th><th>Spent</th><th>Visitors</th><th>Leads</th><th>Booked a call</th><th>Sales</th><th>Money in</th><th>Profit</th><th id="cpl">Cost per lead</th></tr></thead><tbody id="rows"><tr><td colspan="9">Loading the numbers…</td></tr></tbody></table></div>
+<p class="hint">Tap a bold name to see what's under it.</p>
+<ul class="hint" style="padding-left:20px;margin:6px 0 0"><li>Visitors are people, each counted once per source.</li><li>Leads are anyone who signed up for a night or booked a call. Shops we found ourselves count only once they sign up or book.</li><li>Sales is how many; Money in is the dollars. A later purchase counts for the source that first brought them in.</li><li>Profit is Money in minus Spent. Free sources, like group posts, show $0 spent.</li><li>Lead portal outreach is shops from our own list who later signed up or booked.</li><li>A tracking link gets its own row the moment it's made.</li><li>Someone who types a postcard's address instead of scanning shows under No source.</li><li>A cost counts in the week it's dated, so judge a mailing on All time.</li><li>A dash means there's nothing to show: visits aren't tracked for that row, or there are no leads to divide by.</li><li>The tag on a postcard or split says how sure we can be that one version is beating the other, by leads per visitor. "The winner is real" means about 95% sure it isn't luck. It needs at least 10 leads between the two.</li></ul>
+</section>
+
+<section class="s" id="link">
+<div class="box">
+<h2>Make A Tracking Link.</h2>
+<p class="hint">For a group post, an ad, an email, or someone on the phone. Everyone who uses it shows up on the board under its name.</p>
+<label for="ln">Where will you post it or give it out?</label>
+<input id="ln" placeholder="Fishers Business Owners Facebook group" autocomplete="off">
+<label for="ls">The link: 2guysandagenie.com/go/…</label>
+<input id="ls" placeholder="fishers-owners" autocomplete="off" autocapitalize="off">
+<div class="two">
+<div><label for="la">Send people to</label><select id="la"></select></div>
+<div><label for="lb">Split test: send half to (optional)</label><select id="lb"></select></div>
+</div>
+<p class="hint">With a split, each person gets one of the two pages and keeps seeing the same one. Its two pages show under the link's row.</p>
+<p style="margin:14px 0 0"><button class="btn sm" id="lmake">Make The Link</button></p>
+<p class="err" id="lerr"></p>
+<div class="out" id="lout" style="display:none"><code id="lurl"></code><button class="btn ghost sm" id="lcopy">Copy Link</button></div>
+</div>
+<details class="more" id="links"><summary>Links we've made</summary><p class="hint">A turned-off link sends people to the home page. Its numbers stay on the board.</p><ul class="list" id="llist"></ul></details>
+</section>
+
+<section class="s">
+<div class="two" style="gap:0 22px">
+<div class="box" id="cost">
+<h2>Add A Cost.</h2>
+<p class="hint">Postcard printing and postage, ad spend, anything we paid to bring people in.</p>
+<label for="cs">Where it went</label><select id="cs"></select>
+<label for="ca">Amount</label><input id="ca" inputmode="decimal" placeholder="$300">
+<label for="cd">Date</label><input id="cd" type="date">
+<label for="cn">Note (optional)</label><input id="cn" placeholder="Infinity Printing, 500 cards">
+<p style="margin:14px 0 0"><button class="btn sm" id="cgo">Add The Cost</button></p>
+<p class="err" id="cerr"></p><p class="ok" id="cok"></p>
+</div>
+<div class="box" id="sale">
+<h2>Record A Sale.</h2>
+<p class="hint">Type the buyer's email and tap Find. It looks them up in our list and in GoHighLevel and fills in where they came from.</p>
+<label for="se">Buyer's email</label>
+<div style="display:flex;gap:8px"><input id="se" type="email" placeholder="owner@theirshop.com" autocapitalize="off"><button class="btn ghost sm" id="sfind" style="white-space:nowrap">Find</button></div>
+<p class="ok" id="swho"></p>
+<label for="ss">Where they came from</label><select id="ss"></select>
+<label for="sa">Amount</label><input id="sa" inputmode="decimal" placeholder="$1,500">
+<label for="sk">Their first purchase, or a later one?</label><select id="sk"><option value="first">First purchase</option><option value="back">A later purchase (back end)</option></select>
+<label for="sd">Date</label><input id="sd" type="date">
+<label for="sn">Note (optional)</label><input id="sn" placeholder="The Master Plan">
+<p style="margin:14px 0 0"><button class="btn sm" id="sgo">Record The Sale</button></p>
+<p class="err" id="serr"></p><p class="ok" id="sok"></p>
+</div>
+</div>
+<details class="more"><summary>Costs and sales we've entered</summary><ul class="list" id="clist"></ul></details>
+</section>
+
+<footer>
+<p><a href="/">About 2 Guys and a Genie</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms</a> · Contact: hello@2guysandagenie.com · This site is not part of Facebook or Meta.</p>
+<p>2 Guys and a Genie is a business name of Reverse Selling Limited Liability Company · 14846 Victory Ct, Carmel, IN 46032</p>
+<p style="font-size:12px;margin:10px 0 0"><a href="/admin/" style="color:#888">Admin</a></p>
+</footer>
+</main>
+<script>
+(function(){
+var API='/admin/api/money', TEST=/[?&]test=1/.test(location.search);
+var PAGES=[['/free15/','The free 15-minute call (/free15/)'],['/meetup/','The free AI night (/meetup/)'],['/','The home page (/)'],['/book/','Book a call with Jimmy (/book/)'],['/leaders/','For group leaders (/leaders/)'],['/share/','Help Jimmy get the word out (/share/)']];
+var D=null, RANGE='week', PER='total', OPEN={};
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function money(n){var neg=n<0;n=Math.abs(n);var s='$'+(n>=10?Math.round(n).toLocaleString('en-US'):n.toFixed(n%1?2:0));return neg?'-'+s:s}
+function from(){var d=new Date();d.setHours(0,0,0,0);if(RANGE==='week'){var w=(d.getDay()+6)%7;d.setDate(d.getDate()-w);return d.getTime()}if(RANGE==='month'){d.setDate(1);return d.getTime()}return 0}
+function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function say(t){var m=$('msg');m.textContent=t;m.style.display=t?'block':'none'}
+
+// What we call each source on the board.
+var LINKS={};
+function gkey(page,slot){if(page==='none')return 'none|all';if(page==='tagged'&&(slot==='leaders'||/^group/.test(slot)))return 'tagged|leaders';return page+'|'+slot}
+function gname(k){var p=k.split('|'),page=p[0],slot=p[1];
+  if(k==='none|all')return 'No source';
+  if(k==='outreach|list')return 'Lead portal outreach';
+  if(k==='tagged|leaders')return 'Group leaders, friends and family';
+  if(k==='tagged|ttr-networking')return "Paul's business card";
+  if(k==='tagged|ttr-social-circle')return 'Social circle thank-you page';
+  if(page==='mailer'){var m=/^postcard(\d+)$/.exec(slot);if(m)return 'Postcard '+m[1]}
+  if(page==='link')return LINKS[slot]?LINKS[slot].name:'Link: '+slot;
+  return slot+(page==='tagged'?' (tagged link)':' ('+page+')')}
+var LAND={free15:'free 15-minute call page',home:'home page',meetup:'AI night page',book:'booking page',leaders:'leaders page',share:'share page',jamon:"Jamon's story"};
+var REF={typed:'Typed our address, a bookmark, or a link in an email or text',google:'Google','other-search':'Bing, Yahoo or DuckDuckGo',facebook:'Facebook, without a tracking link',instagram:'Instagram',linkedin:'LinkedIn',x:'X (Twitter)',unknown:'Signed up with no visit recorded'};
+function sname(page,slot,v){
+  if(page==='none')return REF[slot]||slot.replace(/-/g,'.');
+  if(page==='mailer')return v==='doodle'?'Doodle front':v==='base'?'Headline front':v;
+  if(page==='link'){var L=LINKS[slot]||{};return v==='a'?'Page A: '+(L.a||''):v==='b'?'Page B: '+(L.b||''):'All visitors'}
+  if(page==='tagged'&&(slot==='leaders'||/^group/.test(slot)))return slot==='leaders'?'Leaders who tapped through from /leaders/':'Group: '+slot.replace(/^group-?/,'').replace(/-/g,' ');
+  return v==='base'?'All visitors':v}
+
+function label(src){var p=String(src).split('|'),k=(src==='outreach|list'||src==='none|all')?src:gkey(p[0],p[1]),n=gname(k);if(p[2])n+=': '+sname(p[0],p[1],p[2]);return n}
+function build(){
+  LINKS={};(D.links||[]).forEach(function(l){LINKS[l.slug]=l});
+  var G={}, order=[];
+  function grp(k){if(!G[k]){G[k]={k:k,subs:{},vis:0,leads:0,booked:0,spent:0,inn:0,sales:0,first:0,back:0};order.push(k)}return G[k]}
+  ['mailer|postcard1','mailer|postcard2','mailer|postcard3','tagged|leaders','outreach|list','tagged|ttr-networking','none|all'].forEach(grp);
+  (D.links||[]).forEach(function(l){if(!l.off)grp('link|'+l.slug)});
+  (D.rows||[]).forEach(function(r){var k=gkey(r.page,r.slot),g=grp(k);
+    var sk=r.page==='none'?r.page+'|'+r.slot:k+'|'+r.v, s=g.subs[sk]||(g.subs[sk]={key:sk,name:sname(r.page,r.slot,r.v),v:r.v,vis:0,leads:0,booked:0,spent:0,inn:0,sales:0,land:{}});
+    s.vis+=r.visitors;s.leads+=r.leads;s.booked+=r.booked;g.vis+=r.visitors;g.leads+=r.leads;g.booked+=r.booked;
+    if(r.page==='none'&&r.visitors)s.land[r.v]=(s.land[r.v]||0)+r.visitors});
+  var O=grp('outreach|list');(D.outreach||[]).forEach(function(o){O.leads++;if(o.bk)O.booked++;O.subs['o'+o.id]={name:o.n+(o.bk?' (booked)':' (signed up)'),vis:null,leads:1,booked:o.bk?1:0,spent:0,inn:0,sales:0}});
+  O.vis=null;
+  function into(src,f){var p=src.split('|'),k=gkey(p[0],p[1]);if(src==='outreach|list')k='outreach|list';var g=grp(k);f(g);if(p[2]){var sk=k+'|'+p[2],s=g.subs[sk]||(g.subs[sk]={key:sk,name:sname(p[0],p[1],p[2]),v:p[2],vis:0,leads:0,booked:0,spent:0,inn:0,sales:0});f(s)}}
+  (D.costs||[]).forEach(function(c){into(c.src,function(x){x.spent+=c.amt})});
+  (D.sales||[]).forEach(function(s){into(s.src,function(x){x.inn+=s.amt;x.sales++;if(x.first!=null){if(s.kind==='back')x.back++;else x.first++}})});
+  return order.map(function(k){return G[k]});
+}
+function verdict(subs){
+  var r=subs.filter(function(s){return s.vis>0&&(s.v==='a'||s.v==='b'||s.v==='base'||s.v==='doodle')});
+  if(r.length!==2)return null;
+  var tot=r[0].leads+r[1].leads;
+  r.sort(function(a,b){return b.leads/b.vis-a.leads/a.vis});
+  if(tot<10)return {who:null,cls:'',say:'too early to call'};
+  var a=r[0],b=r[1],p=tot/(a.vis+b.vis),se=Math.sqrt(p*(1-p)*(1/a.vis+1/b.vis)),z=se?(a.leads/a.vis-b.leads/b.vis)/se:0;
+  if(z>=1.96)return {who:a,cls:'real',say:'the winner is real'};
+  if(z>=1.28)return {who:a,cls:'lean',say:'leaning'};
+  return {who:null,cls:'',say:'too close to call'};
+}
+function cells(x){
+  var vis=x.vis, profit=x.inn-x.spent;
+  function per(n){if(PER==='total')return money(n);var d=PER==='visitor'?vis:x.leads;return d?money(n/d):'—'}
+  var cpl=x.leads?money(x.spent/x.leads):'—';
+  return '<td>'+(x.spent||PER==='total'?per(x.spent):'—')+'</td><td>'+(vis==null?'—':vis)+'</td><td>'+x.leads+'</td><td>'+x.booked+'</td><td>'+x.sales+'</td><td>'+per(x.inn)+'</td><td class="'+(profit>0?'pos':profit<0?'neg':'')+'">'+per(profit)+'</td><td>'+cpl+'</td>';
+}
+function draw(){
+  var gs=build(), h='';
+  gs.forEach(function(g){
+    var subs=Object.keys(g.subs).map(function(k){return g.subs[k]});
+    var quiet=!g.vis&&!g.leads&&!g.spent&&!g.inn;
+    var vd=g.k.indexOf('none|')===0||g.k==='outreach|list'?null:verdict(subs);
+    var nm=esc(gname(g.k)), canOpen=subs.length>0;
+    h+='<tr class="g'+(OPEN[g.k]?' open':'')+(quiet?' none':'')+'"><td>'+(canOpen?'<button class="tog" data-k="'+esc(g.k)+'">'+nm+'</button>':nm)+(vd&&!vd.who?'<span class="tag">'+vd.say+'</span>':'')+'</td>'+cells(g)+'</tr>';
+    if(OPEN[g.k])subs.sort(function(a,b){return (b.vis||0)-(a.vis||0)||b.leads-a.leads}).forEach(function(s){
+      var land=s.land?Object.keys(s.land).sort(function(a,b){return s.land[b]-s.land[a]}).map(function(p){return (LAND[p]||p)+' ('+s.land[p]+')'}).join(', '):'';
+      h+='<tr class="sub"><td>'+esc(s.name)+(vd&&vd.who===s?'<span class="tag '+vd.cls+'">'+vd.say+'</span>':'')+(land?'<span class="lnd">Landed on: '+esc(land)+'</span>':'')+'</td>'+cells(s)+'</tr>'});
+  });
+  var T={vis:0,leads:0,booked:0,spent:0,inn:0,sales:0};gs.forEach(function(g){T.vis+=g.vis||0;T.leads+=g.leads;T.booked+=g.booked;T.spent+=g.spent;T.inn+=g.inn;T.sales+=g.sales});
+  var tot='<tr class="g" style="border-top:3px solid #111"><td>All sources</td>'+cells(T)+'</tr>';
+  h+='<tr class="g none"><td>Facebook ads</td><td colspan="8" style="text-align:left;white-space:normal">Not started. When they are, make a tracking link below for each ad, and it gets its own row.</td></tr>';
+  $('rows').innerHTML=h+tot;
+  // the pickers for costs and sales: every source on the board, and each version under it
+  var opts='<option value="">Pick one</option>';
+  gs.forEach(function(g){if(g.k==='none|all')return;opts+='<option value="'+esc(g.k)+'">'+esc(gname(g.k))+'</option>';
+    Object.keys(g.subs).forEach(function(sk){var s=g.subs[sk];if(s.key&&s.key.split('|').length===3&&g.k!=='tagged|leaders')opts+='<option value="'+esc(s.key)+'">&nbsp;&nbsp;'+esc(gname(g.k)+': '+s.name)+'</option>'})});
+  opts+='<option value="none|all">No source</option>';
+  ['cs','ss'].forEach(function(id){var v=$(id).value;$(id).innerHTML=opts;$(id).value=v});
+  // links we've made
+  $('llist').innerHTML=(D.links||[]).map(function(l){var u='https://2guysandagenie.com/go/'+l.slug;return '<li><b>'+esc(l.name)+(l.off?' (turned off)':'')+'</b><span>'+esc(u)+' → '+esc(l.a)+(l.b?' or '+esc(l.b):'')+' · '+esc(l.who)+'</span> <button class="lk" data-copy="'+esc(u)+'">Copy</button> <button class="lk" data-'+(l.off?'on':'off')+'="'+esc(l.slug)+'">'+(l.off?'Turn back on':'Turn off')+'</button></li>'}).join('')||'<li>None yet.</li>';
+  var cl=[];(D.costs||[]).forEach(function(c){cl.push({d:c.d,h:'<li><b>Cost: '+money(c.amt)+' · '+esc(label(c.src))+'</b><span>'+new Date(c.d).toLocaleDateString()+' · '+esc(c.note)+' · '+esc(c.who)+'</span> <button class="x" data-t="cost" data-id="'+c.id+'">Remove</button></li>'})});
+  (D.sales||[]).forEach(function(s){cl.push({d:s.d,h:'<li><b>Sale: '+money(s.amt)+(s.kind==='back'?' (back end)':'')+' · '+esc(label(s.src))+'</b><span>'+new Date(s.d).toLocaleDateString()+' · '+esc(s.email)+' '+esc(s.note)+' · '+esc(s.who)+'</span> <button class="x" data-t="sale" data-id="'+s.id+'">Remove</button></li>'})});
+  $('clist').innerHTML=cl.sort(function(a,b){return b.d-a.d}).map(function(x){return x.h}).join('')||'<li>None yet in this range.</li>';
+}
+function load(){return fetch(API+'?from='+from()+(TEST?'&test=1':''),{credentials:'same-origin',cache:'no-store'}).then(function(r){if(r.status===401)throw new Error('sign');if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){D=j;say('');draw()}).catch(function(e){say(e.message==='sign'?'Sign in to Admin first, then come back to this page.':'The numbers could not be loaded just now. Reload the page to try again.')})}
+function post(b,err,ok,done){$(err).textContent='';if(ok)$(ok).textContent='';b.from=from();
+  return fetch(API,{method:'POST',credentials:'same-origin',headers:{'content-type':'application/json'},body:JSON.stringify(b)}).then(function(r){return r.json().then(function(j){if(!r.ok||j.error)throw new Error(j.error||'Not saved. Try again.');return j})}).then(function(j){if(b.op==='link'){var mk=j.made;return load().then(function(){done&&done(mk)})}D=j;draw();done&&done()}).catch(function(e){$(err).textContent=e.message})}
+
+// range and money-column chips
+$('range').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;RANGE=b.dataset.r;[].forEach.call(this.children,function(c){c.classList.toggle('on',c===b)});load()});
+$('per').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;PER=b.dataset.p;[].forEach.call(this.children,function(c){c.classList.toggle('on',c===b)});if(D)draw()});
+$('rows').addEventListener('click',function(e){var b=e.target.closest('.tog');if(!b)return;OPEN[b.dataset.k]=!OPEN[b.dataset.k];draw()});
+
+// the link maker
+var pa='',pb='<option value="">No split</option>';PAGES.forEach(function(p){pa+='<option value="'+p[0]+'">'+esc(p[1])+'</option>';pb+='<option value="'+p[0]+'">'+esc(p[1])+'</option>'});$('la').innerHTML=pa;$('lb').innerHTML=pb;
+function slugOf(s){s=String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');if(s.length>24)s=s.slice(0,25).replace(/-[^-]*$/,'')||s.slice(0,24);return s}
+var typed=false;$('ls').addEventListener('input',function(){typed=!!this.value});
+$('ln').addEventListener('input',function(){if(!typed)$('ls').value=slugOf(this.value)});
+$('lmake').addEventListener('click',function(){var n=$('ln').value.trim(),s=slugOf($('ls').value||n);
+  if(!n){$('lerr').textContent='Say where you will post it or give it out.';return}
+  if($('lb').value&&$('lb').value===$('la').value){$('lerr').textContent='Pick a different page for the split, or No split.';return}
+  post({op:'link',name:n,slug:s,a:$('la').value,b:$('lb').value},'lerr',null,function(mk){$('lurl').textContent='https://2guysandagenie.com/go/'+mk;$('lout').style.display='flex';$('lcopy').textContent='Copy Link';$('ln').value='';$('ls').value='';typed=false})});
+function copy(t,btn){(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){btn.textContent='Copied'},function(){window.prompt('Copy this link:',t)})}
+$('lcopy').addEventListener('click',function(){copy($('lurl').textContent,this)});
+$('llist').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(b.dataset.copy)copy(b.dataset.copy,b);else if(b.dataset.off)post({op:'linkoff',slug:b.dataset.off},'lerr');else if(b.dataset.on)post({op:'linkon',slug:b.dataset.on},'lerr')});
+
+// costs and sales
+$('cd').value=today();$('sd').value=today();
+$('cgo').addEventListener('click',function(){post({op:'cost',src:$('cs').value,amt:$('ca').value,d:$('cd').value,note:$('cn').value},'cerr','cok',function(){$('cok').textContent='Added. It shows on the board.';$('ca').value='';$('cn').value=''})});
+$('sfind').addEventListener('click',function(){var em=$('se').value.trim();$('swho').textContent='Looking…';$('serr').textContent='';
+  fetch(API+'/who?email='+encodeURIComponent(em),{credentials:'same-origin',cache:'no-store'}).then(function(r){return r.json()}).then(function(j){
+    if(j.error){$('swho').textContent='';$('serr').textContent='Type the whole email address.';return}
+    if(j.src){var sel=$('ss'),has=[].some.call(sel.options,function(o){return o.value===j.src});if(!has){var o=document.createElement('option');o.value=j.src;o.textContent=label(j.src);sel.appendChild(o)}sel.value=j.src;$('swho').textContent=(j.name?j.name+': ':'')+label(j.src)+'. '+j.why+'.'}
+    else{$('swho').textContent=(j.name?j.name+': ':'')+j.why+'. Pick where they came from below.'}}).catch(function(){$('swho').textContent='Could not look them up. Pick where they came from below.'})});
+$('sgo').addEventListener('click',function(){post({op:'sale',src:$('ss').value,amt:$('sa').value,kind:$('sk').value,email:$('se').value,d:$('sd').value,note:$('sn').value},'serr','sok',function(){$('sok').textContent='Recorded. It shows on the board.';$('sa').value='';$('sn').value='';$('se').value='';$('swho').textContent=''})});
+$('clist').addEventListener('click',function(e){var b=e.target.closest('.x');if(!b)return;if(!confirm('Remove this '+b.dataset.t+'?'))return;post({op:'del',t:b.dataset.t,id:+b.dataset.id},'cerr')});
+
+if(location.hash==='#link')setTimeout(function(){$('ln').focus()},300);
+load();
+})();
+</script>
+</body></html>

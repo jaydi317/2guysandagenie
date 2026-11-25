@@ -2,6 +2,9 @@
 // /h       record (k=view|signup, vid, p=page, s=slot.version~slot.version)
 // /board   the scoreboard page (needs ?key=)
 // /data    the same numbers as JSON (needs ?key=)
+// /go/<name>  a team tracking link (made on the Money Board, /admin/money/): sends the visitor on with the link's tags;
+//             a split link sends each person to page A or page B, the same one every time (Nov 25, 2026)
+// k=lead and k=booked (from assets/src.js) feed the Money Board; the scoreboard below still reads view and signup.
 
 const NAMES = {
   home: {
@@ -31,6 +34,7 @@ async function init(env) {
   await env.DB.batch([
     env.DB.prepare('CREATE TABLE IF NOT EXISTS ev (ts INTEGER, k TEXT, vid TEXT, page TEXT, slot TEXT, v TEXT)'),
     env.DB.prepare('CREATE INDEX IF NOT EXISTS ev_ps ON ev (page, slot, v, k)'),
+    env.DB.prepare('CREATE TABLE IF NOT EXISTS links (slug TEXT PRIMARY KEY, name TEXT, a TEXT, b TEXT, who TEXT, ts INTEGER, off INTEGER DEFAULT 0)'),
   ]);
   ready = true;
 }
@@ -38,7 +42,7 @@ async function init(env) {
 async function record(u, req, env) {
   const k = u.searchParams.get('k'), vid = u.searchParams.get('vid') || '', p = u.searchParams.get('p') || '', s = u.searchParams.get('s') || '';
   const ua = req.headers.get('user-agent') || '';
-  if (!['view', 'signup'].includes(k) || !/^[a-z0-9]{6,24}$/.test(vid) || !OK.test(p) || /bot|crawl|spider|preview|headless|facebookexternalhit/i.test(ua)) return;
+  if (!['view', 'signup', 'lead', 'booked'].includes(k) || !/^[a-z0-9]{6,24}$/.test(vid) || !OK.test(p) || /bot|crawl|spider|preview|headless|facebookexternalhit/i.test(ua)) return;
   const pairs = s.split('~').slice(0, 12).map(x => x.split('.')).filter(x => x.length === 2 && OK.test(x[0]) && OK.test(x[1]));
   if (!pairs.length) return;
   await init(env);
@@ -72,7 +76,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;',
 async function board(env, all, key) {
   const rows = await numbers(env, all);
   const pages = {};
-  for (const r of rows) ((pages[r.page] ||= {})[r.slot] ||= []).push(r);
+  for (const r of rows) if (!['none', 'link', 'tagged'].includes(r.page)) ((pages[r.page] ||= {})[r.slot] ||= []).push(r); // sources live on the Money Board
   let body = '';
   for (const pg of Object.keys(NAMES).concat(Object.keys(pages).filter(x => !NAMES[x]))) {
     if (!pages[pg]) continue;
@@ -110,10 +114,29 @@ td i{display:block;height:6px;background:var(--bar);margin-top:5px}.empty{color:
 <p class="foot">"Real" means about 95% sure the leader isn't luck. Rates move a lot until each version has a few hundred visitors.${all ? '' : ' Test visits are left out.'}</p></main></body></html>`;
 }
 
+// A team tracking link. Sends the person to the link's page with its tags, so assets/src.js credits the link.
+const SITE = 'https://2guysandagenie.com';
+async function go(u, req, env) {
+  const slug = u.pathname.slice(4).replace(/\/+$/, '').toLowerCase();
+  let L = null;
+  if (OK.test(slug)) { try { await init(env); L = await env.DB.prepare('SELECT slug,a,b FROM links WHERE slug=? AND off=0').bind(slug).first(); } catch (e) {} }
+  if (!L) return Response.redirect(SITE + '/', 302);
+  const ck = '2g_go_' + slug.replace(/-/g, '_'), had = (req.headers.get('cookie') || '').match(new RegExp('(?:^|; )' + ck + '=(a|b)'));
+  const side = !L.b ? 'base' : had ? had[1] : (Math.random() < 0.5 ? 'a' : 'b');
+  const to = new URL(SITE + ((side === 'b' ? L.b : L.a) || '/'));
+  to.searchParams.set('utm_campaign', 'link'); to.searchParams.set('utm_source', slug);
+  if (side !== 'base') to.searchParams.set('utm_content', side);
+  if (u.searchParams.get('test') === '1') to.searchParams.set('test', '1');
+  const h = { location: to.toString(), 'cache-control': 'no-store' };
+  if (side !== 'base') h['set-cookie'] = `${ck}=${side}; Path=/go/; Max-Age=31536000; SameSite=Lax; Secure`;
+  return new Response(null, { status: 302, headers: h });
+}
+
 export default {
   async fetch(req, env, ctx) {
     const u = new URL(req.url);
     if (req.method === 'OPTIONS') return new Response(null, { headers: { ...H, 'access-control-allow-methods': 'GET,POST' } });
+    if (u.pathname.startsWith('/go/')) return go(u, req, env);
     if (u.pathname === '/h') { ctx.waitUntil(record(u, req, env).catch(() => {})); return new Response(null, { status: 204, headers: H }); }
     const authed = env.KEY && u.searchParams.get('key') === env.KEY;
     if (u.pathname === '/board' && authed) return new Response(await board(env, u.searchParams.get('all') === '1'), { headers: { 'content-type': 'text/html;charset=utf-8', 'cache-control': 'no-store' } });

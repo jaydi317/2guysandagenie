@@ -2,6 +2,8 @@
 // Every route under /admin/api/ sits behind the Admin sign-in (Cloudflare Access); the Worker checks the sign-in token itself too.
 // /admin/api/leads   GET   every shop, its stage, who's working it, notes and history
 // /admin/api/act     POST  one change: did, undo, stage, note, email, claim, add, and for mail and email: piece, pieceback, draft, words, dnc
+// /admin/api/money  GET, POST  the Money Board: visits, leads and bookings by source, tracking links, costs, sales
+// /admin/api/money/who  GET  where a buyer first came from, by email
 // /hooks/ghl         POST  GoHighLevel tells us something happened (needs ?key=)
 // Every few minutes (cron): run queued jobs (import, load into GoHighLevel) and pull stage changes made in GoHighLevel.
 // No shop is named in this file. The records live in the D1 database, never in the site's files.
@@ -598,6 +600,90 @@ async function book(req, env) {
   return J(out);
 }
 
+// ---------- The Money Board (/admin/money/): where people came from, what it cost, what came back (Nov 25, 2026) ----------
+// Rows for the rotating spots (pages home, meetup, free15 in assets/rot.js) are left out; a new rotating page name goes in the NOT IN list in money().
+// Visits, leads and bookings come from the scoreboard database (binding STATS, written by assets/src.js through 2g-stats).
+// Links, costs and sales are kept there too. Shops we found ourselves count only once they sign up (from this database).
+const MK = /^[a-z0-9-]{1,24}$/, KEY = /^[a-z0-9-]{1,24}\|[a-z0-9-]{1,24}(\|[a-z0-9-]{1,24})?$/;
+const mclean = x => String(x || '').toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 24);
+let mready = false;
+async function minit(env) {
+  if (mready) return;
+  await env.STATS.batch([
+    env.STATS.prepare('CREATE TABLE IF NOT EXISTS ev (ts INTEGER, k TEXT, vid TEXT, page TEXT, slot TEXT, v TEXT)'), // the scoreboard's own table, in case it hasn't run yet
+    env.STATS.prepare('CREATE TABLE IF NOT EXISTS links (slug TEXT PRIMARY KEY, name TEXT, a TEXT, b TEXT, who TEXT, ts INTEGER, off INTEGER DEFAULT 0)'),
+    env.STATS.prepare('CREATE TABLE IF NOT EXISTS costs (id INTEGER PRIMARY KEY AUTOINCREMENT, src TEXT, amt REAL, note TEXT, d INTEGER, who TEXT, ts INTEGER)'),
+    env.STATS.prepare('CREATE TABLE IF NOT EXISTS sales (id INTEGER PRIMARY KEY AUTOINCREMENT, src TEXT, amt REAL, kind TEXT, email TEXT, note TEXT, d INTEGER, who TEXT, ts INTEGER)'),
+  ]);
+  mready = true;
+}
+async function money(env, me, u) {
+  await minit(env);
+  const from = Math.max(0, Number(u.searchParams.get('from')) || 0), test = u.searchParams.get('test') === '1';
+  const [E, Lk, C, S] = await env.STATS.batch([
+    env.STATS.prepare(`SELECT page, slot, v, COUNT(DISTINCT CASE WHEN k='view' THEN vid END) AS visitors, COUNT(DISTINCT CASE WHEN k='lead' THEN vid END) AS leads, COUNT(DISTINCT CASE WHEN k='booked' THEN vid END) AS booked FROM ev WHERE ts>=? AND page NOT IN ('home','meetup','free15') ${test ? '' : "AND vid NOT LIKE 'test%'"} GROUP BY page, slot, v`).bind(from),
+    env.STATS.prepare('SELECT slug,name,a,b,who,ts,off FROM links ORDER BY ts DESC'),
+    env.STATS.prepare('SELECT id,src,amt,note,d,who FROM costs WHERE d>=? ORDER BY d DESC').bind(from),
+    env.STATS.prepare('SELECT id,src,amt,kind,email,note,d,who FROM sales WHERE d>=? ORDER BY d DESC').bind(from),
+  ]);
+  // Shops from our own list who later signed up or booked (the lead portal outreach row).
+  const O = await env.DB.prepare("SELECT l.id, l.n, MIN(e.ts) AS ts, MAX(CASE WHEN e.a LIKE 'Booked%' THEN 1 ELSE 0 END) AS bk FROM ev e JOIN leads l ON l.id=e.lead WHERE COALESCE(l.g,'')<>'Signed up' AND e.who IN ('Website','GoHighLevel') AND e.ts>=? GROUP BY l.id ORDER BY ts DESC").bind(from).all();
+  return { me, ghl: !!env.GHL_TOKEN, rows: E.results, links: Lk.results, costs: C.results, sales: S.results, outreach: O.results };
+}
+async function moneyAct(b, me, env) {
+  await minit(env);
+  const now = Date.now(), day = x => { const t = Date.parse(String(x || '')); return isFinite(t) ? t + 12 * 36e5 : now; }; // a date picked on the page counts from midday, so the time zone can't push it into the day before
+  const amt = Math.round(Number(String(b.amt || '').replace(/[$,\s]/g, '')) * 100) / 100;
+  if (b.op === 'link') {
+    const name = String(b.name || '').trim().slice(0, 80), a = String(b.a || ''), bb = String(b.b || '');
+    const page = x => /^\/[a-z0-9\-\/]*$/i.test(x) && x.length < 80;
+    if (!name || !page(a) || (bb && !page(bb))) return J({ error: 'Give the link a name and pick a page.' }, 400);
+    const full = String(b.slug || name).toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, ''), cut = n => full.length > n ? full.slice(0, n + 1).replace(/-[^-]*$/, '') || full.slice(0, n) : full; // cut at a whole word
+    let slug = cut(24) || 'link';
+    for (let i = 2; await env.STATS.prepare('SELECT 1 FROM links WHERE slug=?').bind(slug).first(); i++) slug = (cut(21) || 'link') + '-' + i;
+    await env.STATS.prepare('INSERT INTO links (slug,name,a,b,who,ts) VALUES (?,?,?,?,?,?)').bind(slug, name, a, bb && bb !== a ? bb : null, me, now).run();
+    return J({ ...(await money(env, me, new URL('https://x/?from=0'))), made: slug });
+  }
+  if (b.op === 'linkoff' || b.op === 'linkon') {
+    if (!MK.test(String(b.slug || ''))) return J({ error: 'link' }, 400);
+    await env.STATS.prepare('UPDATE links SET off=? WHERE slug=?').bind(b.op === 'linkoff' ? 1 : 0, b.slug).run();
+  } else if (b.op === 'cost' || b.op === 'sale') {
+    if (!KEY.test(String(b.src || ''))) return J({ error: 'Pick where it came from.' }, 400);
+    if (!(amt > 0) || amt > 1e7) return J({ error: 'Enter the dollar amount.' }, 400);
+    if (b.op === 'cost') await env.STATS.prepare('INSERT INTO costs (src,amt,note,d,who,ts) VALUES (?,?,?,?,?,?)').bind(b.src, amt, String(b.note || '').slice(0, 200), day(b.d), me, now).run();
+    else await env.STATS.prepare('INSERT INTO sales (src,amt,kind,email,note,d,who,ts) VALUES (?,?,?,?,?,?,?,?)').bind(b.src, amt, b.kind === 'back' ? 'back' : 'first', String(b.email || '').trim().toLowerCase().slice(0, 200), String(b.note || '').slice(0, 200), day(b.d), me, now).run();
+  } else if (b.op === 'del') {
+    const t = b.t === 'sale' ? 'sales' : b.t === 'cost' ? 'costs' : null;
+    if (!t || !Number.isInteger(b.id)) return J({ error: 'del' }, 400);
+    await env.STATS.prepare(`DELETE FROM ${t} WHERE id=?`).bind(b.id).run();
+  } else return J({ error: 'op' }, 400);
+  return J(await money(env, me, new URL('https://x/?from=' + (Number(b.from) || 0))));
+}
+// Where did this buyer first come from? Our own list first, then the tags GoHighLevel kept when they signed up.
+async function moneyWho(env, u) {
+  const em = String(u.searchParams.get('email') || '').trim().toLowerCase();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) return J({ error: 'email' }, 400);
+  const mine = await env.DB.prepare("SELECT n, g FROM leads WHERE lower(e)=? LIMIT 1").bind(em).first();
+  if (mine && mine.g !== 'Signed up') return J({ src: 'outreach|list', name: mine.n, why: 'On our own list (lead portal outreach)' });
+  if (!env.GHL_TOKEN) return J({ src: null, why: 'GoHighLevel is not connected' });
+  try {
+    const r = await ghl(env, 'GET', `/contacts/?locationId=${encodeURIComponent(cfg(env).location || '')}&query=${encodeURIComponent(em)}&limit=1`);
+    const c = (r.contacts || [])[0];
+    if (!c) return J({ src: null, why: 'Not in GoHighLevel under that email' });
+    const at = [].concat(c.attributions || []), a = at.find(x => x.isFirst) || at[0] || c.attributionSource || {};
+    let us = a.utmSource || '', uc = a.utmCampaign || a.campaign || '', ut = a.utmContent || '';
+    if (!us && a.url) { try { const p = new URL(a.url).searchParams; us = p.get('utm_source') || p.get('src') || ''; uc = uc || p.get('utm_campaign') || ''; ut = ut || p.get('utm_content') || ''; } catch (e) {} }
+    const name = [c.firstName, c.lastName].filter(Boolean).join(' ') || c.contactName || '';
+    const d = String(c.phone || '').replace(/\D/g, '').slice(-10);
+    if (d.length === 10) { // the same shop on our own list, by phone: they came from our outreach
+      const m = await env.DB.prepare("SELECT n, g FROM leads WHERE substr(replace(replace(replace(replace(replace(replace(p,'-',''),'(',''),')',''),' ',''),'.',''),'+',''),-10)=? LIMIT 1").bind(d).first();
+      if (m && m.g !== 'Signed up') return J({ src: 'outreach|list', name: name || m.n, why: 'On our own list (lead portal outreach), matched by phone' });
+    }
+    if (!us) return J({ src: null, name, why: 'GoHighLevel has no tag for them' + (a.referrer ? ' (came from ' + String(a.referrer).slice(0, 60) + ')' : '') });
+    return J({ src: [mclean(uc) || 'tagged', mclean(us), mclean(ut) || 'base'].join('|'), name, why: 'From the tags GoHighLevel kept when they signed up' });
+  } catch (e) { return J({ src: null, why: 'GoHighLevel lookup failed' }); }
+}
+
 export default {
   async fetch(req, env, ctx) {
     const u = new URL(req.url);
@@ -610,6 +696,9 @@ export default {
       const me = await who(req, env); if (!me) return J({ error: 'sign in' }, 401);
       if (u.pathname === '/admin/api/leads' && req.method === 'GET') return J(await all(env, me));
       if (u.pathname === '/admin/api/act' && req.method === 'POST') return act(await req.json(), me, env, ctx);
+      if (u.pathname === '/admin/api/money' && req.method === 'GET') return J(await money(env, me, u));
+      if (u.pathname === '/admin/api/money' && req.method === 'POST') return await moneyAct(await req.json(), me, env);
+      if (u.pathname === '/admin/api/money/who' && req.method === 'GET') return await moneyWho(env, u);
       return J({ error: 'not found' }, 404);
     } catch (e) { return J({ error: String(e).slice(0, 200) }, 500); }
   },

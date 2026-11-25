@@ -2,3 +2,5 @@
 *.log
 worker.mjs
 shots/
+stats.mjs
+*.db.stats

@@ -277,4 +277,5 @@ document.querySelectorAll('a.bk15').forEach(function(a){a.href=a.href.replace(/s
 document.getElementById('copybtn').addEventListener('click',function(){var t=document.getElementById('blurbtext').innerText,b=this;function ok(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy the invite'},1800)}if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,function(){})}else{var r=document.createRange();r.selectNode(document.getElementById('blurbtext'));getSelection().removeAllRanges();getSelection().addRange(r);document.execCommand('copy');ok()}});
 </script>
 <script src="/assets/next-event.js"></script>
+<script src="/assets/src.js"></script>
 </body></html>
