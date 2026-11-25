@@ -14,3 +14,7 @@ To change it: edit `worker.js`, test it on the local stand-in (`leads-api/test/`
   3. Write down the version you replaced, so it can be put back in a minute.
   4. After the next timer run (within 3 minutes), check the database shows the change. Settings that are not in this file: `AUD`, `TEAM`, `GHL_CFG` (plain), and `DATA_KEY`, `HOOK_KEY`, `GHL_TOKEN` (secret).
 - Mail and email (Nov 23, postcards Nov 24): the database also holds the six pieces' master words (table `pieces`: three postcards locked Nov 24 and three emails; a new piece is added once, then the database is the master copy; the first postcard and the three letters are removed on start-up if nothing was ever sent with them), every send or skip with the exact words (`sends`), drafts (`drafts`) and Do not contact (`flags`). Emails open the sender's own mail app and are recorded only after "Did it send?" Yes. Postcards are approved for the next mail drop; nothing mails yet (practice).
+
+
+## 2026-11-25 note: doors time
+The seed text in worker.js for Postcard 2 and Email 2 now says doors 6:00. The live database was updated directly (pieces postcard2 and email2), so no redeploy was needed.

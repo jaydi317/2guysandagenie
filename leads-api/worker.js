@@ -96,7 +96,7 @@ Free pizza for local business owners at Launch Fishers.
 
 Bring the one thing you never want to do again. We'll help you put AI to work on it, on your phone.
 
-Thursday, December 10 · Doors 6:30, done by 9 · 12175 Visionary Way
+Thursday, December 10 · Doors 6:00, done by 9 · 12175 Visionary Way
 
 Save your free spot (and your pizza) here:
 
@@ -115,7 +115,7 @@ It's free, and we're buying the pizza.
 
 We spend about an hour showing what AI can do in a business, then help each owner try it on something of their own.
 
-Doors open at 6:30, and we're done by 9.
+Doors open at 6:00, and we're done by 9.
 
 I'd like to have you there.
 
