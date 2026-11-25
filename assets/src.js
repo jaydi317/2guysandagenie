@@ -1,7 +1,7 @@
 /* Where did this visitor come from? (Nov 25, 2026)
    On a landing page: if the link carries utm_ tags (a postcard QR code, an ad, a group link),
    remember them in this browser and count a view on the scoreboard.
-   On an after-sign-up page (/book/booked/, /thanks/): count a booking for the source remembered,
+   On an after-sign-up page (/book/booked/, /thanks/), or when a time is picked on /free15/start/: count a booking for the source remembered,
    once per browser per source.
    Scoreboard rows: page = utm_campaign (e.g. mailer), spot = utm_source (e.g. postcard1),
    version = utm_content (doodle), or "base" when there is none (the headline front).
@@ -24,8 +24,7 @@
     try { if (navigator.sendBeacon && navigator.sendBeacon(url)) return; } catch (e) {}
     try { new Image().src = url; } catch (e) {}
   }
-  var path = location.pathname.replace(/\/?$/, '/');
-  if (DONE.indexOf(path) > -1) {
+  function credit() {
     var t = null;
     try { t = JSON.parse(g('2g-src') || 'null'); } catch (e) {}
     if (!t || !t.p || !t.slot || !t.v) return;
@@ -33,8 +32,11 @@
     if (g(key) === '1') return;
     s(key, '1');
     ping('signup', t);
-    return;
   }
+  // The free 15 sign-up books inside its own page, so it calls this when a time is picked.
+  window.srcBooked = credit;
+  var path = location.pathname.replace(/\/?$/, '/');
+  if (DONE.indexOf(path) > -1) { credit(); return; }
   var src = q.get('utm_source') || q.get('src');
   if (!src) return;
   var t2 = { p: clean(q.get('utm_campaign') || 'tagged'), slot: clean(src), v: clean(q.get('utm_content') || 'base') || 'base', page: clean(path.split('/')[1] || 'home') };
