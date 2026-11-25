@@ -53,7 +53,7 @@ Jimmy and Paul` },
 
 My name is Paul Lorkowski.
 
-I ran a business here in Hamilton County for 20 years before I sold it.
+I ran a business here in Hamilton County for years before selling it, so I know what lands on an owner's plate.
 
 Now my partner Jimmy and I help local owners put AI to work in their businesses.
 

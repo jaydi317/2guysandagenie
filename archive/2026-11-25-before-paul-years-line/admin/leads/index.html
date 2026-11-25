@@ -1,0 +1,675 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Leads · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<style>
+body{margin:0;background:#fff;color:#111;font:17px/1.5 Tahoma,Geneva,Verdana,sans-serif}
+main{max-width:680px;margin:0 auto;padding:24px 16px 70px}
+h1{font-size:30px;margin:0 0 4px}.sub{color:#555;margin:0 0 10px}
+.demo{background:#FFF3C4;padding:10px 14px;margin:12px 0 16px;font-size:15px}
+a{color:#111}
+#q{width:100%;box-sizing:border-box;font-size:18px;padding:11px;border:2px solid #111;margin:0 0 10px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+.chip{font:inherit;font-size:15px;padding:7px 12px;border:2px solid #111;background:#fff;color:#111;cursor:pointer}
+.chip.on{background:#111;color:#fff}
+a.chip{text-decoration:none;display:inline-block}
+select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;background:#fff}
+#count{font-size:14px;color:#555;margin:0 0 8px}
+.lead{display:block;width:100%;box-sizing:border-box;text-align:left;font:inherit;background:#fff;border:3px solid #111;padding:12px 14px;margin:0 0 10px;cursor:pointer;color:#111}
+.lead b{display:block;font-size:19px}
+.pk{display:flex;align-items:stretch;gap:8px;margin:0 0 10px}.pk .lead{margin:0;flex:1}
+.pk label{display:flex;align-items:center;justify-content:center;width:46px;border:3px solid #111;background:#fff;cursor:pointer;flex:none}.pk input{width:24px;height:24px;margin:0;cursor:pointer}
+#takebar{position:fixed;left:0;right:0;bottom:0;background:#111;color:#fff;padding:10px 14px;display:none;z-index:20;text-align:center}#takebar button{font:inherit;font-weight:bold;font-size:17px;padding:10px 16px;border:2px solid #fff;background:#FFD400;color:#111;cursor:pointer}#takebar a{color:#fff;margin-left:14px}
+.lead span{display:block;font-size:14px;color:#555}
+.tier{display:inline-block;font-size:13px;font-weight:bold;padding:1px 8px;border:2px solid #111;margin-right:8px}
+.tier.A{background:#111;color:#fff}
+.st{display:inline-block;font-size:13px;color:#555}
+#one{display:none}
+#one h2{font-size:26px;margin:10px 0 2px}
+.lab{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;margin:18px 0 2px}
+.big{display:block;font-size:19px;font-weight:bold;padding:12px 14px;border:3px solid #111;text-decoration:none;margin:8px 0;text-align:center}
+.big.dark{background:#111;color:#fff}button.big.dark{background:#111 !important}.big.blue{background:#f2d27a;border-color:#111;color:#111;box-shadow:4px 4px 0 #111;margin-bottom:12px}.pc.one.lockd{border:3px solid #111;background:#dceeff;box-shadow:6px 6px 0 #111;margin-bottom:14px}.pc.lockd b{color:#111}.pc.lockd span{color:#111}.pc.lockd a{color:#1d3fbf;font-weight:bold}
+#note{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;min-height:90px}
+.back{font:inherit;font-size:16px;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;color:#111}
+.now{border:3px solid #111;padding:12px 14px;margin:12px 0 14px;background:#FFF3C4}.now p{margin:0 0 6px}.now .k{font-size:17px;font-weight:bold;color:#111;display:block}.now .v{font-size:18px;font-weight:normal;color:#111}.now #nw-last{color:#666}.now #nw-stage{font-size:21px}.now .big{background:#fff;margin:8px 0 0}.pcard{border:1px solid #bbb;box-shadow:3px 3px 0 #ddd;margin:0 0 14px;overflow:hidden;position:relative;width:100%;aspect-ratio:864/576;background:#fff}.pcard .cardin{position:absolute;top:0;left:0;width:864px;height:576px;transform-origin:0 0}.pcard .cardin p{margin:0}
+#hist{padding-left:20px;margin:4px 0 6px;font-size:15px}.nx{display:block;font-size:14px;color:#111}
+.due{display:block;font-size:14px;font-weight:bold}.due.late{color:#B00020}#score{font-size:14px;color:#555;margin:0 0 14px}#rules{font-size:14px;color:#555;border-top:2px solid #111;padding-top:10px;margin-top:24px}
+.crumb{font-size:14px;margin:0 0 6px}.bar{display:flex;flex-wrap:wrap;gap:6px 18px;margin:8px 0 6px;padding:10px 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd;font-size:16px}.bar a{font-weight:bold;white-space:nowrap}.prac{font-size:15px;color:#111;margin:4px 0 8px;padding:8px 12px;background:#fff3b8;border:2px solid #111;border-radius:6px;font-weight:bold}.prac a{color:#111}
+.add{margin:0 0 12px}.add summary{font-weight:bold;cursor:pointer;text-decoration:underline;font-size:16px}.add input{display:block;width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:9px;border:2px solid #111;margin:0 0 6px}
+.saved{font-size:13px;color:#555;min-height:18px}
+#sp{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;overflow:auto;z-index:50;-webkit-overflow-scrolling:touch}
+#sp .in{max-width:680px;margin:0 auto;padding:0 16px 60px}
+#sp .topbar{position:sticky;top:0;background:#fff;border-bottom:3px solid #111;padding:10px 0;margin:0 0 14px;z-index:2}
+#sp .topbar button{font:inherit;font-size:18px;font-weight:bold;background:#111;color:#fff;border:0;padding:11px 14px;cursor:pointer;width:100%;text-align:left}
+#sp .who{font-size:15px;margin:8px 0 0}#sp .who b{font-size:17px}
+#sp .s{border:3px solid #111;padding:16px 18px;margin:0 0 18px}#sp .s .k{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;margin:0 0 2px}#sp .s h2{font-size:22px;margin:0 0 4px}#sp .s .when{font-size:15px;color:#555;margin:0 0 12px}
+#sp .say p{margin:0 0 10px;font-size:18px}#sp .do{font-size:15px;font-style:italic;color:#555}#sp .fill{background:#FFF3C4;padding:0 3px}#sp .fill.set{font-weight:bold}
+#sp .copy,#sp .top{display:none}#sp ol.q{padding-left:22px;margin:0 0 10px}#sp ol.q li{margin:0 0 8px;font-size:17px}
+#sp .ref{border:2px solid #111;padding:10px 14px;margin:0 0 12px;white-space:pre-wrap;font-size:15px}
+
+.wkby{display:inline-block;font-weight:bold;font-style:normal;background:#FFF3C4;border:2px solid #111;padding:1px 8px;margin:4px 0 0 6px;font-size:14px}
+.wkby.me{background:#111;color:#fff}
+.pc{display:block;width:100%;box-sizing:border-box;text-align:left;font:inherit;background:#fff;border:2px solid #111;padding:7px 12px;margin:0 0 6px;cursor:pointer;color:#111}.pc.one{border-width:3px;padding:12px 14px;background:#FFF3C4}.pc.one b{font-size:19px}.pc.one .go{display:block;margin-top:6px;font-weight:bold;text-decoration:underline;color:#111}.pc.row2 b{font-size:16px}.pseq{border:2px solid #111;padding:10px 12px;margin:0 0 10px;background:#fff}.pseq.off{border-style:dashed;background:#f7f7f7}.pseq .ph{margin:0 0 6px;font-size:16px}.pseq .ph span{display:block;font-size:14px;color:#555}.pseq .ph span.ok{color:#111;font-weight:bold}.pseq .ph span.no{color:#B00020;font-weight:bold}.pseq .psj{margin:0 0 4px;font-size:15px;font-weight:bold}.pseq .pbd{white-space:pre-wrap;font-size:15px;line-height:1.45;border-left:3px solid #ccc;padding:2px 0 2px 10px;margin:0 0 8px}.pseq.off .pbd,.pseq.off .psj{color:#555}.pseq .pnt{margin:0;font-size:14px;color:#555;font-style:italic}.pseq .pc.one{margin:4px 0 0}.pc.row2 span{display:inline;margin-left:6px}#pe .chip:disabled{opacity:.35;cursor:not-allowed}#pe-more .chip{padding:11px 16px;font-size:16px}.pc b{font-size:17px}.pc span{display:block;font-size:14px;color:#555}.pc span.ok{color:#111;font-weight:bold}.pc span.no{color:#B00020;font-weight:bold}
+.warn{border:3px solid #B00020;padding:10px 12px;margin:0 0 10px;font-size:15px;font-weight:bold;color:#B00020}.warn.soft{border-color:#111;color:#111;font-weight:normal}
+.tip{background:#FFF3C4;padding:10px 12px;margin:0 0 12px;font-size:15px}
+#pe{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;overflow:auto;z-index:60;-webkit-overflow-scrolling:touch}
+#pe .in{max-width:680px;margin:0 auto;padding:0 16px 60px}
+#pe .topbar{position:sticky;top:0;background:#fff;border-bottom:3px solid #111;padding:10px 0;margin:0 0 14px;z-index:2}
+#pe .topbar button{font:inherit;font-size:18px;font-weight:bold;background:#111;color:#fff;border:0;padding:11px 14px;cursor:pointer;width:100%;text-align:left}
+#pe .who{font-size:15px;margin:8px 0 0}#pe h2{font-size:24px;margin:0 0 4px}#pe .k{font-size:13px;font-weight:bold;letter-spacing:.04em;text-transform:uppercase;color:#555;margin:0}
+#pe .ref{border:2px solid #111;padding:10px 14px;margin:0 0 12px;white-space:pre-wrap;font-size:15px}
+#pe button.big{width:100%;font-family:inherit;cursor:pointer;background:#fff;color:#111}#pe button.big.dark{background:#111;color:#fff}#pe button.big:disabled{opacity:.35;cursor:not-allowed}
+#pe-body{width:100%;box-sizing:border-box;font:inherit;font-size:16px;line-height:1.5;padding:10px;border:2px solid #111;min-height:280px}
+#pe-subj,#pe-why{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;margin:0 0 6px}
+#dncbar{display:none;margin:8px 0;padding:10px 12px;background:#B00020;color:#fff;font-weight:bold;font-size:15px}
+</style></head><body><main>
+
+<div id="takebar"><button type="button" id="take"></button><a href="#" id="untick">Untick all</a></div>
+<div id="list">
+<p class="crumb"><a href="/admin/">&larr; Admin</a> &middot; <a href="/admin/plan/">The Plan</a></p>
+<h1>Leads</h1>
+<p class="sub">Start at Today. Tap a shop. Do the next step. Tap what you did.</p>
+<p class="bar"><a href="/admin/leads/explainer/">&#9654; Watch how it works</a><a href="/admin/leads/how-to/">How-to</a><a href="/admin/scripts/">What to say</a><a href="/admin/leads/steps/">The steps</a><a href="/admin/leads/how-we-built-it/">How we built the list</a><a href="https://app.gohighlevel.com/" target="_blank" rel="noopener">GoHighLevel &#8599;</a></p>
+<p class="prac" id="prac">Loading...</p>
+<p id="pm" style="display:none;margin:0 0 8px;padding:10px 12px;background:#B00020;color:#fff;font-weight:bold;font-size:15px">Practice mode. Nothing you tap here is saved, and nobody else sees it. Tap "Stop practicing" to go back to the real list.</p>
+<p style="margin:0 0 8px"><button class="chip" id="pmb" type="button">Practice mode</button></p>
+<p class="saved" id="status" style="font-weight:bold;color:#111"></p>
+<details id="funnel" style="border:3px solid #111;padding:10px 14px;margin:8px 0 6px"></details>
+<h2 style="font-size:24px;margin:16px 0 2px">Today</h2>
+<p class="sub" style="font-size:15px">Follow-ups that are due come first. Then your shops, or three new ones to start. Shops someone else is working stay off your Today.</p>
+<p class="sub" style="margin:0 0 6px">To make shops yours to work, tick the box beside each one (only shops nobody is working have a box; take as many as you like), then tap Take at the bottom.</p>
+<p style="margin:0 0 10px"><button class="chip" id="letgo" type="button" style="display:none"></button></p>
+<div id="today"></div>
+
+<h2 style="font-size:22px;margin:18px 0 6px">Every Shop</h2>
+<details id="addbox" class="add"><summary>+ Add a shop</summary>
+<p class="sub" style="font-size:14px;margin:8px 0">For someone you met or heard about who isn't on the list. Only the name is needed. It saves for all three of us.</p>
+<input id="a-n" placeholder="Shop name" autocomplete="off">
+<input id="a-k" placeholder="What they do (plumber, bakery...)" autocomplete="off">
+<input id="a-t" placeholder="Town" autocomplete="off">
+<input id="a-a" placeholder="Address" autocomplete="off">
+<input id="a-p" type="tel" placeholder="Phone" autocomplete="off">
+<input id="a-u" type="url" placeholder="Website" autocomplete="off">
+<input id="a-w" placeholder="Why they're worth going to" autocomplete="off">
+<select id="a-g"><option value="Worth a visit">Worth a visit</option><option value="A">A</option><option value="B">B</option></select>
+<button class="chip on" id="a-save" type="button" style="margin-left:8px">Save This Shop</button>
+<p class="saved" id="a-msg"></p>
+</details>
+<input id="q" type="search" placeholder="Search a name, town, street or trade" autocomplete="off">
+<div class="row" id="tiers">
+<button class="chip on" data-t="">All</button>
+<button class="chip" data-t="A">A</button>
+<button class="chip" data-t="B">B</button>
+<button class="chip" data-t="Worth a visit">Worth a visit</button>
+<button class="chip" data-t="Signed up">Signed up</button>
+<button class="chip" data-t="mine">Mine</button>
+</div>
+<div class="row">
+<select id="town"><option value="">Every town</option></select>
+<select id="stage"><option value="">Every stage</option></select>
+</div>
+<p id="count"></p>
+<div id="rows"></div>
+<p id="rules"><b>The rules.</b> Nothing here sends anything on its own: you make every call and send every email yourself. Public information only. Never guess an email: find it, check it, then paste it in.</p>
+</div>
+
+<div id="one">
+<p><button class="back" id="back">&larr; All leads</button> &middot; <a href="/admin/leads/how-to/">How this works</a></p>
+<h2 id="n"></h2>
+<p class="sub" id="meta"></p>
+<p id="dncbar"></p>
+<p class="pmbar" style="display:none;margin:8px 0;padding:10px 12px;background:#B00020;color:#fff;font-weight:bold;font-size:15px">Practice mode: nothing here is saved. <button type="button" class="pmstop" style="font:inherit;font-size:14px;background:#fff;color:#B00020;border:0;padding:4px 10px;cursor:pointer;font-weight:bold">Stop practicing</button></p>
+<button class="big" id="claim" type="button" style="width:100%;font-family:inherit;cursor:pointer;background:#fff"></button>
+<p class="saved" id="wk-msg" style="font-weight:bold;margin:4px 0 0"></p>
+<div class="now"><p><span class="k">Where It Stands</span><span class="v" id="nw-stage"></span></p><p><span class="k">Last Step</span><span id="nw-last"></span></p><p><span class="k">Next Step</span><span class="v" id="nw-next"></span></p><div id="nw-links"></div></div>
+<p class="lab" id="did-lab">Tap What You Just Did</p>
+<div class="row" id="did"></div>
+<p class="sub" style="font-size:14px;margin:0 0 6px">Each tap is saved with today's date and your name, and moves the shop to the right stage.</p>
+<a class="big dark" id="call" href="#">Call</a>
+<a class="big" id="map" href="#" target="_blank" rel="noopener">Directions</a>
+<a class="big" id="mail" href="#">Email</a>
+<p class="sub" id="mail-sub" style="margin:-4px 0 10px">Opens a blank email to this shop in your mail app. The ready-made emails are further down, under Mail And Email.</p>
+<a class="big blue" id="find" href="#" target="_blank" rel="noopener">Find Their Email</a>
+<input id="em" type="email" placeholder="Paste the email you found here" autocomplete="off" style="width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:10px;border:2px solid #111;margin:0 0 4px">
+<p style="margin:0 0 4px"><button class="chip on" type="button" id="em-save">Save This Email</button> <span class="saved" id="em-msg" style="font-weight:bold"></span></p>
+<p class="lab">Mail And Email</p>
+<p class="sub" style="font-size:14px;margin:0 0 8px">Emails: make each one personal, then send it from your own mail app. Each postcard goes to all the shops in one mailing, so there's nothing to do for the postcards here, only something to look at. <a href="/admin/mail/">See the postcards as they'll look.</a></p>
+<div id="pcnext"></div>
+<div id="pcall" style="margin:0 0 8px"><p class="lab" id="pcall-h" style="margin:14px 0 2px">The Three Emails, In Order</p><p class="sub" id="pcall-s" style="font-size:14px;margin:0 0 8px">Each one unlocks after the one before it is sent.</p><div id="pcs"></div></div>
+<details id="pmail" style="margin:0 0 8px"><summary style="cursor:pointer;font-size:15px;text-decoration:underline">Mail to this shop</summary><div id="pms" style="margin-top:8px"></div></details>
+<p style="margin:0 0 6px"><button class="back" id="dncb" type="button" style="font-size:14px"></button></p>
+<p class="saved" id="dnc-msg" style="font-weight:bold;margin:0 0 6px"></p>
+<p class="lab">Look Them Up</p>
+<div class="row" id="look">
+<a class="chip" id="l-web" target="_blank" rel="noopener" href="#">Website</a>
+<a class="chip" id="l-goo" target="_blank" rel="noopener" href="#">Google Reviews</a>
+<a class="chip" id="l-fb" target="_blank" rel="noopener" href="#">Facebook</a>
+<a class="chip" id="l-yelp" target="_blank" rel="noopener" href="#">Yelp</a>
+<a class="chip" id="l-ig" target="_blank" rel="noopener" href="#">Instagram</a>
+</div>
+<p class="lab">Why It's Worth Going To</p><p id="why"></p>
+<p class="lab">What We Found</p><p id="found"></p>
+<a class="big dark" id="audit" href="#" target="_blank" rel="noopener">Run The Audit</a>
+<p class="sub" style="margin:0 0 4px">Opens Claude with this shop already typed in. Press send and wait a few minutes. The top half is what to say to the owner: one thing they can see on their phone, two more to name, two questions and an opener. The bottom half you keep for the 15 minutes. Paste the answer into Notes below, then use it with the script.</p>
+<a class="big" href="/admin/scripts/#demo" data-say="demo">The One-Thing Demo Script</a>
+<p class="lab">What's Been Done</p>
+<ol id="hist" reversed></ol>
+<p><button class="back" id="undo" style="font-size:14px">Take back the last tap (the stage goes back too). Mail and email are taken back on the piece itself.</button></p>
+<p class="lab">Or Set The Stage By Hand</p>
+<div class="row" id="stages"></div>
+<p class="lab">Notes From Each Visit Or Call</p>
+<textarea id="note" placeholder="What happened, what they said, what to show them next"></textarea>
+<p class="saved" id="saved"></p>
+</div>
+
+<div id="sp"><div class="in">
+<div class="topbar"><button type="button" id="sp-back">&larr; Back</button><p class="who" id="sp-who"></p></div>
+<a class="big dark" id="sp-call" href="#">Call</a>
+<p class="lab" style="margin-top:10px">Look Them Up While You Talk</p>
+<div class="row" id="sp-look"></div>
+<div id="sp-body"></div>
+<p class="lab">What We Found</p><div class="ref" id="sp-found"></div>
+<p class="lab">Your Notes On This Shop</p><div class="ref" id="sp-note"></div>
+<button class="big dark" type="button" id="sp-back2" style="width:100%;font-family:inherit;cursor:pointer">&larr; Back</button>
+<p class="sub" style="font-size:14px"><a href="/admin/scripts/" target="_blank" rel="noopener">See every script (opens in a new tab)</a></p>
+</div></div>
+<div id="pe"><div class="in">
+<div class="topbar"><button type="button" id="pe-back">&larr; Back</button><p class="who" id="pe-who"></p></div>
+<p class="pmbar" style="display:none;margin:0 0 10px;padding:10px 12px;background:#B00020;color:#fff;font-weight:bold;font-size:15px">Practice mode: nothing here is saved. <button type="button" class="pmstop" style="font:inherit;font-size:14px;background:#fff;color:#B00020;border:0;padding:4px 10px;cursor:pointer;font-weight:bold">Stop practicing</button></p>
+<p class="k" id="pe-kind"></p><h2 id="pe-name"></h2>
+<p class="sub" id="pe-route" style="font-size:15px"></p>
+<div id="pe-rec"></div>
+<div id="pe-warn"></div>
+<div class="tip" id="pe-tip"></div>
+<div id="pe-edit">
+<p class="lab" id="pe-sl">Subject</p><input id="pe-subj" autocomplete="off">
+<p class="lab">The Words</p><textarea id="pe-body" spellcheck="true"></textarea>
+<p class="saved" id="pe-count"></p><p class="saved" id="pe-dr"></p>
+<div id="pe-ask" class="now" style="display:none"><p><b>Did it send?</b></p><p style="font-size:15px">Tap Yes only after you pressed Send in your mail app. Then it is saved on this shop with your name and the exact words.</p><button class="big dark" type="button" id="pe-yes">Yes, it sent</button><button class="big" type="button" id="pe-no">No, it didn't</button></div>
+<button class="big dark" type="button" id="pe-gmail">Send From Gmail</button>
+<button class="big" type="button" id="pe-send">Send From My Mail App</button>
+<div class="row" id="pe-more" style="margin-top:4px"><button class="chip" type="button" id="pe-later">Not yet</button><button class="chip" type="button" id="pe-ns">Not sent</button><button class="chip" type="button" id="pe-orig">Back to original</button></div>
+<p id="pe-mhelp" style="font-size:14px;color:#555;margin:0 0 8px">Not yet keeps your edits for later. Not sent skips it, with a reason.</p>
+<div id="pe-nsbox" style="display:none;border:3px solid #111;padding:10px 12px;margin:8px 0"><p style="margin:0 0 6px;font-size:15px">Why isn't it going? A few words is enough. It is noted on the shop, the piece stays on the list, and it can still be sent later.</p><input id="pe-why" maxlength="300" autocomplete="off" placeholder="For example: owner asked us to call instead"><button class="big dark" type="button" id="pe-nssave">Save "Not Sent"</button></div>
+<p style="font-size:14px;margin:0 0 8px">Sending some other way? <button class="back" type="button" id="pe-copy" style="font-size:14px">Copy the words</button></p>
+</div>
+<div id="pe-view" style="display:none"><p class="lab" id="pe-vl">The Words That Went</p><div id="pe-cards"></div><div class="ref" id="pe-words"></div><details id="pe-pd" style="display:none;margin:4px 0 10px"><summary style="cursor:pointer;font-size:15px;text-decoration:underline">The same words as plain text</summary><div class="ref" id="pe-words2" style="margin-top:8px"></div></details></div>
+<details style="margin:14px 0 4px"><summary style="cursor:pointer;font-size:15px;text-decoration:underline">Look them up (website, reviews, Facebook)</summary><div class="row" id="pe-look" style="margin-top:8px"></div></details>
+<p class="lab">What We Found</p><div class="ref" id="pe-found"></div>
+<p class="lab">Your Notes On This Shop</p><div class="ref" id="pe-note"></div>
+<button class="big dark" type="button" id="pe-back2">&larr; Back</button>
+</div></div>
+<script>
+var STAGES=['Not touched yet','Slydial sent','Tried, no owner yet','Talked to the owner','15 minutes booked','15 minutes done','Offer made','Client','Not now'];
+var OLD={'Not yet visited':'Not touched yet','Visited':'Tried, no owner yet','Talking':'Talked to the owner'};
+var S='/admin/scripts/';
+var NEXT={
+'Not touched yet':{t:'Call first, with the phone script. If no one answers and voicemail picks up, leave the message right then. If it just rings out and the number is a cell phone, send the same message as a Slydial. Slydial only works on cell phones.',s:'Call first',l:[['Phone Script',S+'#phone'],['If No One Answers: The Message',S+'#slydial']]},
+'Slydial sent':{t:'Message left. The next day: call again or walk in.',s:'Call or walk in',l:[['Phone Script',S+'#phone'],['Walk-In Script',S+'#walk-short']]},
+'Tried, no owner yet':{t:'Try again at a different time of day. If you call, leave a voicemail.',s:'Try again',l:[['Phone Script',S+'#phone'],['Voicemail Script',S+'#voicemail'],['Walk-In Script',S+'#walk-short']]},
+'Talked to the owner':{t:'Run the audit if it is not done. Next time you talk, show them the one thing from the audit and book the 15 minutes.',s:'Book the 15 minutes',l:[['The One-Thing Demo Script',S+'#demo']]},
+'15 minutes booked':{t:'Run the audit before the call if it is not done. Have the questions ready.',s:'Get ready for the 15 minutes',l:[['The 15 Minutes: What To Ask',S+'#call']]},
+'15 minutes done':{t:'Send them what we found and make the offer: on your own, or with our help?',s:'Send what we found',l:[['How This Step Works (The Plan)','/admin/plan/#video']]},
+'Offer made':{t:'Follow up. Find out what is holding them back.',s:'Follow up',l:[['If They Ask What It Costs',S+'#cost']]},
+'Client':{t:'Nothing to do here. They are a client now.',s:'Nothing',l:[]},
+'Not now':{t:'No more calls. Only invite them to the next free night.',s:'Invite to the free night',l:[]}
+};
+var DID=[['Slydial sent',1],['Called, no answer',2],['Left a voicemail',2],['Walked in, owner not there',2],['Talked to staff, not the owner',2],['Emailed',2],['Texted (only after the owner said yes to texts)',3],['Talked to the owner',3],['Owner said call back later',3],['Booked the 15 minutes',4],['No-show for the 15 minutes',3,1],['Did the 15 minutes',5],['Sent what we found and made the offer',6],['Became a client',7,1],['Not now (they said no)',8,1]];
+var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function $(i){return document.getElementById(i)}
+var L=[],ME='',GHL=false,tier='',cur=null,curId=null,noteT=null,PIECES=[];
+var API='/admin/api/';
+function fmt(t){var d=new Date(t);return MON[d.getMonth()]+' '+d.getDate()}
+function stg(i){var v=L[i].st;return STAGES.indexOf(v)<0?STAGES[0]:v}
+function hist(i){return (L[i].h||[]).map(function(e){return {a:e.a,d:fmt(e.ts),p:e.p,ts:e.ts,by:e.by}})}
+function hist2(i){var h=hist(i);(L[i].ps||[]).forEach(function(r){if(r.st==='ready')return;var a=anyPiece(r.pid)||{name:r.pid};h.push({a:a.name+(r.st==='sent'?' sent by email':r.st==='mailed'?' mailed':' not sent: '+r.why),d:fmt(r.ts),ts:r.ts,by:r.st==='mailed'?'':r.by,pc:1})});return h.sort(function(a,b){return a.ts-b.ts})}
+function last(i){var h=hist2(i);return h.length?h[h.length-1].a+', '+h[h.length-1].d+(h[h.length-1].by?' ('+h[h.length-1].by+')':''):''}
+function msg(t){$('status').textContent=t||''}
+function ghlSays(j,what){var g=j&&j.ghlr;if(PM||!g)return '';if(g==='ok')return ' '+what;if(g==='theirs')return ' This shop\'s contact was in GoHighLevel before the portal (a client or a sign-up), so it keeps its own owner and email there. A note on it says what changed.';if(g==='off')return ' (GoHighLevel isn\'t connected, so it\'s only here.)';
+  return /already has/.test(g)?' GoHighLevel already has this email on a different contact, so GoHighLevel doesn\'t have it on this shop. Keep working; it\'s saved in the portal.':' GoHighLevel didn\'t take it. It\'s saved in the portal, so keep working, and tell Daegan so he can fix GoHighLevel.'}
+var CK='2g-leads-copy',STALE=0;
+function stash(j){try{localStorage.setItem(CK,JSON.stringify({t:Date.now(),j:{leads:j.leads,me:j.me,ghl:j.ghl,pieces:j.pieces}}))}catch(e){}}
+function kept(){try{var c=JSON.parse(localStorage.getItem(CK)||'null');return c&&c.j&&c.j.leads&&c.j.leads.length?c:null}catch(e){return null}}
+function clock(t){var d=new Date(t),h=d.getHours(),m=d.getMinutes();return fmt(t)+' at '+((h%12)||12)+':'+(m<10?'0':'')+m+(h<12?' am':' pm')}
+function take(j,old){
+  L=j.leads||[];ME=j.me||'';GHL=!!j.ghl;if(j.pieces&&j.pieces.length)PIECES=j.pieces;if(!old){STALE=0;if(!PM)stash(j)}
+  $('prac').textContent='The real list. What you tap is saved for all three of us'+(ME?' (you are signed in as '+ME+')':'')+'. '+(GHL?'Each tap also goes to GoHighLevel.':'Not going to GoHighLevel yet.');
+  var tw=$('town'),keep=tw.value;while(tw.options.length>1)tw.remove(1);
+  var towns=[];L.forEach(function(x){if(x.t&&towns.indexOf(x.t)<0)towns.push(x.t)});towns.sort();
+  towns.forEach(function(t){var o=document.createElement('option');o.textContent=t;tw.appendChild(o)});tw.value=keep;
+  if(curId!==null){cur=null;L.forEach(function(x,i){if(x.id===curId)cur=i})}
+}
+function stale(){
+  var c=kept();
+  if(c){if(!L.length){take(c.j,true);draw();route()}STALE=c.t;$('prac').textContent='The shared list is not answering right now. This is the copy saved on this phone on '+clock(c.t)+'. What you tap will not save until it is back.';msg('');}
+  else{$('prac').textContent='The shared list is not answering right now.';msg('');}
+  var st=$('status'),b=document.createElement('button');b.className='chip on';b.type='button';b.textContent='Try again';b.onclick=function(){load()};st.textContent='';st.appendChild(b);
+}
+function load(n){
+  n=n||0;msg(n?'Still trying to reach the list...':'Loading the list...');
+  return fetch(API+'leads',{credentials:'same-origin',cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(j&&j.pieces&&j.pieces.length)PIECES=j.pieces;if(PM&&L.length){msg('');draw();route();if(cur!==null)show(cur);return}take(j);msg('');draw();route();if(cur!==null){var y=window.pageYOffset;show(cur);window.scrollTo(0,y)}}).catch(function(){if(n<3){if(!n&&!L.length){var c=kept();if(c){take(c.j,true);draw();route()}}return new Promise(function(ok){setTimeout(ok,2500)}).then(function(){return load(n+1)})}stale()});
+}
+var PM=false;try{PM=sessionStorage.getItem('2g-practice')==='1'}catch(e){}
+function fake(b){
+  var now=Date.now(),i=-1;L.forEach(function(x,k){if(x.id===b.id)i=k});
+  if(b.op==='add'){L.push({id:'P'+now.toString(36),g:b.g||'Worth a visit',n:b.n,k:b.k||'Business',t:b.t||'Town not set',a:b.a||'',p:b.p||'',u:b.u||'',e:'',w:b.w||'',f:'',src:'Practice',custom:1,st:STAGES[0],wk:'',note:'',h:[]});return {leads:L,me:ME,ghl:GHL}}
+  if(i<0)return {leads:L,me:ME,ghl:GHL};var x=L[i],st=stg(i);x.h=x.h||[];
+  if(b.op==='did'){x.h.push({ts:now,by:ME,a:b.a,p:st});x.st=b.to||st}
+  else if(b.op==='undo'){var e=x.h.pop();if(e)x.st=e.p||STAGES[0]}
+  else if(b.op==='stage'){x.st=b.to}
+  else if(b.op==='note'){x.note=b.note}
+  else if(b.op==='email'){x.e=b.e}
+  else if(b.op==='claim'){x.wk=b.on?ME:''}
+  else if(b.op==='piece'){x.ps=x.ps||[];var pc0=piece(b.pid,'Any')||piece(b.pid,ME)||{};x.ps.push({id:'P'+now,pid:b.pid,by:ME,ts:now,st:b.st,to:b.st==='sent'?x.e:b.st==='ready'?x.n+', '+x.a:'',why:b.why||'',mode:pc0.kind==='email'?'mail app':'practice',_subj:b.st==='notsent'?'':b.subj,_body:b.st==='notsent'?'':b.body});if(b.st!=='notsent'&&x.dr)delete x.dr[b.pid];if(b.st==='sent'&&!x.wk)x.wk=ME}
+  else if(b.op==='pieceback'){var ps0=x.ps||[];for(var k0=ps0.length-1;k0>=0;k0--){if(ps0[k0].pid===b.pid){ps0.splice(k0,1);break}}}
+  else if(b.op==='draft'){x.dr=x.dr||{};if(!(b.subj||'').trim()&&!(b.body||'').trim())delete x.dr[b.pid];else x.dr[b.pid]={by:ME,ts:now,subj:b.subj,body:b.body};return {ok:1}}
+  else if(b.op==='words'){var r0=lastRec(i,b.pid);return r0?{ok:1,rec:{by:r0.by,ts:r0.ts,st:r0.st,to:r0.to,subj:r0._subj||'',body:r0._body||'',why:r0.why}}:{error:'none'}}
+  else if(b.op==='dnc'){x.dnc=b.on?{by:ME,ts:now,why:b.why||''}:null}
+  return {leads:L,me:ME,ghl:GHL};
+}
+function send(b,quiet){
+  if(PM){var j=fake(b);if(j.leads)take(j,true);if(!quiet)msg('');return Promise.resolve(j)}
+  if(!quiet)msg('Saving...');
+  return fetch(API+'act',{method:'POST',credentials:'same-origin',headers:{'content-type':'application/json'},body:JSON.stringify(b)}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok){var e=new Error(r.status);e.why=j&&j.error;throw e}return j})}).then(function(j){if(j.leads)take(j);if(!quiet)msg('');return j}).catch(function(e){msg(e&&typeof e.why==='string'&&['400','404','409'].indexOf(e.message)>=0?e.why:'That did not save. Check your signal and try again.');throw e||0});
+}
+var DAY=86400000,RANK={'15 minutes done':0,'Talked to the owner':1,'Offer made':2,'Slydial sent':3,'Tried, no owner yet':4};
+function due(i){
+  var st=stg(i),h=hist(i);if(!(st in RANK))return null;
+  var lt=h.length&&h[h.length-1].ts?h[h.length-1].ts:0,n=0;
+  for(var k=h.length-1;k>=0;k--){if(STAGES.indexOf(h[k].p||'')<STAGES.indexOf(st)&&k<h.length-1)break;n++}
+  var wait=st==='15 minutes done'?0:st==='Slydial sent'?1:(n>1?7:3);
+  if(!lt)return {t:0,txt:'Due now',late:false};
+  var d0=new Date(lt);d0.setHours(0,0,0,0);var t=d0.getTime()+wait*DAY,now=new Date();now.setHours(0,0,0,0);now=now.getTime();
+  return {t:t,txt:t<now?'Due '+fmt(t)+', '+Math.round((now-t)/DAY)+(Math.round((now-t)/DAY)===1?' day late':' days late'):t===now?'Due today':'Due '+fmt(t),late:t<now,ok:t<=now};
+}
+function row(i,st,showDue){
+  var x=L[i],b=document.createElement('button');b.className='lead';
+  var h=document.createElement('b');h.textContent=x.n;b.appendChild(h);
+  var s1=document.createElement('span');s1.textContent=x.k+' · '+x.t;b.appendChild(s1);
+  var s2=document.createElement('span');var tg=document.createElement('i');tg.className='tier '+(x.g==='A'?'A':'');tg.style.fontStyle='normal';tg.textContent=x.g;s2.appendChild(tg);
+  var ss=document.createElement('i');ss.className='st';ss.style.fontStyle='normal';ss.textContent=(x.dnc?'DO NOT CONTACT · ':'')+st;s2.appendChild(ss);if(x.wk){var wb=document.createElement('b');wb.className='wkby'+(x.wk===ME?' me':'');wb.textContent=(x.wk===ME?'You are':x.wk+' is')+' working this one';s2.appendChild(wb)}b.appendChild(s2);
+  var s3=document.createElement('span');s3.className='nx';s3.textContent=(last(i)?'Last: '+last(i)+' · ':'')+'Next: '+NEXT[st].s;b.appendChild(s3);
+  var d=due(i);if(!d&&st==='15 minutes booked')d={txt:'Check the calendar for the day and time',late:false,ok:true,t:1};if(d&&(showDue||d.ok||d.t===0)){var s4=document.createElement('span');s4.className='due'+(d.late?' late':'');s4.textContent=d.txt;b.appendChild(s4)}
+  b.onclick=function(){go('lead='+encodeURIComponent(x.id))};
+  if(x.wk||x.dnc||!ME)return b;
+  var w=document.createElement('div');w.className='pk';var lb=document.createElement('label');var cb=document.createElement('input');cb.type='checkbox';cb.checked=!!PICK[x.id];
+  cb.setAttribute('aria-label','Take '+x.n);cb.onchange=function(){if(cb.checked)PICK[x.id]=1;else delete PICK[x.id];pickBar()};lb.appendChild(cb);w.appendChild(lb);w.appendChild(b);return w;
+}
+var PICK={},TAKING=0;
+function pickBar(){var ids=Object.keys(PICK).filter(function(id){return L.some(function(x){return x.id===id&&!x.wk&&!x.dnc})});PICK={};ids.forEach(function(id){PICK[id]=1});
+  $('takebar').style.display=ids.length&&$('list').style.display!=='none'?'block':'none';$('take').textContent='Take the '+(ids.length===1?'1 shop':ids.length+' shops')+' I ticked'}
+function mineOrOpen(x){return !x.wk||x.wk===ME}
+function drawToday(){
+  var un=0;L.forEach(function(x,i){if(ME&&x.wk===ME&&stg(i)===STAGES[0]&&!pworked(i))un++});var lg=$('letgo');lg.style.display=un?'inline-block':'none';lg.textContent='Let go of my '+un+' untouched '+(un===1?'shop':'shops');
+  var box=$('today');box.textContent='';var dueL=[],fresh=[];
+  L.forEach(function(x,i){var st=stg(i),d=due(i);
+    if(!mineOrOpen(x)||x.dnc)return;
+    if(d&&(d.ok||d.t===0))dueL.push([RANK[st],d.t,i]);
+    else if(st==='15 minutes booked')dueL.push([-1,0,i]);
+    else if(st===STAGES[0]&&(x.g==='A'||x.g==='B'||x.g==='Signed up'))fresh.push([x.wk===ME?-1:x.g==='Signed up'?0:x.g==='A'?1:2,i,i]);});
+  dueL.sort(function(a,b){return a[0]-b[0]||a[1]-b[1]});fresh.sort(function(a,b){return a[0]-b[0]||a[1]-b[1]});
+  var mine=fresh.filter(function(r){return r[0]===-1});
+  dueL.forEach(function(r){box.appendChild(row(r[2],stg(r[2]),true))});
+  (mine.length?mine:fresh.slice(0,3)).forEach(function(r){box.appendChild(row(r[2],stg(r[2]),false))});
+  if(!dueL.length&&!fresh.length){var p=document.createElement('p');p.className='sub';p.textContent='Nothing due and nothing new for you.';box.appendChild(p)}
+  var C={};L.forEach(function(x,i){var seen={};hist(i).forEach(function(e){if(!seen[e.a]){seen[e.a]=1;C[e.a]=(C[e.a]||0)+1}})});
+  function c(a){return C[a]||0}
+  // Where the whole list stands, all three of us. Each shop counts at the furthest step it ever reached, so a later "Not now" doesn't erase a booking.
+  var F={all:L.length,touched:0,emailed:0,answered:0,booked:0,done15:0,offer:0,client:0,notnow:0};
+  L.forEach(function(x,k){var st=stg(k),far=st==='Not now'?-1:STAGES.indexOf(st);(x.h||[]).forEach(function(e){var n=STAGES.indexOf(e.p||'');if(e.p!=='Not now'&&n>far)far=n});
+    if((x.h||[]).length||pworked(k))F.touched++;if((x.ps||[]).some(function(r){return r.st==='sent'}))F.emailed++;
+    if(st==='Not now')F.notnow++;if(far>=3||st==='Not now')F.answered++;if(far>=4)F.booked++;if(far>=5)F.done15++;if(far>=6)F.offer++;if(far>=7)F.client++});
+  var fb=$('funnel');fb.textContent='';var sm=document.createElement('summary');sm.style.cssText='cursor:pointer;font-size:15px';
+  var sk=document.createElement('b');sk.textContent='Where We Are: ';sm.appendChild(sk);sm.appendChild(document.createTextNode(F.touched+' reached, '+F.answered+' answered, '+F.booked+' booked, '+F.client+' clients'));fb.appendChild(sm);
+  [['Shops on the list (sign-ups included)',F.all],['Reached so far (a call, visit, Slydial or email)',F.touched],['Emailed',F.emailed],['Owners who answered',F.answered+(F.notnow?' ('+F.notnow+' said not now)':'')],['Booked the 15 minutes',F.booked],['Did the 15 minutes',F.done15],['Got an offer',F.offer],['Clients',F.client]].forEach(function(r){var q=document.createElement('p');q.style.cssText='margin:0 0 2px;font-size:15px;display:flex;justify-content:space-between;gap:10px';var a1=document.createElement('span');a1.textContent=r[0];var b1=document.createElement('b');b1.textContent=r[1];q.appendChild(a1);q.appendChild(b1);fb.appendChild(q)});
+}
+function draw(){
+  drawToday();
+  var q=$('q').value.toLowerCase(),tw=$('town').value,sg=$('stage').value,box=$('rows');box.textContent='';var c=0,shown=0;
+  L.forEach(function(x,i){
+    var st=stg(i);
+    if(tier==='mine'){if(x.wk!==ME)return}else if(tier&&x.g!==tier)return;
+    if(tw&&x.t!==tw)return;if(sg&&st!==sg)return;
+    if(q&&(x.n+' '+x.t+' '+x.a+' '+x.k).toLowerCase().indexOf(q)<0)return;
+    c++;if(shown<60){shown++;box.appendChild(row(i,st,true))}
+  });
+  $('count').textContent=c+(c===1?' shop':' shops')+(c>shown?'. Showing the first '+shown+': search or pick a town to narrow it.':'');
+}
+function AUD(x){var kt=x.k.toLowerCase()+' '+x.t+' IN';return [
+'You are getting me ready to call or walk in on a local business owner.',
+'',
+'What this is for: I need one true thing the owner can see on their own phone that is costing them customers, so they say "show me" and book a free 15 minutes with us. Why it matters: an owner who sees it with their own eyes believes it. An owner who is only told does not. One wrong fact and I lose them.',
+'',
+'The business: '+x.n+' ('+x.k.toLowerCase()+') in '+x.t+', Indiana. Address: '+(x.a||'not on file')+'. Phone: '+(x.p||'not on file')+'. Website: '+(x.u||'none on file')+'.',
+(x.f?'An earlier note, not confirmed: "'+x.f+'" Check it today or drop it.':''),
+'',
+'Do the research in this order. Public pages only. For anything you use, keep the link and the date on it.',
+'',
+'A. Right business. Match the name, address and phone before you combine pages. If two businesses fit, stop and tell me.',
+'B. The business. What they sell, who buys it, and the owner\'s name if a public page says it. Read their website, their Google listing, their last 10 reviews, their Facebook or Instagram from the last 30 days, and any job ads. If there\'s no website, do the same from the Google listing.',
+'C. The customers. What do the reviews praise and what do they complain about? Look hard for calls not returned, slow quotes, no-shows and "hard to reach."',
+'D. The competition. Search "'+kt+'." Take the top 3 local companies in Google\'s map results (no ads, no directory sites). For each: stars, number of reviews, and one thing they do that this business doesn\'t.',
+'E. The owner. From all of that, what is most likely eating their time?',
+'',
+'Then give me this, in plain words. Parts 1 to 4 in under 150 words. Everything in under 350.',
+'',
+'SAY WHEN I TALK TO THE OWNER',
+'1. ONE THING the owner can see on their own phone in 30 seconds that is costing them customers. Pick the one closest to a lost call or a lost quote. Give the link, the exact taps, what they will see, and the date you checked. If you couldn\'t see the page the way a phone shows it, say so and give me the taps to check it myself first.',
+'2. TWO MORE things worth naming, one line each. Say what it costs them in plain words (they call the next company), no made-up numbers, and not how to fix it.',
+'3. TWO QUESTIONS that make the owner think about the money (for example, how many people asked for a quote last year).',
+'4. AN OPENER: one warm line about them from something real you found. Use the owner\'s name only if a public page gives it; include the link.',
+'',
+'KEEP FOR THE 15 MINUTES (I don\'t say these to the owner yet)',
+'5. Them against the top 3, from D: stars, number of reviews, the one thing each does that they don\'t.',
+'6. THE FIRST JOB we could take off their plate, from E, and what it would give back: time, calls or money. Name the job, not the steps. Mark it GUESS.',
+'7. TESTS FOR ME TO RUN, because you can\'t: for example, call them after hours and see what answers, or send their website form and time the reply.',
+'8. COULDN\'T CHECK: anything you looked for and couldn\'t open or confirm.',
+'',
+'Rules.',
+'Parts 1 to 5 are facts you checked today, each with its link.',
+'Guesses go only in 6, marked GUESS. Unconfirmed things go only in 8.',
+'In anything I would say out loud, lead with what they get and never use the word AI.',
+'Calls and leads they are already losing come before search ranking, social media or ads.',
+'Don\'t knock whoever built their site.',
+'No statistic without its link.',
+'Never guess a name or an email.'
+].join('\n')}
+
+function show(i){
+  cur=i;var x=L[i];curId=x.id;$('list').style.display='none';$('one').style.display='block';
+  $('n').textContent=x.n;$('meta').textContent=x.g+' · '+x.k+' · '+(x.a||x.t)+(x.rt?' · Rated '+x.rt+(x.rv?' from '+x.rv+' reviews':''):'')+(x.mi?' · '+x.mi+' miles from Launch Fishers':'')+(x.custom?' · '+(x.src||'added by hand'):'');
+  var wk=$('claim');wk.textContent=x.wk===ME?'You are working this one. Tap to let it go.':x.wk?x.wk+' is working this one. Tap to take it over.':'I\'m working this one';wk.className='big'+(x.wk===ME?' dark':'');
+  wk.onclick=function(){var on=x.wk!==ME;send({op:'claim',id:x.id,on:on}).then(function(j){show(cur);if(!PM)$('wk-msg').textContent=((on?'This one is yours.':'You let it go. Anyone can pick it up.')+ghlSays(j,on?'It\'s assigned to you in GoHighLevel too.':'It\'s unassigned in GoHighLevel too.'))},function(){})};
+  $('call').style.display=x.p?'block':'none';$('call').textContent='Call '+(x.p||'');$('call').href='tel:'+(x.p||'').replace(/\D/g,'');
+  $('map').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x.a||(x.n+' '+x.t+' Indiana'));
+  var fe=x.e||'';$('em').value=fe;$('em-msg').textContent='';$('wk-msg').textContent='';$('dnc-msg').textContent='';$('find').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana contact email');
+  if(fe){$('mail').style.display='block';$('mail-sub').style.display='';$('mail').textContent='Write Your Own Email From Scratch';$('mail').href='mailto:'+fe}else{$('mail').style.display='none';$('mail-sub').style.display='none'}
+  var Q=encodeURIComponent(x.n+' '+x.t+' Indiana'),N=encodeURIComponent(x.n);$('l-web').href=x.u||('https://www.google.com/search?q='+Q);$('l-goo').href='https://www.google.com/maps/search/?api=1&query='+Q;$('l-fb').href='https://www.facebook.com/search/pages/?q='+encodeURIComponent(x.n+' '+x.t);$('l-yelp').href='https://www.yelp.com/search?find_desc='+N+'&find_loc='+encodeURIComponent(x.t+', IN');$('l-ig').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana instagram');
+  $('why').textContent=x.w||'';$('found').textContent=x.f||'Not looked at closely yet.';
+  $('audit').href='https://claude.ai/new?q='+encodeURIComponent(AUD(x));
+  var st=stg(i),nx=NEXT[st];$('nw-stage').textContent=st;$('nw-last').textContent=last(i)||'Nothing yet.';var dd0=due(i);$('nw-next').textContent=nx.t+(dd0&&dd0.t?' '+dd0.txt+'.':'');
+  if(x.dnc)$('nw-next').textContent='Nothing. This shop is marked Do not contact: no mail, no email, no calls.';
+  var lk=$('nw-links');lk.textContent='';if(!x.dnc)nx.l.forEach(function(l){var a=document.createElement('a');a.className='big';a.href=l[1];a.textContent=l[0];lk.appendChild(a)});
+  var dd=$('did');dd.textContent='';DID.forEach(function(d){var b=document.createElement('button');b.className='chip';b.textContent=d[0];b.onclick=function(){var to=(d[2]||d[1]>STAGES.indexOf(st))?STAGES[d[1]]:st;send({op:'did',id:x.id,a:d[0],to:to}).then(function(){show(cur)},function(){})};dd.appendChild(b)});
+  var hl=$('hist');hl.textContent='';var H=hist2(i);for(var k=H.length-1;k>=0;k--){var li=document.createElement('li');li.textContent=H[k].a+', '+H[k].d+(H[k].by?' ('+H[k].by+')':'');hl.appendChild(li)}
+  if(!H.length){var li0=document.createElement('li');li0.textContent='Nothing yet.';li0.style.listStyle='none';hl.appendChild(li0)}
+  $('undo').style.display=hist(i).length?'inline':'none';
+  var box=$('stages');box.textContent='';
+  STAGES.forEach(function(s){var b=document.createElement('button');b.className='chip'+(s===st?' on':'');b.textContent=s;b.onclick=function(){send({op:'stage',id:x.id,to:s}).then(function(){show(cur)},function(){})};box.appendChild(b)});
+  if(document.activeElement!==$('note'))$('note').value=x.note||'';$('saved').textContent='';drawPieces(i);window.scrollTo(0,0);
+}
+$('note').oninput=function(){if(cur===null)return;var id=L[cur].id,v=this.value;L[cur].note=v;$('saved').textContent='Saving...';clearTimeout(noteT);noteT=setTimeout(function(){send({op:'note',id:id,note:v},true).then(function(){$('saved').textContent='Saved for all three of us.'},function(){$('saved').textContent='Not saved. Check your signal.'})},1200)};
+var EMB=null;function emSave(){if(cur===null)return;var v=$('em').value.trim();if(EMB===v)return;if(v&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){$('em-msg').textContent='That doesn\'t look like an email address.';return}
+  if(v===(L[cur].e||'')&&!PM){$('em-msg').textContent=v?'Saved.':'';return}
+  EMB=v;send({op:'email',id:L[cur].id,e:v}).then(function(j){EMB=null;var y=window.pageYOffset;show(cur);window.scrollTo(0,y);$('em-msg').textContent=PM?'Practice mode is on, so this is NOT saved. Stop practicing to save it for real.':(v?'Saved for all three of us.'+ghlSays(j,'It\'s on the shop\'s contact in GoHighLevel too.'):'Email taken off.'+ghlSays(j,'It\'s off the shop\'s contact in GoHighLevel too.'))},function(){EMB=null;$('em-msg').textContent='Not saved. Check your signal and tap Save again.'})}
+$('em').onchange=emSave;$('em-save').onclick=emSave;
+$('undo').onclick=function(){if(cur===null)return;send({op:'undo',id:L[cur].id}).then(function(){show(cur)},function(){})};
+$('a-save').onclick=function(){var n=$('a-n').value.trim();if(!n){$('a-msg').textContent='Put in the shop name first.';return}
+  send({op:'add',n:n,k:$('a-k').value.trim(),t:$('a-t').value.trim(),a:$('a-a').value.trim(),p:$('a-p').value.trim(),g:$('a-g').value,w:$('a-w').value.trim(),u:$('a-u').value.trim()}).then(function(){['a-n','a-k','a-t','a-a','a-p','a-u','a-w'].forEach(function(k){$(k).value=''});$('a-msg').textContent='Saved. It is on the list for all three of us.';draw()},function(){$('a-msg').textContent='Could not save it.'})};
+$('untick').onclick=function(e){e.preventDefault();PICK={};draw();pickBar()};
+$('take').onclick=function(){
+  if(STALE){msg('The shared list is not answering, so shops can\'t be taken right now. Tap Try again above.');return}
+  var ids=Object.keys(PICK);if(!ids.length||TAKING)return;var miss=0,gone=0;TAKING=1;$('take').disabled=true;
+  var run=function(k){if(k>=ids.length){TAKING=0;$('take').disabled=false;PICK={};draw();pickBar();msg('You took '+(ids.length-gone)+(ids.length-gone===1?' shop':' shops')+'. They\'re on your Today.'+(gone?' '+gone+' had just been taken by someone else.':'')+(miss&&!PM?' GoHighLevel didn\'t take '+miss+' of them; they\'re saved in the portal, so keep working, and tell Daegan.':''));return}
+    var x=L.filter(function(y){return y.id===ids[k]})[0];if(!x||(x.wk&&x.wk!==ME)){gone++;run(k+1);return}
+    send({op:'claim',id:ids[k],on:true,free:1},true).then(function(j){if(j&&j.gone)gone++;else if(j&&j.ghlr&&j.ghlr!=='ok'&&j.ghlr!=='theirs')miss++;run(k+1)},function(){TAKING=0;$('take').disabled=false;PICK={};draw();pickBar();msg('Only '+k+' of '+ids.length+' saved. The shared list stopped answering. Tick them again in a minute.')})};
+  msg('Taking '+ids.length+(ids.length===1?' shop':' shops')+'...');run(0)};
+$('letgo').onclick=function(){
+  if(STALE){msg('The shared list is not answering, so nothing can be let go right now. Tap Try again above.');return}
+  var ids=[];L.forEach(function(x,i){if(ME&&x.wk===ME&&stg(i)===STAGES[0]&&!pworked(i))ids.push(x.id)});if(!ids.length)return;
+  if(!confirm('Let go of '+ids.length+(ids.length===1?' shop':' shops')+' you haven\'t touched yet? Jimmy and Paul can pick them up. Shops you\'ve already worked stay yours.'))return;
+  var miss=0,run=function(k){if(k>=ids.length){draw();msg('Done. '+ids.length+(ids.length===1?' shop is':' shops are')+' back for anyone to pick up.'+(miss&&!PM?' GoHighLevel didn\'t take '+miss+' of them; tell Daegan.':''));return}send({op:'claim',id:ids[k],on:false},true).then(function(j){if(j&&j.ghlr&&j.ghlr!=='ok'&&j.ghlr!=='theirs')miss++;run(k+1)},function(){draw();msg('Only '+k+' of '+ids.length+' let go. Tap it again in a minute.')})};run(0)};
+function pmShow(){PICK={};if($('takebar'))$('takebar').style.display='none';[].forEach.call(document.querySelectorAll('.pmbar'),function(e){e.style.display=PM?'block':'none'});$('pm').style.display=PM?'block':'none';$('pmb').textContent=PM?'Stop practicing':'Practice mode';$('pmb').className=PM?'chip on':'chip';document.title=(PM?'PRACTICE · ':'')+'Leads · 2 Guys and a Genie'}
+$('pmb').onclick=function(){
+  if(!PM){PM=true;try{sessionStorage.setItem('2g-practice','1')}catch(e){};L=JSON.parse(JSON.stringify(L));pmShow();draw();if(cur!==null)show(cur);msg('Practice mode is on. Try anything.');return}
+  PM=false;try{sessionStorage.removeItem('2g-practice')}catch(e){};pmShow();msg('Back to the real list.');var c=kept();if(c){take(c.j,true);draw();route()}load();
+};
+[].forEach.call(document.querySelectorAll('.pmstop'),function(b){b.onclick=function(){if(PM)$('pmb').onclick()}});
+pmShow();
+$('back').onclick=function(){up('');load()};
+// Where you are lives in the address bar: #lead=<shop> and #lead=<shop>&say=<script>. Back and Forward just work.
+function depth(){return (history.state&&history.state.d)||0}
+function go(h){if(location.hash.replace(/^#/,'')!==h){try{history.pushState({d:depth()+1},'','#'+h)}catch(e){location.hash=h;return}}route()}
+// Step back one screen. If you got here by a tap, it is the same as the browser's Back button. If you landed here from a link, it goes to the screen above.
+function up(h){if(depth()>0){history.back()}else{try{history.replaceState(null,'','#'+h)}catch(e){location.hash=h;return}route()}}
+function where(){var o={};location.hash.replace(/^#/,'').split('&').forEach(function(kv){var a=kv.split('=');if(a[0])o[a[0]]=decodeURIComponent(a[1]||'')});return o}
+function route(){
+  var w=where(),i=-1;if(w.lead)L.forEach(function(x,k){if(x.id===w.lead)i=k});
+  if(i<0){peClose();cur=null;curId=null;$('sp').style.display='none';$('one').style.display='none';$('list').style.display='block';pickBar();return}
+  $('takebar').style.display='none';
+  if(cur!==i||$('one').style.display!=='block')show(i);
+  if(w.say)say(w.say);else $('sp').style.display='none';
+  if(w.piece)pedit(w.piece);else peClose();
+}
+window.addEventListener('hashchange',route);window.addEventListener('popstate',route);
+// The script opens on top of the shop, with the shop's name, town and phone filled in.
+var SDOC=null;
+function scripts(){if(SDOC)return Promise.resolve(SDOC);return fetch(S,{credentials:'same-origin'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){SDOC=new DOMParser().parseFromString(t,'text/html');return SDOC})}
+function say(id){
+  if(cur===null)return;var x=L[cur],sp=$('sp');
+  $('sp-back').textContent='\u2190 Back to '+x.n;$('sp-back2').textContent='\u2190 Back to '+x.n;
+  $('sp-who').textContent='';var b=document.createElement('b');b.textContent=x.n;$('sp-who').appendChild(b);$('sp-who').appendChild(document.createTextNode(' \u00b7 '+x.k+' \u00b7 '+x.t+(x.p?' \u00b7 '+x.p:'')));
+  $('sp-call').style.display=x.p?'block':'none';$('sp-call').textContent='Call '+(x.p||'');$('sp-call').href='tel:'+(x.p||'').replace(/\D/g,'');
+  var lk2=$('sp-look');lk2.textContent='';[].forEach.call($('look').querySelectorAll('a'),function(a){lk2.appendChild(a.cloneNode(true))});
+  $('sp-found').textContent=x.f||'Not looked at closely yet.';$('sp-note').textContent=x.note||'No notes yet.';
+  $('sp-body').textContent='Loading the script...';sp.style.display='block';sp.scrollTop=0;
+  scripts().then(function(d){
+    var sec=d.getElementById(id);if(!sec)throw 0;sec=document.importNode(sec,true);sec.removeAttribute('id');
+    [].forEach.call(sec.querySelectorAll('.fill'),function(f){if(f.textContent==='[Carmel]'&&x.t){f.textContent=x.t;f.className='fill set'}});
+    [].forEach.call(sec.querySelectorAll('a[href^="#"]'),function(a){a.parentNode.removeChild(a)});
+    $('sp-body').textContent='';$('sp-body').appendChild(sec);
+  }).catch(function(){$('sp-body').textContent='';var a=document.createElement('a');a.className='big';a.href=S+'#'+id;a.target='_blank';a.rel='noopener';a.textContent='Open the script in a new tab';$('sp-body').appendChild(a)});
+}
+function unsay(){if(cur!==null)up('lead='+encodeURIComponent(L[cur].id))}
+$('sp-back').onclick=unsay;$('sp-back2').onclick=unsay;
+document.addEventListener('click',function(e){var a=e.target.closest?e.target.closest('a'):null;if(!a||cur===null)return;var h=a.getAttribute('href')||'';if(h.indexOf(S+'#')!==0||a.target==='_blank')return;e.preventDefault();go('lead='+encodeURIComponent(L[cur].id)+'&say='+h.slice((S+'#').length))});
+$('q').oninput=draw;$('town').onchange=draw;$('stage').onchange=draw;
+STAGES.forEach(function(s){var o=document.createElement('option');o.textContent=s;$('stage').appendChild(o)});
+[].forEach.call(document.querySelectorAll('#tiers .chip'),function(b){b.onclick=function(){tier=this.getAttribute('data-t');[].forEach.call(document.querySelectorAll('#tiers .chip'),function(o){o.className='chip'});this.className='chip on';draw()}});
+// ---------- Mail and email: the six pieces on each shop (three postcards and three emails, Nov 24) ----------
+// Each piece opens with the shop filled in. Edit it for this one owner, then Send, Back to original, Not yet, or Not sent.
+// Emails open the sender's own mail app, and are recorded only after "Did it send?" Yes. Postcards are approved for the next mail drop (practice for now: nothing mails).
+var COLD=STAGES.indexOf('Talked to the owner'); // from this stage on, the cold pieces have stopped
+function pids(){var o=[],seen={};PIECES.slice().sort(function(a,b){return a.ord-b.ord}).forEach(function(p){if(!seen[p.pid]){seen[p.pid]=1;o.push(p.pid)}});return o}
+function piece(pid,who){for(var k=0;k<PIECES.length;k++){var p=PIECES[k];if(p.pid===pid&&p.sender===who)return p}return null}
+function anyPiece(pid){for(var k=0;k<PIECES.length;k++)if(PIECES[k].pid===pid)return PIECES[k];return null}
+function mine(pid){var a=anyPiece(pid);if(!a)return null;return a.kind==='mail'?piece(pid,'Any'):piece(pid,ME)}
+function lastRec(i,pid){var ps=L[i].ps||[];for(var k=ps.length-1;k>=0;k--)if(ps[k].pid===pid)return ps[k];return null}
+// No owner name on file: the greeting line is left off and the piece just starts.
+function fill(t,x){var fn=(x.fn||'').trim();if(fn)return t.split('[First Name]').join(fn);
+  var a=t.split('\n'),o=[];for(var k=0;k<a.length;k++){if(a[k].indexOf('[First Name]')>=0){if(a[k+1]!==undefined&&!a[k+1].trim())k++;continue}o.push(a[k])}return o.join('\n')}
+var SENDERS={Paul:{full:'Paul Lorkowski',first:'Paul',pair:'Jimmy and I',started:'Jimmy and I',about:'I ran a business here in Hamilton County for 20 years before I sold it.'},
+  Jimmy:{full:'Jimmy Davis',first:'Jimmy',pair:'Paul and I',started:'Paul and I',about:''},
+  Daegan:{full:'Daegan Smith',first:'Daegan',pair:'Jimmy, Paul and I',started:'Jimmy and Paul',about:''}};
+// Turn the master email into one from the person sending it. Missing info (a line about you) is just left out.
+function asSender(t,who){var S=SENDERS[who];if(!S||who==='Paul')return t;
+  t=t.split('I ran a business here in Hamilton County for 20 years before I sold it.').join(S.about||'\u0000');t=t.replace(/\u0000\n\n?/g,'').replace(/\u0000/g,'');
+  t=t.split('Jimmy and I started this business').join(S.started+' started this business');
+  t=t.split('Now my partner Jimmy and I help').join((S.about?'Now ':'')+(who==='Daegan'?'Jimmy, Paul and I':(S.about?'my partner Paul and I':'My partner Paul and I'))+' help');
+  if(who==='Daegan'){t=t.split('Paul Lorkowski, from Fishers').join('Daegan Smith, with Jimmy and Paul in Fishers');t=t.split('before I call or stop by this week').join('before I call this week')}
+  t=t.split('Jimmy and I are hosting').join(S.pair+' are hosting');
+  t=t.split('Paul Lorkowski').join(S.full);
+  return t.replace(/^Paul$/m,S.first)}
+function orig(i,pid){var a=anyPiece(pid),p=mine(pid)||(a&&a.kind==='email'?piece(pid,'Paul'):null);if(!p)return null;var w=a.kind==='email'&&!mine(pid)?ME:'Paul';return {subj:fill(asSender(p.subj||'',w),L[i]),body:fill(asSender(p.body||'',w),L[i])}}
+// Can this piece go to this shop right now? (Do not contact, the cold pieces stopped, no address or email, not written for you, or already gone: no.)
+function avail(i,pid){var x=L[i],a=anyPiece(pid),r=lastRec(i,pid);if(!a||x.dnc)return false;if(r&&r.st!=='notsent')return false;if(STAGES.indexOf(stg(i))>=COLD)return false;
+  if(a.kind!=='email')return false;if(lockedBy(i,pid))return false;return !!(x.e||'').trim()&&!!(mine(pid)||piece(pid,'Paul'))}
+// The email before this one that hasn't gone yet (sent, or marked not sent). Emails go in order.
+function lockedBy(i,pid){var E=epids(),k=E.indexOf(pid);for(var j=k-1;j>=0;j--){var r=lastRec(i,E[j]);if(!r||(r.st!=='sent'&&r.st!=='notsent'))return anyPiece(E[j]).name}return ''}
+function pworked(i){return (L[i].ps||[]).some(function(r){return r.st==='sent'})}
+function holes(t){return (t.match(/\[[^\]\n]*\]/g)||[]).filter(function(h){return h!=='[QR]'})}
+function pstate(i,pid){
+  var x=L[i],a=anyPiece(pid),r=lastRec(i,pid),st=stg(i);
+  if(r&&r.st==='sent')return {t:'Sent '+clock(r.ts)+' by '+r.by+(r.to?' to '+r.to:''),s:'Sent '+fmt(r.ts)+', '+r.by,c:'ok',done:1};
+  if(r&&r.st==='ready')return {t:'In the next mail drop. Approved '+clock(r.ts)+' by '+r.by+(r.mode==='practice'?' (practice: nothing mails yet)':''),s:'In the next drop, '+fmt(r.ts)+', '+r.by,c:'ok',done:1};
+  if(x.dnc)return {t:'Do not contact',s:'Do not contact',c:'no'};
+  var pre=r&&r.st==='notsent'?'Not sent ('+fmt(r.ts)+', '+r.by+': '+r.why+'). ':'',ps=r&&r.st==='notsent'?'Not sent: '+r.why:'';
+  if(a.kind==='email'&&!(x.e||'').trim())return {t:pre+'Skipped: no email address for this shop. It gets mail and calls.',s:ps||'No email address',c:pre?'no':''};
+  if(a.kind==='mail'&&!(x.a||'').trim())return {t:pre+'No mailing address on file.',s:ps||'No mailing address',c:pre?'no':''};
+  var d=(x.dr||{})[pid],cold=STAGES.indexOf(st)>=COLD;
+  return {t:pre+(d?'Draft started by '+d.by+', '+fmt(d.ts)+'.':'Not sent yet.')+(cold?' The cold pieces have stopped for this shop ('+st+').':''),s:ps||(cold?'Stopped':d?'Draft started':'Not yet'),c:pre?'no':''};
+}
+function epids(){return pids().filter(function(q){return anyPiece(q).kind==='email'})}
+function mpids(){return pids().filter(function(q){return anyPiece(q).kind!=='email'})}
+function mstate(i,pid){var x=L[i],r=lastRec(i,pid);if(r&&r.st==='mailed')return {s:'Mailed '+fmt(r.ts),c:'ok'};if(x.dnc)return {s:'Won\'t be mailed: Do not contact',c:''};if(STAGES.indexOf(stg(i))>=COLD)return {s:'Won\'t be mailed: the cold pieces have stopped',c:''};if(!(x.a||'').trim())return {s:'Won\'t be mailed: no mailing address',c:''};return {s:'Not mailed yet',c:''}}
+function drawPieces(i){
+  var x=L[i],box=$('pcs'),top=$('pcnext'),mb=$('pms');box.textContent='';top.textContent='';mb.textContent='';
+  $('pcall').style.display=$('pmail').style.display=PIECES.length?'':'none';
+  if(!PIECES.length){var p0=document.createElement('p');p0.className='sub';p0.textContent='Loading the emails and mail...';top.appendChild(p0)}
+  var E=epids(),wait=null,nxt=null,done=0;if(!PM)E.forEach(function(q){var r=lastRec(i,q);if(!wait&&askLoad(x.id+'|'+q)&&!(r&&r.st!=='notsent'))wait=q});
+  E.forEach(function(q){if(!nxt&&avail(i,q))nxt=q;if(pstate(i,q).done)done++});
+  var open=function(pid){return function(){go('lead='+encodeURIComponent(x.id)+'&piece='+pid)}};
+  // The one email up front: the one waiting for "Did it send?", or the next one that can go.
+  var lead=wait||nxt,card=document.createElement(lead?'button':'div');card.className='pc one';
+  if(lead){card.type='button';var hb=document.createElement('b');hb.textContent=(wait?'Waiting for your answer: ':'Next: ')+anyPiece(lead).name;card.appendChild(hb);
+    var sb=document.createElement('span');sb.textContent=wait?'Did it send? Open it and tap Yes or No.':pstate(i,lead).t;if(wait)sb.className='no';card.appendChild(sb);
+    var gb=document.createElement('span');gb.className='go';gb.textContent='Open '+anyPiece(lead).name+' →';card.appendChild(gb);card.onclick=open(lead)}
+  else{var why=x.dnc?'Do not contact.':done===E.length&&E.length?'All three emails are done for this shop.':STAGES.indexOf(stg(i))>=COLD?'The cold emails have stopped for this shop.':!(x.e||'').trim()?'No email address for this shop yet.':'No email to send right now.';
+    var hn=document.createElement('b');hn.textContent=why;card.appendChild(hn);
+    if(!x.dnc&&!(x.e||'').trim()){hn.textContent='We don\'t have their email yet, so the emails are locked.';card.className='pc one lockd';var sn=document.createElement('span');var fl=document.createElement('a');fl.href=$('find').href;fl.target='_blank';fl.rel='noopener';sn.appendChild(document.createTextNode('Tap '));fl.textContent='Find Their Email';sn.appendChild(fl);sn.appendChild(document.createTextNode(' to search for it. Paste it in above and tap Save This Email. Email 1 unlocks right away.'));card.appendChild(sn)}
+}
+  if(PIECES.length&&!lead)top.appendChild(card); // with an email ready, the list below shows it in place
+  $('pcall-h').textContent='The Three Emails, In Order ('+done+' of '+E.length+' sent)';$('pcall-s').textContent=!(x.e||'').trim()&&!x.dnc?'Read all three below. They unlock in order, starting with Email 1.':'Each one unlocks after the one before it is sent.';
+  E.forEach(function(pid,n){var a=anyPiece(pid),s0=pstate(i,pid),lk=s0.done?'':lockedBy(i,pid),can=avail(i,pid),d=document.createElement('div');d.className='pseq'+(lk||(!can&&!s0.done&&pid!==wait)?' off':'');
+    var h=document.createElement('p');h.className='ph';var hb=document.createElement('b');hb.textContent=(n+1)+' of '+E.length+': '+a.name;h.appendChild(hb);
+    var sp=document.createElement('span');sp.textContent=pid===wait?'Waiting: did it send?':s0.done?s0.s:lk?'Unlocks after '+lk+' is sent':!(x.e||'').trim()&&!x.dnc?'Locked until we have their email':s0.s;if(s0.c)sp.className=s0.c;if(pid===wait)sp.className='no';h.appendChild(sp);d.appendChild(h);
+    if(!s0.done){var o=orig(i,pid);if(o){var sj=document.createElement('p');sj.className='psj';sj.textContent='Subject: '+o.subj;d.appendChild(sj);var bd=document.createElement('div');bd.className='pbd';bd.textContent=o.body;d.appendChild(bd)}}
+    var note='',btn='';if(pid===wait)btn='Did it send? Tap to answer →';else if(s0.done)btn='See what went →';else if(can)btn='Make It Personal And Send →';else if(x.dnc)note='';else if(lk)note='';else if(!(x.e||'').trim())note='';
+    if(btn){var b=document.createElement('button');b.type='button';b.className='pc one';var bb2=document.createElement('b');bb2.textContent=btn;b.appendChild(bb2);b.onclick=open(pid);d.appendChild(b)}
+    if(note){var nt=document.createElement('p');nt.className='pnt';nt.textContent=note;d.appendChild(nt)}
+    box.appendChild(d)});
+  var M=mpids(),mailed=0;M.forEach(function(pid){var m=mstate(i,pid);if(m.c)mailed++;var b=document.createElement('button');b.type='button';b.className='pc row2';
+    var h=document.createElement('b');h.textContent=anyPiece(pid).name;b.appendChild(h);var sp=document.createElement('span');sp.textContent=m.s;if(m.c)sp.className=m.c;b.appendChild(sp);b.onclick=open(pid);mb.appendChild(b)});
+  $('pmail').querySelector('summary').textContent='Mail to this shop ('+(mailed?mailed+' of '+M.length+' mailed':'none mailed yet')+')';
+  ['call','mail','audit','did','did-lab'].forEach(function(k){if(x.dnc)$(k).style.display='none';else if(k!=='call'&&k!=='mail')$(k).style.display=''});
+  var bar=$('dncbar');if(x.dnc){bar.style.display='block';bar.textContent='DO NOT CONTACT. Marked by '+x.dnc.by+', '+fmt(x.dnc.ts)+(x.dnc.why?': '+x.dnc.why:'')+'. Nothing more goes to this shop: no mail, no email, no calls.'}else bar.style.display='none';
+  var db=$('dncb');db.textContent=x.dnc?'Take off "Do not contact"':'Mark "Do not contact" (stops everything for this shop)';
+  db.onclick=function(){
+    if(x.dnc){if(!confirm('Take off "Do not contact" for '+x.n+'?'))return;send({op:'dnc',id:x.id,on:false}).then(function(j){show(cur);if(!PM)$('dnc-msg').textContent='"Do not contact" is off.'+ghlSays(j,'The tag is off in GoHighLevel too.')},function(){});return}
+    var why=prompt('Mark '+x.n+' "Do not contact"? Nothing more goes to them: no mail, no email, no calls. A few words on why:','');if(why===null)return;
+    send({op:'dnc',id:x.id,on:true,why:why}).then(function(j){show(cur);if(!PM)$('dnc-msg').textContent='Marked "Do not contact."'+ghlSays(j,'It\'s tagged "do not contact" in GoHighLevel too.')},function(){})};
+}
+var PEK=null,peT=null,PEO=null,PEF=null; // the open piece (shop|piece), the draft timer, the piece's original words for this shop
+function pcur(){if(!PEK||cur===null)return null;var k=PEK.split('|');if(L[cur].id!==k[0])return null;return {i:cur,x:L[cur],pid:k[1]}}
+function peErr(){$('pe-dr').textContent=$('status').textContent||'That did not save. Check your signal and try again.'}
+function peClose(){if(peT){clearTimeout(peT);peT=null;if(pcur()&&!ASK)pdraft().catch(function(){})}$('pe').style.display='none';PEK=null;ASK=null;$('pe-subj').readOnly=$('pe-body').readOnly=false}
+function pcount(){var c=pcur(),a=c&&anyPiece(c.pid),n=($('pe-body').value.match(/\S+/g)||[]).length,o=$('pe-count');
+  if(!a||a.kind!=='mail'||/^postcard/.test(c.pid)){o.textContent='';return}
+  o.textContent=n+' words. A one-page letter holds about 450 (a guess until the mail service shows a proof).';o.style.color=n>450?'#B00020':'';o.style.fontWeight=n>450?'bold':''}
+var MAILC=null;function mailCards(){if(!MAILC)MAILC=fetch('/admin/mail/',{credentials:'same-origin',cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){return new DOMParser().parseFromString(t,'text/html')},function(e){MAILC=null;throw e});return MAILC}
+function fitCards(){[].forEach.call(document.querySelectorAll('#pe-cards .pcard'),function(c){var w=c.clientWidth;if(w)c.firstElementChild.style.transform='scale('+(w/864)+')'})}
+window.addEventListener('resize',fitCards);
+function pview(i,pid,a,r){var x=L[i];
+  $('pe-back').textContent='\u2190 Back to '+x.n;$('pe-back2').textContent='\u2190 Back to '+x.n;
+  $('pe-who').textContent='';var bb=document.createElement('b');bb.textContent=x.n;$('pe-who').appendChild(bb);$('pe-who').appendChild(document.createTextNode(' \u00b7 '+x.k+' \u00b7 '+x.t));
+  $('pe-kind').textContent='Mail';$('pe-name').textContent=a.name;
+  $('pe-route').textContent='To '+x.n+(x.a?', '+x.a:' (no mailing address on file)')+'. Mail goes to every shop in batches. Nothing to do here. These are today\'s words; they can still change before the batch goes.';
+  $('pe-rec').textContent='';var w=document.createElement('div');w.className='warn soft';w.textContent=mstate(i,pid).s+'.';$('pe-rec').appendChild(w);
+  $('pe-warn').textContent='';$('pe-tip').style.display='none';$('pe-edit').style.display='none';$('pe-view').style.display='block';
+  $('pe-vl').textContent=r&&r.st==='mailed'?'The Words That Went':'The Words For This Shop (Not Mailed Yet)';$('pe-words').textContent='';
+  if(r&&r.st==='mailed')send({op:'words',id:x.id,pid:pid},true).then(function(j){$('pe-words').textContent=(j.rec||{}).body||''},function(){$('pe-words').textContent='Could not load the words.'});
+  else{var o=orig(i,pid);$('pe-words').textContent=o?o.body:''}
+  var cb=$('pe-cards'),pm=/^postcard(\d)$/.exec(pid);cb.textContent='';$('pe-words').style.display='';$('pe-pd').style.display='none';
+  if(pm&&!(r&&r.st==='mailed')){var want=PEK;$('pe-vl').textContent='How It Will Look (Not Mailed Yet)';$('pe-words').style.display='none';$('pe-words2').textContent=$('pe-words').textContent;$('pe-pd').style.display='block';cb.textContent='Loading the postcard...';
+    mailCards().then(function(d){if(PEK!==want)return;var sec=d.getElementById('postcard-'+pm[1]);if(!sec)throw 0;var sd=sec.querySelectorAll('.side'),cs=sec.querySelectorAll('.card .cardin');if(!cs.length)throw 0;cb.textContent='';
+      [].forEach.call(cs,function(c,k){var l=document.createElement('p');l.className='lab';l.textContent=sd[k]?sd[k].textContent:'';cb.appendChild(l);var w=document.createElement('div');w.className='pcard';var cn=document.importNode(c,true);[].forEach.call(cn.querySelectorAll('div'),function(dv){if(dv.innerHTML.indexOf('[Business Name]')===0||/^\[Owner Name\]/.test(dv.innerHTML)){var ad=(x.a||'').trim(),cm=ad.indexOf(',');dv.textContent='';[x.n,cm>0?ad.slice(0,cm):ad,cm>0?ad.slice(cm+1).trim():''].forEach(function(t,n){if(!t)return;if(dv.childNodes.length)dv.appendChild(document.createElement('br'));dv.appendChild(document.createTextNode(t))});dv.style.color='#111'}});w.appendChild(cn);cb.appendChild(w)});fitCards()},
+    function(){if(PEK!==want)return;cb.textContent='';$('pe-vl').textContent='The Words For This Shop (Not Mailed Yet)';$('pe-words').style.display='';$('pe-pd').style.display='none'})}
+  $('pe-found').textContent=x.f||'Not looked at closely yet.';$('pe-note').textContent=x.note||'No notes yet.';
+  var lk=$('pe-look');lk.textContent='';[].forEach.call($('look').querySelectorAll('a'),function(z){lk.appendChild(z.cloneNode(true))});
+  if($('pe').style.display!=='block'){$('pe').style.display='block';$('pe').scrollTop=0}}
+function pedit(pid){
+  if(cur===null)return;var i=cur,x=L[i],a=anyPiece(pid);if(!a){peClose();return}
+  var key=x.id+'|'+pid,same=PEK===key&&$('pe').style.display==='block';PEK=key;
+  var pc=mine(pid),r=lastRec(i,pid),done=!!(r&&r.st!=='notsent'),em=a.kind==='email',st=stg(i),all=epids();
+  if(!em){pview(i,pid,a,r);return}
+  $('pe-cards').textContent='';$('pe-words').style.display='';$('pe-pd').style.display='none';
+  $('pe-back').textContent='← Back to '+x.n;$('pe-back2').textContent='← Back to '+x.n;
+  $('pe-who').textContent='';var bb=document.createElement('b');bb.textContent=x.n;$('pe-who').appendChild(bb);$('pe-who').appendChild(document.createTextNode(' · '+x.k+' · '+x.t+(x.wk?' · '+(x.wk===ME?'you are':x.wk+' is')+' working it':'')));
+  $('pe-kind').textContent=em?'Email':'Mail';
+  $('pe-name').textContent=a.name;
+  $('pe-route').textContent=em?('To '+((x.e||'').trim()||'(no email address on file)')+', from your own mail app.'):('To '+x.n+(x.a?', '+x.a:' (no mailing address on file)')+'. Goes in the next mail drop (practice: nothing mails).');
+  var rec=$('pe-rec');rec.textContent='';
+  if(r){var w=document.createElement('div');w.className='warn soft';w.textContent=r.st==='notsent'?'Marked not sent, '+clock(r.ts)+', by '+r.by+'. Why: '+r.why+'. It can still be sent.':pstate(i,pid).t+'.';
+    var tb=document.createElement('button');tb.type='button';tb.className='back';tb.style.cssText='display:block;font-size:14px;margin-top:6px';
+    tb.textContent=r.st==='notsent'?'Take back "Not sent"':r.st==='ready'?'Take it out of the next mail drop':'Take this back (fixes the record only: the email already went)';
+    tb.onclick=function(){if(!confirm('Take back this record of '+a.name+' for '+x.n+'?'+(r.st==='sent'?' This does not unsend the email. It only takes it off the record.':'')))return;send({op:'pieceback',id:x.id,pid:pid}).then(function(){show(cur);PEK=null;pedit(pid)},function(){peErr()})};
+    w.appendChild(tb);rec.appendChild(w)}
+  var wb=$('pe-warn');wb.textContent='';var warn=function(t,soft){var d=document.createElement('div');d.className='warn'+(soft?' soft':'');d.textContent=t;wb.appendChild(d)};
+  if(x.dnc)warn('Do not contact. Nothing goes to this shop.');
+  else if(!done){
+    if(em&&!(x.e||'').trim())warn('No email address for this shop, so this email is skipped. Paste one in on the shop page, under "Find Their Email", and it opens up.',1);
+    if(em&&!pc&&ME&&ME!=='Paul')warn('Filled in to come from you ('+ME+'). Read it over before you send'+(SENDERS[ME]&&!SENDERS[ME].about&&/Hamilton County/.test((piece(pid,'Paul')||{}).body||'')?'. Paul\'s line about his own business is left out; add a line about you if you like.':'.'),1);
+    if(!em&&!(x.a||'').trim())warn('No mailing address on file for this shop, so this piece can\'t go in a mail drop.',1);
+    if(STAGES.indexOf(st)>=COLD)warn('The cold pieces have stopped for this shop: it is at "'+st+'". They can\'t be sent from here. You can still mark one Not sent.');
+    if(em&&x.wk&&x.wk!==ME)warn(x.wk+' is working this shop. Emails go out from whoever works it.',1);
+    var early=[];if(avail(i,pid))all.slice(0,all.indexOf(pid)).forEach(function(q){if(anyPiece(q).kind===a.kind&&avail(i,q))early.push(anyPiece(q).name)});
+    if(early.length)warn('Not gone to this shop yet: '+early.join(', ')+'. This piece comes after '+(early.length===1?'it':'them')+'.',1);
+  }
+  $('pe-tip').style.display=pc&&pc.tip&&!done?'block':'none';$('pe-tip').textContent=pc&&pc.tip||'';
+  $('pe-edit').style.display=done?'none':'block';$('pe-view').style.display=done?'block':'none';$('pe-vl').textContent=r&&r.st==='ready'?'The Words In The Next Mail Drop':'The Words That Went';
+  $('pe-sl').style.display=em?'block':'none';$('pe-subj').style.display=em?'block':'none';
+  PEO=orig(i,pid);
+  if(done){$('pe-words').textContent='Loading the words...';send({op:'words',id:x.id,pid:pid},true).then(function(j){var q=j.rec||{};$('pe-words').textContent=(q.subj?'Subject: '+q.subj+'\n\n':'')+(q.body||'')},function(){$('pe-words').textContent='Could not load the words. Check your signal.'})}
+  else if(!same||(PEF&&!peT&&!ASK&&$('pe-subj').value===PEF.subj&&$('pe-body').value===PEF.body)){var d=(x.dr||{})[pid];if(d&&em&&d.by!==ME)d=null;$('pe-subj').value=d?d.subj||'':(PEO?PEO.subj:'');$('pe-body').value=d?d.body||'':(PEO?PEO.body:'');PEF={subj:$('pe-subj').value,body:$('pe-body').value};
+    if(!same){$('pe-ask').style.display='none';$('pe-send').style.display='block';$('pe-nsbox').style.display='none';$('pe-why').value='';}
+    $('pe-dr').textContent=d?'This is a draft by '+d.by+', '+clock(d.ts)+', for this shop only. "Back to original" throws it away.':(PEO?'These are the original words for this shop.':'');
+    peAsk(key);}
+  var can=avail(i,pid);
+  $('pe-send').disabled=!can;$('pe-gmail').disabled=!can;$('pe-send').textContent='Send From My Mail App';
+  $('pe-orig').disabled=!PEO;$('pe-copy').parentNode.style.display=em&&can?'block':'none';
+  pcount();
+  $('pe-found').textContent=x.f||'Not looked at closely yet.';$('pe-note').textContent=x.note||'No notes yet.';
+  var lk=$('pe-look');lk.textContent='';[].forEach.call($('look').querySelectorAll('a'),function(z){lk.appendChild(z.cloneNode(true))});
+  if(!same){$('pe').style.display='block';$('pe').scrollTop=0;peFresh(pid)}
+}
+// Keep the edits as a draft, shared by all three of us. Words that match the original are not a draft.
+function pdraft(){var c=pcur();if(!c)return Promise.resolve();var s0=$('pe-subj').value,b0=$('pe-body').value,same=!!PEO&&s0===PEO.subj&&b0===PEO.body;
+  if(!PEO)return Promise.resolve();
+  if(!PM){c.x.dr=c.x.dr||{};if(same)delete c.x.dr[c.pid];else c.x.dr[c.pid]={by:ME,ts:Date.now(),subj:s0,body:b0}}
+  return send({op:'draft',id:c.x.id,pid:c.pid,subj:same?'':s0,body:same?'':b0},true).then(function(){if(!ASK)$('pe-dr').textContent=same?'These are the original words for this shop.':'Saved as a draft for this shop only. Jimmy, Paul and Daegan can all see it.'},function(e){$('pe-dr').textContent='Draft not saved. Check your signal.';throw e})}
+$('pe-body').oninput=$('pe-subj').oninput=function(){if(ASK)return;PEF=null;pcount();$('pe-dr').textContent='Saving the draft...';clearTimeout(peT);peT=setTimeout(function(){peT=null;pdraft().catch(function(){})},1200)};
+// "Did it send?" stays open, with the exact words that went into the mail app, until it is answered. It survives a reload on this phone.
+var ASK=null,AK='2g-asks';
+function asks(){try{return JSON.parse(localStorage.getItem(AK)||'{}')||{}}catch(e){return {}}}
+function askLoad(k){return asks()[k]||null}
+function askSet(subj,body){ASK={k:PEK,subj:subj,body:body,ts:Date.now()};if(!PM){try{var A=asks();A[PEK]=ASK;localStorage.setItem(AK,JSON.stringify(A))}catch(e){}}askShow()}
+function askShow(){$('pe-gmail').style.display='none';$('pe-more').style.display='none';$('pe-mhelp').style.display='none';$('pe-subj').value=ASK.subj;$('pe-body').value=ASK.body;$('pe-subj').readOnly=$('pe-body').readOnly=true;$('pe-ask').style.display='block';$('pe-send').style.display='none';
+  $('pe-dr').textContent='These are the words that went into your mail app. They are locked until you answer "Did it send?".'}
+function askClear(){$('pe-gmail').style.display='';$('pe-more').style.display='';$('pe-mhelp').style.display='';if(ASK){try{var A=asks();delete A[ASK.k];localStorage.setItem(AK,JSON.stringify(A))}catch(e){}}ASK=null;$('pe-subj').readOnly=$('pe-body').readOnly=false;$('pe-ask').style.display='none';$('pe-send').style.display='block'}
+function peAsk(key){var a=askLoad(key),c=pcur();if(a&&c&&!PM){ASK=a;if(lastRec(c.i,c.pid)&&lastRec(c.i,c.pid).st!=='notsent'){askClear();return}askShow()}else{ASK=null;$('pe-subj').readOnly=$('pe-body').readOnly=false}}
+// Get the latest record before acting on a piece, so a stale phone screen doesn't send something already sent.
+function peFresh(pid,after){if(PM)return;fetch(API+'leads',{credentials:'same-origin',cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){take(j);stash(j);if(cur!==null&&pcur()&&pcur().pid===pid){pedit(pid);if(after)after()}}).catch(function(){})}
+function peAlready(e,pid){if(!(e&&e.message==='409'))return false;askClear();PEK=null;fetch(API+'leads',{credentials:'same-origin',cache:'no-store'}).then(function(r){return r.json()}).then(function(j){take(j);show(cur);pedit(pid);var d=document.createElement('div');d.className='warn';d.textContent=e.why||'Already recorded.';$('pe-warn').insertBefore(d,$('pe-warn').firstChild);$('pe').scrollTop=0}).catch(function(){});return true}
+function peSend(how){var c=pcur();if(!c||!avail(c.i,c.pid))return;var x=c.x,a=anyPiece(c.pid),em=a.kind==='email',s0=$('pe-subj').value.trim(),b0=$('pe-body').value,me=$('pe-send');
+  var hs=holes((em?s0+'\n':'')+b0);if(hs.length){alert('Fill in or take out '+hs.join(', ')+' first.');return}
+  if(!b0.trim()){alert('The words are empty.');return}
+  if(em&&!s0){alert('Put in a subject first.');return}
+  if(em&&ME&&ME!=='Paul'&&/Paul Lorkowski|^\s*Paul\s*$/m.test(s0+'\n'+b0)){alert('This still says it\'s from Paul. Change it to come from you first.');return}
+  if(em&&x.wk&&x.wk!==ME&&!confirm(x.wk+' is working '+x.n+'. Emails go out from whoever works the shop. Send this from you ('+ME+') anyway?'))return;
+  clearTimeout(peT);peT=null;
+  if(!em){me.disabled=true;send({op:'piece',id:x.id,pid:c.pid,st:'ready',body:b0}).then(function(){me.disabled=false;show(cur);PEK=null;pedit(c.pid)},function(e){me.disabled=false;if(!peAlready(e,c.pid))peErr()});return}
+  pdraft().catch(function(){});askSet(s0,b0);
+  if(PM){$('pe-dr').textContent='Practice mode: your mail app does not open. Answer "Did it send?" to see how it works.'}
+  else{var to=(x.e||'').trim();if(how==='gmail'){window.open('https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent(to)+'&su='+encodeURIComponent(s0)+'&body='+encodeURIComponent(b0),'_blank','noopener')}else{var m=document.createElement('a');m.href='mailto:'+encodeURIComponent(to).replace(/%40/g,'@')+'?subject='+encodeURIComponent(s0)+'&body='+encodeURIComponent(b0.replace(/\r?\n/g,'\r\n'));document.body.appendChild(m);m.click();m.parentNode.removeChild(m)}
+    // Check, while the mail app is open, that nobody recorded this piece a moment ago.
+    peFresh(c.pid,function(){var r=lastRec(cur,c.pid);if(r&&r.st!=='notsent'){var d=document.createElement('div');d.className='warn';d.textContent='Stop: '+r.by+' already sent '+a.name+' to this shop ('+clock(r.ts)+'). Don\'t press Send in your mail app.';$('pe-warn').insertBefore(d,$('pe-warn').firstChild);$('pe').scrollTop=0}})}
+  setTimeout(function(){$('pe-ask').scrollIntoView({block:'center'})},300)}
+$('pe-send').onclick=function(){peSend('app')};$('pe-gmail').onclick=function(){peSend('gmail')};
+$('pe-yes').onclick=function(){var c=pcur();if(!c||!ASK)return;var me=this;me.disabled=true;send({op:'piece',id:c.x.id,pid:c.pid,st:'sent',subj:ASK.subj,body:ASK.body}).then(function(){me.disabled=false;askClear();show(cur);PEK=null;pedit(c.pid)},function(e){me.disabled=false;if(!peAlready(e,c.pid))peErr()})};
+$('pe-no').onclick=function(){askClear();$('pe-dr').textContent='Nothing was recorded. Your words are kept as a draft.'};
+$('pe-orig').onclick=function(){if(!pcur()||!PEO)return;var ch=$('pe-subj').value!==PEO.subj||$('pe-body').value!==PEO.body;if(ch&&!confirm('Throw away the changes to this piece and go back to the original words?'))return;
+  $('pe-subj').value=PEO.subj;$('pe-body').value=PEO.body;clearTimeout(peT);peT=null;pcount();pdraft().catch(function(){})};
+function peBack(){if(cur===null)return;var id=L[cur].id,fin=function(){peBack.f=0;up('lead='+encodeURIComponent(id))};clearTimeout(peT);peT=null;
+  if(peBack.f||!pcur()||$('pe-edit').style.display==='none'){fin();return}
+  pdraft().then(fin,function(){peBack.f=1;$('pe-dr').textContent='Your draft did not save. Check your signal. Tap Back again to leave without saving it.'})}
+$('pe-later').onclick=peBack;$('pe-back').onclick=peBack;$('pe-back2').onclick=peBack;
+$('pe-ns').onclick=function(){$('pe-nsbox').style.display='block';$('pe-why').focus()};
+$('pe-nssave').onclick=function(){var c=pcur();if(!c)return;var w=$('pe-why').value.trim();if(!w){alert('Say why in a few words first.');$('pe-why').focus();return}
+  clearTimeout(peT);peT=null;pdraft().catch(function(){}).then(function(){return send({op:'piece',id:c.x.id,pid:c.pid,st:'notsent',why:w})}).then(function(){$('pe-nsbox').style.display='none';$('pe-why').value='';show(cur);PEK=null;pedit(c.pid)},function(){peErr()})};
+function copyText(t){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy')}catch(e){}ta.parentNode.removeChild(ta)}
+$('pe-copy').onclick=function(){var c=pcur();if(!c||!avail(c.i,c.pid))return;var s0=$('pe-subj').value.trim(),t=(s0?'Subject: '+s0+'\n\n':'')+$('pe-body').value,ok=function(){askSet(s0,$('pe-body').value);$('pe-dr').textContent='Copied. Paste it into your mail app, send it, then answer "Did it send?" below.'};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,function(){copyText(t);ok()});else{copyText(t);ok()}};
+(function(){var c=kept();if(c){take(c.j,true);draw();route()}})();
+load();
+</script>
+</main>
+</body></html>

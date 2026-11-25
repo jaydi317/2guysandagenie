@@ -477,12 +477,12 @@ function lastRec(i,pid){var ps=L[i].ps||[];for(var k=ps.length-1;k>=0;k--)if(ps[
 // No owner name on file: the greeting line is left off and the piece just starts.
 function fill(t,x){var fn=(x.fn||'').trim();if(fn)return t.split('[First Name]').join(fn);
   var a=t.split('\n'),o=[];for(var k=0;k<a.length;k++){if(a[k].indexOf('[First Name]')>=0){if(a[k+1]!==undefined&&!a[k+1].trim())k++;continue}o.push(a[k])}return o.join('\n')}
-var SENDERS={Paul:{full:'Paul Lorkowski',first:'Paul',pair:'Jimmy and I',started:'Jimmy and I',about:'I ran a business here in Hamilton County for 20 years before I sold it.'},
+var SENDERS={Paul:{full:'Paul Lorkowski',first:'Paul',pair:'Jimmy and I',started:'Jimmy and I',about:'I ran a business here in Hamilton County for years before selling it, so I know what lands on an owner\'s plate.'},
   Jimmy:{full:'Jimmy Davis',first:'Jimmy',pair:'Paul and I',started:'Paul and I',about:''},
   Daegan:{full:'Daegan Smith',first:'Daegan',pair:'Jimmy, Paul and I',started:'Jimmy and Paul',about:''}};
 // Turn the master email into one from the person sending it. Missing info (a line about you) is just left out.
 function asSender(t,who){var S=SENDERS[who];if(!S||who==='Paul')return t;
-  t=t.split('I ran a business here in Hamilton County for 20 years before I sold it.').join(S.about||'\u0000');t=t.replace(/\u0000\n\n?/g,'').replace(/\u0000/g,'');
+  t=t.split('I ran a business here in Hamilton County for years before selling it, so I know what lands on an owner\'s plate.').join(S.about||'\u0000');t=t.replace(/\u0000\n\n?/g,'').replace(/\u0000/g,'');
   t=t.split('Jimmy and I started this business').join(S.started+' started this business');
   t=t.split('Now my partner Jimmy and I help').join((S.about?'Now ':'')+(who==='Daegan'?'Jimmy, Paul and I':(S.about?'my partner Paul and I':'My partner Paul and I'))+' help');
   if(who==='Daegan'){t=t.split('Paul Lorkowski, from Fishers').join('Daegan Smith, with Jimmy and Paul in Fishers');t=t.split('before I call or stop by this week').join('before I call this week')}
