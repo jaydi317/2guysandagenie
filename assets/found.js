@@ -2,7 +2,7 @@
    and fill the other three from the standing list. Used by /free15/ and /free15/start/. (Nov 20, 2026) */
 (function(){
   var L={fb:'Facebook or Instagram',g:'Google',rec:'A personal recommendation',tv:'TV, radio or a podcast',
-         team:'Your team reached out to me',live:'I saw you at a live event',other:'Other',mail:'An email or newsletter',ad:'An ad online',site:'Online',li:'LinkedIn',yt:'YouTube',nd:'Nextdoor',bing:'Bing',tt:'TikTok',x:'X'};
+         team:'Your team reached out to me',live:'I saw you at a live event',other:'Other',mail:'An email or newsletter',ad:'An ad online',site:'Online',li:'LinkedIn',yt:'YouTube',nd:'Nextdoor',bing:'Bing',tt:'TikTok',x:'X',post:'A postcard in the mail'};
   /* Standing choices under the real source. Facebook and Google only ever show when the visitor really came from them.
      Source unknown (typed the address in): a personal recommendation leads, since word of mouth is the one we can't read. */
   var POOL=['live','tv','other'];
@@ -10,6 +10,7 @@
     var q=new URLSearchParams(location.search), us=(q.get('utm_source')||'').toLowerCase(), src=(q.get('src')||'').toLowerCase(), h='';
     try{ if(document.referrer) h=new URL(document.referrer).hostname.toLowerCase(); }catch(e){}
     if(h.indexOf('2guysandagenie.com')>-1) h='';
+    if(/^postcard/.test(us)||(q.get('utm_campaign')||'').toLowerCase()==='mailer') return 'post';
     if(q.get('fbclid')||/facebook|instagram|^fb$|^ig$|meta/.test(us)||/facebook\.|instagram\.|fb\.com|fb\.me/.test(h)) return 'fb';
     if(q.get('gclid')||q.get('gbraid')||q.get('wbraid')||/google/.test(us)||/google\./.test(h)) return 'g';
     if(/^group-/.test(src)||/^(friend|share|ref|referral)/.test(src)||/referral|friend/.test(us)) return 'rec';
