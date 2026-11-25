@@ -37,7 +37,7 @@
     "2026-11-02": "Ads, proof and the team system, all built for Nov 9.",
     "2026-11-09": "The night itself, then the engine: doodles, Big Ideas and how we work.",
     "2026-10-12": "Jimmy's client work, gathered in one place.",
-    "2026-11-23": "Three Claude pages from Jimmy, saved so they don't get lost."
+    "2026-11-23": "Infinity Printing's audit and homepages, and smarter postcards."
   },
   "items": [
     {
@@ -498,29 +498,31 @@
     },
     {
       "date": "2026-11-25",
-      "title": "Jimmy's Claude page, link 1 of 3",
-      "what": "One of three Claude pages Jimmy sent Daegan today. Not read yet: Claude can't open it from here.",
+      "title": "Infinity Printing: the free AI audit",
+      "what": "The audit page for Infinity Printing in Fishers: great reviews, but the website hides its team-uniform work. Before and after homepage, and the top 3 ways we'd help.",
       "link": "https://claude.ai/artifact/GLhAEGoYEG46eD52fdP4TV",
       "tags": [
-        "team"
+        "proof",
+        "sites"
       ]
     },
     {
       "date": "2026-11-25",
-      "title": "Jimmy's Claude page, link 2 of 3",
-      "what": "One of three Claude pages Jimmy sent Daegan today. Not read yet: Claude can't open it from here.",
+      "title": "Infinity Printing: four homepage options",
+      "what": "Four homepage ideas for Infinity, side by side on phone and desktop. Jimmy's Claude picks B, Roster Ready: type a player's name and it shows on the jersey.",
       "link": "https://claude.ai/artifact/3zhfnwhkjuVJhcUA39EGzr",
       "tags": [
-        "team"
+        "sites"
       ]
     },
     {
       "date": "2026-11-25",
-      "title": "Jimmy's Claude page, link 3 of 3",
-      "what": "One of three Claude pages Jimmy sent Daegan today. Not read yet: Claude can't open it from here.",
+      "title": "Made For You postcards",
+      "what": "Postcard research: mail about 200 hand-picked owners a card showing a page we already made for them, with its own QR code, and Paul calls when they scan. About $600 for the test through thanks.io.",
       "link": "https://claude.ai/artifact/RVJ9z4vm2G5xXLNEMqndt2",
       "tags": [
-        "team"
+        "ads",
+        "offer"
       ]
     }
   ]
