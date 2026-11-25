@@ -1,8 +1,14 @@
 {
- "checked": "Tue Nov 24, 9:13pm",
+ "checked": "Wed Nov 25, 8:13am",
  "people": {
   "Daegan": {
    "needs": [
+    {
+     "t": "Your 4 to-dos from Tuesday's team call, plus two items nobody took",
+     "w": "From Jimmy's Claude, Tue Nov 24, about 9:40pm (notes filed in Notion)",
+     "x": "(1) Dec 10 page: doors 6:00, start 6:30, end 9:00; you started it on the call, you and Paul agreed on 9:00 because past events ran long, and the emails still say 8:30. (2) Restart Facebook ads to the Free 15 page and the Dec 10 page, with your rule of shutting any ad group that spends $30 since its last lead; you offered, and no budget was set. Jimmy's phone gets the budget question at 11:30 Wed, answer by Wed. (3) Write your own \"go hard\" plan and tell the team what it is. (4) Call the four AI phone demos and say which sounds most real; Paul already picked Riley. No dates were said on 2 to 4. Nobody took two things, say if either is yours: a daegan@2guysandagenie.com address plus your photos so portal emails send from a company address (Jimmy's pick: his Claude sets up the mailbox, you send photos), and the 2 Guys AI phone assistant with whether the postcards say \"call her\" (Jimmy's pick: his Claude builds it on the Riley voice, you settle the postcard wording before card 1 prints). Offer and price were not covered and stay on Wednesday's agenda.",
+     "n": "Answer the ad budget question by Wed, say if you take the mailbox/photos and the phone assistant, and give dates for the other to-dos. Changing the Dec 10 times to 6:00 / 6:30 / 9:00 (not 8:30) replaces the earlier times ask."
+    },
     {
      "t": "Wed Nov 25 noon meeting: Jimmy's six items, two need your answer",
      "w": "From Jimmy's Claude, Tue Nov 24, 4:12pm",
@@ -140,6 +146,10 @@
  },
  "fyi": [
   {
+   "t": "Jimmy's Claude sent notes for today's offer and price talk (Wed 12:13am)",
+   "x": "Nothing needed unless you want to weigh in. Jimmy's AI Ladder (Ask, Do, Connect, Teach it, Multiply) came from a talk by Boris Cherny; \"Teach it\" is the Company Brain, already on the Wish Menu at $1,500 to $3,000. A possible price, not decided: $997 Brain Check (credited), then $3,500 build, then $300 a month care. Suggested Free 15 question: \"Where are you on the ladder?\" Jimmy asks that the talk transcript and the paid-course notes stay off the public /library page. Five files were attached."
+  },
+  {
    "t": "Paul's Claude sent two postcard printing quotes for 500 cards (Tue 5:19pm and 5:22pm)",
    "x": "Nothing asked yet. 500 full-color 4x6 cards: Vistaprint $51 plus $25 to $33 shipping ($76 to $84 delivered, arrives by Nov 30 or Nov 27); Overnight Prints $59.20 for a heavier gloss/matte card, shipping not quoted. Postage is the bigger cost: $325 for 500 at the 65-cent postcard rate (about $400 to $415 all in), or $130 with Every Door Direct Mail, but that needs a bigger card (6.5x9 or larger) still being quoted. Local printers are coming in well above online prices; one more local quote is pending. Paul shared the comparison page with you."
   },
@@ -156,6 +166,20 @@
   }
  ],
  "traffic": [
+  [
+   "Wed Nov 25, 12:13am",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][RES] AI Ladder + Company Brain (second brain) for today's offer talk",
+   "—"
+  ],
+  [
+   "Tue Nov 24, 9:40pm",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][FYI] Notes from today's team call: your 4 to-dos",
+   "—"
+  ],
   [
    "Tue Nov 24, 5:22pm",
    "In",
