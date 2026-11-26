@@ -1,77 +1,41 @@
 {
- "checked": "Wed Nov 25, 8:13am",
+ "checked": "Thu Nov 26, 8:20am",
  "people": {
   "Daegan": {
    "needs": [
     {
-     "t": "Your 4 to-dos from Tuesday's team call, plus two items nobody took",
-     "w": "From Jimmy's Claude, Tue Nov 24, about 9:40pm (notes filed in Notion)",
-     "x": "(1) Dec 10 page: doors 6:00, start 6:30, end 9:00; you started it on the call, you and Paul agreed on 9:00 because past events ran long, and the emails still say 8:30. (2) Restart Facebook ads to the Free 15 page and the Dec 10 page, with your rule of shutting any ad group that spends $30 since its last lead; you offered, and no budget was set. Jimmy's phone gets the budget question at 11:30 Wed, answer by Wed. (3) Write your own \"go hard\" plan and tell the team what it is. (4) Call the four AI phone demos and say which sounds most real; Paul already picked Riley. No dates were said on 2 to 4. Nobody took two things, say if either is yours: a daegan@2guysandagenie.com address plus your photos so portal emails send from a company address (Jimmy's pick: his Claude sets up the mailbox, you send photos), and the 2 Guys AI phone assistant with whether the postcards say \"call her\" (Jimmy's pick: his Claude builds it on the Riley voice, you settle the postcard wording before card 1 prints). Offer and price were not covered and stay on Wednesday's agenda.",
-     "n": "Answer the ad budget question by Wed, say if you take the mailbox/photos and the phone assistant, and give dates for the other to-dos. Changing the Dec 10 times to 6:00 / 6:30 / 9:00 (not 8:30) replaces the earlier times ask."
+     "t": "Your 5 to-dos from Wednesday's two calls (replaces Tuesday's 4 and Monday's 8)",
+     "w": "From Jimmy's Claude, Wed Nov 25, 9:40pm (notes from the noon call and the 5:30pm call with Jimmy, filed in Notion)",
+     "x": "(1) Facebook ads live for the Dec 10 meetup and the Free 15, Hamilton County, pause anything past about $30 a lead, check every few hours; dated Wed Nov 25. (2) Check the thanks, contact and leaders pages for old meetup times or details; no date. (3) Work the leads Friday, up to about 100 calls and emails; Fri Nov 27. (4) Have your Claude look at an email-finding tool to get real owner names and emails into the lead portal; no date. (5) Move or clone the site to Cloudflare only if Jimmy's Claude finds GitHub no longer allows business sites; his Claude researches first; no date. Also from the calls: Jimmy agreed the site's offer is the one to use (free 15 listens and sets a second call, the $1,000 Master Plan is offered on the second call, no payment link on the free 15), but he still reads the page himself and tells his Claude it is final. Jimmy's Claude sets up your 2 Guys email and a calling number for each partner and sends your Claude the login steps. You and Paul said mail the postcards now; it waits on Jimmy because it spends money.",
+     "n": "Confirm the ads are running, give dates for items 2, 4 and 5, and send the ad budget answer back to Jimmy's Claude. Item 4 looks done: your Claude loaded 156 shop emails from the email-finding tool Wed night."
     },
     {
-     "t": "Wed Nov 25 noon meeting: Jimmy's six items, two need your answer",
-     "w": "From Jimmy's Claude, Tue Nov 24, 4:12pm",
-     "x": "Jimmy's list for Wed noon, which he may change live and which skips anything settled at Tuesday's call: (1) lock the starting price, guarantee words and December limit, which gates the one-page offer, the Stripe link and the Jamon and Dr. McCray agreements, goal a first paying client by Fri Nov 27; (2) decide the Jamon and Dr. McCray agreements right after the price, nothing goes to either before Jimmy decides; (3) confirm Riley as our AI phone receptionist pick, Paul called all four test numbers Tue and called Riley far and away the best, and any public demo line still needs a spend cap first; (4) the Free 15 page changes (about 10-day window, mockup banner off, block Tue Dec 1 3:00 to 3:30pm for Lisa Bowers) plus Jimmy connecting his Apple calendar; (5) quick status on Jessica (report and replay), Dr. McCray (mock-up) and Jim Chalfant (Audit Kit call); (6) who checks the email settings after Lisa Bowers's email flagged 2guysandagenie.com as a recently created domain, and by when.",
-     "n": "Be ready to confirm Riley and say who checks the email domain warning and by when; the price and Free 15 items repeat asks already listed here. Next Monday's meeting must end by 12:25."
+     "t": "Answer Jimmy's Claude on three small things",
+     "w": "From Jimmy's Claude, Wed Nov 25, 4:12pm and 7:12pm, and Wed 9:40pm",
+     "x": "(a) Thursday is Thanksgiving: is the noon meeting still on, or does it move to Mon Nov 30 (which must end by 12:25 because Jimmy has Kate Walters at 12:30)? Jimmy's items carry over either way: lock the $1,000 starting price, guarantee words and December limit; a $30 a day Facebook test starting Mon Nov 30; which postcard plan to pick (your headline vs doodle split test printed at Infinity for $65 for 500, or Jimmy's Claude's plan of about 200 hand-picked owners with a preview page each, about $600 test, or both); what must be ready for Mon Nov 30; confirm Riley as the phone assistant voice. The site now shows no Thursday meeting and the Treg item moved to Friday. (b) Who makes the tracking links, one per purpose? Jimmy's Claude's pick: Jimmy's Claude makes them before each group post, partner note or postcard. (c) On the Dec 10 plan (doors 6:00, start 6:30, done by 9:00, pizza at doors): the 7:00 entry in board/board-data.js is fine if it is a segment inside the night; if it says the night starts at 7:00, change it to 6:30. The six \"6:30\" mentions in the mail board look right.",
+     "n": "Reply to Jimmy's Claude with the meeting date, who owns tracking links, and whether the 7:00 entry was changed."
+    },
+    {
+     "t": "Pass the tracking tag through the /book page into the booking calendar",
+     "w": "From Paul's Claude, Wed Nov 25, 2:26pm (you told Paul's Claude Wed 4:13pm this is your tracking work, starting now)",
+     "x": "The meetup page already hands the utm and src tags to the form; /book does not. Without it, booked calls from postcards 1 and 3 and from Paul's business card (src=ttr_networking) will not show where they came from. Paul's Claude also asked for the printed web address and the code to land on the same page; you answered /free15 is preferred and /book is fine if Paul knows it works better, same tags either way.",
+     "n": "Build the tag pass-through on /book, then tell Paul's Claude it is live."
+    },
+    {
+     "t": "Ready for Mon Nov 30, when the calls start",
+     "w": "From Jimmy's Claude, Wed Nov 25 brief 11:31am and 4:12pm; carried from earlier asks",
+     "x": "Free 15 page: booking window about 10 days, mockup banner off the sign-up page, block Tue Dec 1, 3:00 to 3:30pm for Lisa Bowers (Jimmy's Claude cannot read the changes log, so send one line if already done). Send the \"you're booked\" email the moment someone books and make the steps after booking obvious. Dec 10 times the same everywhere (doors 6:00, event 6:30 to 9:00pm). Call sheets for the calls. Call the four AI phone demos and say which sounds most real (Paul picked Riley). Jimmy's Claude held Paul's call list; calls start Mon Nov 30 and the first-client target moved to Fri Dec 4.",
+     "n": "Send Jimmy's Claude one line saying which of these are already done and which are not."
     },
     {
      "t": "Add six new lead fields to your lead portal and say how Jimmy's Claude should send the data",
-     "w": "From Jimmy's Claude, Tue Nov 24, 1:06pm",
+     "w": "From Jimmy's Claude, Tue Nov 24, 1:06pm (no reply from us seen in this inbox yet)",
      "x": "You asked whether Jimmy's Claude or yours should add the new lead fields, and Jimmy says yours, since the portal is yours. Asked: add the six fields you said yes to (the attached spec lists each field, its allowed values and how it gets filled) plus a simple way to load values in bulk. Jimmy's Claude fills the values with the tools you approved (business lists, Google's phone speed check, owner email finder) and would send them as a spreadsheet file per batch, or post them straight in if you give it a way. The missed-call field comes from the new Free Call Check, which only calls businesses that say yes first. Hiring, the one big thing, the sheet link and source/date stay off for now, as you said.",
      "n": "Have your Claude add the six fields and a bulk load, then reply to Jimmy's Claude with how you want the data delivered (spreadsheet per batch or direct post) and when the fields are live. This also settles the noon default of Jimmy's Claude adding the lead tools."
     },
     {
-     "t": "Today's Daily Brief: five jobs for you, and a default on the lead tools unless you say otherwise at noon",
-     "w": "From Jimmy's Claude (the Director), Tue Nov 24, 11:30am",
-     "x": "(1) Free 15 page: widen the booking window to about 10 days (Jimmy picked this Monday; Paul found nothing bookable after Tue Dec 1), take the \"mockup\" banner off the sign-up page because it books real times, and block Tue Dec 1, 3:00 to 3:30pm, Jimmy's backup slot with Lisa Bowers. Wanted today. (2) Offer one-pager and one Stripe link once the price is locked at noon; it gates the Jamon and Dr. McCray agreements and the first-client goal of Fri Nov 27. Wanted by Wed Nov 25. (3) Send the \"you're booked\" email the moment someone books and make the steps after booking obvious. By Wed Nov 25. (4) Script page: phone, website and Google reviews buttons; fix \"Give me 5\" loading and keep the lead on screen after \"call first\"; take off the \"demo\" label; bold \"working these\". By Wed Nov 25. (5) Dec 10 page and emails: doors 6:00, event 6:30 to 8:30pm (Paul's ask), and reword \"What would you pay never to do again?\". By Wed Nov 25. Also: unless you say otherwise at noon, Jimmy's Claude adds the six lead tools you said yes to, starting Wed Nov 25, results sent to you.",
-     "n": "Do the five jobs by their dates (items 1 to 5 repeat your older asks above; one answer settles both). At the noon call, lock the price and say if you want your own Claude to add the lead tools instead."
-    },
-    {
-     "t": "Your 8 to-dos from Monday's two team calls (replaces the Saturday list)",
-     "w": "From Jimmy's Claude (the Director), Mon Nov 23, 9:40pm (notes from the 11:58am and 1:54pm calls)",
-     "x": "No dates were said. (1) Send the \"you're booked\" email the moment someone books, not after the last step. (2) Make the steps after \"you're booked\" obvious; Jimmy and Paul both thought they were done at that screen. (3) Make \"Give me 5\" load without a refresh or GoHighLevel sign-in, and keep the lead on screen after \"call first\" or \"message\"; the second call sounded like most of this is fixed, so confirm. (4) Script page: show the lead's phone number plus website and Google reviews buttons. (5) Make \"<name> is working these\" bold and take the \"demo\" label off the scripts. (6) Reword \"What would you pay never to do again?\" on the meetup page and run the hidden-obstacle and belief-chain check on it; a reader found it unclear. (7) Free 15 booking window: Jimmy's pick is about 10 days out; the exact number is your call. (8) Facebook ads push and the front-end assessment (started Monday). Also coming to you from Jimmy's side: four sign-up findings for you to decide, the Hormozi playbooks, and the list of lead-data tools.",
-     "n": "Tell Jimmy's Claude dates for the items, confirm which are already fixed (3, and 1 if your page change covers it), and give the booking-window number."
-    },
-    {
-     "t": "Paul wants the Dec 10 meetup times changed everywhere: doors 6:00pm, event 6:30 to 8:30pm",
-     "w": "From Paul's Claude, Mon Nov 23, 4:55pm (copied to Jimmy's Claude)",
-     "x": "On the meetup page (2guysandagenie.com/meetup/) the times now read doors 6:30, starts 7:00, done by 9:00, and 7:00 PM also shows in two other places including the countdown at the top. Paul wants all of it changed to doors open 6:00 PM and the event running 6:30 to 8:30 PM, which replaces his earlier idea of doors 5:30, start 6:00. The Launch Fishers room is booked 5 to 9pm so it fits. Also change the same times in the Dec 10 emails and the sign-up's save-a-seat step if they appear there, and when live add it to the Admin \"Here's What's New\" list, which Paul reads each morning.",
-     "n": "Make the time change on the page, emails and sign-up, add the Here's What's New entry, and tell Paul's Claude when it is live. This also answers the open question of the Dec 10 start time Jimmy's Claude asked you to pick, so confirm that is what you want."
-    },
-    {
-     "t": "Lead portal is locked until 7pm tonight: five fixes for you",
-     "w": "From Jimmy's Claude, Mon Nov 23, 1:43pm (checked live at 1:45pm in Jimmy's browser)",
-     "x": "The portal shows \"Could not reach the list\" and \"That did not save\" because the database hit its free daily read limit (the old 3-minute sync used it up before your 12:39 fix took over). It resets at 7pm Eastern tonight. Nothing is lost, and signing in to GoHighLevel is not the cause. Fixes asked: (1) show the real reason on the page (\"The list is resting until 7pm tonight. Nothing is lost.\") instead of telling people to sign in again, (2) make Give me 5 claim all five shops in one call and read the list once, (3) create the jobs table before its index so a fresh database does not fail, (4) the worker code sits in a public repo and names the team's sign-in emails, so move those into a private setting, (5) after 7pm, check the Cloudflare rows-read graph stays small. Jimmy is deciding on the $5 a month paid plan; hold on it for now.",
-     "n": "Make the five fixes, then check the rows-read graph after 7pm tonight. Paul gets the portal today, so the page message (1) matters most."
-    },
-    {
-     "t": "Free 15 sign-up: confirmation email only goes out sometimes, and four other calls for you",
-     "w": "From Jimmy's Claude, Mon Nov 23, 1:03pm (after Jimmy tested it with two emails and Paul tested too)",
-     "x": "All three tests booked a time fine, but only one got the \"You're booked\" email (and it did not reach Jimmy's inbox until the sender was fixed). The other two never started the email workflow, because the page only sends that signal when the visitor finishes or closes the page, and phones often drop it. Jimmy's Claude recommends having the booking step send the signal itself the moment the time is booked. Also asked: (a) confirm the 10 daily story emails should be live in this workflow (your Nov 22 note said none were active; Jimmy's test contact gets Email 2 Tue Nov 24 at 12:30pm), (b) the page promises a text reminder from (317) 751-2693 but none is built, (c) change the calendar's internal notes line to plain customer wording if you like, (d) two other workflows (Dec 10 daily story emails, Dec 10 day before and day of) may have the same blank sender problem and are worth a check, (e) remove the two test contacts if you want. Already done by Jimmy's Claude: all 11 emails and the alert now send from jimmy@2guysandagenie.com; reload the workflow before saving if it was open in another tab.",
-     "n": "Decide whether the booking step sends the email signal itself (your latest page change already sends it the moment they book, so confirm that covers it), and answer the story emails yes or no and the text reminder yes or no."
-    },
-    {
-     "t": "Two asks for today about the free 15-minute booking page",
-     "w": "From Jimmy's Claude, Daily Brief Mon Nov 23, 11:30am",
-     "x": "(1) The booking page only shows Tue Nov 24, Wed Nov 25 and Tue Dec 1, nothing from Wed Dec 2 on, because of 24 hours' notice, 5 days out and Thanksgiving blocked. Paul read it as \"December is full.\" Jimmy's Claude now recommends 14 days (Mon 1:03pm), and says that is Jimmy's call; the page itself shows only 4 days at a time. (2) The page at 2guysandagenie.com/free15/start/ still shows a banner saying \"Mockup. Nothing gets sent or booked,\" but it books real times and sends sign-ups to GoHighLevel. Paul's Claude flagged that real owners may find it confusing. Update Mon 9:40pm: Jimmy's pick is about 10 days out (a short wait keeps a lead hot).",
-     "n": "Give the new booking window (21 days, or another number, or no) and say whether the mockup banner comes off or stays and why. Both wanted today."
-    },
-    {
-     "t": "Case studies: three things for Jimmy on today's 4pm agenda",
-     "w": "From Jimmy's Claude, Sat 4:12pm (two notes, answering your case study ask; the second corrects the first)",
-     "x": "Jimmy already took on writing the case studies (Bruce first, then Ian, sent to you by Sun Nov 22), so that part is a yes. Still open for Jimmy: (1) each client's yes to going public (nothing on record for Ian), (2) OK to send you the Fuel Hunting video file (10:32, made only for Ian, shows his prospect names and Fuel details, so no link yet), (3) which Ian goes on the site: the Fuel client is Ian Borgerhoff of the Indy Fuel, and whether he is the same person as the photographer Ian on the site is unverified. Jimmy's Claude asks you to hold that name on the site until Jimmy confirms, and says no public use of the video for now. Likely cuts for any public version: names of people Ian writes to, Fuel sponsorship prices or deals, and the Fuel's internal approval.",
-     "n": "Put the three items on today's 4pm agenda as one 2-minute item. If they don't come up, Jimmy's Claude will ask Jimmy and reply by Mon Nov 23."
-    },
-    {
-     "t": "Lock the offer and price with Jimmy before Mon Nov 23",
-     "w": "From Jimmy's Claude, Daily Brief Fri 11:30am (from Thursday's call)",
-     "x": "The Jamon and Dr. McCray agreements ($1,500 a month each) have been on Jimmy's list 4 days and depend on the offer and price being settled, so it is on today's noon call.",
-     "n": "Settle the offer and price with Jimmy on today's call."
-    },
-    {
-     "t": "Microsoft 365 mail shows a \"recently created domain\" warning on Jimmy's emails",
-     "w": "From Jimmy's Claude, Tue Nov 24, 10:28am",
+     "t": "Check the email setup after the \"recently created domain\" warning on Jimmy's emails",
+     "w": "From Jimmy's Claude, Tue Nov 24, 10:28am; repeated in Wed's brief, wanted by Mon Nov 30",
      "x": "On Mon Nov 23 a partner's Microsoft-style mail system put a warning banner on Jimmy's email from jimmy@2guysandagenie.com, saying the sender domain was only recently created and might be malicious. The partner replied anyway, so nothing broke, but other businesses on Microsoft 365 may see it too and some emails may land in spam. Not urgent.",
      "n": "Check the email setup (SPF, DKIM, DMARC) for 2guysandagenie.com and mail.2guysandagenie.com, then send Jimmy's Claude a short \"all good\" or \"fixed X\". Much of the cure may just be time as the domain ages."
     }
@@ -79,43 +43,67 @@
    "waits": [
     {
      "t": "Jimmy's real answers on who, hours and daily limit for the free 15-minute call",
-     "w": "Promised by Jimmy's Claude, Sat Nov 21, 7:12pm; due Sun Nov 22, 6pm; still no answer from Jimmy as of Mon 8:12am",
+     "w": "Promised by Jimmy's Claude, Sat Nov 21, 7:12pm; no answer yet",
      "x": "Who takes the calls, which days and hours, and the most calls a day. Only Jimmy can answer.",
-     "n": "Jimmy's Claude built the calendar to the suggested picks (Jimmy alone, Mon to Thu 1:00 to 4:30pm Eastern, 4 a day), so the picks stand unless Jimmy changes them."
+     "n": "The calendar was built to the suggested picks (Jimmy alone, Mon to Thu 1:00 to 4:30pm Eastern, 4 a day), so they stand unless Jimmy changes them."
     },
     {
-     "t": "Jimmy's Claude owes you the Apple invite removal with four sign-up findings, and the lead-data tool sign-ups",
-     "w": "Promised in Tue Nov 24 11:30am brief; due Wed Nov 25",
-     "x": "Nothing gets changed on the sign-up until you have read the four findings.",
-     "n": "Wait for them; nothing needed from you yet."
+     "t": "Jimmy's confirmation of the call length (15 minutes) and the /book pages, then Jimmy's Claude's report on what changed in GoHighLevel",
+     "w": "Jimmy's Claude, Wed Nov 25, 7:12pm; goes to Jimmy's phone Mon Nov 30 at 11:30, answer due Tue Dec 1",
+     "x": "Jimmy's Claude recommends keeping \"15 minutes\" everywhere. After Jimmy confirms, his live Claude checks the calendar, the 1-hour and day-before reminders and email 1 of the Free 15 flow, then replies to you. His Claude cannot edit GoHighLevel workflows itself (team rule).",
+     "n": "Nothing needed from you until Jimmy's Claude replies."
+    },
+    {
+     "t": "Jimmy reading the site's offer page and telling his Claude it is final",
+     "w": "Jimmy, from the Wed Nov 25 calls; no date set",
+     "x": "Offer agreed on the calls; Jimmy still has to read the page himself.",
+     "n": "Nothing needed from you until he says it is final."
+    },
+    {
+     "t": "Your 2 Guys email address, a calling number for each partner, and login steps",
+     "w": "Promised by Jimmy, Wed Nov 25 calls; no date set",
+     "x": "Jimmy's Claude sets them up and sends your Claude the login steps; your photos are still wanted for the address.",
+     "n": "Send the photos if you have not."
+    },
+    {
+     "t": "Paul's Claude's reply on the postcard backs",
+     "w": "You sent Paul's Claude answers Wed Nov 25, 4:13pm; nothing back yet (Paul was away 5 to 6 hours and checks in the evening)",
+     "x": "Paul's Claude asked for the new QR codes on all 6 backs at 0.8 inch or bigger, the printed address matched and the postage box left blank for the mail house. You told Paul the layout and placement are his.",
+     "n": "Wait for Paul to send the print-ready files or a question."
     }
    ]
   },
   "Jimmy": {
    "needs": [
     {
-     "t": "Connect your Apple calendar inside GoHighLevel for the free 15-minute call",
-     "w": "Daegan's Claude, Mon Nov 23, 12:40am; Jimmy's Claude confirmed Mon 8:12am it is sending this to his phone at 11:30am today",
-     "x": "The free 15-minute calendar is built (Jimmy only, Mon to Thu 1:00 to 4:30pm Eastern, 4 a day, 24 hours' notice, 5 days out, Thanksgiving blocked). Until you connect your Apple calendar, your own appointments won't block these times. It checks Calendar, Work, Home, Block-Thrive and Block-InnerCircle and writes bookings into Block-Thrive. Apple asks for an app-specific password, so only you can do it (not copied here).",
-     "n": "Do the Apple calendar connection in GoHighLevel today (needs an app-specific password from Apple, not copied here). Until then Jimmy's Claude watches new bookings for clashes with his known schedule."
+     "t": "Decide the postcard order and spend, and the $30 a day Facebook ad test",
+     "w": "His Claude, Wed Nov 25 (postcards and ad budget go to his phone with his next list, Mon Nov 30 at 11:30)",
+     "x": "Pick one postcard plan: the headline vs doodle split test at Infinity ($65 for 500, bigger 6.5x9 card for cheaper postage, Paul's price due Mon Nov 30), Jimmy's Claude's 200 preview-page cards (about $600 test), or both. Also say yes or no to $30 a day on Facebook starting Mon Nov 30, and confirm Riley as the phone assistant. Answer by Mon Nov 30.",
+     "n": "Jimmy answers on Mon Nov 30."
     },
     {
-     "t": "Three decisions asked of him today (Mon Nov 23)",
-     "w": "Jimmy's Claude, Daily Brief Mon 11:30am (sent to his phone this morning)",
-     "x": "(1) Take Lisa Bowers' Zoom on Tue Nov 24 at 3pm Eastern? Pick: yes. (2) Connect his Apple calendar in GoHighLevel (needs an app-specific password) so free 15 bookings never clash with his day? Pick: yes, today. (3) Did the research report and webinar replay go out to Jessica on Friday? If not, send today. Pick: send today.",
-     "n": "Jimmy answers the three questions today."
+     "t": "Confirm 15 minutes for the free call, and the /book and /book/booked pages",
+     "w": "His Claude, Wed Nov 25, 7:12pm; on his phone Mon Nov 30 at 11:30, answer by Tue Dec 1",
+     "x": "Jimmy's Claude recommends keeping \"15 minutes\" everywhere; if he agrees only the reminders in GoHighLevel need a check.",
+     "n": "Jimmy answers by Tue Dec 1."
+    },
+    {
+     "t": "Read the offer page and tell his Claude it is final",
+     "w": "From the Wed Nov 25 calls",
+     "x": "He agreed on the call that the site's offer is the one to use, but still reads the page himself first.",
+     "n": "Jimmy reads it and tells his Claude."
+    },
+    {
+     "t": "Connect your Apple calendar inside GoHighLevel for the free 15-minute call",
+     "w": "Daegan's Claude, Mon Nov 23; asked twice, no answer by Wed Nov 25 (his Claude will not ask a third time)",
+     "x": "Until it is connected, his own appointments won't block free 15 times. It needs an app-specific password from Apple, not copied here.",
+     "n": "Jimmy does the connection (about 5 minutes); Daegan can raise it on the next call."
     },
     {
      "t": "Decide whether to move the lead portal to the $5 a month paid plan",
-     "w": "From Jimmy's Claude, Mon Nov 23, 1:43pm",
-     "x": "The free plan locked the portal until 7pm tonight because of a daily limit. The paid plan would stop that happening mid-day.",
-     "n": "Jimmy decides yes or no on the $5 a month plan."
-    },
-    {
-     "t": "Today's three asks from his own Daily Brief",
-     "w": "From his Claude, Tue Nov 24, 11:30am",
-     "x": "(1) Settle the offer at noon: about $1,000 starting price for the first five buyers, with guarantee words and the December limit. (2) Send Jessica her report and replay today, before the case-study work. (3) Connect his Apple calendar in GoHighLevel (5 minutes, only he can).",
-     "n": "Answer at the noon call and do the calendar connection today."
+     "w": "His Claude, Mon Nov 23, 1:43pm; no answer seen",
+     "x": "The free plan locked the portal until 7pm that day because of a daily read limit; the paid plan would stop that mid-day.",
+     "n": "Jimmy decides yes or no."
     }
    ],
    "waits": []
@@ -123,9 +111,21 @@
   "Paul": {
    "needs": [
     {
-     "t": "Send his call reports (none since Tue Nov 17)",
-     "w": "Noted by Jimmy's Claude, Daily Brief Fri 11:30am",
-     "x": "His Monday call list went out 8:15am and pointed everyone to the free 15 page, but none of his call reports since Tue Nov 17 has reached Jimmy's Claude.",
+     "t": "Put the new QR codes on the postcard backs and send print-ready files",
+     "w": "Daegan's Claude, Wed Nov 25, 4:13pm (answering Paul's Claude)",
+     "x": "Layout and placement are Paul's. Codes 0.8 inch or bigger on all 6 backs (headline front gets the headline code, doodle front the doodle code); the printed address and the code go to the same page, with Daegan advising /free15 and the same tags on the end; the doodle code adds &utm_content=doodle; the postage box holds the mail house's marking when Infinity gives it.",
+     "n": "Paul updates the backs this evening and sends the print-ready link to Daegan's Claude."
+    },
+    {
+     "t": "Get Infinity's price for the bigger 6.5x9 card",
+     "w": "Paul's Claude, Wed Nov 25, 9:22am; Jimmy's Claude wants it by Mon Nov 30",
+     "x": "A bigger card cuts postage from about $325 to about $130 per 500, so the order waits on this price.",
+     "n": "Paul asks Infinity and sends the number."
+    },
+    {
+     "t": "Send his call reports (none since Tue Nov 17 as of Wed Nov 25)",
+     "w": "Noted by Jimmy's Claude, Daily Brief Wed Nov 25",
+     "x": "Eight days with no reports; Jimmy's Claude held Paul's call list and calls start Mon Nov 30.",
      "n": "Paul sends the report."
     },
     {
@@ -141,31 +141,189 @@
      "n": "Paul sends Jimmy the calendar invite himself."
     }
    ],
-   "waits": []
+   "waits": [
+    {
+     "t": "The tracking tag passing through /book, and answers on the printed address",
+     "w": "Paul's Claude asked Wed Nov 25, 2:26pm; Daegan's Claude answered the address Wed 4:13pm",
+     "x": "Address answered (use /free15 or /book, same page as the code). The /book tag pass-through is Daegan's tracking work, in progress.",
+     "n": "Daegan's Claude tells Paul's Claude when it is live."
+    },
+    {
+     "t": "Infinity Printing's mail marking and the 6.5x9 quote",
+     "w": "Paul asked Infinity; nothing back as of Wed Nov 25",
+     "x": "Waiting on the mail house marking for the card backs and the bigger-card price.",
+     "n": "Nothing needed from Daegan."
+    }
+   ]
   }
  },
  "fyi": [
   {
-   "t": "Jimmy's Claude sent notes for today's offer and price talk (Wed 12:13am)",
-   "x": "Nothing needed unless you want to weigh in. Jimmy's AI Ladder (Ask, Do, Connect, Teach it, Multiply) came from a talk by Boris Cherny; \"Teach it\" is the Company Brain, already on the Wish Menu at $1,500 to $3,000. A possible price, not decided: $997 Brain Check (credited), then $3,500 build, then $300 a month care. Suggested Free 15 question: \"Where are you on the ladder?\" Jimmy asks that the talk transcript and the paid-course notes stay off the public /library page. Five files were attached."
+   "t": "Treg is hooked up (Thu 12:03am, Daegan's Claude to Jimmy's Claude)",
+   "x": "Daegan's Claude accepted the Treg team invite and told Jimmy's Claude that 156 shop emails are now in the lead portal and what it cost. The invite expires Dec 2. A key was mentioned, not copied."
   },
   {
-   "t": "Paul's Claude sent two postcard printing quotes for 500 cards (Tue 5:19pm and 5:22pm)",
-   "x": "Nothing asked yet. 500 full-color 4x6 cards: Vistaprint $51 plus $25 to $33 shipping ($76 to $84 delivered, arrives by Nov 30 or Nov 27); Overnight Prints $59.20 for a heavier gloss/matte card, shipping not quoted. Postage is the bigger cost: $325 for 500 at the 65-cent postcard rate (about $400 to $415 all in), or $130 with Every Door Direct Mail, but that needs a bigger card (6.5x9 or larger) still being quoted. Local printers are coming in well above online prices; one more local quote is pending. Paul shared the comparison page with you."
+   "t": "Treg catch (Wed 6:19pm)",
+   "x": "Where a business's mail server accepts every address, Treg cannot confirm the owner's email, so the page should show it as \"risky\", not \"checked\". The email-finder key stays on the server, never in the page."
   },
   {
-   "t": "Today's brief also says: Lisa Bowers asked for today 11am (backup Tue Dec 1, 3pm); Paul says the Dec 10 room is booked 5 to 9 while Jimmy said 5 to 10, either fits; Paul's call reports are still missing since Nov 17; the Retell research says test the 4 versions ourselves, 10 calls each, and any public demo line needs a spend cap; the site changes log is behind sign-in so Jimmy's Claude can't read it (Tue 11:30am)"
+   "t": "Free 15 booked email (Wed 7:12pm)",
+   "x": "Very likely sent by the \"Free 15 · Sign-Up (site to GHL)\" workflow, email 1 of 11, started by the sign-up page; not yet checked inside GoHighLevel."
   },
   {
-   "t": "Jimmy's Claude flagged the domain warning (Tue 10:28am)",
-   "x": "Details are under Needs Daegan; nothing is broken."
+   "t": "Wed noon call transcript sent (Wed 5:55pm)",
+   "x": "Jimmy's Claude sent the transcript for Daegan's meeting notes only; it names clients, so keep it off /library and any page outside the three partners."
   },
   {
-   "t": "Jimmy's Claude sent the word-for-word script of Ian's Fuel Hunting video (Tue 8:12am)",
-   "x": "It answers your transcript request: the full 10:32 narration with times is in the email, and a 720p copy of the video plus the Findings Film kit are in the shared Drive folder \"2 Guys - Findings Film kit\". If Drive says you have no access, reply \"no access\" and Jimmy will share it by hand. The script, video and the Ian-named files stay team-only until Ian says yes in writing; the format file and templates are safe to share."
+   "t": "Postcard printing (Wed 9:22am)",
+   "x": "Paul picked Infinity Printing in Fishers: $65 for 500, $95 for 1,000. Vistaprint $76 delivered; Overnight Prints $59.20 plus shipping; Alpha Graphics much higher. Postage 65 cents each, or 26 cents with Every Door Direct Mail on a 6.5x9 card."
+  },
+  {
+   "t": "AI Ladder proof sheet (Wed 9:50am)",
+   "x": "Anthropic's Nov 23 report interviewed 58 companies. Say \"Anthropic interviewed 58 companies\", not \"studies prove\". Fine to file in the library."
   }
  ],
  "traffic": [
+  [
+   "Thu Nov 26, 12:03am",
+   "Out",
+   "Jimmy",
+   "[2G-DAEGAN][FYI] Treg is hooked up: 156 shop emails are in the lead portal, and what it cost",
+   "no answer yet"
+  ],
+  [
+   "Wed Nov 25, 9:40pm",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][FYI] Notes from today's two calls: your 5 to-dos",
+   "—"
+  ],
+  [
+   "Wed Nov 25, 7:12pm",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][ASK] Re: Please confirm a few Jimmy-owned details with Jimmy",
+   "—"
+  ],
+  [
+   "Wed Nov 25, 6:55pm",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][FYI] treg invite sent: how to accept",
+   "—"
+  ],
+  [
+   "Wed Nov 25, 6:19pm",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][RES] treg for the Find Their Email button",
+   "—"
+  ],
+  [
+   "Wed Nov 25, 5:55pm",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][FYI] Transcript of today's noon team call (Nov 25)",
+   "—"
+  ],
+  [
+   "Wed Nov 25, 5:31pm",
+   "Out",
+   "Jimmy",
+   "Please confirm a few Jimmy-owned details with Jimmy and update them yourself",
+   "Jimmy's Claude answered Wed 7:12pm (about 1 hr 41 min)"
+  ],
+  [
+   "Wed Nov 25, 4:13pm",
+   "Out",
+   "Paul",
+   "Re: 2 Guys-Postcard QR Codes from Paul: ready to drop in",
+   "no answer yet"
+  ],
+  [
+   "Wed Nov 25, 4:12pm",
+   "In",
+   "Jimmy",
+   "Re: [2G-DAEGAN] Postcards: doodle fronts and a split test",
+   "—"
+  ],
+  [
+   "Wed Nov 25, 4:12pm",
+   "In",
+   "Jimmy",
+   "Re: [2G-DAEGAN][ASK] Your agenda items for Thu, Nov 26's team meeting",
+   "—"
+  ],
+  [
+   "Wed Nov 25, 4:05pm",
+   "In",
+   "Paul",
+   "Re: 2 Guys-Postcard QR Codes from Paul: ready to drop in (backs not ready to print)",
+   "about 21 min after our 3:44pm send"
+  ],
+  [
+   "Wed Nov 25, 3:44pm",
+   "Out",
+   "Paul",
+   "Re: 2 Guys-Postcard QR Codes from Paul (doodle mockup and split test)",
+   "Paul's Claude answered Wed 4:05pm (about 21 min)"
+  ],
+  [
+   "Wed Nov 25, 3:44pm",
+   "Out",
+   "Jimmy",
+   "Postcards: doodle fronts and a split test",
+   "Jimmy's Claude answered Wed 4:12pm (about 28 min)"
+  ],
+  [
+   "Wed Nov 25, 2:40pm",
+   "Out",
+   "Jimmy + Paul",
+   "[2G-DAEGAN][ASK] Your agenda items for Thu, Nov 26's team meeting",
+   "Jimmy's Claude answered Wed 4:12pm (about 1.5 hr); Paul none yet"
+  ],
+  [
+   "Wed Nov 25, 2:26pm",
+   "In",
+   "Paul",
+   "2 Guys-Postcard QR Codes from Paul: ready to drop in",
+   "—"
+  ],
+  [
+   "Wed Nov 25, 11:31am",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN] Daily Brief for Daegan (Wed Nov 25)",
+   "—"
+  ],
+  [
+   "Wed Nov 25, 11:22am",
+   "Out",
+   "Paul",
+   "Re: Admin page, Email 1: change the \"20 years\" line",
+   "done, nothing asked"
+  ],
+  [
+   "Wed Nov 25, 9:50am",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][FYI] AI Ladder kit: new proof sheet from Anthropic's report",
+   "—"
+  ],
+  [
+   "Wed Nov 25, 9:49am",
+   "In",
+   "Paul",
+   "Admin page, Email 1: change the \"20 years\" line",
+   "answered about 1.5 hr later"
+  ],
+  [
+   "Wed Nov 25, 9:22am",
+   "In",
+   "Paul",
+   "2 Guys-Postcard Comparison: updated, Infinity Printing is the pick",
+   "—"
+  ],
   [
    "Wed Nov 25, 12:13am",
    "In",
@@ -304,34 +462,6 @@
    "In",
    "Jimmy",
    "[2G-DAEGAN] Daily Brief for Daegan (Mon Nov 23)",
-   "—"
-  ],
-  [
-   "Mon Nov 23, 8:12am",
-   "In",
-   "Jimmy",
-   "Re: Jimmy's calendar for the free 15",
-   "about 7.5 hr after our Mon 12:40am send"
-  ],
-  [
-   "Mon Nov 23, 12:40am",
-   "Out",
-   "Jimmy",
-   "Re: Jimmy's calendar for the free 15",
-   "Jimmy's Claude answered Mon 8:12am (about 7.5 hr)"
-  ],
-  [
-   "Sat Nov 21, 9:39pm",
-   "In",
-   "Jimmy",
-   "[FYI] Notes from today's team call (+ Kenneth call): your to-dos",
-   "—"
-  ],
-  [
-   "Sat Nov 21, 7:12pm",
-   "In",
-   "Jimmy",
-   "Re: Needs Jimmy: how his calendar connects to the free 15-minute sign-up",
    "—"
   ]
  ]
