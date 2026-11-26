@@ -81,6 +81,21 @@ body.laytiles .tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0
 body.at5 #bar,body.at5 #stepno{display:none}
 </style>
 <script src="/assets/rot.js"></script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1965691120685809');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1965691120685809&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 </head><body>
 <header class="site"><div class="hwrap">
 <a class="brand" href="/"><img src="/assets/2g-square.svg" alt="">2 Guys and a Genie</a>
@@ -385,7 +400,7 @@ body.at5 #bar,body.at5 #stepno{display:none}
   setTimeout(function(){ if(!real) fallback(); },4000);
   document.getElementById('go4').addEventListener('click',function(){
     if(!pickDay||!pickTime){document.getElementById('err4').style.display='block';return}
-    data.when=pickDay+' at '+pickTime; booked=true; setTimeout(send,0); if(window.srcBooked)srcBooked(); /* TEST Nov 23: fire at booking. Before: setTimeout(send,15*60*1000), with send() at the last page carrying the seat and prep answers. */
+    data.when=pickDay+' at '+pickTime; booked=true; setTimeout(send,0); if(window.srcBooked)srcBooked(); if(window.fbq&&!preview){try{fbq('track','CompleteRegistration')}catch(e){}} /* TEST Nov 23: fire at booking. Before: setTimeout(send,15*60*1000), with send() at the last page carrying the seat and prep answers. */
     if(pickSlot&&!preview){try{fetch('/hooks/ghl-book',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({slot:pickSlot,when:data.when,name:data.nm||'',phone:data.ph||'',email:data.em||'',job:data.one||''})})}catch(e){}}
     fill(); show(5);
     try{window.R&&R.signup()}catch(e){}
