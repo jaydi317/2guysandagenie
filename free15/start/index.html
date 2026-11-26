@@ -377,7 +377,7 @@ fbq('track', 'PageView');
     var nm=document.getElementById('nm').value.trim(), ph=document.getElementById('ph').value.trim();
     if(!nm||!ph){document.getElementById('err3').style.display='block';return}
     document.getElementById('err3').style.display='none';
-    data.nm=nm; data.ph=ph; data.em=document.getElementById('em').value.trim(); show(4);
+    data.nm=nm; data.ph=ph; data.em=document.getElementById('em').value.trim(); if(data.em.indexOf('@')>0&&window.fbq&&!preview&&!window.leadFired){window.leadFired=1;try{fbq('track','CompleteRegistration')}catch(e){}} show(4);
   });
 
   // step 4: Jimmy's real open times from GoHighLevel (falls back to a fixed list if they can't load)
@@ -400,7 +400,7 @@ fbq('track', 'PageView');
   setTimeout(function(){ if(!real) fallback(); },4000);
   document.getElementById('go4').addEventListener('click',function(){
     if(!pickDay||!pickTime){document.getElementById('err4').style.display='block';return}
-    data.when=pickDay+' at '+pickTime; booked=true; setTimeout(send,0); if(window.srcBooked)srcBooked(); if(window.fbq&&!preview){try{fbq('track','CompleteRegistration')}catch(e){}} /* TEST Nov 23: fire at booking. Before: setTimeout(send,15*60*1000), with send() at the last page carrying the seat and prep answers. */
+    data.when=pickDay+' at '+pickTime; booked=true; setTimeout(send,0); if(window.srcBooked)srcBooked(); /* TEST Nov 23: fire at booking. Before: setTimeout(send,15*60*1000), with send() at the last page carrying the seat and prep answers. */
     if(pickSlot&&!preview){try{fetch('/hooks/ghl-book',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({slot:pickSlot,when:data.when,name:data.nm||'',phone:data.ph||'',email:data.em||'',job:data.one||''})})}catch(e){}}
     fill(); show(5);
     try{window.R&&R.signup()}catch(e){}
