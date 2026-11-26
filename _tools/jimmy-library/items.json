@@ -544,6 +544,12 @@
         "team",
         "offer"
       ]
-    }
+    },
+    {"date": "2026-11-12", "title": "Two Guys Notion Hub", "what": "A mock-up of the page that shows what Jimmy files in Notion at a glance: meeting log with key points, day logs, and the main assets.", "link": "https://claude.ai/artifact/KNo2gCXtAbBpcAbQw32kJv", "tags": ["team", "access"]},
+    {"date": "2026-11-12", "title": "Explainer Library", "what": "Every narrated explainer Claude has made for Daegan on one shelf, newest first, with run time at 1.5x.", "link": "https://claude.ai/artifact/RkbSiZys1GXmj5wu4NVPKd", "tags": ["team", "engine"]},
+    {"date": "2026-11-16", "title": "The Doodle Bible", "what": "How every 2 Guys doodle gets drawn: 12 rules, 44 picture sheets, the cast, the coral accent, and what never to do.", "link": "https://claude.ai/artifact/G8b19LPHzSoaDY34tb6zze", "tags": ["engine", "offer"]},
+    {"date": "2026-11-17", "title": "Bruce Clip Vault", "what": "The 181 strongest moments from Jimmy's day with Bruce, searchable, with the 15 best first and a don't-use-without-checking list.", "link": "https://claude.ai/artifact/6rx2YvgZjUP2MfRSDiLC1d", "tags": ["proof", "engine"]},
+    {"date": "2026-11-19", "title": "Fuel Hunting, explained", "what": "A 10-minute explainer video for Ian showing how his daily 6:45 prospect rundown works, with chapters and the knowledge stack.", "link": "https://claude.ai/artifact/7kqYwDsV6ivWurQhYM8Jrh", "tags": ["proof", "engine"]},
+    {"date": "2026-11-24", "title": "Postcards 1, 2 And 3 Mockup", "what": "Mockups of the three mailed postcards: fronts, backs and QR codes.", "link": "https://claude.ai/artifact/QKtLEGmVkQ6RHXfEb4P6gV", "tags": ["ads", "offer"]}
   ]
 }
