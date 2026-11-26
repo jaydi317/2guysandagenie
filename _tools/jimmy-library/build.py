@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build library/index.html on 2guysandagenie.com (The Jimmy Library): everything Jimmy (and his Claude, and Vera) sent,
+"""Build library/index.html on 2guysandagenie.com (The Jimmy Brain): everything Jimmy (and his Claude, and Vera) sent,
 by week, newest first, each piece tagged with the thread it belongs to.
 
 Add items to items.json (date, title, what, optional link, tags), then from the repo root:
@@ -86,7 +86,7 @@ TEMPLATE = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
 <meta name="robots" content="noindex, nofollow">
-<title>The Jimmy Library · 2 Guys and a Genie</title>
+<title>The Jimmy Brain · 2 Guys and a Genie</title>
 <link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
 <link rel="stylesheet" href="/assets/simple.css">
 <style>
@@ -115,7 +115,7 @@ TEMPLATE = """<!doctype html>
 </div></header>
 <main id="main"><section>
 <p class="kicker">Private &middot; for Daegan and Paul</p>
-<h1>The Jimmy Library</h1>
+<h1>The Jimmy Brain</h1>
 <p>Everything Jimmy, his Claude and Vera have sent, by week, newest first. Each piece is tagged with the thread it belongs to. Tap a tag to see that whole thread across every week.</p>
 <p class="note">{total} pieces &middot; last added {updated}. New pieces come in through AgentMail and land here.</p>
 <div class="openbox"><p class="kicker" style="margin-bottom:8px">Open right now</p><ul>{open}</ul></div>

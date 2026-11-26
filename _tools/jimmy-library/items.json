@@ -524,6 +524,26 @@
         "ads",
         "offer"
       ]
+    },
+    {
+      "date": "2026-11-23",
+      "title": "What we can do now",
+      "what": "Every tool we signed up for this week, tested on real Fishers businesses (60 businesses for under a cent), and how each one fills Daegan's lead portal.",
+      "link": "https://claude.ai/artifact/6tms64pg21SPkXN5jujh3z",
+      "tags": [
+        "team",
+        "offer"
+      ]
+    },
+    {
+      "date": "2026-11-23",
+      "title": "The Lead-Finding Kit",
+      "what": "Every way people use AI to find local businesses, checked and ranked: 77 methods boiled down to the 8 that sign clients directly. Plays, tools and prices, and what owners hate.",
+      "link": "https://claude.ai/artifact/4Ko32ZnVBs1KRZTnpDyVQ9",
+      "tags": [
+        "team",
+        "offer"
+      ]
     }
   ]
 }
