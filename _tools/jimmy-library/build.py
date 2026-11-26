@@ -118,6 +118,8 @@ TEMPLATE = """<!doctype html>
 <h1>The Jimmy Brain</h1>
 <p>Everything Jimmy, his Claude and Vera have sent, by week, newest first. Each piece is tagged with the thread it belongs to. Tap a tag to see that whole thread across every week.</p>
 <p class="note">{total} pieces &middot; last added {updated}. New pieces come in through AgentMail and land here.</p>
+<div class="cards" style="margin:0 0 8px"><a class="card" href="https://app.notion.com/p/3f233948febc815aa159f52ab09b87c5"><span class="ct">Not On This Page? Look In 2 Guys HQ &rarr;</span><span class="cd">2 Guys HQ is Jimmy&rsquo;s Notion, where his Claude files most of what it makes: updates, meeting notes, research.</span></a></div>
+<p class="note" style="margin:0 0 28px">Start with <a href="https://app.notion.com/p/75488637643e4424a9fac878e1500f63">Updates</a>, his running list of everything finished, newest first. Won&rsquo;t open? Ask Jimmy to share 2 Guys HQ with you.</p>
 <div class="openbox"><p class="kicker" style="margin-bottom:8px">Open right now</p><ul>{open}</ul></div>
 <h2>The Threads</h2>
 <div id="filters">{filt}</div>
