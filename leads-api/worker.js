@@ -788,6 +788,18 @@ export default {
       if (u.pathname === '/c/api/ask' && req.method === 'POST') return ownerAsk(req, env, u);
       if (!u.pathname.startsWith('/admin/api/')) return J({ error: 'not found' }, 404);
       const me = await who(req, env); if (!me) return J({ error: 'sign in' }, 401);
+      // A Claude's key (Nov 27): it can read the list, add a shop (the duplicate check runs), change a grade with a real reason,
+      // and claim or close an area. Nothing else: no stages, claims, notes, emails, mail, Do not contact, Money Board or client pages.
+      if (Object.values(svc(env)).includes(me)) {
+        const ok = (u.pathname === '/admin/api/leads' && req.method === 'GET') || (u.pathname === '/admin/api/act' && req.method === 'POST');
+        if (!ok) return J({ error: 'A Claude key can only read the list and use add, grade and area.' }, 403);
+        if (req.method === 'POST') {
+          const b = await req.json();
+          if (!['add', 'grade', 'area'].includes(b.op)) return J({ error: 'A Claude key can only use add, grade and area.' }, 403);
+          if (b.op === 'grade' && String(b.why || '').trim().length < 20) return J({ error: 'Say why, with what you saw and where (at least 20 characters).' }, 400);
+          return act(b, me, env, ctx);
+        }
+      }
       if (u.pathname === '/admin/api/leads' && req.method === 'GET') return J(await all(env, me));
       if (u.pathname === '/admin/api/act' && req.method === 'POST') return act(await req.json(), me, env, ctx);
       if (u.pathname === '/admin/api/money' && req.method === 'GET') return J(await money(env, me, u));
