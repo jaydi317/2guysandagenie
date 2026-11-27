@@ -26,7 +26,7 @@ const SW = (await import(pathToFileURL(path.join(HERE, 'stats.mjs')).href + '?' 
 const kp = await crypto.subtle.generateKey({ name: 'RSASSA-PKCS1-v1_5', modulusLength: 2048, publicExponent: new Uint8Array([1, 0, 1]), hash: 'SHA-256' }, true, ['sign', 'verify']);
 const jwk = { ...(await crypto.subtle.exportKey('jwk', kp.publicKey)), kid: 'test1' };
 const u64 = b => Buffer.from(b).toString('base64url');
-async function jwt(email) { const h = u64(JSON.stringify({ alg: 'RS256', kid: 'test1' })), p = u64(JSON.stringify({ aud: ['testaud'], email, exp: Math.floor(Date.now() / 1000) + 3600 }));
+async function jwt(email, aud = 'testaud') { const h = u64(JSON.stringify({ alg: 'RS256', kid: 'test1' })), p = u64(JSON.stringify({ aud: [aud], email, exp: Math.floor(Date.now() / 1000) + 3600 }));
   const s = await crypto.subtle.sign('RSASSA-PKCS1-v1_5', kp.privateKey, new TextEncoder().encode(h + '.' + p)); return h + '.' + p + '.' + u64(s); }
 const GHLCALLS = []; globalThis.GHLCALLS = GHLCALLS;
 const realFetch = globalThis.fetch;
@@ -42,7 +42,7 @@ globalThis.fetch = async (url, opt = {}) => { url = String(url);
     if (url.includes('/opportunities/') && opt.method === 'POST') return new Response(JSON.stringify({ opportunity: { id: 'go-' + GHLCALLS.length } }));
     return new Response(JSON.stringify({ note: { id: 'n' + GHLCALLS.length } })); }
   return realFetch(url, opt); };
-const env = { HOOK_KEY: 'hk', DB, STATS, TEAM: 'test.cloudflareaccess.com', AUD: 'testaud', GHL_TOKEN: process.env.GHL ? 'x' : '', GHL_CFG: JSON.stringify({ location: 'L', pipeline: 'P', stages: Object.fromEntries(['Not touched yet', 'Slydial sent', 'Tried, no owner yet', 'Talked to the owner', '15 minutes booked', '15 minutes done', 'Offer made', 'Client', 'Not now'].map((s, i) => [s, 'S' + i])), f: { id: 'f1', tier: 'f2', kind: 'f3', found: 'f4', why: 'f5' }, users: { Paul: 'uP', Jimmy: 'uJ', Daegan: 'uD' } }) };
+const env = { HOOK_KEY: 'hk', DB, STATS, TEAM: 'test.cloudflareaccess.com', AUD: 'testaud', CAUD: 'testcaud', GHL_TOKEN: process.env.GHL ? 'x' : '', GHL_CFG: JSON.stringify({ location: 'L', pipeline: 'P', stages: Object.fromEntries(['Not touched yet', 'Slydial sent', 'Tried, no owner yet', 'Talked to the owner', '15 minutes booked', '15 minutes done', 'Offer made', 'Client', 'Not now'].map((s, i) => [s, 'S' + i])), f: { id: 'f1', tier: 'f2', kind: 'f3', found: 'f4', why: 'f5' }, users: { Paul: 'uP', Jimmy: 'uJ', Daegan: 'uD' } }) };
 const EMAIL = { Paul: 'paul@2guysandagenie.com', Jimmy: 'jimmydavisprivate@gmail.com', Daegan: 'daegan@maximum-leverage.com' };
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml' };
 http.createServer(async (req, res) => {
@@ -52,6 +52,14 @@ http.createServer(async (req, res) => {
   if (u.pathname === '/h' || u.pathname.startsWith('/go/') || u.pathname === '/board') { // the scoreboard Worker (2g-stats), on the same stand-in
     const out = await SW.fetch(new Request('https://2guysandagenie.com' + req.url, { headers: { cookie: req.headers.cookie || '', 'user-agent': 'test' } }), { DB: STATS, KEY: 'k' }, { waitUntil: p => p });
     await new Promise(r => setTimeout(r, 30)); const h = {}; out.headers.forEach((v, k) => h[k] = v); res.writeHead(out.status, h); res.end(await out.text()); return; }
+  if (u.pathname.startsWith('/c/api/')) { // the owner sign-in (a second Access app): cookie owner=<email>, or who=<team member>
+    const caud = env.CAUD;
+    const ck = req.headers.cookie || '', ow = (/(?:^|; )owner=([^;]+)/.exec(ck) || [])[1], tm = (/(?:^|; )who=(\w+)/.exec(ck) || [])[1];
+    const chunks = []; for await (const c of req) chunks.push(c);
+    const headers = { 'content-type': 'application/json' }; const em = ow ? decodeURIComponent(ow) : tm ? EMAIL[tm] : null;
+    if (em) headers['Cf-Access-Jwt-Assertion'] = await jwt(em, caud);
+    const out = await W.fetch(new Request('https://2guysandagenie.com' + req.url, { method: req.method, headers, body: req.method === 'POST' ? Buffer.concat(chunks) : undefined }), env, { waitUntil: p => p });
+    res.writeHead(out.status, { 'content-type': 'application/json' }); res.end(await out.text()); return; }
   if (u.pathname.startsWith('/admin/api/') || u.pathname.startsWith('/hooks/')) {
     const who = (/(?:^|; )who=(\w+)/.exec(req.headers.cookie || '') || [])[1] || 'Paul';
     const chunks = []; for await (const c of req) chunks.push(c);

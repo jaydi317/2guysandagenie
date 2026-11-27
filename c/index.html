@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex,nofollow">
+<title>Your Page · 2 Guys and a Genie</title>
+<link rel="icon" type="image/svg+xml" href="/assets/2guys-app-icon.svg">
+<link rel="stylesheet" href="/assets/simple.css">
+<link rel="stylesheet" href="/assets/client-page.css">
+<style>p,li,.d,.cd{text-wrap:pretty}.brand .mk{width:28px;height:28px;background:#111;color:#fff;font-weight:900;font-size:13px;display:inline-flex;align-items:center;justify-content:center}</style>
+</head><body>
+<!-- An owner's own page. He signs in with a code sent to his email (Cloudflare Access on /c), and this page asks the database for the page that goes with that email. Nothing about any client is in this file. -->
+<header class="site"><div class="hwrap">
+<a class="brand" href="/"><span class="mk">2G</span>2 Guys and a Genie</a>
+</div></header>
+<main id="main">
+<div id="page"><p class="small">Opening your page…</p></div>
+<footer>
+<p>2 Guys and a Genie · Questions about anything on this page? Use "Ask Us Anything" above.</p>
+<p>2 Guys and a Genie is a business name of Reverse Selling Limited Liability Company · 14846 Victory Ct, Carmel, IN 46032</p>
+</footer>
+</main>
+<script src="/assets/client-page.js"></script>
+<script>
+{
+  const box = document.getElementById('page');
+  const c = new URLSearchParams(location.search).get('c') || '';
+  const q = c ? '?c=' + encodeURIComponent(c) : '';
+  function show(r) {
+    box.innerHTML = (r.preview ? '<p class="note">Team preview: this is what he sees. The question box is off here.</p>' : '') + drawClientPage(r.data, { ask: !r.preview });
+    document.title = (r.data.biz || 'Your Page') + ' · 2 Guys and a Genie';
+    const go = document.getElementById('askgo');
+    if (go && !r.preview) go.onclick = async () => {
+      const t = document.getElementById('askq').value.trim(), m = document.getElementById('askmsg');
+      if (!t) { m.textContent = 'Type your question first.'; return; }
+      go.disabled = true; m.textContent = 'Sending…';
+      try { const x = await fetch('/c/api/ask' + q, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ q: t }) }); const j = await x.json(); if (!x.ok) throw new Error(j.error || 'failed'); show(j); document.getElementById('askmsg').textContent = 'Sent. You\'ll see the answer here.'; }
+      catch (e) { go.disabled = false; m.textContent = 'That didn\'t send. Try again, or text Jimmy.'; }
+    };
+  }
+  fetch('/c/api/me' + q, { credentials: 'same-origin' }).then(async x => {
+    const j = await x.json().catch(() => ({}));
+    if (x.ok) return show(j);
+    if (x.status === 404) box.innerHTML = '<h1>Your Page Isn\'t Ready Yet.</h1><p>We don\'t have a page set up for ' + clientEsc(j.email || 'this email') + ' yet.</p><p>If you signed in with a different email than the one you gave us, try that one. Or text Jimmy and we\'ll set it up.</p>';
+    else box.innerHTML = '<h1>Let\'s Get You Signed In.</h1><p>Your session ran out. <a href="/c/' + q + '">Tap here</a> and we\'ll send a new code to your email.</p>';
+  }).catch(() => { box.innerHTML = '<p>That didn\'t load. Check your connection and refresh.</p>'; });
+}
+</script>
+</body></html>

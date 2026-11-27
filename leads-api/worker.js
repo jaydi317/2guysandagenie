@@ -5,6 +5,9 @@
 // /admin/api/money  GET, POST  the Money Board: visits, leads and bookings by source, tracking links, costs, sales
 // /admin/api/money/who  GET  where a buyer first came from, by email
 // /hooks/ghl         POST  GoHighLevel tells us something happened (needs ?key=)
+// /admin/api/clients GET, POST  the client pages: every owner's page and the team's notes (team only)
+// /c/api/me          GET   one owner's own page, picked by the email he signed in with (the owner sign-in, a second Access app on /c)
+// /c/api/ask         POST  an owner asks a question from his page
 // Every few minutes (cron): run queued jobs (import, load into GoHighLevel) and pull stage changes made in GoHighLevel.
 // No shop is named in this file. The records live in the D1 database, never in the site's files.
 
@@ -199,6 +202,8 @@ async function init(env) {
     env.DB.prepare("CREATE UNIQUE INDEX IF NOT EXISTS sends_once ON sends (lead, pid) WHERE st IN ('sent','ready','mailed')"),
     env.DB.prepare('CREATE TABLE IF NOT EXISTS drafts (lead TEXT, pid TEXT, who TEXT, ts INTEGER, subj TEXT, body TEXT, PRIMARY KEY (lead, pid))'),
     env.DB.prepare('CREATE TABLE IF NOT EXISTS flags (lead TEXT PRIMARY KEY, dnc INTEGER DEFAULT 0, who TEXT, ts INTEGER, why TEXT)'),
+    // Client pages (Nov 27): one row per owner. emails = who may open his page (comma-separated). data = the whole page as JSON.
+    env.DB.prepare('CREATE TABLE IF NOT EXISTS clients (slug TEXT PRIMARY KEY, name TEXT, emails TEXT, data TEXT, upd INTEGER, by TEXT)'),
   ]);
   // The pieces' starting words go in once. After that the database is the master copy, so they can change without a code change.
   // A piece already in the database is never overwritten from here; a new piece or a new sender's version is added.
@@ -216,8 +221,8 @@ async function init(env) {
   ready = true;
 }
 
-// Who is signed in, from the Access token. Returns their first name, or null.
-async function who(req, env) {
+// Who is signed in, from an Access token for the given sign-in (aud). Returns their email, or null.
+async function signedIn(req, env, aud) {
   const t = req.headers.get('Cf-Access-Jwt-Assertion'); if (!t) return null;
   const [h, p, s] = t.split('.'); if (!s) return null;
   let head, pay; try { head = JSON.parse(new TextDecoder().decode(b64(h))); pay = JSON.parse(new TextDecoder().decode(b64(p))); } catch (e) { return null; }
@@ -227,11 +232,60 @@ async function who(req, env) {
     const key = await crypto.subtle.importKey('jwk', jwk, { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['verify']);
     const ok = await crypto.subtle.verify('RSASSA-PKCS1-v1_5', key, b64(s), new TextEncoder().encode(h + '.' + p));
     if (!ok) return null;
-    if (![].concat(pay.aud || []).includes(env.AUD) || (pay.exp || 0) * 1000 < Date.now()) return null;
-    const em = String(pay.email || '').toLowerCase();
-    return PEOPLE[em] || null;
+    if (![].concat(pay.aud || []).includes(aud) || (pay.exp || 0) * 1000 < Date.now()) return null;
+    return String(pay.email || '').toLowerCase() || null;
   }
   return null;
+}
+
+async function who(req, env) { const em = await signedIn(req, env, env.AUD); return (em && PEOPLE[em]) || null; }
+
+// ---------- Client pages ----------
+// The team reads and writes every page; an owner reads only his own (team-only parts taken out) and can ask a question.
+const clean = x => String(x || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40);
+const emList = x => String(x || '').toLowerCase().split(/[\s,;]+/).filter(e => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e));
+function ownerView(d) { d = JSON.parse(JSON.stringify(d || {})); delete d.team; delete d.inbox; d.notes = (d.notes || []).filter(n => n.show); d.items = (d.items || []).filter(i => i.st !== 'Not started'); return d; }
+async function clientsAll(env, me) {
+  const r = await env.DB.prepare('SELECT slug,name,emails,data,upd,by FROM clients ORDER BY name').all();
+  return { me, clients: r.results.map(c => ({ ...c, data: JSON.parse(c.data || '{}') })) };
+}
+async function clientsAct(b, me, env) {
+  const now = Date.now();
+  if (b.op === 'add') {
+    const name = String(b.name || '').trim().slice(0, 80); let slug = clean(b.slug || name); if (!name || !slug) return J({ error: 'Give the client a name.' }, 400);
+    for (let i = 2; await env.DB.prepare('SELECT 1 FROM clients WHERE slug=?').bind(slug).first(); i++) slug = clean(name) + '-' + i;
+    const data = { biz: name + ' HQ', who: 'Prepared for ' + name, stage: 0, items: [], need: [], qa: [], meets: [], more: [], notes: [], inbox: [], stats: [], plan: { q: [], b: [], s: [], n: [] }, team: {} };
+    await env.DB.prepare('INSERT INTO clients (slug,name,emails,data,upd,by) VALUES (?,?,?,?,?,?)').bind(slug, name, '', JSON.stringify(data), now, me).run();
+    return J({ ...(await clientsAll(env, me)), made: slug });
+  }
+  if (b.op === 'save') {
+    const c = await env.DB.prepare('SELECT upd, by, data FROM clients WHERE slug=?').bind(String(b.slug || '')).first(); if (!c) return J({ error: 'No such client.' }, 404);
+    if (b.upd && c.upd !== b.upd) {
+      // If the only change since was the owner asking a question, keep his question and save ours on top. Otherwise stop, so nobody's work is lost.
+      if (c.by !== 'owner') return J({ error: 'Someone else changed this page while you had it open. It has been reloaded; make your change again.', ...(await clientsAll(env, me)) }, 409);
+      const have = new Set(((b.data || {}).qa || []).map(q => q.ts)); b.data = b.data || {}; b.data.qa = (b.data.qa || []).concat((JSON.parse(c.data || '{}').qa || []).filter(q => !have.has(q.ts)));
+    }
+    const data = JSON.stringify(b.data || {}); if (data.length > 400000) return J({ error: 'Too big' }, 400);
+    await env.DB.prepare('UPDATE clients SET name=?, emails=?, data=?, upd=?, by=? WHERE slug=?').bind(String(b.name || '').slice(0, 80), emList(b.emails).join(','), data, now, me, b.slug).run();
+    return J(await clientsAll(env, me));
+  }
+  return J({ error: 'op' }, 400);
+}
+// An owner's own page: the client whose email list has his sign-in email. The team can open any page here as a preview (?c=slug).
+async function ownerFind(req, env, u) {
+  const em = await signedIn(req, env, env.CAUD); if (!em) return { err: J({ error: 'sign in' }, 401) };
+  const want = clean(u.searchParams.get('c'));
+  if (PEOPLE[em] && want) { const c = await env.DB.prepare('SELECT * FROM clients WHERE slug=?').bind(want).first(); return c ? { c, em, team: true } : { err: J({ error: 'none' }, 404) }; }
+  const r = await env.DB.prepare("SELECT * FROM clients WHERE ',' || emails || ',' LIKE ?").bind('%,' + em + ',%').all();
+  if (!r.results.length) return { err: J({ error: 'none', email: em }, 404) };
+  return { c: r.results[0], em };
+}
+async function ownerAsk(req, env, u) {
+  const f = await ownerFind(req, env, u); if (f.err) return f.err;
+  const q = String((await req.json()).q || '').trim().slice(0, 2000); if (!q) return J({ error: 'Type your question first.' }, 400);
+  const d = JSON.parse(f.c.data || '{}'); (d.qa = d.qa || []).push({ q, by: f.em, ts: Date.now() });
+  await env.DB.prepare("UPDATE clients SET data=?, upd=?, by='owner' WHERE slug=?").bind(JSON.stringify(d), Date.now(), f.c.slug).run();
+  return J({ name: f.c.name, data: ownerView(d) });
 }
 
 async function all(env, me) {
@@ -692,6 +746,8 @@ export default {
       if (u.pathname === '/hooks/ghl-book' && req.method === 'POST') { try { await init(env); } catch (e) {} return book(req, env); }
       await init(env);
       if (u.pathname === '/hooks/ghl' && req.method === 'POST') return hook(u, req, env);
+      if (u.pathname === '/c/api/me' && req.method === 'GET') { const f = await ownerFind(req, env, u); return f.err || J({ name: f.c.name, preview: !!f.team, data: ownerView(JSON.parse(f.c.data || '{}')) }); }
+      if (u.pathname === '/c/api/ask' && req.method === 'POST') return ownerAsk(req, env, u);
       if (!u.pathname.startsWith('/admin/api/')) return J({ error: 'not found' }, 404);
       const me = await who(req, env); if (!me) return J({ error: 'sign in' }, 401);
       if (u.pathname === '/admin/api/leads' && req.method === 'GET') return J(await all(env, me));
@@ -699,6 +755,8 @@ export default {
       if (u.pathname === '/admin/api/money' && req.method === 'GET') return J(await money(env, me, u));
       if (u.pathname === '/admin/api/money' && req.method === 'POST') return await moneyAct(await req.json(), me, env);
       if (u.pathname === '/admin/api/money/who' && req.method === 'GET') return await moneyWho(env, u);
+      if (u.pathname === '/admin/api/clients' && req.method === 'GET') return J(await clientsAll(env, me));
+      if (u.pathname === '/admin/api/clients' && req.method === 'POST') return await clientsAct(await req.json(), me, env);
       return J({ error: 'not found' }, 404);
     } catch (e) { return J({ error: String(e).slice(0, 200) }, 500); }
   },
