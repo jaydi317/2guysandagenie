@@ -1,8 +1,20 @@
 {
- "checked": "Thu Nov 26, 8:20am",
+ "checked": "Fri Nov 27, 8:13am",
  "people": {
   "Daegan": {
    "needs": [
+    {
+     "t": "Friday noon meeting: Jimmy's Claude's six agenda items for you",
+     "w": "From Jimmy's Claude, Thu Nov 26, 4:12pm (Jimmy has not gone over the list himself yet)",
+     "x": "(1) Lock the guarantee words and the December limit with Jimmy; open 4 days and the Jamon and Dr. McCray agreements wait on it. (2) Yes or no on printing and mailing your finished postcards through Infinity ($65 for 500) so they land before Dec 10; Paul is checking card size and whether Infinity mails them. (3) Confirm the free 15 page fix is done (booking window about 10 days, mockup banner off, Tue Dec 1 3:00pm blocked for Lisa Bowers). (4) Your plan for the 156 shops now in the lead portal (all still Do Not Disturb, nothing sent) and who follows up on replies. (5) Paul's call reports since Tue Nov 17, the TTR Social Circle result and the Jim Ammeen invite for Wed Dec 2, 5:00pm. (6) Monday's noon meeting must end by 12:25 because Jimmy has Kate Walters at 12:30.",
+     "n": "Come to Friday's noon call ready on items 1 to 4, and send Jimmy's Claude one line saying whether the free 15 fix is done."
+    },
+    {
+     "t": "Thursday's brief: five items with dates, three due by Mon Nov 30",
+     "w": "From Jimmy's Claude, Thu Nov 26, 11:29am (Daily Brief)",
+     "x": "Work the leads Fri Nov 27, up to about 100 (the 156 shop emails make it possible). Free 15 changes, due Tue and still not confirmed done: a one-line \"done\" is enough. By Mon Nov 30: check the thanks, contact and leaders pages for old info; fix the email settings after Lisa's mail flagged our domain as \"recently created\"; call the four AI phone demos and say which sounds most real (Paul picked Riley, yours is the second vote). Jimmy's Claude also asks Jimmy to settle the guarantee words and December limit and to say yes to printing the postcards now; both are Jimmy's money calls.",
+     "n": "Do these in order of the dates, and send back the one-line free 15 \"done\" when true."
+    },
     {
      "t": "Your 5 to-dos from Wednesday's two calls (replaces Tuesday's 4 and Monday's 8)",
      "w": "From Jimmy's Claude, Wed Nov 25, 9:40pm (notes from the noon call and the 5:30pm call with Jimmy, filed in Notion)",
@@ -76,6 +88,12 @@
   "Jimmy": {
    "needs": [
     {
+     "t": "Lock the guarantee words and the December limit with Daegan",
+     "w": "From Jimmy's Claude, Thu Nov 26, 11:29am and 4:12pm",
+     "x": "Open 4 days; the Jamon and Dr. McCray agreements wait on it. Jimmy's Claude's pick is to settle it on Friday's noon call. Jimmy has not yet gone over his Friday agenda list.",
+     "n": "Settle it on Friday's call, then tell Jimmy's Claude the final words."
+    },
+    {
      "t": "Decide the postcard order and spend, and the $30 a day Facebook ad test",
      "w": "His Claude, Wed Nov 25 (postcards and ad budget go to his phone with his next list, Mon Nov 30 at 11:30)",
      "x": "Pick one postcard plan: the headline vs doodle split test at Infinity ($65 for 500, bigger 6.5x9 card for cheaper postage, Paul's price due Mon Nov 30), Jimmy's Claude's 200 preview-page cards (about $600 test), or both. Also say yes or no to $30 a day on Facebook starting Mon Nov 30, and confirm Riley as the phone assistant. Answer by Mon Nov 30.",
@@ -125,7 +143,7 @@
     {
      "t": "Send his call reports (none since Tue Nov 17 as of Wed Nov 25)",
      "w": "Noted by Jimmy's Claude, Daily Brief Wed Nov 25",
-     "x": "Eight days with no reports; Jimmy's Claude held Paul's call list and calls start Mon Nov 30.",
+     "x": "Eight days with no reports; Jimmy's Claude held Paul's call list and calls start Mon Nov 30. Friday's agenda also asks for the TTR Social Circle result.",
      "n": "Paul sends the report."
     },
     {
@@ -159,31 +177,25 @@
  },
  "fyi": [
   {
-   "t": "Treg is hooked up (Thu 12:03am, Daegan's Claude to Jimmy's Claude)",
-   "x": "Daegan's Claude accepted the Treg team invite and told Jimmy's Claude that 156 shop emails are now in the lead portal and what it cost. The invite expires Dec 2. A key was mentioned, not copied."
-  },
-  {
-   "t": "Treg catch (Wed 6:19pm)",
-   "x": "Where a business's mail server accepts every address, Treg cannot confirm the owner's email, so the page should show it as \"risky\", not \"checked\". The email-finder key stays on the server, never in the page."
-  },
-  {
-   "t": "Free 15 booked email (Wed 7:12pm)",
-   "x": "Very likely sent by the \"Free 15 · Sign-Up (site to GHL)\" workflow, email 1 of 11, started by the sign-up page; not yet checked inside GoHighLevel."
-  },
-  {
-   "t": "Wed noon call transcript sent (Wed 5:55pm)",
-   "x": "Jimmy's Claude sent the transcript for Daegan's meeting notes only; it names clients, so keep it off /library and any page outside the three partners."
-  },
-  {
-   "t": "Postcard printing (Wed 9:22am)",
-   "x": "Paul picked Infinity Printing in Fishers: $65 for 500, $95 for 1,000. Vistaprint $76 delivered; Overnight Prints $59.20 plus shipping; Alpha Graphics much higher. Postage 65 cents each, or 26 cents with Every Door Direct Mail on a 6.5x9 card."
-  },
-  {
-   "t": "AI Ladder proof sheet (Wed 9:50am)",
-   "x": "Anthropic's Nov 23 report interviewed 58 companies. Say \"Anthropic interviewed 58 companies\", not \"studies prove\". Fine to file in the library."
+   "t": "Thu Nov 26 brief context (Thu 11:29am)",
+   "x": "Jimmy's plan change stands: calls start Mon Nov 30, first-client target Fri Dec 4. Paul sent no mail since Wed. Jimmy's Claude could not read the site changes log (still behind Cloudflare sign-in); no action needed. Grill-me answers are in for 1 of 3."
   }
  ],
  "traffic": [
+  [
+   "Thu Nov 26, 4:12pm",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN][ASK] Re: Your agenda items for Fri, Nov 27's team meeting",
+   "—"
+  ],
+  [
+   "Thu Nov 26, 11:29am",
+   "In",
+   "Jimmy",
+   "[2G-DAEGAN] Daily Brief for Daegan (Thu Nov 26)",
+   "—"
+  ],
   [
    "Thu Nov 26, 12:03am",
    "Out",
@@ -385,83 +397,6 @@
    "In",
    "Jimmy",
    "[2G-DAEGAN] Re: Request from Daegan: transcript of Ian's Fuel Hunting video",
-   "—"
-  ],
-  [
-   "Mon Nov 23, 9:40pm",
-   "In",
-   "Jimmy",
-   "[2G-DAEGAN][FYI] Notes from today's team calls: your 8 to-dos",
-   "—"
-  ],
-  [
-   "Mon Nov 23, 8:05pm",
-   "In",
-   "Jimmy",
-   "[2G-DAEGAN][RES] Findings Film kit: how the Ian video was made, and the format",
-   "—"
-  ],
-  [
-   "Mon Nov 23, 7:12pm",
-   "In",
-   "Jimmy",
-   "Re: From Daegan: your tools list, and what I'd use",
-   "—"
-  ],
-  [
-   "Mon Nov 23, 4:55pm",
-   "In",
-   "Paul",
-   "[2G-PAUL][ASK] Meetup page: change the times to doors 6:00, 6:30 to 8:30pm",
-   "—"
-  ],
-  [
-   "Mon Nov 23, 4:12pm",
-   "In",
-   "Jimmy",
-   "Re: Your agenda items for Tue, Nov 24's team meeting",
-   "—"
-  ],
-  [
-   "Mon Nov 23, 1:55pm",
-   "In",
-   "Jimmy",
-   "[FYI] Hormozi $100M Library added: 18 books + 2 Guys picks",
-   "—"
-  ],
-  [
-   "Mon Nov 23, 1:43pm",
-   "In",
-   "Jimmy",
-   "[2G-DAEGAN][DO] Lead portal down till 7pm tonight: database daily limit, fix list",
-   "—"
-  ],
-  [
-   "Mon Nov 23, 1:34pm",
-   "In",
-   "Jimmy",
-   "[2G-DAEGAN][FYI] New: send Jimmy's Claude a lead and they get invited to Jimmy's calendar",
-   "—"
-  ],
-  [
-   "Mon Nov 23, 1:09pm",
-   "In",
-   "Jimmy",
-   "[FYI] Free 15: iCloud invite to owners turned off (tested)",
-   "—"
-  ],
-  [
-   "Mon Nov 23, 1:03pm",
-   "In",
-   "Jimmy",
-   "[FYI] Free 15: why Jimmy got no confirmation email + suggested fixes",
-   "—"
-  ],
-  [
-   "Mon Nov 23, 11:30am",
-   "In",
-   "Jimmy",
-   "[2G-DAEGAN] Daily Brief for Daegan (Mon Nov 23)",
    "—"
   ]
  ]
