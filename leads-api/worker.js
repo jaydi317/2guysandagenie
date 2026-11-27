@@ -1,7 +1,7 @@
 // 2 Guys lead portal: the shared record behind /admin/leads/.
 // Every route under /admin/api/ sits behind the Admin sign-in (Cloudflare Access); the Worker checks the sign-in token itself too.
 // /admin/api/leads   GET   every shop, its stage, who's working it, notes and history
-// /admin/api/act     POST  one change: did, undo, stage, note, email, claim, add, and for mail and email: piece, pieceback, draft, words, dnc
+// /admin/api/act     POST  one change: did, undo, stage, note, email, claim, add, grade, area, and for mail and email: piece, pieceback, draft, words, dnc
 // /admin/api/money  GET, POST  the Money Board: visits, leads and bookings by source, tracking links, costs, sales
 // /admin/api/money/who  GET  where a buyer first came from, by email
 // /hooks/ghl         POST  GoHighLevel tells us something happened (needs ?key=)
@@ -11,6 +11,9 @@
 // Every few minutes (cron): run queued jobs (import, load into GoHighLevel) and pull stage changes made in GoHighLevel.
 // No shop is named in this file. The records live in the D1 database, never in the site's files.
 
+// Grades (Nov 27): A and B are the target, Worth a visit is a door worth walking through, Found, not graded is on the list only so nobody finds it twice,
+// Leave and Franchise are looked at and not for us. Only A, B and sign-ups come up on Today.
+const GRADES = ['A', 'B', 'Worth a visit', 'Found, not graded', 'Leave', 'Franchise'], HIDDEN = ['Found, not graded', 'Leave', 'Franchise'];
 const STAGES = ['Not touched yet', 'Slydial sent', 'Tried, no owner yet', 'Talked to the owner', '15 minutes booked', '15 minutes done', 'Offer made', 'Client', 'Not now'];
 const PEOPLE = { 'daegan@maximum-leverage.com': 'Daegan', 'daegansmith@me.com': 'Daegan', 'jimmydavisprivate@gmail.com': 'Jimmy', 'paul@2guysandagenie.com': 'Paul' };
 const GHL = 'https://services.leadconnectorhq.com';
@@ -204,6 +207,8 @@ async function init(env) {
     env.DB.prepare('CREATE TABLE IF NOT EXISTS flags (lead TEXT PRIMARY KEY, dnc INTEGER DEFAULT 0, who TEXT, ts INTEGER, why TEXT)'),
     // Client pages (Nov 27): one row per owner. emails = who may open his page (comma-separated). data = the whole page as JSON.
     env.DB.prepare('CREATE TABLE IF NOT EXISTS clients (slug TEXT PRIMARY KEY, name TEXT, emails TEXT, data TEXT, upd INTEGER, by TEXT)'),
+    // Areas already swept for new shops (Nov 27), so no two Claudes sweep the same place. status: in progress or done.
+    env.DB.prepare('CREATE TABLE IF NOT EXISTS areas (id INTEGER PRIMARY KEY AUTOINCREMENT, area TEXT, who TEXT, d TEXT, status TEXT, round TEXT, notes TEXT, ts INTEGER)'),
   ]);
   // The pieces' starting words go in once. After that the database is the master copy, so they can change without a code change.
   // A piece already in the database is never overwritten from here; a new piece or a new sender's version is added.
@@ -233,12 +238,15 @@ async function signedIn(req, env, aud) {
     const ok = await crypto.subtle.verify('RSASSA-PKCS1-v1_5', key, b64(s), new TextEncoder().encode(h + '.' + p));
     if (!ok) return null;
     if (![].concat(pay.aud || []).includes(aud) || (pay.exp || 0) * 1000 < Date.now()) return null;
-    return String(pay.email || '').toLowerCase() || null;
+    // A Claude signs in with its own Access service token: no email, just the token's client id (common_name).
+    return String(pay.email || '').toLowerCase() || (pay.common_name ? 'svc:' + pay.common_name : null);
   }
   return null;
 }
 
-async function who(req, env) { const em = await signedIn(req, env, env.AUD); return (em && PEOPLE[em]) || null; }
+// SVC (plain setting, JSON): which person each Claude's service token acts for, {"<client id>": "Paul"}. Its taps are saved under that person's name.
+function svc(env) { try { return JSON.parse(env.SVC || '{}'); } catch (e) { return {}; } }
+async function who(req, env) { const em = await signedIn(req, env, env.AUD); if (!em) return null; if (em.startsWith('svc:')) return svc(env)[em.slice(4)] || null; return PEOPLE[em] || null; }
 
 // ---------- Client pages ----------
 // The team reads and writes every page; an owner reads only his own (team-only parts taken out) and can ask a question.
@@ -289,13 +297,14 @@ async function ownerAsk(req, env, u) {
 }
 
 async function all(env, me) {
-  const [L, E, P, S, D, F] = await env.DB.batch([
+  const [L, E, P, S, D, F, A] = await env.DB.batch([
     env.DB.prepare('SELECT id,g,n,k,t,a,p,u,e,rt,rv,mi,w,f,src,custom,st,wk,note,gc FROM leads ORDER BY id'),
     env.DB.prepare('SELECT lead,ts,who,a,p FROM ev ORDER BY id'),
     env.DB.prepare('SELECT pid,sender,ord,kind,name,subj,body,tip FROM pieces ORDER BY ord, sender'),
     env.DB.prepare("SELECT id,lead,pid,who,ts,st,dest,why,mode FROM sends WHERE st<>'taken back' ORDER BY id"),
     env.DB.prepare('SELECT lead,pid,who,ts,subj,body FROM drafts'),
     env.DB.prepare('SELECT lead,dnc,who,ts,why FROM flags WHERE dnc=1'),
+    env.DB.prepare('SELECT id,area,who,d,status,round,notes FROM areas ORDER BY id'),
   ]);
   const H = {}; for (const e of E.results) (H[e.lead] = H[e.lead] || []).push({ ts: e.ts, by: e.who, a: e.a, p: e.p });
   // Per shop: ps = every mail or email record (the words themselves come from op "words"), dr = drafts by piece, dnc = do not contact.
@@ -303,7 +312,7 @@ async function all(env, me) {
   for (const s of S.results) (PS[s.lead] = PS[s.lead] || []).push({ id: s.id, pid: s.pid, by: s.who, ts: s.ts, st: s.st, to: s.dest, why: s.why, mode: s.mode });
   for (const d of D.results) (DR[d.lead] = DR[d.lead] || {})[d.pid] = { by: d.who, ts: d.ts, subj: d.subj, body: d.body };
   for (const f of F.results) DN[f.lead] = { by: f.who, ts: f.ts, why: f.why };
-  return { me, ghl: !!env.GHL_TOKEN, pieces: P.results, leads: L.results.map(x => ({ ...x, st: x.st || STAGES[0], h: H[x.id] || [], ps: PS[x.id] || [], dr: DR[x.id] || {}, dnc: DN[x.id] || null })) };
+  return { me, ghl: !!env.GHL_TOKEN, grades: GRADES, areas: A.results, pieces: P.results, leads: L.results.map(x => ({ ...x, st: x.st || STAGES[0], h: H[x.id] || [], ps: PS[x.id] || [], dr: DR[x.id] || {}, dnc: DN[x.id] || null })) };
 }
 
 // ---------- GoHighLevel (only runs once GHL_TOKEN is set) ----------
@@ -363,6 +372,8 @@ async function push(env, id, line) {
   const fail = async e => { bad.push(String(e).slice(0, 300)); try { await env.DB.prepare('INSERT INTO jobs (kind,arg,done,out,ts) VALUES (?,?,1,?,?)').bind('ghl-error', id, String(e).slice(0, 400), Date.now()).run(); } catch (e2) {} };
   try {
     const x = await env.DB.prepare('SELECT * FROM leads WHERE id=?').bind(id).first(); if (!x) return 'off';
+    // Shops kept only on file don't go into GoHighLevel until someone grades them A or B (or they sign up).
+    if (!x.gc && HIDDEN.includes(x.g)) return 'off';
     const c = cfg(env), had = x.go, { gc, go } = await ensure(env, x), stage = c.stages[x.st || STAGES[0]];
     if (go && had && x.gs !== stage) { try { await ghl(env, 'PUT', '/opportunities/' + go, { pipelineStageId: stage, status: status(x.st) }); await env.DB.prepare('UPDATE leads SET gs=? WHERE id=?').bind(stage, id).run(); } catch (e) { await fail(e); } }
     // Whose contact is it? Shops loaded before this check have no gx yet: look once.
@@ -567,11 +578,36 @@ async function act(b, me, env, ctx) {
   if (b.op === 'add') {
     const n = String(b.n || '').trim().slice(0, 120); if (!n) return J({ error: 'name' }, 400);
     const nid = 'C' + now.toString(36).toUpperCase(), s = v => String(v || '').trim().slice(0, 400);
-    await env.DB.prepare('INSERT INTO leads (id,g,n,k,t,a,p,u,e,w,f,src,custom,st,upd) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,1,?,?)').bind(nid, ['A', 'B', 'Worth a visit'].includes(b.g) ? b.g : 'Worth a visit', n, s(b.k) || 'Business', s(b.t) || 'Town not set', s(b.a), s(b.p), s(b.u), '', s(b.w) || 'Added by hand.', '', 'Added by ' + me, STAGES[0], now).run();
+    // Already on the list? Same phone, or the same name in the same town. Then nothing is added and the shop already there is named.
+    const d = String(b.p || '').replace(/\D/g, '').slice(-10), nm = x => String(x || '').toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, ' ').replace(/\b(llc|inc|co|corp|company|the|pc|llp)\b/g, ' ').replace(/\s+/g, ' ').trim();
+    if (!b.force) {
+      const same = (await env.DB.prepare('SELECT id,n,t,p,g,src FROM leads').all()).results.find(y => (d.length === 10 && String(y.p || '').replace(/\D/g, '').slice(-10) === d) || (nm(y.n) === nm(n) && String(y.t || 'Town not set').toLowerCase() === (s(b.t) || 'Town not set').toLowerCase()));
+      if (same) return J({ ...(await all(env, me)), dup: same, error: 'Already on the list: ' + same.n + (same.t ? ' (' + same.t + ')' : '') + ', grade ' + (same.g || '?') + '. Nothing was added. If it is a different shop, tap Save It Anyway.' }, 409);
+    }
+    await env.DB.prepare('INSERT INTO leads (id,g,n,k,t,a,p,u,e,w,f,src,custom,st,upd) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,1,?,?)').bind(nid, GRADES.includes(b.g) ? b.g : 'Worth a visit', n, s(b.k) || 'Business', s(b.t) || 'Town not set', s(b.a), s(b.p), s(b.u), '', s(b.w) || 'Added by hand.', '', 'Added by ' + me, STAGES[0], now).run();
     ctx.waitUntil(push(env, nid, me + ' added this shop to the lead portal by hand.'));
     return J(await all(env, me));
   }
   if (['piece', 'pieceback', 'draft', 'words', 'dnc'].includes(b.op)) return pieceAct(b, me, env, ctx);
+  if (b.op === 'area') {
+    // Add an area before sweeping it ({area, round, notes}), or close it ({aid, status, notes}).
+    if (b.aid) await env.DB.prepare('UPDATE areas SET status=?, notes=COALESCE(?, notes), ts=? WHERE id=?').bind(String(b.status || 'done').slice(0, 40), b.notes == null ? null : String(b.notes).slice(0, 600), now, Number(b.aid)).run();
+    else { const area = String(b.area || '').trim().slice(0, 200); if (!area) return J({ error: 'Name the area.' }, 400);
+      await env.DB.prepare('INSERT INTO areas (area,who,d,status,round,notes,ts) VALUES (?,?,?,?,?,?,?)').bind(area, me, new Date(now).toISOString().slice(0, 10), String(b.status || 'in progress').slice(0, 40), String(b.round || '').slice(0, 80), String(b.notes || '').slice(0, 600), now).run(); }
+    return J(await all(env, me));
+  }
+  if (b.op === 'grade') {
+    // Change a shop's grade after it's saved, with the reason. Its "why" line gets the reason on top; GoHighLevel's tier field follows.
+    const g = String(b.g || ''); if (!GRADES.includes(g)) return J({ error: 'grade' }, 400);
+    const y = await env.DB.prepare('SELECT g,w,st,gc FROM leads WHERE id=?').bind(id).first(); if (!y) return J({ error: 'no such shop' }, 404);
+    if (y.g === 'Signed up') return J({ error: 'This one signed up on its own, so it has no grade to change.' }, 400);
+    const why = String(b.why || '').trim().slice(0, 1200), line = 'Grade ' + (y.g || '?') + ' to ' + g + (why ? ': ' + why : '');
+    // Not a step in the shop's history (that counts as reaching the owner): the old grade and reason stay under "Earlier" in the why line.
+    await env.DB.prepare("UPDATE leads SET g=?, w=?, f=CASE WHEN ? <> '' THEN ? ELSE f END, gf='1', gt=0, upd=? WHERE id=?").bind(g, me + ', ' + new Date(now).toLocaleDateString('en-CA', { timeZone: 'America/Indiana/Indianapolis' }) + ': ' + (why || 'grade changed') + (y.w ? '\n\nEarlier (' + (y.g || '?') + '): ' + y.w : ''), String(b.f || ''), String(b.f || '').slice(0, 2000), now, id).run();
+    // Only shops that are, or now become, worth working go into GoHighLevel.
+    ctx.waitUntil(push(env, id, me + ': ' + line));
+    return J(await all(env, me));
+  }
   const x = await env.DB.prepare('SELECT id,st FROM leads WHERE id=?').bind(id).first(); if (!x) return J({ error: 'no such shop' }, 404);
   const st = x.st || STAGES[0];
   if (b.op === 'did') {
@@ -625,6 +661,8 @@ async function record(env, b, who) {
     x = { id, st: STAGES[0] };
   }
   const to = STAGES.includes(b.stage) ? b.stage : (x.st || STAGES[0]);
+  // A shop kept only on file (Found, not graded, Leave, Franchise) that comes to us on its own is a sign-up now, so it shows on Today.
+  await env.DB.prepare("UPDATE leads SET g='Signed up' WHERE id=? AND g IN ('Found, not graded','Leave','Franchise')").bind(x.id).run();
   await env.DB.batch([env.DB.prepare('INSERT INTO ev (lead,ts,who,a,p) VALUES (?,?,?,?,?)').bind(x.id, now, who, what, x.st || STAGES[0]), env.DB.prepare('UPDATE leads SET st=?, upd=? WHERE id=?').bind(to, now, x.id)]);
   // Its deal card goes on the board at the next catch-up (within about 3 minutes), so the person booking never waits on GoHighLevel.
   return { ok: 1, id: x.id };

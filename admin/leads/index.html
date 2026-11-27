@@ -93,12 +93,15 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <button class="chip on" id="a-save" type="button" style="margin-left:8px">Save This Shop</button>
 <p class="saved" id="a-msg"></p>
 </details>
+<details id="areas" style="margin:6px 0"><summary style="cursor:pointer;font-size:15px">Areas already swept for new shops</summary><p class="sub" style="margin:6px 0">Before anyone (or any Claude) looks for new shops, check here so nobody sweeps the same place twice.</p><div id="ar"></div></details>
 <input id="q" type="search" placeholder="Search a name, town, street or trade" autocomplete="off">
 <div class="row" id="tiers">
 <button class="chip on" data-t="">All</button>
 <button class="chip" data-t="A">A</button>
 <button class="chip" data-t="B">B</button>
 <button class="chip" data-t="Worth a visit">Worth a visit</button>
+<button class="chip" data-t="Found, not graded">Found, not graded</button>
+<button class="chip" data-t="Leave">Not for us</button>
 <button class="chip" data-t="Signed up">Signed up</button>
 <button class="chip" data-t="mine">Mine</button>
 </div>
@@ -115,6 +118,12 @@ select{font:inherit;font-size:15px;padding:7px 8px;border:2px solid #111;backgro
 <p><button class="back" id="back">&larr; All leads</button> &middot; <a href="/admin/leads/how-to/">How this works</a></p>
 <h2 id="n"></h2>
 <p class="sub" id="meta"></p>
+<details id="gbox" style="margin:0 0 10px"><summary style="cursor:pointer;font-size:15px">Change the grade</summary>
+<p class="sub" style="margin:6px 0">A: worth it, and something is costing them money today. B: worth it, a smaller problem or none seen yet. Worth a visit: looks worth it from Google alone, not looked at closely. Not for us, or Franchise: we don't go after these. Found, not graded: on file so nobody adds it twice; grade it when you look at it.</p>
+<select id="g-sel"></select>
+<input id="g-why" placeholder="Why: what you saw, and where" autocomplete="off" style="display:block;width:100%;box-sizing:border-box;margin:8px 0">
+<button class="chip on" id="g-save" type="button">Save The Grade</button>
+<p class="saved" id="g-msg"></p></details>
 <p id="dncbar"></p>
 <p class="pmbar" style="display:none;margin:8px 0;padding:10px 12px;background:#B00020;color:#fff;font-weight:bold;font-size:15px">Practice mode: nothing here is saved. <button type="button" class="pmstop" style="font:inherit;font-size:14px;background:#fff;color:#B00020;border:0;padding:4px 10px;cursor:pointer;font-weight:bold">Stop practicing</button></p>
 <button class="big" id="claim" type="button" style="width:100%;font-family:inherit;cursor:pointer;background:#fff"></button>
@@ -216,6 +225,7 @@ var DID=[['Slydial sent',1],['Called, no answer',2],['Left a voicemail',2],['Wal
 var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 function $(i){return document.getElementById(i)}
+var FORCE=0,ADDF=function(){return ['a-n','a-k','a-t','a-a','a-p','a-u','a-w','a-g'].map(function(k){return $(k).value}).join('|')},AREAS=[],GRADES=['A','B','Worth a visit','Found, not graded','Leave','Franchise'],HIDE={'Found, not graded':1,'Leave':1};function hidden(x,i){return HIDE[x.g]&&stg(i)===STAGES[0]&&!(x.h||[]).length&&!x.wk&&!pworked(i)}
 var L=[],ME='',GHL=false,tier='',cur=null,curId=null,noteT=null,PIECES=[];
 var API='/admin/api/';
 function fmt(t){var d=new Date(t);return MON[d.getMonth()]+' '+d.getDate()}
@@ -231,7 +241,7 @@ function stash(j){try{localStorage.setItem(CK,JSON.stringify({t:Date.now(),j:{le
 function kept(){try{var c=JSON.parse(localStorage.getItem(CK)||'null');return c&&c.j&&c.j.leads&&c.j.leads.length?c:null}catch(e){return null}}
 function clock(t){var d=new Date(t),h=d.getHours(),m=d.getMinutes();return fmt(t)+' at '+((h%12)||12)+':'+(m<10?'0':'')+m+(h<12?' am':' pm')}
 function take(j,old){
-  L=j.leads||[];ME=j.me||'';GHL=!!j.ghl;if(j.pieces&&j.pieces.length)PIECES=j.pieces;if(!old){STALE=0;if(!PM)stash(j)}
+  L=j.leads||[];ME=j.me||'';GHL=!!j.ghl;if(j.areas)AREAS=j.areas;if(j.grades)GRADES=j.grades;if(j.pieces&&j.pieces.length)PIECES=j.pieces;if(!old){STALE=0;if(!PM)stash(j)}
   $('prac').textContent='The real list. What you tap is saved for all three of us'+(ME?' (you are signed in as '+ME+')':'')+'. '+(GHL?'Each tap also goes to GoHighLevel.':'Not going to GoHighLevel yet.');
   var tw=$('town'),keep=tw.value;while(tw.options.length>1)tw.remove(1);
   var towns=[];L.forEach(function(x){if(x.t&&towns.indexOf(x.t)<0)towns.push(x.t)});towns.sort();
@@ -264,6 +274,7 @@ function fake(b){
   else if(b.op==='draft'){x.dr=x.dr||{};if(!(b.subj||'').trim()&&!(b.body||'').trim())delete x.dr[b.pid];else x.dr[b.pid]={by:ME,ts:now,subj:b.subj,body:b.body};return {ok:1}}
   else if(b.op==='words'){var r0=lastRec(i,b.pid);return r0?{ok:1,rec:{by:r0.by,ts:r0.ts,st:r0.st,to:r0.to,subj:r0._subj||'',body:r0._body||'',why:r0.why}}:{error:'none'}}
   else if(b.op==='dnc'){x.dnc=b.on?{by:ME,ts:now,why:b.why||''}:null}
+  else if(b.op==='grade'){x.w=ME+', today: '+(b.why||'grade changed')+(x.w?'\n\nEarlier ('+x.g+'): '+x.w:'');x.g=b.g}
   return {leads:L,me:ME,ghl:GHL};
 }
 function send(b,quiet){
@@ -314,13 +325,13 @@ function drawToday(){
   var C={};L.forEach(function(x,i){var seen={};hist(i).forEach(function(e){if(!seen[e.a]){seen[e.a]=1;C[e.a]=(C[e.a]||0)+1}})});
   function c(a){return C[a]||0}
   // Where the whole list stands, all three of us. Each shop counts at the furthest step it ever reached, so a later "Not now" doesn't erase a booking.
-  var F={all:L.length,touched:0,emailed:0,answered:0,booked:0,done15:0,offer:0,client:0,notnow:0};
+  var F={all:L.filter(function(x,i){return !hidden(x,i)}).length,found:L.filter(function(x,i){return x.g==='Found, not graded'&&hidden(x,i)}).length,touched:0,emailed:0,answered:0,booked:0,done15:0,offer:0,client:0,notnow:0};
   L.forEach(function(x,k){var st=stg(k),far=st==='Not now'?-1:STAGES.indexOf(st);(x.h||[]).forEach(function(e){var n=STAGES.indexOf(e.p||'');if(e.p!=='Not now'&&n>far)far=n});
     if((x.h||[]).length||pworked(k))F.touched++;if((x.ps||[]).some(function(r){return r.st==='sent'}))F.emailed++;
     if(st==='Not now')F.notnow++;if(far>=3||st==='Not now')F.answered++;if(far>=4)F.booked++;if(far>=5)F.done15++;if(far>=6)F.offer++;if(far>=7)F.client++});
   var fb=$('funnel');fb.textContent='';var sm=document.createElement('summary');sm.style.cssText='cursor:pointer;font-size:15px';
   var sk=document.createElement('b');sk.textContent='Where We Are: ';sm.appendChild(sk);sm.appendChild(document.createTextNode(F.touched+' reached, '+F.answered+' answered, '+F.booked+' booked, '+F.client+' clients'));fb.appendChild(sm);
-  [['Shops on the list (sign-ups included)',F.all],['Reached so far (a call, visit, Slydial or email)',F.touched],['Emailed',F.emailed],['Owners who answered',F.answered+(F.notnow?' ('+F.notnow+' said not now)':'')],['Booked the 15 minutes',F.booked],['Did the 15 minutes',F.done15],['Got an offer',F.offer],['Clients',F.client]].forEach(function(r){var q=document.createElement('p');q.style.cssText='margin:0 0 2px;font-size:15px;display:flex;justify-content:space-between;gap:10px';var a1=document.createElement('span');a1.textContent=r[0];var b1=document.createElement('b');b1.textContent=r[1];q.appendChild(a1);q.appendChild(b1);fb.appendChild(q)});
+  [['Shops on the list (sign-ups included)',F.all],['Found, not graded yet (on file so no one adds them twice)',F.found],['Reached so far (a call, visit, Slydial or email)',F.touched],['Emailed',F.emailed],['Owners who answered',F.answered+(F.notnow?' ('+F.notnow+' said not now)':'')],['Booked the 15 minutes',F.booked],['Did the 15 minutes',F.done15],['Got an offer',F.offer],['Clients',F.client]].forEach(function(r){var q=document.createElement('p');q.style.cssText='margin:0 0 2px;font-size:15px;display:flex;justify-content:space-between;gap:10px';var a1=document.createElement('span');a1.textContent=r[0];var b1=document.createElement('b');b1.textContent=r[1];q.appendChild(a1);q.appendChild(b1);fb.appendChild(q)});
 }
 function draw(){
   drawToday();
@@ -328,11 +339,14 @@ function draw(){
   L.forEach(function(x,i){
     var st=stg(i);
     if(tier==='mine'){if(x.wk!==ME)return}else if(tier&&x.g!==tier)return;
+    if(!tier&&!q&&hidden(x,i))return;
     if(tw&&x.t!==tw)return;if(sg&&st!==sg)return;
     if(q&&(x.n+' '+x.t+' '+x.a+' '+x.k).toLowerCase().indexOf(q)<0)return;
     c++;if(shown<60){shown++;box.appendChild(row(i,st,true))}
   });
-  $('count').textContent=c+(c===1?' shop':' shops')+(c>shown?'. Showing the first '+shown+': search or pick a town to narrow it.':'');
+  var hid=0;if(!tier&&!q)L.forEach(function(x,i){if(hidden(x,i)&&(!tw||x.t===tw)&&(!sg||stg(i)===sg))hid++});
+  $('count').textContent=c+(c===1?' shop':' shops')+(c>shown?'. Showing the first '+shown+': search or pick a town to narrow it.':'')+(hid?' '+hid.toLocaleString()+' more are kept off this list (Found, not graded, or Not for us): tap those above, or search.':'');
+  var ar=$('ar');ar.textContent='';AREAS.slice().reverse().forEach(function(a){var p=document.createElement('p');p.style.cssText='margin:4px 0;font-size:15px';var b=document.createElement('b');b.textContent=a.area;p.appendChild(b);var dd=new Date((a.d||'')+'T12:00:00');p.appendChild(document.createTextNode(': '+a.who+', '+(isNaN(dd)?a.d:dd.toLocaleDateString('en-US',{month:'short',day:'numeric'}))+', '+a.status+'.'+(a.notes?' '+a.notes+'.':'')));ar.appendChild(p)});if(!AREAS.length)ar.textContent='None recorded yet.';
 }
 function AUD(x){var kt=x.k.toLowerCase()+' '+x.t+' IN';return [
 'You are getting me ready to call or walk in on a local business owner.',
@@ -384,7 +398,9 @@ function show(i){
   var fe=x.e||'';$('em').value=fe;$('em-msg').textContent='';$('wk-msg').textContent='';$('dnc-msg').textContent='';$('find').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana contact email');
   if(fe){$('mail').style.display='block';$('mail-sub').style.display='';$('mail').textContent='Write Your Own Email From Scratch';$('mail').href='mailto:'+fe}else{$('mail').style.display='none';$('mail-sub').style.display='none'}
   var Q=encodeURIComponent(x.n+' '+x.t+' Indiana'),N=encodeURIComponent(x.n);$('l-web').href=x.u||('https://www.google.com/search?q='+Q);$('l-goo').href='https://www.google.com/maps/search/?api=1&query='+Q;$('l-fb').href='https://www.facebook.com/search/pages/?q='+encodeURIComponent(x.n+' '+x.t);$('l-yelp').href='https://www.yelp.com/search?find_desc='+N+'&find_loc='+encodeURIComponent(x.t+', IN');$('l-ig').href='https://www.google.com/search?q='+encodeURIComponent(x.n+' '+x.t+' Indiana instagram');
-  $('why').textContent=x.w||'';$('found').textContent=x.f||'Not looked at closely yet.';
+  var gs=$('g-sel');gs.textContent='';GRADES.forEach(function(g){var o=document.createElement('option');o.value=g;o.textContent=g==='Leave'?'Not for us':g;if(g===x.g)o.selected=true;gs.appendChild(o)});$('g-why').value='';$('g-msg').textContent='';$('gbox').open=false;$('gbox').style.display=x.g==='Signed up'?'none':'';
+  $('g-save').onclick=function(){var g=$('g-sel').value,why=$('g-why').value.trim();if(g===x.g){$('g-msg').textContent='That is already its grade.';return}if(!why){$('g-msg').textContent='Say why first, so the other two know what you saw.';return}send({op:'grade',id:x.id,g:g,why:why}).then(function(){show(cur);$('gbox').open=true;$('g-msg').textContent=PM?'Practice mode is on, so this is NOT saved.':'Saved. It is '+g+' now, for all three of us.'},function(){})};
+  $('why').style.whiteSpace='pre-line';$('why').textContent=x.w||'';$('found').textContent=x.f||'Not looked at closely yet.';
   $('audit').href='https://claude.ai/new?q='+encodeURIComponent(AUD(x));
   var st=stg(i),nx=NEXT[st];$('nw-stage').textContent=st;$('nw-last').textContent=last(i)||'Nothing yet.';var dd0=due(i);$('nw-next').textContent=nx.t+(dd0&&dd0.t?' '+dd0.txt+'.':'');
   if(x.dnc)$('nw-next').textContent='Nothing. This shop is marked Do not contact: no mail, no email, no calls.';
@@ -404,7 +420,7 @@ var EMB=null;function emSave(){if(cur===null)return;var v=$('em').value.trim();i
 $('em').onchange=emSave;$('em-save').onclick=emSave;
 $('undo').onclick=function(){if(cur===null)return;send({op:'undo',id:L[cur].id}).then(function(){show(cur)},function(){})};
 $('a-save').onclick=function(){var n=$('a-n').value.trim();if(!n){$('a-msg').textContent='Put in the shop name first.';return}
-  send({op:'add',n:n,k:$('a-k').value.trim(),t:$('a-t').value.trim(),a:$('a-a').value.trim(),p:$('a-p').value.trim(),g:$('a-g').value,w:$('a-w').value.trim(),u:$('a-u').value.trim()}).then(function(){['a-n','a-k','a-t','a-a','a-p','a-u','a-w'].forEach(function(k){$(k).value=''});$('a-msg').textContent='Saved. It is on the list for all three of us.';draw()},function(){$('a-msg').textContent='Could not save it.'})};
+  var f0=FORCE;FORCE=0;send({op:'add',force:f0?true:undefined,n:n,k:$('a-k').value.trim(),t:$('a-t').value.trim(),a:$('a-a').value.trim(),p:$('a-p').value.trim(),g:$('a-g').value,w:$('a-w').value.trim(),u:$('a-u').value.trim()}).then(function(){['a-n','a-k','a-t','a-a','a-p','a-u','a-w'].forEach(function(k){$(k).value=''});$('a-msg').textContent='Saved. It is on the list for all three of us.';draw()},function(e){var w=(e&&typeof e.why==='string'&&e.why)||'Could not save it.';$('a-msg').textContent=w;if(w.indexOf('Already on the list')===0){var bt=document.createElement('button');bt.type='button';bt.className='chip';bt.style.marginLeft='8px';bt.textContent='Save It Anyway';var snap=ADDF();bt.onclick=function(){if(ADDF()===snap)FORCE=1;$('a-save').onclick()};$('a-msg').appendChild(bt)}})};
 $('untick').onclick=function(e){e.preventDefault();PICK={};draw();pickBar()};
 $('take').onclick=function(){
   if(STALE){msg('The shared list is not answering, so shops can\'t be taken right now. Tap Try again above.');return}
