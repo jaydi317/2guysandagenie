@@ -58,7 +58,18 @@ async function post(b) {
   if (!r.ok) { dirty = false; draw(); say(j.error || 'Not saved. Try again.', true); return false; }
   dirty = false; draw(); say('Saved. His page shows it now.'); return j;
 }
-function save() { const c = C(); c.data.upd = Date.now(); return post({ op: 'save', slug: c.slug, name: c.name, emails: c.emails, data: c.data, upd: c.upd }); }
+// Saves go one at a time, each with the newest version number, so two quick saves never trip over each other.
+let chain = Promise.resolve(), pending = 0;
+function save() { const slug = cur; pending++; chain = chain.then(() => saveOne(slug)).finally(() => pending--); return chain; }
+async function saveOne(slug) {
+  const c = D.clients.find(x => x.slug === slug); if (!c) return; c.data.upd = Date.now(); say('Saving…');
+  const r = await fetch(API, { method: 'POST', credentials: 'same-origin', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ op: 'save', slug, name: c.name, emails: c.emails, data: c.data, upd: c.upd }) });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) { if (j.clients) D = j; dirty = false; draw(); say(j.error || 'Not saved. Try again.', true); return; }
+  // Keep what's on screen if another save is already waiting; otherwise take the saved copy (it may hold a question he just asked).
+  if (pending > 1) j.clients = j.clients.map(x => x.slug === slug ? { ...x, data: c.data } : x);
+  D = j; if (pending <= 1) { dirty = false; draw(); } say('Saved. His page shows it now.');
+}
 window.go = s => { if (dirty && !confirm('You have changes that are not saved. Leave without saving?')) return; dirty = false; cur = s; tab = 'edit'; draw(); scrollTo(0, 0); };
 window.tabTo = t => { tab = t; draw(); };
 const waiting = c => (c.data.qa || []).filter(q => !q.a).length;
@@ -81,17 +92,17 @@ function editor(c) {
   d.next = d.next || {}; d.offer = d.offer || {}; d.agree = d.agree || {}; d.plan = d.plan || { q: [], b: [], s: [], n: [] }; d.video = d.video || {};
   let h = '';
   // 1. Waiting for our OK
-  h += '<div class="ctrl"><h4>Waiting For Our OK</h4><p class="small" style="margin:0 0 6px">New from calls and notes (Granola, Zoom, Bee, Jimmy\'s Notion). Nothing reaches his page until one of us taps Post. Edit lets you change the words first.</p>' +
-    (d.inbox.length ? d.inbox.map((u, i) => '<div class="it"><span class="src">' + E(u.src) + '</span><input type="text" value="' + E(u.t) + '" oninput="C().data.inbox[' + i + '].t=this.value;mark()"><textarea oninput="C().data.inbox[' + i + '].d=this.value;mark()">' + E(u.d) + '</textarea><p style="margin:6px 0 0"><button class="mini" onclick="postIn(' + i + ')">Post</button> <button class="mini ghost" onclick="C().data.inbox.splice(' + i + ',1);save()">Skip</button></p></div>').join('') : '<p class="small" style="margin:0">Nothing waiting.</p>') + '</div>';
+  h += '<div class="ctrl"><h4>Waiting For Our OK</h4><p class="small" style="margin:0 0 6px">New from calls and notes (Granola, Zoom, Bee, Jimmy\'s Notion). Nothing reaches his page until one of us taps Post. Change the words first if you want.</p>' +
+    (d.inbox.length ? d.inbox.map((u, i) => '<div class="it"><span class="src">' + E(u.src) + '</span><input type="text" value="' + E(u.t) + '" oninput="C().data.inbox[' + i + '].t=this.value;mark()"><textarea oninput="C().data.inbox[' + i + '].d=this.value;mark()">' + E(u.d) + '</textarea><p style="margin:6px 0 0"><button class="mini" onclick="postIn(' + i + ')">Post To His Meetings</button> <button class="mini ghost" onclick="if(confirm(\'Throw this away? It will not go on his page.\')){C().data.inbox.splice(' + i + ',1);save()}">Throw Away</button></p></div>').join('') : '<p class="small" style="margin:0">Nothing waiting.</p>') + '</div>';
   // 2. Questions he asked
   const open = d.qa.map((q, i) => [q, i]).filter(x => !x[0].a);
   h += '<div class="ctrl"><h4>His Questions</h4>' + (open.length ? open.map(([q, i]) => '<div class="it"><p style="margin:0"><b>He asked</b> (' + E(new Date(q.ts || Date.now()).toLocaleDateString()) + '): ' + E(q.q) + '</p><textarea id="ans' + i + '" placeholder="Your answer. It shows on his page under his question."></textarea><button class="mini" onclick="answer(' + i + ')">Answer</button></div>').join('') : '<p class="small" style="margin:0">No questions waiting.</p>') + '</div>';
   // 3. His items
-  h += '<div class="ctrl"><h4>His Items</h4><p class="small" style="margin:0 0 6px">Change where each one stands, then Save. Not started stays off his page. Done asks for how to use it and the hours it gives back.</p>' +
+  h += '<div class="ctrl"><h4>His Items</h4><p class="small" style="margin:0 0 6px">Change where each one stands. Not started stays off his page. Done asks for how to use it and the hours it gives back.</p>' +
     d.items.map((x, i) => '<div class="it"><div class="hd"><input type="text" value="' + E(x.t) + '" oninput="C().data.items[' + i + '].t=this.value;mark()"><select onchange="setSt(' + i + ',this.value)">' + STAT.map(o => '<option' + (o === x.st ? ' selected' : '') + '>' + o + '</option>').join('') + '</select></div><label class="f">What it is (he reads this)</label><textarea oninput="C().data.items[' + i + '].d=this.value;mark()">' + E(x.d) + '</textarea>' +
       (x.st === 'Done' ? '<div class="more2"><label class="f">How to use it</label><textarea oninput="C().data.items[' + i + '].how=this.value;mark()">' + E(x.how) + '</textarea><label class="f">Hours a week it gives back (leave blank until you know)</label><input type="text" value="' + E(x.hrs) + '" oninput="C().data.items[' + i + '].hrs=this.value;mark()"><label class="f">Link to it (optional)</label><input type="text" value="' + E(x.link) + '" oninput="C().data.items[' + i + '].link=this.value;mark()"></div>'
         : (x.st !== 'Not started' ? '<label class="f">When it\'s done, or what it waits on</label><input type="text" value="' + E(x.when) + '" oninput="C().data.items[' + i + '].when=this.value;mark()">' : '')) +
-      '<p class="hint"><a href="#" onclick="C().data.items.splice(' + i + ',1);mark();draw();return false">Remove this item</a></p></div>').join('') +
+      '<p class="hint"><a href="#" onclick="if(confirm(\'Remove this item from his page?\')){C().data.items.splice(' + i + ',1);save()}return false">Remove this item</a></p></div>').join('') +
     '<p style="margin:10px 0 0"><button class="mini ghost" onclick="C().data.items.push({t:\'New item\',d:\'\',st:\'Not started\'});mark();draw()">+ Add An Item</button></p></div>';
   // 4. Ask him for something
   h += '<div class="ctrl"><h4>Ask Him For Something</h4><textarea id="need" placeholder="Example: the login for your Google Business Profile"></textarea><p class="small" style="margin:6px 0">It shows under "What We Need From You" on his page. Tell him it\'s there when you next talk or text.</p><button class="mini" onclick="addNeed()">Put It On His Page</button>' +
@@ -102,15 +113,15 @@ function editor(c) {
   const sel = (d.roadL && d.roadL.length ? d.roadL : STAGES).map((s, i) => '<option value="' + i + '"' + (i == (+d.stage || 0) ? ' selected' : '') + '>' + E(s) + '</option>').join('');
   const fld = (lab, path, val, big) => '<label class="f">' + lab + '</label>' + (big ? '<textarea oninput="setP(\'' + path + '\',this.value)">' + E(val) + '</textarea>' : '<input type="text" value="' + E(val) + '" oninput="setP(\'' + path + '\',this.value)">');
   h += '<div class="ctrl"><h4>The Top Of His Page</h4>' + fld('Page title', 'biz', d.biz) + fld('Line above the title', 'who', d.who) +
-    '<label class="f">Where he is on the road</label><select onchange="C().data.stage=+this.value;mark()">' + sel + '</select>' + fld('The steps of his road, one per line (blank = the usual four)', 'roadL', (d.roadL || []).join('\n'), 1) +
+    '<label class="f">Where he is on the road</label><select onchange="C().data.stage=+this.value;mark()">' + sel + '</select>' + fld('The steps of his road, one per line (blank = Free 15 Minutes, What We Found, The Master Plan, Better Every Month)', 'roadL', (d.roadL || []).join('\n'), 1) +
     fld('Next step: small label', 'next.k', d.next.k) + fld('Next step: headline', 'next.h', d.next.h) + fld('Next step: what to know', 'next.p', d.next.p, 1) + fld('Next step: when', 'next.when', d.next.when) + fld('Next step: button words', 'next.btn', d.next.btn) + fld('Next step: button link', 'next.link', d.next.link) + '</div>';
   // 7. The rest of his page
   h += '<div class="ctrl"><h4>The Rest Of His Page</h4>' +
     fld('Three numbers (one per line: label | number)', 'stats', d.stats.map(s => s.join(' | ')).join('\n'), 1) +
-    fld('What he asked for, in his words (first stage)', 'asked', d.asked, 1) + fld('What-we-found video: button words', 'video.t', d.video.t) + fld('What-we-found video: link', 'video.link', d.video.link) + fld('The tools out there (first stage)', 'tools', d.tools, 1) +
+    fld('What he asked for, in his words (before he pays)', 'asked', d.asked, 1) + fld('What-we-found video: button words', 'video.t', d.video.t) + fld('What-we-found video: link', 'video.link', d.video.link) + fld('The tools out there (before he pays)', 'tools', d.tools, 1) +
     fld('The offer: headline', 'offer.h', d.offer.h) + fld('The offer: what he gets', 'offer.p', d.offer.p, 1) + fld('The offer: button words', 'offer.btn', d.offer.btn) + fld('The offer: button link (Stripe)', 'offer.link', d.offer.link) +
     fld('His plan: quick wins (one per line; start with ✓ if he picked it)', 'plan.q', d.plan.q.join('\n'), 1) + fld('His plan: big moves', 'plan.b', d.plan.b.join('\n'), 1) + fld('His plan: small fixes', 'plan.s', d.plan.s.join('\n'), 1) + fld('His plan: not now', 'plan.n', d.plan.n.join('\n'), 1) +
-    fld('Our meetings (one per line: title | what happened | link)', 'meets', d.meets.map(m => [m.t, m.d, m.link || ''].join(' | ')).join('\n'), 1) +
+    '<p class="hint">For the lists below: one per line, with | between the parts. Leave a part empty but keep its |. Example: Referral program | Turns customers into jobs | $500 |</p>' + fld('Our meetings (one per line: title | what happened | link)', 'meets', d.meets.map(m => [m.t, m.d, m.link || ''].join(' | ')).join('\n'), 1) +
     fld('More we can do (one per line: title | what it is | price | link)', 'more', d.more.map(m => [m.t, m.d, m.price || '', m.link || ''].join(' | ')).join('\n'), 1) +
     fld('His agreement', 'agree.text', d.agree.text, 1) + fld('His agreement: link', 'agree.link', d.agree.link) + '</div>';
   // 8. Who can sign in
@@ -129,12 +140,20 @@ function detail() {
   h += '<div class="tabs"><button class="' + (tab === 'edit' ? 'on' : '') + '" onclick="tabTo(\'edit\')">Update His Page</button><button class="' + (tab === 'see' ? 'on' : '') + '" onclick="tabTo(\'see\')">What He Sees</button><button class="' + (tab === 'team' ? 'on' : '') + '" onclick="tabTo(\'team\')">Team Only</button></div>';
   if (tab === 'see') { const d = JSON.parse(JSON.stringify(c.data)); delete d.team; delete d.inbox; d.notes = (d.notes || []).filter(n => n.show); d.items = (d.items || []).filter(i => i.st !== 'Not started'); h += '<p class="note">This is his page as it stands. Unsaved changes show here too.</p>' + drawClientPage(d, {}); }
   else h += tab === 'team' ? team(c) : editor(c);
-  h += '<div class="bar"><button class="btn" onclick="save()">Save</button><span id="msg" class="msg">' + (dirty ? 'You have changes that are not saved.' : 'Last saved by ' + E(c.by === 'owner' ? 'him (a question)' : c.by || '') + ' on ' + new Date(c.upd).toLocaleString() + '.') + '</span></div>';
+  h += '<div class="bar"><button class="btn" onclick="save()">Save</button><span id="msg" class="msg">' + (dirty ? 'Saving when you leave the box…' : 'Everything saves by itself. Last saved by ' + E(c.by === 'owner' ? 'him (a question)' : c.by || '') + ' on ' + new Date(c.upd).toLocaleString() + '.') + '</span></div>';
   return h;
 }
-function draw() { if (!D) return; V.innerHTML = cur ? detail() : list(); }
-window.mark = () => { dirty = true; say('You have changes that are not saved.'); };
-window.setSt = (i, v) => { C().data.items[i].st = v; mark(); draw(); };
+// A redraw keeps whatever someone was typing in the boxes that aren't saved yet (a request, a note, an answer) and where their cursor was.
+function draw() {
+  if (!D) return;
+  const keep = {}, act = document.activeElement, fid = act && act.id, pos = act && act.selectionStart;
+  V.querySelectorAll('#need,#note,#nn,textarea[id^=ans]').forEach(el => keep[el.id] = el.value);
+  V.innerHTML = cur ? detail() : list();
+  for (const id in keep) { const el = document.getElementById(id); if (el && keep[id]) el.value = keep[id]; }
+  if (fid) { const el = document.getElementById(fid); if (el) { el.focus(); try { el.setSelectionRange(pos, pos); } catch (e) {} } }
+}
+window.mark = () => { dirty = true; say('Saving when you leave the box…'); };
+window.setSt = (i, v) => { C().data.items[i].st = v; save(); };
 window.setP = (path, v) => { const d = C().data, k = path.split('.');
   if (path === 'stats') d.stats = pipes(v).map(p => [p[0] || '', p[1] || '']);
   else if (path === 'roadL') d.roadL = lines(v);
@@ -144,10 +163,12 @@ window.setP = (path, v) => { const d = C().data, k = path.split('.');
   else if (k.length === 2) (d[k[0]] = d[k[0]] || {})[k[1]] = v; else d[k[0]] = v;
   mark(); };
 window.postIn = i => { const d = C().data, u = d.inbox.splice(i, 1)[0]; d.meets.push({ t: u.t, d: u.d || '', link: u.link || '' }); save(); };
-window.answer = i => { const a = $('ans' + i).value.trim(); if (!a) return; Object.assign(C().data.qa[i], { a, aby: me, ats: Date.now() }); save(); };
-window.addNeed = () => { const t = $('need').value.trim(); if (!t) return; C().data.need.push({ t, by: me, ts: Date.now() }); save(); };
-window.addNote = () => { const t = $('note').value.trim(); if (!t) return; const show = document.querySelector('input[name=nw]:checked').value === '1'; C().data.notes.push({ t, show, by: me, ts: Date.now() }); save(); };
+window.answer = i => { const el = $('ans' + i), a = el.value.trim(); if (!a) return; el.value = ''; Object.assign(C().data.qa[i], { a, aby: me, ats: Date.now() }); save(); };
+window.addNeed = () => { const el = $('need'), t = el.value.trim(); if (!t) return; C().data.need.push({ t, by: me, ts: Date.now() }); el.value = ''; save(); };
+window.addNote = () => { const el = $('note'), t = el.value.trim(); if (!t) return; const show = document.querySelector('input[name=nw]:checked').value === '1'; C().data.notes.push({ t, show, by: me, ts: Date.now() }); el.value = ''; save(); };
 window.C = C; window.save = save; window.draw = draw;
+// Typing saves itself when you leave the box (so a page redraw never interrupts someone mid-sentence).
+V.addEventListener('change', e => { if (dirty && cur && e.target.matches('input[type=text],input[type=email],textarea,select')) setTimeout(() => { if (dirty) save(); }, 300); }); // the short wait lets a button tap land first
 addEventListener('beforeunload', e => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
 load();
 }
